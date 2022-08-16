@@ -3,47 +3,46 @@ main{
 justify-content: space-between;
     padding:0px;
 }
-main .formularioR{
+main .formularioE{
     width: 974px;
     max-width: 85%;
     border: none;
     background-color: transparent;
     padding: 0;
     display: flex;
-    justify-content: space-around;
-    margin:20px 0px;
+    justify-content: space-between;
+    margin:20px 0px 0px 0px ;
 }
 
-main .formularioR label,
-main  .formularioR  input{
-    display: inline-block;
-    width: 50%;    
+main .formularioE label,
+main  .formularioE  input{
+    display: inline;
+    width:50%;
+    padding: 0px 10px;   
 }
-main .formularioR input{
+main .formularioE input{
     border-radius: 0px;
     padding: 15px;
-    /*max-width:45% ;*/
+   
 }
-main .formularioR .input_foto{
+main .formularioE .input_foto{
     border:none;
     padding:0px;
 }
-main .formularioR div{
-    min-width: 440px;
+main .formularioE div{
+    min-width: 300px;
+    width: 75%;
     
 }
-main .formularioR div .boton{
+main .formularioE div .botonU{
     border-radius: 32px;
     text-align: center;
     max-width: 236px;
     width: 50%;
 }
 
-main .formularioR img{
-   width: 293px;
+main .formularioE img{
+    width: 293px;
     height: 266px;
     margin: auto 0px;
 }
-
-
-
