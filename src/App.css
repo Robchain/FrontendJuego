@@ -1,38 +1,60 @@
-.App {
-  text-align: center;
+main{
+    display: flex;
+    justify-content: center;
+    padding: 58px 0px;
+    min-height: 720px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.Niña{
+  width: 20%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  justify-content: flex-start;
 
-.App-link {
-  color: #61dafb;
 }
+  
+.Niño{
+    width: 20%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+main form{
+    width: 60%;
+    max-width: 563px;
+    border: 1px solid ;
+    border-radius: 75px;
+    background-color: #fff;
+    padding: 0px 49px ;
+}
+main form img{
+    display: block;
+   width: 65%;
+   margin: auto;
+}
+main form label,
+main form input,
+main form a{
+    margin: 10px 0px;
+    display: inline-block;
+}
+main div .Niñoimagen {
+  width: 198px;
+  height: 298px;
+}
+main    div .Niñaimagen {
+    width: 208px;
+    height: 275px; ;
+}
+main form input{
+    padding: 20px;
+    width: 90%;
+    border-radius: 38px;
+    border:0.5px solid;
+}
+main form .boton{
+    background-color: #23636F;
+    color:#fff;
+    font-size: 22px;
+}
+/*media queries para responsive*/
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+

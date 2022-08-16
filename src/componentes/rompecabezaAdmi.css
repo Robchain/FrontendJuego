@@ -1,0 +1,43 @@
+main{
+    display: flex;
+justify-content: space-between;
+    padding:0px;
+}
+main .formularioR{
+    width: 974px;
+    max-width: 85%;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    margin:20px 0px;
+}
+main .formularioR input,
+main  .formularioR  label{
+    display: block;
+    width: 100%;
+    
+}
+main .formularioR input{
+    border-radius: 0px;
+    /*max-width:45% ;*/
+}
+main .formularioR div{
+    min-width: 440px;
+    
+}
+main .formularioR div .boton{
+    border-radius: 32px;
+    text-align: center;
+    max-width: 236px;
+    width: 50%;
+}
+
+main .formularioR img{
+   width: 293px;
+    height: 266px;
+    margin: auto 0px;
+}
+
+
