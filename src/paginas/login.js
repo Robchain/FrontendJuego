@@ -69,7 +69,6 @@ const postUsurio    =   async ()    =>{
     <label>CORRE ELECTRONICO</label><br/>
     <input  type="text" name="Email"    value={Datos.Email} onChange={handleChange}></input><br/>
     <label>CONTRASEÑA</label><br/><input  type="password" name="Password"   value={Datos.Password} onChange={handleChange}></input><br/>
-            <label>{mensajeErrora}</label>
     <br/><input  className='boton' type='submit' value='ENTRAR'  ></input><br/>
     <a href='wwww.google.com' >INSCRIBIRSE</a><br/>
     <a href='wwww.google.com'>OLVIDE MI CONTRASEÑA</a>
