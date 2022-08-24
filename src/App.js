@@ -1,48 +1,36 @@
 
 import './App.css';
-import { Component, useState } from 'react';
-import axios from 'axios';
 import React from 'react';
-import Niño from './img/LoginB.png';
-import Niña from './img/LoginN.png';
-import Logo from './img/logo tiempo.png';
-const url = "http://localhost:3002/api/auth/signin";
+import Login from './paginas/login'
+import {BrowserRouter, Routes, Route } from 'react-router-dom'
+import EstudianteAdmi from './componentes/estudianteAdmi';
+import RompecabezaAdmi from './componentes/rompecabezaAdmi';
+import VocabularioAdmi from './componentes/vocabularioAdmi';
+import OracionAdm from './paginas/oracionAdm';
+import EquipoAdm from './paginas/equipoAdm';
+import ReporteAdm from './paginas/ReporteAdm';
+import ActividadColaborativaAdm from  './paginas/actividadColaborativaAdm';
+import MenuJuego from './paginas/MenuJuego';
 
-class App extends Component{
-/*state={
-  data:[]
-}
-peticionGet=()=>{
-axios.get(url).then(response=>{
-  console.log(response.data);
-})
-}
-  componentDidMount(){
-this.peticionGet();
-}*/
-  render(){
-return(
- <main>
-  <div  className='Niño'>
-    <img  className='Niñoimagen' src={Niño} alt='Niño'></img>
-  </div>
-  <form>
-  <img  className='LogoColegio' src={Logo} alt="logo del colegio" ></img>
-    <label>CORRE ELECTRONICO</label><br/>
-    <input  type="text" ></input><br/>  
-    <label>CONTRASEÑA</label><br/>
-    <input  type="password" ></input><br/>
-    <input  className='boton' type='submit' value='ENTRAR'></input><br/>
-    <a href='wwww.google.com' >INSCRIBIRSE</a><br/>
-    <a href='wwww.google.com'>OLVIDE MI CONTRASEÑA</a>
-  </form>
-  <div  className='Niña'>
-    <img  className='Niñaimagen'  src={Niña} alt="Niña"></img>
-    </div>
- </main>
+const App =() =>{
 
-
-)
-}
+  return(
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route  path='/'   element={<Login/>}></Route>
+          <Route  path='/Administrador'  element={<EstudianteAdmi/>}></Route>
+          <Route  path='/Rompecabeza'  element={<RompecabezaAdmi/>}></Route>
+          <Route  path='/Vocabulario'  element={<VocabularioAdmi/>}></Route>
+          <Route  path='/Oracion' element={<OracionAdm/>}></Route>
+          <Route  path='/Equipo'  element={<EquipoAdm/>}></Route>
+          <Route  path='/ActividadColaborativa' element={<ActividadColaborativaAdm/>}></Route>
+          <Route  path='/ReporteEstudiante' element={<ReporteAdm/>}></Route>
+          <Route  path='/MenuJuego' element={<MenuJuego/>}></Route>
+        </Routes>
+      </BrowserRouter>
+    </>
+  )
 }
 export default App;
+

@@ -3,7 +3,7 @@ main{
 justify-content: space-between;
     padding:0px;
 }
-main .formularioE{
+main .formularioV{
     width: 974px;
     max-width: 85%;
     border: none;
@@ -13,37 +13,36 @@ main .formularioE{
     justify-content: space-between;
     margin:20px 0px 0px 0px ;
 }
-
-main .formularioE label,
-main  .formularioE  input{
-    display: inline;
+main .formularioV label,
+main  .formularioV  input{
+    display: inline-block;
     width:90%;
-    padding: 0px 10px;   
+    margin: 0px 0px 10px 0px;   
 }
-main .formularioE input{
+main .formularioV input{
     border-radius: 0px;
     padding: 10px;
     font-size: 22px;
    
 }
-main .formularioE .input_foto{
+main .formularioV .input_archivo{
     border:none;
     padding:0px;
     font-size: 14px;
 }
-main .formularioE div{
+main .formularioV div{
     min-width: 300px;
     width: 75%;
     
 }
-main .formularioE div .botonU{
+main .formularioV div .botonU{
     border-radius: 32px;
     text-align: center;
     max-width: 236px;
     width: 50%;
 }
 
-main .formularioE img{
+main .formularioV img{
     width: 293px;
     height: 266px;
     margin: auto 0px;

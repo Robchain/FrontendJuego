@@ -11,25 +11,33 @@ main .formularioR{
     padding: 0;
     display: flex;
     justify-content: space-around;
-    margin:20px 0px;
+    margin:20px 0px 0px 0px;
 }
-
+main .formularioR   input{
+    border-radius: 0px;
+    font-size: 20px;
+}
 main .formularioR label,
 main  .formularioR  input{
     display: inline-block;
-    width: 50%;    
+    width: 90%;  
+    padding: 0px 10px; 
+    margin:5px 0px; 
 }
 main .formularioR input{
     border-radius: 0px;
     padding: 15px;
     /*max-width:45% ;*/
 }
-main .formularioR .input_foto{
+main .formularioR .input_Color,
+main .formularioR   .input_Blanco{
     border:none;
     padding:0px;
+    
 }
 main .formularioR div{
     min-width: 440px;
+    width: 75%;
     
 }
 main .formularioR div .boton{

@@ -1,25 +1,29 @@
 import React, { Component } from "react";
-import BotonAdmin from './botonAdmi';
+import { NavLink } from "react-router-dom";
+import BotonAdmin from './BotonAdmi';
+
 
 class MenuAdmi extends Component{
 
     render(){
     return(
+        
         <nav>
-        <BotonAdmin value="ESTUDIANTES"/>
+        <NavLink    to='/Administrador'><BotonAdmin value="ESTUDIANTES"></BotonAdmin></NavLink>
         <br/>
-        <BotonAdmin value="ROMPECABEZA"/>
+        <NavLink    to="/Rompecabeza"><BotonAdmin value="ROMPECABEZA"/></NavLink>
         <br/>
-        <BotonAdmin value="VOCABULARIO" />
+       <NavLink to='/Vocabulario'> <BotonAdmin value="VOCABULARIO" /></NavLink>
         <br/>
-        <BotonAdmin value="ORACIONES"/>        
+        <NavLink    to='/Oracion'><BotonAdmin value="ORACIONES"/>  </NavLink>      
         <br/>
-        <BotonAdmin value="EQUIPOS"/>
+        <NavLink    to='/Equipo'><BotonAdmin value="EQUIPOS"/></NavLink>
         <br/>
-        <BotonAdmin value="ACTIVIDAD COLABORATIVA"/>
+        <NavLink    to='/ActividadColaborativa'><BotonAdmin value="ACTIVIDAD COLABORATIVA"/></NavLink>
         <br/>
-        <BotonAdmin value="REPORT DE ESTUDIANTE"/>
+        <NavLink    to='/ReporteEstudiante'><BotonAdmin value="REPORTE DE ESTUDIANTE"/></NavLink>
         </nav>
+     
     )
 }
 }

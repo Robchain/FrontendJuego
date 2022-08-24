@@ -1,8 +1,19 @@
 import React from "react";
 import './botonAdmi.css'
-const botonAdmin = (props) =>{
+import PropsTypes from 'prop-types'
+const BotonAdmin = ({value}) =>{
     return(
-        <button> {props.value} </button>
+        <button> {value} </button>
     )
 }
-export default botonAdmin;
+//propiedades 
+BotonAdmin.propTypes={
+        value:PropsTypes.string.isRequired
+    }
+
+//propiedades por default
+BotonAdmin.defaultProps={
+    value:''
+}
+
+export default BotonAdmin;
