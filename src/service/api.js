@@ -1,12 +1,9 @@
 import axios from 'axios';
-
-
-
-const url="http://localhost:3002/api/auth/signup"
+const url="http://localhost:3002/api/auth"
 export async function postEstudiante    (info){
     try {
         const response  = await axios({
-            url:url,
+            url:`${url}/signup`,
             method:'POST',
             data:info
         })
@@ -17,7 +14,7 @@ export async function postEstudiante    (info){
 export async function postUsurio    (info){
     try {
         const response  = await axios({
-            url:"http://localhost:3002/api/auth/signin",
+            url:`${url}/signin`,
             method:'POST',
             data:info
         }).then(response=>{

@@ -1,5 +1,5 @@
 import React from "react";
-import './botonAdmi.css'
+
 import PropsTypes from 'prop-types'
 const BotonAdmin = ({value}) =>{
     return(

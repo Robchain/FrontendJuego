@@ -1,29 +1,41 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import BotonAdmin from './BotonAdmi';
-
+import { NavItem, Nav } from "reactstrap";
+import IconP    from './IconP'
 
 class MenuAdmi extends Component{
 
     render(){
     return(
-        
-        <nav>
-        <NavLink    to='/Administrador'><BotonAdmin value="ESTUDIANTES"></BotonAdmin></NavLink>
-        <br/>
-        <NavLink    to="/Rompecabeza"><BotonAdmin value="ROMPECABEZA"/></NavLink>
-        <br/>
-       <NavLink to='/Vocabulario'> <BotonAdmin value="VOCABULARIO" /></NavLink>
-        <br/>
-        <NavLink    to='/Oracion'><BotonAdmin value="ORACIONES"/>  </NavLink>      
-        <br/>
-        <NavLink    to='/Equipo'><BotonAdmin value="EQUIPOS"/></NavLink>
-        <br/>
-        <NavLink    to='/ActividadColaborativa'><BotonAdmin value="ACTIVIDAD COLABORATIVA"/></NavLink>
-        <br/>
-        <NavLink    to='/ReporteEstudiante'><BotonAdmin value="REPORTE DE ESTUDIANTE"/></NavLink>
-        </nav>
-     
+        <Nav   vertical>
+        <NavItem>
+         <NavLink    to='/'><IconP/></NavLink>
+         </NavItem>
+        <NavItem>
+         <NavLink    to='/VerEstudiante'>Estudiante</NavLink>
+         </NavItem>
+         <NavItem>
+        <NavLink    to='/VerCategoria'>Categoria</NavLink>
+        </NavItem>
+        <NavItem>
+        <NavLink    to="/VerRompecabeza">Rompecabeza</NavLink>
+        </NavItem>
+        <NavItem>
+       <NavLink     to='/VerVocabulario'> Vocabulario</NavLink>
+       </NavItem>
+       <NavItem>
+        <NavLink    to='/VerOracion'>Oracion</NavLink>  
+        </NavItem>    
+       <NavItem>
+        <NavLink    to='/Equipo'>Equipo</NavLink>
+        </NavItem>
+        <NavItem>
+        <NavLink    to='/ActividadColaborativa'>Actividades</NavLink>
+        </NavItem>
+        <NavItem>
+        <NavLink    to='/ReporteEstudiante'>Reporte</NavLink>
+        </NavItem>
+        </Nav>
     )
 }
 }
