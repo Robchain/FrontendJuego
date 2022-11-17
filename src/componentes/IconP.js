@@ -11,8 +11,8 @@ const SvgComponent = (props) => (
       enableBackground: "new 0 0 584.92 228.66",
     }}
     xmlSpace="preserve"
-    width="1svw"
-    height="1svw"
+    width="16vw"
+    height="16vh"
     {...props}
   >
     <style>{".st0{fill:#60269e}.st1{fill:#fff}"}</style>

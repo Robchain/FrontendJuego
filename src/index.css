@@ -1,0 +1,26 @@
+.minav{
+    padding:10px;
+    color:#777;
+    list-style-type: none;
+}
+
+.minav  .item  {
+    margin:10px;
+    
+}
+.minav .item .linkNav {
+    color:#777;
+    font-size: 1em;
+    display: block;
+    text-decoration: none;
+    
+}
+.minav .item .linkNav img {
+    width: 2vw;
+}
+
+.minav .item .linkNav:hover{
+    background-color: #8cc5b0;
+    color:#fff;
+    text-decoration: solid;
+}
