@@ -45,10 +45,8 @@ const postUsurio    =  async ()    =>{
                     if(response.data.TipoUsuario    === 'MAESTRO'){
                     localStorage.setItem('token',response.data.token)
                    entrar('/VerEstudiante');
-                console.log(response.data.TipoUsuario);
                     }else{
                        entrar('/MenuJuego');
-                        console.log(response.data.TipoUsuario);
                     }
                 }else{
                    mensajeErrora=response.data.respuesta;

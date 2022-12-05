@@ -18,8 +18,10 @@ import VerOracionAdm from './paginas/Administrador/VerOracionAdm';
 import ActividadColaborativaAdm from  './paginas/Administrador/ActividadColaborativaAdm';
 //Juego
 import MenuJuego from './paginas/Juego/MenuJuego';
-import RompecabezaJV from './paginas/Juego/RompecabezaJV';
-import RompecabezaJO from './paginas/Juego/RompecabezaJO';
+import RompecabezaJV from './paginas/Juego/Vocabulario/RompecabezaJV';
+import RompecabezaJO from './paginas/Juego/Oracion/RompecabezaJO';
+import VocabularioJ from './paginas/Juego/Vocabulario/VocabularioJ';
+import OracionJ from './paginas/Juego/Oracion/OracionJ';
 
 const App =() =>{
 
@@ -43,7 +45,10 @@ const App =() =>{
           <Route  path='/VerEstudiante' element={<VerEstudianteAdm/>}></Route>
           <Route  path='/VerRompecabeza'  element={<VerRompecabezaAdm/>}></Route>
           <Route  path='/VerVocabulario'  element={<VerVocabularioAdm/>}></Route>
-          <Route  path='/VerOracion'  element={<VerOracionAdm/>}></Route>
+          <Route path='/VocabularioJuego' element={<VocabularioJ/>}/>
+          <Route path='/OracionJuego' element={<OracionJ/>}/>
+          {//<Route  path='/ '  element={<VerOracionAdm/>}></Route>
+          }
         </Routes>
       </BrowserRouter>
     </>

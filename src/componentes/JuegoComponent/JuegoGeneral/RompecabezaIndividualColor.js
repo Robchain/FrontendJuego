@@ -1,0 +1,10 @@
+import React from "react"
+const RompecabezaIndividualColor = ({numbera}) => {
+    return (
+      <>  
+          <img src="https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/random.jpg?alt=media&token=2b8420e7-7fe9-47ef-a0c9-12f78341581f" alt='imagen' width={numbera} style={{display:'hidden'}} className={''}/>
+      </>
+    )
+  }
+  
+  export default RompecabezaIndividualColor
