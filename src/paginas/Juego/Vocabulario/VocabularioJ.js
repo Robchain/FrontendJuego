@@ -41,7 +41,7 @@ const [momento, setMomento] = useState("inicial");
         return  <ReactPlayer url={FileMuestra}  playing   className="mb-1"/*controls*/ />
           break;
         case "respuesta":
-          return <div><h1>Retro Alimentacion</h1></div>
+          return <div ><h1>Retro Alimentacion</h1></div>
           break;
         default:
           return  <ReactPlayer url={FileMuestra}  playing   className="mb-1"/*controls*/ /> 
@@ -68,7 +68,7 @@ const [momento, setMomento] = useState("inicial");
 
 
   return (
-    <div className="img-fluid vh-100">
+    <div className=" fondoCM img-fluid vh-100">
     <Container>
    <Row className="d-flex justify-content-around"> 
     <Col  className='mt-2' lg="6">
