@@ -14,7 +14,7 @@ import VerCategoriaAdm from './paginas/Administrador/VerCategoriaAdm';
 import VerEstudianteAdm from  './paginas/Administrador/VerEstudianteAdm';
 import VerRompecabezaAdm from './paginas/Administrador/VerRompecabezaAdm';
 import VerVocabularioAdm from './paginas/Administrador/VerVocabularioAdm';
-import VerOracionAdm from './paginas/Administrador/VerOracionAdm';
+import VerOracionAdm from './paginas/Administrador/VerOracionAdm';  
 import ActividadColaborativaAdm from  './paginas/Administrador/ActividadColaborativaAdm';
 //Juego
 import MenuJuego from './paginas/Juego/MenuJuego';

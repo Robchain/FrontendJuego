@@ -26,8 +26,8 @@ const MenuJuego = () => {
       <Col>
       <input alt="Menu Premio"   className="position-relative  start-50 bottom-0 translate-middle-x" type="image" src={trofeo} width='400'></input>
       </Col>
-      <Col  lg='12'>
-      <DooroutButton/>
+      <Col  lg='12' className="">
+      <DooroutButton  Urlsalida={"/"}/>
       </Col>
       </Row>
     </Container>

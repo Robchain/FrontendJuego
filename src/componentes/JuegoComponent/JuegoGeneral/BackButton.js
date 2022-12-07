@@ -5,7 +5,7 @@ export const BackButton = () => {
   const navigate = useNavigate()
   return (
     <>
-    <input type="image" alt="Boton Atras" src={Bloque9} width='100'  style={{display:'inline-block', margin:'auto'}}  onClick={() => navigate(-1)} ></input>
+    <input type="image" alt="Boton Atras" src={Bloque9} width='75'  style={{display:'inline-block', margin:'auto'}}  onClick={() => navigate(-1)} ></input>
     </>
   )
 }

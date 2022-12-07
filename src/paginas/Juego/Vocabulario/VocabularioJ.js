@@ -5,6 +5,7 @@ import ReactPlayer from 'react-player'
 import { BackButton } from '../../../componentes/JuegoComponent/JuegoGeneral/BackButton'
 import buentrabajo from  "../../../assets/img/AssetsGame/GOOD JOD.png"
 import malTrabajo from "../../../assets/img/AssetsGame/Bad Jood.png"
+import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 
 const dataSimulada =  {
   Palabra1:{
@@ -38,27 +39,26 @@ const [momento, setMomento] = useState("inicial");
   const VideosControl = ({momento}) =>{
       switch (momento) {
         case "inicial":
-        return  <ReactPlayer url={FileMuestra}  playing   className="mb-1"/*controls*/ />
+        return  <ReactPlayer url={FileMuestra}  playing  style={{border:"solid"}} className="mb-1"/*controls*/ />
           break;
         case "respuesta":
-          return <div ><h1>Retro Alimentacion</h1></div>
+          return <div style={{width:640, height:360, border:"solid"}} ><h1>Retro Alimentacion</h1></div>
           break;
         default:
-          return  <ReactPlayer url={FileMuestra}  playing   className="mb-1"/*controls*/ /> 
+          return  <ReactPlayer url={FileMuestra} style={{border:"solid"}}  playing   className="mb-1"/*controls*/ /> 
           break;
       }
   }
 
-
   const ImagenDeCorrecto = ({correcto}) =>{
-      switch (correcto) {
+    switch (correcto) {
         case false:
                 setPointerEvent("none"); setMomento("respuesta");
-          return  <img  src={malTrabajo} width='200' alt='Mal trabajo'/>
+          return  <img  src={malTrabajo} width='120' alt='Mal trabajo'/>
           break;
           case true:
             setPointerEvent("none"); setMomento("respuesta");
-           return   <img  src={buentrabajo} width='200' alt='buen trabajo'/>
+           return   <img  src={buentrabajo} width='120' alt='buen trabajo'/>
             break;
         default:
           return null
@@ -71,30 +71,36 @@ const [momento, setMomento] = useState("inicial");
     <div className=" fondoCM img-fluid vh-100">
     <Container>
    <Row className="d-flex justify-content-around"> 
+   <Col lg="12" className="d-flex justify-content-evenly"><h1>Vocabulario</h1></Col>
     <Col  className='mt-2' lg="6">
         <VideosControl momento={momento} />
         {//<ReactPlayer url={FileMuestra}  playing   className="mb-1"/*controls*/ />
         }
       <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
-       <ImagenDeCorrecto correcto={correcto}/>
       </div>
     </Col>
     <Col   className='mt-2  align-items-end' lg="6">
-    <div style={{width:300, height:180, borderRadius:100, display:'flex', justifyContent:'space-evenly', alignItems:'center', pointerEvents:pointerEvent}} className='m-auto' onClick={() =>  setCorrecto(dataSimulada.Palabra1.Respuesta) } >
+    <div style={{width:300, height:180, borderRadius:100, display:'flex', justifyContent:'space-evenly', alignItems:'center', pointerEvents:pointerEvent}} className='m-auto' onClick={() =>  {setCorrecto(dataSimulada.Palabra1.Respuesta);setPointerEvent("none"); setMomento("respuesta")} } >
     <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra1.palabra}</p>
     <img  src={dataSimulada.Palabra1.Imagen} alt={dataSimulada.Palabra1.palabra} width='200'/>
+ 
     </div>
-    <div style={{width:300, height:180, borderRadius:100, display:'flex', justifyContent:'space-evenly', alignItems:'center', pointerEvents:pointerEvent}} className='m-auto'  onClick={() =>  setCorrecto(dataSimulada.Palabra2.Respuesta) }>
+    <div style={{width:300, height:180, borderRadius:100, display:'flex', justifyContent:'space-evenly', alignItems:'center', pointerEvents:pointerEvent}} className='m-auto'  onClick={() =>  {setCorrecto(dataSimulada.Palabra2.Respuesta);setPointerEvent("none"); setMomento("respuesta")} }>
     <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra2.palabra}</p>
     <img src={dataSimulada.Palabra2.Imagen} alt={dataSimulada.Palabra2.palabra} width='200'/>
+    
     </div>
-    <div  style={{width:300, height:180, borderRadius:100, display:'flex', justifyContent:'space-evenly', alignItems:'center', pointerEvents:pointerEvent}} className='m-auto' onClick={() =>  setCorrecto(dataSimulada.Palabra3.Respuesta) }>
+    <div  style={{width:300, height:180, borderRadius:100, display:'flex', justifyContent:'space-evenly', alignItems:'center', pointerEvents:pointerEvent}} className='m-auto' onClick={() =>  {setCorrecto(dataSimulada.Palabra2.Respuesta);setPointerEvent("none"); setMomento("respuesta")} }>
     <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra3.palabra}</p>
     <img  src={dataSimulada.Palabra3.Imagen} alt={dataSimulada.Palabra3.palabra} width='200'/>
+  
     </div>
     </Col>
-    <Col  lg="12">
+    <Col  lg="6" className="">
     <BackButton/>
+    </Col>
+    <Col  lg="6"  className="d-flex justify-content-end">
+    <DooroutButton  Urlsalida={"/MenuJuego"}/>
     </Col>
    </Row>
    </Container>
