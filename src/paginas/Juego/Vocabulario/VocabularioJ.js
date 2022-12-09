@@ -87,18 +87,18 @@ const [opa3, setOpa3] = useState(1)
       </div>
     </Col>
     <Col   className='mt-2  align-items-end' lg="6">
-    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dataSimulada.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA")} } >
+    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dataSimulada.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4)} } >
   
     <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra1.palabra}</p>
     <img  src={dataSimulada.Palabra1.Imagen} alt={dataSimulada.Palabra1.palabra} width='200'/>
     <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto1} /></div>
     </div>
-    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dataSimulada.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");} }>
+    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dataSimulada.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4)} }>
     <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra2.palabra}</p>
     <img src={dataSimulada.Palabra2.Imagen} alt={dataSimulada.Palabra2.palabra} width='200'/>
     <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto2}/></div>
     </div>
-    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dataSimulada.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA")} }>
+    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dataSimulada.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4)} }>
     <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra3.palabra}</p>
     <img  src={dataSimulada.Palabra3.Imagen} alt={dataSimulada.Palabra3.palabra} width='200'/>
     <div   style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto3}/></div>
