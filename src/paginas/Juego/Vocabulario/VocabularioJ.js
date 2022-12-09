@@ -11,25 +11,30 @@ const dataSimulada =  {
   Palabra1:{
     palabra:'PAN',
     Imagen:'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-    Respuesta:true
+    Respuesta:"INCORRECTO"
   },
   Palabra2:{
     palabra:'PAN',
     Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-    Respuesta:false
+    Respuesta:"INCORRECTO"
   },
   Palabra3:{
     palabra:'PAN',
     Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-    Respuesta:false
+    Respuesta:"CORRECTO"
   }
 }
 
 const VocabularioJ = () => {
 const [{FileMuestra}, setVideo] = useState({})
-const [correcto, setCorrecto] = useState(null)
+const [correcto1, setCorrecto1] = useState(null)
+const [correcto2, setCorrecto2] = useState(null)
+const [correcto3, setCorrecto3] = useState(null)
 const [pointerEvent, setPointerEvent] = useState("auto")
 const [momento, setMomento] = useState("inicial");
+const [opa1, setOpa1] = useState(1)
+const [opa2, setOpa2] = useState(1)
+const [opa3, setOpa3] = useState(1)
 
   useEffect(() => {
     axios.get('http://localhost:3002/api/auth/testa')
@@ -52,13 +57,17 @@ const [momento, setMomento] = useState("inicial");
 
   const ImagenDeCorrecto = ({correcto}) =>{
     switch (correcto) {
-        case false:
+        case "INCORRECTO":
                 setPointerEvent("none"); setMomento("respuesta");
-          return  <img  src={malTrabajo} width='120' alt='Mal trabajo'/>
+          return  <img  src={malTrabajo} width='100' alt='Mal trabajo'/>
           break;
-          case true:
+          case "CORRECTO":
             setPointerEvent("none"); setMomento("respuesta");
-           return   <img  src={buentrabajo} width='120' alt='buen trabajo'/>
+           return   <img  src={buentrabajo} width='100' alt='buen trabajo'/>
+            break;
+            case "NADA":
+            setPointerEvent("none"); setMomento("respuesta");
+           return   null;
             break;
         default:
           return null
@@ -74,26 +83,25 @@ const [momento, setMomento] = useState("inicial");
    <Col lg="12" className="d-flex justify-content-evenly"><h1>Vocabulario</h1></Col>
     <Col  className='mt-2' lg="6">
         <VideosControl momento={momento} />
-        {//<ReactPlayer url={FileMuestra}  playing   className="mb-1"/*controls*/ />
-        }
       <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
       </div>
     </Col>
     <Col   className='mt-2  align-items-end' lg="6">
-    <div style={{width:300, height:180, borderRadius:100, display:'flex', justifyContent:'space-evenly', alignItems:'center', pointerEvents:pointerEvent}} className='m-auto' onClick={() =>  {setCorrecto(dataSimulada.Palabra1.Respuesta);setPointerEvent("none"); setMomento("respuesta")} } >
+    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dataSimulada.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA")} } >
+  
     <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra1.palabra}</p>
     <img  src={dataSimulada.Palabra1.Imagen} alt={dataSimulada.Palabra1.palabra} width='200'/>
- 
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto1} /></div>
     </div>
-    <div style={{width:300, height:180, borderRadius:100, display:'flex', justifyContent:'space-evenly', alignItems:'center', pointerEvents:pointerEvent}} className='m-auto'  onClick={() =>  {setCorrecto(dataSimulada.Palabra2.Respuesta);setPointerEvent("none"); setMomento("respuesta")} }>
+    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dataSimulada.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");} }>
     <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra2.palabra}</p>
     <img src={dataSimulada.Palabra2.Imagen} alt={dataSimulada.Palabra2.palabra} width='200'/>
-    
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto2}/></div>
     </div>
-    <div  style={{width:300, height:180, borderRadius:100, display:'flex', justifyContent:'space-evenly', alignItems:'center', pointerEvents:pointerEvent}} className='m-auto' onClick={() =>  {setCorrecto(dataSimulada.Palabra2.Respuesta);setPointerEvent("none"); setMomento("respuesta")} }>
+    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dataSimulada.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA")} }>
     <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra3.palabra}</p>
     <img  src={dataSimulada.Palabra3.Imagen} alt={dataSimulada.Palabra3.palabra} width='200'/>
-  
+    <div   style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto3}/></div>
     </div>
     </Col>
     <Col  lg="6" className="">

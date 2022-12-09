@@ -33,3 +33,14 @@
     background-color: #DDD3DD;
 
 }
+
+.Mi-diseñodiv{
+    width:300   !important; 
+    height:180 !important; 
+    border-radius:100 !important; 
+    display:flex !important; 
+    justify-content:space-evenly !important; 
+    align-items:center !important;
+   
+
+}
