@@ -7,7 +7,7 @@ import buentrabajo from  "../../../assets/img/AssetsGame/GOOD JOD.png"
 import malTrabajo from "../../../assets/img/AssetsGame/Bad Jood.png"
 import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 
-const dataSimulada =  {
+const datasimulada =  {
   Palabra1:{
     palabra:'PAN',
     Imagen:'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
@@ -27,6 +27,7 @@ const dataSimulada =  {
 
 const VocabularioJ = () => {
 const [{FileMuestra}, setVideo] = useState({})
+const [dato, setDato] = useState(datasimulada)
 const [correcto1, setCorrecto1] = useState(null)
 const [correcto2, setCorrecto2] = useState(null)
 const [correcto3, setCorrecto3] = useState(null)
@@ -38,7 +39,8 @@ const [opa3, setOpa3] = useState(1)
 
   useEffect(() => {
     axios.get('http://localhost:3002/api/auth/testa')
-    .then(res => setVideo(res.data))
+    .then(res => setVideo(res.data));
+
   }, [])
 
   const VideosControl = ({momento}) =>{
@@ -77,8 +79,8 @@ const [opa3, setOpa3] = useState(1)
 
 
   return (
-    <div className=" fondoCM img-fluid vh-100">
-    <Container>
+    <div className="fondoCM">
+  <Container   style={{zIndex:1,position:"fixed", display:''}}>
    <Row className="d-flex justify-content-around"> 
    <Col lg="12" className="d-flex justify-content-evenly"><h1>Vocabulario</h1></Col>
     <Col  className='mt-2' lg="6">
@@ -87,25 +89,160 @@ const [opa3, setOpa3] = useState(1)
       </div>
     </Col>
     <Col   className='mt-2  align-items-end' lg="6">
-    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dataSimulada.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4)} } >
+    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dato.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4)} } >
   
-    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra1.palabra}</p>
-    <img  src={dataSimulada.Palabra1.Imagen} alt={dataSimulada.Palabra1.palabra} width='200'/>
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra1.palabra}</p>
+    <img  src={dato.Palabra1.Imagen} alt={dato.Palabra1.palabra} width='200'/>
     <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto1} /></div>
     </div>
-    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dataSimulada.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4)} }>
-    <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra2.palabra}</p>
-    <img src={dataSimulada.Palabra2.Imagen} alt={dataSimulada.Palabra2.palabra} width='200'/>
+    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dato.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4)} }>
+    <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra2.palabra}</p>
+    <img src={dato.Palabra2.Imagen} alt={dato.Palabra2.palabra} width='200'/>
     <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto2}/></div>
     </div>
-    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dataSimulada.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4)} }>
-    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataSimulada.Palabra3.palabra}</p>
-    <img  src={dataSimulada.Palabra3.Imagen} alt={dataSimulada.Palabra3.palabra} width='200'/>
+    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dato.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4)} }>
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra3.palabra}</p>
+    <img  src={dato.Palabra3.Imagen} alt={dato.Palabra3.palabra} width='200'/>
     <div   style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto3}/></div>
     </div>
     </Col>
     <Col  lg="6" className="">
-    <BackButton/>
+    <BackButton/> 
+    </Col>
+    <Col  lg="6"  className="d-flex justify-content-end">
+    <DooroutButton  Urlsalida={"/MenuJuego"}/>
+    </Col>
+   </Row>
+   </Container>
+   <Container style={{zIndex:2, position:"fixed",display:'none'}}>
+   <Row className="d-flex justify-content-around"> 
+   <Col lg="12" className="d-flex justify-content-evenly"><h1>Vocabulario2</h1></Col>
+    <Col  className='mt-2' lg="6">
+        <VideosControl momento={momento} />
+      <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
+      </div>
+    </Col>
+    <Col   className='mt-2  align-items-end' lg="6">
+    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dato.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4)} } >
+  
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra1.palabra}</p>
+    <img  src={dato.Palabra1.Imagen} alt={dato.Palabra1.palabra} width='200'/>
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto1} /></div>
+    </div>
+    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dato.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4)} }>
+    <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra2.palabra}</p>
+    <img src={dato.Palabra2.Imagen} alt={dato.Palabra2.palabra} width='200'/>
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto2}/></div>
+    </div>
+    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dato.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4)} }>
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra3.palabra}</p>
+    <img  src={dato.Palabra3.Imagen} alt={dato.Palabra3.palabra} width='200'/>
+    <div   style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto3}/></div>
+    </div>
+    </Col>
+    <Col  lg="6" className="">
+    <BackButton/> 
+    </Col>
+    <Col  lg="6"  className="d-flex justify-content-end">
+    <DooroutButton  Urlsalida={"/MenuJuego"}/>
+    </Col>
+   </Row>
+   </Container>
+   <Container style={{zIndex:3, position:"fixed", display:'none'}}>
+   <Row className="d-flex justify-content-around"> 
+   <Col lg="12" className="d-flex justify-content-evenly"><h1>Vocabulario3</h1></Col>
+    <Col  className='mt-2' lg="6">
+        <VideosControl momento={momento} />
+      <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
+      </div>
+    </Col>
+    <Col   className='mt-2  align-items-end' lg="6">
+    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dato.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4)} } >
+  
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra1.palabra}</p>
+    <img  src={dato.Palabra1.Imagen} alt={dato.Palabra1.palabra} width='200'/>
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto1} /></div>
+    </div>
+    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dato.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4)} }>
+    <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra2.palabra}</p>
+    <img src={dato.Palabra2.Imagen} alt={dato.Palabra2.palabra} width='200'/>
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto2}/></div>
+    </div>
+    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dato.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4)} }>
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra3.palabra}</p>
+    <img  src={dato.Palabra3.Imagen} alt={dato.Palabra3.palabra} width='200'/>
+    <div   style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto3}/></div>
+    </div>
+    </Col>
+    <Col  lg="6" className="">
+    <BackButton/> 
+    </Col>
+    <Col  lg="6"  className="d-flex justify-content-end">
+    <DooroutButton  Urlsalida={"/MenuJuego"}/>
+    </Col>
+   </Row>
+   </Container>
+   <Container style={{zIndex:4, position:"fixed", display:"none"}}>
+   <Row className="d-flex justify-content-around"> 
+   <Col lg="12" className="d-flex justify-content-evenly"><h1>Vocabulario4</h1></Col>
+    <Col  className='mt-2' lg="6">
+        <VideosControl momento={momento} />
+      <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
+      </div>
+    </Col>
+    <Col   className='mt-2  align-items-end' lg="6">
+    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dato.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4)} } >
+   
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra1.palabra}</p>
+    <img  src={dato.Palabra1.Imagen} alt={dato.Palabra1.palabra} width='200'/> 
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto1} /></div>
+    </div>
+    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dato.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4)} }>
+    <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra2.palabra}</p>
+    <img src={dato.Palabra2.Imagen} alt={dato.Palabra2.palabra} width='200'/>
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto2}/></div>
+    </div>
+    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dato.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4)} }>
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra3.palabra}</p>
+    <img  src={dato.Palabra3.Imagen} alt={dato.Palabra3.palabra} width='200'/>
+    <div   style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto3}/></div>
+    </div>
+    </Col>
+    <Col  lg="6" className="">
+    <BackButton/> 
+    </Col>
+    <Col  lg="6"  className="d-flex justify-content-end">
+    <DooroutButton  Urlsalida={"/MenuJuego"}/>
+    </Col>
+   </Row>
+   </Container>
+   <Container style={{zIndex:5, position:"fixed", display:"none"}}>
+   <Row className="d-flex justify-content-around"> 
+   <Col lg="12" className="d-flex justify-content-evenly"><h1>Vocabulario5</h1></Col>
+    <Col  className='mt-2' lg="6">
+        <VideosControl momento={momento} />
+      <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
+      </div>
+    </Col>
+    <Col   className='mt-2  align-items-end' lg="6">
+    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dato.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4)} } >
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra1.palabra}</p>
+    <img  src={dato.Palabra1.Imagen} alt={dato.Palabra1.palabra} width='200'/>
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto1} /></div>
+    </div>
+    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dato.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4)} }>
+    <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra2.palabra}</p>
+    <img src={dato.Palabra2.Imagen} alt={dato.Palabra2.palabra} width='200'/>
+    <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto2}/></div>
+    </div>
+    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dato.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4)} }>
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato.Palabra3.palabra}</p>
+    <img  src={dato.Palabra3.Imagen} alt={dato.Palabra3.palabra} width='200'/>
+    <div   style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto3}/></div>
+    </div>
+    </Col>
+    <Col  lg="6" className="">
+    <BackButton/> 
     </Col>
     <Col  lg="6"  className="d-flex justify-content-end">
     <DooroutButton  Urlsalida={"/MenuJuego"}/>
