@@ -2,12 +2,10 @@ import React, { useState,useEffect } from 'react';
 import { Container, Row, Col } from 'reactstrap'
 import axios from 'axios'
 import ReactPlayer from 'react-player'
-import { BackButton } from '../../../componentes/JuegoComponent/JuegoGeneral/BackButton'
-import buentrabajo from  "../../../assets/img/AssetsGame/GOOD JOD.png"
-import malTrabajo from "../../../assets/img/AssetsGame/Bad Jood.png"
-import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
-import { redirect } from 'react-router-dom'
-
+import { BackButton } from '../../componentes/JuegoComponent/JuegoGeneral/BackButton'
+import buentrabajo from  "../../assets/img/AssetsGame/GOOD JOD.png"
+import malTrabajo from "../../assets/img/AssetsGame/Bad Jood.png"
+import { DooroutButton } from '../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 
 
 const datasimulada =  {
@@ -123,7 +121,7 @@ const datasimulada =  {
                                 }},
                     
   }
-const Vocabulario = () => {
+const Prueba = () => {
 
   const [windows, setWindows] = useState([
     { id: 1, show: false },
@@ -182,13 +180,7 @@ const [momento, setMomento] = useState("inicial");
     setOpa3(1);
     setOpa1(1);
     toggleWindow(num); 
-    debugger
-    if(num > 2){
-      toggleWindow(num+1);
-      
-    }else{
-     returnredirect("/");
-         }
+    toggleWindow(num+1)
 
   }
 
@@ -279,4 +271,4 @@ const ImagenDeCorrecto = ({correcto}) =>{
   )
 }
 
-export default Vocabulario;
+export default Prueba;

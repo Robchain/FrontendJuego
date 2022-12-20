@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Routes, Route } from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 //Login
 import Login from './paginas/Logins/Login'
 //Administrador
@@ -22,6 +22,7 @@ import RompecabezaJV from './paginas/Juego/Vocabulario/RompecabezaJV';
 import RompecabezaJO from './paginas/Juego/Oracion/RompecabezaJO';
 import VocabularioJ from './paginas/Juego/Vocabulario/VocabularioJ';
 import OracionJ from './paginas/Juego/Oracion/OracionJ';
+import Prueba from "./paginas/Juego/Prueba";
 
 const App =() =>{
 
@@ -30,6 +31,7 @@ const App =() =>{
       <BrowserRouter>
         <Routes>
           <Route  path='/'   element={<Login/>}></Route>
+          <Route  path='/*' element={<Navigate to="/"/>}/>
           <Route  path='/Administrador'  element={<EstudianteAdmi/>}></Route>
           <Route  path='/Rompecabeza'  element={<RompecabezaAdmi/>}></Route>
           <Route  path='/Vocabulario'  element={<VocabularioAdmi/>}></Route>
@@ -47,6 +49,7 @@ const App =() =>{
           <Route  path='/VerVocabulario'  element={<VerVocabularioAdm/>}></Route>
           <Route path='/VocabularioJuego' element={<VocabularioJ/>}/>
           <Route path='/OracionJuego' element={<OracionJ/>}/>
+          <Route path='/test' element={<Prueba/>}/>
           {//<Route  path='/ '  element={<VerOracionAdm/>}></Route>
           }
         </Routes>
