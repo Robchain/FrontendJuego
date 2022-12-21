@@ -23,6 +23,8 @@ import RompecabezaJO from './paginas/Juego/Oracion/RompecabezaJO';
 import VocabularioJ from './paginas/Juego/Vocabulario/VocabularioJ';
 import OracionJ from './paginas/Juego/Oracion/OracionJ';
 import Prueba from "./paginas/Juego/Prueba";
+import { FinalVocabulario } from './paginas/Juego/Vocabulario/FinalVocabulario';
+
 
 const App =() =>{
 
@@ -49,6 +51,7 @@ const App =() =>{
           <Route  path='/VerVocabulario'  element={<VerVocabularioAdm/>}></Route>
           <Route path='/VocabularioJuego' element={<VocabularioJ/>}/>
           <Route path='/OracionJuego' element={<OracionJ/>}/>
+          <Route path='/finalVocabulario' element={ <FinalVocabulario/>}/>
           <Route path='/test' element={<Prueba/>}/>
           {//<Route  path='/ '  element={<VerOracionAdm/>}></Route>
           }

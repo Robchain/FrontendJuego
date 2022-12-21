@@ -6,7 +6,7 @@ import { BackButton } from '../../../componentes/JuegoComponent/JuegoGeneral/Bac
 import buentrabajo from  "../../../assets/img/AssetsGame/GOOD JOD.png"
 import malTrabajo from "../../../assets/img/AssetsGame/Bad Jood.png"
 import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
-import { redirect } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -131,10 +131,9 @@ const Vocabulario = () => {
     { id: 3, show: false },
     { id: 4, show: false },
     { id: 5, show: false },
-    { id: 6, show: false },
-    { id: 7, show: false }
+    
   ]);
-
+const navegar = useNavigate();
   const toggleWindow = (id) => {
     // Crear una copia del arreglo de ventanas
     let newWindows = [...windows];
@@ -142,11 +141,8 @@ const Vocabulario = () => {
     let window = newWindows.find(w => w.id === id);
     // Invertir el valor de show
     window.show = !window.show;
-
     // Actualizar el arreglo de ventanas
     setWindows(newWindows);
-
-
   }
 
   const [dato, setDato] = useState(datasimulada)
@@ -183,11 +179,10 @@ const [momento, setMomento] = useState("inicial");
     setOpa1(1);
     toggleWindow(num); 
     debugger
-    if(num > 2){
-      toggleWindow(num+1);
-      
+    if(num === 5){
+      navegar("/finalVocabulario")
     }else{
-     returnredirect("/");
+   toggleWindow(num+1);
          }
 
   }
