@@ -131,7 +131,8 @@ const Vocabulario = () => {
     { id: 3, show: false },
     { id: 4, show: false },
     { id: 5, show: false },
-    
+    { id: 6, show: false },
+    { id: 7, show: false },
   ]);
 const navegar = useNavigate();
   const toggleWindow = (id) => {
@@ -149,7 +150,9 @@ const navegar = useNavigate();
   const [opa1, setOpa1] = useState(1)
 const [opa2, setOpa2] = useState(1)
 const [opa3, setOpa3] = useState(1)
-const [{FileMuestra}, setVideo] = useState({})
+
+
+const [dataInicial, setDataInicial] = useState({})
 
 const [correcto1, setCorrecto1] = useState(null)
 const [correcto2, setCorrecto2] = useState(null)
@@ -157,11 +160,9 @@ const [correcto3, setCorrecto3] = useState(null)
 const [pointerEvent, setPointerEvent] = useState("auto")
 const [momento, setMomento] = useState("inicial");
 
-
   useEffect(() => {
-    axios.get('http://localhost:3002/api/auth/testa')
-    .then(res => setVideo(res.data));
-    
+    axios.get('http://localhost:3002/api/auth/RecibidoPrueba')
+    .then(res => setDataInicial(res.data));
   }, [])
 
  useEffect(() => {
@@ -174,7 +175,7 @@ const [momento, setMomento] = useState("inicial");
 
     setCorrecto1("INICIAL");
     setCorrecto2("INICIAL");setCorrecto3("INICIAL"); 
-    setOpa2(1); 
+    setOpa2(1);   
     setOpa3(1);
     setOpa1(1);
     toggleWindow(num); 
@@ -190,13 +191,13 @@ const [momento, setMomento] = useState("inicial");
   const VideosControl = ({momento}) =>{
     switch (momento) {
       case "inicial":
-      return  <ReactPlayer url={FileMuestra}  playing  style={{border:"solid"}} className="mb-1"/*controls*/ />
+      return  <ReactPlayer url={[dataInicial["juego",window.id].vocabulario.incorrecto1.FilePregunta, dataInicial["juego",window.id].vocabulario.correcto.FilePregunta, dataInicial["juego",window.id].vocabulario.incorrecto2.FilePregunta]}  playing  style={{border:"solid"}} className="mb-1"/*controls*/ />
         break;
       case "respuesta":
-        return <div style={{width:640, height:360, border:"solid"}} ><h1>Retro Alimentacion</h1></div>
+        return <ReactPlayer url={dataInicial["juego",window.id].vocabulario.correcto.FileMuestra} style={{border:"solid"}}  playing   className="mb-1"/*controls*/ /> 
         break;
       default:
-        return  <ReactPlayer url={FileMuestra} style={{border:"solid"}}  playing   className="mb-1"/*controls*/ /> 
+        return  <ReactPlayer url={[dataInicial["juego",window.id].vocabulario.incorrecto1.FilePregunta,dataInicial["juego",window.id].vocabulario.correcto.FilePregunta,dataInicial["juego",window.id].vocabulario.incorrecto2.FilePregunta]}  playing  style={{border:"solid"}} className="mb-1"/*controls*/ />
         break;
     }
 }
@@ -240,20 +241,19 @@ const ImagenDeCorrecto = ({correcto}) =>{
       </div>
     </Col>
     <Col   className='mt-2  align-items-end' lg="6">
-    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dato[`juego`+window.id].Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4);  setTimeout(() => {siguiente(window.id)}, 3000);}} >
-  
-    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato[`juego`+window.id].Palabra1.palabra}</p>
-    <img  src={dato[`juego`+window.id].Palabra1.Imagen} alt={dato[`juego`+window.id].Palabra1.palabra} width='200'/>
+    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(dataInicial["juego",window.id].vocabulario.correcto.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4);  setTimeout(() => {siguiente(window.id)}, 3000);}} >
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataInicial["juego",window.id].vocabulario.correcto.Palabra}</p>
+    <img  src={dataInicial["juego",window.id].vocabulario.correcto.FileImagen} alt={dataInicial["juego",window.id].vocabulario.correcto.Palabra} width='200'/>
     <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto1} /></div>
     </div>
-    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dato[`juego`+window.id].Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4); setTimeout(() => {siguiente(window.id)}, 3000);} }>
-    <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato[`juego`+window.id].Palabra2.palabra}</p>
-    <img src={dato[`juego`+window.id].Palabra2.Imagen} alt={dato[`juego`+window.id].Palabra2.palabra} width='200'/>
+    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(dataInicial["juego",window.id].vocabulario.incorrecto1.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4); setTimeout(() => {siguiente(window.id)}, 3000);} }>
+    <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataInicial["juego",window.id].vocabulario.incorrecto1.Palabra}</p>
+    <img src={dataInicial["juego",window.id].vocabulario.incorrecto1.FileImagen} alt={dataInicial["juego",window.id].vocabulario.incorrecto1.Palabra} width='200'/>
     <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto2}/></div>
     </div>
-    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dato[`juego`+window.id].Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4); setTimeout(() => {siguiente(window.id)}, 3000);} }>
-    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dato[`juego`+window.id].Palabra3.palabra}</p>
-    <img  src={dato[`juego`+window.id].Palabra3.Imagen} alt={dato[`juego`+window.id].Palabra3.palabra} width='200'/>
+    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(dataInicial["juego",window.id].vocabulario.incorrecto2.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4); setTimeout(() => {siguiente(window.id)}, 3000);} }>
+    <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{dataInicial["juego",window.id].vocabulario.incorrecto2.Palabra}</p>
+    <img  src={dataInicial["juego",window.id].vocabulario.incorrecto2.FileImagen} alt={dataInicial["juego",window.id].vocabulario.incorrecto2.Palabra} width='200'/>
     <div   style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto3}/></div>
     </div>
     </Col>
