@@ -7,122 +7,6 @@ import buentrabajo from  "../../../assets/img/AssetsGame/GOOD JOD.png"
 import malTrabajo from "../../../assets/img/AssetsGame/Bad Jood.png"
 import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 import { useNavigate } from 'react-router-dom';
-
-
-
-const datasimulada =  {
-    juego1:{
-    Palabra1:{
-      palabra:'PAN',
-      Imagen:'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-      Respuesta:"INCORRECTO"
-    },
-    Palabra2:{
-      palabra:'PAN',
-      Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-      Respuesta:"INCORRECTO"
-    },
-    Palabra3:{
-      palabra:'PAN',
-      Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-      Respuesta:"CORRECTO"
-    }},juego2:{
-        Palabra1:{
-          palabra:'PAN',
-          Imagen:'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-          Respuesta:"CORRECTO"
-        },
-        Palabra2:{
-          palabra:'PAN',
-          Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-          Respuesta:"INCORRECTO"
-        },
-        Palabra3:{
-          palabra:'PAN',
-          Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-          Respuesta:"INCORRECTO"
-        }},juego3:{
-            Palabra1:{
-              palabra:'PAN',
-              Imagen:'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-              Respuesta:"CORRECTO"
-            },
-            Palabra2:{
-              palabra:'PAN',
-              Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-              Respuesta:"INCORRECTO"
-            },
-            Palabra3:{
-              palabra:'PAN',
-              Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-              Respuesta:"INCORRECTO"
-            }},
-            juego4:{
-                Palabra1:{
-                  palabra:'PAN',
-                  Imagen:'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                  Respuesta:"INCORRECTO"
-                },
-                Palabra2:{
-                  palabra:'PAN',
-                  Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                  Respuesta:"CORRECTO"
-                },
-                Palabra3:{
-                  palabra:'PAN',
-                  Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                  Respuesta:"INCORRECTO"
-                }},
-                juego5:{
-                    Palabra1:{
-                      palabra:'PAN',
-                      Imagen:'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                      Respuesta:"INCORRECTO"
-                    },
-                    Palabra2:{
-                      palabra:'PAN',
-                      Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                      Respuesta:"CORRECTO"
-                    },
-                    Palabra3:{
-                      palabra:'PAN',
-                      Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                      Respuesta:"INCORRECTO"
-                    }},
-                        juego6:{
-                            Palabra1:{
-                              palabra:'PAN',
-                              Imagen:'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                              Respuesta:"INCORRECTO"
-                            },
-                            Palabra2:{
-                              palabra:'PAN',
-                              Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                              Respuesta:"CORRECTO"
-                            },
-                            Palabra3:{
-                              palabra:'PAN',
-                              Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                              Respuesta:"INCORRECTO"
-                            }},
-                            juego7:{
-                                Palabra1:{
-                                  palabra:'PAN',
-                                  Imagen:'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                                  Respuesta:"INCORRECTO"
-                                },
-                                Palabra2:{
-                                  palabra:'PAN',
-                                  Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                                  Respuesta:"CORRECTO"
-                                },
-                                Palabra3:{
-                                  palabra:'PAN',
-                                  Imagen: 'https://firebasestorage.googleapis.com/v0/b/didacticobb.appspot.com/o/vocabulario%2FpanImagen.jpg?alt=media&token=0a297504-b06e-4c91-bf14-426467b1f837',
-                                  Respuesta:"INCORRECTO"
-                                }},
-                    
-  }
 const Vocabulario = () => {
 
   const [windows, setWindows] = useState([
@@ -146,7 +30,6 @@ const navegar = useNavigate();
     setWindows(newWindows);
   }
 
-  const [dato, setDato] = useState(datasimulada)
   const [opa1, setOpa1] = useState(1)
 const [opa2, setOpa2] = useState(1)
 const [opa3, setOpa3] = useState(1)
@@ -159,7 +42,6 @@ const [correcto2, setCorrecto2] = useState(null)
 const [correcto3, setCorrecto3] = useState(null)
 const [pointerEvent, setPointerEvent] = useState("auto")
 const [momento, setMomento] = useState("inicial");
-const [duration, setDuration] = useState(0);
 const [carga, setcarga]=useState(true);
 const llamada  = async () =>{
   const data  = await  axios.get('http://localhost:3002/api/auth/RecibidoPrueba')
@@ -172,12 +54,6 @@ const llamada  = async () =>{
       toggleWindow(1);
   }, [])
 
- /*useEffect(() => {
-    setTimeout(() => {
-        toggleWindow(1)
-    }, 1000);
-  }, [])*/
- 
   const siguiente = (num) => {
     setCorrecto1("INICIAL");
     setCorrecto2("INICIAL");setCorrecto3("INICIAL"); 
