@@ -56,7 +56,7 @@ const [momento, setMomento] = useState("inicial");
     setOpa1(1);
     toggleWindow(num); 
     if(num === data[`Juego${id}`].Rompecabeza.Pieza+1){
-      navegar("/finalVocabulario")
+      navegar(`/finalVocabulario/${id}`);
     }else{
    toggleWindow(num+1);
          }
