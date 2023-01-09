@@ -1,10 +1,10 @@
 import React from 'react'
 import RompecabezaIndividualColor from './RompecabezaIndividualColor'
 
-export const RompecabezaFinalRespuesta = () => {
+export const RompecabezaFinalRespuesta = ({url, alt}) => {
   return (
     <div>
-        <RompecabezaIndividualColor numbera={600}/>
+    <img src={url} alt={alt} width={600} style={{display:'hidden'}} className={''}/>
     </div>
   )
 }

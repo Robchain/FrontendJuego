@@ -1,9 +1,9 @@
 import React from 'react'
-import RompecabezaIndividualColor from './RompecabezaIndividualColor'
+//import RompecabezaIndividualColor from './RompecabezaIndividualColor'
 
-export const RompecabaSolitaria = ({a, b, c, d}) => {
+export const RompecabaSolitaria = ({a, b, c, d, url, alt}) => {
 
-  return (
+  return (  
     <>
    <div  className="minicuadrito">
    <div className='encima'> 
@@ -15,7 +15,7 @@ export const RompecabaSolitaria = ({a, b, c, d}) => {
       </div>
        <div className='d' style={{visibility:d }}>
     </div></div>
-    <RompecabezaIndividualColor numbera={300}/>
+    <img src={url} alt={alt} width={300} style={{display:'hidden'}} className={''}/>
     </div> 
     </>
   )
