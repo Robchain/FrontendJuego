@@ -1,6 +1,4 @@
 import React from 'react'
-//import RompecabezaIndividualColor from './RompecabezaIndividualColor'
-
 export const RompecabaSolitaria = ({a, b, c, d,e, f,g,h, i, j,piezas=4, url, alt}) => {
 
   return (  
@@ -18,7 +16,6 @@ export const RompecabaSolitaria = ({a, b, c, d,e, f,g,h, i, j,piezas=4, url, alt
        <div className='d' style={{visibility:d }}>
     </div>
     </> ) 
-     
      }{
     (piezas === 6) && (<>
    <div    className='e'  style={{visibility:e }}></div>

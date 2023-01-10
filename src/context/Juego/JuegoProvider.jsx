@@ -5,12 +5,12 @@ import { JuecoContext } from './JuecoContext'
 export const JuegoProvider = ({children}) => {
   const [respuesta, setRespuesta] = useState([])
   const [data, setData] = useState(null)    
-  const [rompecabeza1, setRompecabeza1] = useState(null)
-  const [rompecabeza2, setRompecabeza2] = useState(null)
-  const [rompecabeza3, setRompecabeza3] = useState(null)
-  const [rompecabeza4, setRompecabeza4] = useState(null)
-  const [rompecabeza5, setRompecabeza5] = useState(null)
-  const [rompecabeza6, setRompecabeza6] = useState(null)
+  const [rompecabeza1, setRompecabeza1] = useState(0)
+  const [rompecabeza2, setRompecabeza2] = useState(0)
+  const [rompecabeza3, setRompecabeza3] = useState(0)
+  const [rompecabeza4, setRompecabeza4] = useState(0)
+  const [rompecabeza5, setRompecabeza5] = useState(0)
+  const [rompecabeza6, setRompecabeza6] = useState(0)
   useEffect(() => {
     axios.get("http://localhost:3002/api/auth/partidaEstudiante").then(da =>{setData(da.data)})
   }, [])
