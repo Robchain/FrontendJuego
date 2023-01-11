@@ -23,12 +23,15 @@ if(!data){
     <div className="fondoMC img-fluid vh-100">
    <Container>
 <Row>
-<Col  className="d-flex justify-content-evenly" lg='12'>
+<Col  className=""  lg='9'> {/*"d-flex justify-content-evenly"*/}
   <h1 style={{color:'#000', fontWeight:'bold' }}>Vocabulario</h1>
+</Col>
+<Col  lg="3">
+  <h2>Puntos:10</h2>
 </Col>
 <Col  className="d-flex justify-content-evenly  mt-2 mb-5">
 <Col>
-<Link  to={`/VocabularioJuego/${1}`}><RompecabaSolitaria a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""}  piezas={data.Juego1.Rompecabeza.Pieza} url={data.Juego1.Rompecabeza.FileColor} alt={data.Juego1.Rompecabeza.Nombre}  /> </Link><span>{`${rompecabeza1}/${data.Juego1.Rompecabeza.Pieza}`}</span>
+<Link  to={`/VocabularioJuego/${1}`}><RompecabaSolitaria a={'hidden'} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""}  piezas={data.Juego1.Rompecabeza.Pieza} url={data.Juego1.Rompecabeza.FileColor} alt={data.Juego1.Rompecabeza.Nombre}  /> </Link><span>{`${rompecabeza1}/${data.Juego1.Rompecabeza.Pieza}`}</span>
 </Col>
 <Col>
 <Link  to={`/VocabularioJuego/${2}`}> <RompecabaSolitaria  a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""}  piezas={data.Juego2.Rompecabeza.Pieza} url={data.Juego2.Rompecabeza.FileColor} alt={data.Juego2.Rompecabeza.Nombre}/></Link><span>{`${rompecabeza2}/${data.Juego2.Rompecabeza.Pieza}`}</span>

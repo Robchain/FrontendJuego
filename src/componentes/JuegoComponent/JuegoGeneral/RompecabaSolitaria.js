@@ -28,7 +28,7 @@ export const RompecabaSolitaria = ({a, b, c, d,e, f,g,h, i, j,piezas=4, url, alt
     )  
    } 
     </div>
-    <img src={url} alt={alt} width={300} style={{display:'hidden'}} className={''}/>
+    <img src={url} alt={alt} width={275} style={{display:'hidden'}} className={''}/>
     </div> 
     </>
   )

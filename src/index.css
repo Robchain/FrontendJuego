@@ -43,8 +43,8 @@
 
 .minicuadrito .encima{
     z-index: 30;
-    width:  300px;
-    height:165px;
+    width:  275px;
+    height:150px;
     position:fixed;
 }
 .minicuadrito .encima .a{
