@@ -11,6 +11,19 @@ export const JuegoProvider = ({children}) => {
   const [rompecabeza4, setRompecabeza4] = useState(0)
   const [rompecabeza5, setRompecabeza5] = useState(0)
   const [rompecabeza6, setRompecabeza6] = useState(0)
+
+  const [avance0, setavance] = useState({
+    PalabraAEvaluar:"",
+    PalabraASeleccionada:"",
+    Resultado:""
+  })
+
+  const seterarJuegosTiempoReal =(partida = 0 ,palabraSelecionada, palabraCorrecta)=>{
+    
+
+
+  }
+
   useEffect(() => {
     axios.get("http://localhost:3002/api/auth/partidaEstudiante").then(da =>{setData(da.data)})
   }, [])
@@ -23,7 +36,7 @@ export const JuegoProvider = ({children}) => {
 
   }
 
-  const getPuzzles =(rompe=0, respuesta)=>{ //aqui voy 
+  const getPuzzles =(rompe=0, respuesta)=>{
     if(rompe===1){
       setRompecabeza1(respuesta)
     }
