@@ -20,6 +20,7 @@ const Vocabulario = () => {
     { id: 7, show: false },
   ]);
 const navegar = useNavigate();
+const [videoActual, setVideoActual] = useState(0);
   const toggleWindow = (id) => {
     // Crear una copia del arreglo de ventanas
     let newWindows = [...windows];
@@ -30,7 +31,6 @@ const navegar = useNavigate();
     // Actualizar el arreglo de ventanas
     setWindows(newWindows);
   }
-
   const {id}=useParams();
   const {data, resultados} = useContext(JuecoContext); 
   const [opa1, setOpa1] = useState(1)
@@ -62,33 +62,45 @@ const [momento, setMomento] = useState("inicial");
          }
 
   }
-
+  
+  
   const VideosControl = ({momento,window}) =>{
     switch (momento) {
       case "inicial":
+       let pregunta ="";
+      
        if(data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra1.Respuesta==="CORRECTO"){
-         return  <ReactPlayer url={data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra1.FilePregunta}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"/*controls*/ />
+            pregunta = data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra1.FilePregunta
        }
        if(data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.Respuesta==="CORRECTO"){
-         return  <ReactPlayer url={data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.FilePregunta}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"/*controls*/ />
+          pregunta =  data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.FilePregunta
        }
        if(data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra3.Respuesta==="CORRECTO"){
-         return  <ReactPlayer url={data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra3.FilePregunta}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"/*controls*/ />
+          pregunta = data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra3.FilePregunta
        }
-        break;
+       let videos = [data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra1.FileMuestra, data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.FileMuestra, data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra3.FileMuestra, pregunta]
+       return(<div>
+       {
+         <ReactPlayer  
+         url={videos[videoActual]}
+         playing
+         ref={playref}
+         onEnded={() => {if(videoActual > 4){return } setVideoActual(videoActual + 1)}} />
+      }
+     </div>)
       case "respuesta":
         if(data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra1.Respuesta==="CORRECTO"){
-          return  <ReactPlayer url={[{src:data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra1.FileMuestra, type:'video/mp4'}]}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"/*controls*/ />
+          return  <ReactPlayer url={[{src:data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra1.FileMuestra, type:'video/mp4'}]}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1" />
         }
         if(data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.Respuesta==="CORRECTO"){
-          return  <ReactPlayer url={[{src:data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.FileMuestra, type:'video/mp4'}]}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"/*controls*/  />
+          return  <ReactPlayer  url={[{src:data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.FileMuestra, type:'video/mp4'}]}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"  />
         }
         if(data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.Respuesta==="CORRECTO"){
-          return  <ReactPlayer url={[{src:data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.FileMuestra, type:'video/mp4'}]}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"/*controls*/ />
+          return  <ReactPlayer url={[{src:data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.FileMuestra, type:'video/mp4'}]}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"/>
         }
         break;
       default:
-        return  <ReactPlayer url={data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.FilePregunta}  playing={true} style={{border:"solid"}} className="mb-1"/*controls*/ />
+        return  <ReactPlayer url={data[`Juego${id}`][`Juego`+window.id].vocabulario.Palabra2.FilePregunta}  playing={true} style={{border:"solid"}} className="mb-1" />
       
     }
 }
@@ -125,7 +137,7 @@ const ImagenDeCorrecto = ({correcto}) =>{
         <div key={window.id}>
           {window.show && (
             <div className="window" >
-            <Container   style={{zIndex:1,position:"fixed", display:''}}>
+            <Container   style={{zIndex:1,position:"fixed"}}>
    <Row className="d-flex justify-content-around"> 
    <Col lg="12" className="d-flex justify-content-evenly"><h1>Vocabulario</h1></Col>
     <Col  className='mt-2' lg="6">

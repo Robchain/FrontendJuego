@@ -15,25 +15,29 @@ const MenuJuego = () => {
     <Row>
       <Col className="align-self-center mt-2" lg="12" md="12">
       <div>
-        <span>Email</span><br/>
-        <span>Usuario</span><br/>
-        <span>Identificacion</span><br/>
+        <span>Email:{`${null}`}</span><br/>
+        <span>Usuario:{`${null}`}</span><br/>
+        <span>Identificacion:{`${null}`}</span><br/>
       </div>
       </Col>
     </Row>
     <Col>
-    <NavLink  to={'/RompecabezaJV'}> <input  className="position-relative  start-50  top-0  translate-middle-x" type="image" src={Vocabulario} width='350' alt="Menu Vocabulario" ></input></NavLink>
+    <NavLink  to={'/RompecabezaJV'}>
+      <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu" style={{width:300, height:197, background:"#DDD3DD"}}><h4  className="">VOCABULARIO</h4></div>
+    </NavLink>
       </Col>
       <Col>
-      <NavLink  to={'/RompecabezaJO'}>  <input alt="Menu Oracion" className="position-relative  start-50  translate-middle-x" type="image" src={Oracion} width='350'></input> </NavLink>
+      <NavLink  to={'/RompecabezaJO'}> 
+      <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:300, height:197,background:"#DDD3DD", textDecoration:"none"}}><h4  className="">ORACION</h4></div>
+      </NavLink>
       </Col>
       </Row>
       <Row>
       <Col>
-      <input alt="Menu Carrera"  className=" position-relative  start-50 translate-middle-x" type="image" src={Carrera} width='350'></input>
+      <div className="position-relative  start-50 translate-middle-x OracionMenu" style={{width:300, height:197, background:"#daf7f5"}}><h4>CARRERA</h4></div>
       </Col>
       <Col>
-      <input alt="Menu Premio"   className="position-relative  start-50 bottom-0 translate-middle-x" type="image" src={trofeo} width='350'></input>
+      <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:300, height:197, background:"#daf7f5"}}><h4  className="">TROFEO</h4></div>
       </Col>
       <Col  lg='12' className="">
       <DooroutButton  Urlsalida={"/"}/>
