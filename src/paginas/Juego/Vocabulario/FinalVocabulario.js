@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
-import { BackButton } from '../../../componentes/JuegoComponent/JuegoGeneral/BackButton'
 import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'

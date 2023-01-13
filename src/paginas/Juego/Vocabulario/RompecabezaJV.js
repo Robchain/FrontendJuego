@@ -52,7 +52,7 @@ if(!data){
 </Col>
 </Col>     
 <Col lg='12'>
-<BackButton/>
+<BackButton ruta='/MenuJuego'/>
 </Col>
 </Row>
 </Container>

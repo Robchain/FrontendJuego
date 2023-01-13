@@ -1,10 +1,6 @@
 import React from "react"
 import { Row, Col, Container } from "reactstrap"
 import { NavLink } from "react-router-dom"
-import Vocabulario from  "../../assets/img/AssetsGame/Vocabulario.png"//'../../assets/images/AssetsGame/Vocabulario.png'
-import Carrera from '../../assets/img/AssetsGame/Carrera.png'
-import Oracion from '../../assets/img/AssetsGame/Oraciones.png'
-import trofeo from '../../assets/img/AssetsGame/Trofeo.png'
 import { DooroutButton } from "../../componentes/JuegoComponent/JuegoGeneral/DooroutButton"
 
 const MenuJuego = () => {
