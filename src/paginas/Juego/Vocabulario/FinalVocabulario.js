@@ -14,7 +14,7 @@ export const FinalVocabulario = () => {
   if(data===null){
     return <>Cargando...</>
   }
-  const finalGuardado = ()=>{
+  const finalGuardado = ()=>{ 
     getPuzzles(id, res )
   }
   useEffect(() => {
