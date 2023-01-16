@@ -4,6 +4,7 @@ import { JuecoContext } from './JuecoContext'
 
 export const JuegoProvider = ({children}) => {
   const [respuesta, setRespuesta] = useState([])
+  const [user, setUser] = useState("")
   const [data, setData] = useState(null)    
   const [rompecabeza1, setRompecabeza1] = useState(0)
   const [rompecabeza2, setRompecabeza2] = useState(0)
@@ -25,9 +26,12 @@ export const JuegoProvider = ({children}) => {
   }
 
 
-  const datoVocabulario = (user)=>{
+  /*const datoVocabulario = (user)=>{
+  axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)})
+  }*/
+  useEffect(() => {
     axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)})
-  }
+  }, [user])
   
   const resultados = (palabra="",respuestas="") =>{
     setRespuesta([...respuesta, {
@@ -76,7 +80,7 @@ const getresultado= ()=>{
 }
  
   return (
-    <JuecoContext.Provider value={{data,datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza5, rompecabeza6}}>
+    <JuecoContext.Provider value={{data, setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6}}>
     {children}
     </JuecoContext.Provider>
   )
