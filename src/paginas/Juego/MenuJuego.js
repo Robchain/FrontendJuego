@@ -1,9 +1,22 @@
-import React from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { Row, Col, Container } from "reactstrap"
 import { NavLink } from "react-router-dom"
 import { DooroutButton } from "../../componentes/JuegoComponent/JuegoGeneral/DooroutButton"
+import { JuecoContext } from "../../context/Juego/JuecoContext"
 
 const MenuJuego = () => {
+  const {datoVocabulario} = useContext(JuecoContext);
+  const [usuario, setUsuario] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Identificacion, setIdentificacion] = useState(0);
+
+  useEffect (() => {
+  
+    setEmail(localStorage.getItem("Email"));
+    setIdentificacion(localStorage.getItem("Identificacion"));
+    setUsuario(localStorage.getItem("Usuario"))
+  }, [])
+  
   return (
     <div className="fondoMC vh-100">
     <Container>
@@ -11,15 +24,17 @@ const MenuJuego = () => {
     <Row>
       <Col className="align-self-center mt-2" lg="12" md="12">
       <div>
-        <span>Email:{`${null}`}</span><br/>
-        <span>Usuario:{`${null}`}</span><br/>
-        <span>Identificacion:{`${null}`}</span><br/>
+        <span><b>Email:</b> {`${Email}`}</span><br/>
+        <span><b>Usuario:</b>  {`${usuario}`}</span><br/>
+        <span><b>Identificacion:</b>  {`${Identificacion}`}</span><br/>
       </div>
       </Col>
     </Row>
     <Col>
     <NavLink  to={'/RompecabezaJV'}>
+    <button onClick={datoVocabulario(localStorage.getItem("Usuario"))}>
       <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu" style={{width:300, height:197, background:"#DDD3DD"}}><h4  className="">VOCABULARIO</h4></div>
+      </button>
     </NavLink>
       </Col>
       <Col>

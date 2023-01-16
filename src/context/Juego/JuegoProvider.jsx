@@ -24,9 +24,10 @@ export const JuegoProvider = ({children}) => {
 
   }
 
-  useEffect(() => {
-    axios.get("http://localhost:3002/api/auth/partidaEstudiante").then(da =>{setData(da.data)})
-  }, [])
+
+  const datoVocabulario = (user)=>{
+    axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)})
+  }
   
   const resultados = (palabra="",respuestas="") =>{
     setRespuesta([...respuesta, {
@@ -75,7 +76,7 @@ const getresultado= ()=>{
 }
  
   return (
-    <JuecoContext.Provider value={{data, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza5, rompecabeza6}}>
+    <JuecoContext.Provider value={{data,datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza5, rompecabeza6}}>
     {children}
     </JuecoContext.Provider>
   )

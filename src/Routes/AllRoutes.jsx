@@ -14,17 +14,17 @@ import MenuJuego from '../paginas/Juego/MenuJuego'
 import OracionJ from '../paginas/Juego/Oracion/OracionJ'
 import RompecabezaJO from '../paginas/Juego/Oracion/RompecabezaJO'
 import Prueba from '../paginas/Juego/Prueba'
-import { FinalVocabulario } from '../paginas/Juego/Vocabulario/FinalVocabulario'
-import RompecabezaJV from '../paginas/Juego/Vocabulario/RompecabezaJV'
 import Login from "../paginas/Logins/Login"
 import RompecabezaAdmi from "../paginas/Administrador/RompecabezaAdmi"
 import CategoriaAdm from "../paginas/Administrador/CategoriaAdm";
-import VocabularioJ from "../paginas/Juego/Vocabulario/VocabularioJ"
-
+import { Juegos } from './Juegos'
+import { FinalVocabulario } from '../paginas/Juego/Vocabulario/FinalVocabulario'
+import RompecabezaJV from '../paginas/Juego/Vocabulario/RompecabezaJV'
+import VocabularioJ from '../paginas/Juego/Vocabulario/VocabularioJ'
 export const AllRoutes = () => {
-  return (
+  return (<>
          <Routes>
-          <Route  path='/'   element={<Login/>}></Route>
+          <Route  path='/'   element={<Login/>}/>
           <Route  path='/*' element={<Navigate to="/"/>}/>
           <Route  path='/Administrador'  element={<EstudianteAdmi/>}></Route>
           <Route  path='/Rompecabeza'  element={<RompecabezaAdmi/>}></Route>
@@ -34,17 +34,19 @@ export const AllRoutes = () => {
           <Route  path='/ActividadColaborativa' element={<ActividadColaborativaAdm/>}></Route>
           <Route  path='/ReporteEstudiante' element={<ReporteAdm/>}></Route>
           <Route  path='/MenuJuego' element={<MenuJuego/>}></Route>
-          <Route  path='/RompecabezaJV' element={<RompecabezaJV/>}></Route>
           <Route  path='/RompecabezaJO' element={<RompecabezaJO/>}></Route>
           <Route  path='/Categoria' element={<CategoriaAdm/>}></Route>
           <Route  path='/VerCategoria'  element={<VerCategoriaAdm/>}></Route>
           <Route  path='/VerEstudiante' element={<VerEstudianteAdm/>}></Route>
           <Route  path='/VerRompecabeza'  element={<VerRompecabezaAdm/>}></Route>
           <Route  path='/VerVocabulario'  element={<VerVocabularioAdm/>}></Route>
-          <Route path='/VocabularioJuego/:id' element={<VocabularioJ/>}/>
           <Route path='/OracionJuego' element={<OracionJ/>}/>
-          <Route path='/finalVocabulario/:id' element={ <FinalVocabulario/>}/>
           <Route path='/test' element={<Prueba/>}/>
+          <Route path='/VocabularioJuego/:id' element={<VocabularioJ/>}/>
+    <Route path='/finalVocabulario/:id' element={ <FinalVocabulario/>}/>
+    <Route  path='/RompecabezaJV' element={<RompecabezaJV/>}/>
         </Routes>
+        <Juegos/>
+        </>
   )
 }

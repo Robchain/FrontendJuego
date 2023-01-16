@@ -31,24 +31,24 @@ if(!data){
 </Col>
 <Col  className="d-flex justify-content-evenly  mt-2 mb-5">
 <Col>
-<Link  to={`/VocabularioJuego/${1}`}><RompecabaSolitaria a={'hidden'} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""}  piezas={data.Juego1.Rompecabeza.Pieza} url={data.Juego1.Rompecabeza.FileColor} alt={data.Juego1.Rompecabeza.Nombre}  /> </Link><span>{`${rompecabeza1}/${data.Juego1.Rompecabeza.Pieza}`}</span>
+<Link  to={`/VocabularioJuego/${1}`}><RompecabaSolitaria a={'hidden'} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""}  piezas={data.Juego1.Partida.Rompecabeza.Pieza} url={data.Juego1.Partida.Rompecabeza.FileColor} alt={data.Juego1.Partida.Rompecabeza.Nombre}  /> </Link><span>{`${rompecabeza1}/${data.Juego1.Partida.Rompecabeza.Pieza}`}</span>
 </Col>
 <Col>
-<Link  to={`/VocabularioJuego/${2}`}> <RompecabaSolitaria  a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""}  piezas={data.Juego2.Rompecabeza.Pieza} url={data.Juego2.Rompecabeza.FileColor} alt={data.Juego2.Rompecabeza.Nombre}/></Link><span>{`${rompecabeza2}/${data.Juego2.Rompecabeza.Pieza}`}</span>
+<Link  to={`/VocabularioJuego/${2}`}> <RompecabaSolitaria  a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""}  piezas={data.Juego2.Partida.Rompecabeza.Pieza} url={data.Juego2.Partida.Rompecabeza.FileColor} alt={data.Juego2.Partida.Rompecabeza.Nombre}/></Link><span>{`${rompecabeza2}/${data.Juego2.Partida.Rompecabeza.Pieza}`}</span>
 </Col>
 <Col>
-<Link  to={`/VocabularioJuego/${3}`}>     <RompecabaSolitaria a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""} piezas={data.Juego3.Rompecabeza.Pieza} url={data.Juego3.Rompecabeza.FileColor} alt={data.Juego3.Rompecabeza.Nombre}/> </Link><span>{`${rompecabeza3}/${data.Juego3.Rompecabeza.Pieza}`}</span>
+<Link  to={`/VocabularioJuego/${3}`}>     <RompecabaSolitaria a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""} piezas={data.Juego3.Partida.Rompecabeza.Pieza} url={data.Juego3.Partida.Rompecabeza.FileColor} alt={data.Juego3.Partida.Rompecabeza.Nombre}/> </Link><span>{`${rompecabeza3}/${data.Juego3.Partida.Rompecabeza.Pieza}`}</span>
 </Col>
 </Col>
 <Col  className="d-flex justify-content-evenly mt-2">
 <Col>
-<Link  to={`/VocabularioJuego/${4}`}>    <RompecabaSolitaria a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""} piezas={data.Juego4.Rompecabeza.Pieza} url={data.Juego4.Rompecabeza.FileColor} alt={data.Juego4.Rompecabeza.Nombre} /></Link><span>{`${rompecabeza4}/${data.Juego4.Rompecabeza.Pieza}`}</span>
+<Link  to={`/VocabularioJuego/${4}`}>    <RompecabaSolitaria a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""} piezas={data.Juego4.Partida.Rompecabeza.Pieza} url={data.Juego4.Partida.Rompecabeza.FileColor} alt={data.Juego4.Partida.Rompecabeza.Nombre} /></Link><span>{`${rompecabeza4}/${data.Juego4.Partida.Rompecabeza.Pieza}`}</span>
 </Col>
 <Col>
-<Link  to={`/VocabularioJuego/${5}`}>   <RompecabaSolitaria a={''} d={''} b={""} c={""}  e={""} f={""} g={""} h={""} i={""} j={""} piezas={data.Juego5.Rompecabeza.Pieza} url={data.Juego5.Rompecabeza.FileColor} alt={data.Juego5.Rompecabeza.Nombre} /></Link><span>{`${rompecabeza5}/${data.Juego5.Rompecabeza.Pieza}`}</span>
+<Link  to={`/VocabularioJuego/${5}`}>   <RompecabaSolitaria a={''} d={''} b={""} c={""}  e={""} f={""} g={""} h={""} i={""} j={""} piezas={data.Juego5.Partida.Rompecabeza.Pieza} url={data.Juego5.Partida.Rompecabeza.FileColor} alt={data.Juego5.Partida.Rompecabeza.Nombre} /></Link><span>{`${rompecabeza5}/${data.Juego5.Partida.Rompecabeza.Pieza}`}</span>
 </Col>
 <Col>
-<Link  to={`/VocabularioJuego/${6}`}>   <RompecabaSolitaria a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""} piezas={data.Juego6.Rompecabeza.Pieza} url={data.Juego6.Rompecabeza.FileColor} alt={data.Juego6.Rompecabeza.Nombre} /></Link><span>{`${rompecabeza6}/${data.Juego6.Rompecabeza.Pieza}`}</span>
+<Link  to={`/VocabularioJuego/${6}`}>   <RompecabaSolitaria a={''} d={''} b={""} c={""} e={""} f={""} g={""} h={""} i={""} j={""} piezas={data.Juego6.Partida.Rompecabeza.Pieza} url={data.Juego6.Partida.Rompecabeza.FileColor} alt={data.Juego6.Partida.Rompecabeza.Nombre} /></Link><span>{`${rompecabeza6}/${data.Juego6.Partida.Rompecabeza.Pieza}`}</span>
 </Col>
 </Col>     
 <Col lg='12'>

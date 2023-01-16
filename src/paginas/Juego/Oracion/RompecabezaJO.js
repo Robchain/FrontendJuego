@@ -15,7 +15,7 @@ const RompecabezaJO = () => {
 <NavLink  to={'/OracionJuego'}>
 <RompecabaSolitaria a={'hidden'} d={'hidden'}  /> </NavLink>
 <NavLink  to={'/OracionJuego'}> <RompecabaSolitaria/></NavLink>
-
+ 
 <NavLink  to={'/OracionJuego'}>     <RompecabaSolitaria/> </NavLink>
 </Col>
 <Col  className="d-flex justify-content-evenly mt-2">
