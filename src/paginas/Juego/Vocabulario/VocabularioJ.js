@@ -42,6 +42,7 @@ const [correcto3, setCorrecto3] = useState(null)
 const [pointerEvent, setPointerEvent] = useState("auto")
 const [momento, setMomento] = useState("inicial");
 
+
   useEffect(() => {      
       toggleWindow(1);
   }, [])

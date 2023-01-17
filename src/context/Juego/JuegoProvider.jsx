@@ -16,14 +16,19 @@ export const JuegoProvider = ({children}) => {
   const [avance0, setavance] = useState({
     PalabraAEvaluar:"",
     PalabraASeleccionada:"",
-    Resultado:""
+    Resultado:"",
+    Terminado:""
   })
 
-  const seterarJuegosTiempoReal =(partida = 0 ,palabraSelecionada, palabraCorrecta)=>{
+  const progreso = (evaluar, selecionado, Resul, terminado)=>{
     
-
-
+    setavance({
+      ...avance0, PalabraAEvaluar:evaluar,PalabraASeleccionada:selecionado, Resultado:Resul, Terminado:terminado
+    })
   }
+
+  
+
 
 
   /*const datoVocabulario = (user)=>{
@@ -80,7 +85,7 @@ const getresultado= ()=>{
 }
  
   return (
-    <JuecoContext.Provider value={{data, setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6}}>
+    <JuecoContext.Provider value={{data, progreso,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0}}>
     {children}
     </JuecoContext.Provider>
   )
