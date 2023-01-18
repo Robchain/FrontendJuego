@@ -5,7 +5,7 @@ import { DooroutButton } from "../../componentes/JuegoComponent/JuegoGeneral/Doo
 import { JuecoContext } from "../../context/Juego/JuecoContext"
 
 const MenuJuego = () => {
-  const {setUser} = useContext(JuecoContext);
+  const {setUser, datoVocabulario} = useContext(JuecoContext);
   const [usuario, setUsuario] = useState("");
   const [Email, setEmail] = useState("");
   const [Identificacion, setIdentificacion] = useState(0);
@@ -15,7 +15,6 @@ const MenuJuego = () => {
     setEmail(localStorage.getItem("Email"));
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUsuario(localStorage.getItem("Usuario"))
-
   }, [])
   
   return (
@@ -33,8 +32,9 @@ const MenuJuego = () => {
     </Row>
     <Col>
     <NavLink  to={'/RompecabezaJV'}>
-    
+    <button onClick={()=>datoVocabulario(usuario)}>
       <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu" style={{width:300, height:197, background:"#DDD3DD"}}><h4  className="">VOCABULARIO</h4></div>
+      </button>
         </NavLink>
       </Col>
       <Col>

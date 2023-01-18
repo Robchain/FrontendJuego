@@ -9,7 +9,7 @@ export const FinalVocabulario = () => {
   const {getresultado, data, getPuzzles, avance0} = useContext(JuecoContext);
   const res = getresultado();
   const {id}= useParams();
-  const totalPiezas = data[`Juego${id}`].Rompecabeza.Pieza
+  const totalPiezas = data[`Juego${id}`].Partida.Rompecabeza.Pieza
   if(data===null){
     return <>Cargando...</>
   }
