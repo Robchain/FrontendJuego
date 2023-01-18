@@ -21,8 +21,6 @@ export const JuegoProvider = ({children}) => {
     }])
   }
 
-  
-
 
 
   const datoVocabulario = (user)=>{
@@ -60,10 +58,8 @@ export const JuegoProvider = ({children}) => {
       setRompecabeza6(respuesta)
     }
   }
-
-
-
-const getresultado= ()=>{
+  
+  const getresultado= ()=>{
    let final = 0
 
    let  total = respuesta.map((solitario, i)=>{
@@ -74,12 +70,11 @@ const getresultado= ()=>{
             return 0
         }  
     })
-
     return final;
 }
- 
+
   return (
-    <JuecoContext.Provider value={{data, progreso, datoVocabulario,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0}}>
+    <JuecoContext.Provider value={{data, setavance, datoVocabulario,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0}}>
     {children}
     </JuecoContext.Provider>
   )
