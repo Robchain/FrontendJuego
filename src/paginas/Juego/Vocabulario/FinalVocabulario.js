@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useContext, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { json, useParams } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
 import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
@@ -19,15 +19,14 @@ export const FinalVocabulario = () => {
   }
   useEffect(() => {
     finalGuardado();
-    ActualizarJuego1();
+    /*ActualizarJuego1();
     ActualizarJuego2();
     ActualizarJuego3();
     ActualizarJuego4();
     ActualizarJuego5();
     ActualizarJuego6();
-    setavance([]);
+    */
   }, [])
-  
    
   const ActualizarJuego1=()=>{
     axios.post("http://localhost:3002/api/auth/UpdateTerminadoVocabulario1",{ id:data[`Juego${id}`]._id,
@@ -101,6 +100,7 @@ export const FinalVocabulario = () => {
       </div>  
     </Col>
     </Col>
+    {JSON.stringify(avance0)}
  <DooroutButton Urlsalida={"/RompecabezaJV"}/>
  </Col>
  </Row>

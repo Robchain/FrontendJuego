@@ -38,8 +38,10 @@ const MenuJuego = () => {
         </NavLink>
       </Col>
       <Col>
-      <NavLink  to={'/RompecabezaJO'}> 
+      <NavLink  to={'/RompecabezaJO'}>
+      <button>
       <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:300, height:197,background:"#DDD3DD", textDecoration:"none"}}><h4  className="">ORACION</h4></div>
+      </button>
       </NavLink>
       </Col>
       </Row>

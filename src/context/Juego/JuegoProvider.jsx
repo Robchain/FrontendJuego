@@ -15,11 +15,7 @@ export const JuegoProvider = ({children}) => {
 
   const [avance0, setavance] = useState([])
 
-  const progreso = (evaluar, selecionado, Resul, terminado)=>{
-    
-    setavance([...avance0,{ PalabraAEvaluar:evaluar,PalabraASeleccionada:selecionado, Resultado:Resul, Terminado:terminado
-    }])
-  }
+
 
 
 
@@ -74,7 +70,7 @@ export const JuegoProvider = ({children}) => {
 }
 
   return (
-    <JuecoContext.Provider value={{data, setavance, datoVocabulario,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0}}>
+    <JuecoContext.Provider value={{data,setavance, datoVocabulario,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0}}>
     {children}
     </JuecoContext.Provider>
   )

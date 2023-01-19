@@ -12,7 +12,7 @@ const RompecabezaJV = () => {
      rompecabeza3,
      rompecabeza4,
      rompecabeza5,
-     rompecabeza6} = useContext(JuecoContext);
+     rompecabeza6, avance0} = useContext(JuecoContext);
 
      
 
@@ -54,6 +54,7 @@ if(!data){
 </Col>     
 <Col lg='12'>
 <BackButton ruta='/MenuJuego'/>
+{JSON.stringify(avance0)}
 </Col>
 </Row>
 </Container>
