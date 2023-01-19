@@ -30,6 +30,7 @@ const [videoActual, setVideoActual] = useState(0);
     setWindows(newWindows);
   }
   const {id}=useParams();
+  const [term, setTerm] = useState(false);
   const {data, resultados,setavance, avance0 } = useContext(JuecoContext); 
   const [opa1, setOpa1] = useState(1)
   const [progresojuegoActual, setProgresojuegoActual] = useState([])
@@ -88,13 +89,6 @@ const [momento, setMomento] = useState("inicial");
 
   }
 
-  function verificador(PEvaluar, Actual){
-    if(PEvaluar===Actual){
-      return true
-    }else{
-      return false
-    }
-  }
   const VideosPreguntas = (window)=>{
     let pregunta ="";
     if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Respuesta==="CORRECTO"){
@@ -118,21 +112,16 @@ const [momento, setMomento] = useState("inicial");
      } </div>)
   }
   const progreso = (selecionado, Resul, window)=>{
-    let terminado = false;
    let  palabraE = "";
+   let terminado = false;
     if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Respuesta==="CORRECTO"){
       palabraE = data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Palabra;
-     
     }else if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta==="CORRECTO"){
       palabraE =  data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Palabra;
-     
     }else if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta==="CORRECTO"){
       palabraE =data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Palabra
     }
-    
-  
-    if(palabraE ===selecionado){ terminado =true}else {terminado = false}
-  
+    if(palabraE ===selecionado){ terminado =true}else {terminado = false} 
       setavance([...avance0,{ PalabraAEvaluar:palabraE,PalabraASeleccionada:selecionado, Resultado:Resul, Terminado:terminado
       }])
     }
@@ -141,18 +130,15 @@ const ImagenDeCorrecto = ({correcto}) =>{
       case "INCORRECTO":
               setPointerEvent("none"); setMomento("respuesta");
         return  <img  src={malTrabajo} width='100' alt='Mal trabajo'/>
-        
         case "CORRECTO":
           setPointerEvent("none"); setMomento("respuesta");
          return   <img  src={buentrabajo} width='100' alt='buen trabajo'/>
           case "NADA":
           setPointerEvent("none"); setMomento("respuesta");
          return   null;
-          
           case "INICIAL":
           setPointerEvent("auto"); setMomento("inicial");
          return   null;
-          
       default:
         return null
   }
@@ -181,17 +167,17 @@ const ImagenDeCorrecto = ({correcto}) =>{
       </div>
     </Col>
     <Col   className='mt-2  align-items-end' lg="6">
-    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Respuesta) ;resultados(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Palabra,data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA");progreso(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Palabra ,"", window); setOpa2(0.4); setOpa3(0.4);setTimeout(() => {siguiente(window.id)}, /*playref.current.getDuration()*1900*/ 9000);setVideoActual(0);}} >
+    <div style={{pointerEvents:pointerEvent, opacity:opa1}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto1(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Respuesta) ;resultados(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Palabra,data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Respuesta);setCorrecto2("NADA");setCorrecto3("NADA");progreso(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Palabra ,data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Respuesta, window); setOpa2(0.4); setOpa3(0.4);setTimeout(() => {siguiente(window.id)}, /*playref.current.getDuration()*1900*/ 9000);setVideoActual(0);}} >
     <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Palabra}</p>
     <img  src={data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.FileImagen} alt={data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Palabra} width='200'/>
     <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto1} /></div>
     </div>
-    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta);resultados(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Palabra,data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4);progreso(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Palabra,"",window);  setTimeout(() => {siguiente(window.id)}, /*playref.current.getDuration()*1900*/ 9000);setVideoActual(0);} }>
+    <div style={{pointerEvents:pointerEvent,  opacity:opa2}} className='m-auto Mi-diseñodiv'  onClick={() =>  {setCorrecto2(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta);resultados(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Palabra,data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA");setOpa1(0.4); setOpa3(0.4);progreso(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Palabra,data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta,window);  setTimeout(() => {siguiente(window.id)}, /*playref.current.getDuration()*1900*/ 9000);setVideoActual(0);} }>
     <p  style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Palabra}</p>
     <img src={data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.FileImagen} alt={data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Palabra} width='200'/>
     <div  style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto2}/></div>
     </div>
-    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Respuesta);resultados(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Palabra,data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4); progreso(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Palabra,"",window);setTimeout(() => {siguiente(window.id)},/*playref.current.getDuration()*1900*/ 9000);setVideoActual(0);} }>
+    <div  style={{pointerEvents:pointerEvent, opacity:opa3}} className='m-auto Mi-diseñodiv' onClick={() =>  {setCorrecto3(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Respuesta);resultados(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Palabra,data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Respuesta);setCorrecto2("NADA");setCorrecto1("NADA");setOpa1(0.4); setOpa2(0.4); progreso(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Palabra,data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Respuesta,window);setTimeout(() => {siguiente(window.id)},/*playref.current.getDuration()*1900*/ 9000);setVideoActual(0);} }>
     <p style={{fontWeight:'bold', fontSize:'2vw', color:'#F6AF65'}}>{data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Palabra}</p>
     <img  src={data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.FileImagen} alt={data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Palabra} width='200'/>
     <div   style={{width:100, height:151}}><ImagenDeCorrecto correcto={correcto3}/></div>

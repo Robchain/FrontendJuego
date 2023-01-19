@@ -7,7 +7,7 @@ import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/J
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 
 export const FinalVocabulario = () => {
-  const {getresultado, data, getPuzzles, avance0, setavance} = useContext(JuecoContext);
+  const {getresultado, data, getPuzzles, avance0} = useContext(JuecoContext);
   const res = getresultado();
   const {id}= useParams();
   const totalPiezas = data[`Juego${id}`].Partida.Rompecabeza.Pieza
