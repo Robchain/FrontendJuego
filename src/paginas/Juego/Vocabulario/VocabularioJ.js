@@ -30,11 +30,8 @@ const [videoActual, setVideoActual] = useState(0);
     setWindows(newWindows);
   }
   const {id}=useParams();
-  const [term, setTerm] = useState(false);
-  const {data, resultados,setavance, avance0 } = useContext(JuecoContext); 
+  const {data, resultados, avance0,progreso } = useContext(JuecoContext); 
   const [opa1, setOpa1] = useState(1)
-  const [progresojuegoActual, setProgresojuegoActual] = useState([])
-  const [PEvaluar, setPEvaluar] = useState("")
 const [opa2, setOpa2] = useState(1)
 const [opa3, setOpa3] = useState(1)
 
@@ -68,7 +65,6 @@ const [momento, setMomento] = useState("inicial");
     toggleWindow(num); 
     debugger
     if(num === data[`Juego${id}`].Partida.Rompecabeza.Pieza+1){
-      setavance(progresojuegoActual);
       navegar(`/finalVocabulario/${id}`);
     }else{
    toggleWindow(num+1);
@@ -111,20 +107,7 @@ const [momento, setMomento] = useState("inicial");
         
      } </div>)
   }
-  const progreso = (selecionado, Resul, window)=>{
-   let  palabraE = "";
-   let terminado = false;
-    if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Respuesta==="CORRECTO"){
-      palabraE = data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Palabra;
-    }else if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta==="CORRECTO"){
-      palabraE =  data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Palabra;
-    }else if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta==="CORRECTO"){
-      palabraE =data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Palabra
-    }
-    if(palabraE ===selecionado){ terminado =true}else {terminado = false} 
-      setavance([...avance0,{ PalabraAEvaluar:palabraE,PalabraASeleccionada:selecionado, Resultado:Resul, Terminado:terminado
-      }])
-    }
+
 const ImagenDeCorrecto = ({correcto}) =>{
   switch (correcto) {
       case "INCORRECTO":

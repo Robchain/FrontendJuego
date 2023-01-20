@@ -7,7 +7,7 @@ import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/J
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 
 export const FinalVocabulario = () => {
-  const {getresultado, data, getPuzzles, avance0} = useContext(JuecoContext);
+  const {getresultado, data, getPuzzles, avance0, datoVocabulario} = useContext(JuecoContext);
   const res = getresultado();
   const {id}= useParams();
   const totalPiezas = data[`Juego${id}`].Partida.Rompecabeza.Pieza
@@ -19,13 +19,12 @@ export const FinalVocabulario = () => {
   }
   useEffect(() => {
     finalGuardado();
-    /*ActualizarJuego1();
+    ActualizarJuego1();
     ActualizarJuego2();
     ActualizarJuego3();
     ActualizarJuego4();
     ActualizarJuego5();
     ActualizarJuego6();
-    */
   }, [])
    
   const ActualizarJuego1=()=>{
@@ -100,7 +99,7 @@ export const FinalVocabulario = () => {
       </div>  
     </Col>
     </Col>
-    {JSON.stringify(avance0)}
+  
  <DooroutButton Urlsalida={"/RompecabezaJV"}/>
  </Col>
  </Row>

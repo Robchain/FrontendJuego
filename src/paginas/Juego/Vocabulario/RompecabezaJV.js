@@ -1,4 +1,5 @@
 import React, { useContext, useEffect } from 'react'
+import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
 import { BackButton } from '../../../componentes/JuegoComponent/JuegoGeneral/BackButton'
@@ -12,17 +13,23 @@ const RompecabezaJV = () => {
      rompecabeza3,
      rompecabeza4,
      rompecabeza5,
-     rompecabeza6, avance0, setavance} = useContext(JuecoContext);
+     rompecabeza6, avance0, setavance,setData} = useContext(JuecoContext);
+
+     const datoVocabulario = (user)=>{
+      axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)}).catch(console.log("faul"))
+      }  
+
      useEffect(() => {
       setavance([]);
+      datoVocabulario(localStorage.getItem("Usuario"));
      }, [])
      
+const Pantalla = ()=>{
 
-if(!data){
+if(data === null){
   return (<div>Cargando...</div>)
-}
-
-  return (
+}else{
+return(
     <div className="fondoMC img-fluid vh-100">
    <Container>
 <Row>
@@ -30,7 +37,7 @@ if(!data){
   <h1 style={{color:'#000', fontWeight:'bold' }}>Vocabulario</h1>
 </Col>
 <Col  lg="3">
-  <h2>Puntos:10</h2>
+  <h2>Puntos:0</h2>
 </Col>
 <Col  className="d-flex justify-content-evenly  mt-2 mb-5">
 <Col>
@@ -56,11 +63,17 @@ if(!data){
 </Col>     
 <Col lg='12'>
 <BackButton ruta='/MenuJuego'/>
-{JSON.stringify(avance0)}
+{/*JSON.stringify(avance0)*/}
 </Col>
 </Row>
 </Container>
     </div>
+)}}
+
+  return (
+    <>
+      <Pantalla/>
+    </>
   )
 }
 

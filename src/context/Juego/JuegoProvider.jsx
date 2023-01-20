@@ -16,16 +16,18 @@ export const JuegoProvider = ({children}) => {
   const [avance0, setavance] = useState([])
 
 
+  const progreso = (selecionado, Resul,)=>{
+   
+       setavance([...avance0,{ PalabraAEvaluar:"",PalabraASeleccionada:selecionado, Resultado:Resul, Terminado:false
+       }])
+     }
 
 
 
   const datoVocabulario = (user)=>{
   axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)})
-  }
-  /*useEffect(() => {
-    axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)})
-  }, [user])*/
-  
+  }  
+
   const resultados = (palabra="",respuestas="") =>{
     setRespuesta([...respuesta, {
         palabra:palabra,
@@ -70,7 +72,7 @@ export const JuegoProvider = ({children}) => {
 }
 
   return (
-    <JuecoContext.Provider value={{data,setavance, datoVocabulario,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0}}>
+    <JuecoContext.Provider value={{data,setavance,progreso, datoVocabulario,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
     {children}
     </JuecoContext.Provider>
   )

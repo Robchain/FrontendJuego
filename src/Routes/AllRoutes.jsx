@@ -43,8 +43,8 @@ export const AllRoutes = () => {
           <Route path='/OracionJuego' element={<OracionJ/>}/>
           <Route path='/test' element={<Prueba/>}/>
           <Route path='/VocabularioJuego/:id' element={<VocabularioJ/>}/>
-    <Route path='/finalVocabulario/:id' element={ <FinalVocabulario/>}/>
-    <Route  path='/RompecabezaJV' element={<RompecabezaJV/>}/>
+          <Route path='/finalVocabulario/:id' element={ <FinalVocabulario/>}/>
+          <Route  path='/RompecabezaJV' element={<RompecabezaJV/>}/>
         </Routes>
         <Juegos/>
         </>
