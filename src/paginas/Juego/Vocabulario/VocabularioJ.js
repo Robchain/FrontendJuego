@@ -72,17 +72,15 @@ const [momento, setMomento] = useState("inicial");
 
   }
   const videosRespuesta = (window)=>{
+    let videos;
     if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.Respuesta==="CORRECTO"){
-    
-      return  <ReactPlayer url={[{src:data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.FileMuestra, type:'video/mp4'}]}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1" />
+      videos = data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra1.FileMuestra
     }else if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta==="CORRECTO"){
-    
-      return  <ReactPlayer  url={[{src:data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.FileMuestra, type:'video/mp4'}]}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"  />
-    }else if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.Respuesta==="CORRECTO"){
-     
-      return  <ReactPlayer url={[{src:data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.FileMuestra, type:'video/mp4'}]}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"/>
+      videos = data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra2.FileMuestra
+    }else if(data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.Respuesta==="CORRECTO"){
+      videos = data[`Juego${id}`].Partida[`Juego`+window.id].vocabulario.Palabra3.FileMuestra
     }
-
+    return <ReactPlayer url={videos}  playing={true} style={{border:"solid"}} ref={playref}  className="mb-1"/>
   }
 
   const VideosPreguntas = (window)=>{
@@ -168,7 +166,7 @@ const ImagenDeCorrecto = ({correcto}) =>{
     </Col>
     <Col  lg="6"  className="d-flex justify-content-end">
     <DooroutButton  Urlsalida={"/RompecabezaJV"}/>
-    {JSON.stringify(avance0)}
+    {/*JSON.stringify(avance0)*/}
     </Col>
    </Row>
    </Container>

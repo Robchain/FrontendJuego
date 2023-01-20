@@ -24,7 +24,7 @@ const RompecabezaJO = () => {
 <NavLink  to={'/OracionJuego'}>   <RompecabaSolitaria a={'hidden'} d={'hidden'}/></NavLink>
 </Col>
 <Col lg='12'>
-<BackButton/>
+<BackButton ruta='/MenuJuego'/>
 </Col>
 </Row>
 </Container>

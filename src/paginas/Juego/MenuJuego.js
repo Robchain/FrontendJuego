@@ -47,10 +47,14 @@ const MenuJuego = () => {
       </Row>
       <Row>
       <Col>
+      <button>
       <div className="position-relative  start-50 translate-middle-x OracionMenu" style={{width:300, height:197, background:"#daf7f5"}}><h4>CARRERA</h4></div>
+      </button>
       </Col>
       <Col>
+      <button>
       <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:300, height:197, background:"#daf7f5"}}><h4  className="">TROFEO</h4></div>
+      </button>
       </Col>
       <Col  lg='12' className="">
       <DooroutButton  Urlsalida={"/"}/>
