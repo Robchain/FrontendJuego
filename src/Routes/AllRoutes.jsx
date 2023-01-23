@@ -21,30 +21,36 @@ import { Juegos } from './Juegos'
 import { FinalVocabulario } from '../paginas/Juego/Vocabulario/FinalVocabulario'
 import RompecabezaJV from '../paginas/Juego/Vocabulario/RompecabezaJV'
 import VocabularioJ from '../paginas/Juego/Vocabulario/VocabularioJ'
+import { FinalOracionJuego } from '../paginas/Juego/Oracion/FinalOracionJuego'
 export const AllRoutes = () => {
   return (<>
          <Routes>
           <Route  path='/'   element={<Login/>}/>
           <Route  path='/*' element={<Navigate to="/"/>}/>
-          <Route  path='/Administrador'  element={<EstudianteAdmi/>}></Route>
-          <Route  path='/Rompecabeza'  element={<RompecabezaAdmi/>}></Route>
-          <Route  path='/Vocabulario'  element={<VocabularioAdmi/>}></Route>
-          <Route  path='/Oracion' element={<OracionAdm/>}></Route>
-          <Route  path='/Equipo'  element={<EquipoAdm/>}></Route>
-          <Route  path='/ActividadColaborativa' element={<ActividadColaborativaAdm/>}></Route>
-          <Route  path='/ReporteEstudiante' element={<ReporteAdm/>}></Route>
-          <Route  path='/MenuJuego' element={<MenuJuego/>}></Route>
-          <Route  path='/RompecabezaJO' element={<RompecabezaJO/>}></Route>
-          <Route  path='/Categoria' element={<CategoriaAdm/>}></Route>
-          <Route  path='/VerCategoria'  element={<VerCategoriaAdm/>}></Route>
-          <Route  path='/VerEstudiante' element={<VerEstudianteAdm/>}></Route>
-          <Route  path='/VerRompecabeza'  element={<VerRompecabezaAdm/>}></Route>
-          <Route  path='/VerVocabulario'  element={<VerVocabularioAdm/>}></Route>
+          <Route  path='/Administrador'  element={<EstudianteAdmi/>}/>
+          <Route  path='/Rompecabeza'  element={<RompecabezaAdmi/>}/>
+          <Route  path='/Vocabulario'  element={<VocabularioAdmi/>}/>
+          <Route  path='/Oracion' element={<OracionAdm/>}/>
+          <Route  path='/Equipo'  element={<EquipoAdm/>}/>
+          <Route  path='/ActividadColaborativa' element={<ActividadColaborativaAdm/>}/>
+          <Route  path='/ReporteEstudiante' element={<ReporteAdm/>}/>
+          <Route  path='/MenuJuego' element={<MenuJuego/>}/>
+          <Route  path='/Categoria' element={<CategoriaAdm/>}/>
+          <Route  path='/VerCategoria'  element={<VerCategoriaAdm/>}/>
+          <Route  path='/VerEstudiante' element={<VerEstudianteAdm/>}/>
+          <Route  path='/VerRompecabeza'  element={<VerRompecabezaAdm/>}/>
+          <Route  path='/VerVocabulario'  element={<VerVocabularioAdm/>}/>
           <Route path='/OracionJuego' element={<OracionJ/>}/>
           <Route path='/test' element={<Prueba/>}/>
+          {/* Vocabulario*/}
+          <Route  path='/RompecabezaJV' element={<RompecabezaJV/>}/>
           <Route path='/VocabularioJuego/:id' element={<VocabularioJ/>}/>
           <Route path='/finalVocabulario/:id' element={ <FinalVocabulario/>}/>
-          <Route  path='/RompecabezaJV' element={<RompecabezaJV/>}/>
+          {/* Oracion*/}
+          <Route  path='/RompecabezaJO' element={<RompecabezaJO/>}/>
+          <Route  path='/OracionJuego/:id' element={<OracionJ/>}/>
+          <Route  path='/finalOracionJuego/:id' element={<FinalOracionJuego/>}/>
+          {/*Co-operativo*/}
         </Routes>
         <Juegos/>
         </>

@@ -1,8 +1,24 @@
 import React from 'react'
 
 const OracionJ = () => {
+
+
+
+
+const pantalla = ()=>{
+  if(false){
+    
+  }
+
+}
   return (
-    <div>OracionJ</div>
+    <div>
+
+
+
+
+
+    </div>
   )
 }
 

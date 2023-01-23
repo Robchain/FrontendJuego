@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { Col, Container, Row, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap'
+import { Col, Container, Row, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { BackButton } from '../../../componentes/JuegoComponent/JuegoGeneral/BackButton'
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
@@ -41,10 +41,6 @@ return(
 </Col>
 <Col  className="d-flex justify-content-evenly  mt-2 mb-5">
 <Col>
-{
-  
-
-}
 <Link  to={`/VocabularioJuego/${1}`}><RompecabaSolitaria a={(data.Juego1.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(data.Juego1.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(data.Juego1.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(data.Juego1.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(data.Juego1.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(data.Juego1.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(data.Juego1.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(data.Juego1.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(data.Juego1.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(data.Juego1.Avance.Juego6.Resultado === "CORRECTO") && "hidden"}  piezas={data.Juego1.Partida.Rompecabeza.Pieza} url={data.Juego1.Partida.Rompecabeza.FileColor} alt={data.Juego1.Partida.Rompecabeza.Nombre}  /> </Link><span>{`${rompecabeza1}/${data.Juego1.Partida.Rompecabeza.Pieza}`}</span>
 </Col>
 <Col>
@@ -89,7 +85,7 @@ const modalaqui = ({url,descripcion})=>{
       <Button color="danger" onClick={toggle}>
         Click Me
       </Button>
-      <Modal isOpen={modal} toggle={toggle} {...args}>
+      <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>ROMPECABEZA COMPLETADA</ModalHeader>
         <ModalBody>
           <img  src={url} alt={descripcion}/>
