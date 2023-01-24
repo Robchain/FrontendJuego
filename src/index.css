@@ -127,12 +127,14 @@
 }
 
 .print-image {
-    display: block;
+    margin-left:100px;
+    margin-top:50px ;
     position: absolute;
     top: 0;
     left: 0;
-    width: 103vw;
-    height: 50vh;
+    width: 100vw;
+    height: 62vh;
+    transform: rotate(90deg);
   }
 
   .desaparecer{

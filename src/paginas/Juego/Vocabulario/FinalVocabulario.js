@@ -15,14 +15,15 @@ export const FinalVocabulario = () => {
     return <>Cargando...</>
   }
   const verifyEnd =()=>{
+    debugger
     let ad = avance0.filter(obj => obj.Resultado==="CORRECTO").length;
     if(totalPiezas===6){
-      if(ad===6){
+      if(ad>=6){
         ActualizarJuegoFinal(true);
       }
     }
     if(totalPiezas==4){
-if(ad===4){
+if(ad>=4){
   ActualizarJuegoFinal(true);
 }
     }
@@ -98,9 +99,9 @@ if(ad===4){
     Terminado:avance0[6].Terminado})
   }
 
-  const ActualizarJuegoFinal=(isend)=>{
+  const ActualizarJuegoFinal=(isEnd)=>{
     axios.post("http://localhost:3002/api/auth/UpdateTerminadoVocabularioFinal",{ id:data[`Juego${id}`]._id,
-    Terminado:isend})
+    Terminado:isEnd})
   }
 
 
