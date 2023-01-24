@@ -10,9 +10,23 @@ export const FinalVocabulario = () => {
   const {getresultado, data, getPuzzles, avance0, datoVocabulario} = useContext(JuecoContext);
   const res = getresultado();
   const {id}= useParams();
-  const totalPiezas = data[`Juego${id}`].Partida.Rompecabeza.Pieza
+  let totalPiezas = data[`Juego${id}`].Partida.Rompecabeza.Pieza
   if(data===null){
     return <>Cargando...</>
+  }
+  const verifyEnd =()=>{
+    let ad = avance0.filter(obj => obj.Resultado==="CORRECTO").length;
+    if(totalPiezas===6){
+      if(ad===6){
+        ActualizarJuegoFinal(true);
+      }
+    }
+    if(totalPiezas==4){
+if(ad===4){
+  ActualizarJuegoFinal(true);
+}
+    }
+
   }
   const finalGuardado = ()=>{ 
     getPuzzles(id, res )
@@ -25,6 +39,7 @@ export const FinalVocabulario = () => {
     ActualizarJuego4();
     ActualizarJuego5();
     ActualizarJuego6();
+    verifyEnd();
   }, [])
    
   const ActualizarJuego1=()=>{
@@ -82,6 +97,13 @@ export const FinalVocabulario = () => {
     Resultado:avance0[6].Resultado,
     Terminado:avance0[6].Terminado})
   }
+
+  const ActualizarJuegoFinal=(isend)=>{
+    axios.post("http://localhost:3002/api/auth/UpdateTerminadoVocabularioFinal",{ id:data[`Juego${id}`]._id,
+    Terminado:isend})
+  }
+
+
 
   return (
     <div className="fondoMC img-fluid vh-100">

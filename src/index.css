@@ -126,3 +126,15 @@
 			padding: -1px;
 }
 
+.print-image {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 103vw;
+    height: 50vh;
+  }
+
+  .desaparecer{
+    visibility: hidden;
+  }

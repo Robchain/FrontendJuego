@@ -7,12 +7,12 @@ const OracionJ = () => {
 
 const Pantalla = ()=>{
   if(false){
-    
   }else{
     return(
     <div>
       <h1>Oracion</h1>
-    </div>)
+    </div>
+    )
   }
 
 }
