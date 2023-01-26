@@ -10,7 +10,7 @@ const RompecabezaJV = () => {
   const { data, setavance, setData } = useContext(JuecoContext);
   const [modal, setModal] = useState(false);
   const datoVocabulario = (user) => {
-    axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario", { Usuario: user }).then(da => { setData(da.data) }).catch(console.log("faul"))
+    axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario", { Usuario: user }).then(da => { setData(da.data) })
   }
 
   useEffect(() => {

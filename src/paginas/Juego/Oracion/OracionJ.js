@@ -11,21 +11,18 @@ const [QuienSeleccion, setQuienSeleccion] = useState(0);
 
 
 
-
 const SeleccionQue = ()=>{
-  
+
   if(QueSelecion === 1){return(<img  alt='opcion1'/>)}
   if(QueSelecion === 2 ){return(<img  alt='opcion2'/>)}
   if(QueSelecion === 3){return(<img  alt='opcion3'/>)}
   if(QueSelecion===0){return (<>nada</>)}
 }
-const SeleccionQuien = ()=>{
-  
+const SeleccionQuien = ()=>{  
   if(QuienSeleccion === 1){return(<img  alt='opcion1'/>)}
   if(QuienSeleccion === 2 ){return(<img  alt='opcion2'/>)}
   if(QuienSeleccion === 3){return(<img  alt='opcion3'/>)}
   if(QuienSeleccion===0){return (<>nada</>)}
-
 }
 
   const Pantalla = () => {
