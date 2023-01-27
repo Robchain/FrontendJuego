@@ -30,7 +30,7 @@ const Vocabulario = () => {
     setWindows(newWindows);
   }
   const { id } = useParams();
-  const { data, resultados, avance0, progreso } = useContext(JuecoContext);
+  const { data, resultados, datoVocabulario, progreso } = useContext(JuecoContext);
   const [opa1, setOpa1] = useState(1)
   const [opa2, setOpa2] = useState(1)
   const [opa3, setOpa3] = useState(1)
@@ -42,14 +42,12 @@ const Vocabulario = () => {
   const [correcto3, setCorrecto3] = useState(null)
   const [pointerEvent, setPointerEvent] = useState("auto")
   const [momento, setMomento] = useState("inicial");
+useEffect(() => {
+  datoVocabulario(localStorage.getItem("Usuario"))
+}, [])
 
-  /*const progresoJuegoA =(evaluar, selecionado, Resul, terminado)=>{
-    setProgresojuegoActual([...progresojuegoActual,{ PalabraAEvaluar:evaluar,PalabraASeleccionada:selecionado, Resultado:Resul, Terminado:terminado
-    }])
-  }*/
 
   useEffect(() => {
-
     toggleWindow(1);
   }, [])
 
