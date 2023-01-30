@@ -30,7 +30,7 @@ export const JuegoProvider = ({children}) => {
   axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)})
   }  
 
-  const dataOracion= (user)=>{
+  const dataOracion = (user)=>{
     axios.post("http://localhost:3002/api/auth/llamadaPartidaOracion",{Usuario:user}).then(response =>{setOraciondata(response.data)})
   }
 
