@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState, useMemo, useCallback, memo } from 'react'
 import ReactPlayer from 'react-player'
 import { Container, Row, Col } from 'reactstrap'
+import buentrajo from '../../../assets/img/AssetsGame/GOOD JOD.png'
+import malTrabajo from '../../../assets/img/AssetsGame/Bad Jood.png'
 import Quien from '../../../assets/img/AssetsGame/ico_Que.png'
 import Que from '../../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../../assets/img/AssetsGame/ico_verbo.png";
@@ -9,7 +11,6 @@ import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 
 const Preguntasecction = ({ FuncRamdon, Pregu, setvideoAMostrar, videoAMostrar }) => {
-  console.log("renderPreguntaSection")
   const { oraciondata } = useContext(JuecoContext);
   useEffect(() => {
     FuncRamdon()
@@ -46,9 +47,45 @@ const Preguntasecction = ({ FuncRamdon, Pregu, setvideoAMostrar, videoAMostrar }
     </div>
   )
 };
+const Respuestasecction = ({ FuncRamdon, Pregu, setvideoAMostrar, videoAMostrar }) => {
 
-const OracionJ = () => {
+  const { oraciondata } = useContext(JuecoContext);
+  useEffect(() => {
+    FuncRamdon()
+  }, [])
+
+  const preguntavideo = useMemo(() => {
   
+      if (oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion1.Respuesta === "CORRECTO") {
+        return oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion1.FileVideoMuestra
+      } else if (oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion2.Respuesta === "CORRECTO") {
+        return oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion2.FileVideoMuestra
+      } else if (oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.Respuesta === "CORRECTO") {
+        return oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileVideoMuestra
+      }
+  }, [Pregu, oraciondata])
+  setvideoAMostrar(preguntavideo);
+  return (
+    <div>
+      <ReactPlayer
+        url={videoAMostrar}
+        width={300}
+        playing
+        loop={true}
+      />
+    </div>
+  )
+};
+const OracionJ = () => {
+  const [Queselec, setQueselec] = useState("");
+  const [pointer, setPointer] = useState("auto")
+  const [pointer2, setPointer2] = useState("auto")
+  const [opacity1, setOpacity1] = useState(1);
+  const [opacity2, setOpacity2] = useState(1);
+  const [opacity3, setOpacity3] = useState(1);
+  const [QuienSelec, setQuienSelec] = useState("");
+  const [AdverSelec, setAdverSelec] = useState("");
+  const [opcionRes, setopcionRes] = useState("Nada");
   const [QueSelecion, setQueSelecion] = useState(0);
   const [QuienSeleccion, setQuienSeleccion] = useState(0);
   const [QueSeleccion, setQueSeleccion] = useState(0);
@@ -111,30 +148,92 @@ const OracionJ = () => {
     }, [QuienSeleccion])
     return result;
   }
-  const onhandleClickPrimero = useCallback(
-    () => {
-      setQuienSeleccion(1)
-    },
-    [],
-  )
-  const onhandleClickSegundo = useCallback(
-    () => {
-      setQuienSeleccion(2)
-    },
-    [],
-  )
-  const onhandleClickTercero = useCallback(
-    () => {
-      setQuienSeleccion(3)
-    },
-    [],
-  )
-const RespuestaImagen =()=>{
+  //-----------
+  const onhandleClickPrimero = ()=>{
+    setQuienSeleccion(1);
+    setQuienSelec(oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion1.FileSujetoImagen);
+  }
+  const onhandleClickSegundo = ()=>{
+    setQuienSeleccion(2);
+    setQuienSelec(oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion2.FileSujetoImagen);
+  }
+  const onhandleClickTercero = ()=>{
+    setQuienSeleccion(3);
+    setQuienSelec(oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileSujetoImagen);
+  }
+//-------------------
+  const onhandleClickQuePrimero = ()=>{
+    setQueSelecion(1);
+    setQueselec(oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion1.FileAdjetivoImagen);
+
+  }
+
+  const onhandleClickQueSegundo =()=>{
+    setQueSelecion(2);
+    setQueselec(oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileAdjetivoImagen);
+  }
+  const onhandleClickQueTercero = ()=>{
+    setQueSelecion(3);
+    setQueselec(oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileAdjetivoImagen);
+  }
+  //---------------
+  const onhandleClickAdvePrimero = ()=>{
+    setQuienSeleccion(3);
+      setAdverSelec(oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileSujetoImagen);
+  }
+  const onhandleClickAdveSegundo = ()=>{
+    setQuienSeleccion(3);
+    setQuienSelec(oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileSujetoImagen);
+  }
+
+  const onhandleClickAdveTercero = ()=>{
+    setQuienSeleccion(3)
+    setQuienSelec(oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileSujetoImagen)
+  }
+
+const RespuestaImagen =({oraciondata})=>{
+ let  sujetoRespuesta = "";
+ let  AdjectivoRespuesta = "";
+ let AdverbioRespuesta ="";
+ let base = "Nada";
+  if (oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion1.Respuesta === "CORRECTO") {
+    sujetoRespuesta = oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion1.FileSujetoImagen;
+    AdjectivoRespuesta = oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion1.FileAdjetivoImagen;
+  } else if (oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion2.Respuesta === "CORRECTO") {
+    sujetoRespuesta = oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion2.FileSujetoImagen;
+    AdjectivoRespuesta = oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion2.FileAdjetivoImagen;
+  } else if (oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.Respuesta === "CORRECTO") {
+    sujetoRespuesta = oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileSujetoImagen;
+    AdjectivoRespuesta = oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileAdjetivoImagen;
+  }
+
+  if(QuienSelec ==="" ||  Queselec === ""){
+    base = "Nada"
+  }
+  if(QuienSelec.length> 2 && Queselec.length >2 ){
+    if((sujetoRespuesta === QuienSelec) &&  (AdjectivoRespuesta === Queselec) ){
+      base ="Correcto"
+    }else if(sujetoRespuesta !== QuienSelec ||  AdjectivoRespuesta !== Queselec){
+      base = "Incorrecto"
+    }else if(QuienSelec ==="" ||  AdjectivoRespuesta !== Queselec){
+      base = "Incorrecto"
+    }
+  }
   
-  return(<>respuesta</>)
+  setopcionRes(base);
 
-
-
+  switch (base) {
+    case "Correcto":
+      setMomento("Respuesta");
+      return(<><img src={buentrajo} width="100"/></>);
+    case "Incorrecto":
+      setMomento("Respuesta");
+        return(<><img src={malTrabajo} width="100"/></>);
+    case "Nada":
+    return(<></>)
+    default:
+      break;
+  }
 }
   return (
     <>{
@@ -142,12 +241,16 @@ const RespuestaImagen =()=>{
         <div className='window'>
           <Container style={{ zIndex: 1, position: "fixed", }} className="fluid">
             <Row className="d-flex justify-content-around">
-              <Col className="d-flex justify-content-evenly" lg="12"  >
-                <h1>Armar Oracion</h1>
+              <Col className="d-flex justify-content-evenly" lg="8"  >
+                <h1>Oraciones</h1>
               </Col>
+              <Col  lg="4"><h3>Puntos:{`${0}`}</h3></Col>
               <Col className='mt-2' lg="4" sm="12" md="12" >
                 {
                   momento === "inicial" && <Preguntasecction FuncRamdon={FuncRamdon} Pregu={Pregu} videoAMostrar={videoAMostrar} setvideoAMostrar={setvideoAMostrar} />
+                }
+                {
+                 momento ==="Respuesta" && <Respuestasecction FuncRamdon={FuncRamdon} Pregu={Pregu} videoAMostrar={videoAMostrar} setvideoAMostrar={setvideoAMostrar}/>
                 }
               </Col>
               <Col lg="8">
@@ -172,13 +275,13 @@ const RespuestaImagen =()=>{
                       <div style={{ width: "150px", height: "120px" }}>
                         <img alt='sujeto' src={Cantidad} width="100" />
                       </div>
-                      <div style={{ width: "150px", height: "100px" }} onClick={(e) => { e.preventDefault(); setQueSeleccion(1) }}>
+                      <div style={{ width: "150px", height: "100px" }} onClick={onhandleClickAdvePrimero}>
                         <span>{oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion1.Adverbio}</span>
                       </div>
-                      <div style={{ width: "150px", height: "100px" }} onClick={(e) => { e.preventDefault(); setQueSeleccion(2) }} >
+                      <div style={{ width: "150px", height: "100px" }} onClick={onhandleClickAdveSegundo} >
                         <span>{oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion2.Adverbio}</span>
                       </div>
-                      <div style={{ width: "150px", height: "100px" }} onClick={(e) => { e.preventDefault(); setQueSeleccion(3) }} >
+                      <div style={{ width: "150px", height: "100px" }} onClick={onhandleClickAdveTercero} >
                         <span>{oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.Adverbio}</span>
                       </div>
                     </Row>)
@@ -187,13 +290,13 @@ const RespuestaImagen =()=>{
                   <div style={{ width: "95px" }}>
                     <img alt='que' src={Que} width="75" />
                   </div>
-                  <div style={{ width: "175px" }} onClick={(e) => { e.preventDefault(); setQueSelecion(1) }}>
+                  <div style={{ width: "175px" }} onClick={onhandleClickQuePrimero}>
                     <img src={oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion1.FileAdjetivoImagen} width="170" alt='opcion1' />
                   </div>
-                  <div style={{ width: "175px" }} onClick={(e) => { e.preventDefault(); setQueSelecion(2) }}>
+                  <div style={{ width: "175px" }} onClick={onhandleClickQueSegundo}>
                     <img src={oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion2.FileAdjetivoImagen} width="170" alt='opcion2' />
                   </div>
-                  <div style={{ width: "175px" }} onClick={(e) => { e.preventDefault(); setQueSelecion(3) }}>
+                  <div style={{ width: "175px" }} onClick={onhandleClickQueTercero}>
                     <img src={oraciondata.Juego1.Partida.Juego1.Oraciones.Oracion3.FileAdjetivoImagen} width="170" alt='opcion3' />
                   </div>
                 </Row>
@@ -237,7 +340,7 @@ const RespuestaImagen =()=>{
                   </div>
                 </Row>
                 </Col>
-                <Col  lg="4"><RespuestaImagen/></Col>
+                <Col  lg="4"><RespuestaImagen oraciondata={oraciondata}/></Col>
               <Col lg="12" className="d-flex justify-content-end">
                 <DooroutButton Urlsalida={"/RompecabezaJO"} />
               </Col>

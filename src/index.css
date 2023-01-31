@@ -48,19 +48,19 @@
     position:fixed;
 }
 .minicuadrito .encima .a{
-    background-color: #000;
+    background-color: #fff;
     width: 50%;
     height: 50%;
     display: inline-block;
 }
 .minicuadrito .encima .b{
-    background-color: #000;
+    background-color: #fff;
     width: 50%;
     height: 50%;
     display: inline-block;
 }
 .minicuadrito .encima .c{
-    background-color: #000;
+    background-color: #fff;
 			width:  50%;
 			height: 50%;
 			display: inline-block;
@@ -69,7 +69,7 @@
 }
 .minicuadrito .encima .d{
     display: inline-block;
-			background-color: #000;
+			background-color: #fff;
 			width:  50%;
 			height: 50%;
 			margin-top: -5px;
@@ -79,21 +79,21 @@
 
 
 .minicuadrito .encima .e{
-    background-color: #000;
+    background-color: #fff;
     width: 33%;
     height: 50%;
     display: inline-block;
 }
 
 .minicuadrito .encima .f{
-    background-color: #000;
+    background-color: #fff;
     width: 33%;
     height: 50%;
     display: inline-block;
 }
 
 .minicuadrito .encima .g{
-    background-color: #000;
+    background-color: #fff;
     width: 33%;
     height: 50%;
     display: inline-block;
@@ -101,7 +101,7 @@
 
 .minicuadrito .encima .h{
     display: inline-block;
-			background-color: #000;
+			background-color: #fff;
 			width:  33%;
 			height: 50%;
 			margin-top: -5px;
@@ -110,7 +110,7 @@
 
 .minicuadrito .encima .i{
     display: inline-block;
-			background-color: #000;
+			background-color: #fff;
 			width:  33%;
 			height: 50%;
 			margin-top: -5px;
@@ -119,7 +119,7 @@
 
 .minicuadrito .encima .j{
     display: inline-block;
-			background-color: #000;
+			background-color: #fff;
 			width:  33%;
 			height: 50%;
 			margin-top: -5px;

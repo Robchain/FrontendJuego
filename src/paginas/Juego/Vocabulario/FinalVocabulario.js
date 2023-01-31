@@ -1,6 +1,6 @@
 import axios from 'axios'
-import React, { useContext, useEffect } from 'react'
-import { json, useParams } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import {  useParams } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
 import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
@@ -9,21 +9,22 @@ import { JuecoContext } from '../../../context/Juego/JuecoContext'
 export const FinalVocabulario = () => {
   const {getresultado, data, getPuzzles, avance0, datoVocabulario} = useContext(JuecoContext);
   const res = getresultado();
+  const [points, setPoints] = useState(0);
   const {id}= useParams();
   let totalPiezas = data[`Juego${id}`].Partida.Rompecabeza.Pieza
   if(data===null){
     return <>Cargando...</>
   }
   const verifyEnd =()=>{
-    debugger
     let ad = avance0.filter(obj => obj.Resultado==="CORRECTO").length;
+    setPoints(ad);
     if(totalPiezas===6){
-      if(ad>=6){
+      if(ad>=7){
         ActualizarJuegoFinal(true);
       }
     }
     if(totalPiezas==4){
-if(ad>=4){
+if(ad>=5){
   ActualizarJuegoFinal(true);
 }
     }
@@ -118,7 +119,7 @@ if(ad>=4){
  </Col>
  <Col className='mt-5'>
       <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
-      <h1>{`${res-1}/${totalPiezas}`}</h1>
+      <h1>{`${points*10}/${totalPiezas*10}`}</h1>
       </div>  
     </Col>
     </Col>
