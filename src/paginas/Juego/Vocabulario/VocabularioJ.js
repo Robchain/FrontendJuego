@@ -143,7 +143,7 @@ useEffect(() => {
               <div className="window" >
                 <Container style={{ zIndex: 1, position: "fixed" }}>
                   <Row className="d-flex justify-content-around">
-                    <Col lg="8" className="d-flex justify-content-evenly"><h1>Vocabulario</h1></Col><Col lg="4" className="d-flex justify-content-evenly"><h3>puntos:{`${points}`}</h3></Col>
+                    <Col lg="8" className="d-flex justify-content-evenly"><h1>Vocabulario</h1></Col><Col lg="4" className="d-flex justify-content-evenly"><h3>Puntos: {`${points}`}</h3></Col>
                     <Col className='mt-2' lg="6">
                       {
                         momento === "inicial" && VideosPreguntas(window)
