@@ -7,13 +7,14 @@ import { BackButton } from '../../../componentes/JuegoComponent/JuegoGeneral/Bac
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 const RompecabezaJO = () => {
 
-const {oraciondata, setOraciondata} = useContext(JuecoContext);
+const {oraciondata, setOraciondata, setavance} = useContext(JuecoContext);
 
 const dataOracion = (user)=>{
   axios.post("http://localhost:3002/api/auth/llamadaPartidaOracion",{Usuario:user}).then(response =>{setOraciondata(response.data)})
 }
 
 useEffect(() => {
+  setavance([]);
   dataOracion(localStorage.getItem("Usuario"));
 }, []);
 

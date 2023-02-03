@@ -119,7 +119,7 @@ if(ad>=5){
  </Col>
  <Col className='mt-5'>
       <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
-      <h1>{`${points*10}/${totalPiezas*10}`}</h1>
+      <h1>{`${points}/${totalPiezas}`}</h1>
       </div>  
     </Col>
     </Col>

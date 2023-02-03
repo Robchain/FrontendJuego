@@ -52,10 +52,8 @@ useEffect(() => {
   }, [])
 
  const puntos = () =>{
-
   let ad = avance0.filter(obj => obj.Resultado==="CORRECTO").length
   setPoints(ad);
-
  }
 
   const siguiente = (num) => {

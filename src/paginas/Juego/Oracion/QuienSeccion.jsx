@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Col, Row } from 'reactstrap'
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
 import buentrajo from '../../../assets/img/AssetsGame/GOOD JOD.png'
@@ -62,7 +62,7 @@ const Respuestasecction = ({id, window}) => {
     </div>
   )
 };
-const QuienSeccion = ({id, window, siguiente }) => {
+const QuienSeccion = ({id, window, siguiente, progreso }) => {
   const [momento, setMomento] = useState("inicial");
   const { oraciondata } = useContext(JuecoContext);
   const [Queselec, setQueselec] = useState("");
@@ -78,15 +78,17 @@ const QuienSeccion = ({id, window, siguiente }) => {
     setPointer("none")
     setOpacity2(0.4);
     setOpacity3(0.4);
+    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta,window);
     setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
   }
   
   const onhandleClickQueSegundo =()=>{
     setQueSelecion(2);
-    setQueselec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen);
+    setQueselec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen);
     setPointer("none")
     setOpacity3(0.4);
     setOpacity1(0.4);
+    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta,window);
     setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
   }
   const onhandleClickQueTercero = ()=>{
@@ -95,24 +97,15 @@ const QuienSeccion = ({id, window, siguiente }) => {
     setPointer("none")
     setOpacity1(0.4);
     setOpacity2(0.4);
+    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta,window);
     setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
   }
-  useEffect(() => {
-    
-    return () => {
-      setMomento("inicial")
-     }
-  }, [])
-  
+ 
   const SeleccionQUIEN = () => {
-    let opc = QueSelecion;
-    const result = useMemo(() => {
-      if (opc === 1) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen} width="170" alt='opcion1' />) }
-      if (opc === 2) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen} width="170" alt='opcion2' />) }
-      if (opc === 3) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen} width="170" alt='opcion3' />) }
-      if (opc === 0) { return (<></>) }
-    }, [QueSelecion])
-    return result;
+      if (QueSelecion === 1) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen} width="170" alt='opcion1' />) }
+      if (QueSelecion === 2) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen} width="170" alt='opcion2' />) }
+      if (QueSelecion === 3) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen} width="170" alt='opcion3' />) }
+      if (QueSelecion === 0) { return (<></>) }
   }
   const RespuestaImagen =({oraciondata})=>{
      let  AdjectivoRespuesta = "";
@@ -135,16 +128,14 @@ const QuienSeccion = ({id, window, siguiente }) => {
          base = "Incorrecto"
        }
      }
-     
      setopcionRes(base);
-   
-     switch (base) {
+     switch (opcionRes) {
        case "Correcto":
          setMomento("Respuesta");
-         return(<><img src={buentrajo} width="100"/></>);
+         return(<><img src={buentrajo} width="100" alt='correcto'/></>);
        case "Incorrecto":
          setMomento("Respuesta");
-           return(<><img src={malTrabajo} width="100"/></>);
+           return(<><img src={malTrabajo} width="100" alt='incorrecto'/></>);
        case "Nada":
        return(<></>)
        default:
@@ -187,6 +178,7 @@ const QuienSeccion = ({id, window, siguiente }) => {
            }
   return (
     <>
+     <h3>{`${window.id}`}</h3>
       <Col className='mt-2' lg="4" sm="12" md="12" >
       {
                   momento === "inicial" && <Preguntasecction id={id} window={window}/>
@@ -230,6 +222,7 @@ const QuienSeccion = ({id, window, siguiente }) => {
                     <img alt='que' src={Que} width="75" />
                   </div>
                 </Row>
+                {/* parte de seleccion */}
                 <Row lg="8" className='align-items-center'>
                  <div style={{ width: "95px" }} className='mx-auto'>
                  <SeleccionQUIEN />
