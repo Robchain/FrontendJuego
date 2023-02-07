@@ -2,7 +2,13 @@ import React, { useContext, useEffect, useState } from "react"
 import { Row, Col, Container } from "reactstrap"
 import { NavLink } from "react-router-dom"
 import { DooroutButton } from "../../componentes/JuegoComponent/JuegoGeneral/DooroutButton"
+import doorout from "../../assets/img/AssetsGame/doorout.png"
 import { JuecoContext } from "../../context/Juego/JuecoContext"
+import LogoBlipBlaPalabra from "../../componentes/iconosCom/LogoBlipBlaPalabra"
+import VocabularioIcon from "../../componentes/iconosCom/VocabularioIcon"
+import OracionIcon from "../../componentes/iconosCom/OracionIcon"
+import MultiJugadorIcon from "../../componentes/iconosCom/MultiJugadorIcon"
+import TrofeoIcon from "../../componentes/iconosCom/TrofeoIcon"
 
 const MenuJuego = () => {
   const {setUser, datoVocabulario} = useContext(JuecoContext);
@@ -21,44 +27,56 @@ const MenuJuego = () => {
     <div className="fondoMC vh-100">
     <Container>
     <Row>
+    <Row className="row justify-content-end">
+    <Col  className="mt-3" lg="12" md="12" style={{  borderRadius:"30px", border:"#d7d7d7 solid", boxShadow: "10px 5px 5px #d7d7d7", height:"64px"}}> 
     <Row>
-      <Col className="align-self-center mt-2" lg="12" md="12">
-      <div>
-        <span><b>Email:</b> {`${Email}`}</span><br/>
-        <span><b>Usuario:</b>  {`${usuario}`}</span><br/>
-        <span><b>Identificacion:</b>  {`${Identificacion}`}</span><br/>
-      </div>
+      <Col  lg="1">
+        <LogoBlipBlaPalabra className="mt-2" style={{width:"10vw"}}/>
+      </Col>
+      <Col  lg="9" style={{ fontSize:"12px"}}>
+      <div  className="float-end">
+        <p className="text-end mt-1" style={{color:"#777777"}}><span>{`${Email}`}</span><br/><span> {`${usuario}`}</span> <br/><span>{`${Identificacion}`}</span></p>
+        </div>
+      </Col>
+      <Col  lg="1">
+        <div className="mt-2 position-relative" style={{background:"#777777", width:"40px",borderRadius:"100px", height:"40px"}}>
+        <div className="position-absolute bottom-0 end-0" style={{background:"#4BAD4B",width:"15px",borderRadius:"100px", height:"15px"}}></div>
+        </div>
+      </Col>
+      <Col  lg="1">
+      <NavLink to={"/"}>
+<img src={doorout} width="20" className="mt-3" alt="salida"/>
+   </NavLink>
+      </Col>
+     </Row>
       </Col>
     </Row>
-    <Col>
-    <NavLink  to={'/RompecabezaJV'}>
-    <button onClick={()=>datoVocabulario(usuario)}>
-      <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu" style={{width:300, height:197, background:"#DDD3DD"}}><h4  className="">VOCABULARIO</h4></div>
-      </button>
+    {  /*---------------NOMBRE DE LA SECCION--------------*/ }
+    <Row>
+      <h3 style={{color:"#8B8B8C"}}>Categoría</h3>
+    </Row>
+    {/*----------------------OPCIONES------------------------------- */}
+   <Row className="justify-content-evenly">
+    <Col lg="5" style={{width:"250px"}}>
+    <NavLink  to={'/RompecabezaJV'} onClick={()=>datoVocabulario(usuario)} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
+      <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu " style={{width:250, height:197, background:"#BFBFD9", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><VocabularioIcon/><h4  className="">VOCABULARIO</h4></div></div>
         </NavLink>
       </Col>
-      <Col>
-      <NavLink  to={'/RompecabezaJO'}>
-      <button>
-      <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:300, height:197,background:"#DDD3DD", textDecoration:"none"}}><h4  className="">ORACION</h4></div>
-      </button>
+      <Col lg="5" style={{width:"250px"}}>
+      <NavLink  to={'/RompecabezaJO'} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
+        <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:250, height:197,background:"#EDCD90", textDecoration:"none", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"> <OracionIcon/><h4  className="">ORACION</h4> </div></div>
       </NavLink>
       </Col>
       </Row>
-      <Row>
-      <Col>
-      <button>
-      <div className="position-relative  start-50 translate-middle-x OracionMenu" style={{width:300, height:197, background:"#daf7f5"}}><h4>CARRERA</h4></div>
-      </button>
+      <Row className="justify-content-evenly mt-4">
+      <Col lg="5" style={{width:"250px"}}>
+      <div className="position-relative  start-50 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#C3D7CA", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><MultiJugadorIcon/> <h4>CARRERA</h4></div></div>
       </Col>
-      <Col>
-      <button>
-      <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:300, height:197, background:"#daf7f5"}}><h4  className="">TROFEO</h4></div>
-      </button>
+      <Col lg="5" style={{width:"250px"}}>
+      <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#E5BDB1", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}><div className="py-5"><TrofeoIcon/> <h4  className="">TROFEO</h4></div></div>
       </Col>
-      <Col  lg='12' className="">
-      <DooroutButton  Urlsalida={"/"}/>
-      </Col>
+       {/*--------------------FIN--------------------------------- */}
+      </Row>
       </Row>
     </Container>
     </div>
