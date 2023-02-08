@@ -2,9 +2,9 @@ import React from 'react'
 export const RompecabaSolitaria = ({a, b, c, d,e, f,g,h, i, j,piezas=4, url, alt}) => {
 
   return (  
-    <>
-   <div  className="minicuadrito">
-   <div className='encima'>
+    <div >
+   <div  className="minicuadrito position-relative">
+   <div className='encima position-absolute'>
    {
     (piezas === 4) && (<>
    <div    className='a'  style={{visibility:a }}>
@@ -26,10 +26,10 @@ export const RompecabaSolitaria = ({a, b, c, d,e, f,g,h, i, j,piezas=4, url, alt
     <div className='j' style={{visibility:j }}></div>
     </> 
     )  
-   } .
+   }
     </div>
-    <img src={url} alt={alt} width={275} style={{display:'hidden'}} />
+    <img src={url} alt={alt} width={273} style={{borderRadius:"10px", boxShadow: "5px 5px 5px 5px #d7d7d7"}} />
     </div> 
-    </>
+    </div>
   )
 }

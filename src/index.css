@@ -28,8 +28,11 @@
     background-color: #fff;
 }
 
-.fondoCM{
-    background-color: #DDD3DD;
+.fondoImagen{
+    background-image:url("./assets/img/AssetsGame/Blipbla-pantalla-1.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+
 }
 
 .Mi-diseñodiv{
@@ -41,6 +44,7 @@
     align-items:center !important;
 }
 
+
 .minicuadrito .encima{
     z-index: 30;
     width:  275px;
@@ -48,19 +52,19 @@
     position:fixed;
 }
 .minicuadrito .encima .a{
-    background-color: #fff;
+    background-color: #FBFBFB;
     width: 50%;
     height: 50%;
     display: inline-block;
 }
 .minicuadrito .encima .b{
-    background-color: #fff;
+    background-color: #FBFBFB;
     width: 50%;
     height: 50%;
     display: inline-block;
 }
 .minicuadrito .encima .c{
-    background-color: #fff;
+    background-color: #FBFBFB;
 			width:  50%;
 			height: 50%;
 			display: inline-block;
@@ -69,7 +73,7 @@
 }
 .minicuadrito .encima .d{
     display: inline-block;
-			background-color: #fff;
+			background-color: #FBFBFB;
 			width:  50%;
 			height: 50%;
 			margin-top: -5px;
@@ -79,21 +83,21 @@
 
 
 .minicuadrito .encima .e{
-    background-color: #fff;
+    background-color: #FBFBFB;
     width: 33%;
     height: 50%;
     display: inline-block;
 }
 
 .minicuadrito .encima .f{
-    background-color: #fff;
+    background-color: #FBFBFB;
     width: 33%;
     height: 50%;
     display: inline-block;
 }
 
 .minicuadrito .encima .g{
-    background-color: #fff;
+    background-color: #FBFBFB;
     width: 33%;
     height: 50%;
     display: inline-block;
@@ -101,7 +105,7 @@
 
 .minicuadrito .encima .h{
     display: inline-block;
-			background-color: #fff;
+			background-color: #FBFBFB;
 			width:  33%;
 			height: 50%;
 			margin-top: -5px;
@@ -110,7 +114,7 @@
 
 .minicuadrito .encima .i{
     display: inline-block;
-			background-color: #fff;
+			background-color: #FBFBFB;
 			width:  33%;
 			height: 50%;
 			margin-top: -5px;
@@ -119,7 +123,7 @@
 
 .minicuadrito .encima .j{
     display: inline-block;
-			background-color: #fff;
+			background-color: #FBFBFB;
 			width:  33%;
 			height: 50%;
 			margin-top: -5px;

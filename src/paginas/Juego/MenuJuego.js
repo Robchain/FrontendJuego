@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Row, Col, Container } from "reactstrap"
 import { NavLink } from "react-router-dom"
-import { DooroutButton } from "../../componentes/JuegoComponent/JuegoGeneral/DooroutButton"
 import doorout from "../../assets/img/AssetsGame/doorout.png"
 import { JuecoContext } from "../../context/Juego/JuecoContext"
 import LogoBlipBlaPalabra from "../../componentes/iconosCom/LogoBlipBlaPalabra"
@@ -24,62 +23,65 @@ const MenuJuego = () => {
   }, [])
   
   return (
-    <div className="fondoMC vh-100">
-    <Container>
+    
+    <Container className="fondoImagen img-fluid vh-100" fluid  >
+    <Row className="mx-2 j">
+    <Col className="mt-3" lg="12" md="12" sm="12" xs="12" style={{  borderRadius:"10px", border:"#f6f6f6 solid", boxShadow: "10px 5px 5px #d7d7d7", height:"64px"}}> 
     <Row>
-    <Row className="row justify-content-end">
-    <Col  className="mt-3" lg="12" md="12" style={{  borderRadius:"30px", border:"#d7d7d7 solid", boxShadow: "10px 5px 5px #d7d7d7", height:"64px"}}> 
-    <Row>
-      <Col  lg="1">
-        <LogoBlipBlaPalabra className="mt-2" style={{width:"10vw"}}/>
+      <Col  lg="1" md="1" sm="1" xs="1">
+        <LogoBlipBlaPalabra className="ms-3 mt-1" style={{width:"8em"}}/>
       </Col>
-      <Col  lg="9" style={{ fontSize:"12px"}}>
+      <Col lg="11">
+      <Row className="justify-content-end">
+      <Col  lg="10" md="10" sm="10" xs="10" style={{ fontSize:"12px"}}>
       <div  className="float-end">
         <p className="text-end mt-1" style={{color:"#777777"}}><span>{`${Email}`}</span><br/><span> {`${usuario}`}</span> <br/><span>{`${Identificacion}`}</span></p>
         </div>
       </Col>
-      <Col  lg="1">
+      <Col  lg="1" md="1" sm="1" xs="1">
         <div className="mt-2 position-relative" style={{background:"#777777", width:"40px",borderRadius:"100px", height:"40px"}}>
         <div className="position-absolute bottom-0 end-0" style={{background:"#4BAD4B",width:"15px",borderRadius:"100px", height:"15px"}}></div>
         </div>
       </Col>
-      <Col  lg="1">
+      <Col  lg="1" md="1" sm="1" xs="1">
       <NavLink to={"/"}>
 <img src={doorout} width="20" className="mt-3" alt="salida"/>
    </NavLink>
       </Col>
+      </Row>
+      </Col>
      </Row>
       </Col>
-    </Row>
-    {  /*---------------NOMBRE DE LA SECCION--------------*/ }
-    <Row>
-      <h3 style={{color:"#8B8B8C"}}>Categoría</h3>
+      {  /*---------------NOMBRE DE LA SECCION--------------*/ }
+    <Col  sm="11" lg="11" md="11" xs="11" className="mt-3" style={{color:"#8B8B8C"}}>
+    <h2 >Categoría</h2>
+    </Col>
     </Row>
     {/*----------------------OPCIONES------------------------------- */}
    <Row className="justify-content-evenly">
-    <Col lg="5" style={{width:"250px"}}>
+    <Col lg="5" sm="12" style={{width:"250px"}}>
     <NavLink  to={'/RompecabezaJV'} onClick={()=>datoVocabulario(usuario)} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
       <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu " style={{width:250, height:197, background:"#BFBFD9", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><VocabularioIcon/><h4  className="">VOCABULARIO</h4></div></div>
         </NavLink>
       </Col>
-      <Col lg="5" style={{width:"250px"}}>
+      <Col lg="5"  sm="12" style={{width:"250px"}}>
       <NavLink  to={'/RompecabezaJO'} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
         <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:250, height:197,background:"#EDCD90", textDecoration:"none", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"> <OracionIcon/><h4  className="">ORACION</h4> </div></div>
       </NavLink>
       </Col>
       </Row>
       <Row className="justify-content-evenly mt-4">
-      <Col lg="5" style={{width:"250px"}}>
+      <Col lg="5" sm="12"  style={{width:"250px"}}>
       <div className="position-relative  start-50 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#C3D7CA", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><MultiJugadorIcon/> <h4>CARRERA</h4></div></div>
       </Col>
-      <Col lg="5" style={{width:"250px"}}>
+      <Col lg="5" sm="12" style={{width:"250px"}}>
       <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#E5BDB1", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}><div className="py-5"><TrofeoIcon/> <h4  className="">TROFEO</h4></div></div>
       </Col>
        {/*--------------------FIN--------------------------------- */}
       </Row>
-      </Row>
+      
     </Container>
-    </div>
+
   )
 }
 
