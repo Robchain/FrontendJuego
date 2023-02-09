@@ -6,7 +6,7 @@ import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 export const FinalOracionJuego = () => {
-  const { oraciondata, getresultado, getPuzzles, dataOracion, avance0, datoVocabulario } = useContext(JuecoContext);
+  const { oraciondata, getresultado, getPuzzles, avance0,  } = useContext(JuecoContext);
   const {id}= useParams();
   const res = getresultado();
   const [points, setPoints] = useState(0);
@@ -18,11 +18,11 @@ export const FinalOracionJuego = () => {
   const verifyEnd =()=>{
     let ad = avance0.filter(obj => obj.Resultado==="CORRECTO").length;
     setPoints(ad);
-    if(dataOracion[`Juego${id}`].Partida.Rompecabeza.Pieza===6){
+    if(oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza===6){
       if(ad>=7){
         ActualizarJuegoFinal(true);
       }
-    }else if(dataOracion[`Juego${id}`].Partida.Rompecabeza.Pieza===4){
+    }else if(oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza===4){
   if(ad>=5){
   ActualizarJuegoFinal(true);
 }
@@ -34,15 +34,20 @@ export const FinalOracionJuego = () => {
   }
   
   useEffect(() => {
-
     finalGuardado();
     ActualizarJuego1();
     ActualizarJuego2();
     ActualizarJuego3();
     ActualizarJuego4();
-
+    ActualizarJuego5();
+    if(avance0[5].PalabraAEvaluar){
+    ActualizarJuego6();
+    }
+    verifyEnd();
   }, [])
-   
+  
+  
+  
   const ActualizarJuego1=()=>{
     axios.post("http://localhost:3002/api/auth/UpdateTerminadoOracion1",{ id:oraciondata[`Juego${id}`]._id,
     PalabraCorrecta:avance0[0].PalabraAEvaluar,
@@ -103,9 +108,6 @@ export const FinalOracionJuego = () => {
     axios.post("http://localhost:3002/api/auth/UpdateTerminadoOracionFinal",{ id:oraciondata[`Juego${id}`]._id,
     Terminado:isEnd})
   }
-
-
-
 
   return (
     <div className="fondoMC img-fluid vh-100">

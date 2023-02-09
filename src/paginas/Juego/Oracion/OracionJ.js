@@ -23,7 +23,7 @@ const OracionJ = () => {
   
   const siguiente = (num) => {
     toggleWindow(num);
-    if (num === oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza/* + 1*/) {
+    if (num === oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza+ 1) {
       navegar(`/finalOracionJuego/${id}`);
     } else {
       toggleWindow(num + 1);
@@ -63,7 +63,7 @@ const OracionJ = () => {
               <Col className="d-flex justify-content-evenly" lg="8"  >
                 <h1>Oraciones</h1>
               </Col>
-              <Col  lg="4"><h3>Puntos:{`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3></Col>
+              <Col  lg="4"><h3>Puntos: {`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3></Col>
               {
                 //EN CASO DE TODOS 
                 (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "TODOS") && (<TODOSSeccion id={id} siguiente={siguiente} window={window} progreso={progreso}/>)
@@ -80,9 +80,6 @@ const OracionJ = () => {
                   // EN CASO DE ADVERBIO
                 (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "ADVERBIO") && (<Adverbio id={id} siguiente={siguiente} window={window} progreso={progreso}/>)
               }
-              <Col lg="12" className="d-flex justify-content-end">
-                <DooroutButton Urlsalida={"/RompecabezaJO"} />
-              </Col>
             </Row>
           </Container>
         </div>
