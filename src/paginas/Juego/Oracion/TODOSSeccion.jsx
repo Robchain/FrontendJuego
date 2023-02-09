@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useReducer, useState } from 'react'
 import { Col, Row } from 'reactstrap'
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
 import buentrajo from '../../../assets/img/AssetsGame/GOOD JOD.png'
@@ -71,14 +71,19 @@ const Preguntasecction = ({ id, window }) => {
       </div>
     )
   };
- 
+  const initialState = { pointer: "auto", pointer2: "auto",pointer3:"auto"};
+  function reducer(state, action) {
+    switch (action.type) {
+      case 'puntador':
+        return { ...state, [action.field]:action.value };
+      default:
+        throw new Error();
+    }
+  }
 const TODOSSeccion = ({id, window, siguiente, progreso }) => {
-    
+    const [estate, dispatch] = useReducer(reducer, initialState)
     const { oraciondata} = useContext(JuecoContext);
     const [Queselec, setQueselec] = useState("");
-    const [pointer, setPointer] = useState("auto")
-    const [pointer2, setPointer2] = useState("auto")
-    const [pointer3, setPointer3] = useState("auto")
     const [opacityquien1, setopacityquien1] = useState(1);
     const [opacityquien2, setopacityquien2] = useState(1);
     const [opacityquien3, setopacityquien3] = useState(1);  
@@ -94,7 +99,6 @@ const TODOSSeccion = ({id, window, siguiente, progreso }) => {
     const [QueSelecion, setQueSelecion] = useState(0);
     const [QuienSeleccion, setQuienSeleccion] = useState(0);
     const [AdverbNSeleccion, setQueSeleccion] = useState(0);
-    const [Pregu, setPregu] = useState(0);
     const [momento, setMomento] = useState("inicial");
 
 
@@ -103,7 +107,7 @@ const TODOSSeccion = ({id, window, siguiente, progreso }) => {
         setQuienSeleccion(1);
         setopacityquien2(0.4);
         setopacityquien3(0.4);
-        setPointer("none");
+        dispatch({type:"puntador", field:"pointer", value:"none"})
         setQuienSelec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen);
         progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta,window);
       }
@@ -111,14 +115,14 @@ const TODOSSeccion = ({id, window, siguiente, progreso }) => {
         setQuienSeleccion(2);
         setopacityquien1(0.4);
         setopacityquien3(0.4);
-        setPointer("none");
+        dispatch({type:"puntador", field:"pointer", value:"none"})
         setQuienSelec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen);
       }
       const onhandleClickTercero = ()=>{
         setQuienSeleccion(3);
         setopacityquien1(0.4);
         setopacityquien2(0.4);
-        setPointer("none");
+        dispatch({type:"puntador", field:"pointer", value:"none"})
         setQuienSelec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen);
       }
     //-------------------
@@ -126,7 +130,7 @@ const TODOSSeccion = ({id, window, siguiente, progreso }) => {
         setQueSelecion(1);
         setopacityQue3(0.4)
 setopacityQue2(0.4)
-setPointer2("none");
+dispatch({type:"puntador", field:"pointer2", value:"none"})
         setQueselec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileAdjetivoImagen);
     
       }
@@ -134,14 +138,14 @@ setPointer2("none");
         setQueSelecion(2);
         setopacityQue3(0.4)
         setOpacityQue1(0.4)
-        setPointer2("none");
+        dispatch({type:"puntador", field:"pointer2", value:"none"})
         setQueselec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileAdjetivoImagen);
       }
       const onhandleClickQueTercero = ()=>{
         setQueSelecion(3);
         setOpacityQue1(0.4);
         setopacityQue2(0.4);
-        setPointer2("none");
+        dispatch({type:"puntador", field:"pointer2", value:"none"})
         setQueselec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileAdjetivoImagen);
       }
       //---------------
@@ -149,14 +153,14 @@ setPointer2("none");
         setQueSeleccion(1);
         setOpacity2(0.4);
         setOpacity3(0.4);
-        setPointer3("none")
+        dispatch({type:"puntador", field:"pointer3", value:"none"})
           setAdverSelec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio);
       }
       const onhandleClickAdveSegundo = ()=>{
         setQueSeleccion(2);
         setOpacity1(0.4);
         setOpacity3(0.4);
-        setPointer3("none")
+        dispatch({type:"puntador", field:"pointer3", value:"none"})
         setAdverSelec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Adverbio);
       }
     
@@ -164,7 +168,7 @@ setPointer2("none");
         setQueSeleccion(3)
         setOpacity1(0.4);
 setOpacity2(0.4);
-        setPointer3("none");
+dispatch({type:"puntador", field:"pointer3", value:"none"})
         setAdverSelec(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio)
       }
       const isAdverbio =()=>{
@@ -179,23 +183,27 @@ setOpacity2(0.4);
           if (QueSelecion === 2) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileAdjetivoImagen} width="170" alt='opcion2' />) }
           if (QueSelecion === 3) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileAdjetivoImagen} width="170" alt='opcion3' />) }
           if (QueSelecion === 0) { return (<></>) }
+          return (<></>)
       }
       const SeleccionCantidad = () => {
           if (AdverbNSeleccion === 1) { return (<h3 style={{color:"blue"}}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio}</h3>) }
           if (AdverbNSeleccion === 2) { return (<h3 style={{color:"blue"}}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Adverbio}</h3>)  }
           if (AdverbNSeleccion === 3) { return (<h3 style={{color:"blue"}}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio}</h3>)  }
           if (AdverbNSeleccion === 0) { return (<></>) }
+          return (<></>)
       }
       const SeleccionQuien = () => {
           if (QuienSeleccion === 1) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen} width="170" alt='opcion1' />) }
           if (QuienSeleccion === 2) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen} width="170" alt='opcion2' />) }
           if (QuienSeleccion === 3) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen} width="170" alt='opcion3' />) }
           if (QuienSeleccion === 0) { return (<></>) }
+          return (<></>)
       }
       const RespuestaImagen =()=>{
         let  sujetoRespuesta = "";
         let  AdjectivoRespuesta = "";
         let oracion = ""
+        console.log("imagenRespuesta");
         let base = "Nada";
          if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta === "CORRECTO") {
           oracion = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion;
@@ -289,7 +297,7 @@ setOpacity2(0.4);
            case "Nada":
            return(<></>)
            default:
-             break;
+          return(<></>);
          }
        }
        const VerboRespuesta = () => {
@@ -320,13 +328,13 @@ setOpacity2(0.4);
                   <Col style={{ width: "95px", height: "120px" }}>
                     <img alt='sujeto' src={Quien} width="75" />
                   </Col>
-                  <Col style={{ width: "175px", pointerEvents: pointer, opacity: opacityquien1}} onClick={()=>{onhandleClickPrimero()}}>
+                  <Col style={{ width: "175px", pointerEvents: estate.pointer, opacity: opacityquien1}} onClick={()=>{onhandleClickPrimero()}}>
                     <img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen} width="170" alt='opcion1' />
                   </Col>
-                  <Col style={{ width: "175px",pointerEvents: pointer, opacity: opacityquien2 }} onClick={()=>{onhandleClickSegundo()}}>
+                  <Col style={{ width: "175px",pointerEvents: estate.pointer, opacity: opacityquien2 }} onClick={()=>{onhandleClickSegundo()}}>
                     <img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen} width="170" alt='opcion2' />
                   </Col>
-                  <Col style={{ width: "175px", pointerEvents: pointer, opacity: opacityquien3}} onClick={()=>{onhandleClickTercero()}}>
+                  <Col style={{ width: "175px", pointerEvents: estate.pointer, opacity: opacityquien3}} onClick={()=>{onhandleClickTercero()}}>
                     <img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen} width="170" alt='opcion3' />
                   </Col>
                 </Row>
@@ -337,13 +345,13 @@ setOpacity2(0.4);
                       <Col style={{ width: "150px", height: "120px" }}>
                         <img alt='sujeto' src={Cantidad} width="100" />
                       </Col>
-                      <Col style={{ width: "150px", height: "100px",pointerEvents: pointer3, opacity: opacity1  }} onClick={onhandleClickAdvePrimero}>
+                      <Col style={{ width: "150px", height: "100px",pointerEvents:estate.pointer3, opacity: opacity1  }} onClick={onhandleClickAdvePrimero}>
                         <span style={{color:"blue"}}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio}</span>
                       </Col>
-                      <Col style={{ width: "150px", height: "100px", pointerEvents: pointer3, opacity: opacity2 }} onClick={onhandleClickAdveSegundo} >
+                      <Col style={{ width: "150px", height: "100px", pointerEvents: estate.pointer3, opacity: opacity2 }} onClick={onhandleClickAdveSegundo} >
                         <span style={{color:"blue"}}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Adverbio}</span>
                       </Col>
-                      <Col style={{ width: "150px", height: "100px", pointerEvents: pointer3, opacity: opacity3 }} onClick={onhandleClickAdveTercero} >
+                      <Col style={{ width: "150px", height: "100px", pointerEvents: estate.pointer3, opacity: opacity3 }} onClick={onhandleClickAdveTercero} >
                         <span style={{color:"blue"}}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio}</span>
                       </Col>
                     </Row>)
@@ -352,13 +360,13 @@ setOpacity2(0.4);
                   <Col style={{ width: "95px" }}>
                     <img alt='que' src={Que} width="75" />
                   </Col>
-                  <Col style={{ width: "175px",  pointerEvents: pointer2, opacity: opacityQue1 }} onClick={()=>{onhandleClickQuePrimero()}}>
+                  <Col style={{ width: "175px",  pointerEvents: estate.pointer2, opacity: opacityQue1 }} onClick={()=>{onhandleClickQuePrimero()}}>
                     <img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileAdjetivoImagen} width="170" alt='opcion1' />
                   </Col>
-                  <Col style={{ width: "175px",  pointerEvents: pointer2, opacity: opacityQue2 }} onClick={()=>{onhandleClickQueSegundo()}}>
+                  <Col style={{ width: "175px",  pointerEvents:estate.pointer2, opacity: opacityQue2 }} onClick={()=>{onhandleClickQueSegundo()}}>
                     <img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileAdjetivoImagen} width="170" alt='opcion2' />
                   </Col>
-                  <Col style={{ width: "175px",  pointerEvents: pointer2, opacity: opacityQue3 }} onClick={()=>{onhandleClickQueTercero()}}>
+                  <Col style={{ width: "175px",  pointerEvents: estate.pointer2, opacity: opacityQue3 }} onClick={()=>{onhandleClickQueTercero()}}>
                     <img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileAdjetivoImagen} width="170" alt='opcion3' />
                   </Col>
                 </Row>
