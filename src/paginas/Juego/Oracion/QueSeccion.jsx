@@ -67,7 +67,7 @@ const Respuestasecction = ({id, window}) => {
     </div>
   )
 };
-const QueSeccion = ({id, window, siguiente }) => {
+const QueSeccion = ({id, window, siguiente, dispatchProgreso }) => {
   const [momento, setMomento] = useState("inicial");
   const { oraciondata, progreso } = useContext(JuecoContext);
   const [Queselec, setQueselec] = useState("");
@@ -83,7 +83,7 @@ const QueSeccion = ({id, window, siguiente }) => {
     setPointer("none")
     setOpacity2(0.4);
     setOpacity3(0.4);
-    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta,window);
+    dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta })
     setTimeout(() => { siguiente(window.id) },  9000)
   }
 
@@ -93,7 +93,7 @@ const QueSeccion = ({id, window, siguiente }) => {
     setPointer("none")
     setOpacity3(0.4);
     setOpacity1(0.4);
-    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta,window);
+    dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta })
     setTimeout(() => { siguiente(window.id) }, 9000)
   }
   const onhandleClickQueTercero = ()=>{
@@ -102,7 +102,7 @@ const QueSeccion = ({id, window, siguiente }) => {
     setPointer("none")
     setOpacity1(0.4);
     setOpacity2(0.4);
-    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta,window);
+    dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta })
     setTimeout(() => { siguiente(window.id) }, 9000)
   }
  
@@ -250,7 +250,6 @@ const QueSeccion = ({id, window, siguiente }) => {
                   <div style={{ width: "95px" }} className="mx-auto">
                     <SeleccionQue />
                   </div>
-                  
                 </Row>
               </Col>
               <Col  lg="3" ><RespuestaImagen oraciondata={oraciondata}/></Col>

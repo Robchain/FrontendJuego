@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, {useReducer, useState } from 'react'
 import { JuecoContext } from './JuecoContext'
 
 export const JuegoProvider = ({children}) => {
@@ -17,8 +17,28 @@ export const JuegoProvider = ({children}) => {
 
   const [avance0, setavance] = useState([])
 
+  const initialState = [];
 
-  const progreso = (selecionado, Resul,)=>{
+  const progresoOraciom = (state, action) => {
+    switch (action.type) {
+      case 'PROGRESO':
+        return [
+          ...state,
+          { 
+            PalabraAEvaluar: "",
+            PalabraASeleccionada: action.selecionado, 
+            Resultado: action.Resul, 
+            Terminado: false
+          }
+        ];
+        case "RESETEAR":
+          return initialState;
+      default:
+        return state;
+    }
+  };
+
+  const progreso = (selecionado, Resul)=>{
    
        setavance([...avance0,{ PalabraAEvaluar:"",PalabraASeleccionada:selecionado, Resultado:Resul, Terminado:false
        }])
@@ -62,7 +82,7 @@ export const JuegoProvider = ({children}) => {
       setRompecabeza6(respuesta)
     }
   }
-  
+  const [Oracionprogreso, dispatchProgreso] = useReducer(progresoOraciom, initialState)
   const getresultado= ()=>{
    let final = 0
 
@@ -78,7 +98,7 @@ export const JuegoProvider = ({children}) => {
 }
 
   return (
-    <JuecoContext.Provider value={{data,setavance,dataOracion,setOraciondata,oraciondata,progreso, datoVocabulario,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
+    <JuecoContext.Provider value={{data,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
     {children}
     </JuecoContext.Provider>
   )

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 import axios from "axios";
 import { Link, NavLink } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
@@ -10,11 +10,10 @@ import LogoBlipBlaPalabra from "../../../componentes/iconosCom/LogoBlipBlaPalabr
 import backbutton from "../../../assets/img/AssetsGame/backbotton.png"
 const RompecabezaJO = () => {
 
-const {oraciondata, setOraciondata, setavance} = useContext(JuecoContext);
+const {oraciondata, setOraciondata, dispatchProgreso} = useContext(JuecoContext);
 const [usuario, setUsuario] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Identificacion, setIdentificacion] = useState(0);
-
+const [Email, setEmail] = useState("");
+const [Identificacion, setIdentificacion] = useState(0);
 const dataOracion = (user)=>{
   axios.post("http://localhost:3002/api/auth/llamadaPartidaOracion",{Usuario:user}).then(response =>{setOraciondata(response.data)})
 }
@@ -23,29 +22,20 @@ useEffect(() => {
   setEmail(localStorage.getItem("Email"));
   setIdentificacion(localStorage.getItem("Identificacion"));
   setUsuario(localStorage.getItem("Usuario"))
-  setavance([]);
+  dispatchProgreso({type:"RESETEAR"});
   dataOracion(localStorage.getItem("Usuario"));
 }, []);
 
 const resultado1 = oraciondata && oraciondata.Juego1 && oraciondata.Juego1.Avance && oraciondata.Juego1.Avance.Juego6 && oraciondata.Juego1.Avance.Juego6.Resultado;
 const isCorrect1 = resultado1 === "CORRECTO";
-
 const resultado2 = oraciondata && oraciondata.Juego2 && oraciondata.Juego2.Avance && oraciondata.Juego2.Avance.Juego6 && oraciondata.Juego2.Avance.Juego6.Resultado;
 const isCorrect2 = resultado2 === "CORRECTO";
-
-
 const resultado3 = oraciondata && oraciondata.Juego3 && oraciondata.Juego3.Avance && oraciondata.Juego3.Avance.Juego6 && oraciondata.Juego3.Avance.Juego6.Resultado;
 const isCorrect3 = resultado3 === "CORRECTO";
-
-
 const resultado4 = oraciondata && oraciondata.Juego4 && oraciondata.Juego4.Avance && oraciondata.Juego4.Avance.Juego6 && oraciondata.Juego4.Avance.Juego6.Resultado;
 const isCorrect4 = resultado4 === "CORRECTO";
-
-
 const resultado5 = oraciondata && oraciondata.Juego5 && oraciondata.Juego5.Avance && oraciondata.Juego5.Avance.Juego6 && oraciondata.Juego5.Avance.Juego6.Resultado;
 const isCorrect5 = resultado5 === "CORRECTO";
-
-
 const resultado6 = oraciondata && oraciondata.Juego6 && oraciondata.Juego6.Avance && oraciondata.Juego6.Avance.Juego6 && oraciondata.Juego6.Avance.Juego6.Resultado;
 const isCorrect6 = resultado6 === "CORRECTO";
 
@@ -122,8 +112,6 @@ const isCorrect6 = resultado6 === "CORRECTO";
       )
     }
   }
-
-
   return (
     <Pantalla />
   )

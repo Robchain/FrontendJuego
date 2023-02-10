@@ -9,7 +9,7 @@ import Verbo from "../../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
 const Preguntasecction = ({id, window}) => {
-  const { oraciondata, progreso } = useContext(JuecoContext);
+  const { oraciondata } = useContext(JuecoContext);
   const [videoseleccionado, setVideoseleccionado] = useState("");
   useEffect(() => {
     setVideoseleccionado(preguntavideo);
@@ -60,12 +60,11 @@ const Respuestasecction = ({id, window}) => {
         url={videoseleccionado}
         width={300}
         playing
-        loop={true}
       />
     </div>
   )
 };
-const Adverbio = ({id, window, siguiente, progreso }) => {
+const Adverbio = ({id, window, siguiente, progreso, dispatchProgreso }) => {
   const [momento, setMomento] = useState("inicial");
   const { oraciondata } = useContext(JuecoContext);
   const [Queselec, setQueselec] = useState("");
@@ -81,8 +80,7 @@ const Adverbio = ({id, window, siguiente, progreso }) => {
     setPointer("none")
     setOpacity2(0.4);
     setOpacity3(0.4);
-    progreso("", "CORRECTO",window)
-    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta,window)
+    dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta})
     setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
   }
 
@@ -93,7 +91,7 @@ const Adverbio = ({id, window, siguiente, progreso }) => {
     setPointer("none")
     setOpacity3(0.4);
     setOpacity1(0.4);
-    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta,window)
+    dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta})
     setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
   }
   const onhandleClickQueTercero = ()=>{
@@ -102,7 +100,7 @@ const Adverbio = ({id, window, siguiente, progreso }) => {
     setPointer("none")
     setOpacity1(0.4);
     setOpacity2(0.4);
-    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta,window)
+    dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta})
     setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
   }
   

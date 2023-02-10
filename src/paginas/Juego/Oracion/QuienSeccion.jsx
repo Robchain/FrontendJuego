@@ -62,7 +62,7 @@ const Respuestasecction = ({id, window}) => {
     </div>
   )
 };
-const QuienSeccion = ({id, window, siguiente, progreso }) => {
+const QuienSeccion = ({id, window, siguiente, progreso,dispatchProgreso }) => {
   const [momento, setMomento] = useState("inicial");
   const { oraciondata } = useContext(JuecoContext);
   const [Queselec, setQueselec] = useState("");
@@ -78,7 +78,7 @@ const QuienSeccion = ({id, window, siguiente, progreso }) => {
     setPointer("none")
     setOpacity2(0.4);
     setOpacity3(0.4);
-    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta,window);
+    dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta })
     setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
   }
   
@@ -88,7 +88,7 @@ const QuienSeccion = ({id, window, siguiente, progreso }) => {
     setPointer("none")
     setOpacity3(0.4);
     setOpacity1(0.4);
-    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta,window);
+    dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta})
     setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
   }
   const onhandleClickQueTercero = ()=>{
@@ -97,7 +97,7 @@ const QuienSeccion = ({id, window, siguiente, progreso }) => {
     setPointer("none")
     setOpacity1(0.4);
     setOpacity2(0.4);
-    progreso(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion, oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta,window);
+    dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta})
     setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
   }
  

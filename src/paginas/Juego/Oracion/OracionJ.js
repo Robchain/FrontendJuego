@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { Suspense, useContext, useEffect, useReducer, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
-import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import Adverbio from './Adverbio'
 import QueSeccion from './QueSeccion'
@@ -23,12 +22,11 @@ const OracionJ = () => {
   
   const siguiente = (num) => {
     toggleWindow(num);
-    if (num === oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza+ 1) {
+    if (num === oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza + 1) {
       navegar(`/finalOracionJuego/${id}`);
     } else {
       toggleWindow(num + 1);
     }
-
   }
   const toggleWindow = (id) => {
     // Crear una copia del arreglo de ventanas
@@ -41,9 +39,9 @@ const OracionJ = () => {
     setWindows(newWindows);
   }
 
-  const { oraciondata, dataOracion, progreso, avance0 } = useContext(JuecoContext);
+  const { oraciondata, dataOracion, progreso, avance0,initialState, progresoOraciom, Oracionprogreso,dispatchProgreso} = useContext(JuecoContext);
+
   useEffect(() => {
-    
     dataOracion(localStorage.getItem("Usuario"));
   }, [])
   useEffect(() => {
@@ -54,32 +52,35 @@ const OracionJ = () => {
       oraciondata !== null ? (
         <>
         { windows.map(window =>(
-          <div  key={1}>
+          <div  key={window.id}>
             {
               window.show &&(
                 <div className='window'>
           <Container style={{ zIndex: 1, position: "fixed", }} className="fluid">
             <Row className="d-flex justify-content-around">
+            {JSON.stringify(Oracionprogreso)}
               <Col className="d-flex justify-content-evenly" lg="8"  >
                 <h1>Oraciones</h1>
               </Col>
               <Col  lg="4"><h3>Puntos: {`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3></Col>
+              <Suspense  fallback={<>Cargandos...</>}>
               {
                 //EN CASO DE TODOS 
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "TODOS") && (<TODOSSeccion id={id} siguiente={siguiente} window={window} progreso={progreso}/>)
+                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "TODOS") && (<TODOSSeccion id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
               }
               {
                   // EN CASO DE QUE
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUE") && (<QueSeccion id={id} siguiente={siguiente} window={window} progreso={progreso}/>)
+                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUE") && (<QueSeccion id={id} siguiente={siguiente} window={window} progreso={progreso} dispatchProgreso={dispatchProgreso}/>)
               }
               {
                   // EN CASO DE QUIEN
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUIEN") && (<QuienSeccion id={id} siguiente={siguiente} window={window} progreso={progreso}/>)
+                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUIEN") && (<QuienSeccion id={id} siguiente={siguiente} window={window} progreso={progreso} dispatchProgreso={dispatchProgreso}/>)
               }
               {
                   // EN CASO DE ADVERBIO
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "ADVERBIO") && (<Adverbio id={id} siguiente={siguiente} window={window} progreso={progreso}/>)
+                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "ADVERBIO") && (<Adverbio id={id} siguiente={siguiente} window={window} progreso={progreso} dispatchProgreso={dispatchProgreso}/>)
               }
+              </Suspense>
             </Row>
           </Container>
         </div>
