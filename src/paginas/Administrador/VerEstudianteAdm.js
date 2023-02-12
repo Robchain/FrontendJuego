@@ -10,7 +10,7 @@ const VerEstudianteAdm = () => {
   const [Data, setData] = useState([]);
   useEffect(() => {
    const mostrar= async ()=>{
-    const data = await axios.get('http://localhost:3002/api/auth/verRegistrados');
+    const data = await axios.get('http://localhost:3002/api/auth/Ver-Registrados-Activos');
     setData(data.data);
    }
     mostrar();
