@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import {  useParams } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
 import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
+import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 
@@ -40,7 +41,9 @@ if(ad>=5){
     ActualizarJuego3();
     ActualizarJuego4();
     ActualizarJuego5();
-    ActualizarJuego6();
+    if(avance0[5].PalabraAEvaluar){
+      ActualizarJuego6();
+    }
     verifyEnd();
   }, [])
    
@@ -108,10 +111,9 @@ if(ad>=5){
 
 
   return (
-    <div className="fondoMC img-fluid vh-100">
-    <Container>
+    <Container className='fondoMC img-fluid vh-100' >
+    <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
  <Row>
- <Col lg="12" className="d-flex justify-content-evenly"><h1>Vocabulario</h1></Col>
  <Col lg='12'>
  <Col  className='mt-2' lg="6">
  <Col>
@@ -123,11 +125,8 @@ if(ad>=5){
       </div>  
     </Col>
     </Col>
-  
- <DooroutButton Urlsalida={"/RompecabezaJV"}/>
  </Col>
  </Row>
  </Container>
-     </div>
   )
 }

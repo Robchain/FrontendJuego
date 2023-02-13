@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import {  useParams } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
-import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
+import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 export const FinalOracionJuego = () => {
@@ -110,13 +110,10 @@ export const FinalOracionJuego = () => {
   }
 
   return (
-    <div className="fondoMC img-fluid vh-100">
-    <Container>
+    <Container className='fondoMC img-fluid vh-100'>
+    <NavBarJuego Seccion={"Oracion"} urlBack={"/RompecabezaJO"} />
  <Row>
- <Col lg="12" className="d-flex justify-content-evenly"><h1>Oracion </h1></Col>
- <Col lg='12'>
- <Col  className='mt-2' lg="6">
- <Col>
+ <Col className='mt-2' lg="12">
  <RompecabezaFinalRespuesta url={oraciondata[`Juego${id}`].Partida.Rompecabeza.FileColor} alt={oraciondata[`Juego${id}`].Partida.Rompecabeza.Nombre}/>
  </Col>
  <Col className='mt-5'>
@@ -124,11 +121,7 @@ export const FinalOracionJuego = () => {
       <h1>{`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}/${oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza}`}</h1>
       </div>  
     </Col>
-    </Col>
- <DooroutButton Urlsalida={"/RompecabezaJO"}/>
- </Col>
  </Row>
  </Container>
-     </div>
   )
 }

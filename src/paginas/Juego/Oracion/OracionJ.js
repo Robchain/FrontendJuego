@@ -1,6 +1,7 @@
 import React, { Suspense, useContext, useEffect, useReducer, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
+import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import Adverbio from './Adverbio'
 import QueSeccion from './QueSeccion'
@@ -55,14 +56,10 @@ const OracionJ = () => {
           <div  key={window.id}>
             {
               window.show &&(
-                <div className='window'>
-          <Container style={{ zIndex: 1, position: "fixed", }} className="fluid">
+          <Container className="fluid">
+          <NavBarJuego Seccion={"Oracion"} urlBack={"/RompecabezaJO"} />
             <Row className="d-flex justify-content-around">
-            {JSON.stringify(Oracionprogreso)}
-              <Col className="d-flex justify-content-evenly" lg="8"  >
-                <h1>Oraciones</h1>
-              </Col>
-              <Col  lg="4"><h3>Puntos: {`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3></Col>
+              <Col  lg="12" className="d-flex justify-content-end "><h3>Puntos: {`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3></Col>
               <Suspense  fallback={<>Cargandos...</>}>
               {
                 //EN CASO DE TODOS 
@@ -83,7 +80,6 @@ const OracionJ = () => {
               </Suspense>
             </Row>
           </Container>
-        </div>
               )
             }
           </div>

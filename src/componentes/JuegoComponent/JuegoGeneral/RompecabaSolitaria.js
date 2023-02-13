@@ -2,7 +2,6 @@ import React from 'react'
 export const RompecabaSolitaria = ({a, b, c, d,e, f,g,h, i, j,piezas=4, url, alt}) => {
 
   return (  
-    <div >
    <div  className="minicuadrito position-relative">
    <div className='encima position-absolute'>
    {
@@ -28,8 +27,7 @@ export const RompecabaSolitaria = ({a, b, c, d,e, f,g,h, i, j,piezas=4, url, alt
     )  
    }
     </div>
-    <img src={url} alt={alt} width={273} style={{borderRadius:"10px", boxShadow: "5px 5px 5px 5px #d7d7d7"}} />
+    <img src={url} alt={alt} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}/>
     </div> 
-    </div>
   )
 }

@@ -178,7 +178,6 @@ const QuienSeccion = ({id, window, siguiente, progreso,dispatchProgreso }) => {
            }
   return (
     <>
-     <h3>{`${window.id}`}</h3>
       <Col className='mt-2' lg="4" sm="12" md="12" >
       {
                   momento === "inicial" && <Preguntasecction id={id} window={window}/>
