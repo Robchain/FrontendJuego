@@ -92,13 +92,13 @@ export const JuegoProvider = ({children}) => {
         }
         if(solitario.respuestar ==="INCORRECTO"){
             return 0
-        }  
+        }
     })
     return final;
 }
 
   return (
-    <JuecoContext.Provider value={{data,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario,setUser, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
+    <JuecoContext.Provider value={{data,setavance,dataOracion,initialState,setUser,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
     {children}
     </JuecoContext.Provider>
   )

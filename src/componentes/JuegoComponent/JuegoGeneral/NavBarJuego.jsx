@@ -27,15 +27,15 @@ const [Identificacion, setIdentificacion] = useState("")
       </Col>
       <Col lg="10"  sm="10"  xs="8" md="10">
       <Row className='justify-content-end' lg="10">
-      <Col  lg="8"  sm="8"  xs="8" md="8" style={{ fontSize:"12px"}} className="float-end d-none d-sm-block">
+      <Col  lg="8"  sm="7"  xs="8" md="8" style={{ fontSize:"12px"}} className="float-end d-none d-sm-block">
         <p className="text-end mt-1" style={{color:"#777777"}}><span>{`${Email}`}</span><br/><span> {`${usuario}`}</span> <br/><span>{`${Identificacion}`}</span></p>
       </Col>
-      <Col  lg="1"  sm="1" xs="2" md="1">
+      <Col  lg="1"  sm="2" xs="2" md="1">
         <div className="mt-2 position-relative" style={{background:"#777777", width:"40px",borderRadius:"100px", height:"40px"}}>
         <div className="position-absolute bottom-0 end-0" style={{background:"#4BAD4B",width:"15px",borderRadius:"100px", height:"15px"}}></div>
         </div>
       </Col>
-      <Col  lg="1"  sm="1" xs="2" md="1">
+      <Col  lg="1"  sm="1" xs="2" md="2">
       <NavLink to={"/"}>
 <img src={doorout} width="20" className="mt-3" alt="salida"/>
    </NavLink>

@@ -6,13 +6,10 @@ import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/Na
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 export const FinalOracionJuego = () => {
-  const { oraciondata, getresultado, getPuzzles,Oracionprogreso  } = useContext(JuecoContext);
+  const { oraciondata, getresultado, getPuzzles,Oracionprogreso, dataOracion  } = useContext(JuecoContext);
   const {id}= useParams();
   const res = getresultado();
   const [points, setPoints] = useState(0);
-  if(oraciondata===null){
-    return <>Cargando...</>
-  }
   
   
   const verifyEnd =()=>{
@@ -34,16 +31,21 @@ export const FinalOracionJuego = () => {
   }
   
   useEffect(() => {
+    dataOracion(localStorage.getItem("Usuario"));
+    if(Oracionprogreso.length>5 ){
     finalGuardado();
     ActualizarJuego1();
     ActualizarJuego2();
     ActualizarJuego3();
     ActualizarJuego4();
     ActualizarJuego5();
-    if(Oracionprogreso[5].PalabraAEvaluar){
+    if(Oracionprogreso[5]){
     ActualizarJuego6();
     }
-    verifyEnd();
+    if(Oracionprogreso[6]){
+      ActualizarJuego7();
+    }
+    verifyEnd();}
   }, [])
   
   
@@ -108,20 +110,22 @@ export const FinalOracionJuego = () => {
     axios.post("http://localhost:3002/api/auth/UpdateTerminadoOracionFinal",{ id:oraciondata[`Juego${id}`]._id,
     Terminado:isEnd})
   }
-
-  return (
-    <Container className='fondoMC img-fluid vh-100'>
+const Pantalla =()=>{
+  if(oraciondata === null){
+    return <>Cargando...</>
+  }else{
+    return (
+    <Container className='fondoMC'>
     <NavBarJuego Seccion={"Oracion"} urlBack={"/RompecabezaJO"} />
- <Row>
- <Col className='mt-2' lg="12">
- <RompecabezaFinalRespuesta url={oraciondata[`Juego${id}`].Partida.Rompecabeza.FileColor} alt={oraciondata[`Juego${id}`].Partida.Rompecabeza.Nombre}/>
+ <Row className='justify-content-center'>
+ <Col lg="6" md="6" sm="8" xs="8">
+ <RompecabezaFinalRespuesta url={oraciondata[`Juego${id}`].Partida.Rompecabeza.FileColor} alt={oraciondata[`Juego${id}`].Partida.Rompecabeza.Nombre} pieza={oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza} resultado={Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length} />
  </Col>
- <Col className='mt-5'>
-      <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
-      <h1>{`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}/${oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza}`}</h1>
-      </div>  
-    </Col>
  </Row>
  </Container>
+)  }
+}
+  return (
+    <Pantalla/>
   )
 }

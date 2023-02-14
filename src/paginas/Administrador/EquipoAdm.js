@@ -1,6 +1,6 @@
 import React,{useEffect,useState}from 'react'
-import MenuAdmi from "../../componentes/MenuAdmi";
 import axios from 'axios';
+import MenuAdmi from '../../componentes/MenuAdmi';
 
 const EquipoAdm   =   ()  =>{
     const [Data, setData] = useState([])

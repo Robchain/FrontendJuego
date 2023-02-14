@@ -5,11 +5,8 @@ import { Col, Container, Row, Modal, ModalHeader, ModalBody, ModalFooter, Button
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
-
 const RompecabezaJV = () => {
-
   const { data, setavance, setData } = useContext(JuecoContext);
-
   const [modal, setModal] = useState(false);
   const datoVocabulario = (user) => {
     axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario", { Usuario: user }).then(da => { setData(da.data) })
@@ -32,10 +29,10 @@ const RompecabezaJV = () => {
       return (<div>Cargando...</div>)
     } else {
       return (
-          <Container className='fondoMC'>
+          <Container className='fondoMC a'>
+          <Modalaqui descripcion={data.Juego1.Partida.Rompecabeza.Nombre} url={data.Juego1.Partida.Rompecabeza.FileColor} modal={modal} setModal={setModal} />
             <NavBarJuego  Seccion={"Vocabulario"} urlBack={"/MenuJuego"} />
-            <Row >
-              <Modalaqui descripcion={data.Juego1.Partida.Rompecabeza.Nombre} url={data.Juego1.Partida.Rompecabeza.FileColor} clickHandle={clickHandle} modal={modal} setModal={setModal} />
+            <Row>
               <Row className="justify-content-evenly  mt-2 mx-2">
                 <Col lg="4" md="4" sm="10" xs="10" >
                   <Link to={`/VocabularioJuego/${1}`} onClick={(e) => clickHandle(e, data.Juego1.Avance.Terminado)}><RompecabaSolitaria a={(data.Juego1.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(data.Juego1.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(data.Juego1.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(data.Juego1.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(data.Juego1.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(data.Juego1.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(data.Juego1.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(data.Juego1.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(data.Juego1.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(data.Juego1.Avance.Juego6.Resultado === "CORRECTO") && "hidden"} piezas={data.Juego1.Partida.Rompecabeza.Pieza} url={data.Juego1.Partida.Rompecabeza.FileColor} alt={data.Juego1.Partida.Rompecabeza.Nombre} /> </Link> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${0}/${data.Juego1.Partida.Rompecabeza.Pieza}`}</span></p>
@@ -65,12 +62,10 @@ const RompecabezaJV = () => {
   }
 
   return (
-    <>
       <Pantalla />
-    </>
   )
 }
-const Modalaqui = ({ url, descripcion, modal, clickHandle, setModal }) => {
+const Modalaqui = ({ url, descripcion, modal, setModal }) => {
   const toggle = () => setModal(!modal)
   const impresion = () => {
     document.querySelector(".print").classList.add("print-image");
@@ -83,21 +78,27 @@ const Modalaqui = ({ url, descripcion, modal, clickHandle, setModal }) => {
   }
   return (
     <div>
-      <Modal isOpen={modal} toggle={toggle} backdrop={false} fullscreen="sm">
-        <ModalHeader toggle={clickHandle}>ROMPECABEZA COMPLETADA</ModalHeader>
+      <Modal isOpen={modal} toggle={toggle} backdrop={false} style={{textAlign:"center"}}  >
+        <ModalHeader  style={{backgroundColor:"#E6DFF0",color:"#62269E"}}><span style={{fontWeight:"bold", textAlign:"center"}}>Rompecabeza Completado</span></ModalHeader>
         <ModalBody>
-          <img className='print' src={url} alt={descripcion} />
+          <img className='print cac' src={url} alt={descripcion} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" className='bot' onClick={() => { impresion() }}>
-            Imprimir
-          </Button>{' '}
-          <Button color="secondary" className='bot' onClick={toggle}>
-            Cancel
+        <ModalFooter className='justify-content-center'>
+        <Row className='justify-content-center'>
+        <Col lg="6" md="6" sm="6" xs="6">
+        <Button outline className='bot' onClick={toggle}  style={{borderRadius:"10px",color:"#62259E", borderColor:"#62259E"}}>
+            Cancelar
           </Button>
+          </Col>
+          <Col lg="6" md="6" sm="6" xs="6" >
+          <Button  className='bot' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}} onClick={() => { impresion() }}>
+            Imprimir
+          </Button>
+          </Col>
+          </Row>
         </ModalFooter>
       </Modal>
-    </div>
+      </div>
   )
 }
 export default RompecabezaJV;

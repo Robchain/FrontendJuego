@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'reactstrap'
 import ReactPlayer from 'react-player'
 import buentrabajo from "../../../assets/img/AssetsGame/GOOD JOD.png"
 import malTrabajo from "../../../assets/img/AssetsGame/Bad Jood.png"
-import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 import { useNavigate, useParams } from 'react-router-dom';
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego';

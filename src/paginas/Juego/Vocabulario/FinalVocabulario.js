@@ -2,20 +2,16 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import {  useParams } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
-import { DooroutButton } from '../../../componentes/JuegoComponent/JuegoGeneral/DooroutButton'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 
 export const FinalVocabulario = () => {
-  const {getresultado, data, getPuzzles, avance0, datoVocabulario} = useContext(JuecoContext);
+  const {getresultado, data, getPuzzles, avance0} = useContext(JuecoContext);
   const res = getresultado();
   const [points, setPoints] = useState(0);
   const {id}= useParams();
   let totalPiezas = data[`Juego${id}`].Partida.Rompecabeza.Pieza
-  if(data===null){
-    return <>Cargando...</>
-  }
   const verifyEnd =()=>{
     let ad = avance0.filter(obj => obj.Resultado==="CORRECTO").length;
     setPoints(ad);
@@ -31,20 +27,25 @@ if(ad>=5){
     }
 
   }
-  const finalGuardado = ()=>{ 
+  const finalGuardado = ()=>{
     getPuzzles(id, res )
   }
   useEffect(() => {
+    if(avance0.length > 2){
     finalGuardado();
     ActualizarJuego1();
     ActualizarJuego2();
     ActualizarJuego3();
     ActualizarJuego4();
     ActualizarJuego5();
-    if(avance0[5].PalabraAEvaluar){
+    if(avance0[5]){
       ActualizarJuego6();
     }
+    if(avance0[6]){
+      ActualizarJuego7();
+    }
     verifyEnd();
+  }
   }, [])
    
   const ActualizarJuego1=()=>{
@@ -108,25 +109,23 @@ if(ad>=5){
     Terminado:isEnd})
   }
 
-
-
-  return (
-    <Container className='fondoMC img-fluid vh-100' >
+const Pnatalla =()=>{
+  if(data===null){
+    return <>Cargando...</>
+  }else {
+    return(
+      <Container className='fondoMC img-fluid vh-100' >
     <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
- <Row>
- <Col lg='12'>
- <Col  className='mt-2' lg="6">
- <Col>
- <RompecabezaFinalRespuesta url={data[`Juego${id}`].Partida.Rompecabeza.FileColor} alt={data[`Juego${id}`].Partida.Rompecabeza.Nombre}/>
- </Col>
- <Col className='mt-5'>
-      <div style={{width:300, height:180, borderRadius:100}} className='m-auto'>
-      <h1>{`${points}/${totalPiezas}`}</h1>
-      </div>  
-    </Col>
-    </Col>
+ <Row className='justify-content-center'>
+ <Col lg="6" md="6" sm="8" xs="8">
+ <RompecabezaFinalRespuesta url={data[`Juego${id}`].Partida.Rompecabeza.FileColor} alt={data[`Juego${id}`].Partida.Rompecabeza.Nombre}  pieza={totalPiezas} resultado={points} />
  </Col>
  </Row>
  </Container>
+    )
+  }
+}
+  return (
+   <Pnatalla/>
   )
 }

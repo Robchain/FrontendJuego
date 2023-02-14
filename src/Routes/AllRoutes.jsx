@@ -13,7 +13,6 @@ import VocabularioAdmi from '../paginas/Administrador/VocabularioAdmi'
 import MenuJuego from '../paginas/Juego/MenuJuego'
 import OracionJ from '../paginas/Juego/Oracion/OracionJ'
 import RompecabezaJO from '../paginas/Juego/Oracion/RompecabezaJO'
-import Prueba from '../paginas/Juego/Prueba'
 import Login from "../paginas/Logins/Login"
 import RompecabezaAdmi from "../paginas/Administrador/RompecabezaAdmi"
 import CategoriaAdm from "../paginas/Administrador/CategoriaAdm";
@@ -41,7 +40,6 @@ export const AllRoutes = () => {
       <Route path='/VerRompecabeza' element={<VerRompecabezaAdm />} />
       <Route path='/VerVocabulario' element={<VerVocabularioAdm />} />
       <Route path='/OracionJuego' element={<OracionJ />} />
-      <Route path='/test' element={<Prueba />} />
       {/* Vocabulario*/}
       <Route path='/RompecabezaJV' element={<RompecabezaJV />} />
       <Route path='/VocabularioJuego/:id' element={<VocabularioJ />} />

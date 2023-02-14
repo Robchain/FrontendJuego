@@ -1,8 +1,8 @@
 import React, {useEffect}from "react";
-import MenuAdmi from '../../componentes/MenuAdmi';
+import MenuAdmi from "../../componentes/MenuAdmi";
+
 const ActividadColaborativaAdm    =   ()  =>{
    
-
     return(
         <main>
         <MenuAdmi/>
