@@ -13,7 +13,6 @@ const [Identificacion, setIdentificacion] = useState("")
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUsuario(localStorage.getItem("Usuario"))
   }, [])
-
   return (
     <Row className="justify-content-end" lg="12" md="12" sm="12" xs="12">
     <Col  className="mt-3" lg="12" md="12" sm="12" xs="12"  style={{  borderRadius:"10px", border:"#f6f6f6 solid", boxShadow: "10px 5px 5px #d7d7d7", height:"64px"}}> 

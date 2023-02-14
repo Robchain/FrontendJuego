@@ -1,10 +1,10 @@
 import React,{useEffect,useState}from 'react'
-import MenuAdmi from "../../componentes/MenuAdmi";
 import { NavBar } from '../../componentes/NavBar';
 import { Edit, Trash, MoreVertical, Clipboard} from 'react-feather'
 import { Table,Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Col, Row, DropdownItem, DropdownMenu,  UncontrolledDropdown, DropdownToggle, Collapse } from 'reactstrap';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import MenuAdmi from '../../componentes/MenuAdmi';
 const VerEstudianteAdm = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [Data, setData] = useState([]);
@@ -17,15 +17,11 @@ const VerEstudianteAdm = () => {
   }, [])
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
   return (
-    <Container  fluid>
+    <Container>
+    <NavBar toggle={toggle}/>
+    <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Row  className='justify-content-center' >
-    <Col  xl='2' lg="2"  className='position-fixed fixed-top d-xl-flex min-vh-100'>
-    <Collapse horizontal  isOpen={isOpen} >
-        <MenuAdmi/>
-    </Collapse>
-        </Col>
-        <Col  xl='9' lg="11" className='d-xl p-0' onClick={toggle} >
-        <NavBar toggle={toggle}/>
+        <Col  xl='9' lg="11" className='d-xl p-0' >
         <Col className='d-flex justify-content-end '  >
         <NavLink to={'/Administrador'}> <Button color="primary" className="Listado ">AGREGAR</Button></NavLink>
         </Col>
