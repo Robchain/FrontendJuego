@@ -2,8 +2,10 @@ import React, {useEffect,useState}  from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Modal, ModalBody, ModalHeader,ModalFooter,Container } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader,ModalFooter,Container, Table, Button, Row, Col } from 'reactstrap';
+import { NavBar } from '../../componentes/NavBar';
 const VerCategoriaAdm = () => {
+  const [isOpen, setIsOpen] = useState(false)
   const [Data, setData] = useState([])
   const [Modales, setModales] = useState({
     modalInsertar:false,
@@ -14,6 +16,7 @@ const VerCategoriaAdm = () => {
     NombreCategoria:'',
     Estado:'Activo'
 })
+const toggle  = ()  =>  {setIsOpen(!isOpen)}
 const handlechange  =   (event)  =>{
     const {name, value}=event.target;
 setFormValue({...FormValue,[name]:value})   
@@ -47,15 +50,22 @@ const  modalInsertar=()=>{
   setModales({modalInsertar:!Modales.modalInsertar})
 }
   return (
-    <main>
-     <MenuAdmi/>
     <Container>
-        <button onClick={modalInsertar} className="btn btn-success  ca">AGREGAR</button><br/>
+    <NavBar toggle={toggle}/>
+    <MenuAdmi toggle={toggle} isOpen={isOpen}/>
+    <Row  className='justify-content-center' >
+    <Col xl='9' lg="11" className='d-xl p-0'>
+    <Col className='d-flex justify-content-end '>
+    <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       Agregar
+          </Button>
+          </Col>
         <br/>
-        <table  className='table table-bordered'>
-          <thead><tr>
-          <th>Categorias</th>
-          <th>Estado</th>
+        <Table  striped>
+          <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"center"}}>
+          <tr>
+          <th>CATEGORIA</th>
+          <th>ESTADO</th>
           </tr></thead>
           <tbody>
             {Data.map(i=>(
@@ -65,7 +75,8 @@ const  modalInsertar=()=>{
                 <td><button className='btn btn-primary' onClick={''}>Editar</button>{"  "}<button className='btn btn-danger'>Elimiar</button></td>
             </tr>))}
           </tbody>
-        </table>
+        </Table>
+        </Col>
         <Modal  isOpen={Modales.modalInsertar}>
         <ModalHeader  style={{display:'block'}}>
             <span style={{float:'right'}}>x</span>
@@ -115,8 +126,8 @@ const  modalInsertar=()=>{
           <button  className='btn btn-secundary' >NO</button>
           </ModalBody>
         </Modal>
+        </Row>
         </Container>
-       </main>
   )
 }
 export default VerCategoriaAdm

@@ -22,17 +22,21 @@ const VerEstudianteAdm = () => {
     <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Row  className='justify-content-center' >
         <Col  xl='9' lg="11" className='d-xl p-0' >
-        <Col className='d-flex justify-content-end '  >
-        <NavLink to={'/Administrador'}> <Button color="primary" className="Listado ">AGREGAR</Button></NavLink>
+        <Col className='d-flex justify-content-end '>
+       { /*<NavLink to={'/Administrador'}> <Button  color="primary" className="Listado ">Agregar</Button></NavLink>*/}
+       <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       Agregar
+          </Button>
         </Col>
         <br/>
         <Table  striped>
-          <thead><tr>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Email</th>
-          <th>Tipo de Usuario</th>
-          <th>Estado</th>
+          <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"center"}}><tr>
+          <th>NOMBRE</th>
+          <th>APELLIDO</th>
+          <th>EMAIL</th>
+          <th>TIPO DE USUARIO</th>
+          <th>ESTADO</th>
+          <th>ACCIONES</th>
           </tr></thead>
           <tbody>
             {Data.map(i=>(
