@@ -1,3 +1,9 @@
+#root{
+    font-family:"Montserrat", Helvetica, Arial, serif;
+}
+.fuenteDoce{
+    font-size: 12px;
+}
 .minav {
     padding:10px;
     color:#777;

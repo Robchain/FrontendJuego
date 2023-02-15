@@ -3,7 +3,6 @@ import { NavBar } from '../../componentes/NavBar';
 import { Edit, Trash, MoreVertical, Clipboard} from 'react-feather'
 import { Table,Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Col, Row, DropdownItem, DropdownMenu,  UncontrolledDropdown, DropdownToggle, Collapse } from 'reactstrap';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
 import MenuAdmi from '../../componentes/MenuAdmi';
 const VerEstudianteAdm = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -18,9 +17,9 @@ const VerEstudianteAdm = () => {
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
   return (
     <Container>
-    <NavBar toggle={toggle}/>
+    <NavBar toggle={toggle} Seccion={"Estudiantes"}/>
     <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
-    <Row  className='justify-content-center' >
+    <Row  className='justify-content-center fuente fuenteDoce' >
         <Col  xl='9' lg="11" className='d-xl p-0' >
         <Col className='d-flex justify-content-end '>
        { /*<NavLink to={'/Administrador'}> <Button  color="primary" className="Listado ">Agregar</Button></NavLink>*/}
@@ -30,7 +29,7 @@ const VerEstudianteAdm = () => {
         </Col>
         <br/>
         <Table  striped>
-          <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"center"}}><tr>
+          <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"initial"}}><tr>
           <th>NOMBRE</th>
           <th>APELLIDO</th>
           <th>EMAIL</th>

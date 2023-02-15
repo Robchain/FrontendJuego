@@ -53,7 +53,7 @@ const  modalInsertar=()=>{
     <Container>
     <NavBar toggle={toggle}/>
     <MenuAdmi toggle={toggle} isOpen={isOpen}/>
-    <Row  className='justify-content-center' >
+    <Row  className='justify-content-center fuenteDoce' >
     <Col xl='9' lg="11" className='d-xl p-0'>
     <Col className='d-flex justify-content-end '>
     <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
@@ -62,10 +62,11 @@ const  modalInsertar=()=>{
           </Col>
         <br/>
         <Table  striped>
-          <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"center"}}>
+          <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"initial"}}>
           <tr>
           <th>CATEGORIA</th>
           <th>ESTADO</th>
+          <th>ACCIONES</th>
           </tr></thead>
           <tbody>
             {Data.map(i=>(
