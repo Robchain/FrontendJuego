@@ -20,7 +20,7 @@ export const FinalVocabulario = () => {
         ActualizarJuegoFinal(true);
       }
     }
-    if(totalPiezas==4){
+    if(totalPiezas===4){
 if(ad>=5){
   ActualizarJuegoFinal(true);
 }
@@ -109,7 +109,7 @@ if(ad>=5){
     Terminado:isEnd})
   }
 
-const Pnatalla =()=>{
+const Pantalla =()=>{
   if(data===null){
     return <>Cargando...</>
   }else {
@@ -126,6 +126,6 @@ const Pnatalla =()=>{
   }
 }
   return (
-   <Pnatalla/>
+   <Pantalla/>
   )
 }

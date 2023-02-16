@@ -1,7 +1,11 @@
 import React,  {useState} from "react";
+import { Container } from "reactstrap";
 import MenuAdmi from '../../componentes/MenuAdmi';
+import { NavBar } from "../../componentes/NavBar";
 
 const ReporteAdm    =   ()  =>{
+    const [isOpen, setIsOpen] = useState(false)
+    const toggle  = ()  =>  {setIsOpen(!isOpen)}
 const [DataForm, setDataForm] = useState({
     Estudiante:''
 
@@ -15,18 +19,10 @@ const handlesubmit = (e)=>{
     //metodos post and get
 }
     return(
-        <main>
-        <MenuAdmi/>
-        <form      className="formularioRe" onSubmit={handlesubmit}> 
-        <div>
-            <h1>Reporte</h1>
-            <label>Buscar Estudiante</label>
-            <input name="Estudiante" value={DataForm.Estudiante}   onChange={handlechange} ></input>
-            
-            <button className="botonR">Buscar</button>
-            </div>
-        </form>        
-        </main>
+        <Container>
+      <NavBar toggle={toggle} Seccion={"Reportes"}/>
+    <MenuAdmi toggle={toggle} isOpen={isOpen}/>   
+        </Container>
     )
 }
 export default ReporteAdm;

@@ -111,7 +111,7 @@ const  modalInsertar=()=>{
         </div>
     </ModalBody>
     <ModalFooter>
-    { Modales.tipoModal=="Actualizar"?
+    { Modales.tipoModal==="Actualizar"?
     <button className='btn btn-success'>Actualizar</button>:
     <button className='btn btn-primary' onClick={handlesubmit}>Insertar</button>
   }

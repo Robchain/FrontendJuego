@@ -1,47 +1,63 @@
 import React,{useEffect,useState}from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
-
-import { Table,Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter } from 'reactstrap';
+import { Table,Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Card, CardImg, CardBody, CardTitle, CardText, CardFooter, Col, Row } from 'reactstrap';
 import axios from 'axios';
 import { NavLink } from 'react-router-dom';
+import { NavBar } from '../../componentes/NavBar';
 
 const VerRompecabezaAdm = () => {
-  const [Data, setData] = useState([])
-
+  const [cards, setCards] = useState([])
+  const [isOpen, setIsOpen] = useState(false)
+  const toggle  = ()  =>  {setIsOpen(!isOpen)}
   useEffect(() => {
     const mostrar=  async()=>{
       const data=await  axios.get('http://localhost:3002/api/auth/rompecabezaAdmi/mostrartodo');
-      setData(data.data);
+      setCards(data.data);
     }
     mostrar()
   }, [])
  
   return (
-    <main>
-    <MenuAdmi/>
     <Container>
-    <NavLink to={'/Rompecabeza'}> <Button color="primary" className="Listado">AGREGAR</Button></NavLink>
-        <br/>
-        <Table>
-          <thead><tr>
-          <th>Nombre</th>
-          <th>Archivo Blanco/Negro</th>
-          <th>Archivo Color</th>
-          <th>Estado</th>
-          </tr></thead>
-          <tbody>
-            {Data.map(i=>(
-              <tr>
-                <td>{i.Nombre}</td>
-                <td>{i.FileBlanco}</td>
-                <td>{i.FileColor}</td>
-                <td>{i.Estado}</td>
-                <td><Button color='primary'>Editar</Button>{"  "}<Button  color='danger'  /*onClick={Eliminar}*/>Elimiar</Button></td>
-            </tr>))}
-          </tbody>
-        </Table>
+    <NavBar toggle={toggle} Seccion={"Rompecabezas"}/>
+    <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
+    <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-end'>
+       <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       Agregar
+          </Button>
+        </Col>
+    <Row className='match-height mb-2'>
+        {
+          cards.map(i =>  (
+        
+        <Col lg='4' md='6' className='my-2'>
+        <Card>
+        <CardImg top src={i.FileColor} alt={i.Nombre} />
+          <CardBody>
+            <CardTitle tag='h4'>{i.Nombre}</CardTitle>
+            <CardText>
+            <ul>
+            <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Nombre:</span> {i.Nombre}</li>
+            <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Numero de piezas:</span> {i.Pieza} </li>
+            <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Estado:</span> {i.Estado}</li>
+            </ul>
+            </CardText>
+          </CardBody>
+          <CardFooter>
+            <Button style={{color:'#592a98'}} outline /*onClick={() =>  Eliminar(i.Nombre)}*/>
+              Eliminar
+            </Button>
+        <span>&nbsp;&nbsp;&nbsp;</span>
+            <Button style={{background:'#5b2998', color:'#fff'}} outline  /*onClick={() => Editar(i)}*/>
+              Editar
+            </Button>
+              </CardFooter>
+        </Card>
+        </Col>
+      ))
+        }
+        </Row>
         </Container>
-    </main>
   )
 }
 

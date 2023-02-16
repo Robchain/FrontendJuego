@@ -16,7 +16,7 @@ const [Identificacion, setIdentificacion] = useState("")
 
   return (
     <Row className="justify-content-end" lg="12" md="12" sm="12" xs="12">
-    <Col  className="mt-3" lg="12" md="12" sm="12" xs="12"  style={{  borderRadius:"10px", border:"#f6f6f6 solid", boxShadow: "10px 5px 5px #d7d7d7", height:"64px"}}> 
+    <Col  className="mt-3" lg="12" md="12" sm="12" xs="12"  style={{  borderRadius:"10px", border:"#f6f6f6 solid", boxShadow: "5px 5px #d7d7d7", height:"64px"}}> 
     <Row>
     <Col lg="1" sm="1" xs="2" md="1" className=' mt-2' onClick={toggle}>
     <Alinieacion/>

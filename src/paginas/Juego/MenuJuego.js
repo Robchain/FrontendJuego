@@ -26,7 +26,7 @@ const MenuJuego = () => {
     
     <Container className="fondoImagen vh-100" fluid  >
     <Row className="mx-2 j">
-    <Col className="mt-3" lg="12" md="12" sm="12" xs="12" style={{  borderRadius:"10px", border:"#f6f6f6 solid", boxShadow: "10px 5px 5px #d7d7d7", height:"64px"}}> 
+    <Col className="mt-3" lg="12" md="12" sm="12" xs="12" style={{  borderRadius:"10px", border:"#f6f6f6 solid", boxShadow: "5px 5px #d7d7d7", height:"64px"}}> 
     <Row>
       <Col  lg="1" md="1" sm="1" xs="2">
         <LogoBlipBlaPalabra className="ms-3 mt-1" style={{width:"8em"}}/>
@@ -59,21 +59,25 @@ const MenuJuego = () => {
    <Row className="justify-content-evenly">
     <Col lg="5" sm="12" style={{width:"250px"}}>
     <NavLink  to={'/RompecabezaJV'} onClick={()=>datoVocabulario(usuario)} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
-      <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu " style={{width:250, height:197, background:"#BFBFD9", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><VocabularioIcon/><h4  className="">VOCABULARIO</h4></div></div>
+      <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu " style={{width:250, height:197, background:"#BFBFD9", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><VocabularioIcon/><h4  className="">VOCABULARIO</h4></div></div>
         </NavLink>
       </Col>
       <Col lg="5"  sm="12" style={{width:"250px"}}>
       <NavLink  to={'/RompecabezaJO'} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
-        <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:250, height:197,background:"#EDCD90", textDecoration:"none", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"> <OracionIcon/><h4  className="">ORACION</h4> </div></div>
+        <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:250, height:197,background:"#EDCD90", textDecoration:"none", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"> <OracionIcon/><h4  className="">ORACION</h4> </div></div>
       </NavLink>
       </Col>
       </Row>
       <Row className="justify-content-evenly mt-4">
       <Col lg="5" sm="12"  style={{width:"250px"}}>
-      <div className="position-relative  start-50 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#C3D7CA", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><MultiJugadorIcon/> <h4>CARRERA</h4></div></div>
+      <NavLink to={`/SeleccionDeEquipo`} style={{color:"#fff", textDecoration:"none", textAlign:"center"}} >
+      <div className="position-relative  start-50 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#C3D7CA", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><MultiJugadorIcon/> <h4>CARRERA</h4></div></div>
+      </NavLink>
       </Col>
-      <Col lg="5" sm="12" style={{width:"250px"}}>
-      <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#E5BDB1", borderRadius:"10px", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)"}}><div className="py-5"><TrofeoIcon/> <h4  className="">TROFEO</h4></div></div>
+      <Col lg="5" sm="12"  style={{width:"250px"}}>
+      <NavLink to={`/Trofeo/${2}`} style={{color:"#fff", textDecoration:"none", textAlign:"center"}} >
+      <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#E5BDB1", borderRadius:"10px", boxShadow: "5px 5px  rgba(0, 0, 0, 0.13)"}}><div className="py-5"><TrofeoIcon/> <h4  className="">TROFEO</h4></div></div>
+      </NavLink>
       </Col>
        {/*--------------------FIN--------------------------------- */}
       </Row>

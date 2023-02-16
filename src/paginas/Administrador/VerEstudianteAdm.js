@@ -20,14 +20,13 @@ const VerEstudianteAdm = () => {
     <NavBar toggle={toggle} Seccion={"Estudiantes"}/>
     <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Row  className='justify-content-center fuente fuenteDoce' >
-        <Col  xl='9' lg="11" className='d-xl p-0' >
-        <Col className='d-flex justify-content-end '>
-       { /*<NavLink to={'/Administrador'}> <Button  color="primary" className="Listado ">Agregar</Button></NavLink>*/}
+        <Col xl='9' lg="11" className='d-flex justify-content-end '>
        <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
        Agregar
           </Button>
         </Col>
-        <br/>
+
+        <Col  xl='9' lg="11" className='d-xl p-0 mt-2' >
         <Table  striped>
           <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"initial"}}><tr>
           <th>NOMBRE</th>
