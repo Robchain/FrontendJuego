@@ -1,9 +1,8 @@
 import React,{useEffect,useState}from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
 
-import { Table,Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Row, CardFooter, Col, Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
+import {Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Row, CardFooter, Col, Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
 import { NavBar } from '../../componentes/NavBar';
 const VerVocabularioAdm = () => {
   const [Data, setData] = useState([])

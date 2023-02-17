@@ -4,7 +4,7 @@ import { JuecoContext } from './JuecoContext'
 
 export const JuegoProvider = ({children}) => {
   const [respuesta, setRespuesta] = useState([])
-  const [user, setUser] = useState("")
+
   const [data, setData] = useState(null)
   const [oraciondata, setOraciondata] = useState(null);   
   const [rompecabeza1, setRompecabeza1] = useState(0)
@@ -85,7 +85,6 @@ export const JuegoProvider = ({children}) => {
   const [Oracionprogreso, dispatchProgreso] = useReducer(progresoOraciom, initialState)
   const getresultado= ()=>{
    let final = 0
-
    let  total = respuesta.map((solitario, i)=>{
         if(solitario.respuestar ==="CORRECTO"){
             return final++
@@ -98,7 +97,7 @@ export const JuegoProvider = ({children}) => {
 }
 
   return (
-    <JuecoContext.Provider value={{data,setavance,dataOracion,initialState,setUser,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
+    <JuecoContext.Provider value={{data,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
     {children}
     </JuecoContext.Provider>
   )

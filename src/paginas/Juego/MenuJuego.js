@@ -10,13 +10,12 @@ import MultiJugadorIcon from "../../componentes/iconosCom/MultiJugadorIcon"
 import TrofeoIcon from "../../componentes/iconosCom/TrofeoIcon"
 
 const MenuJuego = () => {
-  const {setUser, datoVocabulario} = useContext(JuecoContext);
+  const { datoVocabulario} = useContext(JuecoContext);
   const [usuario, setUsuario] = useState("");
   const [Email, setEmail] = useState("");
   const [Identificacion, setIdentificacion] = useState(0);
 
   useEffect (() => {
-    setUser(localStorage.getItem("Usuario"))
     setEmail(localStorage.getItem("Email"));
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUsuario(localStorage.getItem("Usuario"))

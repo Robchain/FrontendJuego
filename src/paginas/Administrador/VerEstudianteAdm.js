@@ -1,7 +1,7 @@
 import React,{useEffect,useState}from 'react'
 import { NavBar } from '../../componentes/NavBar';
 import { Edit, Trash, MoreVertical, Clipboard} from 'react-feather'
-import { Table,Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Col, Row, DropdownItem, DropdownMenu,  UncontrolledDropdown, DropdownToggle, Collapse } from 'reactstrap';
+import { Table,Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Col, Row, DropdownItem, DropdownMenu,  UncontrolledDropdown, DropdownToggle } from 'reactstrap';
 import axios from 'axios';
 import MenuAdmi from '../../componentes/MenuAdmi';
 const VerEstudianteAdm = () => {

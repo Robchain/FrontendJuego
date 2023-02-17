@@ -1,8 +1,7 @@
 import React,{useEffect,useState}from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
-import { Table,Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Card, CardImg, CardBody, CardTitle, CardText, CardFooter, Col, Row } from 'reactstrap';
+import {Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Card, CardImg, CardBody, CardTitle, CardText, CardFooter, Col, Row } from 'reactstrap';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
 import { NavBar } from '../../componentes/NavBar';
 
 const VerRompecabezaAdm = () => {
