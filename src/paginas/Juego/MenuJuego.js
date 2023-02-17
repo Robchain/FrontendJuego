@@ -56,25 +56,25 @@ const MenuJuego = () => {
     </Col>
     </Row>
     {/*----------------------OPCIONES------------------------------- */}
-   <Row className="justify-content-evenly">
-    <Col lg="5" sm="12" style={{width:"250px"}}>
+   <Row className="">
+    <Col lg="3" sm="12" className="offset-lg-3">
     <NavLink  to={'/RompecabezaJV'} onClick={()=>datoVocabulario(usuario)} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
       <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu " style={{width:250, height:197, background:"#BFBFD9", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><VocabularioIcon/><h4  className="">VOCABULARIO</h4></div></div>
         </NavLink>
       </Col>
-      <Col lg="5"  sm="12" style={{width:"250px"}}>
+      <Col lg="3"  sm="12" className="ms-3" >
       <NavLink  to={'/RompecabezaJO'} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
         <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:250, height:197,background:"#EDCD90", textDecoration:"none", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"> <OracionIcon/><h4  className="">ORACION</h4> </div></div>
       </NavLink>
       </Col>
       </Row>
-      <Row className="justify-content-evenly mt-4">
-      <Col lg="5" sm="12"  style={{width:"250px"}}>
+      <Row className="mt-4">
+      <Col lg="3" sm="12" className="offset-lg-3" >
       <NavLink to={`/SeleccionDeEquipo`} style={{color:"#fff", textDecoration:"none", textAlign:"center"}} >
       <div className="position-relative  start-50 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#C3D7CA", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><MultiJugadorIcon/> <h4>CARRERA</h4></div></div>
       </NavLink>
       </Col>
-      <Col lg="5" sm="12"  style={{width:"250px"}}>
+      <Col lg="3" sm="12" className="ms-3">
       <NavLink to={`/Trofeo/${2}`} style={{color:"#fff", textDecoration:"none", textAlign:"center"}} >
       <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#E5BDB1", borderRadius:"10px", boxShadow: "5px 5px  rgba(0, 0, 0, 0.13)"}}><div className="py-5"><TrofeoIcon/> <h4  className="">TROFEO</h4></div></div>
       </NavLink>
