@@ -40,6 +40,12 @@
     background-size: cover;
 
 }
+.fondoImagenVocabulario{
+    background-image:url("./assets/img/AssetsGame/BLIPBLA-BACKGROUND-pantalla-vocabulario.jpg") ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
 
 .Mi-diseñodiv{
     width:300   !important; 

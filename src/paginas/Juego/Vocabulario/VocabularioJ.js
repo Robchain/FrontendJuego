@@ -80,7 +80,7 @@ const Vocabulario = () => {
     } else if (data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Respuesta === "CORRECTO") {
       videos = data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.FileMuestra
     }
-    return <ReactPlayer url={videos} playing={true} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" width={400}
+    return <ReactPlayer url={videos} playing={true} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" width={450}
     />
   }
 
@@ -129,7 +129,7 @@ const Vocabulario = () => {
         {windows.map(window => (
           <div key={1}>
             {window.show && (
-              <Container>
+              <Container className='fondoImagenVocabulario vh-100'>
                 <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
                 <Row className="d-flex justify-content-around align-items-center">
                   <Col lg="12" className="d-flex justify-content-end "><h3>Puntos: {`${points}`}</h3></Col>
@@ -143,17 +143,17 @@ const Vocabulario = () => {
                   </Col>
                   <Col className='mt-1  align-items-end' lg="6">
                     <div style={{ pointerEvents: pointerEvent, opacity: opa1 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto1(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Respuesta); resultados(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra, data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Respuesta); setCorrecto2("NADA"); setCorrecto3("NADA"); progreso(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra, data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Respuesta, window); setOpa2(0.4); setOpa3(0.4); setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }} >
-                      <div style={{ width: "70px" }}><p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra}</p></div>
+                      <div style={{ width: "77px" }}><p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra}</p></div>
                       <img style={{borderRadius:"15px"}} src={data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.FileImagen} alt={data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra} width='200' />
                       <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto1} /></div>
                     </div>
                     <div style={{ pointerEvents: pointerEvent, opacity: opa2 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto2(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Respuesta); resultados(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra, data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA"); setOpa1(0.4); setOpa3(0.4); progreso(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra, data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Respuesta, window); setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }}>
-                      <div style={{ width: "70px" }}> <p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra}</p></div>
+                      <div style={{ width: "77px" }}> <p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra}</p></div>
                       <img style={{borderRadius:"15px"}} src={data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.FileImagen} alt={data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra} width='200' />
                       <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto2} /></div>
                     </div>
                     <div style={{ pointerEvents: pointerEvent, opacity: opa3 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto3(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Respuesta); resultados(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra, data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Respuesta); setCorrecto2("NADA"); setCorrecto1("NADA"); setOpa1(0.4); setOpa2(0.4); progreso(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra, data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Respuesta, window); setTimeout(() => { siguiente(window.id) },/*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }}>
-                      <div style={{ width: "70px" }}> <p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra}</p></div>
+                      <div style={{ width: "77px" }}> <p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra}</p></div>
                       <img style={{borderRadius:"15px"}} src={data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.FileImagen} alt={data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra} width='200' />
                       <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto3} /></div>
                     </div>

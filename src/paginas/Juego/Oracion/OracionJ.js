@@ -40,7 +40,7 @@ const OracionJ = () => {
     setWindows(newWindows);
   }
 
-  const { oraciondata, dataOracion, progreso, avance0,initialState, progresoOraciom, Oracionprogreso,dispatchProgreso} = useContext(JuecoContext);
+  const { oraciondata, dataOracion, progreso, avance0,initialState, progresoOraciom, Oracionprogreso,dispatchProgreso, } = useContext(JuecoContext);
 
   useEffect(() => {
     dataOracion(localStorage.getItem("Usuario"));
@@ -59,7 +59,7 @@ const OracionJ = () => {
           <Container className="fluid">
           <NavBarJuego Seccion={"Oracion"} urlBack={"/RompecabezaJO"} />
             <Row className="d-flex justify-content-around">
-              <Col  lg="12" className="d-flex justify-content-end "><h3>Puntos: {`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3></Col>
+              <Col  lg="12" className="d-flex justify-content-end "><h3>Puntos: {`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3></Col>
               <Suspense  fallback={<>Cargandos...</>}>
               {
                 //EN CASO DE TODOS 

@@ -42,7 +42,7 @@ const isCorrect6 = resultado6 === "CORRECTO";
       return (<>Cargando...</>)
     } else {
       return (
-        <Container className='fondoMC'>
+        <Container className='fondoMC a'>
         <Modalaqui descripcion={oraciondata.Juego1.Partida.Rompecabeza.Nombre} modal={modal} setModal={setModal} url={oraciondata.Juego1.Partida.Rompecabeza.FileColor}/>
          <NavBarJuego Seccion={"Oracion"} urlBack={"/MenuJuego"} />
           <Row >

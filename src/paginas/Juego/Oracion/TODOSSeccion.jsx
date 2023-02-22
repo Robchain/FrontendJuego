@@ -240,7 +240,7 @@ const RespuestaImagenconAdverbio = ({id, window,dispatchProgreso,palabrasEstdo, 
   let AdverbioRespuesta = "";
   let base = "Nada";
   let oracion = "";
-  if (palabrasEstdo.QuienSelec.length > 2 && palabrasEstdo.Queselec.length > 2 && palabrasEstdo.AdverSelec.length > 2) {
+  if (palabrasEstdo.QuienSelec.length > 2 && palabrasEstdo.Queselec.length > 2 && palabrasEstdo.AdverSelec.length > 1) {
     if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta === "CORRECTO") {
       sujetoRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen;
       AdjectivoRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileAdjetivoImagen;
@@ -297,7 +297,7 @@ const TODOSSeccion = ({ id, window, siguiente, dispatchProgreso }) => {
 
 
   const onhandleClickPrimero = () => {
-    DisparadordeImagenes({ type: "seleccionImagen", field: "QueSelecion", value: 1 })
+    DisparadordeImagenes({ type: "seleccionImagen", field: "QuienSeleccion", value: 1 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien2", value: 0.4 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer", value: "none" })
@@ -306,14 +306,14 @@ const TODOSSeccion = ({ id, window, siguiente, dispatchProgreso }) => {
 
   const onhandleClickSegundo = () => {
 
-    DisparadordeImagenes({ type: "seleccionImagen", field: "QueSelecion", value: 2 })
+    DisparadordeImagenes({ type: "seleccionImagen", field: "QuienSeleccion", value: 2 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien1", value: 0.4 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer", value: "none" })
     disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen })
   }
   const onhandleClickTercero = () => {
-    DisparadordeImagenes({ type: "seleccionImagen", field: "QueSelecion", value: 3 })
+    DisparadordeImagenes({ type: "seleccionImagen", field: "QuienSeleccion", value: 3 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien1", value: 0.4 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien2", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer", value: "none" })
@@ -321,14 +321,14 @@ const TODOSSeccion = ({ id, window, siguiente, dispatchProgreso }) => {
   }
   //-------------------
   const onhandleClickQuePrimero = () => {
-    DisparadordeImagenes({ type: "seleccionImagen", field: "QuienSeleccion", value: 1 })
+    DisparadordeImagenes({ type: "seleccionImagen", field: "QueSelecion", value: 1 })
     disparadorQue({ type: "opacarQue", field: "opacityQue2", value: 0.4 })
     disparadorQue({ type: "opacarQue", field: "opacityQue3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer2", value: "none" })
     disparadorPalabras({ type: "seleccion", field: "Queselec", value: oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileAdjetivoImagen })
   }
   const onhandleClickQueSegundo = () => {
-    DisparadordeImagenes({ type: "seleccionImagen", field: "QuienSeleccion", value: 2 })
+    DisparadordeImagenes({ type: "seleccionImagen", field: "QueSelecion", value: 2 })
     disparadorQue({ type: "opacarQue", field: "opacityQue1", value: 0.4 })
     disparadorQue({ type: "opacarQue", field: "opacityQue3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer2", value: "none" })
@@ -336,7 +336,7 @@ const TODOSSeccion = ({ id, window, siguiente, dispatchProgreso }) => {
 
   }
   const onhandleClickQueTercero = () => {
-    DisparadordeImagenes({ type: "seleccionImagen", field: "QuienSeleccion", value: 3 })
+    DisparadordeImagenes({ type: "seleccionImagen", field: "QueSelecion", value: 3 })
     disparadorQue({ type: "opacarQue", field: "opacityQue2", value: 0.4 })
     disparadorQue({ type: "opacarQue", field: "opacityQue1", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer2", value: "none" })

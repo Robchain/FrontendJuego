@@ -74,18 +74,18 @@ if(ad>=5){
   
   const ActualizarJuego4=()=>{
     axios.post("http://localhost:3002/api/auth/UpdateTerminadoVocabulario4",{ id:data[`Juego${id}`]._id,
-    PalabraCorrecta:avance0[3].PalabraAEvaluar,
-    PalabraSeleccionada:avance0[3].PalabraASeleccionada,
-    Resultado:avance0[3].Resultado,
-    Terminado:avance0[3].Terminado})
-  }
-  
-  const ActualizarJuego5=()=>{
-    axios.post("http://localhost:3002/api/auth/UpdateTerminadoVocabulario5",{ id:data[`Juego${id}`]._id,
     PalabraCorrecta:avance0[4].PalabraAEvaluar,
     PalabraSeleccionada:avance0[4].PalabraASeleccionada,
     Resultado:avance0[4].Resultado,
     Terminado:avance0[4].Terminado})
+  }
+  
+  const ActualizarJuego5=()=>{
+    axios.post("http://localhost:3002/api/auth/UpdateTerminadoVocabulario5",{ id:data[`Juego${id}`]._id,
+    PalabraCorrecta:avance0[3].PalabraAEvaluar,
+    PalabraSeleccionada:avance0[3].PalabraASeleccionada,
+    Resultado:avance0[3].Resultado,
+    Terminado:avance0[3].Terminado})
   }
   
   const ActualizarJuego6=()=>{

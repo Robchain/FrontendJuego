@@ -17,7 +17,7 @@ import VocabularioJ from '../paginas/Juego/Vocabulario/VocabularioJ'
 import { FinalOracionJuego } from '../paginas/Juego/Oracion/FinalOracionJuego'
 import { OracionPagina } from '../paginas/Administrador/OracionPagina'
 import { Trofeos } from '../paginas/Juego/Trofeo/Trofeos'
-import { SeleccionDeEquipo } from '../paginas/Juego/Multijugador/SeleccionDeEquipo'
+import { PantallaParteUno } from '../paginas/Juego/Multijugador/PantallaParteUno'
 export const AllRoutes = () => {
   return (<>
     <Routes>
@@ -40,10 +40,10 @@ export const AllRoutes = () => {
       <Route path='/finalVocabulario/:id' element={<FinalVocabulario />} />
       {/* Oracion*/}
       <Route path='/RompecabezaJO' element={<RompecabezaJO />} />
-      <Route path='/OracionJuego/:id' element={<OracionJ />} />
+      <Route path='/OracionJuego/:id' element={<OracionJ />} />finalOracionJuego
       <Route path='/finalOracionJuego/:id' element={<FinalOracionJuego />} />
       {/*Co-operativo*/}
-    <Route path='/SeleccionDeEquipo' element={<SeleccionDeEquipo/>}/>
+    <Route path='/SeleccionDeEquipo' element={<PantallaParteUno/>}/>
       {/*Trofeos*/}
       <Route path='/Trofeo/:id' element={<Trofeos/>}/>
     </Routes>

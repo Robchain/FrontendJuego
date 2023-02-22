@@ -9,17 +9,16 @@ export const FinalOracionJuego = () => {
   const { oraciondata, getresultado, getPuzzles,Oracionprogreso, dataOracion  } = useContext(JuecoContext);
   const {id}= useParams();
   const res = getresultado();
-  const [points, setPoints] = useState(0);
   
   
   const verifyEnd =()=>{
     let ad = Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length;
-    setPoints(ad);
     if(oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza===6){
       if(ad>=7){
         ActualizarJuegoFinal(true);
       }
-    }else if(oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza===4){
+    }
+    if(oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza===4){
   if(ad>=5){
   ActualizarJuegoFinal(true);
 }
@@ -32,7 +31,7 @@ export const FinalOracionJuego = () => {
   
   useEffect(() => {
     dataOracion(localStorage.getItem("Usuario"));
-    if(Oracionprogreso.length>5 ){
+    if(Oracionprogreso.length>=5 ){
     finalGuardado();
     ActualizarJuego1();
     ActualizarJuego2();
@@ -47,7 +46,6 @@ export const FinalOracionJuego = () => {
     }
     verifyEnd();}
   }, [])
-  
   
   
   const ActualizarJuego1=()=>{
@@ -76,18 +74,18 @@ export const FinalOracionJuego = () => {
   
   const ActualizarJuego4=()=>{
     axios.post("http://localhost:3002/api/auth/UpdateTerminadoOracion4",{ id:oraciondata[`Juego${id}`]._id,
-    PalabraCorrecta:Oracionprogreso[3].PalabraAEvaluar,
-    PalabraSeleccionada:Oracionprogreso[3].PalabraASeleccionada,
-    Resultado:Oracionprogreso[3].Resultado,
-    Terminado:Oracionprogreso[3].Terminado})
-  }
-  
-  const ActualizarJuego5=()=>{
-    axios.post("http://localhost:3002/api/auth/UpdateTerminadoOracion5",{ id:oraciondata[`Juego${id}`]._id,
     PalabraCorrecta:Oracionprogreso[4].PalabraAEvaluar,
     PalabraSeleccionada:Oracionprogreso[4].PalabraASeleccionada,
     Resultado:Oracionprogreso[4].Resultado,
     Terminado:Oracionprogreso[4].Terminado})
+  }
+  
+  const ActualizarJuego5=()=>{
+    axios.post("http://localhost:3002/api/auth/UpdateTerminadoOracion5",{ id:oraciondata[`Juego${id}`]._id,
+    PalabraCorrecta:Oracionprogreso[3].PalabraAEvaluar,
+    PalabraSeleccionada:Oracionprogreso[3].PalabraASeleccionada,
+    Resultado:Oracionprogreso[3].Resultado,
+    Terminado:Oracionprogreso[3].Terminado})
   }
   
   const ActualizarJuego6=()=>{
@@ -105,6 +103,7 @@ export const FinalOracionJuego = () => {
     Resultado:Oracionprogreso[6].Resultado,
     Terminado:Oracionprogreso[6].Terminado})
   }
+
 
   const ActualizarJuegoFinal=(isEnd)=>{
     axios.post("http://localhost:3002/api/auth/UpdateTerminadoOracionFinal",{ id:oraciondata[`Juego${id}`]._id,

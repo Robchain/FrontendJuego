@@ -8,6 +8,13 @@ import Que from '../../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
+const isAdverbio = (id, window, oraciondata) => {
+  if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio || oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Adverbio) {
+    return true;
+  } else {
+    return false;
+  }
+}
 const Preguntasecction = ({id, window}) => {
   const { oraciondata } = useContext(JuecoContext);
   const [videoseleccionado, setVideoseleccionado] = useState("");
@@ -219,7 +226,7 @@ const QueSeccion = ({id, window, siguiente, dispatchProgreso }) => {
                   <div style={{ width: "95px" }} className="mx-auto">
                     <img src={Verbo} alt='opcion1' width="75" />
                   </div>
-                  {oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio
+                  {  isAdverbio( id, window, oraciondata)
                     &&
                     (
                       <div style={{ width: "95px" }} className="mx-auto">
@@ -239,7 +246,7 @@ const QueSeccion = ({id, window, siguiente, dispatchProgreso }) => {
                     <VerVerboRespuesta />
                   </div>
                   {
-                    oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio
+                    isAdverbio( id, window, oraciondata)
                     && (
                       <div style={{ width: "95px" }} className="mx-auto">
                         <VerCantidad />
