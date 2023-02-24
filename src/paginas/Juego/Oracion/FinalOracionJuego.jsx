@@ -109,22 +109,18 @@ export const FinalOracionJuego = () => {
     axios.post("http://localhost:3002/api/auth/UpdateTerminadoOracionFinal",{ id:oraciondata[`Juego${id}`]._id,
     Terminado:isEnd})
   }
-const Pantalla =()=>{
-  if(oraciondata === null){
-    return <>Cargando...</>
-  }else{
-    return (
-    <Container className='fondoMC'>
+
+  return (
+    <>{
+      oraciondata !== null ? 
+      (<Container className='fondoMC'>
     <NavBarJuego Seccion={"Oracion"} urlBack={"/RompecabezaJO"} />
  <Row className='justify-content-center'>
  <Col lg="6" md="6" sm="8" xs="8">
  <RompecabezaFinalRespuesta url={oraciondata[`Juego${id}`].Partida.Rompecabeza.FileColor} alt={oraciondata[`Juego${id}`].Partida.Rompecabeza.Nombre} pieza={oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza} resultado={Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length} />
  </Col>
  </Row>
- </Container>
-)  }
-}
-  return (
-    <Pantalla/>
+ </Container>):(<><>Cargando...</></>)
+    }</>
   )
 }

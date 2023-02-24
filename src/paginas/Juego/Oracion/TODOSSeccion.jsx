@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useReducer, useState } from 'react'
-import { Col, Row } from 'reactstrap'
+import { Col, Row } from 'reactstrap';
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
-import buentrajo from '../../../assets/img/AssetsGame/GOOD JOD.png'
-import malTrabajo from '../../../assets/img/AssetsGame/Bad Jood.png'
-import Quien from '../../../assets/img/AssetsGame/ico_Que.png'
-import Que from '../../../assets/img/AssetsGame/icon_Que.png'
+import buentrajo from '../../../assets/img/AssetsGame/GOOD JOD.png';
+import malTrabajo from '../../../assets/img/AssetsGame/Bad Jood.png';
+import Quien from '../../../assets/img/AssetsGame/ico_Que.png';
+import Que from '../../../assets/img/AssetsGame/icon_Que.png';
 import Verbo from "../../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
@@ -25,7 +25,6 @@ const Preguntasecction = ({ id, window }) => {
       } else if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta === "CORRECTO") {
         return oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileVideoPreguntaQue
       }
-      console.log("videoRender")
     } else if (Pregu === 2) {
       if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta === "CORRECTO") {
         return oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileVideoPreguntaQuien
@@ -58,7 +57,6 @@ const Respuestasecction = ({ id, window }) => {
     setvideoRespuestaSeleccionadoTodo(preguntavideo);
   }, [])
   const preguntavideo = () => {
-    console.log("videoRender")
     if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta === "CORRECTO") {
       return oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileVideoMuestra
     } else if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta === "CORRECTO") {
@@ -142,7 +140,6 @@ function seleccionDePalabrasSelecion(state, action) {
 }
 const SeleccionQue = ({ QueSelecion, id, window }) => {
   const { oraciondata } = useContext(JuecoContext);
-  console.log("imagenSeleccionQue")
   if (QueSelecion === 1) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileAdjetivoImagen} width="170" alt='opcion1' />) }
   if (QueSelecion === 2) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileAdjetivoImagen} width="170" alt='opcion2' />) }
   if (QueSelecion === 3) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileAdjetivoImagen} width="170" alt='opcion3' />) }
@@ -152,7 +149,6 @@ const SeleccionQue = ({ QueSelecion, id, window }) => {
 
 const SeleccionCantidad = ({ AdverbNSeleccion, id, window }) => {
   const { oraciondata } = useContext(JuecoContext);
-  console.log("imagenSeleccionCantidad")
   if (AdverbNSeleccion === 1) { return (<h3 style={{ color: "blue" }}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio}</h3>) }
   if (AdverbNSeleccion === 2) { return (<h3 style={{ color: "blue" }}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Adverbio}</h3>) }
   if (AdverbNSeleccion === 3) { return (<h3 style={{ color: "blue" }}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio}</h3>) }
@@ -161,7 +157,6 @@ const SeleccionCantidad = ({ AdverbNSeleccion, id, window }) => {
 }
 const SeleccionQuien = ({ QuienSeleccion, id, window }) => {
   const { oraciondata } = useContext(JuecoContext);
-  console.log("imagenSeleccionQuien")
   if (QuienSeleccion === 1) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen} width="170" alt='opcion1' />) }
   if (QuienSeleccion === 2) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen} width="170" alt='opcion2' />) }
   if (QuienSeleccion === 3) { return (<img src={oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen} width="170" alt='opcion3' />) }
@@ -213,7 +208,6 @@ const { oraciondata } = useContext(JuecoContext);
 }
 const VerboRespuesta = ({id, window}) => {
   let verbo = "";
-  console.log("verboRespuest");
   const { oraciondata } = useContext(JuecoContext);
   if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta === "CORRECTO") {
     verbo = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Verbo
