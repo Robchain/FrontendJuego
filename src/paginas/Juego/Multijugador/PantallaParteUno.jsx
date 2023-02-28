@@ -10,14 +10,15 @@ export const PantallaParteUno = () => {
     <Container>
          <NavBarJuego Seccion={"Activdad Asincrono"} urlBack={"/MenuJuego"}/>
          
+
+         <SeleccionDeEquipo/>
+          
           {/*
          <Espera/>
           
          <VerProgresoYaTerminado/>
          
           */}
-        
-         <SeleccionDeEquipo/>
           
     </Container>
   )
