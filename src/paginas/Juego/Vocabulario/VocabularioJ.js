@@ -142,7 +142,7 @@ const Vocabulario = () => {
         {windows.map(window => (
           <div key={1}>
             {window.show && (
-              <Container className='fondoImagenVocabulario vh-100'>
+              <Container  className='fondoImagenVocabulario vh-100'>
                 <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
                 <Row className="d-flex justify-content-around align-items-center">
                   <Col lg="12" className="d-flex justify-content-end "><h3>Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}</h3></Col>
