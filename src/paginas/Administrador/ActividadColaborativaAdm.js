@@ -21,6 +21,7 @@ const steps = [
       }
   ];
 const ActividadColaborativaAdm    =   ()  =>{
+  const [index, setIndex] = useState(1)
     const [isOpen, setIsOpen] = useState(false)
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
     const [activeStep, setActiveStep] = useState(0);
@@ -35,9 +36,15 @@ const ActividadColaborativaAdm    =   ()  =>{
       zip: '',
     });
     const handleNext = () => {
+      if(index > 1){
+        setIndex(prev => prev -1);
+      }
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
       };
       const handleBack = () => {
+        if(index < 3){
+          setIndex(prev => prev +1);
+        }
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
       };
     
@@ -57,7 +64,7 @@ const ActividadColaborativaAdm    =   ()  =>{
         <NavBar toggle={toggle} Seccion={"Actividad Colaborativa"}/>
     <MenuAdmi toggle={toggle} isOpen={isOpen}/>
 <Row>
-<Stepbar/>
+<Stepbar  steps={index}/>
 <form onSubmit={(e)=>handleSubmit(e)}>
       <h2>{steps[activeStep].label}</h2>
       {activeStep === 0 && (

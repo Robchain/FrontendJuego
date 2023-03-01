@@ -4,8 +4,10 @@ import { Edit, Trash, MoreVertical, Clipboard} from 'react-feather'
 import { Table,Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Col, Row, DropdownItem, DropdownMenu,  UncontrolledDropdown, DropdownToggle } from 'reactstrap';
 import axios from 'axios';
 import MenuAdmi from '../../componentes/MenuAdmi';
+import { ModalAgregarEstudiante } from '../../componentes/Administrador/ModalAgregarEstudiante';
 const VerEstudianteAdm = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [modal, setModal] = useState(false)
   const [Data, setData] = useState([]);
   useEffect(() => {
    const mostrar= async ()=>{
@@ -15,17 +17,19 @@ const VerEstudianteAdm = () => {
     mostrar();
   }, [])
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
+    const toggledos=()=>{setModal(!modal)}
   return (
     <Container>
     <NavBar toggle={toggle} Seccion={"Estudiantes"}/>
     <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Row  className='justify-content-center fuente fuenteDoce' >
         <Col xl='9' lg="11" className='d-flex justify-content-end '>
-       <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       <Button onClick={toggledos} className='px-4 ' data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
        Agregar
           </Button>
+          { /*aqui va  el modal*/  }
+          <ModalAgregarEstudiante  modal={modal} toggle={toggledos}/>
         </Col>
-
         <Col  xl='9' lg="11" className='d-xl p-0 mt-2' >
         <Table  striped>
           <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"initial"}}><tr>

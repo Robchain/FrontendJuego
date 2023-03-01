@@ -93,7 +93,11 @@ const Modalaqui = ({ url, descripcion, modal, setModal }) => {
       <Modal isOpen={modal} toggle={toggle} backdrop={false} style={{textAlign:"center"}}  >
         <ModalHeader  style={{backgroundColor:"#E6DFF0",color:"#62269E"}}><span style={{fontWeight:"bold", textAlign:"center"}}>Rompecabeza Completado</span></ModalHeader>
         <ModalBody>
+        <Row>
+        <Col>
           <img className='print cac' src={url} alt={descripcion} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
+          </Col>
+          </Row>
         </ModalBody>
         <ModalFooter className='justify-content-center'>
         <Row className='justify-content-center'>

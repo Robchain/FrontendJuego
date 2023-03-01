@@ -44,6 +44,7 @@ export const AllRoutes = () => {
       <Route path='/finalOracionJuego/:id' element={<FinalOracionJuego />} />
       {/*Co-operativo*/}
     <Route path='/SeleccionDeEquipo' element={<PantallaParteUno/>}/>
+    <Route  path='/JuegoActivo/Jugador/:id' element={<>adasd</>} />
       {/*Trofeos*/}
       <Route path='/Trofeo/:id' element={<Trofeos/>}/>
     </Routes>

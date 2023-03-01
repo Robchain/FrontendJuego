@@ -60,6 +60,23 @@ const VideosPreguntas = ({window, id, data, videoActual, setPointerEvent,  setOp
 
   return <ReactPlayer url={videos[videoActual]}  playing ref={playref} width={450} onEnded={() => { if (3 === videoActual) { setPointerEvent("auto");setOpa1(1); setOpa2(1); setOpa3(1) }else{setVideoActual(videoActual + 1);}  }} />
 }
+const VideosRespuesta = ({window, id, data,playref  }) => {
+  const [videos, setvideos] = useState("");
+  useEffect(() => {
+    if (data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Respuesta === "CORRECTO") {
+      setvideos(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.FileMuestra)
+    } else if (data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Respuesta === "CORRECTO") {
+      setvideos(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.FileMuestra)
+    } else if (data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Respuesta === "CORRECTO") {
+      setvideos(data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.FileMuestra)
+    }
+    return () => {  
+      setvideos("");
+    }
+  }, [data])
+  return <ReactPlayer url={videos} playing={true} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" width={450}
+  />
+}
 
 const Vocabulario = () => {
   const [windows, setWindows] = useState([
@@ -116,22 +133,6 @@ const Vocabulario = () => {
       toggleWindow(num + 1);
     }
   }
-  const videosRespuesta = (window) => {
-    let videos;
-    if (data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.Respuesta === "CORRECTO") {
-      videos = data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra1.FileMuestra
-    } else if (data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.Respuesta === "CORRECTO") {
-      videos = data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra2.FileMuestra
-    } else if (data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.Respuesta === "CORRECTO") {
-      videos = data[`Juego${id}`].Partida[`Juego` + window.id].vocabulario.Palabra3.FileMuestra
-    }
-    return <ReactPlayer url={videos} playing={true} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" width={450}
-    />
-  }
-
- 
-
- 
 
 
   return (
@@ -140,7 +141,7 @@ const Vocabulario = () => {
       data !== null ? (
         <div>
         {windows.map(window => (
-          <div key={1}>
+          <div key={window.id}>
             {window.show && (
               <Container  className='fondoImagenVocabulario vh-100'>
                 <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
@@ -151,7 +152,7 @@ const Vocabulario = () => {
                       momento === "inicial" && <VideosPreguntas window={window} data={data} id={id} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2}  setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual} />
                     }
                     {
-                      momento === "respuesta" && videosRespuesta(window)
+                      momento === "respuesta" && <VideosRespuesta window={window} data={data} id={id} playref={playref} />
                     }
                   </Col>{
                     <Col className='mt-1  align-items-end' lg="6">
