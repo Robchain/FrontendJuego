@@ -164,12 +164,12 @@ const SeleccionQuien = ({ QuienSeleccion, id, window }) => {
   return (<></>)
 }
 
-const RespuestaImagen = ({id, window,dispatchProgreso,palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento}) => {
+const RespuestaImagen = ({ id, window, dispatchProgreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento }) => {
   let sujetoRespuesta = "";
   let AdjectivoRespuesta = "";
   let oracion = "";
-  
-const { oraciondata } = useContext(JuecoContext);
+
+  const { oraciondata } = useContext(JuecoContext);
   let base = "Nada";
   if (palabrasEstdo.QuienSelec.length > 2 && palabrasEstdo.Queselec.length > 2) {
     if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta === "CORRECTO") {
@@ -206,7 +206,7 @@ const { oraciondata } = useContext(JuecoContext);
     }
   }
 }
-const VerboRespuesta = ({id, window}) => {
+const VerboRespuesta = ({ id, window }) => {
   let verbo = "";
   const { oraciondata } = useContext(JuecoContext);
   if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta === "CORRECTO") {
@@ -227,29 +227,29 @@ const isAdverbio = (id, window, oraciondata) => {
   }
 }
 
-const RespuestaImagenconAdverbio = ({id, window,dispatchProgreso,palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento  }) => {
+const RespuestaImagenconAdverbio = ({ id, window, dispatchProgreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento }) => {
   const { oraciondata } = useContext(JuecoContext);
   let sujetoRespuesta = "";
   let AdjectivoRespuesta = "";
   let AdverbioRespuesta = "";
   let base = "Nada";
-  let oracion = "";
+  let oraciones = "";
   if (palabrasEstdo.QuienSelec.length > 2 && palabrasEstdo.Queselec.length > 2 && palabrasEstdo.AdverSelec.length > 1) {
     if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta === "CORRECTO") {
       sujetoRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen;
       AdjectivoRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.FileAdjetivoImagen;
       AdverbioRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio
-      oracion = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion;
+      oraciones = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion;
     } else if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta === "CORRECTO") {
       sujetoRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen;
       AdjectivoRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.FileAdjetivoImagen;
       AdverbioRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Adverbio
-      oracion = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion;
+      oraciones = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion;
     } else if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta === "CORRECTO") {
       sujetoRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen;
       AdjectivoRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileAdjetivoImagen;
       AdverbioRespuesta = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio
-      oracion = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion;
+      oraciones = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion;
     }
     useEffect(() => {
       if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec) && (palabrasEstdo.AdverSelec === AdverbioRespuesta)) {
@@ -263,9 +263,9 @@ const RespuestaImagenconAdverbio = ({id, window,dispatchProgreso,palabrasEstdo, 
       }
       setopcionRes(base);
     }, [palabrasEstdo.QuienSelec, palabrasEstdo.Queselec, palabrasEstdo.AdverSelec])
-    
-   
-    
+
+
+
     switch (opcionRes) {
       case "CORRECTO":
         return (<><img src={buentrajo} width="100" alt="buen trabajo" /></>);
@@ -359,7 +359,7 @@ const TODOSSeccion = ({ id, window, siguiente, dispatchProgreso }) => {
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
     disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio })
   }
-  
+
 
   return (
     <>
@@ -387,7 +387,7 @@ const TODOSSeccion = ({ id, window, siguiente, dispatchProgreso }) => {
           </Col>
         </Row>
         {
-          isAdverbio( id, window, oraciondata)
+          isAdverbio(id, window, oraciondata)
           && (
             <Row lg="12" className='align-items-center'>
               <Col style={{ width: "150px", height: "120px" }}>
@@ -427,7 +427,7 @@ const TODOSSeccion = ({ id, window, siguiente, dispatchProgreso }) => {
           <Col style={{ width: "95px" }} className="mx-auto">
             <img src={Verbo} alt='opcion1' width="75" />
           </Col>
-          {isAdverbio( id, window, oraciondata)
+          {isAdverbio(id, window, oraciondata)
             &&
             (
               <Col style={{ width: "95px" }} className="mx-auto">
@@ -443,10 +443,10 @@ const TODOSSeccion = ({ id, window, siguiente, dispatchProgreso }) => {
             <SeleccionQuien QuienSeleccion={QuienSeleccion} id={id} window={window} />
           </Col>
           <Col style={{ width: "95px" }} className="mx-auto">
-            <VerboRespuesta  id={id} window={window}/>
+            <VerboRespuesta id={id} window={window} />
           </Col>
           {
-            isAdverbio( id, window, oraciondata)
+            isAdverbio(id, window, oraciondata)
             && (
               <Col style={{ width: "95px" }} className="mx-auto">
                 <SeleccionCantidad id={id} window={window} AdverbNSeleccion={AdverbNSeleccion} />
@@ -459,8 +459,8 @@ const TODOSSeccion = ({ id, window, siguiente, dispatchProgreso }) => {
         </Row>
       </Col>
       <Col lg="3" >
-        {isAdverbio( id, window, oraciondata) ? <RespuestaImagenconAdverbio  dispatchProgreso={dispatchProgreso} id={id} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente}  /> 
-        : <RespuestaImagen  dispatchProgreso={dispatchProgreso} id={id} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} />
+        {isAdverbio(id, window, oraciondata) ? <RespuestaImagenconAdverbio dispatchProgreso={dispatchProgreso} id={id} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} />
+          : <RespuestaImagen dispatchProgreso={dispatchProgreso} id={id} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} />
         }
       </Col>
     </>

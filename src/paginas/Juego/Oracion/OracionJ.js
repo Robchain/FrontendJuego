@@ -1,4 +1,4 @@
-import React, { Suspense, useContext, useEffect, useReducer, useState } from 'react'
+import React, { Suspense, useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Container, Row, Col } from 'reactstrap'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
@@ -40,7 +40,7 @@ const OracionJ = () => {
     setWindows(newWindows);
   }
 
-  const { oraciondata, dataOracion, progreso, avance0,initialState, progresoOraciom, Oracionprogreso,dispatchProgreso, } = useContext(JuecoContext);
+  const { oraciondata, dataOracion, progreso, Oracionprogreso,dispatchProgreso, } = useContext(JuecoContext);
 
   useEffect(() => {
     dataOracion(localStorage.getItem("Usuario"));

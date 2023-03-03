@@ -1,13 +1,15 @@
 import React,{useEffect,useState}from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
-
-import {Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Row, CardFooter, Col, Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
+import {Button, Container, Row, CardFooter, Col, Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
 import axios from 'axios';
 import { NavBar } from '../../componentes/NavBar';
+import { ModalAgregarVocabulario } from '../../componentes/Administrador/ModalAgregarVocabulario';
 const VerVocabularioAdm = () => {
   const [Data, setData] = useState([])
+  const [modal, setModal] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const toggle  = ()  =>  {setIsOpen(!isOpen)}
+  const toggledos = () => { setModal(!modal) }
   useEffect(() => {
     const mostrar = async ()=>{
       const data =await axios.get('http://localhost:3002/api/auth/VocabularioAdmi/mostrartodo');
@@ -22,9 +24,10 @@ const VerVocabularioAdm = () => {
         <NavBar toggle={toggle} Seccion={"Vocabularios"}/>
     <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-end'>
-       <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       <Button onClick={toggledos}  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
        Agregar
           </Button>
+          <ModalAgregarVocabulario modal={modal} toggle={toggledos} />
         </Col>
         <Row className='match-height mb-2' >
             {Data.map(i =>  (

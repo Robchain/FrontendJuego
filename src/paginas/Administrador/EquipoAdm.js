@@ -3,10 +3,13 @@ import axios from 'axios';
 import MenuAdmi from '../../componentes/MenuAdmi';
 import { Button, Card, CardBody, CardFooter, CardImg, CardText, CardTitle, Col, Container, Row } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
+import { ModalAgregarEquipo } from '../../componentes/Administrador/ModalAgregarEquipo';
 
 const EquipoAdm   =   ()  =>{
   const [card, setCard] = useState([])
     const [isOpen, setIsOpen] = useState(false)
+    const [modal, setModal] = useState(false)
+    const toggledos = () => { setModal(!modal) }
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
     useEffect(() => {
       const mostrar=  async()=>{
@@ -21,14 +24,15 @@ const EquipoAdm   =   ()  =>{
      <NavBar toggle={toggle} Seccion={"Administrador de equipos"}/>
     <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-end'>
-       <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       <Button onClick={toggledos}  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
        Agregar
           </Button>
+          <ModalAgregarEquipo modal={modal} toggle={toggledos} />
         </Col>
 <Row className='match-height mb-2'>
 {
       card.map(i =>  (
-        <Col lg='4' md='6'>
+        <Col lg='4' md='6' className='my-2'>
         <Card>
           <CardImg top src={i.Imagen} alt={i.Nombre} />
           <CardBody>
@@ -39,6 +43,7 @@ const EquipoAdm   =   ()  =>{
           <li> <span  className="fw-bolder" style={{color:'#8cc5b0'}}>Estado:</span> {i.Estado}</li>
             </ul>
             </CardText>
+            </CardBody>
             <CardFooter>
             <Button style={{color:'#592a98'}} outline /*onClick={()  =>  Eliminar(i.Nombre)}*/>
               Eliminar
@@ -48,7 +53,7 @@ const EquipoAdm   =   ()  =>{
               Editar
             </Button>
             </CardFooter>
-          </CardBody>
+          
         </Card>
         </Col>
       ))

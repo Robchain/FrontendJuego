@@ -163,7 +163,7 @@ const VerSeleccionQuien = ({oraciondata, id, window })=>{
       }, [Queselec])
    
       return(<>{
-        momento === "Respuesta" &&(<img src={imagense} width="100"/>)}
+        momento === "Respuesta" &&(<img src={imagense} width="100" alt='imagen'/>)}
         <></>
       </>)
     }

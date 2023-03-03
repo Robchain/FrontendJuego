@@ -24,14 +24,14 @@ export const AllRoutes = () => {
       <Route path='/' element={<Login />} />
       <Route path='/*' element={<Navigate to="/" />} />
       {/* administrador */}
+      <Route path='/VerEstudiante' element={<VerEstudianteAdm />} />
+      <Route path='/VerCategoria' element={<VerCategoriaAdm />} />
+      <Route path='/VerRompecabeza' element={<VerRompecabezaAdm />} />
+      <Route path='/VerVocabulario' element={<VerVocabularioAdm />} />
       <Route path='/VerOracion' element={<OracionPagina/>}/>
       <Route path='/Equipo' element={<EquipoAdm />} />
       <Route path='/ActividadColaborativa' element={<ActividadColaborativaAdm />} />
       <Route path='/ReporteEstudiante' element={<ReporteAdm />} />
-      <Route path='/VerCategoria' element={<VerCategoriaAdm />} />
-      <Route path='/VerEstudiante' element={<VerEstudianteAdm />} />
-      <Route path='/VerRompecabeza' element={<VerRompecabezaAdm />} />
-      <Route path='/VerVocabulario' element={<VerVocabularioAdm />} />
       {/* Juego */}
       <Route path='/MenuJuego' element={<MenuJuego />} />
       {/* Vocabulario*/}

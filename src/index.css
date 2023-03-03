@@ -2,15 +2,14 @@
     color:black;
     width: 20px;
     height: 20px;
-    font-size: 12px;
     background-color: white;
-    border-radius: 50%;
+    border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .step.completed{
-    background-color: indigo;
+    background-color: #60269e;
     color:white;
 }
 

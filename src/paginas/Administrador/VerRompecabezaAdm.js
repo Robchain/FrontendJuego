@@ -1,11 +1,13 @@
 import React,{useEffect,useState}from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
-import {Button, Container,Modal, ModalBody, ModalHeader,FormGroup,ModalFooter, Card, CardImg, CardBody, CardTitle, CardText, CardFooter, Col, Row } from 'reactstrap';
+import {Button, Container, Card, CardImg, CardBody, CardTitle, CardText, CardFooter, Col, Row } from 'reactstrap';
 import axios from 'axios';
 import { NavBar } from '../../componentes/NavBar';
+import { ModalAgregarRompecabeza } from '../../componentes/Administrador/ModalAgregarRompecabeza';
 
 const VerRompecabezaAdm = () => {
   const [cards, setCards] = useState([])
+  const [modal, setModal] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const toggle  = ()  =>  {setIsOpen(!isOpen)}
   useEffect(() => {
@@ -15,15 +17,16 @@ const VerRompecabezaAdm = () => {
     }
     mostrar()
   }, [])
- 
+  const toggledos = () => { setModal(!modal) }
   return (
     <Container>
     <NavBar toggle={toggle} Seccion={"Rompecabezas"}/>
     <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-end'>
-       <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       <Button  onClick={toggledos} className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
        Agregar
           </Button>
+          <ModalAgregarRompecabeza modal={modal} toggle={toggledos} />
         </Col>
     <Row className='match-height mb-2'>
         {

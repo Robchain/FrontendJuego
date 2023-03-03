@@ -1,26 +1,29 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button, Card, CardBody, CardFooter, CardImg, CardText, CardTitle, Col, Container, Row } from 'reactstrap'
+import { ModalAgregarOracion } from '../../componentes/Administrador/ModalAgregarOracion'
 import MenuAdmi from '../../componentes/MenuAdmi'
 import { NavBar } from '../../componentes/NavBar'
 
 export const OracionPagina = () => {
   const [cards, setCards] = useState([])
+  const [modal, setModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
     useEffect(() => {
       axios.get('http://localhost:3002/api/auth/OracionAdmi/mostrartodo').then(response =>  setCards(response.data))
     }, [])
-    
+    const toggledos = () => { setModal(!modal) }
   return (
     <Container>
     <NavBar toggle={toggle} Seccion={"Oraciones"}/>
+    <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-end'>
-       <Button  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       <Button onClick={toggledos}  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
        Agregar
           </Button>
+          <ModalAgregarOracion modal={modal} toggle={toggledos}  />
         </Col>
-    <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Row className='match-height mb-2'>
     {
       cards.map(i =>  (
