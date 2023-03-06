@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from 'react-feather';
 import { useForm, Controller } from 'react-hook-form'
 import Select from 'react-select'
-import { Button, Card, CardBody, CardFooter, Col, Label, Row, Form } from "reactstrap";
+import { Button, Card, CardBody, Col, Label, Row, Form } from "reactstrap";
 import { MostrarEstudiante } from '../../service/Estudiante';
 import Repeater from '../Repeater';
 export const PasoDosFormulario = ({ prevButton, nextButton, index, setSegundo, NumeroDeGrupos }) => {
@@ -40,7 +40,6 @@ export const PasoDosFormulario = ({ prevButton, nextButton, index, setSegundo, N
           <h5 className='mb-0'>Seleccion de los participantes</h5>
           <small>Especifique los integrantes de los grupos </small>
         </div>
-
         <Row>
         <Form onSubmit={handleSubmit((data) => {  manejoData(data); nextButton(); })}>
           <Repeater count={Number(NumeroDeGrupos.value)}>

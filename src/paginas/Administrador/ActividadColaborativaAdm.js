@@ -7,7 +7,6 @@ import { PasoUnoFormulario } from "../../componentes/Administrador/PasoUnoFormul
 import { PasoDosFormulario } from "../../componentes/Administrador/PasoDosFormulario";
 import { PasoTresFormulario } from "../../componentes/Administrador/PasoTresFormulario";
 import { PasoCuatroFormulario } from "../../componentes/Administrador/PasoCuatroFormulario";
-import { useEffect } from "react";
 const estadoInicialFormularioActividad = { NumeroDeGrupos: {}, NumeroDeIntegrantes:{}, NombreDeEquipo: []}
 
 function ActualizacionDeDataFormularioEquipo(state, action) {
@@ -20,8 +19,9 @@ function ActualizacionDeDataFormularioEquipo(state, action) {
 }
 
 const ActividadColaborativaAdm = () => {
-  const [{NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, IntegrantesPorGrupo}, dispatch] = useReducer(ActualizacionDeDataFormularioEquipo, estadoInicialFormularioActividad)
+  const [{NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo}, dispatch] = useReducer(ActualizacionDeDataFormularioEquipo, estadoInicialFormularioActividad)
   const [index, setIndex] = useState(1)
+  const [picker, setPicker] = useState(new Date())
  const [Segundo, setSegundo] = useState([]);
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => { setIsOpen(!isOpen)}
@@ -49,13 +49,12 @@ const ActividadColaborativaAdm = () => {
           index === 2 && <PasoDosFormulario index={index} nextButton={nextButton} prevButton={prevButton} setSegundo={setSegundo} NumeroDeGrupos={NumeroDeGrupos} />
         }
         {
-          index === 3 && <PasoTresFormulario index={index} nextButton={nextButton} prevButton={prevButton} />
+          index === 3 && <PasoTresFormulario index={index} nextButton={nextButton} prevButton={prevButton} setPicker={setPicker} picker={picker} />
         }
         {
-          index === 4 && <PasoCuatroFormulario index={index} nextButton={nextButton} prevButton={prevButton} />
+          index === 4 && <PasoCuatroFormulario index={index} nextButton={nextButton} prevButton={prevButton} Segundo={Segundo}  NombreDeEquipo={NombreDeEquipo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} picker={picker}/>
         }
       </Row>
-      {JSON.stringify(Segundo)}
     </Container>
   )
 }

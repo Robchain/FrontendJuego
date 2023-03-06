@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Button, Card, CardBody, CardFooter, Col, Label, Row } from "reactstrap";
 import Flatpickr from 'react-flatpickr'
 import "flatpickr/dist/themes/dark.css"; //material_green.css, material_blue.css, material_red.css, material_orange.css, dark.css
-export const PasoTresFormulario = ({ prevButton, nextButton, index }) => {
-  const [picker, setPicker] = useState(new Date())
-  useEffect(() => {
-    console.log(picker)
-  }, [picker])
-
+export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, picker }) => {
+ 
   return (
     <Card className="mt-5">
       <CardBody>
@@ -21,14 +17,16 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index }) => {
               Rango de Fecha
             </Label>
             <Flatpickr
+            placeholder='Fecha'
               data-enable-time
               value={picker}
               id='DateGameM'
               className='form-control'
               onChange={date => setPicker(date)}
               options={{
+                altFormat: "m/d/Y h:i K",
                 mode: 'range',
-                defaultDate: ['2022-11-30', '2022-10-21']
+                minDate: 'today',
               }}
             />
           </Col>

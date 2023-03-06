@@ -1,7 +1,26 @@
 import React from 'react'
 import { Button, Card, CardBody, CardFooter, Col, Label, Row } from "reactstrap";
+import { crearMultiJugador } from '../../service/Multijugador';
 import Repeater from '../Repeater';
-export const PasoCuatroFormulario = ({ prevButton, nextButton, index }) => {
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+
+export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, prevButton, index, Segundo }) => {
+  const MySwal = withReactContent(Swal)
+  const onclickGuardar = async()=>{
+    let Estado = "ACTIVO"
+    crearMultiJugador(NombreDeEquipo,NumeroDeGrupos,NumeroDeIntegrantes, Segundo,picker, Estado).then(respuesta => { 
+      MySwal.fire({
+      title: `${respuesta.titulo}`,
+      text: `${respuesta.respuesta}`,
+      icon: `${respuesta.type}`,
+      customClass: {
+        confirmButton: 'btn btn-primary'
+      },
+      buttonsStyling: false}) 
+    })
+  }
+
   return (
     <Card className="mt-5">
       <CardBody>
@@ -12,18 +31,30 @@ export const PasoCuatroFormulario = ({ prevButton, nextButton, index }) => {
         <Row>
           <Col md='6' className='mb-1'>
             <Label>Grupos de trabajo</Label>
-            <p>{ }</p>
+            <p>{NumeroDeGrupos.label}</p>
             <Label>Tarjetas De Actividades</Label>
-
+            {NombreDeEquipo.map(i=>{
+              return (<p key={i.value}> - {i.label}</p>)
+            })}
           </Col>
           <Col md='6' className='mb-1'>
             <Label>Jugadores por grupo</Label>
-
+            <Repeater count={Number(NumeroDeGrupos.value)}>
+              {i=>(<Row>
+                <Col md="6" className='mb-1'>
+                  <Label> grupo {i+1}</Label>
+                  {Segundo[`equipo${i}`].map(i => (<li  key={i.value}>{i.label}</li>))}
+                </Col>
+              </Row>)}
+            </Repeater>
           </Col>
           <Col md='6' className='mb-1'>
             <Label>Fecha de la Actividad</Label>
-
-
+            {
+              picker.map((i, index)=>(
+                <p key={index}>- <Label>{index ===0 ? "Fecha de Inicio: " : "Fecha de Fin: "}</Label> {i.toLocaleDateString()}</p>
+              ))
+            }
           </Col>
         </Row>
       </CardBody>
@@ -31,7 +62,7 @@ export const PasoCuatroFormulario = ({ prevButton, nextButton, index }) => {
         <Button onClick={prevButton} disabled={index === 1} >
           Atras
         </Button>
-        <Button onClick={nextButton}>
+        <Button onClick={onclickGuardar}>
           Guardar
         </Button>
       </CardFooter>

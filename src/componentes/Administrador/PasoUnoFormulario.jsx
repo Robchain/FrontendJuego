@@ -76,7 +76,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
         <Button onClick={prevButton} disabled={index === 1}>
           Atras
         </Button>
-        <Button onClick={nextButton}>
+        <Button onClick={nextButton} disabled={NombreDeEquipo.length < 1}>
           Siguiente
         </Button>
         </div>
