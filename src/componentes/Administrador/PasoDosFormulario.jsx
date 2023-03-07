@@ -7,7 +7,7 @@ import Select from 'react-select'
 import { Button, Card, CardBody, Col, Label, Row, Form } from "reactstrap";
 import { MostrarEstudiante } from '../../service/Estudiante';
 import Repeater from '../Repeater';
-export const PasoDosFormulario = ({ prevButton, nextButton, index, setSegundo, NumeroDeGrupos }) => {
+export const PasoDosFormulario = ({ prevButton, nextButton, index, setSegundo, NumeroDeGrupos,NumeroDeIntegrantes }) => {
   
   const [DataEstudiante, setDataEstudiante] = useState([])
   const dataInciial = async () =>{
@@ -65,7 +65,7 @@ export const PasoDosFormulario = ({ prevButton, nextButton, index, setSegundo, N
                       })}
                   value={value}
                   id={`equipos`}
-                  onChange={onChange}
+                  onChange={ (e)=> {e.length <= parseInt(NumeroDeIntegrantes.value) && onChange(e)}}
                   placeholder='seleccione'
                   className='react-select'
                   classNamePrefix='select'
