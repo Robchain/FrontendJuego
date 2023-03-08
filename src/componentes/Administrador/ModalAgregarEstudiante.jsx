@@ -1,27 +1,109 @@
 import React from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, Input } from 'reactstrap';
 
-export const ModalAgregarEstudiante = ({modal, toggle}) => {
+export const ModalAgregarEstudiante = ({ modal, toggle }) => {
   return (
-    <Modal isOpen={modal} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-        <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggle}>
-            Do Something
-          </Button>{' '}
-          <Button color="secondary" onClick={toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </Modal>
+    <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
+      <ModalHeader>Agregar Usuario</ModalHeader>
+      <ModalBody>
+        <Row>
+          <Col md='6' sm='12' className='mb-1'>
+            <Label className='form-label' for='nameMulti'>
+              Nombre
+            </Label>
+            <Input type='text' name="Nombre" id='nameMulti' placeholder='Nombre' />
+          </Col>
+          <Col md='6' sm='12' className='mb-1'>
+            <Label className='form-label' for='lastNameMulti'>
+              Apellido
+            </Label>
+            <Input type='text' name='Apellido' id='lastNameMulti' placeholder='Apellido' />
+          </Col>
+          <Col md='6' sm='12' className='mb-1'>
+              <Label className='form-label' for='cityMulti'>
+                Identificacion
+              </Label>
+              <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificacion'  />
+            </Col>
+            <Col md='6' sm='12' className='mb-1'>
+              <Label className='form-label' for='CountryMulti'>
+                Correo Electronico
+              </Label>
+              <Input type='text' name='Email' id='CountryMulti' placeholder='Correo Electronico'  />
+            </Col>
+            <Col md='6' sm='12' className='mb-1'>
+              <Label className='form-label' for='CompanyMulti'>
+                Usuario
+              </Label>
+              <Input type='text' name='Usuario' id='CompanyMulti' placeholder='Usuario' />
+            </Col>
+            <Col md='6' sm='12' className='mb-1'>
+              <Label className='form-label' for='EmailMulti'>
+                Contraseña
+              </Label>
+              <Input type='password' name='Password' id='EmailMulti' placeholder='Contraseña'  />
+            </Col>
+            <Col md='6' sm='12' className='mb-1'>
+            <Label className='form-label' for='inputFile'>
+              Foto de perfil
+            </Label>
+            <Input type='file' id='inputFile' name='FotoPerfil' /*onChange={e =>  setFile(e.target.files[0])}*/ />
+            </Col>
+            <Col md='6' sm='12' className='mb-1'>
+            <Label className='form-label' for='EmailMulti'>
+                Tipo Usuario
+              </Label><br/>
+            <Label><Input 
+            type='radio'
+            name="TipoUsuario"
+            value="ESTUDIANTE"
+            /*checked={editarMod  === false ? FormValue.TipoUsuario === "ESTUDIANTE"  : selecion.TipoUsuario  === "ESTUDIANTE"}
+            onChange={editarMod === false ? handleChange  : handlerFalse}*/
+        />Estudiante</Label><br/>
+        <Label>
+        <Input  
+            type='radio'
+            name="TipoUsuario"
+            value="MAESTRO"
+            /*checked={ editarMod === false ? FormValue.TipoUsuario === "MAESTRO" : selecion.TipoUsuario  === "MAESTRO"}
+            onChange={ editarMod  === false ? handleChange  : handlerFalse}*/
+        />Maestro
+        </Label>
+            </Col>
+          
+          <Col md='6' sm='12' className='mb-1'>
+            <div className='mb-2'>
+            <Label className='form-label' for='EmailMulti'>
+                Estado
+              </Label><br/>
+        <Label> <Input  
+            type='radio'
+            name="Estado"
+            value="ACTIVO"
+            /*checked={ editarMod === false ? FormValue.Estado ===  "ACTIVO"  : selecion.Estado === "ACTIVO"}
+            onChange={ editarMod  === false ? handleChange  : handlerFalse}*/
+        />Activo</Label> <br/>
+        <Label>
+        <Input  
+            type='radio'
+            name="Estado"
+            value="INACTIVO"
+           /* checked={editarMod  === false ?  FormValue.Estado === "INACTIVO"  : selecion.Estado === "INACTIVO"}
+            onChange={editarMod === false ? handleChange  : handlerFalse}*/
+        />Inactivo
+        </Label>
+            </div>
+            </Col>
+        </Row>
+      </ModalBody>
+      <ModalFooter>
+        <Button color="primary" onClick={toggle}>
+          Do Something
+        </Button>{' '}
+        <Button color="secondary" onClick={toggle}>
+          Cancel
+        </Button>
+      </ModalFooter>
+    </Modal>
   )
 }
