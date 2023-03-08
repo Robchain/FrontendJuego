@@ -44,16 +44,20 @@ const postUsurio    =  async ()    =>{
                 if(response.data.respuesta !== 'Contraseña incorrecta'  &&  response.data.respuesta!=='falta correo y contraseña'   &&  response.data.respuesta!=='Correo o contraseña incorrecta'){
                     if(response.data.TipoUsuario    === 'MAESTRO'){
                     //localStorage.setItem('token',response.data.token)
-                    localStorage.setItem("Usuario",response.data.Usuario)
+                    localStorage.setItem("Usuario",response.data.Nombre )
                     localStorage.setItem("Email",response.data.Email)
                     localStorage.setItem("Identificacion",response.data.Identificacion)
                     localStorage.setItem("Id",response.data._id)
+                    localStorage.setItem("Nombre",response.data.Nombre)
+                    localStorage.setItem("Nombre",response.data.Apellido)
                    entrar('/VerEstudiante');
                     }else{
                         localStorage.setItem("Usuario",response.data.Usuario)
                     localStorage.setItem("Email",response.data.Email)
                     localStorage.setItem("Identificacion",response.data.Identificacion)
                     localStorage.setItem("Id",response.data._id)
+                    localStorage.setItem("Nombre",response.data.Nombre)
+                    localStorage.setItem("Nombre",response.data.Apellido)
                        entrar('/MenuJuego');
                     }
                 }else{
