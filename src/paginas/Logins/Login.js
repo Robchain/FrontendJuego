@@ -47,11 +47,13 @@ const postUsurio    =  async ()    =>{
                     localStorage.setItem("Usuario",response.data.Usuario)
                     localStorage.setItem("Email",response.data.Email)
                     localStorage.setItem("Identificacion",response.data.Identificacion)
+                    localStorage.setItem("Id",response.data._id)
                    entrar('/VerEstudiante');
                     }else{
                         localStorage.setItem("Usuario",response.data.Usuario)
                     localStorage.setItem("Email",response.data.Email)
                     localStorage.setItem("Identificacion",response.data.Identificacion)
+                    localStorage.setItem("Id",response.data._id)
                        entrar('/MenuJuego');
                     }
                 }else{
