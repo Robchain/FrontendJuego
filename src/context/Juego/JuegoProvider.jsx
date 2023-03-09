@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, {useReducer, useState } from 'react'
+import { llamadoIncialDePosiciondelUsuario } from '../../service/Multijugador'
 import { JuecoContext } from './JuecoContext'
 
 export const JuegoProvider = ({children}) => {
@@ -14,6 +15,17 @@ export const JuegoProvider = ({children}) => {
   const [rompecabeza5, setRompecabeza5] = useState(0)
   const [rompecabeza6, setRompecabeza6] = useState(0)
 
+  const [InfoEstudiaSituacion, setInfoEstudiaSituacion] = useState(null)
+
+  const LLamadaIncial = async()=>{
+   let nombre = localStorage.getItem("Nombre");
+   let apellido = localStorage.getItem("Apellido");
+  let completo =  `${nombre} ${apellido}`
+  let value = localStorage.getItem("Id");
+  if(completo.length>5 && value.length>3){
+   const data  = await  llamadoIncialDePosiciondelUsuario(completo,value );
+   setInfoEstudiaSituacion(data);
+  }}
 
   const [avance0, setavance] = useState([])
 
@@ -97,7 +109,7 @@ export const JuegoProvider = ({children}) => {
 }
 
   return (
-    <JuecoContext.Provider value={{data,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
+    <JuecoContext.Provider value={{data,InfoEstudiaSituacion,LLamadaIncial,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
     {children}
     </JuecoContext.Provider>
   )

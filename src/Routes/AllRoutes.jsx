@@ -18,6 +18,7 @@ import { FinalOracionJuego } from '../paginas/Juego/Oracion/FinalOracionJuego'
 import { OracionPagina } from '../paginas/Administrador/OracionPagina'
 import { Trofeos } from '../paginas/Juego/Trofeo/Trofeos'
 import { PantallaParteUno } from '../paginas/Juego/Multijugador/PantallaParteUno'
+import { PantallaParteDos } from '../paginas/Juego/Multijugador/PantallaParteDos'
 export const AllRoutes = () => {
   return (<>
     <Routes>
@@ -44,7 +45,7 @@ export const AllRoutes = () => {
       <Route path='/finalOracionJuego/:id' element={<FinalOracionJuego />} />
       {/*Co-operativo*/}
     <Route path='/SeleccionDeEquipo' element={<PantallaParteUno/>}/>
-    <Route  path='/JuegoActivo/Jugador/:id' element={<>adasd</>} />
+    <Route  path='/JuegoActivo/Jugador/:id' element={<PantallaParteDos/>} />
       {/*Trofeos*/}
       <Route path='/Trofeo/:id' element={<Trofeos/>}/>
     </Routes>

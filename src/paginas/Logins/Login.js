@@ -49,7 +49,7 @@ const postUsurio    =  async ()    =>{
                     localStorage.setItem("Identificacion",response.data.Identificacion)
                     localStorage.setItem("Id",response.data._id)
                     localStorage.setItem("Nombre",response.data.Nombre)
-                    localStorage.setItem("Nombre",response.data.Apellido)
+                    localStorage.setItem("Apellido",response.data.Apellido)
                    entrar('/VerEstudiante');
                     }else{
                         localStorage.setItem("Usuario",response.data.Usuario)
@@ -57,7 +57,7 @@ const postUsurio    =  async ()    =>{
                     localStorage.setItem("Identificacion",response.data.Identificacion)
                     localStorage.setItem("Id",response.data._id)
                     localStorage.setItem("Nombre",response.data.Nombre)
-                    localStorage.setItem("Nombre",response.data.Apellido)
+                    localStorage.setItem("Apellido",response.data.Apellido)
                        entrar('/MenuJuego');
                     }
                 }else{

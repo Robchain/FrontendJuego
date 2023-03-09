@@ -10,7 +10,7 @@ export const VerProgresoYaTerminado = () => {
     </Col>|
     <Col lg="7"> 
     <h3>
-        Ya has Completado tu Carrera
+       Ya puede Comenzar a Jugar
     </h3>
     </Col>
     <Col lg="7">
