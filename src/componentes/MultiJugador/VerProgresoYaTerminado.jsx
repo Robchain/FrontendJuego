@@ -15,7 +15,7 @@ export const VerProgresoYaTerminado = () => {
     </Col>
     <Col lg="7">
     <p>
-        Espera que tus compañeros terminen 
+        Preparate...
     </p> 
     </Col>
     <Col lg="7" className='mt-3'>

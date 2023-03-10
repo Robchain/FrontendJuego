@@ -1,11 +1,11 @@
 import axios from 'axios'
 import React, {useReducer, useState } from 'react'
-import { llamadoIncialDePosiciondelUsuario } from '../../service/Multijugador'
+import { llamadaInicialDelosEquiposSinAsignar, llamadoIncialDePosiciondelUsuario } from '../../service/Multijugador'
 import { JuecoContext } from './JuecoContext'
 
 export const JuegoProvider = ({children}) => {
   const [respuesta, setRespuesta] = useState([])
-
+const [cardEquipo, setCardEquipo] = useState([]);
   const [data, setData] = useState(null)
   const [oraciondata, setOraciondata] = useState(null);   
   const [rompecabeza1, setRompecabeza1] = useState(0)
@@ -26,6 +26,11 @@ export const JuegoProvider = ({children}) => {
    const data  = await  llamadoIncialDePosiciondelUsuario(completo,value );
    setInfoEstudiaSituacion(data);
   }}
+  const llamadaDos =async(IdDeLaAsignacion)=>{
+    const data = await  llamadaInicialDelosEquiposSinAsignar(IdDeLaAsignacion, );
+    setCardEquipo(data);
+  }
+
 
   const [avance0, setavance] = useState([])
 
@@ -109,7 +114,7 @@ export const JuegoProvider = ({children}) => {
 }
 
   return (
-    <JuecoContext.Provider value={{data,InfoEstudiaSituacion,LLamadaIncial,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
+    <JuecoContext.Provider value={{data,InfoEstudiaSituacion,LLamadaIncial,cardEquipo,llamadaDos,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
     {children}
     </JuecoContext.Provider>
   )

@@ -130,7 +130,9 @@
     height: 50%;
     display: inline-block;
 }
-
+.animacionBoton:hover{
+    border:solid #60269e 2px;
+}
 .minicuadrito .encima .f{
     background-color: #FBFBFB;
     width: 33%;

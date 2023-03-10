@@ -13,14 +13,15 @@ export const PantallaParteUno = () => {
   }, [])
 
     const SituacionUno =()=>{
-      if(InfoEstudiaSituacion.Juego === null && InfoEstudiaSituacion.Posicion === 0){
+      if(InfoEstudiaSituacion.Juegos === null && InfoEstudiaSituacion.Posicion === 0){
         return true
       }
     }
     const Situaciondos =()=>{
-      if(InfoEstudiaSituacion.Posicion !== 0 && (InfoEstudiaSituacion.Juego===null || InfoEstudiaSituacion.Juego!==null)){
+      if(InfoEstudiaSituacion.Posicion !== 0){
       return true;
     }
+
     }
     const SituacionTres =()=>{
       return false;
@@ -29,21 +30,21 @@ export const PantallaParteUno = () => {
 
   
   return (
-    <Container>
-         <NavBarJuego Seccion={"Actividad Asincrono"} urlBack={"/MenuJuego"}/>
+    <Container  >
+         <NavBarJuego Seccion={"Actividad Asincro"} urlBack={"/MenuJuego"}/>
          { InfoEstudiaSituacion !== null ? (
 <>
-        {
-         SituacionUno() &&  <SeleccionDeEquipo/>
-        }      
-           {
-         Situaciondos() &&  <VerProgresoYaTerminado/>
-          }
-          {
-          SituacionTres() &&  <Espera/>
-          }
-          </>
-          ):(<>Cargador</>)
+        {//el primero de la lista y selecciona el equipo
+        SituacionUno() && <SeleccionDeEquipo IdDeLaAsignacion={InfoEstudiaSituacion.IdDeLaAsignacion} IdDelGrupo={InfoEstudiaSituacion._id} id={InfoEstudiaSituacion.Posicion}/>
+        } 
+        {// ya le toca al jugador, 
+        Situaciondos() &&  <Espera/>
+        }
+        { // espera mientras los demas estan jugando, 
+        SituacionTres() &&  <VerProgresoYaTerminado/>
+        }
+</>
+    ):(<>Cargador</>)
          }
         
     </Container>

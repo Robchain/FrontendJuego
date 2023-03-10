@@ -45,9 +45,10 @@ const [Identificacion, setIdentificacion] = useState("")
      </Row>
       </Col>
       {/*---------------NOMBRE DE LA SECCION--------------*/}
+      {Seccion.length >2 &&(
     <Col  sm="11" lg="11" md="11" xs="11" className="mt-3" style={{color:"#9696D3"}}>
     <h2 >{Seccion}</h2>
-    </Col>
+    </Col>)}
     </Row>
   )
 }

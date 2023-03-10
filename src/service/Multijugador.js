@@ -16,3 +16,22 @@ export const llamadoIncialDePosiciondelUsuario = async (label, value)=>{
         return null;
     }
     }
+
+export const llamadaInicialDelosEquiposSinAsignar = async(IdDeLaAsignacion)=>{
+try {
+    const data = await axios.post("http://localhost:3002/api/auth/LlamadaDeJuegosBasesPorAsignar",{IdDeLaAsignacion});
+    return data.data;
+} catch (error) {
+    return null;
+}
+}
+
+export const AcciondeAsignarGruposConJuegos = async (idDeBase,BaseUno)=>{
+
+try {
+    const data  = await axios.post("http://localhost:3002/api/auth/UneIntegrantesConJuegos",{idDeBase,BaseUno});
+    return data.data;
+} catch (error) {
+    return null
+}
+}
