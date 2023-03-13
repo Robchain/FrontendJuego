@@ -1,9 +1,8 @@
 import React, { useContext, useEffect } from 'react'
+import { Navigate } from 'react-router-dom'
 import { Container } from 'reactstrap'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
-import { Espera } from '../../../componentes/MultiJugador/Espera'
 import { SeleccionDeEquipo } from '../../../componentes/MultiJugador/SeleccionDeEquipo'
-import { VerProgresoYaTerminado } from '../../../componentes/MultiJugador/VerProgresoYaTerminado'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 export const PantallaParteUno = () => {
 
@@ -12,41 +11,39 @@ export const PantallaParteUno = () => {
     LLamadaIncial();
   }, [])
 
-    const SituacionUno =()=>{
+  
+    const SituacionUnoPuntoUno =()=>{
       if(InfoEstudiaSituacion.Juegos === null && InfoEstudiaSituacion.Posicion === 0){
         return true
       }
     }
-    const Situaciondos =()=>{
-      if(InfoEstudiaSituacion.Posicion !== 0){
+    const SituacionUnoPuntoDos =()=>{
+      if(InfoEstudiaSituacion.Posicion !== 0 &&(InfoEstudiaSituacion.Juegos === null || InfoEstudiaSituacion.Juegos !== null ) ){
       return true;
     }
-
     }
-    const SituacionTres =()=>{
-      return false;
-    }
-
-
-  
+    const SituacionUnoPuntoTres =()=>{
+      if(InfoEstudiaSituacion.Posicion === 0  && InfoEstudiaSituacion.Juegos !== null   ){
+      return true;
+    }}
   return (
     <Container  >
          <NavBarJuego Seccion={"Actividad Asincro"} urlBack={"/MenuJuego"}/>
          { InfoEstudiaSituacion !== null ? (
 <>
         {//el primero de la lista y selecciona el equipo
-        SituacionUno() && <SeleccionDeEquipo IdDeLaAsignacion={InfoEstudiaSituacion.IdDeLaAsignacion} IdDelGrupo={InfoEstudiaSituacion._id} id={InfoEstudiaSituacion.Posicion}/>
+          SituacionUnoPuntoUno() && <SeleccionDeEquipo IdDeLaAsignacion={InfoEstudiaSituacion.IdDeLaAsignacion} IdDelGrupo={InfoEstudiaSituacion._id} id={InfoEstudiaSituacion.Posicion}/>
         } 
         {// ya le toca al jugador, 
-        Situaciondos() &&  <Espera/>
+          SituacionUnoPuntoDos() && <Navigate to={`/Intermedio/Jugador/${InfoEstudiaSituacion.Posicion}`} replace={true}/>
         }
-        { // espera mientras los demas estan jugando, 
-        SituacionTres() &&  <VerProgresoYaTerminado/>
+        {
+          SituacionUnoPuntoTres() && <Navigate  to={`/Intermedio/Jugador/${InfoEstudiaSituacion.Posicion}`} replace={true}/>
         }
+        
 </>
     ):(<>Cargador</>)
          }
-        
     </Container>
   )
 }

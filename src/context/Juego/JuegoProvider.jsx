@@ -114,7 +114,7 @@ const [cardEquipo, setCardEquipo] = useState([]);
 }
 
   return (
-    <JuecoContext.Provider value={{data,InfoEstudiaSituacion,LLamadaIncial,cardEquipo,llamadaDos,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
+    <JuecoContext.Provider value={{data,InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion,cardEquipo,llamadaDos,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
     {children}
     </JuecoContext.Provider>
   )

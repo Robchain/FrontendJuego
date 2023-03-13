@@ -19,6 +19,8 @@ import { OracionPagina } from '../paginas/Administrador/OracionPagina'
 import { Trofeos } from '../paginas/Juego/Trofeo/Trofeos'
 import { PantallaParteUno } from '../paginas/Juego/Multijugador/PantallaParteUno'
 import { PantallaParteDos } from '../paginas/Juego/Multijugador/PantallaParteDos'
+import { Intermedio } from '../paginas/Juego/Multijugador/Intermedio'
+import { FinalJuego } from '../paginas/Juego/Multijugador/FinalJuego'
 export const AllRoutes = () => {
   return (<>
     <Routes>
@@ -41,11 +43,13 @@ export const AllRoutes = () => {
       <Route path='/finalVocabulario/:id' element={<FinalVocabulario />} />
       {/* Oracion*/}
       <Route path='/RompecabezaJO' element={<RompecabezaJO />} />
-      <Route path='/OracionJuego/:id' element={<OracionJ />} />finalOracionJuego
+      <Route path='/OracionJuego/:id' element={<OracionJ />} />
       <Route path='/finalOracionJuego/:id' element={<FinalOracionJuego />} />
       {/*Co-operativo*/}
     <Route path='/SeleccionDeEquipo' element={<PantallaParteUno/>}/>
+    <Route path='/Intermedio/Jugador/:id' element={<Intermedio/>}/>
     <Route  path='/JuegoActivo/Jugador/:id' element={<PantallaParteDos/>} />
+    <Route path='/FinalJuegoMulti/Jugador/:id' element={<FinalJuego/>} />
       {/*Trofeos*/}
       <Route path='/Trofeo/:id' element={<Trofeos/>}/>
     </Routes>

@@ -67,15 +67,15 @@ const OracionJ = () => {
               }
               {
                   // EN CASO DE QUE
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUE") && (<QueSeccion id={id} siguiente={siguiente} window={window} progreso={progreso} dispatchProgreso={dispatchProgreso}/>)
+                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUE") && (<QueSeccion id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
               }
               {
                   // EN CASO DE QUIEN
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUIEN") && (<QuienSeccion id={id} siguiente={siguiente} window={window} progreso={progreso} dispatchProgreso={dispatchProgreso}/>)
+                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUIEN") && (<QuienSeccion id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
               }
               {
                   // EN CASO DE ADVERBIO
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "ADVERBIO") && (<Adverbio id={id} siguiente={siguiente} window={window} progreso={progreso} dispatchProgreso={dispatchProgreso}/>)
+                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "ADVERBIO") && (<Adverbio id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
               }
               </Suspense>
             </Row>

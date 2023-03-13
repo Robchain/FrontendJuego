@@ -1,17 +1,26 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { Container } from 'reactstrap'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
+import { OracionMulti } from '../../../componentes/MultiJugador/OracionMulti';
+import { VocabularioMulti } from '../../../componentes/MultiJugador/VocabularioMulti';
+import { JuecoContext } from '../../../context/Juego/JuecoContext';
 
 export const PantallaParteDos = () => {
+  const { InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion} = useContext(JuecoContext);
+  useEffect(() => {
+    LLamadaIncial();
+    return () =>{
+      setInfoEstudiaSituacion(null);
+    }
+  }, [])
+  
   const [windows, setWindows] = useState([
     { id: 1, show: false },
     { id: 2, show: false },
     { id: 3, show: false },
     { id: 4, show: false },
     { id: 5, show: false },
-    { id: 6, show: false },
-    { id: 7, show: false },
   ]);
   const navegar = useNavigate();
   const toggleWindow = (id) => {
@@ -28,13 +37,37 @@ export const PantallaParteDos = () => {
   useEffect(() => {
     toggleWindow(1);
   }, [])
+
+  const siguiente = (num) => {
+    toggleWindow(num);
+    if (num === 6) {
+      navegar(`/FinalJuegoMulti/Jugador/${id}`);
+    } else {
+      toggleWindow(num + 1);
+    }
+  }
   
   return (
     <Container>
       <NavBarJuego Seccion={""} urlBack={"/MenuJuego"}/>
 
+{ InfoEstudiaSituacion !== null ? (
+<>
+{windows.map(window => (
+          <div key={window.id}>
+            {window.show && (
+                <>
+                {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario && <VocabularioMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} />}
 
-
+                {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].Oraciones && <OracionMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion}/>}
+                </>
+            )}
+          </div>
+        ))
+        }
+</>
+    ):(<>Cargador</>)
+         }
     </Container>
   )
 }
