@@ -37,7 +37,7 @@ const handleSudmit= (e)=>{
 const postUsurio    =  async ()    =>{
         try {
              axios({
-                url:"http://localhost:3002/api/auth/signin",
+                url:"http://192.168.10.115:3002/api/auth/signin",
                 method:'POST',
                 data:Datos
             }).then(response=>{
@@ -89,10 +89,9 @@ const postUsurio    =  async ()    =>{
     <Input placeholder="usuario@ejemplo.com" type="text" name="Email"    value={Datos.Email} onChange={handleChange} id="Login-Email"></Input><br/>
     </div> 
     <div  >
-    <small><Label for="Login-Password">Contraseña</Label>{""}<Link  to="/">¿Olvidaste tu Contraseña?</Link></small><br/><Input   placeholder="*********" id="Login-Password" type="password" name="Password"   value={Datos.Password} onChange={handleChange}></Input><br/>
+    <small><Label for="Login-Password">Contraseña</Label></small><br/><Input placeholder="*********" id="Login-Password" type="password" name="Password"   value={Datos.Password} onChange={handleChange}></Input><br/>
     </div>
     <br/><Input  className='btn btn-primary' type='submit' value='ENTRAR'  ></Input><br/>
-    <small><span>¿Eres nuevo en la plataforma?</span><Link to={'/'} >Crear una Cuenta</Link></small><br/>
     </Form>
   </Col>
   </Row>

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Container } from 'reactstrap'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { OracionMulti } from '../../../componentes/MultiJugador/OracionMulti';
+import { VerProgresoYaTerminado } from '../../../componentes/MultiJugador/VerProgresoYaTerminado';
 import { VocabularioMulti } from '../../../componentes/MultiJugador/VocabularioMulti';
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
 
@@ -22,6 +23,7 @@ export const PantallaParteDos = () => {
     { id: 4, show: false },
     { id: 5, show: false },
   ]);
+  const [listos, setListos] = useState("espera");
   const navegar = useNavigate();
   const toggleWindow = (id) => {
     // Crear una copia del arreglo de ventanas
@@ -35,6 +37,9 @@ export const PantallaParteDos = () => {
   }
   const { id } = useParams();
   useEffect(() => {
+    setTimeout(() => {
+      setListos("Ya");
+    }, 5000);
     toggleWindow(1);
   }, [])
 
@@ -49,11 +54,14 @@ export const PantallaParteDos = () => {
   
   return (
     <Container>
-      <NavBarJuego Seccion={""} urlBack={"/MenuJuego"}/>
+      <NavBarJuego Seccion={"Colaborativo"} urlBack={"/MenuJuego"}/>
 
 { InfoEstudiaSituacion !== null ? (
 <>
-{windows.map(window => (
+{
+  listos === "espera" && <VerProgresoYaTerminado/>
+}
+{  listos === "Ya" && windows.map(window => (
           <div key={window.id}>
             {window.show && (
                 <>

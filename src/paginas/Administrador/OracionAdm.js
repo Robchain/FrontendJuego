@@ -27,7 +27,7 @@ const OracionAdm    =   ()  =>{
 
     useEffect(() => {
         const respuesta = async ()=>{
-          const data =  await axios.get('http://localhost:3002/api/auth/Categoria/mostrartodo');
+          const data =  await axios.get('http://192.168.10.115:3002/api/auth/Categoria/mostrartodo');
           setList(data.data);
         
         }
@@ -48,7 +48,7 @@ const OracionAdm    =   ()  =>{
         try {
            
                 const a = await axios({
-                    url:"http://localhost:3002/api/auth/OracionAdmi",
+                    url:"http://192.168.10.115:3002/api/auth/OracionAdmi",
                     method:"POST",
                     data:FormValue
                 })

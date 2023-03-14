@@ -64,11 +64,11 @@ const [cardEquipo, setCardEquipo] = useState([]);
 
 
   const datoVocabulario = (user)=>{
-  axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)})
+  axios.post("http://192.168.10.115:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)})
   }  
 
   const dataOracion = (user)=>{
-    axios.post("http://localhost:3002/api/auth/llamadaPartidaOracion",{Usuario:user}).then(response =>{setOraciondata(response.data)})
+    axios.post("http://192.168.10.115:3002/api/auth/llamadaPartidaOracion",{Usuario:user}).then(response =>{setOraciondata(response.data)})
   }
 
   const resultados = (palabra="",respuestas="") =>{

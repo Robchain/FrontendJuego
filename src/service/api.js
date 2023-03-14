@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url="http://localhost:3002/api/auth"
+const url="http://192.168.10.115:3002/api/auth"
 export async function postEstudiante    (info){
     try {
         const response  = await axios({

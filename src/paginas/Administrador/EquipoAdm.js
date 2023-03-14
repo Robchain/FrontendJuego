@@ -13,7 +13,7 @@ const EquipoAdm   =   ()  =>{
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
     useEffect(() => {
       const mostrar=  async()=>{
-        const data=await  axios.get('http://localhost:3002/api/auth/Equipo/mostrartodo');
+        const data=await  axios.get('http://192.168.10.115:3002/api/auth/Equipo/mostrartodo');
         setCard(data.data);
       }
       mostrar()

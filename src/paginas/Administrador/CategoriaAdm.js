@@ -23,7 +23,7 @@ const OracionAdm    =   ()  =>{
         const postCategoria    =   async ()    =>{
             try {
                 const response  = await axios({
-                    url:"http://localhost:3002/api/auth/Categoria",
+                    url:"http://192.168.10.115:3002/api/auth/Categoria",
                     method:'POST',
                     data:FormValue
                 })

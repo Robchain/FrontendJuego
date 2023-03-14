@@ -7,7 +7,7 @@ export const VerProgresoYaTerminado = () => {
     <Row className='justify-content-center'>
     <Col lg="7">
         <img src={gifDePits} alt="pits" />
-    </Col>|
+    </Col>
     <Col lg="7"> 
     <h3>
        Ya puede Comenzar a Jugar
@@ -18,9 +18,6 @@ export const VerProgresoYaTerminado = () => {
         Preparate...
     </p> 
     </Col>
-    <Col lg="7" className='mt-3'>
-  <code>linea de progreso aqui </code>
-</Col>
     </Row>
   )
 }

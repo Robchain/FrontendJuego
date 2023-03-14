@@ -11,7 +11,7 @@ export const OracionPagina = () => {
     const [isOpen, setIsOpen] = useState(false)
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
     useEffect(() => {
-      axios.get('http://localhost:3002/api/auth/OracionAdmi/mostrartodo').then(response =>  setCards(response.data))
+      axios.get('http://192.168.10.115:3002/api/auth/OracionAdmi/mostrartodo').then(response =>  setCards(response.data))
     }, [])
     const toggledos = () => { setModal(!modal) }
   return (
