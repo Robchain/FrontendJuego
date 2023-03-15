@@ -1,7 +1,6 @@
 import React from "react";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
-import { FileText, User, Calendar, CheckCircle } from 'react-feather'
 export const CarreraStepBar = ({ steps }) => {
   return (
     <ProgressBar

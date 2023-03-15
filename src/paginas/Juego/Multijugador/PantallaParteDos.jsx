@@ -8,7 +8,7 @@ import { VocabularioMulti } from '../../../componentes/MultiJugador/VocabularioM
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
 
 export const PantallaParteDos = () => {
-  const { InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion} = useContext(JuecoContext);
+  const { InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli, MultiProgreso} = useContext(JuecoContext);
   useEffect(() => {
     LLamadaIncial();
     return () =>{
@@ -39,13 +39,13 @@ export const PantallaParteDos = () => {
   useEffect(() => {
     setTimeout(() => {
       setListos("Ya");
-    }, 5000);
+    }, 4500);
     toggleWindow(1);
   }, [])
 
   const siguiente = (num) => {
     toggleWindow(num);
-    if (num === 6) {
+    if (num === 5) {
       navegar(`/FinalJuegoMulti/Jugador/${id}`);
     } else {
       toggleWindow(num + 1);
@@ -65,9 +65,10 @@ export const PantallaParteDos = () => {
           <div key={window.id}>
             {window.show && (
                 <>
-                {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario && <VocabularioMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} />}
+                {JSON.stringify(MultiProgreso)}
+                {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario && <VocabularioMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} dispatchMutli={dispatchMutli} />}
 
-                {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].Oraciones && <OracionMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion}/>}
+                {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].Oraciones && <OracionMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} dispatchMutli={dispatchMutli} />}
                 </>
             )}
           </div>

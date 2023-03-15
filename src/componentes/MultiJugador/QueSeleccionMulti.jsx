@@ -167,7 +167,7 @@ const VerVerboRespuesta = ({data, window, id })=>{
           <></>
         </>)
       }
-export const QueSeleccionMulti = ({id, window, siguiente, data}) => {
+export const QueSeleccionMulti = ({id, window, siguiente, data, Progreso}) => {
     const [momento, setMomento] = useState("inicial");
    // const { oraciondata } = useContext(JuecoContext);
     const [Queselec, setQueselec] = useState("");

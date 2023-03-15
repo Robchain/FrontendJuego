@@ -157,7 +157,7 @@ const RespuestaImagen =({ momento, Queselec, data, id, window, setMomento})=>{
   </>)
 }
 
-export const QuienSeleccionMulti = ({id, window, siguiente, data}) => {
+export const QuienSeleccionMulti = ({id, window, siguiente, data,Progreso}) => {
     const [momento, setMomento] = useState("inicial");
    // const { oraciondata } = useContext(JuecoContext);
     const [Queselec, setQueselec] = useState("");

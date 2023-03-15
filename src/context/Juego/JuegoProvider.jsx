@@ -15,6 +15,7 @@ const [cardEquipo, setCardEquipo] = useState([]);
   const [rompecabeza5, setRompecabeza5] = useState(0)
   const [rompecabeza6, setRompecabeza6] = useState(0)
 
+  
   const [InfoEstudiaSituacion, setInfoEstudiaSituacion] = useState(null)
 
   const LLamadaIncial = async()=>{
@@ -50,6 +51,26 @@ const [cardEquipo, setCardEquipo] = useState([]);
         ];
         case "RESETEAR":
           return initialState;
+      default:
+        return state;
+    }
+  };
+  const initialStateMulti = [];
+
+  const progresoMulti = (state, action) => {
+    switch (action.type) {
+      case 'PROGRESO':
+        return [
+          ...state,
+          { 
+            PalabraCorrecta: action.PalabraCorrecta,
+            PalabraSeleccionada: action.PalabraSeleccionada, 
+            Resultado: action.Resultado, 
+            Terminado: true
+          }
+        ];
+        case "RESETEAR":
+          return initialStateMulti;
       default:
         return state;
     }
@@ -100,6 +121,7 @@ const [cardEquipo, setCardEquipo] = useState([]);
     }
   }
   const [Oracionprogreso, dispatchProgreso] = useReducer(progresoOraciom, initialState)
+  const [MultiProgreso, dispatchMutli] = useReducer(progresoMulti, initialStateMulti);
   const getresultado= ()=>{
    let final = 0
    let  total = respuesta.map((solitario, i)=>{
@@ -114,7 +136,7 @@ const [cardEquipo, setCardEquipo] = useState([]);
 }
 
   return (
-    <JuecoContext.Provider value={{data,InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion,cardEquipo,llamadaDos,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
+    <JuecoContext.Provider value={{data,InfoEstudiaSituacion,MultiProgreso, dispatchMutli,LLamadaIncial,setInfoEstudiaSituacion,cardEquipo,llamadaDos,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
     {children}
     </JuecoContext.Provider>
   )

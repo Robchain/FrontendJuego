@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import ReactPlayer from 'react-player';
 import { Col, Row } from 'reactstrap'
 import buentrabajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
+import { JuecoContext } from '../../context/Juego/JuecoContext';
 const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setOpa2, setOpa3 }) => {
   const [imagenRes, setImagenRes] = useState("")
   useEffect(() => {
@@ -75,7 +76,8 @@ const VideosRespuesta = ({ window, id, data, playref }) => {
   return <ReactPlayer url={videos} playing={true} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" width={450}
   />
 }
-export const VocabularioMulti = ({ id, siguiente, window, InfoEstudiaSituacion }) => {
+export const VocabularioMulti = ({ id, siguiente, window, InfoEstudiaSituacion, dispatchMutli }) => {
+  const {MultiProgreso} =  useContext(JuecoContext)
   const [opa1, setOpa1] = useState(0.4)
   const [opa2, setOpa2] = useState(0.4)
   const [opa3, setOpa3] = useState(0.4)
@@ -98,17 +100,17 @@ export const VocabularioMulti = ({ id, siguiente, window, InfoEstudiaSituacion }
         }
       </Col>
       <Col className='mt-1  align-items-end' lg="6">
-        <div style={{ pointerEvents: pointerEvent, opacity: opa1 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto1(InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra1.Respuesta); /*guardar  */ setCorrecto2("NADA"); setCorrecto3("NADA");setOpa2(0.4); setOpa3(0.4);setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0);}}>
+        <div style={{ pointerEvents: pointerEvent, opacity: opa1 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto1(InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra1.Respuesta); dispatchMutli({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra1.Palabra, Resultado:InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra1.Respuesta}); setCorrecto2("NADA"); setCorrecto3("NADA");setOpa2(0.4); setOpa3(0.4);setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0);}}>
           <div style={{ width: "77px" }}><p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra1.Palabra}</p></div>
           <img style={{ borderRadius: "15px" }} src={InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra1.FileImagen} alt={InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra1.Palabra} width='200'/>
           <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto1} setMomento={setMomento} setPointerEvent={setPointerEvent}   setOpa1={setOpa1}  setOpa2={setOpa2} setOpa3={setOpa3}/></div>
         </div>
-        <div style={{ pointerEvents: pointerEvent, opacity: opa2 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto2(InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA"); setOpa1(0.4); setOpa3(0.4);setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }}>
+        <div style={{ pointerEvents: pointerEvent, opacity: opa2 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto2(InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra2.Respuesta); dispatchMutli({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra2.Palabra, Resultado:InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra2.Respuesta}); setCorrecto1("NADA"); setCorrecto3("NADA"); setOpa1(0.4); setOpa3(0.4);setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }}>
           <div style={{ width: "77px" }}  ><p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra2.Palabra}</p></div>
           <img style={{ borderRadius: "15px" }} src={InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra2.FileImagen} alt={InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra2.Palabra} width='200' />
           <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto2} setMomento={setMomento} setPointerEvent={setPointerEvent}   setOpa1={setOpa1}  setOpa2={setOpa2} setOpa3={setOpa3}/></div>
         </div>
-        <div style={{ pointerEvents: pointerEvent, opacity: opa3 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto3(InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra3.Respuesta); setCorrecto2("NADA"); setCorrecto1("NADA"); setOpa1(0.4); setOpa2(0.4);setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }}>
+        <div style={{ pointerEvents: pointerEvent, opacity: opa3 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto3(InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra3.Respuesta); dispatchMutli({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra3.Palabra, Resultado:InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra3.Respuesta}); setCorrecto2("NADA"); setCorrecto1("NADA"); setOpa1(0.4); setOpa2(0.4);setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }}>
           <div style={{ width: "77px" }}><p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra3.Palabra}</p></div>
           <img style={{ borderRadius: "15px" }} src={InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra3.FileImagen} alt={InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario.Palabra3.Palabra} width='200' />
           <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto3} setMomento={setMomento} setPointerEvent={setPointerEvent}   setOpa1={setOpa1}  setOpa2={setOpa2} setOpa3={setOpa3}/></div>

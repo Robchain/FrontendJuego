@@ -157,7 +157,7 @@ const Preguntasecction = ({ id, window, data }) => {
     return (<></>)
   }
   
-  const RespuestaImagen = ({ id, window, dispatchProgreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento, data }) => {
+  const RespuestaImagen = ({ id, window, Progreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento, data }) => {
     let sujetoRespuesta = "";
     let AdjectivoRespuesta = "";
     let oracion = "";
@@ -181,10 +181,10 @@ const Preguntasecction = ({ id, window, data }) => {
       useEffect(() => {
         if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec)) {
           base = "CORRECTO"
-          setTimeout(() => {/* dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });*/ siguiente(window.id); }, 9000)
+          setTimeout(() => {  Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}`, Resultado:base});/* dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });*/ siguiente(window.id); }, 9000)
         } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec) {
           base = "INCORRECTO"
-          setTimeout(() => { /*dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });;*/ siguiente(window.id) }, 9000)
+          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}`, Resultado:base});/*dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });;*/ siguiente(window.id) }, 9000)
         }
         setopcionRes(base);
       }, [palabrasEstdo.Queselec, palabrasEstdo.QuienSelec])
@@ -218,7 +218,7 @@ const Preguntasecction = ({ id, window, data }) => {
     }
   }
   
-  const RespuestaImagenconAdverbio = ({ id, window, dispatchProgreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento, data }) => {
+  const RespuestaImagenconAdverbio = ({ id, window, Progreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento, data }) => {
     let sujetoRespuesta = "";
     let AdjectivoRespuesta = "";
     let AdverbioRespuesta = "";
@@ -245,11 +245,11 @@ const Preguntasecction = ({ id, window, data }) => {
         if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec) && (palabrasEstdo.AdverSelec === AdverbioRespuesta)) {
           base = "CORRECTO"
           setMomento("Respuesta");
-          setTimeout(() => { /*dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });*/ siguiente(window.id) }, 9000)
+          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}-${AdverbioRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}-${palabrasEstdo.AdverSelec}`, Resultado:base});/*dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });*/ siguiente(window.id) }, 9000)
         } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec || AdverbioRespuesta !== palabrasEstdo.AdverSelec) {
           base = "INCORRECTO"
           setMomento("Respuesta");
-          setTimeout(() => { /*dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });*/ siguiente(window.id) }, 9000)
+          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}-${AdverbioRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}-${palabrasEstdo.AdverSelec}`, Resultado:base});/*dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });*/ siguiente(window.id) }, 9000)
         }
         setopcionRes(base);
       }, [palabrasEstdo.QuienSelec, palabrasEstdo.Queselec, palabrasEstdo.AdverSelec])
@@ -268,7 +268,7 @@ const Preguntasecction = ({ id, window, data }) => {
       }
     }
   }
-export const TODOSSeccionMulti = ({id, window, siguiente, data}) => {
+export const TODOSSeccionMulti = ({id, window, siguiente, data, Progreso}) => {
   const [estate, dispatch] = useReducer(apuntadores, estadoInicialApuntadores)
   const [opacarQuien, disparadorQuien] = useReducer(opacarsOpacidadQuien, estadoInicialOpacidadQuien)
   const [opacarQue, disparadorQue] = useReducer(opacarsOpacidadQue, estadoInicialOpacidadQue)
@@ -448,8 +448,8 @@ export const TODOSSeccionMulti = ({id, window, siguiente, data}) => {
         </Row>
       </Col>
       <Col lg="3" >
-        {isAdverbio(id, window, data) ? <RespuestaImagenconAdverbio data={data}  id={id} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} />
-          : <RespuestaImagen  data={data}  id={id} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} />
+        {isAdverbio(id, window, data) ? <RespuestaImagenconAdverbio data={data}  id={id} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} Progreso={Progreso} />
+          : <RespuestaImagen  data={data}  id={id} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente}  Progreso={Progreso}/>
         }
       </Col>
     </>

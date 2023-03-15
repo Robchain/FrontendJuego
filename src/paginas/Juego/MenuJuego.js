@@ -10,7 +10,7 @@ import MultiJugadorIcon from "../../componentes/iconosCom/MultiJugadorIcon"
 import TrofeoIcon from "../../componentes/iconosCom/TrofeoIcon"
 
 const MenuJuego = () => {
-  const { datoVocabulario} = useContext(JuecoContext);
+  const { datoVocabulario, dispatchMutli} = useContext(JuecoContext);
   const [usuario, setUsuario] = useState("");
   const [Email, setEmail] = useState("");
   const [Identificacion, setIdentificacion] = useState(0);
@@ -19,6 +19,7 @@ const MenuJuego = () => {
     setEmail(localStorage.getItem("Email"));
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUsuario(localStorage.getItem("Usuario"))
+    dispatchMutli({type:"RESETEAR"})
   }, [])
   
   return (

@@ -35,3 +35,53 @@ try {
     return null
 }
 }
+// actualizacion del juego al final
+
+export const ActualizarJuego1 = async (PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado )=>{
+    try {
+        const data = await axios.post("http://localhost:3002/api/auth/actualizarJuegoUno", {PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
+        return data
+    } catch (error) {
+        return null;
+    }
+}
+export const ActualizarJuego2 = async (PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado)=>{
+    try {
+        const data = await axios.post("http://localhost:3002/api/auth/actualizarJuegoDos", {PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
+        return data
+    } catch (error) {
+        return null;
+    }
+}
+export const ActualizarJuego3 = async (PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado)=>{
+    try {
+        const data = await axios.post("http://localhost:3002/api/auth/actualizarJuegoTres", {PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
+        return data
+    } catch (error) {
+        return null;
+    }
+}
+export const ActualizarJuego4 = async (PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado)=>{
+    try {
+        const data = await axios.post("http://localhost:3002/api/auth/actualizarJuegoCuatro", {PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
+        return data
+    } catch (error) {
+        return null;
+    }
+}
+export const ActualizarJuego5 = async (PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado)=>{
+    try {
+        const data = await axios.post("http://localhost:3002/api/auth/actualizarJuegoCinco", {PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
+        return data
+    } catch (error) {
+        return null;
+    }
+}
+export const ActualizarJuegoFinal = async (Terminado)=>{
+    try {
+        const data = await axios.post("http://localhost:3002/api/auth/actualizarJuegoTerminadoMulti", {Terminado});
+        return data
+    } catch (error) {
+        return null;
+    }
+}
