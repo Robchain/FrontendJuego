@@ -3,7 +3,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export const ModalAgregarVocabulario = ({modal, toggle}) => {
   return (
-    <Modal isOpen={modal} toggle={toggle}>
+    <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
         <ModalHeader toggle={toggle}>Agregar Vocabulario</ModalHeader>
         <ModalBody>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do

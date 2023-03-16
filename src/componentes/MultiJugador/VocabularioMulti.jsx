@@ -77,7 +77,6 @@ const VideosRespuesta = ({ window, id, data, playref }) => {
   />
 }
 export const VocabularioMulti = ({ id, siguiente, window, InfoEstudiaSituacion, dispatchMutli }) => {
-  const {MultiProgreso} =  useContext(JuecoContext)
   const [opa1, setOpa1] = useState(0.4)
   const [opa2, setOpa2] = useState(0.4)
   const [opa3, setOpa3] = useState(0.4)

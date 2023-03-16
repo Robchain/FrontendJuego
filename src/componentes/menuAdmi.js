@@ -2,34 +2,35 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { NavItem, Nav, Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
 import IconP    from './IconP'
+import { User,  Columns,  Users, Image, Circle,  Grid,  Layers} from "react-feather"
 import ReporteDeNegocio from '../assets/img/reporte-de-negocios.png'
 import LogoBlipBlaPalabra from "./iconosCom/LogoBlipBlaPalabra";
 
 const MenuAdmi = ({toggle, isOpen}) => {
   return (<Offcanvas toggle={toggle}  isOpen={isOpen} >
   <OffcanvasHeader toggle={toggle} >  <NavLink  className='d-flex '   to='/'><LogoBlipBlaPalabra style={{width:"8em"}} className="mt-1"/>   </NavLink></OffcanvasHeader>
-  <OffcanvasBody>
+  <OffcanvasBody style={{}}>
     <Nav   vertical className="flex-column mb-auto  minav" >
     <NavItem    className="item">
-     <NavLink    to='/VerEstudiante'    className='linkNav'>Estudiante</NavLink>
+     <NavLink    to='/VerEstudiante'    className='linkNav'> <User size={20}/>Estudiante</NavLink>
      </NavItem>
      <NavItem    className="item">
-    <NavLink    to='/VerCategoria'  className='linkNav'>Categoria</NavLink>
+    <NavLink    to='/VerCategoria'  className='linkNav'><Grid  size={20}/>Categoria</NavLink>
     </NavItem>
     <NavItem     className="item">
-    <NavLink    to="/VerRompecabeza"    className='linkNav'>Rompecabeza</NavLink>
+    <NavLink    to="/VerRompecabeza"    className='linkNav'> <Image size={20}/>Rompecabeza</NavLink>
     </NavItem>
     <NavItem     className="item">
-   <NavLink     to='/VerVocabulario'    className='linkNav'> Vocabulario</NavLink>
+   <NavLink     to='/VerVocabulario'    className='linkNav'><Circle  size={20}/> Vocabulario</NavLink>
    </NavItem>
    <NavItem  className="item">
-    <NavLink    to='/VerOracion'    className='linkNav'>Oracion</NavLink>  
+    <NavLink    to='/VerOracion'    className='linkNav'><Columns size={20}/>Oracion</NavLink>  
     </NavItem>    
    <NavItem  className="item">
-    <NavLink    to='/Equipo'    className='linkNav'>Equipo</NavLink>
+    <NavLink    to='/Equipo'    className='linkNav'><Users  size={20}/>Equipo</NavLink>
     </NavItem>
     <NavItem     className="item">
-    <NavLink    to='/ActividadColaborativa' className='linkNav'>Actividades</NavLink>
+    <NavLink    to='/ActividadColaborativa' className='linkNav'><Layers  size={20}/>Actividades</NavLink>
     </NavItem>
     <NavItem    className="item" >
     <NavLink    to='/ReporteEstudiante' className='linkNav'><img  src={ReporteDeNegocio}  alt='test'/> Reporte</NavLink>

@@ -182,7 +182,7 @@ export const QueSeleccionMulti = ({id, window, siguiente, data, Progreso}) => {
       setPointer("none")
       setOpacity2(0.4);
       setOpacity3(0.4);
-      //dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta })
+      Progreso({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.Respuesta});
       setTimeout(() => { siguiente(window.id) },  9000)
     }
   
@@ -192,7 +192,7 @@ export const QueSeleccionMulti = ({id, window, siguiente, data, Progreso}) => {
       setPointer("none")
       setOpacity3(0.4);
       setOpacity1(0.4);
-      //dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta })
+      Progreso({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.Respuesta});
       setTimeout(() => { siguiente(window.id) }, 9000)
     }
     const onhandleClickQueTercero = ()=>{
@@ -201,7 +201,7 @@ export const QueSeleccionMulti = ({id, window, siguiente, data, Progreso}) => {
       setPointer("none")
       setOpacity1(0.4);
       setOpacity2(0.4);
-      //dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta })
+      Progreso({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.Respuesta});
       setTimeout(() => { siguiente(window.id) }, 9000)
     }
    

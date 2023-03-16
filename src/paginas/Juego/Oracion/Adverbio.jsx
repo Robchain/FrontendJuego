@@ -213,7 +213,6 @@ const Adverbio = ({ id, window, siguiente, dispatchProgreso }) => {
         }
       </Col>
       <Col lg="8">
-
         <Row lg="12" className='align-items-center'>
           <Col className="align-self-center" style={{ width: "95px" }}>
             <img alt='que' src={Cantidad} width="75" />

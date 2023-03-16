@@ -181,10 +181,10 @@ const Preguntasecction = ({ id, window, data }) => {
       useEffect(() => {
         if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec)) {
           base = "CORRECTO"
-          setTimeout(() => {  Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}`, Resultado:base});/* dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });*/ siguiente(window.id); }, 9000)
+          setTimeout(() => {  Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}`, Resultado:base});  siguiente(window.id); }, 9000)
         } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec) {
           base = "INCORRECTO"
-          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}`, Resultado:base});/*dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });;*/ siguiente(window.id) }, 9000)
+          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}`, Resultado:base});  siguiente(window.id) }, 9000)
         }
         setopcionRes(base);
       }, [palabrasEstdo.Queselec, palabrasEstdo.QuienSelec])
@@ -245,11 +245,11 @@ const Preguntasecction = ({ id, window, data }) => {
         if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec) && (palabrasEstdo.AdverSelec === AdverbioRespuesta)) {
           base = "CORRECTO"
           setMomento("Respuesta");
-          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}-${AdverbioRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}-${palabrasEstdo.AdverSelec}`, Resultado:base});/*dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });*/ siguiente(window.id) }, 9000)
+          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}-${AdverbioRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}-${palabrasEstdo.AdverSelec}`, Resultado:base}); siguiente(window.id) }, 9000)
         } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec || AdverbioRespuesta !== palabrasEstdo.AdverSelec) {
           base = "INCORRECTO"
           setMomento("Respuesta");
-          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}-${AdverbioRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}-${palabrasEstdo.AdverSelec}`, Resultado:base});/*dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });*/ siguiente(window.id) }, 9000)
+          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:`${sujetoRespuesta}-${AdjectivoRespuesta}-${AdverbioRespuesta}`,PalabraSeleccionada:`${palabrasEstdo.QuienSelec}-${palabrasEstdo.Queselec}-${palabrasEstdo.AdverSelec}`, Resultado:base}); siguiente(window.id) }, 9000)
         }
         setopcionRes(base);
       }, [palabrasEstdo.QuienSelec, palabrasEstdo.Queselec, palabrasEstdo.AdverSelec])

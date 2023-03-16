@@ -35,10 +35,10 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, 
         </Row>
       </CardBody>
       <CardFooter className="d-flex justify-content-between">
-        <Button onClick={prevButton} disabled={index === 1} >
+        <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
           Atras
         </Button>
-        <Button onClick={nextButton}>
+        <Button onClick={nextButton} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Siguiente
         </Button>
       </CardFooter>

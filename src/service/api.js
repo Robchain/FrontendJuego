@@ -1,4 +1,9 @@
 import axios from 'axios';
+
+
+export const Api = axios.create({
+    baseURL:"http://192.168.10.115:3002/api/auth"
+})
 const url="http://192.168.10.115:3002/api/auth"
 export async function postEstudiante    (info){
     try {

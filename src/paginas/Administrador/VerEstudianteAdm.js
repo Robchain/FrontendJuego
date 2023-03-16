@@ -19,7 +19,7 @@ const VerEstudianteAdm = () => {
   const toggle = () => { setIsOpen(!isOpen) }
   const toggledos = () => { setModal(!modal) }
   return (
-    <Container>
+    <Container >
       <NavBar toggle={toggle} Seccion={"Estudiantes"} />
       <MenuAdmi toggle={toggle} isOpen={isOpen} />
       <Row className='justify-content-center fuente fuenteDoce' >

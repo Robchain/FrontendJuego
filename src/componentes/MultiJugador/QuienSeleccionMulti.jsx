@@ -1,6 +1,5 @@
 import React, { /*useContext,*/ useEffect, useState } from 'react'
 import { Col, Row } from 'reactstrap'
-//import { JuecoContext } from '../../../context/Juego/JuecoContext';
 import buentrajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
 import Quien from '../../assets/img/AssetsGame/ico_Que.png'
@@ -44,10 +43,9 @@ const SeleccionQUIEN = ({data, id, window, QueSelecion}) => {
     if (QueSelecion === 2) {setSelcci(data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.FileSujetoImagen) }
     if (QueSelecion === 3) {setSelcci(data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.FileSujetoImagen) }
   }, [QueSelecion])
-  
  return (<>{
-  QueSelecion.length>2 && (
-    <img src={selcci} width="170" alt='opcion1' />
+  QueSelecion!== 0 && (
+    <img src={selcci} width="170" alt='opciones' />
   )
  }</>)
 }
@@ -172,7 +170,7 @@ export const QuienSeleccionMulti = ({id, window, siguiente, data,Progreso}) => {
       setPointer("none")
       setOpacity2(0.4);
       setOpacity3(0.4);
-      //dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta })
+      Progreso({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.Respuesta});
       setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
     }
     
@@ -182,7 +180,7 @@ export const QuienSeleccionMulti = ({id, window, siguiente, data,Progreso}) => {
       setPointer("none")
       setOpacity3(0.4);
       setOpacity1(0.4);
-      //dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta})
+      Progreso({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.Respuesta});
       setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
     }
     const onhandleClickQueTercero = ()=>{
@@ -191,7 +189,7 @@ export const QuienSeleccionMulti = ({id, window, siguiente, data,Progreso}) => {
       setPointer("none")
       setOpacity1(0.4);
       setOpacity2(0.4);
-      //dispatchProgreso({type:"PROGRESO", selecionado:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion,Resul:oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta})
+      Progreso({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.Respuesta});
       setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
     }
    

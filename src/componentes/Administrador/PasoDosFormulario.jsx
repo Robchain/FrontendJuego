@@ -8,7 +8,6 @@ import { Button, Card, CardBody, Col, Label, Row, Form } from "reactstrap";
 import { MostrarEstudiante } from '../../service/Estudiante';
 import Repeater from '../Repeater';
 export const PasoDosFormulario = ({ prevButton, nextButton, index, setSegundo, NumeroDeGrupos,NumeroDeIntegrantes }) => {
-  
   const [DataEstudiante, setDataEstudiante] = useState([])
   const dataInciial = async () =>{
   const data = await MostrarEstudiante()
@@ -77,11 +76,11 @@ export const PasoDosFormulario = ({ prevButton, nextButton, index, setSegundo, N
             }
           </Repeater>
           <div className='d-flex justify-content-between mt-5'>
-          <Button onClick={prevButton} disabled={index === 1} >
-          Atras
+          <Button onClick={prevButton} disabled={index === 1}  style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           <ArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
+          Atras
         </Button>
-        <Button type='submit' >
+        <Button type='submit' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
           Siguiente
           <ArrowRight size={14} className='align-middle ms-sm-25 ms-0'/>
         </Button>

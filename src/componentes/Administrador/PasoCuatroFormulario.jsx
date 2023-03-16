@@ -59,10 +59,10 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
         </Row>
       </CardBody>
       <CardFooter className="d-flex justify-content-between">
-        <Button onClick={prevButton} disabled={index === 1} >
+        <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
           Atras
         </Button>
-        <Button onClick={onclickGuardar}>
+        <Button onClick={onclickGuardar} style={{ borderRadius: "10px", backgroundColor: "#28c76f", color: "#fff", borderColor: "#28c76f" }}>
           Guardar
         </Button>
       </CardFooter>

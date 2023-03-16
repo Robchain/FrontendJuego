@@ -8,7 +8,7 @@ import { VocabularioMulti } from '../../../componentes/MultiJugador/VocabularioM
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
 
 export const PantallaParteDos = () => {
-  const { InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli, MultiProgreso} = useContext(JuecoContext);
+  const { InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli} = useContext(JuecoContext);
   useEffect(() => {
     LLamadaIncial();
     return () =>{
@@ -65,7 +65,6 @@ export const PantallaParteDos = () => {
           <div key={window.id}>
             {window.show && (
                 <>
-                {JSON.stringify(MultiProgreso)}
                 {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario && <VocabularioMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} dispatchMutli={dispatchMutli} />}
 
                 {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].Oraciones && <OracionMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} dispatchMutli={dispatchMutli} />}

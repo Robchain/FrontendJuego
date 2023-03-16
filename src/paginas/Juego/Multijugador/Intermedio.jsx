@@ -38,8 +38,9 @@ export const Intermedio = () => {
 
   return (
     <Container>
-         <NavBarJuego Seccion={"Actividad Asincro"} urlBack={"/MenuJuego"}/>
-         { InfoEstudiaSituacion !== null ? (<>         
+         <NavBarJuego Seccion={"Sala de espera"} urlBack={"/MenuJuego"}/>
+         
+         { InfoEstudiaSituacion !== null ? (<>   
           {
             !verificacionDeSiHaJugadoElAnterior() ? ( <Navigate to={`/JuegoActivo/Jugador/${InfoEstudiaSituacion.Posicion}`} replace={true}/> ) :   (<Espera/>) 
           }

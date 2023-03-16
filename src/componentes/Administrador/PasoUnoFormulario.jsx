@@ -73,10 +73,10 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
           </Col>
         </Row>
         <div className='d-flex justify-content-between mt-3'>
-        <Button onClick={prevButton} disabled={index === 1}>
+        <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Atras
         </Button>
-        <Button onClick={nextButton} disabled={NombreDeEquipo.length < 1}>
+        <Button onClick={nextButton} disabled={NombreDeEquipo.length < 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Siguiente
         </Button>
         </div>

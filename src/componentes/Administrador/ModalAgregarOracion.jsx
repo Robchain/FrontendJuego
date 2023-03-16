@@ -4,7 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 export const ModalAgregarOracion = ({modal, toggle}) => {
   return (
-    <Modal isOpen={modal} toggle={toggle}>
+    <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
     <ModalHeader toggle={toggle}>Agregar Oracion</ModalHeader>
     <ModalBody>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
