@@ -4,7 +4,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, In
 export const ModalAgregarEstudiante = ({ modal, toggle }) => {
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
-      <ModalHeader>Agregar Usuario</ModalHeader>
+      <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Agregar Usuario</ModalHeader>
       <ModalBody>
         <Row>
           <Col md='6' sm='12' className='mb-1'>
@@ -97,12 +97,12 @@ export const ModalAgregarEstudiante = ({ modal, toggle }) => {
         </Row>
       </ModalBody>
       <ModalFooter>
-        <Button color="primary" onClick={toggle}>
-          Do Something
-        </Button>{' '}
-        <Button color="secondary" onClick={toggle}>
-          Cancel
-        </Button>
+      <Button  outline style={{color:'#592a98'}} onClick={toggle}>
+            Cancelar
+          </Button>{' '}
+          <Button  onClick={toggle} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+            Agregar
+          </Button>
       </ModalFooter>
     </Modal>
   )

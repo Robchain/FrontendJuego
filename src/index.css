@@ -1,3 +1,4 @@
+
 .step{
     color:black;
     width: 20px;
@@ -13,11 +14,24 @@
     color:white;
 }
 
+.active{
+    background-color: #8cc5b0;
+    color: #fff !important;
+    border-radius: 50px;
+    box-shadow: 0 0 10px 1px #8cc5b0
+}
+.linkNav{
+    margin:0;
+    padding: 10px 15px ;
+}
 
 #root{
     font-family:"Montserrat", Helvetica, Arial, serif;
 }
 
+body{
+    background-color: #f8f8f8;
+}
 .fuenteDoce{
     font-size: 12px;
 }
@@ -55,6 +69,7 @@
     background-image:url("./assets/img/AssetsGame/Blipbla-pantalla-1.jpg") ;
     background-repeat: no-repeat;
     background-size: cover;
+   
 
 }
 .fondoImagenVocabulario{

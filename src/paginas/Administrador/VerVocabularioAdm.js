@@ -1,6 +1,6 @@
 import React,{useEffect,useState}from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
-import {Button, Container, Row, CardFooter, Col, Card, CardImg, CardBody, CardTitle, CardText } from 'reactstrap';
+import {Button, Container, Row, CardFooter, Col, Card, CardImg, CardBody, CardTitle, CardText, CardGroup } from 'reactstrap';
 import axios from 'axios';
 import { NavBar } from '../../componentes/NavBar';
 import { ModalAgregarVocabulario } from '../../componentes/Administrador/ModalAgregarVocabulario';
@@ -32,6 +32,7 @@ const VerVocabularioAdm = () => {
         <Row className='match-height mb-2' >
             {Data.map(i =>  (
         <Col lg='4' md='6' className='my-2'>
+        <CardGroup>
         <Card>
           <CardImg top src={i.FileImagen} alt={i.Palabra} />
           <CardBody>
@@ -54,6 +55,7 @@ const VerVocabularioAdm = () => {
             </Button>
           </CardFooter>
         </Card>
+        </CardGroup>
         </Col>
       ))}
         </Row>

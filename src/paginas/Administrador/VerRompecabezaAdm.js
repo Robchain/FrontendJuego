@@ -1,6 +1,6 @@
 import React,{useEffect,useState}from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
-import {Button, Container, Card, CardImg, CardBody, CardTitle, CardText, CardFooter, Col, Row } from 'reactstrap';
+import {Button, Container, Card, CardImg, CardBody, CardTitle, CardText, CardFooter, Col, Row, CardGroup } from 'reactstrap';
 import axios from 'axios';
 import { NavBar } from '../../componentes/NavBar';
 import { ModalAgregarRompecabeza } from '../../componentes/Administrador/ModalAgregarRompecabeza';
@@ -33,6 +33,7 @@ const VerRompecabezaAdm = () => {
           cards.map(i =>  (
         
         <Col lg='4' md='6' className='my-2'>
+        <CardGroup>
         <Card>
         <CardImg top src={i.FileColor} alt={i.Nombre} />
           <CardBody>
@@ -55,6 +56,7 @@ const VerRompecabezaAdm = () => {
             </Button>
               </CardFooter>
         </Card>
+        </CardGroup>
         </Col>
       ))
         }

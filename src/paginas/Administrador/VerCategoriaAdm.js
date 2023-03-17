@@ -21,16 +21,15 @@ const toggle  = ()  =>  {setIsOpen(!isOpen)}
 const toggledos = () => { setModal(!modal) }
   return (
     <Container>
-    <NavBar toggle={toggle}/>
+    <NavBar toggle={toggle} Seccion={"Categoria"} />
     <MenuAdmi toggle={toggle} isOpen={isOpen}/>
-    <Row  className='justify-content-center fuenteDoce' >
-    <Col className='d-flex justify-content-end '>
+    <Row  className='justify-content-center fuente fuenteDoce' >
+    <Col xl='9' lg="11"  className='d-flex justify-content-end '>
     <Button onClick={toggledos}  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
        Agregar
           </Button>
 <ModalAgregarCategorias modal={modal} toggle={toggledos}/>
           </Col>
-        <br/>
         <Col xl='9' lg="11" className='d-xl p-0 mt-2' >
         <Table  striped>
           <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"initial"}}>

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button, Card, CardBody, CardFooter, CardImg, CardText, CardTitle, Col, Container, Row } from 'reactstrap'
+import { Button, Card, CardBody, CardFooter, CardGroup, CardImg, CardText, CardTitle, Col, Container, Row } from 'reactstrap'
 import { ModalAgregarOracion } from '../../componentes/Administrador/ModalAgregarOracion'
 import MenuAdmi from '../../componentes/MenuAdmi'
 import { NavBar } from '../../componentes/NavBar'
@@ -16,7 +16,7 @@ export const OracionPagina = () => {
     const toggledos = () => { setModal(!modal) }
   return (
     <Container>
-    <NavBar toggle={toggle} Seccion={"Oraciones"}/>
+    <NavBar toggle={toggle} Seccion={"Oraciones"} />
     <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
     <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-end'>
        <Button onClick={toggledos}  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
@@ -28,6 +28,7 @@ export const OracionPagina = () => {
     {
       cards.map(i =>  (
         <Col lg='4' md='6' className='my-2'>
+       <CardGroup> 
         <Card>
           <CardImg top src={i.FileSujetoImagen} alt={i.Oracion} />
           <CardBody>
@@ -50,6 +51,7 @@ export const OracionPagina = () => {
             </Button>
            </CardFooter>
         </Card>
+        </CardGroup>
         </Col>
       ))
     }

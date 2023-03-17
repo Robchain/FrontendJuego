@@ -1,7 +1,7 @@
 import React,{useEffect,useState}from 'react'
 import axios from 'axios';
 import MenuAdmi from '../../componentes/MenuAdmi';
-import { Button, Card, CardBody, CardFooter, CardImg, CardText, CardTitle, Col, Container, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardFooter, CardGroup, CardImg, CardText, CardTitle, Col, Container, Row } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
 import { ModalAgregarEquipo } from '../../componentes/Administrador/ModalAgregarEquipo';
 
@@ -33,6 +33,7 @@ const EquipoAdm   =   ()  =>{
 {
       card.map(i =>  (
         <Col lg='4' md='6' className='my-2'>
+        <CardGroup>
         <Card>
           <CardImg top src={i.Imagen} alt={i.Nombre} />
           <CardBody>
@@ -53,8 +54,8 @@ const EquipoAdm   =   ()  =>{
               Editar
             </Button>
             </CardFooter>
-          
         </Card>
+        </CardGroup>
         </Col>
       ))
     }

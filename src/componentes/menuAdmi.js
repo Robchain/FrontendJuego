@@ -8,8 +8,8 @@ import LogoBlipBlaPalabra from "./iconosCom/LogoBlipBlaPalabra";
 
 const MenuAdmi = ({toggle, isOpen}) => {
   return (<Offcanvas toggle={toggle}  isOpen={isOpen} >
-  <OffcanvasHeader toggle={toggle} >  <NavLink  className='d-flex '   to='/'><LogoBlipBlaPalabra style={{width:"8em"}} className="mt-1"/>   </NavLink></OffcanvasHeader>
-  <OffcanvasBody style={{}}>
+  <OffcanvasHeader style={{padding:"0 15px"}} >  <LogoBlipBlaPalabra style={{width:"7em"}} className="mt-2"/> </OffcanvasHeader>
+  <OffcanvasBody style={{padding:0}}>
     <Nav   vertical className="flex-column mb-auto  minav" >
     <NavItem    className="item">
      <NavLink    to='/VerEstudiante'    className='linkNav'> <User size={20}/>Estudiante</NavLink>
