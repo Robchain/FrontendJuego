@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { Container } from 'reactstrap'
+import { Container, Progress } from 'reactstrap'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { OracionMulti } from '../../../componentes/MultiJugador/OracionMulti';
 import { VerProgresoYaTerminado } from '../../../componentes/MultiJugador/VerProgresoYaTerminado';
@@ -65,6 +65,7 @@ export const PantallaParteDos = () => {
           <div key={window.id}>
             {window.show && (
                 <>
+                <Progress animated  value={(window.id-1)*20} />
                 {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario && <VocabularioMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} dispatchMutli={dispatchMutli} />}
 
                 {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].Oraciones && <OracionMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} dispatchMutli={dispatchMutli} />}

@@ -34,16 +34,16 @@ const toggledos = () => { setModal(!modal) }
         <Table  striped>
           <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"initial"}}>
           <tr>
-          <th>CATEGORIA</th>
-          <th>ESTADO</th>
-          <th>ACCIONES</th>
+          <th style={{borderBottomColor:"#f8f8f8"}}>CATEGORIA</th>
+          <th style={{borderBottomColor:"#f8f8f8"}}>ESTADO</th>
+          <th style={{borderBottomColor:"#f8f8f8"}}>ACCIONES</th>
           </tr></thead>
           <tbody>
             {Data.map(i=>(
               <tr>
-                <td>{i.NombreCategoria}</td>
-                <td>{i.Estado}</td>
-                <td><button className='btn btn-primary' onClick={''}>Editar</button>{"  "}<button className='btn btn-danger'>Elimiar</button></td>
+                <td style={{borderBottomColor:"#f8f8f8"}}>{i.NombreCategoria}</td>
+                <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
+                <td style={{borderBottomColor:"#f8f8f8"}}><button className='btn btn-primary' onClick={''}>Editar</button>{"  "}<button className='btn btn-danger'>Elimiar</button></td>
             </tr>))}
           </tbody>
         </Table>

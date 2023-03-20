@@ -31,24 +31,24 @@ const VerEstudianteAdm = () => {
           <ModalAgregarEstudiante modal={modal} toggle={toggledos} />
         </Col>
         <Col xl='9' lg="11" className='d-xl p-0 mt-2' >
-          <Table striped>
+          <Table striped >
             <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}><tr>
-              <th>NOMBRE</th>
-              <th>APELLIDO</th>
-              <th>EMAIL</th>
-              <th>TIPO DE USUARIO</th>
-              <th>ESTADO</th>
-              <th>ACCIONES</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>NOMBRE</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>APELLIDO</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>EMAIL</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>TIPO DE USUARIO</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ESTADO</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>
             </tr></thead>
             <tbody>
               {Data.map(i => (
                 <tr key={i._id}>
-                  <td>{i.Nombre}</td>
-                  <td>{i.Apellido}</td>
-                  <td>{i.Email}</td>
-                  <td>{i.TipoUsuario}</td>
-                  <td>{i.Estado}</td>
-                  <td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.Nombre}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.Apellido}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.Email}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.TipoUsuario}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
                         <MoreVertical size={15} />

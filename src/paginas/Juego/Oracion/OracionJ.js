@@ -59,7 +59,7 @@ const OracionJ = () => {
           <Container className="fluid">
           <NavBarJuego Seccion={"Oracion"} urlBack={"/RompecabezaJO"} />
             <Row className="d-flex justify-content-around">
-              <Col  lg="12" className="d-flex justify-content-end "><h3>Puntos: {`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3></Col>
+              <Col  lg="12" className="d-flex justify-content-end "><h3 style={{fontWeight:700, color:"#85858C"}}>Puntos: {`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3></Col>
               <Suspense  fallback={<>Cargandos...</>}>
               {
                 //EN CASO DE TODOS 

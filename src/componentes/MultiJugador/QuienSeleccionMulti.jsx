@@ -19,7 +19,7 @@ const VerVerboRespuesta = ({data, id, window})=>{
     }
   }, [data])
   
-  return (<h3>{selccionver}</h3>)
+  return (<h3 style={{ fontWeight: 700, color: "#85858C" }}>{selccionver}</h3>)
  }
 const VerSeleccionqUE = ({data, id, window})=>{
  const [seleccionverbo, setSeleccionverbo] = useState("");
@@ -33,7 +33,7 @@ const VerSeleccionqUE = ({data, id, window})=>{
     }
   }, [data])
 
-  return (<img src={seleccionverbo} width="170" alt='opcion1' />)
+  return (<img src={seleccionverbo} width="150" alt='opcion1' />)
   
      }
 const SeleccionQUIEN = ({data, id, window, QueSelecion}) => {
@@ -45,7 +45,7 @@ const SeleccionQUIEN = ({data, id, window, QueSelecion}) => {
   }, [QueSelecion])
  return (<>{
   QueSelecion!== 0 && (
-    <img src={selcci} width="170" alt='opciones' />
+    <img src={selcci} width="150" alt='opciones' />
   )
  }</>)
 }
@@ -61,7 +61,7 @@ const VerCantidad = ({data, id, window})=>{
     }
   }, [data])
 
-  return (<h3>{verbo}</h3>)
+  return (<h3 style={{ fontWeight: 700, color: "#85858C" }}>{verbo}</h3>)
      }
 const isAdverbio = (id, window, data) => {
   if (data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.Adverbio || data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.Adverbio) {
@@ -89,6 +89,7 @@ const [videoseleccionado, setVideoseleccionado] = useState("");
     <div>
       <ReactPlayer
         url={videoseleccionado}
+        height={225}
         width={300}
         playing
       />
@@ -115,6 +116,7 @@ const Respuestasecction = ({id, window, data}) => {
     <div>
       <ReactPlayer
         url={videoseleccionado}
+        height={225}
         width={300}
         playing
       />
@@ -204,58 +206,58 @@ export const QuienSeleccionMulti = ({id, window, siguiente, data,Progreso}) => {
               momento ==="Respuesta" && <Respuestasecction data={data} id={id} window={window}/>
       }
               </Col>
-              <Col  lg="8">
-              <Row lg="12" className='align-items-center'>
-                  <Col  className="align-self-center" style={{ width: "95px" }}>
+              <Col  lg="8" className='align-self-center'>
+              <Row >
+                  <Col  style={{ width: "95px" }}>
                     <img alt='que' src={Quien} width="75" />
                   </Col>
-                  <Col className="align-self-center" style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity1 }}  onClick={onhandleClickQuePrimero}>
-                    <img src={data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.FileSujetoImagen} width="170" alt='opcion1' />
+                  <Col style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity1 }}  onClick={onhandleClickQuePrimero}>
+                    <img src={data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.FileSujetoImagen} width="150" alt='opcion1' />
                   </Col>
-                  <Col className="align-self-center" style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity2 }} onClick={onhandleClickQueSegundo}>
-                    <img src={data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.FileSujetoImagen} width="170" alt='opcion2' />
+                  <Col style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity2 }} onClick={onhandleClickQueSegundo}>
+                    <img src={data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.FileSujetoImagen} width="150" alt='opcion2' />
                   </Col>
-                  <Col className="align-self-center" style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity3 }} onClick={onhandleClickQueTercero}>
-                    <img src={data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.FileSujetoImagen} width="170" alt='opcion3' />
+                  <Col style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity3 }} onClick={onhandleClickQueTercero}>
+                    <img src={data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.FileSujetoImagen} width="150" alt='opcion3' />
                   </Col>
                 </Row>
               </Col>
-              <Col lg="8">
-              <Row lg="8" className='align-items-center'>
-                  <div style={{ width: "95px" }} className="mx-auto">
-                    <img alt='que' src={Quien} width="75" />
+              <Col lg="8" style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
+              <Row lg="8" >
+                  <div style={{ width: "200px" }} >
+                    <img alt='que' src={Quien} width="75" style={{ margin: "0px 35px" }}/>
                   </div>
-                  <div style={{ width: "95px" }} className="mx-auto">
+                  <div style={{ width: "120px" }} >
                     <img src={Verbo} alt='opcion1' width="75" />
                   </div>
                   {  isAdverbio( id, window, data)
                     &&
                     (
-                      <div style={{ width: "95px" }} className="mx-auto">
+                      <div style={{ width: "100px" }} >
                         <img src={Cantidad} alt='opcion1' width="75" />
                       </div>)
                   }
-                  <div style={{ width: "95px" }} className="mx-auto">
-                    <img alt='que' src={Que} width="75" />
+                  <div style={{ width: "200px" }} >
+                    <img alt='que' src={Que} width="75" style={{ margin: "0px 35px" }}/>
                   </div>
                 </Row>
                 {/* parte de seleccion */}
-                <Row lg="8" className='align-items-center'>
-                 <div style={{ width: "95px" }} className='mx-auto'>
+                <Row lg="8" >
+                 <div style={{ width: "200px" }} >
                  <SeleccionQUIEN QueSelecion={QueSelecion} id={id} data={data} window={window}/>
                   </div>
-                  <div style={{ width: "95px" }} className="mx-auto">
+                  <div style={{ width: "200px" }} >
                     <VerVerboRespuesta id={id} data={data} window={window} />
                   </div>
                   {
                     isAdverbio( id, window, data)
                     && (
-                      <div style={{ width: "95px" }} className="mx-auto">
+                      <div style={{ width: "100px" }} >
                         <VerCantidad  id={id} data={data} window={window} />
                       </div>
                     )
                   }
-                  <div style={{ width: "95px" }} className="mx-auto">
+                  <div style={{ width: "200px" }} >
                   <VerSeleccionqUE id={id} data={data} window={window} />
                   </div>
                 </Row>

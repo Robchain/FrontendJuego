@@ -21,7 +21,7 @@ const MostrarQue = ({ oraciondata, id, window }) => {
   }, [oraciondata])
 
 
-  return (<img src={verbo} width="170" alt='opcion que' />)
+  return (<img src={verbo} width="150" alt='opcion que' />)
 }
 const RespuestaImagen = ({ oraciondata, setImagen, imagen, id, window, Queselec, setMomento, momento }) => {
 
@@ -83,6 +83,7 @@ const Preguntasecction = ({ id, window }) => {
     <div>
       <ReactPlayer
         url={videoseleccionado}
+        height={225}
         width={300}
         playing
         loop={true}
@@ -111,6 +112,7 @@ const Respuestasecction = ({ id, window }) => {
     <div>
       <ReactPlayer
         url={videoseleccionado}
+        height={225}
         width={300}
         playing
       />
@@ -134,7 +136,7 @@ const SeleccionAdverbio = ({ QueSelecion, oraciondata, id, window }) => {
 
 
   return (
-    <><h3>{seleccionpal}</h3></>
+    <><h3 style={{ fontWeight: 700, color: "#85858C" }}>{seleccionpal}</h3></>
   )
 }
 const VerVerboRespuesta = ({ oraciondata, window, id }) => {
@@ -146,7 +148,7 @@ const VerVerboRespuesta = ({ oraciondata, window, id }) => {
   } else if (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta === "CORRECTO") {
     verbo = oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Verbo
   }
-  return (<h3>{verbo}</h3>)
+  return (<h3 style={{ fontWeight: 700, color: "#85858C" }}>{verbo}</h3>)
 }
 const VerSeleccionQuien = ({ oraciondata, window, id }) => {
   const [selecion, setSelecion] = useState("");
@@ -159,7 +161,7 @@ const VerSeleccionQuien = ({ oraciondata, window, id }) => {
       setSelecion(oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen)
     }
   }, [oraciondata])
-  return (<>{selecion.length > 2 && (<img src={selecion} width="170" alt='opcion1' />)}</>)
+  return (<>{selecion.length > 2 && (<img src={selecion} width="150" alt='opcion1' />)}</>)
 }
 const Adverbio = ({ id, window, siguiente, dispatchProgreso }) => {
   const [momento, setMomento] = useState("inicial");
@@ -204,7 +206,7 @@ const Adverbio = ({ id, window, siguiente, dispatchProgreso }) => {
 
   return (
     <>
-      <Col className='mt-2' lg="4" sm="12" md="12" >
+      <Col className='' lg="4" sm="12" md="12" >
         {
           momento === "inicial" && <Preguntasecction id={id} window={window} />
         }
@@ -212,58 +214,57 @@ const Adverbio = ({ id, window, siguiente, dispatchProgreso }) => {
           momento === "Respuesta" && <Respuestasecction id={id} window={window} />
         }
       </Col>
-      <Col lg="8">
-        <Row lg="12" className='align-items-center'>
-          <Col className="align-self-center" style={{ width: "95px" }}>
+      <Col lg="8" className='align-self-center'>
+        <Row >
+          <Col style={{ width: "95px" }}>
             <img alt='que' src={Cantidad} width="75" />
           </Col>
-          <Col className="align-self-center" style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity1 }} onClick={onhandleClickQuePrimero}>
-            <h3>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio}</h3>
+          <Col style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity1 }} onClick={onhandleClickQuePrimero}>
+            <h3 style={{ fontWeight: 700, color: "#85858C" }}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio}</h3>
           </Col>
-          <Col className="align-self-center" style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity2 }} onClick={onhandleClickQueSegundo}>
-            <h3>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Adverbio}</h3>
+          <Col style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity2 }} onClick={onhandleClickQueSegundo}>
+            <h3 style={{ fontWeight: 700, color: "#85858C" }}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion2.Adverbio}</h3>
           </Col>
-          <Col className="align-self-center" style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity3 }} onClick={onhandleClickQueTercero}>
-            <h3>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio}</h3>
+          <Col style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity3 }} onClick={onhandleClickQueTercero}>
+            <h3 style={{ fontWeight: 700, color: "#85858C" }}>{oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio}</h3>
           </Col>
         </Row>
       </Col>
-      <Col lg="8">
-        <Row lg="8" className='align-items-center'>
-          <div style={{ width: "95px" }} className="mx-auto">
-            <img alt='que' src={Quien} width="75" />
+      <Col lg="8" style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
+        <Row lg="8">
+          <div style={{ width: "200px" }} >
+            <img alt='que' src={Quien} width="75" style={{ margin: "0px 35px" }} />
           </div>
-          <div style={{ width: "95px" }} className="mx-auto">
+          <div style={{ width: "120px" }} >
             <img src={Verbo} alt='opcion1' width="75" />
           </div>
           {oraciondata[`Juego${id}`].Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio
             &&
             (
-              <div style={{ width: "95px" }} className="mx-auto">
+              <div style={{ width: "100px" }} >
                 <img src={Cantidad} alt='opcion1' width="75" />
               </div>)
           }
-          <div style={{ width: "95px" }} className="mx-auto">
-            <img alt='que' src={Que} width="75" />
+          <div style={{ width: "200px" }} >
+            <img alt='que' src={Que} width="75" style={{ margin: "0px 35px" }} />
           </div>
         </Row>
-        <Row lg="8" className='align-items-center'>
-
-          <div style={{ width: "95px" }} className='mx-auto'>
+        <Row lg="8" >
+          <div style={{ width: "200px" }} >
             <VerSeleccionQuien id={id} oraciondata={oraciondata} window={window} />
           </div>
-          <div style={{ width: "95px" }} className="mx-auto">
+          <div style={{ width: "120px" }} >
             <VerVerboRespuesta id={id} oraciondata={oraciondata} window={window} />
           </div>
           {
             isAdverbio(id, window, oraciondata)
             && (
-              <div style={{ width: "95px" }} className="mx-auto">
+              <div style={{ width: "100px" }} >
                 <SeleccionAdverbio QueSelecion={QueSelecion} id={id} oraciondata={oraciondata} window={window} />
               </div>
             )
           }
-          <div style={{ width: "95px" }} className="mx-auto">
+          <div style={{ width: "200px" }} >
             <MostrarQue id={id} oraciondata={oraciondata} window={window} />
           </div>
         </Row>
