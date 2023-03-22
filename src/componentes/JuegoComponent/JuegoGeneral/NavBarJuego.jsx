@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Col, Row } from 'reactstrap'
 import LogoBlipBlaPalabra from '../../iconosCom/LogoBlipBlaPalabra'
 import doorout from "../../../assets/img/AssetsGame/doorout.png"
@@ -7,8 +7,12 @@ import backbutton from "../../../assets/img/AssetsGame/backbotton.png"
 export const NavBarJuego = ({ urlBack,Seccion }) => {
   const [Email, setEmail] = useState("");
 const [usuario, setUsuario] = useState("")
+const navegar = useNavigate();
 const [Identificacion, setIdentificacion] = useState("")
   useEffect(() => { 
+    if(localStorage.getItem("Email") === null&&localStorage.getItem("Identificacion") === null&&localStorage.getItem("Usuario") === null ){
+      navegar("/");
+    }
     setEmail(localStorage.getItem("Email"));
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUsuario(localStorage.getItem("Usuario"))

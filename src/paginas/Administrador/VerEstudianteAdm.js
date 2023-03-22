@@ -23,14 +23,14 @@ const VerEstudianteAdm = () => {
       <NavBar toggle={toggle} Seccion={"Estudiantes"} />
       <MenuAdmi toggle={toggle} isOpen={isOpen} />
       <Row className='justify-content-center fuente fuenteDoce' >
-        <Col xl='9' lg="11" className='d-flex justify-content-end '>
+        <Col xl='11' lg="12" className='d-flex justify-content-end '>
           <Button onClick={toggledos} className='px-4 ' data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
             Agregar
           </Button>
           { /*aqui va  el modal*/}
           <ModalAgregarEstudiante modal={modal} toggle={toggledos} />
         </Col>
-        <Col xl='9' lg="11" className='d-xl p-0 mt-2' >
+        <Col xl='12' lg="12" className='d-xl p-0 mt-2'>
           <Table striped >
             <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}><tr>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>NOMBRE</th>
@@ -50,7 +50,7 @@ const VerEstudianteAdm = () => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
-                      <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' caret>
+                      <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
                         <MoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Row, Col, Container } from "reactstrap"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import doorout from "../../assets/img/AssetsGame/doorout.png"
 import { JuecoContext } from "../../context/Juego/JuecoContext"
 import LogoBlipBlaPalabra from "../../componentes/iconosCom/LogoBlipBlaPalabra"
@@ -14,8 +14,11 @@ const MenuJuego = () => {
   const [usuario, setUsuario] = useState("");
   const [Email, setEmail] = useState("");
   const [Identificacion, setIdentificacion] = useState(0);
-
+  const navegar = useNavigate();
   useEffect (() => {
+    if(localStorage.getItem("Email") === null&&localStorage.getItem("Identificacion") === null&&localStorage.getItem("Usuario") === null ){
+         navegar("/");
+       }
     setEmail(localStorage.getItem("Email"));
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUsuario(localStorage.getItem("Usuario"))
