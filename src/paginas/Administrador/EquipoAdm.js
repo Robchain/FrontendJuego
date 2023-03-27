@@ -1,9 +1,9 @@
 import React,{useEffect,useState}from 'react'
-import axios from 'axios';
 import MenuAdmi from '../../componentes/MenuAdmi';
 import { Button, Card, CardBody, CardFooter, CardGroup, CardImg, CardText, CardTitle, Col, Container, Row } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
 import { ModalAgregarEquipo } from '../../componentes/Administrador/ModalAgregarEquipo';
+import { llamadaGetActivo } from '../../service/Adminstrador/Equipo';
 
 const EquipoAdm   =   ()  =>{
   const [card, setCard] = useState([])
@@ -11,11 +11,11 @@ const EquipoAdm   =   ()  =>{
     const [modal, setModal] = useState(false)
     const toggledos = () => { setModal(!modal) }
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
-    useEffect(() => {
-      const mostrar=  async()=>{
-        const data=await  axios.get('http://192.168.10.115:3002/api/auth/Equipo/mostrartodo');
-        setCard(data.data);
+     const mostrar=  async()=>{
+        const data = await llamadaGetActivo() ;
+        setCard(data);
       }
+    useEffect(() => {
       mostrar()
     }, [])
    

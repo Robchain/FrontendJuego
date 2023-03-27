@@ -1,17 +1,21 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Button, Card, CardBody, CardFooter, CardGroup, CardImg, CardText, CardTitle, Col, Container, Row } from 'reactstrap'
 import { ModalAgregarOracion } from '../../componentes/Administrador/ModalAgregarOracion'
 import MenuAdmi from '../../componentes/MenuAdmi'
 import { NavBar } from '../../componentes/NavBar'
+import { MetodoGetDellamadaOracionActivas } from '../../service/Adminstrador/Oracion'
 
 export const OracionPagina = () => {
   const [cards, setCards] = useState([])
   const [modal, setModal] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
+    const llamdainicial = async ()=>{
+      const data = await MetodoGetDellamadaOracionActivas();
+      setCards(data);
+    }
     useEffect(() => {
-      axios.get('http://192.168.10.115:3002/api/auth/OracionAdmi/mostrartodo').then(response =>  setCards(response.data))
+      llamdainicial();
     }, [])
     const toggledos = () => { setModal(!modal) }
   return (

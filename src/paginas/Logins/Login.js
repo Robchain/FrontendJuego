@@ -44,7 +44,7 @@ const Index = () => {
     const postUsurio = async () => {
         try {
             axios({
-                url: "http://192.168.10.115:3002/api/auth/signin",
+                url: "http://localhost:3002/api/auth/signin",
                 method: 'POST',
                 data: Datos
             }).then(response => {

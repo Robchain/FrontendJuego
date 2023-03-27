@@ -1,22 +1,21 @@
 import React, {useEffect,useState}  from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
-import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Table, Button, Row, Col, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
 import { ModalAgregarCategorias } from '../../componentes/Administrador/ModalAgregarCategorias';
 import { Edit, MoreVertical, Trash } from 'react-feather';
+import { llamadaDeLaApiCategoriaGet } from '../../service/Adminstrador/Categoria';
 const VerCategoriaAdm = () => {
   const [modal, setModal] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [Data, setData] = useState([])
 const toggle  = ()  =>  {setIsOpen(!isOpen)}
-
+const respuesta = async ()=>{
+  const data = await llamadaDeLaApiCategoriaGet();
+  setData(data);
+}
   useEffect(() => {
-    const respuesta = async ()=>{
-      const data = await axios.get('http://localhost:3002/api/auth/Categoria/mostrartodo');
-      setData(data.data);
-    }
     respuesta();
   }, [])
 const toggledos = () => { setModal(!modal) }
@@ -25,13 +24,13 @@ const toggledos = () => { setModal(!modal) }
     <NavBar toggle={toggle} Seccion={"Categoria"} />
     <MenuAdmi toggle={toggle} isOpen={isOpen}/>
     <Row  className='justify-content-center fuente fuenteDoce' >
-    <Col xl='9' lg="11"  className='d-flex justify-content-end '>
+    <Col xl='9' lg="11"   className='d-flex justify-content-end '>
     <Button onClick={toggledos}  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
        Agregar
           </Button>
 <ModalAgregarCategorias modal={modal} toggle={toggledos}/>
           </Col>
-        <Col xl='10' lg="11" className='d-xl p-0 mt-2' >
+        <Col xl='12' lg="11" className='d-xl p-0 mt-2' >
         <Table  striped>
           <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"initial"}}>
           <tr>

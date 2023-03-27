@@ -1,7 +1,17 @@
 import React from 'react'
 import Select from 'react-select';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Label, Input } from 'reactstrap';
-
+const BaseInicialFormulario = { Categoria: "", Palabra: "", Silaba: "", FileImagen: "", FileMuestra: "", FilePregunta: "", Estado: "ACTIVO"}
+function llenadodeFormulario(state, action) {
+  switch (action.type) {
+    case 'onchange':
+      return { ...state, [action.field]: action.value };
+    case "reset":
+      return BaseInicialFormulario;
+    default:
+      throw new Error();
+  }
+}
 
 export const ModalAgregarOracion = ({modal, toggle}) => {
   return (

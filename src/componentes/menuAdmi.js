@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import { NavItem, Nav, Offcanvas, OffcanvasHeader, OffcanvasBody } from "reactstrap";
-import IconP    from './IconP'
 import { User,  Columns,  Users, Image, Circle,  Grid,  Layers} from "react-feather"
 import ReporteDeNegocio from '../assets/img/reporte-de-negocios.png'
 import LogoBlipBlaPalabra from "./iconosCom/LogoBlipBlaPalabra";

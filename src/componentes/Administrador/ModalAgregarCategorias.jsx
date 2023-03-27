@@ -1,30 +1,75 @@
-import React from 'react'
-import { useForm, Controller } from 'react-hook-form'
+import React, { useEffect, useReducer, useState } from 'react'
+import Swal from 'sweetalert2'
 import Select from 'react-select';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Input, Form, Label } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Input, Form, Label, Col } from 'reactstrap';
+import { CrearPostCategoria } from '../../service/Adminstrador/Categoria';
+import withReactContent from 'sweetalert2-react-content';
+const BaseInicialFormulario = { Juego: "", NombreCategoria:""}
+function llenadodeFormulario(state, action) {
+  switch (action.type) {
+    case 'onchange':
+      return { ...state, [action.field]: action.value };
+    case "reset":
+      return BaseInicialFormulario;
+    default:
+      throw new Error();
+  }
+}
+
 export const ModalAgregarCategorias = ({modal, toggle}) => {
+  const MySwal = withReactContent(Swal)
+  const [bloqueo, setBloqueo] = useState(true);
+  const [{ Juego, NombreCategoria }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   
+  const subidaData = async () =>{
+    try {
+const data  = await  CrearPostCategoria({Juego,NombreCategoria});
+  MySwal.fire({
+    title: `${data.titulo}`,
+    text: `${data.respuesta}`,
+    icon: `${data.type}`,
+    customClass: {
+      confirmButton: 'btn btn-primary'
+    },
+    buttonsStyling: false}) 
+    toggle();
+    } catch (error) {
+      MySwal.fire({
+        title: 'Error!',
+        text: "Falto un campo",
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false})
+        toggle();
+    }  
+  } 
 
-const {handleSubmit, control} = useForm();
-
+  useEffect(() => {
+    if(Juego && NombreCategoria.length > 0){
+      setBloqueo(false);
+    }else{
+      setBloqueo(true);
+    }
+  }, [Juego, NombreCategoria])
+  
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered'>
     <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Agregar Categoria</ModalHeader>
     <ModalBody>
-     <Row>
-     <Form>
+     <Row><Col>
      <Label for="Juego">Juego</Label>
-<Controller control={control} name="Juego" render={({field:{onChange, value, ...rest}})=>(<Select placeholder="Seleccione" className='react-select' options={[{label:"Vocabulario",value:"Vocabulario"},{label:"Oracion",value:"Oracion"}]} value={value} onChange={onChange}  {...rest} />)}/>
+     <Select placeholder="Seleccione" name='Juego' className='react-select' options={[{label:"Vocabulario",value:"Vocabulario"},{label:"Oracion",value:"Oracion"}]}  onChange={event => disparodeAccion({ type: "onchange", field: "Juego", value: event })} />
      <Label for='NombreCategoria'>Categoria</Label>
-<Controller   control={control} name='NombreCategoria' render={({field: { onChange, value, name, ...rest }})=>(<Input  onChange={onChange} value={value}  name={name}  {...rest}/>)}/>
-     </Form>
-     </Row>
+     <Input name='NombreCategoria'  onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}  />
+     </Col></Row>
     </ModalBody>
     <ModalFooter>
-    <Button  outline style={{color:'#592a98'}} onClick={toggle}>
+    <Button  outline style={{color:'#592a98'}} onClick={()=>{toggle(); disparodeAccion({ type: "reset" }); }}>
             Cancelar
           </Button>{' '}
-          <Button  onClick={toggle} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+          <Button  onClick={()=>{subidaData()}} disabled={bloqueo} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
             Agregar
           </Button>
     </ModalFooter>

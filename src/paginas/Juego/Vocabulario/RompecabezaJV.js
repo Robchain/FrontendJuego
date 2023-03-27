@@ -5,11 +5,13 @@ import { Col, Container, Row, Modal, ModalHeader, ModalBody, ModalFooter, Button
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
+import { llamadaRompecabezaGet } from '../../../service/Juego/Vocabulario'
 const RompecabezaJV = () => {
   const { data, setavance, setData } = useContext(JuecoContext);
   const [modal, setModal] = useState(false);
-  const datoVocabulario = (user) => {
-    axios.post("http://localhost:3002/api/auth/llamadaPartidaVocabulario", { Usuario: user }).then(da => { setData(da.data) })
+  const datoVocabulario = async (user) => {
+   const data = await  llamadaRompecabezaGet({user});
+   setData(data);
   }
 
   useEffect(() => {

@@ -8,7 +8,6 @@ const ReporteAdm    =   ()  =>{
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
 const [DataForm, setDataForm] = useState({
     Estudiante:''
-
 })
 const handlechange = (e)=>{
     const{name, value}=e.target;
