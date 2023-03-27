@@ -13,16 +13,41 @@ import {
   Row,
   CardGroup,
 } from "reactstrap";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
 import { NavBar } from "../../componentes/NavBar";
 import { ModalAgregarRompecabeza } from "../../componentes/Administrador/ModalAgregarRompecabeza";
-import { llamadaGetRompecabezaActivos } from "../../service/Adminstrador/Rompecabeza";
+import { ElimnarDataRompecabeza, llamadaGetRompecabezaActivos } from "../../service/Adminstrador/Rompecabeza";
 const VerRompecabezaAdm = () => {
   const [cards, setCards] = useState([]);
+  const MySwal = withReactContent(Swal)
   const [modal, setModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+  const ondeleteTarjeta = async (objeto)=>{
+    try {
+      const data = await ElimnarDataRompecabeza({_id:objeto._id});   
+      MySwal.fire({
+        title: `${data.titulo}`,
+        text: `${data.respuesta}`,
+        icon: `${data.type}`,
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false}) 
+    } catch (error) {
+      MySwal.fire({
+        title: 'Error!',
+        text: "Falto un campo",
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false})
+    }
+  }
   const mostrar = async () => {
     const data = await llamadaGetRompecabezaActivos();
     setCards(data);
@@ -95,7 +120,7 @@ const VerRompecabezaAdm = () => {
                 <CardFooter>
                   <Button
                     style={{ color: "#592a98" }}
-                    outline /*onClick={() =>  Eliminar(i.Nombre)}*/
+                    outline onClick={() => ondeleteTarjeta(i)}
                   >
                     Eliminar
                   </Button>

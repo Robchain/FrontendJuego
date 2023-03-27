@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import Swal from 'sweetalert2'
 import Select from 'react-select';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Input, Form, Label, Col } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Input, Label, Col } from 'reactstrap';
 import { CrearPostCategoria } from '../../service/Adminstrador/Categoria';
 import withReactContent from 'sweetalert2-react-content';
 const BaseInicialFormulario = { Juego: "", NombreCategoria:""}

@@ -1,60 +1,121 @@
-import React from 'react'
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input } from 'reactstrap';
+import React, { useEffect, useReducer, useState }  from 'react'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Spinner } from 'reactstrap';
+import { CrearRompecabeza } from '../../service/Adminstrador/Rompecabeza';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
+import { subidaIRompecabeza } from '../../firebase/config';
+const BaseInicialFormulario = { Nombre: "", FileBlanco:null, FileColor:null,Pieza:0};
+function llenadodeFormulario(state, action) {
+  switch (action.type) {
+    case 'onchange':
+      return { ...state, [action.field]: action.value };
+    case "reset":
+      return BaseInicialFormulario;
+    default:
+      throw new Error();
+  }
+}
+
 export const ModalAgregarRompecabeza = ({modal, toggle}) => {
+const [{Nombre, FileBlanco, FileColor,Pieza}, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
+const MySwal = withReactContent(Swal)
+const [loading, setLoading] = useState(false)
+const [bloqueoSecu, setBloqueoSecu] = useState(false);
+const [bloqueo, setBloqueo] = useState(true);
+
+useEffect(() => {
+  if(Nombre.length > 0 && FileBlanco !== null && FileColor !== null && Pieza !==0 ){
+    setBloqueo(false);
+  }else { 
+    setBloqueo(true);
+  }
+}, [Nombre, FileBlanco, FileColor,Pieza])
+
+const uploadData =  async ()=>{
+  try {
+    setBloqueoSecu(true); 
+    setBloqueo(true);
+    setLoading(true);
+    const ulrC = await subidaIRompecabeza(FileColor)
+        console.log(ulrC)
+        const ulrB  = await subidaIRompecabeza(FileBlanco)
+        console.log(ulrB)
+ const data = await  CrearRompecabeza({FileBlanco:ulrB ,FileColor:ulrC, Nombre:Nombre,Pieza:Pieza});
+    MySwal.fire({
+      title: `${data.titulo}`,
+      text: `${data.respuesta}`,
+      icon: `${data.type}`,
+      customClass: {
+        confirmButton: 'btn btn-primary'
+      },
+      buttonsStyling: false}) 
+      setBloqueoSecu(false);
+      setBloqueo(false);
+      setLoading(false);
+      toggle();
+  } catch (error) {
+    MySwal.fire({
+      title: 'Error!',
+      text: "No se pudo Crear",
+      icon: 'error',
+      customClass: {
+        confirmButton: 'btn btn-primary'
+      },
+      buttonsStyling: false})
+      setBloqueoSecu(false);
+      setBloqueo(false);
+      setLoading(false);
+      toggle();
+  }
+}
+
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
     <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Agregar Rompecabeza</ModalHeader>
     <ModalBody>
       <div className=''>
               <Label className='form-label' for='Nombre'>Nombre</Label>
-              <Input type='text' id='Nombre' name="Nombre" placeholder='Nombre' /*value={editarMod  === false ?  FormValue.Nombre  : selecion.Nombre}  onChange={editarMod  === false ? handlechange  : handlerFalse}*//>
-              <Label className='form-label' for='inputFileC'>
+              <Input type='text' id='Nombre' name="Nombre" placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} />
+              <Label className='form-label' for='FileColor'>
               Foto Color
             </Label>
-            <Input type='file' id='inputFileC' name='FileColor' /*onChange={e  => setFileC(e.target.files[0]) }*/ />
-              <Label className='form-label' for='inputFileB'>
+            <Input type='file' id='FileColor' name='FileColor' onChange={event => disparodeAccion({ type: "onchange", field: "FileColor", value: event.target.files[0] })} />
+              <Label className='form-label' for='FileBlanco'>
               Foto Blanco y Negro
             </Label>
-            <Input type='file' id='inputFileB' name='FileBlanco' /*onChange={(e)  => setFileB(e.target.files[0])} *//>
+            <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => disparodeAccion({ type: "onchange", field: "FileBlanco", value: event.target.files[0] })} /*onChange={(e)  => setFileB(e.target.files[0])} *//>
             <Label>PIEZA</Label><br/>
-        <Label> <Input  
+        <Label> 
+        <Input  
+        style={{color:'#8b8b8c'}}
             type='radio'
+            id={4}
             name="Pieza"
             value={4}
-            //checked={editarMod === false ? FormValue.Pieza === 4 : selecion.Pieza === 4}
-            //onChange={editarMod  === false ? handlechange  : handlerFalse}
+            defaultChecked={Pieza === 4}
+            onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value})}
         />{" "}4</Label><br/>
         <Label><Input 
+        style={{color:'#8b8b8c'}}
             type='radio'
+            id={6}
             name="Pieza"
             value={6}
-            //checked={ editarMod === false ? FormValue.Pieza === 6 : selecion.Pieza === 6}
-            //onChange={editarMod  === false ? handlechange  : handlerFalse}
+            defaultChecked={Pieza === 6}
+            onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
         />{" "}6 </Label><br/>
-            {/*<Label>ESTADO</Label><br/>
-        <Label> <Input  
-            type='radio'
-            name="Estado"
-            value="ACTIVO"
-            //checked={editarMod === false ? FormValue.Estado ===  "ACTIVO" : selecion.Estado === "ACTIVO"}
-            //onChange={editarMod  === false ? handlechange  : handlerFalse}
-        />Activo</Label> <br/>
-        <Label>
-        <Input  
-            type='radio'
-            name="Estado"
-            value="INACTIVO"
-            //checked={editarMod === false ? FormValue.Estado === "INACTIVO"  : selecion.Estado === "INACTIVO"}
-            //onChange={editarMod  === false ? handlechange  : handlerFalse}
-        />Inactivo
-        </Label>*/}
             </div>
     </ModalBody>
     <ModalFooter>
-    <Button  outline style={{color:'#592a98'}} onClick={toggle}>
+    <Button  outline style={{color:'#592a98'}} onClick={toggle} disabled={bloqueoSecu}>
             Cancelar
           </Button>{' '}
-          <Button  onClick={toggle} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+          <Button  onClick={()=>{
+              uploadData();
+          }} disabled={bloqueo} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+         { loading && <Spinner size="sm">
+    Loading...
+  </Spinner>}
             Agregar
           </Button>
     </ModalFooter>

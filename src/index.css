@@ -74,6 +74,13 @@
     padding: 10px 15px ;
 }
 
+.tabvs .active{
+    background-color: #fff !important;
+    color: #fff !important;
+    border-radius: 50px !important;
+    box-shadow: 0 0 10px 1px #Fff !important;
+}
+
 #root{
     font-family:"Montserrat", Helvetica, Arial, serif;
 }
