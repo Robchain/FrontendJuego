@@ -1,14 +1,20 @@
 import React,{useEffect,useState}from 'react'
 import MenuAdmi from '../../componentes/MenuAdmi';
-import { Button, Card, CardBody, CardFooter, CardGroup, CardImg, CardText, CardTitle, Col, Container, Row } from 'reactstrap';
+import { Button, Card, CardBody, CardFooter, CardGroup, CardImg, CardText, CardTitle, Col, Container, Input, Label, Row } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
 import { ModalAgregarEquipo } from '../../componentes/Administrador/ModalAgregarEquipo';
-import { llamadaGetActivo } from '../../service/Adminstrador/Equipo';
+import { ElimnarDataDeEquipo, llamadaGetActivo } from '../../service/Adminstrador/Equipo';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
 
 const EquipoAdm   =   ()  =>{
+  const MySwal = withReactContent(Swal)
   const [card, setCard] = useState([])
     const [isOpen, setIsOpen] = useState(false)
     const [modal, setModal] = useState(false)
+    const [showAll, setShowAll] = useState(true);
+   
+    const [filteredData, setfilteredData] = useState([])
     const toggledos = () => { setModal(!modal) }
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
      const mostrar=  async()=>{
@@ -18,7 +24,42 @@ const EquipoAdm   =   ()  =>{
     useEffect(() => {
       mostrar()
     }, [])
-   
+
+    /*useEffect(() => {
+      if(card.length>0){
+      setfilteredData(showAll
+        ? card // Mostrar todo si showAll es verdadero
+        : card.filter((item) => item.Estado === "ACTIVO"))
+      }
+    }, [showAll])
+    */
+    const handleCheckboxChange = () => {
+      setShowAll(!showAll);
+    };
+    
+
+    const deleteData = async (objecto) =>{
+      try {
+        const data = await ElimnarDataDeEquipo({_id:objecto._id});
+        MySwal.fire({
+          title: `${data.titulo}`,
+          text: `${data.respuesta}`,
+          icon: `${data.type}`,
+          customClass: {
+            confirmButton: 'btn btn-primary'
+          },
+          buttonsStyling: false}) 
+      } catch (error) {
+        MySwal.fire({
+          title: 'Error!',
+          text: "Falto un campo",
+          icon: 'error',
+          customClass: {
+            confirmButton: 'btn btn-primary'
+          },
+          buttonsStyling: false})
+      }
+    }
     return (
       <Container>
      <NavBar toggle={toggle} Seccion={"Administrador de equipos"}/>
@@ -30,8 +71,24 @@ const EquipoAdm   =   ()  =>{
           <ModalAgregarEquipo modal={modal} toggle={toggledos} />
         </Col>
 <Row className='match-height mb-2'>
-{
-      card.map(i =>  (
+<Col lg="12">
+                    <Input
+                        id="exampleCheck"
+                        name="check"
+                        type="checkbox"
+                        checked={showAll}
+                       onChange={handleCheckboxChange}
+                    />{" "}
+                    <Label
+                        check
+                        for="exampleCheck"
+                        style={{color:'#8b8b8c',fontWeight:"700"}}
+                    >
+                        Mostar Todos
+                    </Label>
+</Col>
+{ showAll ? 
+  card.map(i =>  (
         <Col lg='4' md='6' className='my-2'>
         <CardGroup>
         <Card>
@@ -46,7 +103,7 @@ const EquipoAdm   =   ()  =>{
             </CardText>
             </CardBody>
             <CardFooter>
-            <Button style={{color:'#592a98'}} outline /*onClick={()  =>  Eliminar(i.Nombre)}*/>
+            <Button style={{color:'#592a98'}} outline onClick={()  =>  deleteData(i)} >
               Eliminar
             </Button>
             <span>&nbsp;&nbsp;&nbsp;</span>
@@ -58,7 +115,33 @@ const EquipoAdm   =   ()  =>{
         </CardGroup>
         </Col>
       ))
-    }
+    : card.filter((item) => item.Estado === "ACTIVO").map(i =>  (
+        <Col lg='4' md='6' className='my-2'>
+        <CardGroup>
+        <Card>
+          <CardImg top src={i.Imagen} alt={i.Nombre} />
+          <CardBody>
+            <CardTitle tag='h4'>{i.Nombre}</CardTitle>
+            <CardText>
+            <ul className='list-unstyled'>
+          <li> <span  className="fw-bolder" style={{color:'#8cc5b0'}}>Nombre:</span> {i.Nombre}</li>
+          <li> <span  className="fw-bolder" style={{color:'#8cc5b0'}}>Estado:</span> {i.Estado}</li>
+            </ul>
+            </CardText>
+            </CardBody>
+            <CardFooter>
+            <Button style={{color:'#592a98'}} outline onClick={()  =>  deleteData(i)} >
+              Eliminar
+            </Button>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <Button style={{background:'#5b2998', color:'#fff'}} outline /*onClick={() => Editar(i)}*/ >
+              Editar
+            </Button>
+            </CardFooter>
+        </Card>
+        </CardGroup>
+        </Col>
+      )) }
 </Row>
       </Container>
     )

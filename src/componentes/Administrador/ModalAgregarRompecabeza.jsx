@@ -37,9 +37,7 @@ const uploadData =  async ()=>{
     setBloqueo(true);
     setLoading(true);
     const ulrC = await subidaIRompecabeza(FileColor)
-        console.log(ulrC)
         const ulrB  = await subidaIRompecabeza(FileBlanco)
-        console.log(ulrB)
  const data = await  CrearRompecabeza({FileBlanco:ulrB ,FileColor:ulrC, Nombre:Nombre,Pieza:Pieza});
     MySwal.fire({
       title: `${data.titulo}`,
@@ -83,8 +81,8 @@ const uploadData =  async ()=>{
               <Label className='form-label' for='FileBlanco'>
               Foto Blanco y Negro
             </Label>
-            <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => disparodeAccion({ type: "onchange", field: "FileBlanco", value: event.target.files[0] })} /*onChange={(e)  => setFileB(e.target.files[0])} *//>
-            <Label>PIEZA</Label><br/>
+            <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => disparodeAccion({ type: "onchange", field: "FileBlanco", value: event.target.files[0] })} />
+            <Label>Pieza</Label><br/>
         <Label> 
         <Input  
         style={{color:'#8b8b8c'}}
@@ -115,7 +113,7 @@ const uploadData =  async ()=>{
           }} disabled={bloqueo} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
          { loading && <Spinner size="sm">
     Loading...
-  </Spinner>}
+  </Spinner>  }
             Agregar
           </Button>
     </ModalFooter>

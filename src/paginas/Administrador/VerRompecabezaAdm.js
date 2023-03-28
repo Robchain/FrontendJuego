@@ -18,11 +18,14 @@ import withReactContent from 'sweetalert2-react-content';
 import { NavBar } from "../../componentes/NavBar";
 import { ModalAgregarRompecabeza } from "../../componentes/Administrador/ModalAgregarRompecabeza";
 import { ElimnarDataRompecabeza, llamadaGetRompecabezaActivos } from "../../service/Adminstrador/Rompecabeza";
+import { ModalEditarRompecabeza } from "../../componentes/Administrador/ModalEditarRompecabeza";
 const VerRompecabezaAdm = () => {
   const [cards, setCards] = useState([]);
   const MySwal = withReactContent(Swal)
   const [modal, setModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [dataSeleccionada, setDataSeleccionada] = useState({});
+  const [modaledtiar, setModalEditar] = useState(false);
   const toggle = () => {
     setIsOpen(!isOpen);
   };
@@ -58,6 +61,9 @@ const VerRompecabezaAdm = () => {
   const toggledos = () => {
     setModal(!modal);
   };
+  const toggleEdtiar = ()=>{
+    setModalEditar(!modaledtiar);
+  }
   return (
     <Container>
       <NavBar toggle={toggle} Seccion={"Rompecabezas"} />
@@ -76,6 +82,7 @@ const VerRompecabezaAdm = () => {
           Agregar
         </Button>
         <ModalAgregarRompecabeza modal={modal} toggle={toggledos} />
+        <ModalEditarRompecabeza dataBase={dataSeleccionada} modal={modaledtiar} toggle={toggleEdtiar}/>
       </Col>
       <Row className="match-height mb-2">
         {cards.map((i) => (
@@ -127,7 +134,7 @@ const VerRompecabezaAdm = () => {
                   <span>&nbsp;&nbsp;&nbsp;</span>
                   <Button
                     style={{ background: "#5b2998", color: "#fff" }}
-                    outline /*onClick={() => Editar(i)}*/
+                    outline onClick={() => {setDataSeleccionada(i); toggleEdtiar(); }}
                   >
                     Editar
                   </Button>
