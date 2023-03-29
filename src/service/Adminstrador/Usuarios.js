@@ -9,6 +9,5 @@ const CrearUsuario = ()=>{
          Usuario: "",
          Password: "",
          TipoUsuario:"",
-         FotoPerfil: "",
-         Estado:"" })
+         FotoPerfil: "" })
 }

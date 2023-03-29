@@ -15,8 +15,8 @@ function llenadodeFormulario(state, action) {
 }
 
 export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
-    const BaseInicialFormulario = { Nombre: dataBase.Nombre, FileBlanco: dataBase.FileBlanco, FileColor: dataBase.FileColor, Pieza:dataBase.Pieza, Estado:dataBase.Estado };
-    const [{ Nombre, FileBlanco, FileColor, Pieza, Estado }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
+    const BaseInicialFormulario = { Nombre: dataBase.Nombre, FileBlanco: dataBase.FileBlanco, FileColor: dataBase.FileColor, Pieza:dataBase.Pieza };
+    const [{ Nombre, FileBlanco, FileColor, Pieza }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
     const MySwal = withReactContent(Swal)
     const [loading, setLoading] = useState(false)
     const [bloqueoSecu, setBloqueoSecu] = useState(false);
@@ -40,7 +40,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 setLoading(true);
                 const ulrC = await subidaIRompecabeza(FileColor)
                 const ulrB = await subidaIRompecabeza(FileBlanco)
-                const data = await EditarDataRompecabeza({ FileBlanco: ulrB, FileColor: ulrC, Nombre: Nombre, Pieza: Pieza, Estado:Estado, _id:_id });
+                const data = await EditarDataRompecabeza({ FileBlanco: ulrB, FileColor: ulrC, Nombre: Nombre, Pieza: Pieza, _id:_id });
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -58,7 +58,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 setBloqueoSecu(true);
                 setBloqueo(true);
                 setLoading(true);
-                const data = await EditarDataRompecabezaSinArchivo({ Nombre: Nombre, Pieza: Pieza, Estado:Estado, _id:_id });
+                const data = await EditarDataRompecabezaSinArchivo({ Nombre: Nombre, Pieza: Pieza, _id:_id });
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -117,27 +117,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                         value={6}
                         defaultChecked={dataBase.Pieza === 6}
                         onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
-                    />{" "}6 </Label><br />
-                    <Label  className='form-label'  style={{color:'#8b8b8c',fontWeight:"700"}}>Estado</Label><br/>
-         <Input
-         style={{color:'#8b8b8c'}}
-              id='Activo'
-            type='radio'
-            name="Estado"
-            value="ACTIVO"
-            defaultChecked={dataBase.Estado ===  "ACTIVO"}
-           onChange={event => disparodeAccion({ type: "onchange", field: "Estado", value: event.target.value.toUpperCase() })}
-        /><Label  for='Activo'>Activo</Label> <br/>
-        <Input
-        style={{color:'#8b8b8c'}}
-            id='Inactivo'
-            type='radio'
-            name="Estado"
-            value="INACTIVO"
-            defaultChecked={dataBase.Estado === "INACTIVO"}
-            onChange={event => disparodeAccion({ type: "onchange", field: "Estado", value: event.target.value.toUpperCase() })}
-        />
-        <Label for='Inactivo' >Inactivo</Label>
+                    />{" "}6 </Label>
                     <br/>
                     <Input
                         id="exampleCheck"
@@ -173,10 +153,10 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 <Button onClick={() => {
                     uploadData();
                 }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
-                    {loading && <> <Spinner size="sm">
+                    {loading &&  <Spinner size="sm">
                         Loading...
-                    </Spinner> Editando...</>}
-                    Agregar
+                    </Spinner>}
+                   {" "} Agregar
                 </Button>
             </ModalFooter>
         </Modal>

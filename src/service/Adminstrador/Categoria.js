@@ -27,12 +27,12 @@ export const DeleteApiCategoriaOracion = async ({_id})=>{
   return data.data;
 }
 
-export const EditarApiCategoriaOracion = async ({_id, NombreCategoria, Estado})=>{
-  const data = await Api.post("/Categoria/Editar/OracionCategoria", {_id:_id, NombreCategoria:NombreCategoria, Estado:Estado});
+export const EditarApiCategoriaOracion = async ({_id, NombreCategoria})=>{
+  const data = await Api.post("/Categoria/Editar/OracionCategoria", {_id:_id, NombreCategoria:NombreCategoria});
   return data.data;
 }
 
-export const EditarApiCategoriaVocabulario = async ({_id, NombreCategoria, Estado})=>{
-  const data = await Api.post("/Categoria/Editar", {_id:_id, NombreCategoria:NombreCategoria, Estado:Estado});
+export const EditarApiCategoriaVocabulario = async ({_id, NombreCategoria})=>{
+  const data = await Api.post("/Categoria/Editar", {_id:_id, NombreCategoria:NombreCategoria});
   return data.data;
 }

@@ -16,12 +16,12 @@ export const ElimnarDataRompecabeza = async ({_id})=>{
     return data.data;
 }
 
-export const EditarDataRompecabeza = async ({Nombre,FileBlanco, FileColor, Pieza, Estado, _id})=>{
-    const data = await Api.post("/rompecabeza/Editar",{Nombre:Nombre, FileBlanco:FileBlanco, FileColor:FileColor, Pieza:Pieza,Estado:Estado, _id:_id});
+export const EditarDataRompecabeza = async ({Nombre,FileBlanco, FileColor, Pieza, _id})=>{
+    const data = await Api.post("/rompecabeza/Editar",{Nombre:Nombre, FileBlanco:FileBlanco, FileColor:FileColor, Pieza:Pieza, _id:_id});
     return data.data;
 }
 
-export const EditarDataRompecabezaSinArchivo = async ({Nombre, Pieza, Estado, _id})=>{
-    const data  = await Api.post("/rompecabeza/EditarSinArchivo",{Nombre:Nombre, Pieza:Pieza, Estado:Estado, _id:_id});
+export const EditarDataRompecabezaSinArchivo = async ({Nombre, Pieza,  _id})=>{
+    const data  = await Api.post("/rompecabeza/EditarSinArchivo",{Nombre:Nombre, Pieza:Pieza,  _id:_id});
     return data.data;
 }

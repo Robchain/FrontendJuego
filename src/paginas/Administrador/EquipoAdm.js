@@ -13,8 +13,6 @@ const EquipoAdm   =   ()  =>{
     const [isOpen, setIsOpen] = useState(false)
     const [modal, setModal] = useState(false)
     const [showAll, setShowAll] = useState(true);
-   
-    const [filteredData, setfilteredData] = useState([])
     const toggledos = () => { setModal(!modal) }
     const toggle  = ()  =>  {setIsOpen(!isOpen)}
      const mostrar=  async()=>{
@@ -25,19 +23,10 @@ const EquipoAdm   =   ()  =>{
       mostrar()
     }, [])
 
-    /*useEffect(() => {
-      if(card.length>0){
-      setfilteredData(showAll
-        ? card // Mostrar todo si showAll es verdadero
-        : card.filter((item) => item.Estado === "ACTIVO"))
-      }
-    }, [showAll])
-    */
     const handleCheckboxChange = () => {
       setShowAll(!showAll);
     };
     
-
     const deleteData = async (objecto) =>{
       try {
         const data = await ElimnarDataDeEquipo({_id:objecto._id});

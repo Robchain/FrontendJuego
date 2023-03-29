@@ -12,6 +12,8 @@ import {
   Col,
   Row,
   CardGroup,
+  Input,
+  Label,
 } from "reactstrap";
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
@@ -26,6 +28,10 @@ const VerRompecabezaAdm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dataSeleccionada, setDataSeleccionada] = useState({});
   const [modaledtiar, setModalEditar] = useState(false);
+  const [showAll, setShowAll] = useState(true);
+  const handleCheckboxChange = () => {
+       setShowAll(!showAll);
+     };
   const toggle = () => {
     setIsOpen(!isOpen);
   };
@@ -85,7 +91,23 @@ const VerRompecabezaAdm = () => {
         <ModalEditarRompecabeza dataBase={dataSeleccionada} modal={modaledtiar} toggle={toggleEdtiar}/>
       </Col>
       <Row className="match-height mb-2">
-        {cards.map((i) => (
+      <Col lg="12">
+                    <Input
+                        id="exampleCheck"
+                        name="check"
+                        type="checkbox"
+                        checked={showAll}
+                       onChange={handleCheckboxChange}
+                    />{" "}
+                    <Label
+                        check
+                        for="exampleCheck"
+                        style={{color:'#8b8b8c',fontWeight:"700"}}
+                    >
+                        Mostar Todos
+                    </Label>
+</Col>
+        {showAll ? cards.map((i) => (
           <Col lg="4" md="6" className="my-2">
             <CardGroup>
               <Card>
@@ -142,7 +164,64 @@ const VerRompecabezaAdm = () => {
               </Card>
             </CardGroup>
           </Col>
-        ))}
+        )): cards.filter((item) => item.Estado === "ACTIVO").map((i) => (
+          <Col lg="4" md="6" className="my-2">
+            <CardGroup>
+              <Card>
+                <CardImg top src={i.FileColor} alt={i.Nombre} />
+                <CardBody>
+                  <CardTitle tag="h4">{i.Nombre}</CardTitle>
+                  <CardText>
+                    <ul>
+                      <li>
+                        <span
+                          className="fw-bolder"
+                          style={{ color: "#8cc5b0" }}
+                        >
+                          Nombre:
+                        </span>{" "}
+                        {i.Nombre}
+                      </li>
+                      <li>
+                        <span
+                          className="fw-bolder"
+                          style={{ color: "#8cc5b0" }}
+                        >
+                          Numero de piezas:
+                        </span>{" "}
+                        {i.Pieza}{" "}
+                      </li>
+                      <li>
+                        <span
+                          className="fw-bolder"
+                          style={{ color: "#8cc5b0" }}
+                        >
+                          Estado:
+                        </span>{" "}
+                        {i.Estado}
+                      </li>
+                    </ul>
+                  </CardText>
+                </CardBody>
+                <CardFooter>
+                  <Button
+                    style={{ color: "#592a98" }}
+                    outline onClick={() => ondeleteTarjeta(i)}
+                  >
+                    Eliminar
+                  </Button>
+                  <span>&nbsp;&nbsp;&nbsp;</span>
+                  <Button
+                    style={{ background: "#5b2998", color: "#fff" }}
+                    outline onClick={() => {setDataSeleccionada(i); toggleEdtiar(); }}
+                  >
+                    Editar
+                  </Button>
+                </CardFooter>
+              </Card>
+            </CardGroup>
+          </Col>
+        )) }
       </Row>
     </Container>
   );

@@ -21,9 +21,8 @@ export const ModalAgregarOracion = ({modal, toggle}) => {
     <Row>
             <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='categoria'>Categoria</Label><br/>
-              <Select  name="Categoria"    /*onChange={editarMod  === false  ? handlechange : handlerFalse} *//>
-                        {/*list.map(i => (<option   key={i._id} value={i.NombreCategoria}>{i.NombreCategoria}</option>))*/}
-            </Col>
+              <Select  name="Categoria"  isSearchable={false} />
+           </Col>
             <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='FileVideoPreguntaQuien'>
               Video Pregunta "Adverbio"
@@ -77,27 +76,6 @@ export const ModalAgregarOracion = ({modal, toggle}) => {
               Video compleja
             </Label>
             <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra' /*onChange={e  => setMuestra(e.target.files[0])}*//>
-            </Col>
-          <Col md='6' sm='12' className='mb-1'>
-            <div className='mb-2'>{/*
-            <Label className='form-label' for='EmailMulti'>
-                Estado
-              </Label><br/>
-        <Label> <Input  
-            type='radio'
-            name="Estado"
-            value="ACTIVO"
-            //checked={editarMod === false ? FormValue.Estado ===  "ACTIVO" : selecionado.Estado  === 'ACTIVO'}
-            //onChange={editarMod  === false  ? handlechange : handlerFalse}
-        />Activo</Label> <br/>
-        <Label>
-        <Input  
-            type='radio'
-            name="Estado"
-            value="INACTIVO"
-            //checked={editarMod ===  false ? FormValue.Estado === "INACTIVO"  : selecionado.Estado  === "INACTIVO"}
-            //onChange={editarMod  === false  ? handlechange : handlerFalse}
-        />Inactivo</Label> */}</div>
             </Col>
             <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='FileVideoMuestra'>

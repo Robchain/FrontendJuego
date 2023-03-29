@@ -124,33 +124,6 @@ export const ModalAgregarEstudiante = ({ modal, toggle }) => {
               />Maestro
             </Label>
           </Col>
-          {/*
-          <Col md='6' sm='12' className='mb-1'>
-           <div className='mb-2'>
-            <Label className='form-label' for='EmailMulti'>
-                Estado
-              </Label><br/>
-        <Label> <Input  
-            type='radio'
-            name="Estado"
-            value="ACTIVO"
-            checked={ editarMod === false ? FormValue.Estado ===  "ACTIVO"  : selecion.Estado === "ACTIVO"}
-            onChange={ editarMod  === false ? handleChange  : handlerFalse}
-        />Activo</Label> <br/>
-      */}
-          {/*
-        <Label>
-        <Input  
-            type='radio'
-            name="Estado"
-            value="INACTIVO"
-            checked={editarMod  === false ?  FormValue.Estado === "INACTIVO"  : selecion.Estado === "INACTIVO"}
-            onChange={editarMod === false ? handleChange  : handlerFalse}
-        />Inactivo
-        </Label>
-            </div>
-            </Col>
-          */}
         </Row>
       </ModalBody>
       <ModalFooter>

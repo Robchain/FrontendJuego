@@ -1,7 +1,7 @@
 import React, {useEffect,useState}  from 'react';
 import MenuAdmi from "../../componentes/MenuAdmi";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Table, Button, Row, Col, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import { Container, Table, Button, Row, Col, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Nav, NavItem, NavLink, TabContent, TabPane, Input, Label } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
@@ -17,6 +17,11 @@ const VerCategoriaAdm = () => {
   const [Data, setData] = useState([])
   const [OracionData, setOracionData] = useState([])
   const [tabs, setTabs] = useState("1")
+  const [showAll, setShowAll] = useState(true);
+  const handleCheckboxChange = () => {
+       setShowAll(!showAll);
+     };
+ 
   const [dataSeleccionada, setDataSeleccionada] = useState({});
 const toggle  = ()  =>  {setIsOpen(!isOpen)}
 const [JuegoAModificar, setJuegoAModificar] = useState("")
@@ -112,6 +117,22 @@ const toggleEdtiar = () => {setModalEditar(!modalEditar)}
           <TabPane tabId="1" >
         <Col xl='12' lg="11" className='d-xl p-0 mt-2' >
         <h3 style={{color:"#9696D3"}}>Vocabulario</h3>
+        <Col lg="12">
+                     <Input
+                         id="exampleCheck"
+                         name="check"
+                         type="checkbox"
+                         checked={showAll}
+                        onChange={handleCheckboxChange}
+                     />{" "}
+                     <Label
+                         check
+                         for="exampleCheck"
+                         style={{color:'#8b8b8c',fontWeight:"700"}}
+                     >
+                         Mostar Todos
+                     </Label>
+ </Col>
         <Table  striped>
           <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"initial"}}>
           <tr>
@@ -120,7 +141,26 @@ const toggleEdtiar = () => {setModalEditar(!modalEditar)}
           <th style={{borderBottomColor:"#f8f8f8"}}>ACCIONES</th>
           </tr></thead>
           <tbody>
-            {Data.map(i=>(
+            {showAll ? Data.map(i=>(
+              <tr>
+                <td style={{borderBottomColor:"#f8f8f8"}}>{i.NombreCategoria}</td>
+                <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
+                <td style={{borderBottomColor:"#f8f8f8"}}>
+                <UncontrolledDropdown>
+                <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm'>
+                        <MoreVertical size={15} />
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem href='#' onClick={e=>{e.preventDefault(); setJuegoAModificar("VOCABULARIO");  setDataSeleccionada(i);toggleEdtiar(); }  } >
+                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                        </DropdownItem>
+                        <DropdownItem href='#' onClick={e=>{e.preventDefault(); ondeleteVocabulario(i);}  } >
+                          <Trash className='me-50' size={15} /> <span className='align-middle'>Borrar</span>
+                        </DropdownItem>
+                      </DropdownMenu>
+                </UncontrolledDropdown>
+                </td>
+            </tr>)): Data.filter((item) => item.Estado === "ACTIVO").map(i=>(
               <tr>
                 <td style={{borderBottomColor:"#f8f8f8"}}>{i.NombreCategoria}</td>
                 <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
@@ -147,6 +187,22 @@ const toggleEdtiar = () => {setModalEditar(!modalEditar)}
         <TabPane tabId="2" >
         <Col xl='12' lg="11" className='d-xl p-0 mt-2' >
         <h3 style={{color:"#9696D3"}}>Oracion</h3>
+        <Col lg="12">
+                     <Input
+                         id="exampleCheck"
+                         name="check"
+                         type="checkbox"
+                         checked={showAll}
+                        onChange={handleCheckboxChange}
+                     />{" "}
+                     <Label
+                         check
+                         for="exampleCheck"
+                         style={{color:'#8b8b8c',fontWeight:"700"}}
+                     >
+                         Mostar Todos
+                     </Label>
+ </Col>
         <Table  striped>
           <thead style={{backgroundColor:"#E6DFF0", color:"#62269E", textAlign:"initial"}}>
           <tr>
@@ -155,7 +211,26 @@ const toggleEdtiar = () => {setModalEditar(!modalEditar)}
           <th style={{borderBottomColor:"#f8f8f8"}}>ACCIONES</th>
           </tr></thead>
           <tbody>
-            {OracionData.map(i=>(<>
+            { showAll ?  OracionData.map(i=>(<>
+              <tr>
+                <td style={{borderBottomColor:"#f8f8f8"}}>{i.NombreCategoria}</td>
+                <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
+                <td style={{borderBottomColor:"#f8f8f8"}}>
+                <UncontrolledDropdown>
+                <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm'>
+                        <MoreVertical size={15} />
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem href='#' onClick={e=>{e.preventDefault(); setJuegoAModificar("ORACION"); setDataSeleccionada(i); toggleEdtiar(); }}>
+                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                        </DropdownItem>
+                        <DropdownItem href='#' onClick={e=>{e.preventDefault(); ondeleteOracion(i);  }}  >
+                          <Trash className='me-50' size={15} /> <span className='align-middle'>Borrar</span>
+                        </DropdownItem>
+                      </DropdownMenu>
+                </UncontrolledDropdown>
+                </td>
+            </tr></>)): OracionData.filter((item) => item.Estado === "ACTIVO").map(i=>(<>
               <tr>
                 <td style={{borderBottomColor:"#f8f8f8"}}>{i.NombreCategoria}</td>
                 <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>

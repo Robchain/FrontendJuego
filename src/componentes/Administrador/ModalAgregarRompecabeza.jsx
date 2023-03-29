@@ -4,7 +4,7 @@ import { CrearRompecabeza } from '../../service/Adminstrador/Rompecabeza';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { subidaIRompecabeza } from '../../firebase/config';
-const BaseInicialFormulario = { Nombre: "", FileBlanco:null, FileColor:null,Pieza:0};
+const BaseInicialFormulario = { Nombre: "", FileBlanco:undefined, FileColor:undefined,Pieza:0};
 function llenadodeFormulario(state, action) {
   switch (action.type) {
     case 'onchange':
@@ -18,13 +18,13 @@ function llenadodeFormulario(state, action) {
 
 export const ModalAgregarRompecabeza = ({modal, toggle}) => {
 const [{Nombre, FileBlanco, FileColor,Pieza}, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
-const MySwal = withReactContent(Swal)
-const [loading, setLoading] = useState(false)
+const MySwal = withReactContent(Swal);
+const [loading, setLoading] = useState(false);
 const [bloqueoSecu, setBloqueoSecu] = useState(false);
 const [bloqueo, setBloqueo] = useState(true);
 
 useEffect(() => {
-  if(Nombre.length > 0 && FileBlanco !== null && FileColor !== null && Pieza !==0 ){
+  if(Nombre.length > 0 && FileBlanco !== undefined && FileColor !== undefined && Pieza !==0 ){
     setBloqueo(false);
   }else { 
     setBloqueo(true);
