@@ -19,7 +19,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { NavBar } from "../../componentes/NavBar";
 import { ModalAgregarRompecabeza } from "../../componentes/Administrador/ModalAgregarRompecabeza";
-import { ElimnarDataRompecabeza, llamadaGetRompecabezaActivos } from "../../service/Adminstrador/Rompecabeza";
+import { desabilitarRompecabeza, HabilitarRompecabeza, llamadaGetRompecabezaActivos } from "../../service/Adminstrador/Rompecabeza";
 import { ModalEditarRompecabeza } from "../../componentes/Administrador/ModalEditarRompecabeza";
 const VerRompecabezaAdm = () => {
   const [cards, setCards] = useState([]);
@@ -35,9 +35,31 @@ const VerRompecabezaAdm = () => {
   const toggle = () => {
     setIsOpen(!isOpen);
   };
-  const ondeleteTarjeta = async (objeto)=>{
+  const desabilitarTarjeta = async (objeto)=>{
     try {
-      const data = await ElimnarDataRompecabeza({_id:objeto._id});   
+      const data = await desabilitarRompecabeza({_id:objeto._id});   
+      MySwal.fire({
+        title: `${data.titulo}`,
+        text: `${data.respuesta}`,
+        icon: `${data.type}`,
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false}) 
+    } catch (error) {
+      MySwal.fire({
+        title: 'Error!',
+        text: "Falto un campo",
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false})
+    }
+  }
+  const HabilitarTarjeta = async (objeto)=>{
+    try {
+      const data = await HabilitarRompecabeza({_id:objeto._id});   
       MySwal.fire({
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
@@ -149,9 +171,9 @@ const VerRompecabezaAdm = () => {
                 <CardFooter>
                   <Button
                     style={{ color: "#592a98" }}
-                    outline onClick={() => ondeleteTarjeta(i)}
+                    outline onClick={() => {i.Estado === "ACTIVO" ? desabilitarTarjeta(i): HabilitarTarjeta(i)}}
                   >
-                    Eliminar
+        {i.Estado === "ACTIVO" ? <span>DESACTIVAR</span> : <span>ACTIVAR</span>}
                   </Button>
                   <span>&nbsp;&nbsp;&nbsp;</span>
                   <Button
@@ -206,9 +228,9 @@ const VerRompecabezaAdm = () => {
                 <CardFooter>
                   <Button
                     style={{ color: "#592a98" }}
-                    outline onClick={() => ondeleteTarjeta(i)}
+                    outline onClick={() => {i.Estado === "ACTIVO" ? desabilitarTarjeta(i): HabilitarTarjeta(i)}}
                   >
-                    Eliminar
+                  {i.Estado === "ACTIVO" ? <span>DESACTIVAR</span> : <span>ACTIVAR</span>}
                   </Button>
                   <span>&nbsp;&nbsp;&nbsp;</span>
                   <Button

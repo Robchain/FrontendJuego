@@ -87,9 +87,9 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
           <Label className='form-label' for='categoria'>Categoria</Label><br />
           <Select name="Categoria" options={vocabularioOpciones.map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={false} />
           <Label className='form-label' for='palabra'>Palabra</Label>
-          <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Palabra} />
+          <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} />
           <Label className='form-label' for='categoria'>Silaba</Label>
-          <Input type='text' id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Silaba} />
+          <Input type='text' id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} value={Silaba} />
           <Label className='form-label' for='inputImage'>
             Imagen
           </Label>

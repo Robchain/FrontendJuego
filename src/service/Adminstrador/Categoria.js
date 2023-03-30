@@ -22,6 +22,22 @@ export const DeleteApiCategoria = async ({_id})=>{
   const data = await Api.post("/Categoria/borrar",{_id:_id});
   return data.data;
 }
+export const desabilitarCategoriaVocabulario = async ({_id})=>{
+  const data = await Api.post("/Categoria/desabilitarCategoriaVocabulario",{_id:_id});
+  return data.data;
+}
+export const habilitarCategoriaVocabulario = async ({_id})=>{
+  const data = await Api.post("/Categoria/habilitarCategoriaVocabulrio",{_id:_id});
+  return data.data;
+}
+export const desabilitarCategoriaOracion = async ({_id})=>{
+  const data = await Api.post("/Categoria/DesabilitarCategoriaOracion",{_id:_id});
+  return data.data;
+}
+export const habilitarCategoriaOracion = async ({_id})=>{
+  const data = await Api.post("/Categoria/HabilitarCategoriaOracion",{_id:_id});
+  return data.data;
+}
 export const DeleteApiCategoriaOracion = async ({_id})=>{
   const data = await Api.post("/Categoria/Borrar/OracionCategoria",{_id:_id});
   return data.data;

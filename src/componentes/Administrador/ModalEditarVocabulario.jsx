@@ -111,7 +111,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
 
     return (
         <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
-            <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar Rompecabeza</ModalHeader>
+            <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar Vocabulario</ModalHeader>
             <ModalBody>
                 <div className='mb-2'>
                 <Label className='form-label' for='categoria'>Categoria</Label><br/>

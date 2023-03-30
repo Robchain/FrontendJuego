@@ -10,7 +10,12 @@ export const PostCrearEquipo = async ({Nombre, Imagen})=>{
     return data.data;
 }
 
-export const ElimnarDataDeEquipo = async ({_id})=>{
+export const DesanilitarRompecabeza = async ({_id})=>{
     const data = await Api.post("/Equipo/Desibilitar", {_id:_id})
+    return data.data;
+}
+
+export const HabilitarEquipo = async ({_id})=>{
+    const data = await Api.post("/Equipo/Habiltar",{_id:_id});
     return data.data;
 }

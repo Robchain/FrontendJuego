@@ -3,7 +3,7 @@ import MenuAdmi from '../../componentes/MenuAdmi';
 import { Button, Card, CardBody, CardFooter, CardGroup, CardImg, CardText, CardTitle, Col, Container, Input, Label, Row } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
 import { ModalAgregarEquipo } from '../../componentes/Administrador/ModalAgregarEquipo';
-import { ElimnarDataDeEquipo, llamadaGetActivo } from '../../service/Adminstrador/Equipo';
+import { DesanilitarRompecabeza, llamadaGetActivo } from '../../service/Adminstrador/Equipo';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 
@@ -29,7 +29,7 @@ const EquipoAdm   =   ()  =>{
     
     const deleteData = async (objecto) =>{
       try {
-        const data = await ElimnarDataDeEquipo({_id:objecto._id});
+        const data = await DesanilitarRompecabeza({_id:objecto._id});
         MySwal.fire({
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
