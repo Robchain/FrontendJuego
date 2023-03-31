@@ -13,6 +13,7 @@
     "bootstrap": "^5.2.0",
     "bs-stepper": "^1.7.0",
     "classnames": "^2.3.2",
+    "dotenv": "^16.0.3",
     "firebase": "^9.10.0",
     "pdfjs-dist": "^3.2.146",
     "prop-types": "^15.8.1",

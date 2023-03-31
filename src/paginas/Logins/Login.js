@@ -11,71 +11,52 @@ import {
     Spinner,
     Button
 } from "reactstrap"
-
-import axios from 'axios';
-
 import { useNavigate, Link } from "react-router-dom"; //!!arreglar la navegacion con rutas protegidas!!
 import { useEffect } from "react";
+import { LoginAPI } from "../../service/Adminstrador/Usuarios";
 const Index = () => {
     const [mensajeContraseña, setMensajeContraseña] = useState(false);
+    const [nensajeServicio, SetMensajeServicio] = useState(false);
     const [bloqeo, setBloqeo] = useState(false);
     let entrar = useNavigate();
     const [Datos, SetDatos] = useState({
         Email: '',
         Password: '',
     });
-    // 
     useEffect(() => {
         localStorage.clear()
     }, [])
     
-    const [valores, setValores] = useState({
-        error: false,
-        mensajeError: 'Contraseña incorrecta',
-        color: 'red'
-    })
-    let mensajeErrora = ''
-
     const handleChange = (event) => {
         const { name, value } = event.target  // el "name" debe ser generico y no ser igual a los valores que dan en el name del hook o el name del jsx
         SetDatos({ ...Datos, [name]: value })
-
     }
     const postUsurio = async () => {
         try {
-            axios({
-                url: "http://localhost:3002/api/auth/signin",
-                method: 'POST',
-                data: Datos
-            }).then(response => {
-                if (response.data.respuesta !== 'Contraseña incorrecta' && response.data.respuesta !== 'falta correo y contraseña' && response.data.respuesta !== 'Correo o contraseña incorrecta') {
-                    if (response.data.TipoUsuario === 'MAESTRO') {
-                        localStorage.setItem("Usuario", response.data.Nombre)
-                        localStorage.setItem("Email", response.data.Email)
-                        localStorage.setItem("Identificacion", response.data.Identificacion)
-                        localStorage.setItem("Id", response.data._id)
-                        localStorage.setItem("Nombre", response.data.Nombre)
-                        localStorage.setItem("Apellido", response.data.Apellido)
-                        entrar('/VerEstudiante');
-                    } else if(response.data.TipoUsuario === 'ESTUDIANTE') {
-                        localStorage.setItem("Usuario", response.data.Usuario)
-                        localStorage.setItem("Email", response.data.Email)
-                        localStorage.setItem("Identificacion", response.data.Identificacion)
-                        localStorage.setItem("Id", response.data._id)
-                        localStorage.setItem("Nombre", response.data.Nombre)
-                        localStorage.setItem("Apellido", response.data.Apellido)
-                        entrar('/MenuJuego');
-                    }else if(response.data.respuesta === "Contraseña incorrecta" ||  response.data.respuesta === "Correo o contraseña incorrecta"){
-                       
-                    }
-                } else {
-                    setMensajeContraseña(true);
-                    mensajeErrora = response.data.respuesta;
-                   
-                }
-            }).catch(e => { console.log(e) })
+           const data = await  LoginAPI({Email:Datos.Email, Password:Datos.Password});
+           if (data.respuesta !== 'Contraseña incorrecta' && data.respuesta !== 'falta correo y contraseña' && data.respuesta !== 'Correo o contraseña incorrecta') {
+            if (data.TipoUsuario === 'MAESTRO') {
+                localStorage.setItem("Usuario", data.Nombre)
+                localStorage.setItem("Email", data.Email)
+                localStorage.setItem("Identificacion", data.Identificacion)
+                localStorage.setItem("Id", data._id)
+                localStorage.setItem("Nombre", data.Nombre)
+                localStorage.setItem("Apellido", data.Apellido)
+                entrar('/VerEstudiante');
+            } else if(data.TipoUsuario === 'ESTUDIANTE') {
+                localStorage.setItem("Usuario", data.Usuario)
+                localStorage.setItem("Email", data.Email)
+                localStorage.setItem("Identificacion", data.Identificacion)
+                localStorage.setItem("Id", data._id)
+                localStorage.setItem("Nombre", data.Nombre)
+                localStorage.setItem("Apellido", data.Apellido)
+                entrar('/MenuJuego');
+            }
+        } else {
+            setMensajeContraseña(true);
+        }
         } catch (e) {
-            console.log(e);
+            SetMensajeServicio(true)
         }
     }
     const handleSudmit = (e) => {
@@ -106,7 +87,8 @@ const Index = () => {
                             <small><Label for="Login-Password">Contraseña</Label></small><br /><Input placeholder="*********" id="Login-Password" type="password" name="Password" value={Datos.Password} onChange={handleChange}></Input><br />
                         </div>
                         <div style={{height:24}}>
-                            {mensajeContraseña &&<div className="scale-in-center"> <small style={{ color: 'red' }}>cuenta o contraseña incorrecta</small> </div>}
+                            {mensajeContraseña &&<div className="scale-in-center"> <small style={{ color: 'red' }}>Contraseña o Correo Incorrectos</small> </div>}
+                           {nensajeServicio && <div className="scale-in-center"><small style={{ color: 'red' }}>No Hay Respuesta del servicio</small></div>}
                             </div><br />
                         <Button disabled={bloqeo}  className='btn' style={{backgroundColor:"#592a98", color:"#ffffff", width:'100%'}} type='submit' >{bloqeo && <Spinner size="sm">
     Loading...

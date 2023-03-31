@@ -7,13 +7,8 @@ export const crearMultiJugador = async (NombreDeEquipo, NumeroDeGrupos, NumeroDe
 
 
 export const llamadoIncialDePosiciondelUsuario = async (label, value)=>{
-
-    try {
         const data = await Api.post("/LlamadainicalDelJugagor",{label, value});
         return data.data;
-    } catch (error) {
-        return null;
-    }
     }
 
 export const llamadaInicialDelosEquiposSinAsignar = async(IdDeLaAsignacion)=>{

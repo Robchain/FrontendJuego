@@ -1,12 +1,14 @@
-import axios from 'axios'
 import React, {useReducer, useState } from 'react'
 import { llamadaInicialDelosEquiposSinAsignar, llamadoIncialDePosiciondelUsuario } from '../../service/Multijugador'
 import { JuecoContext } from './JuecoContext'
+import { llamadaPartidaOracion } from '../../service/Juego/Oracion'
+import { llamadaRompecabezaGet } from '../../service/Juego/Vocabulario'
 
 export const JuegoProvider = ({children}) => {
   const [respuesta, setRespuesta] = useState([])
 const [cardEquipo, setCardEquipo] = useState([]);
   const [data, setData] = useState(null)
+  
   const [oraciondata, setOraciondata] = useState(null);   
   const [rompecabeza1, setRompecabeza1] = useState(0)
   const [rompecabeza2, setRompecabeza2] = useState(0)
@@ -19,14 +21,22 @@ const [cardEquipo, setCardEquipo] = useState([]);
   const [InfoEstudiaSituacion, setInfoEstudiaSituacion] = useState(null)
 
   const LLamadaIncial = async()=>{
-   let nombre = localStorage.getItem("Nombre");
+   try {
+    let nombre = localStorage.getItem("Nombre");
    let apellido = localStorage.getItem("Apellido");
   let completo =  `${nombre} ${apellido}`
   let value = localStorage.getItem("Id");
   if(completo.length>5 && value.length>3){
    const data  = await  llamadoIncialDePosiciondelUsuario(completo,value );
-   setInfoEstudiaSituacion(data);
+   if(data === null){
+    disparodeAcciones({ type: "cambio", field: "MultiJugador", value: true })
+   }else if(data !==null){ 
+    setInfoEstudiaSituacion(data);
   }}
+   } catch (error) {
+    disparodeAcciones({ type: "cambio", field: "MultiJugador", value: true })
+   }
+   }
   const llamadaDos =async(IdDeLaAsignacion)=>{
     const data = await  llamadaInicialDelosEquiposSinAsignar(IdDeLaAsignacion, );
     setCardEquipo(data);
@@ -34,6 +44,20 @@ const [cardEquipo, setCardEquipo] = useState([]);
 
 
   const [avance0, setavance] = useState([])
+  const EstadoDeLosBotones = {Vocabulario:false, Oraciones:false, MultiJugador:false };
+
+  const controladordelosBotones = (state, action) => {
+    switch (action.type) {
+      case 'cambio':
+        return {...state, [action.field]: action.value};
+        case "RESETEAR":
+          return EstadoDeLosBotones;
+      default:
+        return state;
+    }
+  };
+
+const [{Vocabulario, Oraciones, MultiJugador}, disparodeAcciones] = useReducer(controladordelosBotones, EstadoDeLosBotones)
 
   const initialState = [];
 
@@ -84,12 +108,30 @@ const [cardEquipo, setCardEquipo] = useState([]);
 
 
 
-  const datoVocabulario = (user)=>{
-  axios.post("http://192.168.10.115:3002/api/auth/llamadaPartidaVocabulario",{Usuario:user}).then(da =>{setData(da.data)})
+  const datoVocabulario = async (user)=>{
+    try {
+    const data = await llamadaRompecabezaGet({user:user});
+    if(data !== null){
+      setData(data); 
+    }else if(data === null){
+      disparodeAcciones({ type: "cambio", field: "Vocabulario", value: true })
+    }
+    } catch (error) {
+      disparodeAcciones({ type: "cambio", field: "Vocabulario", value: true })
+    }
   }  
 
-  const dataOracion = (user)=>{
-    axios.post("http://192.168.10.115:3002/api/auth/llamadaPartidaOracion",{Usuario:user}).then(response =>{setOraciondata(response.data)})
+  const dataOracion = async (user)=>{
+    try {
+    const data = await llamadaPartidaOracion({Usuario:user});
+    if(data !== null){
+      setOraciondata(data); 
+    }else if(data === null){
+      disparodeAcciones({ type: "cambio", field: "Oraciones", value: true })
+    }
+    } catch (error) {
+      disparodeAcciones({ type: "cambio", field: "Oraciones", value: true })
+    }
   }
 
   const resultados = (palabra="",respuestas="") =>{
@@ -136,7 +178,7 @@ const [cardEquipo, setCardEquipo] = useState([]);
 }
 
   return (
-    <JuecoContext.Provider value={{data,InfoEstudiaSituacion,MultiProgreso, dispatchMutli,LLamadaIncial,setInfoEstudiaSituacion,cardEquipo,llamadaDos,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
+    <JuecoContext.Provider value={{Vocabulario, Oraciones, MultiJugador,data,InfoEstudiaSituacion,MultiProgreso, dispatchMutli,LLamadaIncial,setInfoEstudiaSituacion,cardEquipo,llamadaDos,setavance,dataOracion,initialState,progresoOraciom,Oracionprogreso, dispatchProgreso,setOraciondata,oraciondata,progreso, datoVocabulario, resultados, getresultado, getPuzzles, rompecabeza1, rompecabeza2, rompecabeza3, rompecabeza4, rompecabeza5, rompecabeza6, avance0,setData}}>
     {children}
     </JuecoContext.Provider>
   )

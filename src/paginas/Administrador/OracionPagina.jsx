@@ -7,7 +7,6 @@ import withReactContent from 'sweetalert2-react-content';
 import { NavBar } from '../../componentes/NavBar'
 import { DesabilitarOracion, HabilitarOracion, MetodoGetDellamadaOracionActivas } from '../../service/Adminstrador/Oracion'
 import { ModalEditarOracion } from '../../componentes/Administrador/ModalEditarOracion'
-
 export const OracionPagina = () => {
   const MySwal = withReactContent(Swal)
   const [cards, setCards] = useState([])
@@ -25,6 +24,7 @@ export const OracionPagina = () => {
       setCards(data);
     }
     useEffect(() => {
+      console.log(process.env.REACT_APP_CONFIGFIREBASE, "dasdad");
       llamdainicial();
     }, [])
     const toggledos = () => { setModal(!modal) }

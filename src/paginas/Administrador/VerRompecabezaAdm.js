@@ -230,7 +230,7 @@ const VerRompecabezaAdm = () => {
                     style={{ color: "#592a98" }}
                     outline onClick={() => {i.Estado === "ACTIVO" ? desabilitarTarjeta(i): HabilitarTarjeta(i)}}
                   >
-                  {i.Estado === "ACTIVO" ? <span>DESACTIVAR</span> : <span>ACTIVAR</span>}
+                  {i.Estado === "ACTIVO" ? <span>Desactivar</span> : <span>Activar</span>}
                   </Button>
                   <span>&nbsp;&nbsp;&nbsp;</span>
                   <Button

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { NavBar } from '../../componentes/NavBar';
-import { Edit, Trash, MoreVertical, Clipboard } from 'react-feather'
+import { Edit, Trash, MoreVertical, Clipboard,Check } from 'react-feather'
 import { Table, Button, Container, Col, Row, DropdownItem, DropdownMenu, UncontrolledDropdown, DropdownToggle, Input, Label } from 'reactstrap';
-import axios from 'axios';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
 import MenuAdmi from '../../componentes/MenuAdmi';
 import { ModalAgregarEstudiante } from '../../componentes/Administrador/ModalAgregarEstudiante';
+import { MostrarEstudiante, desabilitarPersonasApi, habilitarPersonasApi } from '../../service/Adminstrador/Usuarios';
 const VerEstudianteAdm = () => {
+  const MySwal = withReactContent(Swal)
   const [isOpen, setIsOpen] = useState(false)
   const [modal, setModal] = useState(false)
   const [Data, setData] = useState([]);
@@ -13,15 +16,69 @@ const VerEstudianteAdm = () => {
   const handleCheckboxChange = () => {
        setShowAll(!showAll);
      };
-  useEffect(() => {
-    const mostrar = async () => {
-      const data = await axios.get('http://localhost:3002/api/auth/Ver-Registrados-Activos');
-      setData(data.data);
+     const mostrar = async () => {
+      const data = await MostrarEstudiante();
+      setData(data);
     }
+  useEffect(() => {
+   
     mostrar();
   }, [])
   const toggle = () => { setIsOpen(!isOpen) }
   const toggledos = () => { setModal(!modal) }
+  
+  
+  
+  const desactivarPersonaFunc = async (objeto) => {
+    try {
+      const data = await desabilitarPersonasApi({ _id: objeto._id });
+      MySwal.fire({
+        title: `${data.titulo}`,
+        text: `${data.respuesta}`,
+        icon: `${data.type}`,
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
+      })
+    } catch (error) {
+      MySwal.fire({
+        title: 'Error!',
+        text: "Falto un campo",
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
+      })
+    }
+  }
+  const habilitarPersonaFunc = async (objeto) => {
+    try {
+      const data = await habilitarPersonasApi({ _id: objeto._id });
+      MySwal.fire({
+        title: `${data.titulo}`,
+        text: `${data.respuesta}`,
+        icon: `${data.type}`,
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
+      })
+    } catch (error) {
+      MySwal.fire({
+        title: 'Error!',
+        text: "Falto un campo",
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
+      })
+    }
+  }
+
+
   return (
     <Container >
       <NavBar toggle={toggle} Seccion={"Estudiantes"} />
@@ -80,8 +137,8 @@ const VerEstudianteAdm = () => {
                         <DropdownItem href='/'/* onClick={e => Editar(i, e)}*/>
                           <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
-                        <DropdownItem href='/' /*onClick={e =>  Eliminar(i.Identificacion, e)}*/>
-                          <Trash className='me-50' size={15} /> <span className='align-middle'>Borrar</span>
+                        <DropdownItem href='/' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
+                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
@@ -99,14 +156,14 @@ const VerEstudianteAdm = () => {
                         <MoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
-                        <DropdownItem href='/' /*onClick={e =>  abrirDetalle(i, e)}*/>
+                        <DropdownItem href='#' /*onClick={e =>  abrirDetalle(i, e)}*/>
                           <Clipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
                         </DropdownItem>
-                        <DropdownItem href='/'/* onClick={e => Editar(i, e)}*/>
+                        <DropdownItem href='#'/* onClick={e => Editar(i, e)}*/>
                           <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
-                        <DropdownItem href='/' /*onClick={e =>  Eliminar(i.Identificacion, e)}*/>
-                          <Trash className='me-50' size={15} /> <span className='align-middle'>Borrar</span>
+                        <DropdownItem href='#'onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}  >
+                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>

@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
-import {  useParams } from 'react-router-dom'
+import {  NavLink, useParams } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
+import cuadros from '../../../assets/img/Cuadros.png'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
@@ -118,6 +119,9 @@ export const FinalOracionJuego = () => {
  <Row className='justify-content-center'>
  <Col lg="6" md="6" sm="8" xs="8">
  <RompecabezaFinalRespuesta url={oraciondata[`Juego${id}`].Partida.Rompecabeza.FileColor} alt={oraciondata[`Juego${id}`].Partida.Rompecabeza.Nombre} pieza={oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza} resultado={Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length} />
+ </Col>
+ <Col lg="7" md="6" sm="8" xs="8" >
+  <div><NavLink to={"/MenuJuego"} className="mx-auto" ><img width={75} src={cuadros} alt='al inicio'/></NavLink></div>
  </Col>
  </Row>
  </Container>):(<><>Cargando...</></>)

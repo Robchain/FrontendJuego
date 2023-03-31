@@ -18,11 +18,11 @@ export const EditarVocabulario = async ({ Categoria, Palabra, Silaba, FileMuestr
     const data = await Api.post("/vocabulario/Editar", { Categoria: Categoria, Palabra: Palabra, Silaba: Silaba, FileMuestra: FileMuestra, FilePregunta: FilePregunta, FileImagen: FileImagen, _id: _id });
     return data.data
 }
-export const  HabilitarVocabulario = async ({_id})=>{
+export const  HabilitarVocabularioApi = async ({_id})=>{
     const data = await Api.post("/vocabulario/Habilitar",{_id:_id});
     return data.data
 }
-export const  desabilitarVocabulario = async ({_id})=>{
+export const  desabilitarVocabularioApi = async ({_id})=>{
     const data = await Api.post("/vocabulario/Desabilitar",{_id:_id});
     return data.data
 }

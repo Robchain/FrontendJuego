@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Row, Col, Container } from "reactstrap"
+import { Row, Col, Container, Button } from "reactstrap"
 import { NavLink, useNavigate } from "react-router-dom"
 import doorout from "../../assets/img/AssetsGame/doorout.png"
 import { JuecoContext } from "../../context/Juego/JuecoContext"
@@ -10,7 +10,7 @@ import MultiJugadorIcon from "../../componentes/iconosCom/MultiJugadorIcon"
 import TrofeoIcon from "../../componentes/iconosCom/TrofeoIcon"
 
 const MenuJuego = () => {
-  const { datoVocabulario, dispatchMutli} = useContext(JuecoContext);
+  const { datoVocabulario, dataOracion,dispatchMutli,LLamadaIncial,Vocabulario, Oraciones, MultiJugador} = useContext(JuecoContext);
   const [usuario, setUsuario] = useState("");
   const [Email, setEmail] = useState("");
   const [Identificacion, setIdentificacion] = useState(0);
@@ -23,6 +23,9 @@ const MenuJuego = () => {
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUsuario(localStorage.getItem("Usuario"))
     dispatchMutli({type:"RESETEAR"})
+    dataOracion(localStorage.getItem("Usuario"));
+    datoVocabulario(localStorage.getItem("Usuario"));
+    LLamadaIncial()
   }, [])
   
   return (
@@ -60,28 +63,32 @@ const MenuJuego = () => {
     </Row>
     {/*----------------------OPCIONES------------------------------- */}
    <Row className="">
-    <Col lg="3" sm="12" className="offset-lg-3">
-    <NavLink  to={'/RompecabezaJV'} onClick={()=>datoVocabulario(usuario)} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
-      <div className="position-relative  start-50  top-0  translate-middle-x OracionMenu " style={{width:250, height:197, background:"#BFBFD9", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><VocabularioIcon/><h4  className="">VOCABULARIO</h4></div></div>
-        </NavLink>
-      </Col>
+    <Col lg="3" sm="12" className="offset-lg-3" >
+    <Button  disabled={Vocabulario} outline style={{border:'none'}} >
+      <div   className="position-relative  start-50  top-0  translate-middle-x OracionMenu " style={{width:250, height:197, background:"#BFBFD9", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}  >    <NavLink   to={'/RompecabezaJV'}  onClick={()=>datoVocabulario(usuario)} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}> <div className="py-5"><VocabularioIcon/><h4  className="">VOCABULARIO</h4></div></NavLink></div>
+      </Button></Col>
       <Col lg="3"  sm="12" className="ms-3" >
+      <Button  disabled={Oraciones} outline style={{border:'none'}} >
       <NavLink  to={'/RompecabezaJO'} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
         <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:250, height:197,background:"#EDCD90", textDecoration:"none", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"> <OracionIcon/><h4  className="">ORACION</h4> </div></div>
       </NavLink>
+      </Button>
       </Col>
       </Row>
       <Row className="mt-4">
       <Col lg="3" sm="12" className="offset-lg-3" >
+      <Button  disabled={MultiJugador} outline style={{border:'none'}} >
       <NavLink to={`/SeleccionDeEquipo`} style={{color:"#fff", textDecoration:"none", textAlign:"center"}} >
       <div className="position-relative  start-50 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#C3D7CA", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"><MultiJugadorIcon/> <h4>CARRERA</h4></div></div>
       </NavLink>
+      </Button>
       </Col>
       <Col lg="3" sm="12" className="ms-3">
+      <Button  disabled={false} outline style={{border:'none'}} >
       <NavLink to={`/Trofeo/${2}`} style={{color:"#fff", textDecoration:"none", textAlign:"center"}} >
       <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#E5BDB1", borderRadius:"10px", boxShadow: "5px 5px  rgba(0, 0, 0, 0.13)"}}><div className="py-5"><TrofeoIcon/> <h4  className="">TROFEO</h4></div></div>
       </NavLink>
-      </Col>
+      </Button></Col>
        {/*--------------------FIN--------------------------------- */}
       </Row>
       

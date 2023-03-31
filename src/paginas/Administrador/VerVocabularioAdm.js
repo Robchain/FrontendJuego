@@ -2,10 +2,14 @@ import React,{useEffect,useState}from 'react'
 import MenuAdmi from "../../componentes/MenuAdmi";
 import {Button, Container, Row, CardFooter, Col, Card, CardImg, CardBody, CardTitle, CardText, CardGroup, Input, Label } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
 import { ModalAgregarVocabulario } from '../../componentes/Administrador/ModalAgregarVocabulario';
-import { llamadaDeDataTodosActivos } from '../../service/Adminstrador/Vocabulario';
+import { llamadaDeDataTodosActivos,HabilitarVocabularioApi,desabilitarVocabularioApi } from '../../service/Adminstrador/Vocabulario';
 import { ModalEditarVocabulario } from '../../componentes/Administrador/ModalEditarVocabulario';
+
 const VerVocabularioAdm = () => {
+  const MySwal = withReactContent(Swal)
   const [Data, setData] = useState([])
   const [modal, setModal] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +33,52 @@ const VerVocabularioAdm = () => {
     mostrar();
   }, [])
   
-  
+  const desabilitarVocabularios = async (objeto)=>{
+    try {
+      const data = await desabilitarVocabularioApi({_id:objeto._id});   
+      MySwal.fire({
+        title: `${data.titulo}`,
+        text: `${data.respuesta}`,
+        icon: `${data.type}`,
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false}) 
+    } catch (error) {
+      MySwal.fire({
+        title: 'Error!',
+        text: "Falto un campo",
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false})
+    }
+  }
+  const HabilitarVocabularios = async (objeto)=>{
+    try {
+      const data = await HabilitarVocabularioApi({_id:objeto._id});   
+      MySwal.fire({
+        title: `${data.titulo}`,
+        text: `${data.respuesta}`,
+        icon: `${data.type}`,
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false}) 
+    } catch (error) {
+      MySwal.fire({
+        title: 'Error!',
+        text: "Falto un campo",
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false})
+    }
+  }
+
+
   return (
         <Container >
         <NavBar toggle={toggle} Seccion={"Vocabularios"}/>
@@ -74,8 +123,8 @@ const VerVocabularioAdm = () => {
             </CardText>
           </CardBody>
           <CardFooter key={i._id + 4}>
-            <Button style={{color:'#592a98'}} outline /*onClick={()  =>  Eliminar(i.Palabra)}*/>
-              Eliminar
+            <Button style={{color:'#592a98'}} outline onClick={()  =>  {i.Estado === "ACTIVO" ? desabilitarVocabularios(i) :HabilitarVocabularios(i) }}>
+            {i.Estado === "ACTIVO" ? <span>Desactivar</span> : <span>Activar</span>}
             </Button>
             <span>&nbsp;&nbsp;&nbsp;</span>
             <Button style={{background:'#5b2998', color:'#fff'}} outline  onClick={() =>  {setDataSelecionada(i); toggleEdtiar(); }} >
@@ -101,8 +150,8 @@ const VerVocabularioAdm = () => {
             </CardText>
           </CardBody>
           <CardFooter key={i._id + 4}>
-            <Button style={{color:'#592a98'}} outline /*onClick={()  =>  Eliminar(i.Palabra)}*/>
-              Eliminar
+            <Button style={{color:'#592a98'}} outline  onClick={()  =>  {i.Estado === "ACTIVO" ? desabilitarVocabularios(i) :HabilitarVocabularios(i) }} >
+            {i.Estado === "ACTIVO" ? <span>Desactivar</span> : <span>Activar</span>}
             </Button>
             <span>&nbsp;&nbsp;&nbsp;</span>
             <Button style={{background:'#5b2998', color:'#fff'}} outline onClick={() =>  {setDataSelecionada(i); toggleEdtiar(); }}  >

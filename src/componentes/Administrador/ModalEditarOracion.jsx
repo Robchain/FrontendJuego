@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Label, Input, Spinner } from 'reactstrap';
 import { llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Categoria';
-import { GuardadodeOracionPost } from '../../service/Adminstrador/Oracion';
+import { EdtiarOracion, EdtiarOracionSinImagen, GuardadodeOracionPost } from '../../service/Adminstrador/Oracion';
 import { llamadaDeDataTodosActivos } from '../../service/Adminstrador/Vocabulario';
 import { subidaIOracion } from '../../firebase/config';
 
@@ -17,7 +17,6 @@ function llenadodeFormulario(state, action) {
     }
 }
 const optionsAdverbio = [{ value: "", label: "NINGUNO" }, { value: "UNO", label: "UNO" }, { value: "UN", label: "UN" }, { value: "DOS", label: "DOS" }, { value: "MUCHOS", label: "MUCHOS" }, { value: "MUCHAS", label: "MUCHAS" }]
-
 export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
     const BaseInicialFormulario = { Categoria: dataBase.Categoria, Oracion: dataBase.Oracion, Verbo: dataBase.Verbo, Adverbio: dataBase.Adverbio, FileSujetoImagen: dataBase.FileSujetoImagen, FileAdjetivoImagen: dataBase.FileAdjetivoImagen, FileVideoPreguntaQue: dataBase.FileVideoPreguntaQue, FileVideoPreguntaQuien: dataBase.FileVideoPreguntaQuien, FileVideoMuestra: dataBase.FileVideoMuestra }
     const [{ Categoria, Oracion, Verbo, Adverbio, FileSujetoImagen, FileAdjetivoImagen, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
@@ -43,28 +42,53 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
     }, [])
     const uploadData = async () => {
         try {
+            let fileSujetoImagen = dataBase.FileSujetoImagen;
+ let fileVideoPreguntaQue = dataBase.FileVideoPreguntaQue;
+let fileVideoMuestra = dataBase.FileVideoMuestra;
+let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
+            let _id = dataBase._id;
             setBloqueoSecu(true);
             setBloqueo(true);
             setLoading(true);
-            const fileSujetoImagen = await subidaIOracion(FileSujetoImagen);
-            const fileVideoPreguntaQue = await subidaIOracion(FileVideoPreguntaQue);
-            const fileVideoMuestra = await subidaIOracion(FileVideoMuestra);
-            const fileVideoPreguntaQuien = await subidaIOracion(FileVideoPreguntaQuien);
-            const data = await GuardadodeOracionPost({ Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, FileSujetoImagen: fileSujetoImagen, FileAdjetivoImagen: FileAdjetivoImagen, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
-            MySwal.fire({
-                title: `${data.titulo}`,
-                text: `${data.respuesta}`,
-                icon: `${data.type}`,
-                customClass: {
-                    confirmButton: 'btn btn-primary'
-                },
-                buttonsStyling: false
-            })
+            if(checkbosDos === true ){
+                if(dataBase.FileSujetoImagen !== FileSujetoImagen){
+                     fileSujetoImagen = await subidaIOracion(FileSujetoImagen);
+                }
+                if(dataBase.FileVideoPreguntaQue !== FileVideoPreguntaQue ){
+                    fileVideoPreguntaQue = await subidaIOracion(FileVideoPreguntaQue);
+                }
+                if(dataBase.FileVideoMuestra !== FileVideoMuestra){
+                     fileVideoMuestra = await subidaIOracion(FileVideoMuestra);
+                }
+                if(dataBase.FileVideoPreguntaQuien !== FileVideoPreguntaQuien){
+                     fileVideoPreguntaQuien = await subidaIOracion(FileVideoPreguntaQuien);
+                }                
+                const data = await EdtiarOracion({_id:_id,Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, FileSujetoImagen: fileSujetoImagen, FileAdjetivoImagen: FileAdjetivoImagen, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
+                MySwal.fire({
+                    title: `${data.titulo}`,
+                    text: `${data.respuesta}`,
+                    icon: `${data.type}`,
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+            }
+            if(checkbosDos === false){
+                const data = await EdtiarOracionSinImagen({ _id:_id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio})
+                MySwal.fire({
+                    title: `${data.titulo}`,
+                    text: `${data.respuesta}`,
+                    icon: `${data.type}`,
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    },
+                    buttonsStyling: false
+                })
+            }
             setBloqueoSecu(false);
             setBloqueo(false);
             setLoading(false);
-
-
         } catch (error) {
             MySwal.fire({
                 title: 'Error!',
@@ -79,8 +103,6 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
             setBloqueo(false);
             setLoading(false);
             toggle();
-
-
         }
     }
     useEffect(() => {

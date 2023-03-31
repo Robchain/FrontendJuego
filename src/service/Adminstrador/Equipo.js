@@ -10,7 +10,7 @@ export const PostCrearEquipo = async ({Nombre, Imagen})=>{
     return data.data;
 }
 
-export const DesanilitarRompecabeza = async ({_id})=>{
+export const DesabilitarEquipo = async ({_id})=>{
     const data = await Api.post("/Equipo/Desibilitar", {_id:_id})
     return data.data;
 }
