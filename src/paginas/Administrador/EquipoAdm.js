@@ -6,14 +6,18 @@ import { ModalAgregarEquipo } from '../../componentes/Administrador/ModalAgregar
 import { DesabilitarEquipo, HabilitarEquipo, llamadaGetActivo } from '../../service/Adminstrador/Equipo';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
+import { ModalEditarEquipo } from '../../componentes/Administrador/ModalEditarEquipo';
 
 const EquipoAdm = () => {
   const MySwal = withReactContent(Swal)
+  const [dataSeleccionada, setDataSeleccionada] = useState({})
+  const [modaleditar, setModaleditar] = useState(false);
   const [card, setCard] = useState([])
   const [isOpen, setIsOpen] = useState(false)
   const [modal, setModal] = useState(false)
   const [showAll, setShowAll] = useState(true);
   const toggledos = () => { setModal(!modal) }
+  const toogleeditar = ()=>{ setModaleditar(!modaleditar)}
   const toggle = () => { setIsOpen(!isOpen) }
   const mostrar = async () => {
     const data = await llamadaGetActivo();
@@ -84,6 +88,7 @@ const EquipoAdm = () => {
           Agregar
         </Button>
         <ModalAgregarEquipo modal={modal} toggle={toggledos} />
+        <ModalEditarEquipo baseData={dataSeleccionada} modal={modaleditar} toggle={toogleeditar} />
       </Col>
       <Row className='match-height mb-2'>
         <Col lg="12">
@@ -122,7 +127,7 @@ const EquipoAdm = () => {
                       {i.Estado === "ACTIVO" ? <span>Desactivar</span> : <span>Activar</span>}
                     </Button>
                     <span>&nbsp;&nbsp;&nbsp;</span>
-                    <Button style={{ background: '#5b2998', color: '#fff' }} outline /*onClick={() => Editar(i)}*/ >
+                    <Button style={{ background: '#5b2998', color: '#fff' }} outline onClick={() => {setDataSeleccionada(i); toogleeditar();}} >
                       Editar
                     </Button>
                   </CardFooter>
@@ -149,7 +154,7 @@ const EquipoAdm = () => {
                       {i.Estado === "ACTIVO" ? <span>Desactivar</span> : <span>Activar</span>}
                     </Button>
                     <span>&nbsp;&nbsp;&nbsp;</span>
-                    <Button style={{ background: '#5b2998', color: '#fff' }} outline /*onClick={() => Editar(i)}*/ >
+                    <Button style={{ background: '#5b2998', color: '#fff' }} outline onClick={() => {setDataSeleccionada(i); toogleeditar();}} >
                       Editar
                     </Button>
                   </CardFooter>

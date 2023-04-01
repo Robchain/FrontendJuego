@@ -7,12 +7,21 @@ import withReactContent from 'sweetalert2-react-content';
 import MenuAdmi from '../../componentes/MenuAdmi';
 import { ModalAgregarEstudiante } from '../../componentes/Administrador/ModalAgregarEstudiante';
 import { MostrarEstudiante, desabilitarPersonasApi, habilitarPersonasApi } from '../../service/Adminstrador/Usuarios';
+import { ModalEditarEstudiante } from '../../componentes/Administrador/ModalEditarEstudiante';
+import { ModalDetalleUsuario } from '../../componentes/Administrador/ModalDetalleUsuario';
 const VerEstudianteAdm = () => {
+  const [modalDetalle, setModalDetalle] = useState(false);
   const MySwal = withReactContent(Swal)
   const [isOpen, setIsOpen] = useState(false)
+  const [modaleditar, setModaleditar] = useState(false);
+  const [dataseleccionada, setDataseleccionada] = useState({})
   const [modal, setModal] = useState(false)
   const [Data, setData] = useState([]);
   const [showAll, setShowAll] = useState(true);
+  const toggleDetalle = ()=>{setModalDetalle(!modalDetalle);}
+  const toggleditar =()=>{
+    setModaleditar(!modaleditar);
+  }
   const handleCheckboxChange = () => {
        setShowAll(!showAll);
      };
@@ -89,7 +98,9 @@ const VerEstudianteAdm = () => {
             Agregar
           </Button>
           { /*aqui va  el modal*/}
+         <ModalEditarEstudiante modal={modaleditar}  toggle={toggleditar}  dataBase={dataseleccionada}/>
           <ModalAgregarEstudiante modal={modal} toggle={toggledos} />
+          <ModalDetalleUsuario dataBase={dataseleccionada} modal={modalDetalle} toggle={toggleDetalle} />
         </Col>
         <Col xl='12' lg="12" className='d-xl p-0 mt-2'>
         <Col lg="12">
@@ -131,13 +142,13 @@ const VerEstudianteAdm = () => {
                         <MoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
-                        <DropdownItem href='/' /*onClick={e =>  abrirDetalle(i, e)}*/>
+                        <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleDetalle();}} >
                           <Clipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
                         </DropdownItem>
-                        <DropdownItem href='/'/* onClick={e => Editar(i, e)}*/>
+                        <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleditar()} }>
                           <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
-                        <DropdownItem href='/' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
+                        <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
                         {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                       </DropdownMenu>
@@ -159,7 +170,7 @@ const VerEstudianteAdm = () => {
                         <DropdownItem href='#' /*onClick={e =>  abrirDetalle(i, e)}*/>
                           <Clipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
                         </DropdownItem>
-                        <DropdownItem href='#'/* onClick={e => Editar(i, e)}*/>
+                        <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleditar()}}>
                           <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
                         <DropdownItem href='#'onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}  >

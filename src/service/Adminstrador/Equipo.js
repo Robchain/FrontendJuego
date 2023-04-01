@@ -19,3 +19,14 @@ export const HabilitarEquipo = async ({_id})=>{
     const data = await Api.post("/Equipo/Habiltar",{_id:_id});
     return data.data;
 }
+
+export const EditarsinImagen = async ({_id,Nombre})=>{
+    const data = await Api.post("/Equipo/editarSinImagen",{_id:_id,Nombre:Nombre});
+    return data.data;
+}
+
+
+export const EditarconImagen = async ({_id,Nombre,Imagen})=>{
+    const data = await Api.post("/Equipo/editar",{_id:_id,Nombre:Nombre,Imagen:Imagen});
+    return data.data;
+}
