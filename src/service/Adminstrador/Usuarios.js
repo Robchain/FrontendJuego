@@ -84,3 +84,9 @@ export const editarPersonaconImagen = async ({_id,Nombre,
         Paralelo: Paralelo,})
         return data.data;
     }
+
+
+    export const listadoProfesores = async ()=>{
+      const data = await Api.get("/perfilesActivosMaestros");
+      return data.data;
+    }

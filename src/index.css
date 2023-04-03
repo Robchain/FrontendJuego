@@ -80,6 +80,16 @@
     border-radius: 50px !important;
     box-shadow: 0 0 10px 1px #Fff !important;
 }
+.tabvs .active .card{
+    background-color: #fff !important;
+    color: #000 !important;
+    box-shadow: 0 0 10px 1px #Fff !important;
+}
+.tabvs .active .css-b62m3t-container{
+    background-color: #fff !important;
+    color: #000 !important;
+    box-shadow: 0 0 10px 1px #Fff !important;
+}
 
 #root{
     font-family:"Montserrat", Helvetica, Arial, serif;

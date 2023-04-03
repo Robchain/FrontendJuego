@@ -5,20 +5,19 @@ import Repeater from '../Repeater';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, prevButton, index, Segundo }) => {
+export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, prevButton, index, Segundo,TipoDeJuego }) => {
   const MySwal = withReactContent(Swal)
   const onclickGuardar = async()=>{
     let Estado = "ACTIVO"
-    crearMultiJugador(NombreDeEquipo,NumeroDeGrupos,NumeroDeIntegrantes, Segundo,picker, Estado).then(respuesta => { 
-      MySwal.fire({
-      title: `${respuesta.titulo}`,
-      text: `${respuesta.respuesta}`,
-      icon: `${respuesta.type}`,
-      customClass: {
-        confirmButton: 'btn btn-primary'
-      },
-      buttonsStyling: false}) 
-    })
+  const data = await  crearMultiJugador({NombreDeEquipo:NombreDeEquipo,NumeroDeGrupos:NumeroDeGrupos,NumeroDeIntegrantes:NumeroDeIntegrantes, Segundo:Segundo,picker:picker, Estado:Estado,TipoDeJuego:TipoDeJuego})
+  MySwal.fire({
+    title: `${data.titulo}`,
+    text: `${data.respuesta}`,
+    icon: `${data.type}`,
+    customClass: {
+      confirmButton: 'btn btn-primary'
+    },
+    buttonsStyling: false}) 
   }
 
   return (
@@ -55,6 +54,17 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
                 <p key={index}>- <Label>{index ===0 ? "Fecha de Inicio: " : "Fecha de Fin: "}</Label> {i.toLocaleDateString()}</p>
               ))
             }
+          </Col>
+          <Col md='6' className='mb-1'>
+            <Label>Tipo de Juego :  {
+              TipoDeJuego === 1 && <>Vocabularios</>
+            }
+            {
+              TipoDeJuego === 2 && <>Oraciones</>
+            }
+            {
+              TipoDeJuego === 3 && <>Oraciones y Vocabularios</>
+            }</Label>
           </Col>
         </Row>
       </CardBody>

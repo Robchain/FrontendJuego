@@ -2,13 +2,13 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Swal from 'sweetalert2'
+import Select from 'react-select';
 import withReactContent from 'sweetalert2-react-content';
 import { useReducer } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, Input, Spinner } from 'reactstrap';
 import { subidaIPerfil } from '../../firebase/config';
 import { editarPersonaconImagen, editarPersonasinImagen } from '../../service/Adminstrador/Usuarios';
 
-const BaseInicialFormulario = { Nombre: "", Apellido: "", Identificacion: "",FotoPerfil:undefined, Email: "", Usuario: "", Password: "", TipoUsuario: "", Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
     case 'onchange':
@@ -130,6 +130,16 @@ try {
             </Label>
             <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => disparodeAccion({ type: "onchange", field: 'FotoPerfil', value: e.target.files[0] }) } />
             </>}</Col>
+            <Col md='6' sm='12' className='mb-1'>
+            <Label className='form-label' for='Curso'>
+              Curso
+            </Label>
+            <Select name="Curso" isSearchable={false} defaultValue={{value:dataBase.Curso,label:dataBase.Curso}} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={[{value:"PRIMERO", label:"PRIMERO"},{value:"SEGUNDO", label:"SEGUNDO"},{value:"TERCERO", label:"TERCERO"},]} />
+            <Label className='form-label' for='Paralelo'>
+              Paralelo
+            </Label>
+            <Select name="Paralelo" isSearchable={false} defaultValue={{value:dataBase.Paralelo,label:dataBase.Paralelo}} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={[{value:"A", label:"A"},{value:"B", label:"B "},{value:"C", label:"C"},{value:"D", label:"D"},{value:"E", label:"E"},{value:"F", label:"F"},]}  />
+          </Col>     
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='EmailMulti'>
               Tipo Usuario

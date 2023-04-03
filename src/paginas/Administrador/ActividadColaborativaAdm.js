@@ -7,7 +7,7 @@ import { PasoUnoFormulario } from "../../componentes/Administrador/PasoUnoFormul
 import { PasoDosFormulario } from "../../componentes/Administrador/PasoDosFormulario";
 import { PasoTresFormulario } from "../../componentes/Administrador/PasoTresFormulario";
 import { PasoCuatroFormulario } from "../../componentes/Administrador/PasoCuatroFormulario";
-const estadoInicialFormularioActividad = { NumeroDeGrupos: {}, NumeroDeIntegrantes:{}, NombreDeEquipo: []}
+const estadoInicialFormularioActividad = { NumeroDeGrupos: {}, NumeroDeIntegrantes:{}, NombreDeEquipo: [],TipoDeJuego:1}
 
 function ActualizacionDeDataFormularioEquipo(state, action) {
   switch (action.type) {
@@ -19,7 +19,7 @@ function ActualizacionDeDataFormularioEquipo(state, action) {
 }
 
 const ActividadColaborativaAdm = () => {
-  const [{NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo}, dispatch] = useReducer(ActualizacionDeDataFormularioEquipo, estadoInicialFormularioActividad)
+  const [{NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo,TipoDeJuego}, dispatch] = useReducer(ActualizacionDeDataFormularioEquipo, estadoInicialFormularioActividad)
   const [index, setIndex] = useState(1)
   const [picker, setPicker] = useState(new Date())
  const [Segundo, setSegundo] = useState([]);
@@ -43,7 +43,7 @@ const ActividadColaborativaAdm = () => {
       <Row>
         <Stepbar steps={index} />
         {
-          index === 1 && <PasoUnoFormulario index={index} nextButton={nextButton} prevButton={prevButton} dispatch={dispatch} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} NombreDeEquipo={NombreDeEquipo} />
+          index === 1 && <PasoUnoFormulario TipoDeJuego={TipoDeJuego} index={index} nextButton={nextButton} prevButton={prevButton} dispatch={dispatch} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} NombreDeEquipo={NombreDeEquipo} />
         }
         {
           index === 2 && <PasoDosFormulario index={index} nextButton={nextButton} prevButton={prevButton} setSegundo={setSegundo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} />
@@ -52,7 +52,7 @@ const ActividadColaborativaAdm = () => {
           index === 3 && <PasoTresFormulario index={index} nextButton={nextButton} prevButton={prevButton} setPicker={setPicker} picker={picker} />
         }
         {
-          index === 4 && <PasoCuatroFormulario index={index} nextButton={nextButton} prevButton={prevButton} Segundo={Segundo}  NombreDeEquipo={NombreDeEquipo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} picker={picker}/>
+          index === 4 && <PasoCuatroFormulario index={index} nextButton={nextButton} prevButton={prevButton} Segundo={Segundo}  NombreDeEquipo={NombreDeEquipo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} picker={picker} TipoDeJuego={TipoDeJuego}/>
         }
       </Row>
     </Container>

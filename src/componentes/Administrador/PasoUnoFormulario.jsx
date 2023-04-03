@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, CardBody, CardFooter, Col, Label, Row } from "reactstrap";
+import { Button, Card, CardBody, CardFooter, Col, Input, Label, Row } from "reactstrap";
 import Select from 'react-select'
 import { todosTeam } from '../../service/Equipo';
 const Options = [
@@ -14,7 +14,7 @@ const Options2 = [
   { value: '4', label: '4' },
   { value: '6', label: '6' }
 ]
-export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo }) => {
+export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo,TipoDeJuego }) => {
   const [TeamData, setTeamData] = useState([]);
   const llamadaDataInicial  = async ()=>{
     const data = await todosTeam();
@@ -70,6 +70,39 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
             name='NIntegrantes'
               options={Options2}
             />
+          </Col>
+          <Col md='6' sm='12' className='mb-1'>
+            <Label>
+              Tipo de Juego
+            </Label><br />
+            <Label><Input
+              type='radio'
+              name="TipoDeJuego"
+              id={1}
+              value={1}
+              onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value })}
+              defaultChecked={TipoDeJuego === 1}
+            />Vocabularios</Label><br />
+            <Label>
+              <Input
+                type='radio'
+                name="TipoDeJuego"
+                id={2}
+                value={2}
+                onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value})}
+              defaultChecked={TipoDeJuego === 2}
+              />Oraciones
+            </Label><br/>
+            <Label>
+              <Input
+                type='radio'
+                id={3}
+                name="TipoDeJuego"
+                value={3}
+                onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value })}
+              defaultChecked={TipoDeJuego === 3}
+              />Oraciones y Vocabularios
+            </Label>
           </Col>
         </Row>
         <div className='d-flex justify-content-between mt-3'>

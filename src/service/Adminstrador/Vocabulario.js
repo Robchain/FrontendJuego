@@ -26,3 +26,7 @@ export const  desabilitarVocabularioApi = async ({_id})=>{
     const data = await Api.post("/vocabulario/Desabilitar",{_id:_id});
     return data.data
 }
+export const ActivarJuegoPorCursoParaleloVocabulario = async ({Curso,Paralelo})=>{
+    const data = await Api.post("/vocabulario/activarJuegoPorCursoParalelo",{Curso:Curso, Paralelo:Paralelo});
+    return data.data
+}

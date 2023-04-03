@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import Select from 'react-select';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { useReducer } from 'react';
@@ -8,7 +9,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, In
 import { subidaIPerfil } from '../../firebase/config';
 import { CrearUsuario } from '../../service/Adminstrador/Usuarios';
 
-const BaseInicialFormulario = { Nombre: "", Apellido: "", Identificacion: "",FotoPerfil:undefined, Email: "", Usuario: "", Password: "", TipoUsuario: "", Estado: "", Curso: "", Paralelo: "" }
+const BaseInicialFormulario = { Nombre: "", Apellido: "", Identificacion: "",FotoPerfil:undefined, Email: "", Usuario: "", Password: "", TipoUsuario: "", Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
     case 'onchange':
@@ -135,7 +136,16 @@ try {
             <br/>
             {contraseñaUno !== contraseñaDos && <small style={{color:'red'}}> la contraseña no coincide</small>}
           </Col>
-          
+          <Col md='6' sm='12' className='mb-1'>
+            <Label className='form-label' for='Curso'>
+              Curso
+            </Label>
+            <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={[{value:"PRIMERO", label:"PRIMERO"},{value:"SEGUNDO", label:"SEGUNDO"},{value:"TERCERO", label:"TERCERO"},]} />
+            <Label className='form-label' for='Paralelo'>
+              Paralelo
+            </Label>
+            <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={[{value:"A", label:"A"},{value:"B", label:"B "},{value:"C", label:"C"},{value:"D", label:"D"},{value:"E", label:"E"},{value:"F", label:"F"},]}  />
+          </Col>     
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='EmailMulti'>
               Tipo Usuario
