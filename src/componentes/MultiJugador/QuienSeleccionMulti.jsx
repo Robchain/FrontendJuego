@@ -159,7 +159,6 @@ const RespuestaImagen =({ momento, Queselec, data, id, window, setMomento})=>{
 
 export const QuienSeleccionMulti = ({id, window, siguiente, data,Progreso}) => {
     const [momento, setMomento] = useState("inicial");
-   // const { oraciondata } = useContext(JuecoContext);
     const [Queselec, setQueselec] = useState("");
     const [QueSelecion, setQueSelecion] = useState(0);
     const [pointerEvent, setPointer] = useState("auto");

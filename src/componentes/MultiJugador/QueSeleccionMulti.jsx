@@ -1,6 +1,5 @@
-import React, { /*useContext,*/ useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'reactstrap'
-//import { JuecoContext } from '../../../context/Juego/JuecoContext';
 import buentrajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
 import Quien from '../../assets/img/AssetsGame/ico_Que.png'
@@ -171,7 +170,6 @@ const VerVerboRespuesta = ({data, window, id })=>{
       }
 export const QueSeleccionMulti = ({id, window, siguiente, data, Progreso}) => {
     const [momento, setMomento] = useState("inicial");
-   // const { oraciondata } = useContext(JuecoContext);
     const [Queselec, setQueselec] = useState("");
     const [QueSelecion, setQueSelecion] = useState(0);
     const [pointerEvent, setPointer] = useState("auto")
@@ -252,7 +250,6 @@ export const QueSeleccionMulti = ({id, window, siguiente, data, Progreso}) => {
       <img alt='que' src={Que} width="75"  style={{ margin: "0px 35px" }}/>
     </div>
   </Row>
-  {/* parte de seleccion */}
   <Row lg="8" >
    <div style={{ width: "200px" }} >
       <VerSeleccionQuien id={id} data={data} window={window}/>

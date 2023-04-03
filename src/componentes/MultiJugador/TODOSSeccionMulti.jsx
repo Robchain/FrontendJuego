@@ -1,6 +1,5 @@
 import React, { useReducer,useEffect, useState } from 'react'
 import { Col, Row } from 'reactstrap'
-//import { JuecoContext } from '../../../context/Juego/JuecoContext';
 import buentrajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
 import Quien from '../../assets/img/AssetsGame/ico_Que.png'

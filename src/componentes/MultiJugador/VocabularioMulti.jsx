@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import ReactPlayer from 'react-player';
 import { Col, Row } from 'reactstrap'
 import buentrabajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
-import { JuecoContext } from '../../context/Juego/JuecoContext';
 const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setOpa2, setOpa3 }) => {
   const [imagenRes, setImagenRes] = useState("")
   useEffect(() => {
@@ -57,7 +56,7 @@ const VideosPreguntas = ({ window, id, data, videoActual, setPointerEvent, setOp
     }
   }, [data])
 
-  return <ReactPlayer url={videos[videoActual]} playing ref={playref} width={450} onEnded={() => { if (3 === videoActual) { setPointerEvent("auto"); setOpa1(1); setOpa2(1); setOpa3(1) } else { setVideoActual(videoActual + 1); } }} />
+  return <ReactPlayer url={videos[videoActual]} playing={true} ref={playref} width={450} onEnded={() => { if (3 === videoActual) { setPointerEvent("auto"); setOpa1(1); setOpa2(1); setOpa3(1) } else { setVideoActual(videoActual + 1); } }} />
 }
 const VideosRespuesta = ({ window, id, data, playref }) => {
   const [videos, setvideos] = useState("");
