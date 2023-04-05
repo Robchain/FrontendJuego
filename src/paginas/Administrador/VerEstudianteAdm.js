@@ -9,12 +9,14 @@ import { ModalAgregarEstudiante } from '../../componentes/Administrador/ModalAgr
 import { MostrarEstudiante, desabilitarPersonasApi, habilitarPersonasApi, listadoProfesores } from '../../service/Adminstrador/Usuarios';
 import { ModalEditarEstudiante } from '../../componentes/Administrador/ModalEditarEstudiante';
 import { ModalDetalleUsuario } from '../../componentes/Administrador/ModalDetalleUsuario';
+import { ModalActualizarContra } from '../../componentes/Administrador/ModalActualizarContra';
 const VerEstudianteAdm = () => {
   const [modalDetalle, setModalDetalle] = useState(false);
   const MySwal = withReactContent(Swal)
   const [tabs, setTabs] = useState("1")
   const [isOpen, setIsOpen] = useState(false)
   const [modaleditar, setModaleditar] = useState(false);
+  const [modalContra, setModalContra] = useState(false);
   const [dataseleccionada, setDataseleccionada] = useState({})
   const [modal, setModal] = useState(false)
   const [Data, setData] = useState([]);
@@ -41,6 +43,7 @@ const VerEstudianteAdm = () => {
   }, [])
   const toggle = () => { setIsOpen(!isOpen) }
   const toggledos = () => { setModal(!modal) }
+  const toggleContra =()=>setModalContra(!modalContra);
   
   
   
@@ -125,6 +128,7 @@ const VerEstudianteAdm = () => {
          <ModalEditarEstudiante modal={modaleditar}  toggle={toggleditar}  dataBase={dataseleccionada}/>
           <ModalAgregarEstudiante modal={modal} toggle={toggledos} />
           <ModalDetalleUsuario dataBase={dataseleccionada} modal={modalDetalle} toggle={toggleDetalle} />
+          <ModalActualizarContra database={dataseleccionada} modal={modalContra} toggle={toggleContra}/>
         </Col>
         <TabContent activeTab={tabs} className="tabvs">
         <TabPane tabId="1" >
@@ -179,6 +183,9 @@ const VerEstudianteAdm = () => {
                         <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
                         {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
+                        <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleContra()} }>
+                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
+                        </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </td>
@@ -203,6 +210,9 @@ const VerEstudianteAdm = () => {
                         </DropdownItem>
                         <DropdownItem href='#'onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}  >
                         {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        </DropdownItem>
+                        <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleContra()} }>
+                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
@@ -263,6 +273,9 @@ const VerEstudianteAdm = () => {
                         <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
                         {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
+                        <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleContra()} }>
+                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
+                        </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </td>
@@ -287,6 +300,9 @@ const VerEstudianteAdm = () => {
                         </DropdownItem>
                         <DropdownItem href='#'onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}  >
                         {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        </DropdownItem>
+                        <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleContra()} }>
+                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>

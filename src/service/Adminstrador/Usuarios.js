@@ -90,3 +90,8 @@ export const editarPersonaconImagen = async ({_id,Nombre,
       const data = await Api.get("/perfilesActivosMaestros");
       return data.data;
     }
+
+    export const ActulizarContraseña = async ({_id,Password})=>{
+      const data = await Api.post("/Perfiles/ActualizarContrasenia",{_id:_id,Password:Password});
+      return data.data;
+    }
