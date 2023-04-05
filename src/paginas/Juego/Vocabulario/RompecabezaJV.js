@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from 'react'
-import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { Col, Container, Row, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
@@ -10,12 +9,6 @@ import { contador } from '../../../helpers/contador'
 const RompecabezaJV = () => {
   const { data, setavance, setData } = useContext(JuecoContext);
   const [modal, setModal] = useState(false);
-  const [rompecabeza1, setRompecabeza1] = useState(0);
-  const [rompecabeza2, setRompecabeza2] = useState(0);
-  const [rompecabeza3, setRompecabeza3] = useState(0);
-  const [rompecabeza4, setRompecabeza4] = useState(0);
-  const [rompecabeza5, setRompecabeza5] = useState(0);
-  const [rompecabeza6, setRompecabeza6] = useState(0);
   const datoVocabulario = async (user) => {
    const data = await  llamadaRompecabezaGet({user});
    setData(data);
@@ -34,16 +27,7 @@ const RompecabezaJV = () => {
       setModal(!modal);
     }
   }
- /* useEffect(() => {
-  if(data!==null){
-    for(const juego in data.Juego1.Avance){
-      if(data.Juego1.Avance[juego].Resultado === "CORRECTO"){
-        setRompecabeza1(...rompecabeza1 +1 )
-      }
-    }
-  }
-  }, [data])*/
-  
+
   
 
   const Pantalla = () => {
