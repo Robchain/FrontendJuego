@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Spinner } from 'reactstrap';
-import { CrearRompecabeza, EditarDataRompecabeza, EditarDataRompecabezaSinArchivo } from '../../service/Adminstrador/Rompecabeza';
+import { EditarDataRompecabeza, EditarDataRompecabezaSinArchivo } from '../../service/Adminstrador/Rompecabeza';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { subidaIRompecabeza } from '../../firebase/config';

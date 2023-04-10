@@ -1,5 +1,5 @@
 import React,{ useContext, useEffect } from 'react'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Container } from 'reactstrap'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { Espera } from '../../../componentes/MultiJugador/Espera'

@@ -40,7 +40,7 @@ const OracionJ = () => {
     setWindows(newWindows);
   }
 
-  const { oraciondata, dataOracion, progreso, Oracionprogreso,dispatchProgreso, } = useContext(JuecoContext);
+  const { oraciondata, dataOracion, Oracionprogreso,dispatchProgreso, dataOracionJuego} = useContext(JuecoContext);
 
   useEffect(() => {
     dataOracion(localStorage.getItem("Usuario"));
@@ -50,7 +50,7 @@ const OracionJ = () => {
   }, [])
   return (
     <>{
-      oraciondata !== null ? (
+      dataOracionJuego !== null ? (
         <>
         { windows.map(window =>(
           <div  key={window.id}>
@@ -63,19 +63,19 @@ const OracionJ = () => {
               <Suspense  fallback={<>Cargandos...</>}>
               {
                 //EN CASO DE TODOS 
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "TODOS") && (<TODOSSeccion id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
+                (dataOracionJuego.Partida[`Juego` + window.id].TipoPregunta === "TODOS") && (<TODOSSeccion data={dataOracionJuego} id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
               }
               {
                   // EN CASO DE QUE
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUE") && (<QueSeccion id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
+                (dataOracionJuego.Partida[`Juego` + window.id].TipoPregunta === "QUE") && (<QueSeccion data={dataOracionJuego} id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
               }
               {
                   // EN CASO DE QUIEN
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "QUIEN") && (<QuienSeccion id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
+                (dataOracionJuego.Partida[`Juego` + window.id].TipoPregunta === "QUIEN") && (<QuienSeccion data={dataOracionJuego} id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
               }
               {
                   // EN CASO DE ADVERBIO
-                (oraciondata[`Juego${id}`].Partida[`Juego` + window.id].TipoPregunta === "ADVERBIO") && (<Adverbio id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
+                (dataOracionJuego.Partida[`Juego` + window.id].TipoPregunta === "ADVERBIO") && (<Adverbio data={dataOracionJuego} id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
               }
               </Suspense>
             </Row>

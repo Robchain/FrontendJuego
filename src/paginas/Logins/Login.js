@@ -11,7 +11,7 @@ import {
     Spinner,
     Button
 } from "reactstrap"
-import { useNavigate, Link } from "react-router-dom"; //!!arreglar la navegacion con rutas protegidas!!
+import { useNavigate} from "react-router-dom"; //!!arreglar la navegacion con rutas protegidas!!
 import { useEffect } from "react";
 import { LoginAPI } from "../../service/Adminstrador/Usuarios";
 const Index = () => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Card, CardBody, CardFooter, Col, Input, Label, Row } from "reactstrap";
+import { Button, Card, CardBody, Col, Input, Label, Row } from "reactstrap";
 import Select from 'react-select'
 import { todosTeam } from '../../service/Equipo';
 const Options = [

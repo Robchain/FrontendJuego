@@ -7,13 +7,14 @@ import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/Na
 import { llamadaRompecabezaGet } from '../../../service/Juego/Vocabulario'
 import { contador } from '../../../helpers/contador'
 const RompecabezaJV = () => {
-  const { data, setavance, setData } = useContext(JuecoContext);
+  const { dataJuegoInicialVocabulario, setavance, setDataJuegoInicialVocabulario,setdataJuegoVocabulario } = useContext(JuecoContext);
   const [modal, setModal] = useState(false);
   const datoVocabulario = async (user) => {
    const data = await  llamadaRompecabezaGet({user});
-   setData(data);
+   setDataJuegoInicialVocabulario(data);
   }
 
+  const [dataseleccionada, setDataseleccionada] = useState(null)
 
   useEffect(() => {
     setavance([]);
@@ -32,37 +33,22 @@ const RompecabezaJV = () => {
 
   const Pantalla = () => {
 
-    if (data === null) {
+    if (dataJuegoInicialVocabulario === null) {
       return (<div>Cargando...</div>)
     } else {
       return (
           <Container className='fondoMC a'>
-          <Modalaqui descripcion={data.Juego1.Partida.Rompecabeza.Nombre} url={data.Juego1.Partida.Rompecabeza.FileColor} modal={modal} setModal={setModal} />
+          <Modalaqui  data={dataseleccionada}  modal={modal} setModal={setModal} />
             <NavBarJuego  Seccion={"Vocabulario"} urlBack={"/MenuJuego"} />
-            <Row>
               <Row className="justify-content-evenly  mt-2 mx-2">
-                <Col lg="4" md="4" sm="10" xs="10" >
-                  <Link to={`/VocabularioJuego/${1}`} onClick={(e) => clickHandle(e, data.Juego1.Avance.Terminado)}><RompecabaSolitaria a={(data.Juego1.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(data.Juego1.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(data.Juego1.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(data.Juego1.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(data.Juego1.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(data.Juego1.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(data.Juego1.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(data.Juego1.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(data.Juego1.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(data.Juego1.Avance.Juego6.Resultado === "CORRECTO") && "hidden"} piezas={data.Juego1.Partida.Rompecabeza.Pieza} url={data.Juego1.Partida.Rompecabeza.FileColor} alt={data.Juego1.Partida.Rompecabeza.Nombre} /> </Link> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(data.Juego1.Avance,data.Juego1.Partida.Rompecabeza.Pieza )}/${data.Juego1.Partida.Rompecabeza.Pieza}`}</span></p>
+              {
+                dataJuegoInicialVocabulario.map(i=>(
+                  <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" >
+                  <Link to={`/VocabularioJuego`} onClick={(e) => {setdataJuegoVocabulario(i);setDataseleccionada(i); clickHandle(e, i.Avance.Terminado)} }><RompecabaSolitaria a={(i.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(i.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(i.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(i.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(i.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(i.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(i.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(i.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(i.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(i.Avance.Juego6.Resultado === "CORRECTO") && "hidden"} piezas={i.Partida.Rompecabeza.Pieza} url={i.Partida.Rompecabeza.FileColor} alt={i.Partida.Rompecabeza.Nombre} /> </Link> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(i.Avance,i.Partida.Rompecabeza.Pieza )}/${i.Partida.Rompecabeza.Pieza}`}</span></p>
                 </Col>
-                <Col lg="4"  md="4" sm="10" xs="10">
-                  <Link to={`/VocabularioJuego/${2}`} onClick={(e) => clickHandle(e, data.Juego2.Avance.Terminado)}> <RompecabaSolitaria a={(data.Juego2.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(data.Juego2.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(data.Juego2.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(data.Juego2.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(data.Juego2.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(data.Juego2.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(data.Juego2.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(data.Juego2.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(data.Juego2.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(data.Juego2.Avance.Juego6.Resultado === "CORRECTO") && "hidden"} piezas={data.Juego2.Partida.Rompecabeza.Pieza} url={data.Juego2.Partida.Rompecabeza.FileColor} alt={data.Juego2.Partida.Rompecabeza.Nombre} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(data.Juego2.Avance,data.Juego2.Partida.Rompecabeza.Pieza)}/${data.Juego2.Partida.Rompecabeza.Pieza}`}</span></p>
-                </Col>
-                <Col lg="4"  md="4" sm="10" xs="10">
-                  <Link to={`/VocabularioJuego/${3}`} onClick={(e) => clickHandle(e, data.Juego3.Avance.Terminado)}>     <RompecabaSolitaria a={(data.Juego3.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(data.Juego3.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(data.Juego3.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(data.Juego3.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(data.Juego3.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(data.Juego3.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(data.Juego3.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(data.Juego3.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(data.Juego3.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(data.Juego3.Avance.Juego6.Resultado === "CORRECTO") && "hidden"} piezas={data.Juego3.Partida.Rompecabeza.Pieza} url={data.Juego3.Partida.Rompecabeza.FileColor} alt={data.Juego3.Partida.Rompecabeza.Nombre} /> </Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(data.Juego3.Avance,data.Juego3.Partida.Rompecabeza.Pieza)}/${data.Juego3.Partida.Rompecabeza.Pieza}`}</span></p>
-                </Col>
+                ))
+              }
               </Row>
-              <Row className=" justify-content-evenly mt-2 mx-2">
-                <Col lg="4"  md="4" sm="10" xs="10" >
-                  <Link to={`/VocabularioJuego/${4}`} onClick={(e) => clickHandle(e, data.Juego4.Avance.Terminado)}>    <RompecabaSolitaria a={(data.Juego4.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(data.Juego4.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(data.Juego4.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(data.Juego4.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(data.Juego4.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(data.Juego4.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(data.Juego4.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(data.Juego4.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(data.Juego4.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(data.Juego4.Avance.Juego6.Resultado === "CORRECTO") && "hidden"} piezas={data.Juego4.Partida.Rompecabeza.Pieza} url={data.Juego4.Partida.Rompecabeza.FileColor} alt={data.Juego4.Partida.Rompecabeza.Nombre} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(data.Juego4.Avance,data.Juego4.Partida.Rompecabeza.Pieza)}/${data.Juego4.Partida.Rompecabeza.Pieza}`}</span></p>
-                </Col>
-                <Col lg="4"  md="4" sm="10" xs="10">
-                  <Link to={`/VocabularioJuego/${5}`} onClick={(e) => clickHandle(e, data.Juego5.Avance.Terminado)}>   <RompecabaSolitaria a={(data.Juego5.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(data.Juego5.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(data.Juego5.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(data.Juego5.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(data.Juego5.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(data.Juego5.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(data.Juego5.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(data.Juego5.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(data.Juego5.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(data.Juego5.Avance.Juego6.Resultado === "CORRECTO") && "hidden"} piezas={data.Juego5.Partida.Rompecabeza.Pieza} url={data.Juego5.Partida.Rompecabeza.FileColor} alt={data.Juego5.Partida.Rompecabeza.Nombre} /></Link><p className='mt-2' style={{fontWeight:700, }}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(data.Juego5.Avance,data.Juego5.Partida.Rompecabeza.Pieza)}/${data.Juego5.Partida.Rompecabeza.Pieza}`}</span></p>
-                </Col>
-                <Col lg="4"  md="4" sm="10" xs="10">
-                  <Link to={`/VocabularioJuego/${6}`} onClick={(e) => clickHandle(e, data.Juego6.Avance.Terminado)}>   <RompecabaSolitaria a={(data.Juego6.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(data.Juego6.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(data.Juego6.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(data.Juego6.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(data.Juego6.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(data.Juego6.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(data.Juego6.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(data.Juego6.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(data.Juego6.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(data.Juego6.Avance.Juego6.Resultado === "CORRECTO") && "hidden"} piezas={data.Juego6.Partida.Rompecabeza.Pieza} url={data.Juego6.Partida.Rompecabeza.FileColor} alt={data.Juego6.Partida.Rompecabeza.Nombre} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(data.Juego6.Avance,data.Juego6.Partida.Rompecabeza.Pieza)}/${data.Juego6.Partida.Rompecabeza.Pieza}`}</span></p>
-                </Col>
-              </Row>
-            </Row>
           </Container>
       )
     }
@@ -72,7 +58,7 @@ const RompecabezaJV = () => {
       <Pantalla />
   )
 }
-const Modalaqui = ({ url, descripcion, modal, setModal }) => {
+const Modalaqui = ({ data , modal, setModal }) => {
   const toggle = () => setModal(!modal)
   const impresion = () => {
     document.querySelector(".print").classList.add("print-image");
@@ -88,7 +74,10 @@ const Modalaqui = ({ url, descripcion, modal, setModal }) => {
       <Modal isOpen={modal} toggle={toggle} backdrop={false} style={{textAlign:"center"}}  >
         <ModalHeader  style={{backgroundColor:"#E6DFF0",color:"#62269E"}}><span style={{fontWeight:"bold", textAlign:"center"}}>Rompecabeza Completado</span></ModalHeader>
         <ModalBody>
-          <img className='print cac' src={url} alt={descripcion} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
+        {
+          data!==null &&  <img className='print cac' src={data.Partida.Rompecabeza.FileColor} alt={data.Partida.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
+        }
+          
         </ModalBody>
         <ModalFooter className='justify-content-center'>
         <Row className='justify-content-center'>

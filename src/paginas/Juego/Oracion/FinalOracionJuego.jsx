@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect} from 'react'
 import {  NavLink, useParams } from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
 import cuadros from '../../../assets/img/Cuadros.png'

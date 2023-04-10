@@ -39,12 +39,12 @@ export const AllRoutes = () => {
       <Route path='/MenuJuego' element={<MenuJuego />} />
       {/* Vocabulario*/}
       <Route path='/RompecabezaJV' element={<RompecabezaJV />} />
-      <Route path='/VocabularioJuego/:id' element={<VocabularioJ />} />
-      <Route path='/finalVocabulario/:id' element={<FinalVocabulario />} />
+      <Route path='/VocabularioJuego' element={<VocabularioJ />} />
+      <Route path='/finalVocabulario' element={<FinalVocabulario />} />
       {/* Oracion*/}
       <Route path='/RompecabezaJO' element={<RompecabezaJO />} />
-      <Route path='/OracionJuego/:id' element={<OracionJ />} />
-      <Route path='/finalOracionJuego/:id' element={<FinalOracionJuego />} />
+      <Route path='/OracionJuego' element={<OracionJ />} />
+      <Route path='/finalOracionJuego' element={<FinalOracionJuego />} />
       {/*Co-operativo*/}
     <Route path='/SeleccionDeEquipo' element={<PantallaParteUno/>}/>
     <Route path='/Intermedio/Jugador/:id' element={<Intermedio/>}/>

@@ -5,11 +5,11 @@ import {JuecoContext} from "../../../context/Juego/JuecoContext"
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego';
 import { llamadaPartidaOracion } from '../../../service/Juego/Oracion';
-import { contador } from '../../../helpers/contador';
+import { contador, parte6 } from '../../../helpers/contador';
 const RompecabezaJO = () => {
 const [modal, setModal] = useState(false)
-const {oraciondata, setOraciondata, dispatchProgreso} = useContext(JuecoContext);
-
+const {oraciondata, setOraciondata, dispatchProgreso,setDataOracionJuego} = useContext(JuecoContext);
+const [dataSelecionada, setDataSelecionada] = useState(null)
 const dataOracion = async (user)=>{
   try {
   const data = await llamadaPartidaOracion({Usuario:user});
@@ -29,18 +29,8 @@ useEffect(() => {
   dataOracion(localStorage.getItem("Usuario"));
 }, []);
 
-const resultado1 = oraciondata && oraciondata.Juego1 && oraciondata.Juego1.Avance && oraciondata.Juego1.Avance.Juego6 && oraciondata.Juego1.Avance.Juego6.Resultado;
-const isCorrect1 = resultado1 === "CORRECTO";
-const resultado2 = oraciondata && oraciondata.Juego2 && oraciondata.Juego2.Avance && oraciondata.Juego2.Avance.Juego6 && oraciondata.Juego2.Avance.Juego6.Resultado;
-const isCorrect2 = resultado2 === "CORRECTO";
-const resultado3 = oraciondata && oraciondata.Juego3 && oraciondata.Juego3.Avance && oraciondata.Juego3.Avance.Juego6 && oraciondata.Juego3.Avance.Juego6.Resultado;
-const isCorrect3 = resultado3 === "CORRECTO";
-const resultado4 = oraciondata && oraciondata.Juego4 && oraciondata.Juego4.Avance && oraciondata.Juego4.Avance.Juego6 && oraciondata.Juego4.Avance.Juego6.Resultado;
-const isCorrect4 = resultado4 === "CORRECTO";
-const resultado5 = oraciondata && oraciondata.Juego5 && oraciondata.Juego5.Avance && oraciondata.Juego5.Avance.Juego6 && oraciondata.Juego5.Avance.Juego6.Resultado;
-const isCorrect5 = resultado5 === "CORRECTO";
-const resultado6 = oraciondata && oraciondata.Juego6 && oraciondata.Juego6.Avance && oraciondata.Juego6.Avance.Juego6 && oraciondata.Juego6.Avance.Juego6.Resultado;
-const isCorrect6 = resultado6 === "CORRECTO";
+
+
 
 
   const Pantalla = () => {
@@ -49,32 +39,15 @@ const isCorrect6 = resultado6 === "CORRECTO";
     } else {
       return (
         <Container className='fondoMC a'>
-        <Modalaqui descripcion={oraciondata.Juego1.Partida.Rompecabeza.Nombre} modal={modal} setModal={setModal} url={oraciondata.Juego1.Partida.Rompecabeza.FileColor}/>
+        <Modalaqui  data={dataSelecionada} modal={modal} setModal={setModal} />
          <NavBarJuego Seccion={"Oracion"} urlBack={"/MenuJuego"} />
-          <Row >
             <Row className="justify-content-evenly  mt-2 mx-2" >
-            <Col lg="4" md="4" sm="10" xs="10">
-              <Link to={`/OracionJuego/${1}`} onClick={(e) => clickHandle(e, oraciondata.Juego1.Avance.Terminado)} > <RompecabaSolitaria  url={oraciondata.Juego1.Partida.Rompecabeza.FileColor} piezas={oraciondata.Juego1.Partida.Rompecabeza.Pieza} a={(oraciondata.Juego1.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(oraciondata.Juego1.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(oraciondata.Juego1.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(oraciondata.Juego1.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(oraciondata.Juego1.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(oraciondata.Juego1.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(oraciondata.Juego1.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(oraciondata.Juego1.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(oraciondata.Juego1.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={isCorrect1 && "hidden"} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(oraciondata.Juego1.Avance,oraciondata.Juego1.Partida.Rompecabeza.Pieza)}/${oraciondata.Juego1.Partida.Rompecabeza.Pieza}`}</span></p> 
-              </Col>
+            {oraciondata.map(i=>(
               <Col lg="4" md="4" sm="10" xs="10">
-              <Link to={`/OracionJuego/${2}`} onClick={(e) => clickHandle(e, oraciondata.Juego2.Avance.Terminado)}> <RompecabaSolitaria url={oraciondata.Juego2.Partida.Rompecabeza.FileColor} piezas={oraciondata.Juego2.Partida.Rompecabeza.Pieza} a={(oraciondata.Juego2.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(oraciondata.Juego2.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(oraciondata.Juego2.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(oraciondata.Juego2.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(oraciondata.Juego2.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(oraciondata.Juego2.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(oraciondata.Juego2.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(oraciondata.Juego2.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(oraciondata.Juego2.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={isCorrect2 && "hidden"} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(oraciondata.Juego2.Avance,oraciondata.Juego2.Partida.Rompecabeza.Pieza)}/${oraciondata.Juego2.Partida.Rompecabeza.Pieza}`}</span></p>
+              <Link to={`/OracionJuego`} onClick={(e) =>{ setDataOracionJuego(i);setDataSelecionada(i);clickHandle(e, i.Avance.Terminado)}} > <RompecabaSolitaria  url={i.Partida.Rompecabeza.FileColor} piezas={i.Partida.Rompecabeza.Pieza} a={(i.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(i.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(i.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(i.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(i.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(i.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(i.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(i.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(i.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={parte6(i) && "hidden"} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(i.Avance,i.Partida.Rompecabeza.Pieza)}/${i.Partida.Rompecabeza.Pieza}`}</span></p> 
               </Col>
-              <Col lg="4" md="4" sm="10" xs="10">
-              <Link  to={`/OracionJuego/${3}`} onClick={(e) => clickHandle(e, oraciondata.Juego3.Avance.Terminado)} >     <RompecabaSolitaria url={oraciondata.Juego3.Partida.Rompecabeza.FileColor} piezas={oraciondata.Juego3.Partida.Rompecabeza.Pieza} a={(oraciondata.Juego3.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(oraciondata.Juego3.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(oraciondata.Juego3.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(oraciondata.Juego3.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(oraciondata.Juego3.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(oraciondata.Juego3.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(oraciondata.Juego3.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(oraciondata.Juego3.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(oraciondata.Juego3.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={isCorrect3 && "hidden"} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(oraciondata.Juego3.Avance,oraciondata.Juego3.Partida.Rompecabeza.Pieza)}/${oraciondata.Juego3.Partida.Rompecabeza.Pieza}`}</span></p> 
-            </Col>
+            ))}
             </Row>
-            <Row className=" justify-content-evenly mt-2 mx-2">
-          <Col lg="4" md="4" sm="10" xs="10"> 
-              <Link to={`/OracionJuego/${4}`} onClick={(e) => clickHandle(e, oraciondata.Juego4.Avance.Terminado)}>    <RompecabaSolitaria url={oraciondata.Juego4.Partida.Rompecabeza.FileColor} piezas={oraciondata.Juego4.Partida.Rompecabeza.Pieza} a={(oraciondata.Juego4.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(oraciondata.Juego4.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(oraciondata.Juego4.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(oraciondata.Juego4.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(oraciondata.Juego4.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(oraciondata.Juego4.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(oraciondata.Juego4.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(oraciondata.Juego4.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(oraciondata.Juego4.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={isCorrect4 && "hidden"} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(oraciondata.Juego4.Avance,oraciondata.Juego4.Partida.Rompecabeza.Pieza)}/${oraciondata.Juego4.Partida.Rompecabeza.Pieza}`}</span></p>
-            </Col>
-            <Col lg="4" md="4" sm="10" xs="10">
-              <Link to={`/OracionJuego/${5}`} onClick={(e) => clickHandle(e, oraciondata.Juego5.Avance.Terminado)}>   <RompecabaSolitaria url={oraciondata.Juego5.Partida.Rompecabeza.FileColor}  piezas={oraciondata.Juego5.Partida.Rompecabeza.Pieza} a={(oraciondata.Juego5.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(oraciondata.Juego5.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(oraciondata.Juego5.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(oraciondata.Juego5.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(oraciondata.Juego5.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(oraciondata.Juego5.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(oraciondata.Juego5.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(oraciondata.Juego5.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(oraciondata.Juego5.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={isCorrect5 && "hidden"} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(oraciondata.Juego5.Avance,oraciondata.Juego5.Partida.Rompecabeza.Pieza)}/${oraciondata.Juego5.Partida.Rompecabeza.Pieza}`}</span></p>
-            </Col>
-            <Col lg="4" md="4" sm="10" xs="10">
-              <Link to={`/OracionJuego/${6}`} onClick={(e) => clickHandle(e, oraciondata.Juego6.Avance.Terminado)}>   <RompecabaSolitaria url={oraciondata.Juego6.Partida.Rompecabeza.FileColor} piezas={oraciondata.Juego6.Partida.Rompecabeza.Pieza} a={(oraciondata.Juego6.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(oraciondata.Juego6.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(oraciondata.Juego6.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(oraciondata.Juego6.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(oraciondata.Juego6.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(oraciondata.Juego6.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(oraciondata.Juego6.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(oraciondata.Juego6.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(oraciondata.Juego6.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={isCorrect6 && "hidden"} /></Link><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(oraciondata.Juego6.Avance,oraciondata.Juego6.Partida.Rompecabeza.Pieza)}/${oraciondata.Juego6.Partida.Rompecabeza.Pieza}`}</span></p>
-            </Col>
-            </Row>
-          </Row>
         </Container>
       )
     }
@@ -83,7 +56,7 @@ const isCorrect6 = resultado6 === "CORRECTO";
     <Pantalla />
   )
 }
-const Modalaqui = ({ url, descripcion, modal, setModal }) => {
+const Modalaqui = ({ data, modal, setModal }) => {
   const toggle = () => setModal(!modal)
   const impresion = () => {
     document.querySelector(".print").classList.add("print-image");
@@ -101,7 +74,7 @@ const Modalaqui = ({ url, descripcion, modal, setModal }) => {
         <ModalBody>
         <Row>
         <Col>
-          <img className='print cac' src={url} alt={descripcion} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
+        {data !== null &&  <img className='print cac' src={data.Partida.Rompecabeza.FileColor} alt={data.Partida.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  /> }
           </Col>
           </Row>
         </ModalBody>
