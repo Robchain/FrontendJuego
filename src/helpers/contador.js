@@ -23,11 +23,11 @@ const isCorrect1 = resultado1 === "CORRECTO";
 
 
 export const resultado = ({objeto1, objeto2, objeto3})=>{
-  if(objeto1.Respuesta){
+  if(objeto1.Respuesta === "CORRECTO"){
     return objeto1.Palabra
-  }else if(objeto2.Respuesta){
+  }else if(objeto2.Respuesta === "CORRECTO"){
     return objeto2.Palabra
-  }else if(objeto3.Respuesta){
+  }else if(objeto3.Respuesta === "CORRECTO"){
     return objeto3.Palabra
   }
 }

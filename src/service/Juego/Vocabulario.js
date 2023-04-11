@@ -14,42 +14,42 @@ export const Juego1= async ({PalabraAEvaluar,_id,PalabraASeleccionada,Resultado,
     Terminado:Terminado})
   }
   export const Juego2= async ({PalabraAEvaluar,_id,PalabraASeleccionada,Resultado,Terminado})=>{
-    Api.post("/UpdateTerminadoVocabulario1",{ id:_id,
+    Api.post("/UpdateTerminadoVocabulario2",{ id:_id,
     PalabraCorrecta:PalabraAEvaluar,
     PalabraSeleccionada:PalabraASeleccionada,
     Resultado:Resultado,
     Terminado:Terminado})
   }
   export const Juego3= async ({PalabraAEvaluar,_id,PalabraASeleccionada,Resultado,Terminado})=>{
-    Api.post("/UpdateTerminadoVocabulario1",{ id:_id,
+    Api.post("/UpdateTerminadoVocabulario3",{ id:_id,
     PalabraCorrecta:PalabraAEvaluar,
     PalabraSeleccionada:PalabraASeleccionada,
     Resultado:Resultado,
     Terminado:Terminado})
   }
   export const Juego4= async ({PalabraAEvaluar,_id,PalabraASeleccionada,Resultado,Terminado})=>{
-    Api.post("/UpdateTerminadoVocabulario1",{ id:_id,
+    Api.post("/UpdateTerminadoVocabulario4",{ id:_id,
     PalabraCorrecta:PalabraAEvaluar,
     PalabraSeleccionada:PalabraASeleccionada,
     Resultado:Resultado,
     Terminado:Terminado})
   }
   export const Juego5= async ({PalabraAEvaluar,_id,PalabraASeleccionada,Resultado,Terminado})=>{
-    Api.post("/UpdateTerminadoVocabulario1",{ id:_id,
+    Api.post("/UpdateTerminadoVocabulario5",{ id:_id,
     PalabraCorrecta:PalabraAEvaluar,
     PalabraSeleccionada:PalabraASeleccionada,
     Resultado:Resultado,
     Terminado:Terminado})
   }
   export const Juego6= async ({PalabraAEvaluar,_id,PalabraASeleccionada,Resultado,Terminado})=>{
-    Api.post("/UpdateTerminadoVocabulario1",{ id:_id,
+    Api.post("/UpdateTerminadoVocabulario6",{ id:_id,
     PalabraCorrecta:PalabraAEvaluar,
     PalabraSeleccionada:PalabraASeleccionada,
     Resultado:Resultado,
     Terminado:Terminado})
   }
   export const Juego7= async ({PalabraAEvaluar,_id,PalabraASeleccionada,Resultado,Terminado})=>{
-    Api.post("/UpdateTerminadoVocabulario1",{ id:_id,
+    Api.post("/UpdateTerminadoVocabulario7",{ id:_id,
     PalabraCorrecta:PalabraAEvaluar,
     PalabraSeleccionada:PalabraASeleccionada,
     Resultado:Resultado,

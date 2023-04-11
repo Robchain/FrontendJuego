@@ -107,14 +107,14 @@ export const JuegoProvider = ({ children }) => {
     }
   };
 
-  const progreso = (palabraCorrecta,selecionado, Resul) => {
+  const progreso = ({palabraCorrecta,selecionado, Resul}) => {
     setavance([
       ...avance0,
       {
         PalabraAEvaluar: palabraCorrecta,
         PalabraASeleccionada: selecionado,
         Resultado: Resul,
-        Terminado: false,
+        Terminado: true,
       },
     ]);
   };
