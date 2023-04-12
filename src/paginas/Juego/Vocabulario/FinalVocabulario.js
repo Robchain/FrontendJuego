@@ -9,18 +9,14 @@ import { Juego1, Juego2, Juego3, Juego4, Juego5, Juego6, Juego7, JuegoFinal } fr
 
 export const FinalVocabulario = () => {
   const { avance0,dataJuegoVocabulario} = useContext(JuecoContext);
-  const [points, setPoints] = useState(0);
 
   const verifyEnd =()=>{
-    let ad = avance0.filter(obj => obj.Resultado==="CORRECTO").length;
-    setPoints(ad);
     if(dataJuegoVocabulario.Partida.Rompecabeza.Pieza===6){
-      if(ad>=7){
+      if(avance0.filter(obj => obj.Resultado==="CORRECTO").length>=7){
         ActualizarJuegoFinal(true);
       }
-    }
-    if(dataJuegoVocabulario.Partida.Rompecabeza.Pieza===4){
-if(ad>=5){
+    }else if(dataJuegoVocabulario.Partida.Rompecabeza.Pieza===4){
+if(avance0.filter(obj => obj.Resultado==="CORRECTO").length>=5){
   ActualizarJuegoFinal(true);
 }
     }
@@ -85,7 +81,7 @@ const Pantalla =()=>{
     <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
  <Row className='justify-content-center'>
  <Col lg="6" md="6" sm="8" xs="8">
- <RompecabezaFinalRespuesta url={dataJuegoVocabulario.Partida.Rompecabeza.FileColor} alt={dataJuegoVocabulario.Partida.Rompecabeza.Nombre}  pieza={dataJuegoVocabulario.Partida.Rompecabeza.Pieza} resultado={points} />
+ <RompecabezaFinalRespuesta url={dataJuegoVocabulario.Partida.Rompecabeza.FileColor} alt={dataJuegoVocabulario.Partida.Rompecabeza.Nombre}  pieza={dataJuegoVocabulario.Partida.Rompecabeza.Pieza} resultado={avance0.filter(obj => obj.Resultado==="CORRECTO").length} />
  </Col>
  <Col lg="7" md="6" sm="8" xs="8" >
   <div><NavLink to={"/MenuJuego"} className="mx-auto" ><img width={75} src={cuadros} alt='al inicio'/></NavLink></div>

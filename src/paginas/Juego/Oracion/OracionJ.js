@@ -23,8 +23,8 @@ const OracionJ = () => {
   
   const siguiente = (num) => {
     toggleWindow(num);
-    if (num === oraciondata[`Juego${id}`].Partida.Rompecabeza.Pieza + 1) {
-      navegar(`/finalOracionJuego/${id}`);
+    if (num === dataOracionJuego.Partida.Rompecabeza.Pieza + 1) {
+      navegar(`/finalOracionJuego`);
     } else {
       toggleWindow(num + 1);
     }
@@ -40,9 +40,12 @@ const OracionJ = () => {
     setWindows(newWindows);
   }
 
-  const { oraciondata, dataOracion, Oracionprogreso,dispatchProgreso, dataOracionJuego} = useContext(JuecoContext);
+  const { dataOracion, Oracionprogreso,dispatchProgreso, dataOracionJuego} = useContext(JuecoContext);
 
   useEffect(() => {
+    if(dataOracionJuego ===null){
+      navegar(`/MenuJuego`);
+    }
     dataOracion(localStorage.getItem("Usuario"));
   }, [])
   useEffect(() => {
@@ -76,6 +79,9 @@ const OracionJ = () => {
               {
                   // EN CASO DE ADVERBIO
                 (dataOracionJuego.Partida[`Juego` + window.id].TipoPregunta === "ADVERBIO") && (<Adverbio data={dataOracionJuego} id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
+              }
+              {
+                JSON.stringify(Oracionprogreso)
               }
               </Suspense>
             </Row>

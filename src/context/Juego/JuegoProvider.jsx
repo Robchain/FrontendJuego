@@ -74,10 +74,10 @@ export const JuegoProvider = ({ children }) => {
         return [
           ...state,
           {
-            PalabraAEvaluar: "",
+            PalabraAEvaluar: action.PalabraCorrecta,
             PalabraASeleccionada: action.selecionado,
             Resultado: action.Resul,
-            Terminado: false,
+            Terminado: true,
           },
         ];
       case "RESETEAR":

@@ -31,3 +31,14 @@ export const resultado = ({objeto1, objeto2, objeto3})=>{
     return objeto3.Palabra
   }
 }
+
+
+export const resultadoOracion = ({objeto1, objeto2, objeto3})=>{
+  if(objeto1.Respuesta === "CORRECTO"){
+    return objeto1.Oracion
+  }else if(objeto2.Respuesta === "CORRECTO"){
+    return objeto2.Oracion
+  }else if(objeto3.Respuesta === "CORRECTO"){
+    return objeto3.Oracion
+  }
+}

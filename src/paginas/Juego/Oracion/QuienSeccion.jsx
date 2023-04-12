@@ -7,6 +7,7 @@ import Que from '../../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
+import { resultadoOracion } from '../../../helpers/contador'
 const VerVerboRespuesta = ({ data,  window }) => {
   const [selccionver, setSelccionver] = useState("")
   useEffect(() => {
@@ -45,7 +46,7 @@ const SeleccionQUIEN = ({ data,  window, QueSelecion }) => {
   }, [QueSelecion])
 
   return (<>{
-    QueSelecion.length > 2 && (
+   selcci.length >1&&  (
       <img src={selcci} width="150" alt='opcion1' />
     )
   }</>)
@@ -167,14 +168,19 @@ const QuienSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
   const [opacity1, setOpacity1] = useState(1);
   const [opacity2, setOpacity2] = useState(1);
   const [opacity3, setOpacity3] = useState(1);
+  useEffect(() => {
+    if(QueSelecion ===0){
+    setTimeout(() => { dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) , selecionado: `SE PASO EL TIEMPO-NO HAY RESPUESTA`, Resul: "INCORRECTO" }); siguiente(window.id) }, 90000)
+  }
+  }, [QueSelecion])
   const onhandleClickQuePrimero = () => {
     setQueSelecion(1);
     setQueselec(data.Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen);
     setPointer("none")
     setOpacity2(0.4);
     setOpacity3(0.4);
-    dispatchProgreso({ type: "PROGRESO", selecionado: data.Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion, Resul: data.Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta })
-    setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
+    dispatchProgreso({ type: "PROGRESO", PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) ,selecionado: data.Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion, Resul: data.Partida[`Juego` + window.id].Oraciones.Oracion1.Respuesta })
+    setTimeout(() => { siguiente(window.id) },  10000)
   }
 
   const onhandleClickQueSegundo = () => {
@@ -183,8 +189,8 @@ const QuienSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
     setPointer("none")
     setOpacity3(0.4);
     setOpacity1(0.4);
-    dispatchProgreso({ type: "PROGRESO", selecionado: data.Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion, Resul: data.Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta })
-    setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
+    dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) , selecionado: data.Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion, Resul: data.Partida[`Juego` + window.id].Oraciones.Oracion2.Respuesta })
+    setTimeout(() => { siguiente(window.id) },  10000)
   }
   const onhandleClickQueTercero = () => {
     setQueSelecion(3);
@@ -192,8 +198,8 @@ const QuienSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
     setPointer("none")
     setOpacity1(0.4);
     setOpacity2(0.4);
-    dispatchProgreso({ type: "PROGRESO", selecionado: data.Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion, Resul: data.Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta })
-    setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000)
+    dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) , selecionado: data.Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion, Resul: data.Partida[`Juego` + window.id].Oraciones.Oracion3.Respuesta })
+    setTimeout(() => { siguiente(window.id) },  10000)
   }
 
 

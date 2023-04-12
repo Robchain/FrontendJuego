@@ -7,6 +7,7 @@ import Que from '../../../assets/img/AssetsGame/icon_Que.png';
 import Verbo from "../../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
+import { resultadoOracion } from '../../../helpers/contador';
 const Preguntasecction = ({ data, window }) => {
 
   const [videoPreguntaSecctionTodo, setVideoPreguntaSecctionTodo] = useState("")
@@ -95,6 +96,16 @@ function opacarsOpacidadQuien(state, action) {
       throw new Error();
   }
 }
+const estadoInicialOracionesPorFila = { Oracion1: "", Oracion2: "", Oracion3: ""}
+
+function OracionesPorFila(state, action) {
+  switch (action.type) {
+    case 'seleccion':
+      return { ...state, [action.field]: action.value };
+    default:
+      throw new Error();
+  }
+}
 const selecciondeImagenes = { QueSelecion: 0, AdverbNSeleccion: 0, QuienSeleccion: 0 }
 
 function seleccionDeImagenesf(state, action) {
@@ -161,7 +172,7 @@ const SeleccionQuien = ({ QuienSeleccion, data, window }) => {
   return (<></>)
 }
 
-const RespuestaImagen = ({ data, window, dispatchProgreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento }) => {
+const RespuestaImagen = ({ data, window, dispatchProgreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento ,Oracion1, Oracion2}) => {
   let sujetoRespuesta = "";
   let AdjectivoRespuesta = "";
   let oracion = "";
@@ -186,10 +197,10 @@ const RespuestaImagen = ({ data, window, dispatchProgreso, palabrasEstdo, siguie
     useEffect(() => {
       if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec)) {
         base = "CORRECTO"
-        setTimeout(() => { dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base }); siguiente(window.id); }, 9000)
+        setTimeout(() => { dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) , selecionado: `En el Quien, Selecciono: ${Oracion1}  - En el Que, Selecciono ${Oracion2}`, Resul: base }); siguiente(window.id); }, 9000)
       } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec) {
         base = "INCORRECTO"
-        setTimeout(() => { dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base });; siguiente(window.id) }, 9000)
+        setTimeout(() => { dispatchProgreso({ type: "PROGRESO", PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) ,  selecionado: `En el Quien, Selecciono: ${Oracion1}  - En el Que, Selecciono ${Oracion2}`, Resul: base });; siguiente(window.id) }, 9000)
       }
       setopcionRes(base);
     }, [palabrasEstdo.Queselec, palabrasEstdo.QuienSelec])
@@ -223,7 +234,7 @@ const isAdverbio = ( window, data) => {
   }
 }
 
-const RespuestaImagenconAdverbio = ({  window, dispatchProgreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento, data }) => {
+const RespuestaImagenconAdverbio = ({  window, dispatchProgreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento, data,Oracion1, Oracion2, Oracion3 }) => {
 
   let sujetoRespuesta = "";
   let AdjectivoRespuesta = "";
@@ -251,11 +262,11 @@ const RespuestaImagenconAdverbio = ({  window, dispatchProgreso, palabrasEstdo, 
       if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec) && (palabrasEstdo.AdverSelec === AdverbioRespuesta)) {
         base = "CORRECTO"
         setMomento("Respuesta");
-        setTimeout(() => { dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base }); siguiente(window.id) }, 9000)
+        setTimeout(() => { dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) , selecionado: `En el Quien, Selecciono: ${Oracion1} - En el Adverbio, Selecciono: ${Oracion3} - En el Que, Selecciono ${Oracion2}`  , Resul: base }); siguiente(window.id) }, 9000)
       } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec || AdverbioRespuesta !== palabrasEstdo.AdverSelec) {
         base = "INCORRECTO"
         setMomento("Respuesta");
-        setTimeout(() => { dispatchProgreso({ type: "PROGRESO", selecionado: "", Resul: base }); siguiente(window.id) }, 9000)
+        setTimeout(() => { dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) , selecionado: `En el Quien, Selecciono: ${Oracion1} - En el Adverbio, Selecciono: ${Oracion3} - En el Que, Selecciono ${Oracion2}`, Resul: base }); siguiente(window.id) }, 9000)
       }
       setopcionRes(base);
     }, [palabrasEstdo.QuienSelec, palabrasEstdo.Queselec, palabrasEstdo.AdverSelec])
@@ -283,13 +294,19 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
   const [opcionRes, setopcionRes] = useState("Nada");
   const [{ QueSelecion, QuienSeleccion, AdverbNSeleccion }, DisparadordeImagenes] = useReducer(seleccionDeImagenesf, selecciondeImagenes)
   const [momento, setMomento] = useState("inicial");
-
+const [{Oracion1, Oracion2, Oracion3}, OracionPorFilaDisparador] = useReducer(OracionesPorFila, estadoInicialOracionesPorFila)
+useEffect(() => {
+  if(QueSelecion ===0){
+  setTimeout(() => { dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) , selecionado: `SE PASO EL TIEMPO-NO HAY RESPUESTA`, Resul: "INCORRECTO" }); siguiente(window.id) }, 90000)
+}
+}, [QueSelecion])
 
   const onhandleClickPrimero = () => {
     DisparadordeImagenes({ type: "seleccionImagen", field: "QuienSeleccion", value: 1 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien2", value: 0.4 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer", value: "none" })
+    OracionPorFilaDisparador({ type: "seleccion", field: "Oracion1", value: data.Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion })
     disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: data.Partida[`Juego` + window.id].Oraciones.Oracion1.FileSujetoImagen })
   }
 
@@ -299,6 +316,7 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
     disparadorQuien({ type: "opacarQuien", field: "opacityquien1", value: 0.4 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer", value: "none" })
+    OracionPorFilaDisparador({ type: "seleccion", field: "Oracion1", value: data.Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion })
     disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: data.Partida[`Juego` + window.id].Oraciones.Oracion2.FileSujetoImagen })
   }
   const onhandleClickTercero = () => {
@@ -306,6 +324,7 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
     disparadorQuien({ type: "opacarQuien", field: "opacityquien1", value: 0.4 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien2", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer", value: "none" })
+    OracionPorFilaDisparador({ type: "seleccion", field: "Oracion1", value: data.Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion })
     disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: data.Partida[`Juego` + window.id].Oraciones.Oracion3.FileSujetoImagen })
   }
   //-------------------
@@ -314,6 +333,7 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
     disparadorQue({ type: "opacarQue", field: "opacityQue2", value: 0.4 })
     disparadorQue({ type: "opacarQue", field: "opacityQue3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer2", value: "none" })
+    OracionPorFilaDisparador({ type: "seleccion", field: "Oracion2", value: data.Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion })
     disparadorPalabras({ type: "seleccion", field: "Queselec", value: data.Partida[`Juego` + window.id].Oraciones.Oracion1.FileAdjetivoImagen })
   }
   const onhandleClickQueSegundo = () => {
@@ -321,6 +341,7 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
     disparadorQue({ type: "opacarQue", field: "opacityQue1", value: 0.4 })
     disparadorQue({ type: "opacarQue", field: "opacityQue3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer2", value: "none" })
+    OracionPorFilaDisparador({ type: "seleccion", field: "Oracion2", value: data.Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion })
     disparadorPalabras({ type: "seleccion", field: "Queselec", value: data.Partida[`Juego` + window.id].Oraciones.Oracion2.FileAdjetivoImagen })
 
   }
@@ -329,6 +350,7 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
     disparadorQue({ type: "opacarQue", field: "opacityQue2", value: 0.4 })
     disparadorQue({ type: "opacarQue", field: "opacityQue1", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer2", value: "none" })
+    OracionPorFilaDisparador({ type: "seleccion", field: "Oracion2", value: data.Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion })
     disparadorPalabras({ type: "seleccion", field: "Queselec", value: data.Partida[`Juego` + window.id].Oraciones.Oracion3.FileAdjetivoImagen })
   }
   //---------------
@@ -337,6 +359,7 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity2", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
+    OracionPorFilaDisparador({ type: "seleccion", field: "Oracion3", value: data.Partida[`Juego` + window.id].Oraciones.Oracion1.Oracion })
     disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data.Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio })
   }
   const onhandleClickAdveSegundo = () => {
@@ -344,6 +367,7 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity1", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
+    OracionPorFilaDisparador({ type: "seleccion", field: "Oracion3", value: data.Partida[`Juego` + window.id].Oraciones.Oracion2.Oracion })
     disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data.Partida[`Juego` + window.id].Oraciones.Oracion2.Adverbio })
   }
 
@@ -352,6 +376,7 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity1", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity2", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
+    OracionPorFilaDisparador({ type: "seleccion", field: "Oracion3", value: data.Partida[`Juego` + window.id].Oraciones.Oracion3.Oracion })
     disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data.Partida[`Juego` + window.id].Oraciones.Oracion3.Adverbio })
   }
 
@@ -438,7 +463,7 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
             <SeleccionQuien QuienSeleccion={QuienSeleccion}  window={window} data={data} />
           </Col>
           <Col style={{ width: "120px" }} >
-            <VerboRespuesta  window={window} />
+            <VerboRespuesta  window={window} data={data} />
           </Col>
           {
             isAdverbio( window, data)
@@ -454,8 +479,8 @@ const TODOSSeccion = ({  window, siguiente, dispatchProgreso,data }) => {
         </Row>
       </Col>
       <Col lg="3" >
-        {isAdverbio( window, data) ? <RespuestaImagenconAdverbio data={data} dispatchProgreso={dispatchProgreso} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} />
-          : <RespuestaImagen data={data} dispatchProgreso={dispatchProgreso} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} />
+        {isAdverbio( window, data) ? <RespuestaImagenconAdverbio Oracion1={Oracion1} Oracion2={Oracion2}  Oracion3={Oracion3} data={data} dispatchProgreso={dispatchProgreso} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} />
+          : <RespuestaImagen Oracion1={Oracion1}  Oracion2={Oracion2} data={data} dispatchProgreso={dispatchProgreso} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} />
         }
       </Col>
     </>

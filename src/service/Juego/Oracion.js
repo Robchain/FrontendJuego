@@ -6,7 +6,7 @@ export const llamadaPartidaOracion = async ({Usuario})=>{
 }
 
 export const Juego1Oracion= async ({_id,PalabraAEvaluar,PalabraASeleccionada,Resultado,Terminado})=>{
-    Api.post("/UpdateTerminadoOracion1",{ id:_id,
+  await  Api.post("/UpdateTerminadoOracion1",{ id:_id,
     PalabraCorrecta:PalabraAEvaluar,
     PalabraSeleccionada:PalabraASeleccionada,
     Resultado:Resultado,
