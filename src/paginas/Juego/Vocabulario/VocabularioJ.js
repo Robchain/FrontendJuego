@@ -102,7 +102,7 @@ const Vocabulario = () => {
     setWindows(newWindows);
   }
 
-  const {  resultados, datoVocabulario, avance0, progreso, dataJuegoVocabulario } = useContext(JuecoContext);
+  const {  resultados, avance0, progreso, dataJuegoVocabulario } = useContext(JuecoContext);
   const [opa1, setOpa1] = useState(0.4)
   const [opa2, setOpa2] = useState(0.4)
   const [opa3, setOpa3] = useState(0.4)
@@ -113,13 +113,17 @@ const Vocabulario = () => {
   const [pointerEvent, setPointerEvent] = useState("none")
   const [momento, setMomento] = useState("inicial");
   useEffect(() => {
-    datoVocabulario(localStorage.getItem("Usuario"))
+    if(dataJuegoVocabulario === null){
+      
+        navegar(`/MenuJuego`);
+    }
   }, [])
 
 
   useEffect(() => {
     toggleWindow(1);
   }, [])
+
 
 
 
@@ -134,7 +138,12 @@ const Vocabulario = () => {
       toggleWindow(num + 1);
     }
   }
-
+  useEffect(() => {
+    if(pointerEvent === "auto"){
+      setTimeout(() => { progreso({palabraCorrecta:resultado({objeto1:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1,objeto2:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2,objeto3:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3}), selecionado:`SE PASO EL TIEMPO-NO HAY RESPUESTA`, Resul:"INCORRECTO"}); siguiente(window.id) }, 90000); setVideoActual(0);
+     }
+  
+  }, [pointerEvent])
 
   return (
     <>
