@@ -30,3 +30,8 @@ export const ActivarJuegoPorCursoParaleloVocabulario = async ({Curso,Paralelo})=
     const data = await Api.post("/vocabulario/activarJuegoPorCursoParalelo",{Curso:Curso, Paralelo:Paralelo});
     return data.data
 }
+
+export const CrearJuegoVocabularioIndividual = async ()=>{
+    const data = await Api.get("/CrearJuegoVocabularioIndividual");
+    return data.data
+}

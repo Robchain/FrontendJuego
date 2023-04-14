@@ -168,11 +168,11 @@ const Adverbio = ({ window, siguiente, dispatchProgreso,data }) => {
   const [opacity1, setOpacity1] = useState(1);
   const [opacity2, setOpacity2] = useState(1);
   const [opacity3, setOpacity3] = useState(1);
-  useEffect(() => {
+  /*useEffect(() => {
     if(QueSelecion ===0){
     setTimeout(() => { dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data.Partida[`Juego` + window.id].Oraciones.Oracion1, objeto2:data.Partida[`Juego` + window.id].Oraciones.Oracion2, objeto3:data.Partida[`Juego` + window.id].Oraciones.Oracion3}) , selecionado: `SE PASO EL TIEMPO-NO HAY RESPUESTA`, Resul: "INCORRECTO" }); siguiente(window.id) }, 90000)
   }
-  }, [QueSelecion])
+  }, [QueSelecion])*/
   const onhandleClickQuePrimero = () => {
     setQueSelecion(1);
     setQueselec(data.Partida[`Juego` + window.id].Oraciones.Oracion1.Adverbio);

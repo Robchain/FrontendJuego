@@ -15,7 +15,6 @@ for (const juego in objecto) {
 }
 
 export const parte6 = (data)=>{
-
   const resultado1 =  data.Avance.Juego6 && data.Avance.Juego6.Resultado;
 const isCorrect1 = resultado1 === "CORRECTO";
   return isCorrect1;
@@ -34,6 +33,15 @@ export const resultado = ({objeto1, objeto2, objeto3})=>{
 
 
 export const resultadoOracion = ({objeto1, objeto2, objeto3})=>{
+  if(objeto1.Respuesta === "CORRECTO"){
+    return objeto1.Oracion
+  }else if(objeto2.Respuesta === "CORRECTO"){
+    return objeto2.Oracion
+  }else if(objeto3.Respuesta === "CORRECTO"){
+    return objeto3.Oracion
+  }
+}
+export const resultadoMultiJu = ({objeto1, objeto2, objeto3})=>{
   if(objeto1.Respuesta === "CORRECTO"){
     return objeto1.Oracion
   }else if(objeto2.Respuesta === "CORRECTO"){

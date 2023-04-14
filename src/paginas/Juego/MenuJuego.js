@@ -85,7 +85,7 @@ const MenuJuego = () => {
       </Col>
       <Col lg="3" sm="12" className="ms-3">
       <Button  disabled={false} outline style={{border:'none'}} >
-      <NavLink to={`/Trofeo/${2}`} style={{color:"#fff", textDecoration:"none", textAlign:"center"}} >
+      <NavLink to={`/Trofeo`} style={{color:"#fff", textDecoration:"none", textAlign:"center"}} >
       <div className="position-relative  start-50 bottom-0 translate-middle-x OracionMenu" style={{width:250, height:197, background:"#E5BDB1", borderRadius:"10px", boxShadow: "5px 5px  rgba(0, 0, 0, 0.13)"}}><div className="py-5"><TrofeoIcon/> <h4  className="">TROFEO</h4></div></div>
       </NavLink>
       </Button></Col>

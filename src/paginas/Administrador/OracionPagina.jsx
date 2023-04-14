@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 import Select from 'react-select';
 import withReactContent from 'sweetalert2-react-content';
 import { NavBar } from '../../componentes/NavBar'
-import { ActivarJuegoPorCursoParaleloOracion, DesabilitarOracion, HabilitarOracion, MetodoGetDellamadaOracionActivas } from '../../service/Adminstrador/Oracion'
+import { ActivarJuegoPorCursoParaleloOracion, DesabilitarOracion, HabilitarOracion, MetodoGetDellamadaOracionActivas, armandoJuegosOracionesPorPiezas } from '../../service/Adminstrador/Oracion'
 import { ModalEditarOracion } from '../../componentes/Administrador/ModalEditarOracion'
 const BaseInicialFormulario = { Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
@@ -99,6 +99,9 @@ MySwal.fire({
       try {
         setBloqueo(true);
         setLoading(true);
+        for(let i = 0;i<9;i++){
+        await  armandoJuegosOracionesPorPiezas();
+        }
         const data = await ActivarJuegoPorCursoParaleloOracion({Curso:Curso, Paralelo:Paralelo})
         MySwal.fire({
           title: `${data.titulo}`,

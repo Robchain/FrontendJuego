@@ -1,5 +1,5 @@
 import React from 'react'
-export const RompecabaSolitaria = ({a, b, c, d,e, f,g,h, i, j,piezas=4, url, alt}) => {
+export const RompecabaSolitaria = ({a="", b="", c="", d="",e="", f="",g="",h="", i="", j="",piezas=4, url, alt}) => {
 
   return (  
    <div  className="minicuadrito position-relative">

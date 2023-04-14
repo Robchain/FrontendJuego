@@ -26,10 +26,6 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
     setPointerEvent("none"); setMomento("inicial");
     }
     if(correcto === "NADA" ){
-      /*  setOpa1(0.4)
-        setOpa2(0.4)
-        setOpa3(0.4)
-         */
         setPointerEvent("auto"); setMomento("respuesta");
    
       }
@@ -41,10 +37,16 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
       </>
     )
 }
-const VideosPreguntas = ({window, data, videoActual, setPointerEvent,  setOpa1, setOpa2, setOpa3, setVideoActual, playref }) => {
+const VideosPreguntas = ({pointerEvent,progreso, siguiente, window, data, videoActual, setPointerEvent,  setOpa1, setOpa2, setOpa3, setVideoActual, playref }) => {
   let pregunta = "";
   const [videos, setVideos] = useState("")
+
+  /*useEffect(() => {
+    if(pointerEvent === "auto"){
+      setTimeout(() => { progreso({palabraCorrecta:resultado({objeto1:data.Partida[`Juego` + window.id].vocabulario.Palabra1,objeto2:data.Partida[`Juego` + window.id].vocabulario.Palabra2,objeto3:data.Partida[`Juego` + window.id].vocabulario.Palabra3}), selecionado:`SE PASO EL TIEMPO-NO HAY RESPUESTA`, Resul:"INCORRECTO"}); siguiente(window.id) }, 90000);
+     }
   
+  }, [pointerEvent])*/
   useEffect(() => {
     if (data.Partida[`Juego` + window.id].vocabulario.Palabra1.Respuesta === "CORRECTO") {
       pregunta = data.Partida[`Juego` + window.id].vocabulario.Palabra1.FilePregunta
@@ -138,12 +140,7 @@ const Vocabulario = () => {
       toggleWindow(num + 1);
     }
   }
-  useEffect(() => {
-    if(pointerEvent === "auto"){
-      setTimeout(() => { progreso({palabraCorrecta:resultado({objeto1:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1,objeto2:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2,objeto3:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3}), selecionado:`SE PASO EL TIEMPO-NO HAY RESPUESTA`, Resul:"INCORRECTO"}); siguiente(window.id) }, 90000); setVideoActual(0);
-     }
-  
-  }, [pointerEvent])
+ 
 
   return (
     <>
@@ -159,7 +156,7 @@ const Vocabulario = () => {
                   <Col lg="12" className="d-flex justify-content-end "><h3>Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}</h3></Col>
                   <Col lg="6">
                     {
-                      momento === "inicial" && <VideosPreguntas window={window} data={dataJuegoVocabulario}  playref={playref} setOpa1={setOpa1} setOpa2={setOpa2}  setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual} />
+                      momento === "inicial" && <VideosPreguntas pointerEvent={pointerEvent} progreso={progreso} siguiente={siguiente}  window={window} data={dataJuegoVocabulario}  playref={playref} setOpa1={setOpa1} setOpa2={setOpa2}  setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual} />
                     }
                     {
                       momento === "respuesta" && <VideosRespuesta window={window} data={dataJuegoVocabulario}  playref={playref} />
@@ -167,23 +164,22 @@ const Vocabulario = () => {
                   </Col>{
                     <Col className='mt-1  align-items-end' lg="6">
                     <div style={{ pointerEvents: pointerEvent, opacity: opa1 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto1(dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1.Respuesta); resultados(dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra, dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1.Respuesta); setCorrecto2("NADA"); setCorrecto3("NADA");setOpa2(0.4); setOpa3(0.4); progreso({palabraCorrecta:resultado({objeto1:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1,objeto2:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2,objeto3:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3}), selecionado:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra, Resul:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1.Respuesta});  setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }} >
-                      <div style={{ width: "100px" }}><p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra}</p></div>
+                      <div style={{ width: "150px" }}><p style={{ fontWeight: 'bold', fontSize: '1.5vw', color: '#8B8B8C' }}>{dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra}</p></div>
                       <img style={{borderRadius:"15px"}} src={dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1.FileImagen} alt={dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1.Palabra} width='200' />
                       <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto1} setMomento={setMomento} setPointerEvent={setPointerEvent} setOpa1={setOpa1}  setOpa2={setOpa2} setOpa3={setOpa3}/></div>
                     </div>
                     <div style={{ pointerEvents: pointerEvent, opacity: opa2 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto2(dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2.Respuesta); resultados(dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra, dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2.Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA"); setOpa1(0.4); setOpa3(0.4); progreso({palabraCorrecta: resultado({objeto1:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1,objeto2:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2,objeto3:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3}), selecionado:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra, Resul:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2.Respuesta}); setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }}>
-                      <div style={{ width: "100px" }}> <p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra}</p></div>
+                      <div style={{ width: "150px" }}> <p style={{ fontWeight: 'bold', fontSize: '1.5vw', color: '#8B8B8C' }}>{dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra}</p></div>
                       <img style={{borderRadius:"15px"}} src={dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2.FileImagen} alt={dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2.Palabra} width='200' />
                       <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto2} setMomento={setMomento} setPointerEvent={setPointerEvent}   setOpa1={setOpa1}  setOpa2={setOpa2} setOpa3={setOpa3}/></div>
                     </div>
                     <div style={{ pointerEvents: pointerEvent, opacity: opa3 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto3(dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3.Respuesta); resultados(dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra, dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3.Respuesta); setCorrecto2("NADA"); setCorrecto1("NADA"); setOpa1(0.4); setOpa2(0.4); progreso({ palabraCorrecta:resultado({objeto1:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra1,objeto2:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra2,objeto3:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3}), selecionado:dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra,Resul: dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3.Respuesta}); setTimeout(() => { siguiente(window.id) },/*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }}>
-                      <div style={{ width: "100px" }}> <p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>{dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra}</p></div>
+                      <div style={{ width: "150px" }}> <p style={{ fontWeight: 'bold', fontSize: '1.5vw', color: '#8B8B8C' }}>{dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra}</p></div>
                       <img style={{borderRadius:"15px"}} src={dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3.FileImagen} alt={dataJuegoVocabulario.Partida[`Juego` + window.id].vocabulario.Palabra3.Palabra} width='200' />
                       <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto3} setMomento={setMomento} setPointerEvent={setPointerEvent} setOpa1={setOpa1}  setOpa2={setOpa2} setOpa3={setOpa3} /></div>
                     </div>
                   </Col>
                   }
-                  {JSON.stringify(avance0)}
                 </Row>
               </Container>
             )}

@@ -33,3 +33,8 @@ export const ActivarJuegoPorCursoParaleloOracion = async ({Curso,Paralelo})=>{
     const data = await Api.post("/OracionAdmi/ActivarJuegoPorCursoParalelo",{Curso:Curso, Paralelo:Paralelo});
     return data.data
 }
+
+export const armandoJuegosOracionesPorPiezas = async ()=>{
+    const data = await Api.get("/armandoJuegosOracionesPorPiezas");
+    return data.data
+}

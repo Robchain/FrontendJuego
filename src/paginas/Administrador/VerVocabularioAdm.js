@@ -6,7 +6,7 @@ import { NavBar } from '../../componentes/NavBar';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { ModalAgregarVocabulario } from '../../componentes/Administrador/ModalAgregarVocabulario';
-import { llamadaDeDataTodosActivos,HabilitarVocabularioApi,desabilitarVocabularioApi, ActivarJuegoPorCursoParaleloVocabulario } from '../../service/Adminstrador/Vocabulario';
+import { llamadaDeDataTodosActivos,HabilitarVocabularioApi,desabilitarVocabularioApi, ActivarJuegoPorCursoParaleloVocabulario, CrearJuegoVocabularioIndividual } from '../../service/Adminstrador/Vocabulario';
 import { ModalEditarVocabulario } from '../../componentes/Administrador/ModalEditarVocabulario';
 const BaseInicialFormulario = { Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
@@ -102,6 +102,9 @@ const VerVocabularioAdm = () => {
 try {
   setBloqueo(true);
   setLoading(true);
+  for(let i=0; i<9;i++){
+  await CrearJuegoVocabularioIndividual();
+  }
   const data = await ActivarJuegoPorCursoParaleloVocabulario({Curso:Curso, Paralelo:Paralelo})
   MySwal.fire({
     title: `${data.titulo}`,

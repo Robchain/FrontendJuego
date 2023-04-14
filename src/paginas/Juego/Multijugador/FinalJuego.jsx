@@ -7,7 +7,7 @@ import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { ActualizarJuego1, ActualizarJuego2, ActualizarJuego3, ActualizarJuego4, ActualizarJuego5, ActualizarJuegoFinal } from '../../../service/Multijugador'
 
 export const FinalJuego = () => {
-  const {MultiProgreso, dispatchMutli,InfoEstudiaSituacion } = useContext(JuecoContext);
+  const {MultiProgreso, dispatchMutli,InfoEstudiaSituacion,LLamadaIncial } = useContext(JuecoContext);
   const { id } = useParams();
   const Actualizaciones = async () => {
     await ActualizarJuego1({indice:id,idOutput:InfoEstudiaSituacion._id,PalabraCorrecta:MultiProgreso[0].PalabraCorrecta, PalabraSeleccionada:MultiProgreso[0].PalabraSeleccionada, Resultado:MultiProgreso[0].Resultado,Terminado:MultiProgreso[0].Terminado});
@@ -19,6 +19,9 @@ export const FinalJuego = () => {
   }
   const navegar = useNavigate();
   useEffect(() => {
+
+  LLamadaIncial();
+
     if(InfoEstudiaSituacion !==null){
     Actualizaciones();
     if(InfoEstudiaSituacion.Juegos.length === (id+1)){
@@ -40,7 +43,7 @@ export const FinalJuego = () => {
   return (
     <Container>
       <NavBarJuego Seccion={"Oracion Final"} urlBack={"/MenuJuego"} />
-      <Espera/>
+      {InfoEstudiaSituacion !== null ? (    <Espera  InfoEstudiaSituacion={InfoEstudiaSituacion}/>):(<>  cargando...</>)}
     </Container>
   )
 }

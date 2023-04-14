@@ -80,9 +80,6 @@ const OracionJ = () => {
                   // EN CASO DE ADVERBIO
                 (dataOracionJuego.Partida[`Juego` + window.id].TipoPregunta === "ADVERBIO") && (<Adverbio data={dataOracionJuego} id={id} siguiente={siguiente} window={window} dispatchProgreso={dispatchProgreso}/>)
               }
-              {
-                JSON.stringify(Oracionprogreso)
-              }
               </Suspense>
             </Row>
           </Container>

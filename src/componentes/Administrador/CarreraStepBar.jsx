@@ -1,40 +1,25 @@
 import React from "react";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
-export const CarreraStepBar = ({ steps }) => {
+export const CarreraStepBar = ({ steps,InfoEstudiaSituacion }) => {
   return (
     <ProgressBar
-      percent={(steps) * 25}
+      percent={(steps *100 )/ InfoEstudiaSituacion.Integrantes.length}
       filledBackground="#60269e"
     >
-      <Step transition="scale">
+    {
+      InfoEstudiaSituacion.Integrantes.map((i,a)=>(
+        <Step transition="scale">
         {({ accomplished, index }) => (
           <div className={`step ${accomplished ? "completed" : ""}`}>
-            <div style={{backgroundColor:'grey'}}></div>
+              {
+                a===InfoEstudiaSituacion.Posicion && <span>Tú</span>
+              }
           </div>
         )}
       </Step>
-      <Step transition="scale">
-        {({ accomplished, index }) => (
-          <div className={`step ${accomplished ? "completed" : ""}`}>
-          <div style={{backgroundColor:'grey'}}></div>
-          </div>
-        )}
-      </Step>
-      <Step transition="scale">
-        {({ accomplished, index }) => (
-          <div className={`step ${accomplished ? "completed" : ""}`}>
-          <div style={{backgroundColor:'grey'}}></div>
-          </div>
-        )}
-      </Step>
-      <Step transition="scale">
-        {({ accomplished, index }) => (
-          <div className={`step ${accomplished ? "completed" : ""}`}>
-          <div style={{backgroundColor:'grey'}}></div>
-          </div>
-        )}
-      </Step>
+      ))
+    }
     </ProgressBar>
   );
 }

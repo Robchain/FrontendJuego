@@ -31,6 +31,28 @@ export const CrearUsuario = async ({
   });
   return data.data;
 };
+export const signupsinfoto = async({
+  Nombre,
+  Apellido,
+  Identificacion,
+  Email,
+  Usuario,
+  Password,
+  TipoUsuario,
+  Curso,
+  Paralelo,
+})=>{
+  const data = await Api.post('/signupsinfoto',{   Nombre: Nombre,
+    Apellido: Apellido,
+    Identificacion: Identificacion,
+    Email: Email,
+    Usuario: Usuario,
+    Password: Password,
+    TipoUsuario: TipoUsuario,
+    Curso: Curso,
+    Paralelo: Paralelo,})
+    return data.data;
+}
 export const MostrarEstudiante = async () => {
   const data = await Api.get("/Ver-Registrados-Activos");
   return data.data;

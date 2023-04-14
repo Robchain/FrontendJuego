@@ -7,7 +7,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { useReducer } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, Input, Spinner } from 'reactstrap';
 import { subidaIPerfil } from '../../firebase/config';
-import { CrearUsuario } from '../../service/Adminstrador/Usuarios';
+import { CrearUsuario, signupsinfoto } from '../../service/Adminstrador/Usuarios';
 
 const BaseInicialFormulario = { Nombre: "", Apellido: "", Identificacion: "",FotoPerfil:undefined, Email: "", Usuario: "", Password: "", TipoUsuario: "", Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
@@ -30,7 +30,7 @@ export const ModalAgregarEstudiante = ({ modal, toggle }) => {
   const [bloqueo, setbloqueo] = useState(true)
   const [{ Nombre, Apellido, Identificacion, Email, Usuario, Password, TipoUsuario,FotoPerfil, Curso, Paralelo }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   useEffect(() => {
-    if (Nombre.length > 0 && Apellido.length > 0 && Identificacion.length > 0 && Email.length > 0 && Usuario.length > 0 && (contraseñaUno === contraseñaDos) && contraseñaDos.length>5 && contraseñaUno.length>5 && FotoPerfil !== undefined) {
+    if (Nombre.length > 0 && Apellido.length > 0 && Identificacion.length > 0 && Email.length > 0 && Usuario.length > 0 && (contraseñaUno === contraseñaDos) && contraseñaDos.length>5 && contraseñaUno.length>5) {
       setbloqueo(false);
     }else{
       setbloqueo(true);
@@ -42,8 +42,13 @@ try {
   setBloqueoSecu(true);
   setbloqueo(true);
   setLoading(true);
-      const url = await subidaIPerfil(FotoPerfil);
- const data = await CrearUsuario({Nombre:Nombre, Apellido:Apellido, Identificacion:Identificacion, Email:Email, Usuario:Usuario, Password:contraseñaUno, TipoUsuario:TipoUsuario, Curso:Curso, Paralelo:Paralelo,FotoPerfil:url});
+  let data ;
+  if(FotoPerfil === undefined){
+  data =  await  signupsinfoto({Nombre:Nombre, Apellido:Apellido, Identificacion:Identificacion, Email:Email, Usuario:Usuario, Password:contraseñaUno, TipoUsuario:TipoUsuario, Curso:Curso, Paralelo:Paralelo});
+  }else {
+    const url = await subidaIPerfil(FotoPerfil);
+    data = await CrearUsuario({Nombre:Nombre, Apellido:Apellido, Identificacion:Identificacion, Email:Email, Usuario:Usuario, Password:contraseñaUno, TipoUsuario:TipoUsuario, Curso:Curso, Paralelo:Paralelo,FotoPerfil:url});
+  }
   MySwal.fire({
     title: `${data.titulo}`,
     text: `${data.respuesta}`,
@@ -56,6 +61,7 @@ try {
   setBloqueoSecu(false);
   setbloqueo(false);
   setLoading(false);
+  disparodeAccion({ type: "reset" });
   toggle();
 } catch (error) {
   MySwal.fire({
@@ -70,6 +76,7 @@ try {
   setBloqueoSecu(false);
   setbloqueo(false);
   setLoading(false);
+  disparodeAccion({ type: "reset" });
   toggle();
 }
   }

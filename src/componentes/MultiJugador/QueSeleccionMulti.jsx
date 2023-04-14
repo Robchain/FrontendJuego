@@ -7,6 +7,7 @@ import Que from '../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
+import { resultadoMultiJu } from '../../helpers/contador'
 const VerVerboRespuesta = ({data, window, id })=>{
     const [palabra, setPalabra] = useState("");
     useEffect(() => {
@@ -182,7 +183,7 @@ export const QueSeleccionMulti = ({id, window, siguiente, data, Progreso}) => {
       setPointer("none")
       setOpacity2(0.4);
       setOpacity3(0.4);
-      Progreso({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.Respuesta});
+      Progreso({type:"PROGRESO", PalabraCorrecta:resultadoMultiJu({objeto1:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1,objeto2:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2,objeto3:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3}),PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1.Respuesta});
       setTimeout(() => { siguiente(window.id) },  9000)
     }
   
@@ -192,7 +193,7 @@ export const QueSeleccionMulti = ({id, window, siguiente, data, Progreso}) => {
       setPointer("none")
       setOpacity3(0.4);
       setOpacity1(0.4);
-      Progreso({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.Respuesta});
+      Progreso({type:"PROGRESO", PalabraCorrecta:resultadoMultiJu({objeto1:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1,objeto2:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2,objeto3:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3}),PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2.Respuesta});
       setTimeout(() => { siguiente(window.id) }, 9000)
     }
     const onhandleClickQueTercero = ()=>{
@@ -201,7 +202,7 @@ export const QueSeleccionMulti = ({id, window, siguiente, data, Progreso}) => {
       setPointer("none")
       setOpacity1(0.4);
       setOpacity2(0.4);
-      Progreso({type:"PROGRESO", PalabraCorrecta:"",PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.Respuesta});
+      Progreso({type:"PROGRESO", PalabraCorrecta:resultadoMultiJu({objeto1:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion1,objeto2:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion2,objeto3:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3}),PalabraSeleccionada:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.Oracion, Resultado:data.Juegos[id][`Juego${window.id}`].Oraciones.Oracion3.Respuesta});
       setTimeout(() => { siguiente(window.id) }, 9000)
     }
    

@@ -5,7 +5,7 @@ import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGen
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { llamadaRompecabezaGet } from '../../../service/Juego/Vocabulario'
-import { contador } from '../../../helpers/contador'
+import { contador, parte6 } from '../../../helpers/contador'
 const RompecabezaJV = () => {
   const { dataJuegoInicialVocabulario, setavance, setDataJuegoInicialVocabulario,setdataJuegoVocabulario } = useContext(JuecoContext);
   const [modal, setModal] = useState(false);
@@ -44,9 +44,10 @@ const RompecabezaJV = () => {
               {
                 dataJuegoInicialVocabulario.map(i=>(
                   <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" >
-                  <Link to={`/VocabularioJuego`} onClick={(e) => {setdataJuegoVocabulario(i);setDataseleccionada(i); clickHandle(e, i.Avance.Terminado)} }><RompecabaSolitaria a={(i.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} d={(i.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} b={(i.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} c={(i.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} e={(i.Avance.Juego1.Resultado === "CORRECTO") && "hidden"} f={(i.Avance.Juego2.Resultado === "CORRECTO") && "hidden"} g={(i.Avance.Juego3.Resultado === "CORRECTO") && "hidden"} h={(i.Avance.Juego4.Resultado === "CORRECTO") && "hidden"} i={(i.Avance.Juego5.Resultado === "CORRECTO") && "hidden"} j={(i.Avance.Juego6.Resultado === "CORRECTO") && "hidden"} piezas={i.Partida.Rompecabeza.Pieza} url={i.Partida.Rompecabeza.FileColor} alt={i.Partida.Rompecabeza.Nombre} /> </Link> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(i.Avance,i.Partida.Rompecabeza.Pieza )}/${i.Partida.Rompecabeza.Pieza}`}</span></p>
+                  <Link to={`/VocabularioJuego`} onClick={(e) => {setdataJuegoVocabulario(i);setDataseleccionada(i); clickHandle(e, i.Avance.Terminado)} }><RompecabaSolitaria a={(i.Avance.Juego1.Resultado === 'CORRECTO') && "hidden"} d={(i.Avance.Juego2.Resultado === 'CORRECTO') && "hidden"} b={(i.Avance.Juego3.Resultado === 'CORRECTO') && "hidden"} c={(i.Avance.Juego4.Resultado === 'CORRECTO') && "hidden"} e={(i.Avance.Juego1.Resultado === 'CORRECTO') && "hidden"} f={(i.Avance.Juego2.Resultado === 'CORRECTO') && "hidden"} g={(i.Avance.Juego3.Resultado === 'CORRECTO') && "hidden"} h={(i.Avance.Juego4.Resultado === 'CORRECTO') && "hidden"} i={(i.Avance.Juego5.Resultado === 'CORRECTO') && "hidden"} j={ parte6(i) && "hidden"} piezas={i.Partida.Rompecabeza.Pieza} url={i.Partida.Rompecabeza.FileColor} alt={i.Partida.Rompecabeza.Nombre} /> </Link> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(i.Avance,i.Partida.Rompecabeza.Pieza )}/${i.Partida.Rompecabeza.Pieza}`}</span></p>
                 </Col>
                 ))
+               // JSON.stringify(i.Avance.Juego1.Resultado)
               }
               </Row>
           </Container>

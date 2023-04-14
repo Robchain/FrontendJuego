@@ -4,6 +4,7 @@ import { Espera } from '../../../componentes/MultiJugador/Espera'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { Navigate } from 'react-router-dom'
+import { Podio } from './Podio'
 
 export const Intermedio = () => {
   const { InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion} = useContext(JuecoContext);
@@ -22,6 +23,9 @@ export const Intermedio = () => {
     }else if(InfoEstudiaSituacion.Avance[0].Terminado === false){
       return false;
     }}else if(posicionAnterior>=0){
+      if(InfoEstudiaSituacion.Avance===null){
+        return true
+      }
       if(InfoEstudiaSituacion.Avance[posicionAnterior].Terminado === true && InfoEstudiaSituacion.Avance[InfoEstudiaSituacion.Posicion].Terminado === true  ){
         // el de atras mio ya termino, y yo tambien
         return true;
@@ -39,10 +43,12 @@ export const Intermedio = () => {
   return (
     <Container>
          <NavBarJuego Seccion={"Sala de espera"} urlBack={"/MenuJuego"}/>
-         
          { InfoEstudiaSituacion !== null ? (<>   
+          {InfoEstudiaSituacion.Avance !==null && (
+            InfoEstudiaSituacion.Avance.filter(obj => obj.Terminado===true).length === InfoEstudiaSituacion.Integrantes.length && <Navigate to={`/JuegoActivo/Jugador/${InfoEstudiaSituacion.Posicion}/podio`} replace={true}/>
+            )}
           {
-            !verificacionDeSiHaJugadoElAnterior() ? ( <Navigate to={`/JuegoActivo/Jugador/${InfoEstudiaSituacion.Posicion}`} replace={true}/> ) :   (<Espera/>) 
+            !verificacionDeSiHaJugadoElAnterior() ? ( <Navigate to={`/JuegoActivo/Jugador/${InfoEstudiaSituacion.Posicion}`} replace={true}/> ) :   (<Espera InfoEstudiaSituacion={InfoEstudiaSituacion} />) 
           }
           </>):(<>Cargador</>)}
 </Container>

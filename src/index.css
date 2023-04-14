@@ -276,11 +276,13 @@ body{
     height: 62vh;
     transform: rotate(90deg);
   }
-
   .desaparecer{
     visibility: hidden;
   }
-
+  .desaparecer1{
+height: 0px;
+    visibility: hidden;
+  }
   /*
   Media Queries
   */
