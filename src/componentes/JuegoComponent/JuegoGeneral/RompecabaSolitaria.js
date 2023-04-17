@@ -1,28 +1,38 @@
 import React from 'react'
-export const RompecabaSolitaria = ({a="", b="", c="", d="",e="", f="",g="",h="", i="", j="",piezas=4, url, alt}) => {
+export const RompecabaSolitaria = ({a="", b="", c="", d="",e="", f="",g="",h="", i="", j="" ,Avance,piezas=4, url, alt}) => {
 
   return (  
    <div  className="minicuadrito position-relative">
    <div className='encima position-absolute'>
    {
     (piezas === 4) && (<>
-   <div    className='a'  style={{visibility:a }}>
+    {
+      Avance !==null ? Avance.map( (i,index)=>(
+        index < 4 &&
+        <div    className='a'  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
     </div>
-    <div    className='b'   style={{visibility:b }}>
-      </div>
-      <div  className='c'  style={{visibility:c }}>
-      </div>
-       <div className='d' style={{visibility:d }}>
+      )
+      ): rompe4.map( i=>(
+        <div    className='a'  style={{visibility:false &&'hidden' }}>
     </div>
+      )
+      )
+    }
     </> ) 
      }{
     (piezas === 6) && (<>
-   <div    className='e'  style={{visibility:e }}></div>
-    <div    className='f'   style={{visibility:f }}></div>
-      <div  className='g'  style={{visibility:g }}></div>
-       <div className='h' style={{visibility:h }}></div>
-    <div className='i' style={{visibility:i }}></div>
-    <div className='j' style={{visibility:j }}></div>
+      {
+      Avance !==null ? Avance.map( (i,index)=>(
+        index < 6 &&
+        <div    className='b'  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
+    </div>
+      )
+      ): rompe6.map( i=>(
+        <div    className='b'  style={{visibility:false &&'hidden' }}>
+    </div>
+      )
+      )
+    }
     </> 
     )  
    }
@@ -31,3 +41,42 @@ export const RompecabaSolitaria = ({a="", b="", c="", d="",e="", f="",g="",h="",
     </div> 
   )
 }
+
+const rompe4=[
+  {
+    pieza:1,
+    visibility:"hidden"
+  },
+  {
+    pieza:2,
+    visibility:"hidden"
+  },{
+    pieza:3,
+    visibility:"hidden"
+  },{
+    pieza:4,
+    visibility:"hidden"
+  }
+]
+const rompe6=[
+  {
+    pieza:1,
+    visibility:"hidden"
+  },
+  {
+    pieza:2,
+    visibility:"hidden"
+  },{
+    pieza:3,
+    visibility:"hidden"
+  },{
+    pieza:4,
+    visibility:"hidden"
+  },{
+    pieza:5,
+    visibility:"hidden"
+  },{
+    pieza:6,
+    visibility:"hidden"
+  }
+]

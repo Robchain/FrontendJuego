@@ -34,7 +34,7 @@ export const ActivarJuegoPorCursoParaleloOracion = async ({Curso,Paralelo})=>{
     return data.data
 }
 
-export const armandoJuegosOracionesPorPiezas = async ()=>{
-    const data = await Api.get("/armandoJuegosOracionesPorPiezas");
+export const armandoJuegosOracionesPorPiezas = async ({num})=>{
+    const data = await Api.get(`/armandoJuegosOracionesPorPiezas/${num}`);
     return data.data
 }

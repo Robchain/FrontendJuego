@@ -1,14 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import { Col, Container, Row, Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap'
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { llamadaRompecabezaGet } from '../../../service/Juego/Vocabulario'
-import { contador, parte6 } from '../../../helpers/contador'
+import { contador } from '../../../helpers/contador'
+import { CrearJuegoVocabularioIndividual } from '../../../service/Adminstrador/Vocabulario'
+import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 const RompecabezaJV = () => {
-  const { dataJuegoInicialVocabulario, setavance, setDataJuegoInicialVocabulario,setdataJuegoVocabulario } = useContext(JuecoContext);
+  const { dataJuegoInicialVocabulario, setavance, setIdRompecabeza, setDataJuegoInicialVocabulario,setdataJuegoVocabulario, setPiezaJuegoIndi,setDataRompecabeza } = useContext(JuecoContext);
   const [modal, setModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const navegar = useNavigate();
   const datoVocabulario = async (user) => {
    const data = await  llamadaRompecabezaGet({user});
    setDataJuegoInicialVocabulario(data);
@@ -22,8 +26,14 @@ const RompecabezaJV = () => {
   }, [])
   
 
-  const clickHandle = (event, condicional) => {
-    if (condicional) {
+  const clickHandle = async (event, condicional, pieza) => {
+    if(condicional ===false){
+    setLoading(true);
+  const data = await CrearJuegoVocabularioIndividual({num:pieza})
+  setdataJuegoVocabulario(data)
+  setLoading(false);
+  navegar(`/VocabularioJuego`);
+}else if (condicional===true) {
       event.preventDefault();
       setModal(!modal);
     }
@@ -39,15 +49,21 @@ const RompecabezaJV = () => {
       return (
           <Container className='fondoMC a'>
           <Modalaqui  data={dataseleccionada}  modal={modal} setModal={setModal} />
+          {loading && (
+      <div className="loading-overlay">
+        <img src={cargando} alt='cargando'/>
+      </div>
+    )}
             <NavBarJuego  Seccion={"Vocabulario"} urlBack={"/MenuJuego"} />
               <Row className="justify-content-evenly  mt-2 mx-2">
               {
                 dataJuegoInicialVocabulario.map(i=>(
                   <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" >
-                  <Link to={`/VocabularioJuego`} onClick={(e) => {setdataJuegoVocabulario(i);setDataseleccionada(i); clickHandle(e, i.Avance.Terminado)} }><RompecabaSolitaria a={(i.Avance.Juego1.Resultado === 'CORRECTO') && "hidden"} d={(i.Avance.Juego2.Resultado === 'CORRECTO') && "hidden"} b={(i.Avance.Juego3.Resultado === 'CORRECTO') && "hidden"} c={(i.Avance.Juego4.Resultado === 'CORRECTO') && "hidden"} e={(i.Avance.Juego1.Resultado === 'CORRECTO') && "hidden"} f={(i.Avance.Juego2.Resultado === 'CORRECTO') && "hidden"} g={(i.Avance.Juego3.Resultado === 'CORRECTO') && "hidden"} h={(i.Avance.Juego4.Resultado === 'CORRECTO') && "hidden"} i={(i.Avance.Juego5.Resultado === 'CORRECTO') && "hidden"} j={ parte6(i) && "hidden"} piezas={i.Partida.Rompecabeza.Pieza} url={i.Partida.Rompecabeza.FileColor} alt={i.Partida.Rompecabeza.Nombre} /> </Link> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${contador(i.Avance,i.Partida.Rompecabeza.Pieza )}/${i.Partida.Rompecabeza.Pieza}`}</span></p>
+                  
+                  <div onClick={(e) => {setDataseleccionada(i); setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setPiezaJuegoIndi(i.Rompecabeza.Pieza); clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)} }><RompecabaSolitaria Avance={i.Avance}  piezas={i.Rompecabeza.Pieza} url={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} /> </div> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${/*contador(i.Avance,i.Rompecabeza.Pieza )*/0}/${i.Rompecabeza.Pieza}`}</span></p>
                 </Col>
                 ))
-               // JSON.stringify(i.Avance.Juego1.Resultado)
+              
               }
               </Row>
           </Container>
@@ -76,7 +92,7 @@ const Modalaqui = ({ data , modal, setModal }) => {
         <ModalHeader  style={{backgroundColor:"#E6DFF0",color:"#62269E"}}><span style={{fontWeight:"bold", textAlign:"center"}}>Rompecabeza Completado</span></ModalHeader>
         <ModalBody>
         {
-          data!==null &&  <img className='print cac' src={data.Partida.Rompecabeza.FileColor} alt={data.Partida.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
+          data!==null &&  <img className='print cac' src={data.Rompecabeza.FileColor} alt={data.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
         }
           
         </ModalBody>
@@ -99,3 +115,5 @@ const Modalaqui = ({ data , modal, setModal }) => {
   )
 }
 export default RompecabezaJV;
+
+

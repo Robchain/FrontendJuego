@@ -99,9 +99,6 @@ MySwal.fire({
       try {
         setBloqueo(true);
         setLoading(true);
-        for(let i = 0;i<9;i++){
-        await  armandoJuegosOracionesPorPiezas();
-        }
         const data = await ActivarJuegoPorCursoParaleloOracion({Curso:Curso, Paralelo:Paralelo})
         MySwal.fire({
           title: `${data.titulo}`,
@@ -122,7 +119,7 @@ MySwal.fire({
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false})
-          setBloqueo(true);
+          setBloqueo(false);
         setLoading(false);
         }
         }

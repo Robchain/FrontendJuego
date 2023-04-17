@@ -14,6 +14,18 @@
     background-color: #60269e;
     color:white;
 }
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+  }
 
 .scale-in-center {
 	animation: myAnim 2s ease 0s 1 normal forwards;
@@ -162,6 +174,9 @@ body{
     width: 25.5vw /*280px*/;
     height:100%;
     position:fixed;
+    display: flex;
+
+    
 }
 #imagenRompecabeza{
     width: 25vw/*273px*/;   
@@ -170,95 +185,23 @@ body{
     width: 50vw
 }
 
+
 .minicuadrito .encima .a{
-    border-start-start-radius: 10px 10px;
-    background-color: #FBFBFB;
-    width: 50%;
-    height: 50%;
-    display: inline-block;
+display: block; 
+background-color: #FBFBFB;
+width:8vw ;
+height:24vh;
 }
 
 
 .minicuadrito .encima .b{
+    display: block; 
     background-color: #FBFBFB;
-    border-start-end-radius: 10px 10px;
-    width: 50%;
-    height: 50%;
-    display: inline-block;
-}
-.minicuadrito .encima .c{
-    background-color: #FBFBFB;
-			width:  50%;
-			height: 50%;
-			display: inline-block;
-			margin-top: -5px;
-			padding: -1px;
-            border-end-start-radius: 10px 10px;
-}
-.minicuadrito .encima .d{
-    display: inline-block;
-			background-color: #FBFBFB;
-			width:  50%;
-			height: 50%;
-			margin-top: -5px;
-			padding: -1px;
-            border-end-end-radius: 10px 10px;
-}
-
-
-
-.minicuadrito .encima .e{
-    border-start-start-radius: 10px 10px;
-    background-color: #FBFBFB;
-    width: 33%;
-    height: 50%;
-    display: inline-block;
+    width:8vw ;
+    height:25vh;
 }
 .animacionBoton:hover{
     border:solid #60269e 2px;
-}
-.minicuadrito .encima .f{
-    background-color: #FBFBFB;
-    width: 33%;
-    height: 50%;
-    display: inline-block;
-}
-
-.minicuadrito .encima .g{
-    border-start-end-radius: 10px 10px;
-    background-color: #FBFBFB;
-    width: 33%;
-    height: 50%;
-    display: inline-block;
-}
-
-.minicuadrito .encima .h{
-    display: inline-block;
-			background-color: #FBFBFB;
-			width:  33%;
-			height: 50%;
-			margin-top: -5px;
-			padding: -1px;
-            border-end-start-radius: 10px 10px;
-}
-
-.minicuadrito .encima .i{
-    display: inline-block;
-			background-color: #FBFBFB;
-			width:  33%;
-			height: 50%;
-			margin-top: -5px;
-			padding: -1px;
-}
-
-.minicuadrito .encima .j{
-    display: inline-block;
-    border-end-end-radius: 10px 10px;
-			background-color: #FBFBFB;
-			width:  33%;
-			height: 50%;
-			margin-top: -5px;
-			padding: -1px;
 }
 .modal{
     --bs-modal-footer-border-color:"none" !important;
@@ -320,12 +263,27 @@ height: 0px;
     width: 65vw;
 }
 
+
 #imagenRompecabeza{
     width: 50vw/*273px*/;   
 }
 .cac{
     width:280px;
 } 
+.minicuadrito .encima .a{
+    display: block; 
+    background-color: #FBFBFB;
+    width:5vw ;
+    height:24vh;
+    }
+    
+    
+    .minicuadrito .encima .b{
+        display: block; 
+        background-color: #FBFBFB;
+        width:3.34vw ;
+        height:24vh;
+    }
 
  }
  @media screen  and  (max-width: 1024px) and (min-width:768px) {
@@ -344,6 +302,20 @@ height: 0px;
     .print{
         width:60vw;
     } 
+    .minicuadrito .encima .a{
+        display: block; 
+        background-color: #FBFBFB;
+        width:5vw ;
+        height:24vh;
+        }
+        
+        
+        .minicuadrito .encima .b{
+            display: block; 
+            background-color: #FBFBFB;
+            width:3.34vw ;
+            height:24vh;
+        }
 }
 @media screen  and  (max-width: 1024px) and (min-width:776px){
     .print{
@@ -370,6 +342,20 @@ height: 0px;
     #imagenFinal{
         width: 48vw;
     }
+    .minicuadrito .encima .a{
+        display: block; 
+        background-color: #FBFBFB;
+        width:5vw ;
+        height:24vh;
+        }
+        
+        
+        .minicuadrito .encima .b{
+            display: block; 
+            background-color: #FBFBFB;
+            width:3.34vw ;
+            height:24vh;
+        }
 }
 @media screen  and  (max-width: 2560px) and (min-width:1441px) {
     .minicuadrito .encima{
@@ -379,11 +365,25 @@ height: 0px;
         position:fixed;
     }
     #imagenRompecabeza{
-        width: 25vw/*273px*/;   
+        width: 20vw/*273px*/;   
     }
     #imagenFinal{
         width: 48vw;
     }
+    .minicuadrito .encima .a{
+        display: block; 
+        background-color: #FBFBFB;
+        width:5vw ;
+        height:23vh;
+        }
+        
+        
+        .minicuadrito .encima .b{
+            display: block; 
+            background-color: #FBFBFB;
+            width:3.34vw ;
+            height:23vh;
+        }
 }
 
 .offcanvas, .offcanvas-lg, .offcanvas-md, .offcanvas-sm, .offcanvas-xl, .offcanvas-xxl{

@@ -14,12 +14,6 @@ for (const juego in objecto) {
     return correctoCount - 1;
 }
 
-export const parte6 = (data)=>{
-  const resultado1 =  data.Avance.Juego6 && data.Avance.Juego6.Resultado;
-const isCorrect1 = resultado1 === "CORRECTO";
-  return isCorrect1;
-}
-
 
 export const resultado = ({objeto1, objeto2, objeto3})=>{
   if(objeto1.Respuesta === "CORRECTO"){

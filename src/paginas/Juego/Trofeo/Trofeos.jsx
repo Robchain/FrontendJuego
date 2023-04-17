@@ -18,6 +18,7 @@ export const Trofeos = () => {
       setOraciondata([]);
     }
   }
+  
   const [modal, setModal] = useState(false);
   const datoVocabulario = async (user) => {
     const data = await  llamadaRompecabezaGet({user});
@@ -49,12 +50,12 @@ export const Trofeos = () => {
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Vocabularios</h3>
 {
   dataJuegoInicialVocabulario !== null && (
-  dataJuegoInicialVocabulario.filter((item) => item.Avance.Terminado === true).map(i=>(
+  dataJuegoInicialVocabulario.filter((item) => item.Terminado === true).map(i=>(
  <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" >
-        <Link onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Avance.Terminado)} }>
-          <img src={i.Partida.Rompecabeza.FileColor} alt={i.Partida.Rompecabeza.Nombre} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
-          <span style={{ fontWeight: 'bold', color: '#8B8B8C' }}>{i.Partida.Rompecabeza.Nombre}</span>
-        </Link>
+        <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
+          <img src={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
+          <span style={{ fontWeight: 'bold', color: '#8B8B8C' }}>{i.Rompecabeza.Nombre}</span>
+        </div>
 </Col>
   ))
   ) 
@@ -64,11 +65,11 @@ export const Trofeos = () => {
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Oraciones</h3>
 {
   oraciondata !==null && (
-  oraciondata.filter((item) => item.Avance.Terminado === true).map(i=>(
+  oraciondata.filter((item) => item.Terminado === true).map(i=>(
  <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" >
-        <Link onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Avance.Terminado)} }>
-          <img src={i.Partida.Rompecabeza.FileColor} alt={i.Partida.Rompecabeza.Nombre} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
-          <span style={{ fontWeight: 'bold', color: '#8B8B8C' }}>{i.Partida.Rompecabeza.Nombre}</span>
+        <Link onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
+          <img src={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
+          <span style={{ fontWeight: 'bold', color: '#8B8B8C' }}>{i.Rompecabeza.Nombre}</span>
         </Link>
 </Col>
   ))
@@ -95,7 +96,7 @@ const Modalaqui = ({ data , modal, setModal }) => {
         <ModalHeader  style={{backgroundColor:"#E6DFF0",color:"#62269E"}}><span style={{fontWeight:"bold", textAlign:"center"}}>Rompecabeza Completado</span></ModalHeader>
         <ModalBody>
         {
-          data!==null &&  <img className='print cac' src={data.Partida.Rompecabeza.FileColor} alt={data.Partida.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
+          data!==null &&  <img className='print cac' src={data.Rompecabeza.FileColor} alt={data.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
         }
           
         </ModalBody>

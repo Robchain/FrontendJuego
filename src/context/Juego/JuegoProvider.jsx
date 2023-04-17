@@ -9,13 +9,15 @@ import { llamadaRompecabezaGet } from "../../service/Juego/Vocabulario";
 
 export const JuegoProvider = ({ children }) => {
   const [respuesta, setRespuesta] = useState([]);
+  const [piezaJuegoIndi, setPiezaJuegoIndi] = useState(0);
   const [cardEquipo, setCardEquipo] = useState([]);
   const [dataJuegoInicialVocabulario, setDataJuegoInicialVocabulario] = useState([]);
   const [dataJuegoVocabulario, setdataJuegoVocabulario] = useState(null)
+  const [dataRompecabeza, setDataRompecabeza] = useState(null);
   const [dataOracionJuego, setDataOracionJuego] = useState(null);
   const [oraciondata, setOraciondata] = useState(null);
   const [InfoEstudiaSituacion, setInfoEstudiaSituacion] = useState(null);
-
+const [idRompecabeza, setIdRompecabeza] = useState(null)
   const LLamadaIncial = async () => {
     try {
       let nombre = localStorage.getItem("Nombre");
@@ -199,6 +201,8 @@ export const JuegoProvider = ({ children }) => {
         setDataOracionJuego,
         avance0,
         setDataJuegoInicialVocabulario,
+        piezaJuegoIndi, setPiezaJuegoIndi,idRompecabeza, setIdRompecabeza,
+        dataRompecabeza, setDataRompecabeza
       }}
     >
       {children}
