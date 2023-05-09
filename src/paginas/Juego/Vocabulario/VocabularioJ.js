@@ -161,7 +161,7 @@ const Vocabulario = () => {
               <Container  className='fondoImagenVocabulario vh-100'>
                 <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
                 <Row className="d-flex justify-content-around align-items-center">
-                  <Col lg="12" className="d-flex justify-content-end "><h3>Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}</h3></Col>
+                  <Col lg="12" className="d-flex justify-content-end "><h3 style={{fontWeight:700, color:"#85858C"}}>Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}</h3></Col>
                   <Col lg="6">
                     {
                       momento === "inicial" && <VideosPreguntas pointerEvent={pointerEvent} progreso={progreso} siguiente={siguiente}  window={window} data={dataJuegoVocabulario[`Juego` + window.id].Palabras}  playref={playref} setOpa1={setOpa1} setOpa2={setOpa2}  setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual} />
@@ -187,8 +187,6 @@ const Vocabulario = () => {
                       <img style={{borderRadius:"15px"}} src={dataJuegoVocabulario[`Juego` + window.id].Palabras[2].FileImagen} alt={dataJuegoVocabulario[`Juego` + window.id].Palabras[2].Palabra} width='200' />
                       <div style={{ width: 100, height: 130 }}><ImagenDeCorrecto correcto={correcto3} setMomento={setMomento} setPointerEvent={setPointerEvent} setOpa1={setOpa1}  setOpa2={setOpa2} setOpa3={setOpa3} /></div>
                     </div>
-                 
-
                      </Col>
                 </Row>
               </Container>

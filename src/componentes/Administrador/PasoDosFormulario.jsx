@@ -60,7 +60,7 @@ export const PasoDosFormulario = ({ prevButton, nextButton, index, setSegundo, N
                 options={DataEstudiante.map(i => {
                 return {
                         label:`${i.Nombre} ${i.Apellido}`,
-                        value: i._id }
+                        value: i.Identificacion }
                       })}
                   value={value}
                   id={`equipos`}

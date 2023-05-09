@@ -163,7 +163,7 @@ try {
               value="ESTUDIANTE"
               onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })}
             checked={TipoUsuario === "ESTUDIANTE"}
-            />Estudiante</Label><br />
+            /> Estudiante</Label><br />
             <Label>
               <Input
                 type='radio'
@@ -171,7 +171,7 @@ try {
                 value="MAESTRO"
                 onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })}
               checked={TipoUsuario === "MAESTRO"}
-              />Maestro
+              /> Maestro
             </Label>
           </Col>
         </Row>

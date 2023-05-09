@@ -44,3 +44,30 @@ export const resultadoMultiJu = ({objeto1, objeto2, objeto3})=>{
     return objeto3.Oracion
   }
 }
+
+
+export const filtradoCurso =({data})=>{
+  const result = Object.values(data.reduce((acc, { Estudiante, Avance, createdAt, updatedAt }) => {
+    const key = JSON.stringify(Estudiante);
+    acc[key] = acc[key] || { Estudiante, Avance: [], createdAt, updatedAt };
+    if (Array.isArray(Avance) && Avance.length > 0) {
+      acc[key].Avance = acc[key].Avance.concat(Avance);
+    }
+    if (createdAt < acc[key].createdAt) {
+      acc[key].createdAt = createdAt;
+    }
+    if (updatedAt > acc[key].updatedAt) {
+      acc[key].updatedAt = updatedAt;
+    }
+    return acc;
+  }, {}));
+  return result;
+}
+
+export const fechaEcuador =(fecha)=>{
+  const fechaUtc = new Date(fecha);
+const fechaLocal = new Date(fechaUtc.getTime() - (fechaUtc.getTimezoneOffset() * 60000));
+const options = { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Guayaquil' };
+const fechaFormateada = fechaLocal.toLocaleDateString('es-EC', options);
+return fechaFormateada;
+}

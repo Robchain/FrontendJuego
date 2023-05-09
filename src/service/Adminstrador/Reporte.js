@@ -7,15 +7,15 @@ export const BuscarPorCursoYParalelo = async ({Curso, Paralelo})=>{
 }
 
 
-export const ReporteVocabulario = async({Usuario})=>{
-    const data = await Api.post('/ReporteVocabulario', {Usuario:Usuario})
+export const ReportesJugadorApi = async({Pregunta, id})=>{
+    const data = await Api.post('/Reporte/Jugador', {valorId:id,Pregunta:Pregunta})
     return data.data;
 }
-export const ReporteOracion = async({Usuario})=>{
-    const data = await Api.post('/ReporteOracion', {Usuario:Usuario})
+export const ReporteCurso= async({Pregunta,Curso,Paralelo})=>{
+    const data = await Api.post('/Reporte/Cursos', {Pregunta:Pregunta,Curso:Curso,Paralelo:Paralelo})
     return data.data;
 }
-export const ReporteMultiJugador = async({_id})=>{
-    const data = await Api.post('/ReporteMultiJugador', {_id:_id})
+export const ReporteJuegoApi = async({Pregunta})=>{
+    const data = await Api.post('/Reporte/Juego', {Pregunta:Pregunta})
     return data.data;
 }

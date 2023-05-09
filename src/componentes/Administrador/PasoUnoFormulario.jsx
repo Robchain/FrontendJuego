@@ -82,7 +82,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
               value={1}
               onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value })}
               defaultChecked={TipoDeJuego === 1}
-            />Vocabularios</Label><br />
+            /> Vocabularios</Label><br />
             <Label>
               <Input
                 type='radio'
@@ -91,7 +91,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
                 value={2}
                 onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value})}
               defaultChecked={TipoDeJuego === 2}
-              />Oraciones
+              /> Oraciones
             </Label><br/>
             <Label>
               <Input
@@ -101,7 +101,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
                 value={3}
                 onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value })}
               defaultChecked={TipoDeJuego === 3}
-              />Oraciones y Vocabularios
+              /> Oraciones y Vocabularios
             </Label>
           </Col>
         </Row>
