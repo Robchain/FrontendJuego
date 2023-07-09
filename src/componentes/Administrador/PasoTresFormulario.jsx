@@ -2,7 +2,17 @@ import React from 'react'
 import { Button, Card, CardBody, CardFooter, Col, Label, Row } from "reactstrap";
 import Flatpickr from 'react-flatpickr'
 import "flatpickr/dist/themes/dark.css"; //material_green.css, material_blue.css, material_red.css, material_orange.css, dark.css
+import { useEffect } from 'react';
+import { useState } from 'react';
 export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, picker }) => {
+ const [bloqueo, setBloqueo] = useState(true);
+
+ useEffect(() => {
+   
+  if(Array.isArray(picker)){
+    setBloqueo(false)
+  }
+ }, [picker])
  
   return (
     <Card className="mt-5">
@@ -38,7 +48,7 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, 
         <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
           Atras
         </Button>
-        <Button onClick={nextButton} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+        <Button onClick={nextButton} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Siguiente
         </Button>
       </CardFooter>

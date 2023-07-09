@@ -6,9 +6,9 @@ import { OracionMulti } from '../../../componentes/MultiJugador/OracionMulti';
 import { VerProgresoYaTerminado } from '../../../componentes/MultiJugador/VerProgresoYaTerminado';
 import { VocabularioMulti } from '../../../componentes/MultiJugador/VocabularioMulti';
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
-
+import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 export const PantallaParteDos = () => {
-  const { InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli} = useContext(JuecoContext);
+  const { InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli,dataMultiJu} = useContext(JuecoContext);
   useEffect(() => {
     LLamadaIncial();
     return () =>{
@@ -55,8 +55,7 @@ export const PantallaParteDos = () => {
   return (
     <Container>
       <NavBarJuego Seccion={"Colaborativo"} urlBack={"/MenuJuego"}/>
-
-{ InfoEstudiaSituacion !== null ? (
+{ (InfoEstudiaSituacion !== null && dataMultiJu !==null) ? (
 <>
 {
   listos === "espera" && <VerProgresoYaTerminado/>
@@ -66,16 +65,18 @@ export const PantallaParteDos = () => {
             {window.show && (
                 <>
                 <Progress animated  value={(window.id-1)*20} />
-                {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].vocabulario && <VocabularioMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} dispatchMutli={dispatchMutli} />}
+                {dataMultiJu[`Juego${window.id}`].Palabras && <VocabularioMulti  siguiente={siguiente} window={window} dataMultiJu={dataMultiJu} dispatchMutli={dispatchMutli} />}
 
-                {InfoEstudiaSituacion.Juegos[id][`Juego${window.id}`].Oraciones && <OracionMulti id={id} siguiente={siguiente} window={window} InfoEstudiaSituacion={InfoEstudiaSituacion} dispatchMutli={dispatchMutli} />}
+                {dataMultiJu[`Juego${window.id}`].Oraciones && <OracionMulti siguiente={siguiente} window={window} dataMultiJu={dataMultiJu} dispatchMutli={dispatchMutli} />}
                 </>
             )}
           </div>
         ))
         }
 </>
-    ):(<>Cargador</>)
+    ):( <div className="loading-overlay">
+        <img src={cargando} alt='cargando'/>
+      </div>)
          }
     </Container>
   )

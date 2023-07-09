@@ -6,6 +6,7 @@ import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/Na
 import { RompecabezaFinalRespuesta } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabezaFinalRespuesta'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { Juego1 } from '../../../service/Juego/Vocabulario'
+import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 
 export const FinalVocabulario = () => {
   const { avance0,dataJuegoVocabulario,idRompecabeza,dataRompecabeza} = useContext(JuecoContext);
@@ -30,7 +31,8 @@ const Pantalla =()=>{
     <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
  <Row className='justify-content-center'>
  <Col lg="6" md="6" sm="8" xs="8">
- <RompecabezaFinalRespuesta url={dataRompecabeza.FileColor} alt={dataRompecabeza.Nombre}  pieza={dataRompecabeza.Pieza} resultado={avance0.filter(obj => obj.Resultado==="CORRECTO").length} />
+ <RompecabaSolitaria principal={false} Avance={avance0} alt={dataRompecabeza.Nombre}  url={dataRompecabeza.FileColor} piezas={dataRompecabeza.Pieza} />
+ <h1 className='mx-auto'>{`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}/${dataRompecabeza.Pieza}`}</h1>
  </Col>
  <Col lg="7" md="6" sm="8" xs="8" >
   <div><NavLink to={"/MenuJuego"} className="mx-auto" ><img width={75} src={cuadros} alt='al inicio'/></NavLink></div>

@@ -1,8 +1,8 @@
 import React from 'react'
-import { Col, Container, Row } from 'reactstrap'
-import { fechaEcuador } from '../../../helpers/contador'
+import { Col, Container, Row, Table } from 'reactstrap'
+import { buscarValor, fechaEcuador } from '../../../helpers/contador'
 
-export const ReportePDFJugador = ({data, actividad}) => {
+export const ReportePDFJugador = ({data, actividad,Estudiante, Estudiantes}) => {
   
 
   return (
@@ -16,28 +16,47 @@ export const ReportePDFJugador = ({data, actividad}) => {
       </Row>
       <Row className='m-3'>
        <Col>
+        {
+         data[0].Estudiante!==undefined?<>
          <p><span style={{fontWeight:700,color:'#8cc5b0'}}>Estudiante:</span> {data[0].Estudiante.Nombre}</p>
          <p><span style={{fontWeight:700,color:'#8cc5b0'}}>Cedula:</span> {data[0].Estudiante.Identificacion}</p>
+         </> :<><p><span style={{fontWeight:700,color:'#8cc5b0'}}>Estudiante:</span> {buscarValor(Estudiantes,Estudiante).label}</p>
+         <p><span style={{fontWeight:700,color:'#8cc5b0'}}>Cedula:</span> {buscarValor(Estudiantes,Estudiante).value}</p></>
+        }
          <p><span style={{fontWeight:700,color:'#8cc5b0'}}>Actividad:</span> {actividad}</p>
        </Col>
       </Row>
 {
   data.filter((item) => item.Avance !== null).map((i,index)=>(
     <Col className='m-4' >
-    <h5 className='mb-3'>Juego {index+1}</h5>
+    <h5 className='mb-3' style={{color: "#62269E"}}>Juego {index+1}</h5>
     <div  className='m-3'>
-      <p style={{fontWeight:700}}> <span style={{color:'#8cc5b0'}} > Fecha de creacion del juego:</span> {fechaEcuador(i.createdAt)} --- <span style={{color:'#8cc5b0'}}>ultima fecha de actualizacion:</span> {fechaEcuador(i.updatedAt)}</p>
-   {i.Avance.map((e)=>(<div className='m-4' style={{borderBottom:'solid'}}>
-         <p style={{fontWeight:700}}><span style={{ color:"#85858C"}}>Palabra seleccionada: </span> {e.PalabraASeleccionada}</p>
-         <p style={{fontWeight:700}}><span style={{ color:"#85858C"}}> Palabra a evaluar: </span>{e.PalabraAEvaluar}</p>
-         <p style={{fontWeight:700}}><span style={{ color:"#85858C"}}>Resultado: </span>{e.Resultado}</p>
-    </div>))}
-
+    <div style={{ backgroundColor: "#E6DFF0", color: "#62269E" }}>
+              <p style={{fontWeight:700}}> <span style={{color:'#85858C'}} > Fecha de creacion del juego:</span> {fechaEcuador(i.createdAt)} --- <span style={{color:'#85858C'}}>ultima fecha de actualizacion:</span> {fechaEcuador(i.updatedAt)}</p>
+            </div>
+   <Table striped>
+   <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
+            <tr>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Palabra seleccionada</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Palabra a evaluar</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Resultado</th>
+            </tr>
+            </thead>
+            <tbody>
+            {i.Avance.map((e)=>(<tr className='m-4'>
+         <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{e.PalabraASeleccionada}</span> </td>
+         <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{e.PalabraAEvaluar} </span></td>
+         <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{e.Resultado}</span></td>
+    </tr>))}
+            </tbody>
+   </Table>
     </div>
     </Col>
   ))
 }
       </Container>
-    }</>
+     
+    }
+</>
   )
 }

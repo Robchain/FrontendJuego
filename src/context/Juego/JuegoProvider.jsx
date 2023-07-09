@@ -23,7 +23,7 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
       let nombre = localStorage.getItem("Nombre");
       let apellido = localStorage.getItem("Apellido");
       let completo = `${nombre} ${apellido}`;
-      let value = localStorage.getItem("Id");
+      let value = localStorage.getItem("Identificacion");
       if (completo.length > 5 && value.length > 3) {
         const data = await llamadoIncialDePosiciondelUsuario(completo, value);
         if (data === null) {
@@ -96,8 +96,8 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
         return [
           ...state,
           {
-            PalabraCorrecta: action.PalabraCorrecta,
-            PalabraSeleccionada: action.PalabraSeleccionada,
+            PalabraAEvaluar: action.PalabraCorrecta,
+            PalabraASeleccionada: action.PalabraSeleccionada,
             Resultado: action.Resultado,
             Terminado: true,
           },
@@ -170,9 +170,11 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
     initialStateMulti
   );
 
+  const [dataMultiJu, setDataMultiJu] = useState(null);
   return (
     <JuecoContext.Provider
       value={{
+        dataMultiJu, setDataMultiJu,
         Vocabulario,
         Oraciones,
         MultiJugador,

@@ -1,20 +1,21 @@
 import React from 'react'
-export const RompecabaSolitaria = ({a="", b="", c="", d="",e="", f="",g="",h="", i="", j="" ,Avance,piezas=4, url, alt}) => {
+export const RompecabaSolitaria = ({ Avance,piezas=4, url, alt, principal=true, terminado}) => {
 
   return (  
    <div  className="minicuadrito position-relative">
-   <div className='encima position-absolute'>
+   {
+    terminado===false&&  <div className={ principal ?'encima position-absolute':'encimados position-absolute'}>
    {
     (piezas === 4) && (<>
     {
       Avance !==null ? Avance.map( (i,index)=>(
         index < 4 &&
-        <div    className='a'  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
+        <div    className={principal ? 'a':'c'}  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
     </div>
       )
       ): rompe4.map( i=>(
-        <div    className='a'  style={{visibility:false &&'hidden' }}>
-    </div>
+        <div    className={principal ? 'a':'c'}  style={{visibility:false &&'hidden' }}>
+    </div> 
       )
       )
     }
@@ -24,11 +25,11 @@ export const RompecabaSolitaria = ({a="", b="", c="", d="",e="", f="",g="",h="",
       {
       Avance !==null ? Avance.map( (i,index)=>(
         index < 6 &&
-        <div    className='b'  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
+        <div    className={principal ? 'b':'d'}  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
     </div>
       )
       ): rompe6.map( i=>(
-        <div    className='b'  style={{visibility:false &&'hidden' }}>
+        <div    className={principal ? 'b':'d'}  style={{visibility:false &&'hidden' }}>
     </div>
       )
       )
@@ -37,7 +38,9 @@ export const RompecabaSolitaria = ({a="", b="", c="", d="",e="", f="",g="",h="",
     )  
    }
     </div>
-    <img src={url} alt={alt} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
+   }
+ 
+    <img src={url} alt={alt} id={principal ? "imagenRompecabeza":"imagenFinal"} style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
     </div> 
   )
 }

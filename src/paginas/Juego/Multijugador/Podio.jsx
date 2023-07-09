@@ -3,6 +3,7 @@ import { Col, Container, Row } from 'reactstrap'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import gifendrace from '../../../assets/img/AssetsGame/raceend.gif'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
+import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 export const Podio = () => {
   const { InfoEstudiaSituacion,LLamadaIncial } = useContext(JuecoContext);
 
@@ -27,11 +28,13 @@ export const Podio = () => {
       <Col lg='6' className='mx-s'>
         <h1 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Felicidades <span>{InfoEstudiaSituacion.Equipo.Nombre}</span></h1>
         <p style={{ fontWeight: 'bold', fontSize: '2vw', color: '#8B8B8C' }}>
-       Han termiando la carrera
+       Ha termiando la carrera
         </p>
         </Col>
 
-</Row></>):(<> Cargando...</>)}
+</Row></>):(<div className="loading-overlay">
+        <img src={cargando} alt='cargando'/>
+      </div>)}
          </Container>
   )
 }

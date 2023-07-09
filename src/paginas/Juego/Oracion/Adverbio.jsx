@@ -16,7 +16,7 @@ const MostrarQue = ({ data, window }) => {
     } else if (data[`Juego` + window.id].Oraciones[1].Respuesta === "CORRECTO") {
       setVerbo(data[`Juego` + window.id].Oraciones[1].FileAdjetivoImagen)
     } else if (data[`Juego` + window.id].Oraciones[2].Respuesta === "CORRECTO") {
-      setVerbo(data.Juego1[`Juego` + window.id].Oraciones[2].FileAdjetivoImagen)
+      setVerbo(data[`Juego` + window.id].Oraciones[2].FileAdjetivoImagen)
     }
   }, [data])
 
@@ -188,6 +188,7 @@ const Adverbio = ({ window, siguiente, dispatchProgreso,data }) => {
     dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data[`Juego` + window.id].Oraciones[0], objeto2:data[`Juego` + window.id].Oraciones[1], objeto3:data[`Juego` + window.id].Oraciones[2]}) , selecionado: data[`Juego` + window.id].Oraciones[1].Oracion, Resul: data[`Juego` + window.id].Oraciones[1].Respuesta })
     setTimeout(() => { siguiente(window.id) }, 9000)
   }
+  
   const onhandleClickQueTercero = () => {
     setQueSelecion(3);
     setQueselec(data[`Juego` + window.id].Oraciones[2].Adverbio);

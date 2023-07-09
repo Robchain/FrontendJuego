@@ -41,7 +41,7 @@ const Preguntasecction = ({ data }) => {
       }
     }
     setVideoseleccionado(pregunta);
-  }, [])
+  }, [data])
   return (
     <div >
       <ReactPlayer
@@ -232,47 +232,47 @@ const QueSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
           </Col>
         </Row>
       </Col>
-      <Col lg="7" style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD", padding: " 0px 15px" }}>
-        <Row lg="8" >
-          <div style={{ width: "200px" }} >
+      <Col lg='7' className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD", padding: " 0px 15px" }}>
+        <Row lg="6" >
+          <div  >
             <img alt='que' src={Quien} width="75" style={{ margin: "0px 35px" }} />
           </div>
-          <div style={{ width: "120px" }} >
+          <div  >
             <img src={Verbo} alt='opcion1' width="75" />
           </div>
           {isAdverbio( window, data)
             &&
             (
-              <div style={{ width: "100px" }} >
+              <div  >
                 <img src={Cantidad} alt='opcion1' width="75" />
               </div>)
           }
-          <div style={{ width: "200px" }} >
+          <div  >
             <img alt='que' src={Que} width="75" style={{ margin: "0px 35px" }} />
           </div>
         </Row>
         {/* parte de seleccion */}
-        <Row lg="8" >
-          <div style={{ width: "200px" }} >
+        <Row lg="6"  >
+          <div  >
             <VerSeleccionQuien  data={data} window={window} />
           </div>
-          <div style={{ width: "120px" }} >
+          <div  >
             <VerVerboRespuesta  data={data} window={window} />
           </div>
           {
             isAdverbio( window, data)
             && (
-              <div style={{ width: "100px" }} >
+              <div  >
                 <VerCantidad  data={data} window={window} />
               </div>
             )
           }
-          <div style={{ width: "200px" }} >
+          <div  >
             <SeleccionQue QueSelecion={QueSelecion}  data={data} window={window} />
           </div>
         </Row>
       </Col>
-      <Col lg="3" ><RespuestaImagen momento={momento} setMomento={setMomento} Queselec={Queselec} data={data}  window={window} /></Col>
+      <Col lg="5" ><RespuestaImagen momento={momento} setMomento={setMomento} Queselec={Queselec} data={data}  window={window} /></Col>
     </>
   )
 }

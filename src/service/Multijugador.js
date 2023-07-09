@@ -1,8 +1,17 @@
 import { Api } from "./api";
 
-export const crearMultiJugador = async ({NombreDeEquipo, NumeroDeGrupos, NumeroDeIntegrantes, Segundo, picker,TipoDeJuego}) => {
-    const data = await Api.post('/MultiJugador', {NombreDeEquipo:NombreDeEquipo, NumeroDeGrupos:NumeroDeGrupos, NumeroDeIntegrantes:NumeroDeIntegrantes, Segundo:Segundo, picker:picker,TipoDeJuego:TipoDeJuego})
+export const crearMultiJugador = async ({NombreDeEquipo, NumeroDeGrupos, NumeroDeIntegrantes, Segundo, picker,TipoDeJuego, Curso, Paralelo}) => {
+    const data = await Api.post('/MultiJugador', {NombreDeEquipo:NombreDeEquipo, NumeroDeGrupos:NumeroDeGrupos, NumeroDeIntegrantes:NumeroDeIntegrantes, Segundo:Segundo,Curso:Curso,Paralelo:Paralelo, picker:picker,TipoDeJuego:TipoDeJuego})
     return data.data
+}
+
+export const LlamadaDeLLenadoDeEstudianteMultiJugador = async ({Curso,Paralelo})=>{
+    const data = await Api.post("/MultiJugador/BuscarPorCurso",{Curso:Curso,Paralelo:Paralelo});
+    if(data.status === 201){
+        return data.data
+    }else{
+        return data.data;
+    }
 }
 
 
@@ -31,51 +40,17 @@ try {
 }
 // actualizacion del juego al final
 
-export const ActualizarJuego1 = async ({indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado})=>{
+export const ActualizarJuegoFinal = async ({idOutput,Avance})=>{
     try {
-        const data = await Api.post("/actualizarJuegoUno", {indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
+        const data = await Api.post("/actualizarJuegoTerminadoMulti", {idOutput:idOutput,Avance:Avance});
         return data
     } catch (error) {
         return null;
     }
 }
-export const ActualizarJuego2 = async ({indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado})=>{
-    try {
-        const data = await Api.post("/actualizarJuegoDos", {indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
-        return data
-    } catch (error) {
-        return null;
-    }
-}
-export const ActualizarJuego3 = async ({indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado})=>{
-    try {
-        const data = await Api.post("/actualizarJuegoTres", {indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
-        return data
-    } catch (error) {
-        return null;
-    }
-}
-export const ActualizarJuego4 = async ({indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado})=>{
-    try {
-        const data = await Api.post("/actualizarJuegoCuatro", {indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
-        return data
-    } catch (error) {
-        return null;
-    }
-}
-export const ActualizarJuego5 = async ({indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado})=>{
-    try {
-        const data = await Api.post("/actualizarJuegoCinco", {indice,idOutput,PalabraCorrecta, PalabraSeleccionada,Resultado,Terminado});
-        return data
-    } catch (error) {
-        return null;
-    }
-}
-export const ActualizarJuegoFinal = async ({indice,idOutput,Terminado})=>{
-    try {
-        const data = await Api.post("/actualizarJuegoTerminadoMulti", {indice,idOutput,Terminado});
-        return data
-    } catch (error) {
-        return null;
-    }
+
+
+export const CreaJuegoMulti = async ({num})=>{
+    const data = await Api.get(`/CreaJuegoMulti/${num}`);
+    return data.data
 }

@@ -8,7 +8,7 @@ import Verbo from "../../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
 import { resultadoOracion } from '../../../helpers/contador';
-const Preguntasecction = ({ data, window }) => {
+const Preguntasecction = ({ data }) => {
 
   const [videoPreguntaSecctionTodo, setVideoPreguntaSecctionTodo] = useState("")
   useEffect(() => {

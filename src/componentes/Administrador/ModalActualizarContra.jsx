@@ -73,7 +73,7 @@ setBloqueo(true);
             onChange={event => disparodeAccion({ type: "onchange", field: "ContraseñaUno", value: event.target.value })}
             value={ContraseñaUno}
             /><br/>
-   {ContraseñaDos !== ContraseñaDos && <small style={{color:'red'}}> la contraseña no coincide</small>}
+   {ContraseñaDos !== ContraseñaUno && <small style={{color:'red'}}> la contraseña no coincide</small>}
      <Label className='form-label' for='EmailMulti2'>
               Repetir Contraseña
             </Label>

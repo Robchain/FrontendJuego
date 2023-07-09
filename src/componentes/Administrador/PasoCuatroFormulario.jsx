@@ -1,15 +1,14 @@
 import React from 'react'
 import { Button, Card, CardBody, CardFooter, Col, Label, Row } from "reactstrap";
 import { crearMultiJugador } from '../../service/Multijugador';
-import Repeater from '../Repeater';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, prevButton, index, Segundo,TipoDeJuego }) => {
+export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, prevButton, index, Segundo,TipoDeJuego,Curso, Paralelo }) => {
   const MySwal = withReactContent(Swal)
   const onclickGuardar = async()=>{
-    let Estado = "ACTIVO"
-  const data = await  crearMultiJugador({NombreDeEquipo:NombreDeEquipo,NumeroDeGrupos:NumeroDeGrupos,NumeroDeIntegrantes:NumeroDeIntegrantes, Segundo:Segundo,picker:picker, Estado:Estado,TipoDeJuego:TipoDeJuego})
+    try {
+  const data = await  crearMultiJugador({NombreDeEquipo:NombreDeEquipo,NumeroDeGrupos:NumeroDeGrupos,NumeroDeIntegrantes:NumeroDeIntegrantes, Segundo:Segundo,Curso:Curso, Paralelo:Paralelo, picker:picker, Estado:"ACTIVO",TipoDeJuego:TipoDeJuego})
   MySwal.fire({
     title: `${data.titulo}`,
     text: `${data.respuesta}`,
@@ -17,7 +16,18 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
     customClass: {
       confirmButton: 'btn btn-primary'
     },
-    buttonsStyling: false}) 
+    buttonsStyling: false})  
+    } catch (error) {
+      MySwal.fire({
+        title: 'Error!',
+        text: "No se pudo Crear",
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
+      })
+    }
   }
 
   return (
@@ -38,14 +48,16 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
           </Col>
           <Col md='6' className='mb-1'>
             <Label>Jugadores por grupo</Label>
-            <Repeater count={Number(NumeroDeGrupos.value)}>
-              {i=>(<Row>
-                <Col md="6" className='mb-1'>
-                  <Label> grupo {i+1}</Label>
-                  {Segundo[`equipo${i}`].map(i => (<li  key={i.value}>{i.label}</li>))}
-                </Col>
-              </Row>)}
-            </Repeater>
+            {
+              Object.keys(Segundo).map((grupoKey, e)=>(
+                  <Col key={grupoKey}>
+                  <Label> Grupo {e+1}</Label>
+            {Segundo[grupoKey].map(i=>(
+              <li key={i.value}>{i.label}</li>
+            ))}
+          </Col>
+          ))
+            }
           </Col>
           <Col md='6' className='mb-1'>
             <Label>Fecha de la Actividad</Label>
@@ -56,15 +68,17 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
             }
           </Col>
           <Col md='6' className='mb-1'>
-            <Label>Tipo de Juego :  {
-              TipoDeJuego === 1 && <>Vocabularios</>
+            <Label>Tipo de Juego :&ensp;
+             {
+              TipoDeJuego == '1' && <span>Vocabularios</span>
             }
             {
-              TipoDeJuego === 2 && <>Oraciones</>
+              TipoDeJuego == '2' && <span>Oraciones</span>
             }
             {
-              TipoDeJuego === 3 && <>Oraciones y Vocabularios</>
-            }</Label>
+              TipoDeJuego == '3' && <span>Oraciones y Vocabularios</span>
+            }
+            </Label>
           </Col>
         </Row>
       </CardBody>

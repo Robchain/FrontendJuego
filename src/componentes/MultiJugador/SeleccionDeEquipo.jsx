@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Card, CardBody, CardImg, CardTitle, Col, Row } from 'reactstrap'
 import { JuecoContext } from '../../context/Juego/JuecoContext'
-import { AcciondeAsignarGruposConJuegos } from '../../service/Multijugador';
+import { AcciondeAsignarGruposConJuegos, CreaJuegoMulti } from '../../service/Multijugador';
+import cargando from '../../assets/img/AssetsGame/paperplane.gif'
+export const SeleccionDeEquipo = ({IdDeLaAsignacion, IdDelGrupo, id,TipoDeJuego}) => {
 
-export const SeleccionDeEquipo = ({IdDeLaAsignacion, IdDelGrupo, id}) => {
-
-const { llamadaDos,cardEquipo} = useContext(JuecoContext);
+const { llamadaDos,cardEquipo, setDataMultiJu} = useContext(JuecoContext);
+const [loading, setloading] = useState(false)
 const navegar = useNavigate();
 useEffect(() => {
   llamadaDos(IdDeLaAsignacion);
@@ -16,8 +17,12 @@ useEffect(() => {
  const onclickevent= async(input)=>{
   let idDeBase = IdDelGrupo;
   let BaseUno = input;
+  let num= parseInt(TipoDeJuego);
+  setloading(true);
   const res = await AcciondeAsignarGruposConJuegos(idDeBase, BaseUno);
-  //falta la re direccionamiento
+  const data =await CreaJuegoMulti({num:num});
+  setDataMultiJu(data)
+  setloading(false);
   navegar(`/JuegoActivo/Jugador/${id}`);
   
 }
@@ -25,8 +30,14 @@ useEffect(() => {
   return (
     <>
     {cardEquipo.length > 0 ? ( <Row className='align-items-center'>
+    {loading && (
+      <div className="loading-overlay">
+        <img src={cargando} alt='cargando'/>
+      </div>
+    )}
+    
     <Col lg="6" className='mx-auto' style={{textAlign:'center'}}>
-      <h3>Selecion De Equipo</h3>
+      <h3>Selección De Equipo</h3>
     </Col>
     <Row className='align-items-center' style={{height:"50vh"}}>
     {cardEquipo.map(cardSol =>( <Col key={cardSol.id}>

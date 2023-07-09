@@ -12,8 +12,11 @@ export const CarreraStepBar = ({ steps,InfoEstudiaSituacion }) => {
         <Step transition="scale">
         {({ accomplished, index }) => (
           <div className={`step ${accomplished ? "completed" : ""}`}>
+          {
+            a!==InfoEstudiaSituacion.Posicion &&  <p style={{textAlign:'center'}}>{i.label}</p>
+          }
               {
-                a===InfoEstudiaSituacion.Posicion && <span>Tú</span>
+                a===InfoEstudiaSituacion.Posicion && <p style={{textAlign:'center'}}><b>Tú</b> {InfoEstudiaSituacion.Integrantes[a].label}</p>
               }
           </div>
         )}

@@ -45,7 +45,7 @@ useEffect(() => {
 
 useEffect(() => {
   setMostrarVocabulario([])
-}, [Juego])
+}, [Juego,Estudiante])
 
 const Buscar = async ()=>{
     setMostrarVocabulario([]);
@@ -57,6 +57,7 @@ const data = await ReportesJugadorApi({id:Estudiante,Pregunta:Juego});
 setMostrarVocabulario(data);
 }else if(Juego === "Multi-Jugador"){
   const data = await ReportesJugadorApi({id:Estudiante,Pregunta:Juego});
+  
 setMostrarVocabulario(data);
 }else if(Juego === "Todos"){
   const data = await ReportesJugadorApi({id:Estudiante,Pregunta:Juego});
@@ -161,7 +162,7 @@ setMostrarVocabulario(data);
           >
             Buscar
           </Button>{" "}
-          <PDFDownloadLink document={<DescargarJuegadorReporte data={MostrarVocabulario} actividad={Juego}/>} fileName="prueba.pdf">
+          <PDFDownloadLink document={<DescargarJuegadorReporte data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes}/>} fileName="prueba.pdf">
           <Button
             style={{
               borderRadius: "10px",
@@ -176,7 +177,7 @@ setMostrarVocabulario(data);
           </PDFDownloadLink>
         </Col>
       </Row>
-      <ReportePDFJugador data={MostrarVocabulario} actividad={Juego}/>
+      <ReportePDFJugador data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes} />
     </>
   );
 };

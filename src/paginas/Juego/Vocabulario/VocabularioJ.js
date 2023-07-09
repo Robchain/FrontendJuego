@@ -37,7 +37,7 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
       </>
     )
 }
-const VideosPreguntas = ({pointerEvent,progreso, siguiente, data, videoActual, setPointerEvent,  setOpa1, setOpa2, setOpa3, setVideoActual, playref }) => {
+const VideosPreguntas = ({ data, videoActual, setPointerEvent,  setOpa1, setOpa2, setOpa3, setVideoActual, playref }) => {
   const [videos, setVideos] = useState("")
   const navegar = useNavigate();
   /*useEffect(() => {
@@ -127,7 +127,10 @@ const Vocabulario = () => {
     setCorrecto2("INICIAL");
     setCorrecto3("INICIAL");
     toggleWindow(num);
-    if (num === piezaJuegoIndi + 1) {
+    
+    if( num === piezaJuegoIndi && avance0.filter(obj => obj.Resultado === "CORRECTO").length === piezaJuegoIndi){
+      navegar(`/finalVocabulario`);
+    }else if (num === piezaJuegoIndi + 1){
       navegar(`/finalVocabulario`);
     } else {
       toggleWindow(num + 1);

@@ -3,16 +3,17 @@
     color:black;
     width: 20px;
     height: 20px;
-    background-color: white;
+    padding-top:20px ;
+    background-color: rgba(255, 255, 255,0.5);
     border-radius: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .step.completed{
-    background-color: #60269e;
-    color:white;
+    background-color: rgba(96, 38, 158,0.5);
+    color:black;
 }
 .loading-overlay {
     position: fixed;
@@ -20,7 +21,7 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,6 +81,10 @@
     color: #fff !important;
     border-radius: 50px;
     box-shadow: 0 0 10px 1px #8cc5b0
+}
+.pruebaDise{
+    display: flex;
+    
 }
 .linkNav{
     margin:0;
@@ -178,6 +183,15 @@ body{
 
     
 }
+.minicuadrito .encimados{
+    z-index: 30;
+    width: 25.5vw /*280px*/;
+    height:100%;
+    position:fixed;
+    display: flex;
+
+    
+}
 #imagenRompecabeza{
     width: 25vw/*273px*/;   
 }
@@ -200,6 +214,20 @@ height:24vh;
     width:8vw ;
     height:25vh;
 }
+.minicuadrito .encimados .c{
+    display: block; 
+    background-color: #FBFBFB;
+    width:8vw ;
+    height:24vh;
+    }
+    
+    
+    .minicuadrito .encimados .d{
+        display: block; 
+        background-color: #FBFBFB;
+        width:8vw ;
+        height:25vh;
+    }
 .animacionBoton:hover{
     border:solid #60269e 2px;
 }
@@ -336,6 +364,12 @@ height: 0px;
         height:100%;
         position:fixed;
     }
+    .minicuadrito .encimados{
+        z-index: 30;
+        width: 25.5vw /*280px*/;
+        height:100%;
+        position:fixed;
+    }
     #imagenRompecabeza{
         width: 25vw/*273px*/;   
     }
@@ -360,29 +394,47 @@ height: 0px;
 @media screen  and  (max-width: 2560px) and (min-width:1441px) {
     .minicuadrito .encima{
         z-index: 30;
-        width: 25.5vw /*280px*/;
+        width: 20vw /* 25.5vw 280px*/;
         height:100%;
         position:fixed;
     }
     #imagenRompecabeza{
         width: 20vw/*273px*/;   
     }
-    #imagenFinal{
-        width: 48vw;
-    }
+   
     .minicuadrito .encima .a{
         display: block; 
         background-color: #FBFBFB;
-        width:5vw ;
+        width:5vw /*5vw*/;
         height:23vh;
-        }
-        
-        
-        .minicuadrito .encima .b{
+    }
+    .minicuadrito .encima .b{
             display: block; 
             background-color: #FBFBFB;
             width:3.34vw ;
             height:23vh;
+    }
+        
+    #imagenFinal{
+            width: 48vw;
+    }
+    .minicuadrito .encimados{
+            z-index: 30;
+            width: 48vw /* 25.5vw 280px*/;
+            height:100%;
+            position:fixed;
+    }
+    .minicuadrito .encimados .c{
+        display: block; 
+        background-color: #FBFBFB;
+        width:12vw ;
+        height:100%;
+        }
+    .minicuadrito .encimados .d{
+            display: block; 
+            background-color: #FBFBFB;
+            width:8vw ;
+            height:100%;
         }
 }
 

@@ -5,9 +5,9 @@ import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGen
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { llamadaRompecabezaGet } from '../../../service/Juego/Vocabulario'
-import { contador } from '../../../helpers/contador'
 import { CrearJuegoVocabularioIndividual } from '../../../service/Adminstrador/Vocabulario'
 import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
+import { Piezacalcular } from '../../../helpers/contador'
 const RompecabezaJV = () => {
   const { dataJuegoInicialVocabulario, setavance, setIdRompecabeza, setDataJuegoInicialVocabulario,setdataJuegoVocabulario, setPiezaJuegoIndi,setDataRompecabeza } = useContext(JuecoContext);
   const [modal, setModal] = useState(false);
@@ -60,7 +60,7 @@ const RompecabezaJV = () => {
                 dataJuegoInicialVocabulario.map(i=>(
                   <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" >
                   
-                  <div onClick={(e) => {setDataseleccionada(i); setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setPiezaJuegoIndi(i.Rompecabeza.Pieza); clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)} }><RompecabaSolitaria Avance={i.Avance}  piezas={i.Rompecabeza.Pieza} url={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} /> </div> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${/*contador(i.Avance,i.Rompecabeza.Pieza )*/0}/${i.Rompecabeza.Pieza}`}</span></p>
+                  <div onClick={(e) => {setDataseleccionada(i); setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setPiezaJuegoIndi(i.Rompecabeza.Pieza); clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)} }><RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  piezas={i.Rompecabeza.Pieza} url={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} /> </div> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })}/${i.Rompecabeza.Pieza}`}</span></p>
                 </Col>
                 ))
               

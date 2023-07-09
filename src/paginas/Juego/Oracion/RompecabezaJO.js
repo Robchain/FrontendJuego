@@ -5,9 +5,9 @@ import {JuecoContext} from "../../../context/Juego/JuecoContext"
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego';
 import { llamadaPartidaOracion } from '../../../service/Juego/Oracion';
-import { contador } from '../../../helpers/contador';
 import { armandoJuegosOracionesPorPiezas } from '../../../service/Adminstrador/Oracion'
 import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
+import { Piezacalcular } from '../../../helpers/contador'
 const RompecabezaJO = () => {
 const [modal, setModal] = useState(false)
 const {oraciondata, setOraciondata, dispatchProgreso,setDataOracionJuego,setPiezaJuegoIndi,setIdRompecabeza, setDataRompecabeza} = useContext(JuecoContext);
@@ -61,7 +61,7 @@ useEffect(() => {
           
             {oraciondata.map(i=>(
               <Col lg="4" md="4" sm="10" xs="10">
-              <div  onClick={(e) =>{ setPiezaJuegoIndi(i.Rompecabeza.Pieza);setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setDataSelecionada(i);clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)}} > <RompecabaSolitaria Avance={i.Avance}  url={i.Rompecabeza.FileColor} piezas={i.Rompecabeza.Pieza} /></div><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${/*contador(i.Avance,i.Partida.Rompecabeza.Pieza)*/0}/${i.Rompecabeza.Pieza}`}</span></p> 
+              <div  onClick={(e) =>{ setPiezaJuegoIndi(i.Rompecabeza.Pieza);setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setDataSelecionada(i);clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)}} > <RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  url={i.Rompecabeza.FileColor} piezas={i.Rompecabeza.Pieza} /></div><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${Piezacalcular({ objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza})}/${i.Rompecabeza.Pieza}`}</span></p> 
               </Col>
             ))
           }

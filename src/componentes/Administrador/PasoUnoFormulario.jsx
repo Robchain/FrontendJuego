@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, CardBody, Col, Input, Label, Row } from "reactstrap";
 import Select from 'react-select'
 import { todosTeam } from '../../service/Equipo';
+import { ArrowLeft, ArrowRight } from 'react-feather';
 const Options = [
   { value: '2', label: '2' },
   { value: '3', label: '3' },
@@ -25,6 +26,10 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
     llamadaDataInicial()
   }, [])
 
+  useEffect(() => {
+    console.log(TipoDeJuego)
+  }, [TipoDeJuego])
+  
   return (
     <Card className="mt-5">
       <CardBody>
@@ -41,7 +46,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
             value={NumeroDeGrupos}
               onChange={e =>{dispatch({ type: "actualizarData", field: "NumeroDeGrupos", value: e})}}
               options={Options}
-              name="Grupo"
+              name="NumeroDeGrupos"
             />
           </Col>
           <Col md="6" className="mb-1">
@@ -52,7 +57,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
             value={NombreDeEquipo}
           isMulti
           onChange={e =>{dispatch({ type: "actualizarData", field: "NombreDeEquipo", value: e })}}
-          name='Equipos'
+          name='NombreDeEquipo'
             options={TeamData.map(i => { 
                 return {
                         label: i.Nombre,
@@ -67,7 +72,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
             <Select
                value={NumeroDeIntegrantes}
             onChange={e =>{dispatch({ type: "actualizarData", field: "NumeroDeIntegrantes", value: e })}}
-            name='NIntegrantes'
+            name='NumeroDeIntegrantes'
               options={Options2}
             />
           </Col>
@@ -75,42 +80,38 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
             <Label>
               Tipo de Juego
             </Label><br />
-            <Label><Input
+            <Input
               type='radio'
               name="TipoDeJuego"
-              id={1}
               value={1}
               onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value })}
-              defaultChecked={TipoDeJuego === 1}
-            /> Vocabularios</Label><br />
-            <Label>
+              defaultChecked={TipoDeJuego == '1'}
+            /> Vocabularios<br />
               <Input
                 type='radio'
                 name="TipoDeJuego"
-                id={2}
                 value={2}
                 onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value})}
-              defaultChecked={TipoDeJuego === 2}
+              defaultChecked={TipoDeJuego == '2'}
               /> Oraciones
-            </Label><br/>
-            <Label>
-              <Input
+            <br/>
+            <Input
                 type='radio'
-                id={3}
                 name="TipoDeJuego"
                 value={3}
                 onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value })}
-              defaultChecked={TipoDeJuego === 3}
+              defaultChecked={TipoDeJuego == '3'}
               /> Oraciones y Vocabularios
-            </Label>
           </Col>
         </Row>
         <div className='d-flex justify-content-between mt-3'>
         <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+        <ArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
           Atras
         </Button>
         <Button onClick={nextButton} disabled={NombreDeEquipo.length < 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Siguiente
+          <ArrowRight  size={14} className='align-middle ms-sm-25 ms-0'/>
         </Button>
         </div>
       </CardBody>
