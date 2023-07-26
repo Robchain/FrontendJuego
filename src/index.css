@@ -1,20 +1,20 @@
-
-.step{
-    color:black;
+.step {
+    color: black;
     width: 20px;
     height: 20px;
-    padding-top:20px ;
-    background-color: rgba(255, 255, 255,0.5);
+    padding-top: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
 }
 
-.step.completed{
-    background-color: rgba(96, 38, 158,0.5);
-    color:black;
+.step.completed {
+    background-color: rgba(96, 38, 158, 0.5);
+    color: black;
 }
+
 .loading-overlay {
     position: fixed;
     top: 0;
@@ -26,418 +26,576 @@
     justify-content: center;
     align-items: center;
     z-index: 100;
-  }
+}
 
 .scale-in-center {
-	animation: myAnim 2s ease 0s 1 normal forwards;
+    animation: myAnim 2s ease 0s 1 normal forwards;
 }
+
 @keyframes myAnim {
-	0% {
-		animation-timing-function: ease-in;
-		opacity: 1;
-		transform: translateY(-45px);
-	}
+    0% {
+        animation-timing-function: ease-in;
+        opacity: 1;
+        transform: translateY(-45px);
+    }
 
-	24% {
-		opacity: 1;
-	}
+    24% {
+        opacity: 1;
+    }
 
-	40% {
-		animation-timing-function: ease-in;
-		transform: translateY(-24px);
-	}
+    40% {
+        animation-timing-function: ease-in;
+        transform: translateY(-24px);
+    }
 
-	65% {
-		animation-timing-function: ease-in;
-		transform: translateY(-12px);
-	}
+    65% {
+        animation-timing-function: ease-in;
+        transform: translateY(-12px);
+    }
 
-	82% {
-		animation-timing-function: ease-in;
-		transform: translateY(-6px);
-	}
+    82% {
+        animation-timing-function: ease-in;
+        transform: translateY(-6px);
+    }
 
-	93% {
-		animation-timing-function: ease-in;
-		transform: translateY(-4px);
-	}
+    93% {
+        animation-timing-function: ease-in;
+        transform: translateY(-4px);
+    }
 
-	25%,
-	55%,
-	75%,
-	87% {
-		animation-timing-function: ease-out;
-		transform: translateY(0px);
-	}
+    25%,
+    55%,
+    75%,
+    87% {
+        animation-timing-function: ease-out;
+        transform: translateY(0px);
+    }
 
-	100% {
-		animation-timing-function: ease-out;
-		opacity: 1;
-		transform: translateY(0px);
-	}
+    100% {
+        animation-timing-function: ease-out;
+        opacity: 1;
+        transform: translateY(0px);
+    }
 }
-.active{
+
+.active {
     background-color: #8cc5b0;
     color: #fff !important;
     border-radius: 50px;
     box-shadow: 0 0 10px 1px #8cc5b0
 }
-.pruebaDise{
+
+.pruebaDise {
     display: flex;
+    justify-content: center;
+    flex-direction: column;
     
 }
-.linkNav{
-    margin:0;
-    padding: 10px 15px ;
+
+.pruebaDise .opciones{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
+.pruebaDise .opciones .imagenOpc{
+    width: 5rem;
+
+}
+.pruebaDise .opciones {
+    margin-right: 0rem;
 }
 
-.tabvs .active{
+
+.pruebaDise .seleccion{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+.pruebaDise .seleccion div{
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: auto;
+    margin-right: 0.6rem;
+}
+
+.pruebaDise .seleccion span{
+text-align: center;
+    font-size: 1.7rem;
+}
+
+
+.pruebaDise .seleccion .opcionesSelec{
+    width: 9rem;
+}
+.pruebaDise .seleccion div{
+    width: 9rem;
+}
+
+.pruebaDise .seleccion div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.linkNav {
+    margin: 0;
+    padding: 10px 15px;
+}
+
+.tabvs .active {
     background-color: #fff !important;
     color: #fff !important;
     border-radius: 50px !important;
     box-shadow: 0 0 10px 1px #Fff !important;
 }
-.tabvs .active .card{
-    background-color: #fff !important;
-    color: #000 !important;
-    box-shadow: 0 0 10px 1px #Fff !important;
-}
-.tabvs .active .css-b62m3t-container{
+
+.tabvs .active .card {
     background-color: #fff !important;
     color: #000 !important;
     box-shadow: 0 0 10px 1px #Fff !important;
 }
 
-#root{
-    font-family:"Montserrat", Helvetica, Arial, serif;
+.tabvs .active .css-b62m3t-container {
+    background-color: #fff !important;
+    color: #000 !important;
+    box-shadow: 0 0 10px 1px #Fff !important;
 }
 
-body{
+#root {
+    font-family: "Montserrat", Helvetica, Arial, serif;
+}
+
+body {
     background-color: #f8f8f8;
 }
-.fuenteDoce{
+
+.fuenteDoce {
     font-size: 12px;
     font-weight: 700;
 }
+
 .minav {
-    padding:10px;
-    color:#777;
+    padding: 10px;
+    color: #777;
     list-style-type: none;
 }
 
-.minav  .item  {
-    margin:10px;
+.minav .item {
+    margin: 10px;
 }
+
 .minav .item .linkNav {
-    color:#777;
+    color: #777;
     font-size: 1em;
     display: block;
     text-decoration: none;
-    
+
 }
+
 .minav .item .linkNav img {
     width: 2vw;
 }
 
-.minav .item .linkNav:hover{
+.minav .item .linkNav:hover {
     background-color: #8cc5b0;
-    color:#fff;
+    color: #fff;
     text-decoration: solid;
     border-radius: 50px;
     box-shadow: 0 0 10px 1px #8cc5b0
 }
 
-.fondoMC{
+.fondoMC {
     background-color: #fff;
 }
 
-.fondoImagen{
-    background-image:url("./assets/img/AssetsGame/Blipbla-pantalla-1.jpg") ;
+.fondoImagen {
+    background-image: url("./assets/img/AssetsGame/Blipbla-pantalla-1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-   
+
 
 }
-.fondoImagenVocabulario{
-    background-image:url("./assets/img/AssetsGame/BLIPBLA-BACKGROUND-2.jpg") ;
+
+.fondoImagenVocabulario {
+    background-image: url("./assets/img/AssetsGame/BLIPBLA-BACKGROUND-2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-x: left; 
+    background-position-x: left;
 }
 
-.Mi-diseñodiv{
-    width:300   !important; 
-    height:180 !important; 
-    border-radius:100 !important; 
-    display:flex !important; 
-    justify-content:space-evenly !important; 
-    align-items:center !important;
+.Mi-diseñodiv {
+    width: 300 !important;
+    height: 180 !important;
+    border-radius: 100 !important;
+    display: flex !important;
+    justify-content: space-evenly !important;
+    align-items: center !important;
 }
 
-.minicuadrito .encima{
+.minicuadrito .encima {
     z-index: 30;
-    width: 25.5vw /*280px*/;
-    height:100%;
-    position:fixed;
+    width: 25.5vw
+        /*280px*/
+    ;
+    height: 100%;
+    position: fixed;
     display: flex;
-
-    
 }
-.minicuadrito .encimados{
+
+.minicuadrito .encimados {
     z-index: 30;
-    width: 25.5vw /*280px*/;
-    height:100%;
-    position:fixed;
+    height: 100%;
     display: flex;
+}
 
-    
+#imagenRompecabeza {
+    width: 25vw
+        /*273px*/
+    ;
 }
-#imagenRompecabeza{
-    width: 25vw/*273px*/;   
-}
-#imagenFinal{
+
+#imagenFinal {
     width: 50vw
 }
 
 
-.minicuadrito .encima .a{
-display: block; 
-background-color: #FBFBFB;
-width:8vw ;
-height:24vh;
+.minicuadrito .encima .a {
+    display: block;
+    background-color: #FBFBFB;
+    width: 8vw;
+    height: 100%;
 }
 
 
-.minicuadrito .encima .b{
-    display: block; 
+.minicuadrito .encima .b {
+    display: block;
     background-color: #FBFBFB;
-    width:8vw ;
-    height:25vh;
+    width: 8vw;
+    height: 100%;
 }
-.minicuadrito .encimados .c{
-    display: block; 
+
+.minicuadrito .encimados .c {
+    display: block;
     background-color: #FBFBFB;
-    width:8vw ;
-    height:24vh;
-    }
-    
-    
-    .minicuadrito .encimados .d{
-        display: block; 
-        background-color: #FBFBFB;
-        width:8vw ;
-        height:25vh;
-    }
-.animacionBoton:hover{
-    border:solid #60269e 2px;
+    width: 12vw;
+    height: 100%;
 }
-.modal{
-    --bs-modal-footer-border-color:"none" !important;
-    --bs-modal-border-color:"none"!important;
-    --bs-modal-header-border-color:"none" !important;   
+
+
+.minicuadrito .encimados .d {
+    display: block;
+    background-color: #FBFBFB;
+    width: 8vw;
+    height: 100%;
+}
+
+.animacionBoton:hover {
+    border: solid #60269e 2px;
+}
+
+.modal {
+    --bs-modal-footer-border-color: "none" !important;
+    --bs-modal-border-color: "none" !important;
+    --bs-modal-header-border-color: "none" !important;
 }
 
 .print-image {
-    margin-left:100px;
-    margin-top:50px ;
+    margin-left: 100px;
+    margin-top: 50px;
     position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
     height: 62vh;
     transform: rotate(90deg);
-  }
-  .desaparecer{
+}
+
+.desaparecer {
     visibility: hidden;
-  }
-  .desaparecer1{
-height: 0px;
+}
+
+.desaparecer1 {
+    height: 0px;
     visibility: hidden;
-  }
-  /*
+}
+
+/*
   Media Queries
   */
 
-  @media screen and  (max-width: 426px) {
+@media screen and (max-width: 426px) {
 
-    .minicuadrito .encima{
-    z-index: 30;
-    width:  280px;
-    height:100%;
-    position:fixed;
+    .minicuadrito .encima {
+        z-index: 30;
+        width: 280px;
+        height: 100%;
+        position: fixed;
+    }
+
+    #imagenFinal {
+        width: 273px;
+    }
+
+    #imagenRompecabeza {
+        width: 273px;
+    }
+
+
+
 }
-#imagenFinal{
-    width: 273px;
-}
-
-#imagenRompecabeza{
-    width:273px;
-}
 
 
-
- }
-  
-  
- @media screen and  (max-width: 767px) and (min-width:320px) {
-    .minicuadrito .encima{
+@media screen and (max-width: 767px) and (min-width:320px) {
+    .minicuadrito .encima {
         z-index: 30;
         width: 50.5vw;
-        height:100%;
-        position:fixed;
+        height: 100%;
+        position: fixed;
     }
-    
-#imagenFinal{
-    width: 65vw;
-}
 
-
-#imagenRompecabeza{
-    width: 50vw/*273px*/;   
-}
-.cac{
-    width:280px;
-} 
-.minicuadrito .encima .a{
-    display: block; 
-    background-color: #FBFBFB;
-    width:5vw ;
-    height:24vh;
-    }
-    
-    
-    .minicuadrito .encima .b{
-        display: block; 
+    .minicuadrito .encimados .c {
+        display: block;
         background-color: #FBFBFB;
-        width:3.34vw ;
-        height:24vh;
+        width: 12vw;
+        height: 100%;
     }
 
- }
- @media screen  and  (max-width: 1024px) and (min-width:768px) {
-    .minicuadrito .encima{
-        z-index: 30;
-        width: 25.5vw /*280px*/;
-        height:100%;
-        position:fixed;
-    }
-    #imagenRompecabeza{
-        width: 25vw/*273px*/;   
-    }
-    #imagenFinal{
-        width: 50vw;
-    }
-    .print{
-        width:60vw;
-    } 
-    .minicuadrito .encima .a{
-        display: block; 
+    .minicuadrito .encimados .d {
+        display: block;
         background-color: #FBFBFB;
-        width:5vw ;
-        height:24vh;
-        }
-        
-        
-        .minicuadrito .encima .b{
-            display: block; 
-            background-color: #FBFBFB;
-            width:3.34vw ;
-            height:24vh;
-        }
-}
-@media screen  and  (max-width: 1024px) and (min-width:776px){
-    .print{
-        width:45vw;
+        width: 8vw;
+        height: 100%;
     }
-}
-@media screen  and  (max-width: 1440px) and (min-width:1025px){
-   .print{
-        width:32vw;
+
+    #imagenFinal {
+        width: 65vw;
     }
-}
 
 
- @media screen  and  (max-width: 1440px) and (min-width:1025px) {
-    .minicuadrito .encima{
+    #imagenRompecabeza {
+        width: 50vw
+            /*273px*/
+        ;
+    }
+
+    .cac {
+        width: 280px;
+    }
+
+    .minicuadrito .encima .a {
+        display: block;
+        background-color: #FBFBFB;
+        width: 5vw;
+        height: 100%;
+    }
+
+    .minicuadrito .encima .b {
+        display: block;
+        background-color: #FBFBFB;
+        width: 3.34vw;
+        height: 100%;
+    }
+
+}
+
+@media screen and (max-width: 1024px) and (min-width:768px) {
+    .minicuadrito .encima {
         z-index: 30;
-        width: 25.5vw /*280px*/;
-        height:100%;
-        position:fixed;
+        width: 25.5vw
+            /*280px*/
+        ;
     }
-    .minicuadrito .encimados{
-        z-index: 30;
-        width: 25.5vw /*280px*/;
-        height:100%;
-        position:fixed;
-    }
-    #imagenRompecabeza{
-        width: 25vw/*273px*/;   
-    }
-    #imagenFinal{
+    #imagenFinal {
         width: 48vw;
     }
-    .minicuadrito .encima .a{
-        display: block; 
+    #imagenRompecabeza {
+        width: 25vw
+            /*273px*/;
+    }
+    .print {
+        width: 60vw;
+    }
+    .minicuadrito .encima .a {
+        display: block;
         background-color: #FBFBFB;
-        width:5vw ;
-        height:24vh;
-        }
-        
-        
-        .minicuadrito .encima .b{
-            display: block; 
-            background-color: #FBFBFB;
-            width:3.34vw ;
-            height:24vh;
-        }
-}
-@media screen  and  (max-width: 2560px) and (min-width:1441px) {
-    .minicuadrito .encima{
+        width: 5vw;
+        height: 100%;
+    }
+    .minicuadrito .encima .b {
+        display: block;
+        background-color: #FBFBFB;
+        width: 3.64vw;
+        height: 100%;
+    }
+    .minicuadrito .encimados .c {
+        display: block;
+        background-color: #FBFBFB;
+        width: 10vw;
+        height: 100%;
+    }
+    .minicuadrito .encimados {
         z-index: 30;
-        width: 20vw /* 25.5vw 280px*/;
-        height:100%;
-        position:fixed;
+        width: 50vw
+            /*280px*/
+        ;
+        height: 100%;
+        position: fixed;
     }
-    #imagenRompecabeza{
-        width: 20vw/*273px*/;   
+    #imagenFinal {
+        width: 50vw;
     }
-   
-    .minicuadrito .encima .a{
-        display: block; 
+    .minicuadrito .encimados .d {
+        display: block;
         background-color: #FBFBFB;
-        width:5vw /*5vw*/;
-        height:23vh;
+        width: 7.14vw;
+        height: 100%;
     }
-    .minicuadrito .encima .b{
-            display: block; 
-            background-color: #FBFBFB;
-            width:3.34vw ;
-            height:23vh;
-    }
-        
-    #imagenFinal{
-            width: 48vw;
-    }
-    .minicuadrito .encimados{
-            z-index: 30;
-            width: 48vw /* 25.5vw 280px*/;
-            height:100%;
-            position:fixed;
-    }
-    .minicuadrito .encimados .c{
-        display: block; 
-        background-color: #FBFBFB;
-        width:12vw ;
-        height:100%;
-        }
-    .minicuadrito .encimados .d{
-            display: block; 
-            background-color: #FBFBFB;
-            width:8vw ;
-            height:100%;
-        }
 }
 
-.offcanvas, .offcanvas-lg, .offcanvas-md, .offcanvas-sm, .offcanvas-xl, .offcanvas-xxl{
+
+@media screen and (max-width: 1024px) and (min-width:776px) {
+    .print {
+        width: 45vw;
+    }
+
+
+
+}
+
+@media screen and (max-width: 1440px) and (min-width:1025px) {
+    .print {
+        width: 32vw;
+    }
+
+    #imagenFinal {
+        width: 48vw;
+    }
+    .minicuadrito .encimados .c {
+        display: block;
+        background-color: #FBFBFB;
+        width: 12vw;
+        height: 100%;
+    }
+
+    .minicuadrito .encimados .d {
+        display: block;
+        background-color: #FBFBFB;
+        width: 8vw;
+        height: 100%;
+    }
+}
+
+
+@media screen and (max-width: 1440px) and (min-width:1025px) {
+    .minicuadrito .encima {
+        z-index: 30;
+        width: 25.5vw
+            /*280px*/
+        ;
+        height: 100%;
+        position: fixed;
+    }
+
+    .minicuadrito .encimados {
+        z-index: 30;
+        width: 25.5vw
+            /*280px*/
+        ;
+        height: 100%;
+        position: fixed;
+    }
+
+    #imagenRompecabeza {
+        width: 25vw
+            /*273px*/
+        ;
+    }
+
+    #imagenFinal {
+        width: 48vw;
+    }
+
+    .minicuadrito .encima .a {
+        display: block;
+        background-color: #FBFBFB;
+        width: 5vw;
+        height: 100%;
+    }
+
+
+    .minicuadrito .encima .b {
+        display: block;
+        background-color: #FBFBFB;
+        width: 3.34vw;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 2560px) and (min-width:1441px) {
+    .minicuadrito .encima {
+        z-index: 30;
+        width: 20vw
+            /* 25.5vw 280px*/
+        ;
+        height: 100%;
+        position: fixed;
+    }
+
+    #imagenRompecabeza {
+        width: 20vw
+            /*273px*/
+        ;
+    }
+
+    .minicuadrito .encima .a {
+        display: block;
+        background-color: #FBFBFB;
+        width: 5vw
+            /*5vw*/
+        ;
+        height: 100%;
+    }
+
+    .minicuadrito .encima .b {
+        display: block;
+        background-color: #FBFBFB;
+        width: 3.34vw;
+        height: 100%;
+    }
+
+    #imagenFinal {
+        width: 48vw;
+    }
+
+    .minicuadrito .encimados {
+        z-index: 30;
+        width: 48vw
+            /* 25.5vw 280px*/
+        ;
+        height: 100%;
+        position: fixed;
+    }
+
+    .minicuadrito .encimados .c {
+        display: block;
+        background-color: #FBFBFB;
+        width: 12vw;
+        height: 100%;
+    }
+
+    .minicuadrito .encimados .d {
+        display: block;
+        background-color: #FBFBFB;
+        width: 8vw;
+        height: 100%;
+    }
+}
+
+.offcanvas,
+.offcanvas-lg,
+.offcanvas-md,
+.offcanvas-sm,
+.offcanvas-xl,
+.offcanvas-xxl {
     --bs-offcanvas-width: 300px !important;
 }

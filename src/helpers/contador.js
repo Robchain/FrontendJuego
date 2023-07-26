@@ -211,13 +211,13 @@ const esCorrecto = ultimoObjeto.Resultado === "CORRECTO";
     if(count===0){
       return 0;
     }else if(count===1){
-      return 0;
-    }else if(count===2){
       return 1;
-    }else if(count===3){
+    }else if(count===2){
       return 2;
-    }else if(count===4){
+    }else if(count===3){
       return 3;
+    }else if(count===4){
+      return 4;
     }else if(count===5){
       return 4;
     }
@@ -244,17 +244,17 @@ const esCorrecto = ultimoObjeto.Resultado === "CORRECTO";
     if(count===0){
       return 0;
     }else if(count===1){
-      return 0;
-    }else if(count===2){
       return 1;
-    }else if(count===3){
+    }else if(count===2){
       return 2;
-    }else if(count===4){
+    }else if(count===3){
       return 3;
-    }else if(count===5){
+    }else if(count===4){
       return 4;
-    }else if(count===6){
+    }else if(count===5){
       return 5;
+    }else if(count===6){
+      return 6;
     }else if(count===7){
       return 6;
     }

@@ -1,5 +1,5 @@
 import React from 'react'
-export const RompecabaSolitaria = ({ Avance,piezas=4, url, alt, principal=true, terminado}) => {
+export const RompecabaSolitaria = ({ Avance,piezas=4, url, alt, principal=true, terminado=false}) => {
 
   return (  
    <div  className="minicuadrito position-relative">
@@ -9,7 +9,7 @@ export const RompecabaSolitaria = ({ Avance,piezas=4, url, alt, principal=true, 
     (piezas === 4) && (<>
     {
       Avance !==null ? Avance.map( (i,index)=>(
-        index < 4 &&
+        index < 5 &&
         <div    className={principal ? 'a':'c'}  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
     </div>
       )
@@ -24,7 +24,7 @@ export const RompecabaSolitaria = ({ Avance,piezas=4, url, alt, principal=true, 
     (piezas === 6) && (<>
       {
       Avance !==null ? Avance.map( (i,index)=>(
-        index < 6 &&
+        index < 7 &&
         <div    className={principal ? 'b':'d'}  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
     </div>
       )
@@ -60,6 +60,10 @@ const rompe4=[
     pieza:4,
     visibility:"hidden"
   }
+  ,{
+    pieza:5,
+    visibility:"hidden"
+  }
 ]
 const rompe6=[
   {
@@ -80,6 +84,9 @@ const rompe6=[
     visibility:"hidden"
   },{
     pieza:6,
+    visibility:"hidden"
+  },{
+    pieza:7,
     visibility:"hidden"
   }
 ]
