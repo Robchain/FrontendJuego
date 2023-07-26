@@ -1,5 +1,5 @@
 import React,{useEffect,useState,useReducer}from 'react'
-import MenuAdmi from "../../componentes/MenuAdmi";
+import {AdmiMenu} from "../../componentes/AdmiMenu";
 import Select from 'react-select';
 import {Button, Container, Row, CardFooter, Col,Spinner, Card, CardImg, CardBody, CardTitle, CardText, CardGroup, Input, Label, NavLink, NavItem, Nav, TabPane, TabContent } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
@@ -130,7 +130,7 @@ try {
   return (
         <Container >
         <NavBar toggle={toggle} Seccion={"Vocabularios"}/>
-    <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
+    <AdmiMenu toggle={toggle} isOpen={isOpen}/> 
     <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-between'>
     <Nav tabs style={{ fontSize: 14 }} >
             <NavItem>

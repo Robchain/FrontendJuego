@@ -1,7 +1,7 @@
 import React, { useEffect, useState,useReducer } from 'react'
 import { Button, Card, CardBody, CardFooter, CardGroup, CardImg, CardText, CardTitle, Col, Container, Input, Label, Nav, NavItem, NavLink, Row, Spinner, TabContent, TabPane } from 'reactstrap'
 import { ModalAgregarOracion } from '../../componentes/Administrador/ModalAgregarOracion'
-import MenuAdmi from '../../componentes/MenuAdmi'
+import {AdmiMenu} from "../../componentes/AdmiMenu";
 import Swal from 'sweetalert2'
 import Select from 'react-select';
 import withReactContent from 'sweetalert2-react-content';
@@ -126,7 +126,7 @@ MySwal.fire({
   return (
     <Container>
     <NavBar toggle={toggle} Seccion={"Oraciones"} />
-    <MenuAdmi toggle={toggle} isOpen={isOpen}/> 
+    <AdmiMenu toggle={toggle} isOpen={isOpen}/> 
     <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-between'>
     <Nav tabs style={{ fontSize: 14 }} >
             <NavItem>

@@ -5,7 +5,7 @@ import { User,  Columns,  Users, Image, Circle,  Grid,  Layers} from "react-feat
 import ReporteDeNegocio from '../assets/img/reporte-de-negocios.png'
 import LogoBlipBlaPalabra from "./iconosCom/LogoBlipBlaPalabra";
 
-const MenuAdmi = ({toggle, isOpen}) => {
+export const AdmiMenu = ({toggle, isOpen}) => {
   return (<Offcanvas toggle={toggle}  isOpen={isOpen} >
   <OffcanvasHeader style={{padding:"0 15px"}} >  <LogoBlipBlaPalabra style={{width:"7em"}} className="mt-2"/> </OffcanvasHeader>
   <OffcanvasBody style={{padding:0}}>
@@ -39,4 +39,3 @@ const MenuAdmi = ({toggle, isOpen}) => {
     </Offcanvas>
   )
 }
- export default MenuAdmi

@@ -1,6 +1,6 @@
 import React, {useState } from "react";
 import {  Col, Container, Input, Label } from "reactstrap";
-import MenuAdmi from '../../componentes/MenuAdmi';
+import {AdmiMenu} from "../../componentes/AdmiMenu";
 import { NavBar } from "../../componentes/NavBar";
 import { ReporteJugador } from "../../componentes/Administrador/Reportes/ReporteJugador";
 import { ReporteCursos } from "../../componentes/Administrador/Reportes/ReporteCursos";
@@ -14,7 +14,7 @@ const ReporteAdm = () => {
     return (
         <Container >
             <NavBar toggle={toggle} Seccion={"Reportes"}/>
-            <MenuAdmi toggle={toggle} isOpen={isOpen} />
+            <AdmiMenu toggle={toggle} isOpen={isOpen} />
             <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='EmailMulti'>
               Busqueda por:

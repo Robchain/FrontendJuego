@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import MenuAdmi from "../../componentes/MenuAdmi";
+import {AdmiMenu} from "../../componentes/AdmiMenu";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Table, Button, Row, Col, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, Nav, NavItem, NavLink, TabContent, TabPane, Input, Label } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
@@ -138,7 +138,7 @@ const VerCategoriaAdm = () => {
   return (
     <Container>
       <NavBar toggle={toggle} Seccion={"Categoria"} />
-      <MenuAdmi toggle={toggle} isOpen={isOpen} />
+      <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <ModalEditarCategoria data={dataSeleccionada} modal={modalEditar} toggle={toggleEdtiar} juego={JuegoAModificar} />
       <Row className='justify-content-center fuente fuenteDoce' >
         <Col xl='9' lg="11" className='d-flex justify-content-between '>

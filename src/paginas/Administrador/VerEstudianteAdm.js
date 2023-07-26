@@ -4,7 +4,7 @@ import { Edit, Trash, MoreVertical, Clipboard,Check } from 'react-feather'
 import { Table, Button, Container, Col, Row, DropdownItem, DropdownMenu, UncontrolledDropdown, DropdownToggle, Input, Label, NavLink, NavItem, Nav, TabContent, TabPane } from 'reactstrap';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
-import MenuAdmi from '../../componentes/MenuAdmi';
+import {AdmiMenu} from "../../componentes/AdmiMenu";
 import { ModalAgregarEstudiante } from '../../componentes/Administrador/ModalAgregarEstudiante';
 import { MostrarEstudiante, desabilitarPersonasApi, habilitarPersonasApi, listadoProfesores } from '../../service/Adminstrador/Usuarios';
 import { ModalEditarEstudiante } from '../../componentes/Administrador/ModalEditarEstudiante';
@@ -100,7 +100,7 @@ const VerEstudianteAdm = () => {
   return (
     <Container >
       <NavBar toggle={toggle} Seccion={"Estudiantes"} />
-      <MenuAdmi toggle={toggle} isOpen={isOpen} />
+      <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <Row className='justify-content-center fuente fuenteDoce' >
         <Col xl='11' lg="12" className='d-flex justify-content-between '>
         <Nav tabs style={{ fontSize: 14 }} >

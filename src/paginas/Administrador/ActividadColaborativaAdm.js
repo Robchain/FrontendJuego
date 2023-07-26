@@ -1,7 +1,7 @@
 import React, { useState, useReducer, useEffect } from "react";
 import { Button, Card, CardBody, CardImg, Col, Container, Label, Row } from "reactstrap";
 import { Stepbar } from "../../componentes/Administrador/Stepbar";
-import MenuAdmi from "../../componentes/MenuAdmi";
+import {AdmiMenu} from "../../componentes/AdmiMenu";
 import { NavBar } from "../../componentes/NavBar";
 import Select from "react-select";
 import { PasoUnoFormulario } from "../../componentes/Administrador/PasoUnoFormulario";
@@ -83,7 +83,7 @@ useEffect(() => {
   return (
     <Container>
       <NavBar toggle={toggle} Seccion={"Actividad Colaborativa"} />
-      <MenuAdmi toggle={toggle} isOpen={isOpen}/>
+      <AdmiMenu toggle={toggle} isOpen={isOpen}/>
       <Row> 
       <Col lg="6" sm="12" md="6" xl="6">
           <Label className="form-label" for="Curso">

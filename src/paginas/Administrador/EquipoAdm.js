@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import MenuAdmi from '../../componentes/MenuAdmi';
+import {AdmiMenu} from "../../componentes/AdmiMenu";
 import { Button, Card, CardBody, CardFooter, CardGroup, CardImg, CardText, CardTitle, Col, Container, Input, Label, Row } from 'reactstrap';
 import { NavBar } from '../../componentes/NavBar';
 import { ModalAgregarEquipo } from '../../componentes/Administrador/ModalAgregarEquipo';
@@ -82,7 +82,7 @@ const EquipoAdm = () => {
   return (
     <Container>
       <NavBar toggle={toggle} Seccion={"Administrador de equipos"} />
-      <MenuAdmi toggle={toggle} isOpen={isOpen} />
+      <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <Col xl='11' lg="11" className='ms-5 d-flex justify-content-end'>
         <Button onClick={toggledos} className='px-4' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Agregar

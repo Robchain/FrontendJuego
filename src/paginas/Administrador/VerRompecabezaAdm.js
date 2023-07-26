@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import MenuAdmi from "../../componentes/MenuAdmi";
+import {AdmiMenu} from "../../componentes/AdmiMenu";
 import {
   Button,
   Container,
@@ -95,7 +95,7 @@ const VerRompecabezaAdm = () => {
   return (
     <Container>
       <NavBar toggle={toggle} Seccion={"Rompecabezas"} />
-      <MenuAdmi toggle={toggle} isOpen={isOpen} />
+      <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <Col xl="11" lg="11" className="ms-5 d-flex justify-content-end">
         <Button
           onClick={toggledos}
