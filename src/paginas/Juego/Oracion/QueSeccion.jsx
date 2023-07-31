@@ -181,7 +181,7 @@ const QueSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
     setOpacity2(0.4);
     setOpacity3(0.4);
     dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data[`Juego` + window.id].Oraciones[0], objeto2:data[`Juego` + window.id].Oraciones[1], objeto3:data[`Juego` + window.id].Oraciones[2]}) , selecionado: data[`Juego` + window.id].Oraciones[0].Oracion, Resul: data[`Juego` + window.id].Oraciones[0].Respuesta })
-    setTimeout(() => { siguiente(window.id) }, 9000)
+    setTimeout(() => { siguiente(window.id) }, 11000)
   }
 
   const onhandleClickQueSegundo = () => {
@@ -191,7 +191,7 @@ const QueSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
     setOpacity3(0.4);
     setOpacity1(0.4);
     dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data[`Juego` + window.id].Oraciones[0], objeto2:data[`Juego` + window.id].Oraciones[1], objeto3:data[`Juego` + window.id].Oraciones[2]}) , selecionado: data[`Juego` + window.id].Oraciones[1].Oracion, Resul: data[`Juego` + window.id].Oraciones[1].Respuesta })
-    setTimeout(() => { siguiente(window.id) }, 9000)
+    setTimeout(() => { siguiente(window.id) }, 11000)
   }
   const onhandleClickQueTercero = () => {
     setQueSelecion(3);
@@ -200,7 +200,7 @@ const QueSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
     setOpacity1(0.4);
     setOpacity2(0.4);
     dispatchProgreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracion({objeto1:data[`Juego` + window.id].Oraciones[0], objeto2:data[`Juego` + window.id].Oraciones[1], objeto3:data[`Juego` + window.id].Oraciones[2]}) , selecionado: data[`Juego` + window.id].Oraciones[2].Oracion, Resul: data[`Juego` + window.id].Oraciones[2].Respuesta })
-    setTimeout(() => { siguiente(window.id) }, 9000)
+    setTimeout(() => { siguiente(window.id) }, 11000)
   }
 
 
@@ -232,7 +232,8 @@ const QueSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
           </Col>
         </Row>
       </Col>
-      <Col lg='7' className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD"}}>
+      <div className='zonainteractiva'>
+      <div className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD"}}>
         <div  className='opciones' >
         <div style={{padding:'0px'}}>
             <img alt='que' src={Quien} className='imagenOpc'  />
@@ -271,8 +272,9 @@ const QueSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
             <SeleccionQue QueSelecion={QueSelecion}  data={data} window={window} className='opcionesSelec' />
           </div>
         </div>
-      </Col>
-      <Col lg="3" ><RespuestaImagen momento={momento} setMomento={setMomento} Queselec={Queselec} data={data}  window={window} /></Col>
+      </div>
+      <div ><RespuestaImagen momento={momento} setMomento={setMomento} Queselec={Queselec} data={data}  window={window} /></div>
+      </div>
     </>
   )
 }

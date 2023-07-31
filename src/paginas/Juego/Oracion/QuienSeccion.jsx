@@ -225,8 +225,9 @@ const QuienSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
           </Col>
         </Row>
       </Col>
-      <Col lg="6"  className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
-        <Row lg="5" className='opciones' >
+      <div className='zonainteractiva'>
+      <div   className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
+        <div className='opciones' >
           <div style={{padding:'0px'}}>
             <img alt='que' src={Quien} className='imagenOpc'  />
           </div>
@@ -243,9 +244,9 @@ const QuienSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
           <div style={{padding:'0px'}} >
             <img alt='que' src={Que} className='imagenOpc'  />
           </div>
-        </Row>
+        </div>
         {/* parte de seleccion */}
-        <Row lg="5" className='seleccion'>
+        <div lg="5" className='seleccion'>
           <div style={{padding:'0px'}} >
             <SeleccionQUIEN QueSelecion={QueSelecion}  data={data} window={window} className='opcionesSelec' />
           </div>
@@ -263,9 +264,10 @@ const QuienSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
           <div style={{padding:'0px'}} >
             <VerSeleccionqUE  data={data} window={window} className='opcionesSelec'/>
           </div>
-        </Row>
-      </Col>
-      <Col lg="5" ><RespuestaImagen momento={momento} Queselec={Queselec} setMomento={setMomento} data={data}  window={window} /></Col>
+        </div>
+      </div>
+      <div  ><RespuestaImagen momento={momento} Queselec={Queselec} setMomento={setMomento} data={data}  window={window} /></div>
+   </div>
     </>
   )
 }

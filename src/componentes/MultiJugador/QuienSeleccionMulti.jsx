@@ -20,7 +20,7 @@ const VerVerboRespuesta = ({data,  window})=>{
     }
   }, [data])
   
-  return (<h3 style={{ fontWeight: 700, color: "#85858C" }}>{selccionver}</h3>)
+  return (<span style={{ fontWeight: 700, color: "#85858C" }}>{selccionver}</span>)
  }
 const VerSeleccionqUE = ({data, window})=>{
  const [seleccionverbo, setSeleccionverbo] = useState("");
@@ -62,10 +62,10 @@ const VerCantidad = ({data, window})=>{
     }
   }, [data])
 
-  return (<h3 style={{ fontWeight: 700, color: "#85858C" }}>{verbo}</h3>)
+  return (<span style={{ fontWeight: 700, color: "#85858C" }}>{verbo}</span>)
      }
 const isAdverbio = ( window, data) => {
-  if (data[`Juego${window.id}`].Oraciones[2].Adverbio || data[`Juego${window.id}`].Oraciones[1].Adverbio) {
+  if (data[`Juego${window.id}`].Oraciones[2].Adverbio || data[`Juego${window.id}`].Oraciones[1].Adverbio||data[`Juego${window.id}`].Oraciones[3].Adverbio) {
     return true;
   } else {
     return false;
@@ -217,47 +217,49 @@ export const QuienSeleccionMulti = ({ window, siguiente, data,Progreso}) => {
                   </Col>
                 </Row>
               </Col>
-              <Col lg="8" style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
-              <Row lg="8" >
-                  <div style={{ width: "200px" }} >
-                    <img alt='que' src={Quien} width="75" style={{ margin: "0px 35px" }}/>
+              <div className='zonainteractiva'>
+              <div className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
+              <div className='opciones' >
+                  <div style={{padding:'0px'}}>
+                    <img alt='que' src={Quien} className='imagenOpc'/>
                   </div>
-                  <div style={{ width: "120px" }} >
-                    <img src={Verbo} alt='opcion1' width="75" />
+                  <div style={{padding:'0px'}}>
+                    <img src={Verbo} alt='opcion1' className='imagenOpc' />
                   </div>
                   {  isAdverbio(  window, data)
                     &&
                     (
-                      <div style={{ width: "100px" }} >
-                        <img src={Cantidad} alt='opcion1' width="75" />
+                      <div style={{padding:'0px'}} >
+                        <img src={Cantidad} alt='opcion1' className='imagenOpc' />
                       </div>)
                   }
-                  <div style={{ width: "200px" }} >
-                    <img alt='que' src={Que} width="75" style={{ margin: "0px 35px" }}/>
+                  <div style={{padding:'0px'}} >
+                    <img alt='que' src={Que} className='imagenOpc'/>
                   </div>
-                </Row>
+                </div>
                 {/* parte de seleccion */}
-                <Row lg="8" >
-                 <div style={{ width: "200px" }} >
-                 <SeleccionQUIEN QueSelecion={QueSelecion}  data={data} window={window}/>
+                <div className='seleccion' >
+                 <div style={{padding:'0px'}} >
+                 <SeleccionQUIEN QueSelecion={QueSelecion}  data={data} window={window} className='opcionesSelec' />
                   </div>
-                  <div style={{ width: "200px" }} >
-                    <VerVerboRespuesta  data={data} window={window} />
+                  <div style={{padding:'0px'}} >
+                    <VerVerboRespuesta  data={data} window={window} className='opcionesSelec' />
                   </div>
                   {
                     isAdverbio( window, data)
                     && (
-                      <div style={{ width: "100px" }} >
-                        <VerCantidad   data={data} window={window} />
+                      <div style={{padding:'0px'}} >
+                        <VerCantidad   data={data} window={window}  className='opcionesSelec'/>
                       </div>
                     )
                   }
-                  <div style={{ width: "200px" }} >
-                  <VerSeleccionqUE data={data} window={window} />
+                  <div style={{padding:'0px'}} >
+                  <VerSeleccionqUE data={data} window={window} className='opcionesSelec' />
                   </div>
-                </Row>
-              </Col>
-              <Col  lg="3" ><RespuestaImagen momento={momento} Queselec={Queselec} setMomento={setMomento} data={data} window={window} /></Col>
+                </div>
+              </div>
+              <div  ><RespuestaImagen momento={momento} Queselec={Queselec} setMomento={setMomento} data={data} window={window} /></div>
+              </div>
     </>
   )
 }

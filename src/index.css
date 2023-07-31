@@ -85,9 +85,15 @@
     box-shadow: 0 0 10px 1px #8cc5b0
 }
 
+.zonainteractiva{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
 .pruebaDise {
     display: flex;
     justify-content: center;
+   width: fit-content;
     flex-direction: column;
     
 }
