@@ -100,15 +100,15 @@ try {
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='cityMulti'>
-              Identificacion
+            Identificación
             </Label>
-            <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificacion' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Identificacion} />
+            <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificación' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Identificacion} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CountryMulti'>
-              Correo Electronico
+            Correo Electrónico
             </Label>
-            <Input type='text' name='Email' id='CountryMulti' placeholder='Correo Electronico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Email} />
+            <Input type='text' name='Email' id='CountryMulti' placeholder='Correo Electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Email} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CompanyMulti'>
@@ -168,10 +168,10 @@ try {
               <Input
                 type='radio'
                 name="TipoUsuario"
-                value="MAESTRO"
+                value="DOCENTE"
                 onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })}
-              checked={TipoUsuario === "MAESTRO"}
-              /> Maestro
+              checked={TipoUsuario === "DOCENTE"}
+              /> Docente
             </Label>
           </Col>
         </Row>
@@ -179,7 +179,7 @@ try {
       <ModalFooter>
         <Button outline disabled={bloqueoSecu} style={{ color: '#592a98' }} onClick={()=>{toggle();disparodeAccion({ type: "reset" }); setContraseñaDos(""); setContraseñaUno("");}}>
           Cancelar
-        </Button>{' '}
+        </Button>&nbsp;&nbsp;
         <Button disabled={bloqueo} onClick={() => { onsubmit() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
         {loading && <Spinner size="sm">
             Loading...

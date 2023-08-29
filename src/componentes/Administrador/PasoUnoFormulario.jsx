@@ -40,7 +40,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
         <Row>
           <Col md="6" className="mb-1">
             <Label className='form-label' for='grupos'>
-              Numero de Grupos
+            Número de grupos
             </Label>
             <Select
             value={NumeroDeGrupos}
@@ -51,7 +51,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
           </Col>
           <Col md="6" className="mb-1">
             <Label className='form-label' for='equipos'>
-              Nombres de Equipos
+              Nombres de equipos
             </Label>
             <Select
             value={NombreDeEquipo}
@@ -67,7 +67,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
           </Col>
           <Col md='6' className='mb-1'>
             <Label className='form-label' for='integrantes'>
-              Numero de Integrantes
+            Número de integrantes
             </Label>
             <Select
                value={NumeroDeIntegrantes}

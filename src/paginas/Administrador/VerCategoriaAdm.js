@@ -137,7 +137,7 @@ const VerCategoriaAdm = () => {
   const toggleEdtiar = () => { setModalEditar(!modalEditar) }
   return (
     <Container>
-      <NavBar toggle={toggle} Seccion={"Categoria"} />
+      <NavBar toggle={toggle} Seccion={"Categoría"} />
       <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <ModalEditarCategoria data={dataSeleccionada} modal={modalEditar} toggle={toggleEdtiar} juego={JuegoAModificar} />
       <Row className='justify-content-center fuente fuenteDoce' >
@@ -188,7 +188,7 @@ const VerCategoriaAdm = () => {
               <Table striped>
                 <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
                   <tr>
-                    <th style={{ borderBottomColor: "#f8f8f8" }}>CATEGORIA</th>
+                    <th style={{ borderBottomColor: "#f8f8f8" }}>CATEGORÍA</th>
                     <th style={{ borderBottomColor: "#f8f8f8" }}>ESTADO</th>
                     <th style={{ borderBottomColor: "#f8f8f8" }}>ACCIONES</th>
                   </tr></thead>
@@ -238,7 +238,7 @@ const VerCategoriaAdm = () => {
           </TabPane>
           <TabPane tabId="2" >
             <Col xl='12' lg="11" className='d-xl p-0 mt-2' >
-              <h3 style={{ color: "#9696D3" }}>Oracion</h3>
+              <h3 style={{ color: "#9696D3" }}>Oración</h3>
               <Col lg="12">
                 <Input
                   id="exampleCheck"
@@ -258,7 +258,7 @@ const VerCategoriaAdm = () => {
               <Table striped>
                 <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
                   <tr>
-                    <th style={{ borderBottomColor: "#f8f8f8" }}>CATEGORIA</th>
+                    <th style={{ borderBottomColor: "#f8f8f8" }}>CATEGORÍA</th>
                     <th style={{ borderBottomColor: "#f8f8f8" }}>ESTADO</th>
                     <th style={{ borderBottomColor: "#f8f8f8" }}>ACCIONES</th>
                   </tr></thead>

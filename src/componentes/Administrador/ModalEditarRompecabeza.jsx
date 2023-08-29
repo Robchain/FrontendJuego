@@ -98,7 +98,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 <div className=''>
                     <Label style={{color:'#8b8b8c',fontWeight:"700"}} className='form-label' for='Nombre'>Nombre</Label>
                     <Input type='text' id='Nombre' name="Nombre" defaultValue={dataBase.Nombre} placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} />
-                    <Label style={{color:'#8b8b8c',fontWeight:"700"}} >Pieza</Label><br />
+                    <Label style={{color:'#8b8b8c',fontWeight:"700"}} >Piezas</Label><br />
                     <Label>
                         <Input
                             style={{ color: '#8b8b8c' }}
@@ -156,7 +156,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                     {loading &&  <Spinner size="sm">
                         Loading...
                     </Spinner>}
-                   {" "} Agregar
+                   {" "} Editar
                 </Button>
             </ModalFooter>
         </Modal>

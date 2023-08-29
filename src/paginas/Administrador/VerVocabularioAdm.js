@@ -159,7 +159,7 @@ Vocabularios
         <TabContent activeTab={tabs} className="tabvs">
         <TabPane tabId="1" >
         <Row className='match-height mb-2' >
-        <h3 style={{ color: "#9696D3" }}>Tarjetas Vocabularios</h3>
+        <h3 style={{ color: "#9696D3" }}>Tarjetas de vocabularios</h3>
         <Col lg="12">
                     <Input
                         id="exampleCheck"
@@ -185,8 +185,8 @@ Vocabularios
             <CardTitle tag='h4'>{i.Palabra}</CardTitle>
             <CardText key={i._id + 3}>
             <ul className='list-unstyled' >
-          <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Categoria:</span> {i.Categoria}</li>
-          <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Silaba:</span> {i.Silaba}</li>
+          <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Categoría:</span> {i.Categoria}</li>
+          <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Silabas:</span> {i.Silaba}</li>
           <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Estado:</span> {i.Estado}</li>
               </ul>
             </CardText>
@@ -212,8 +212,8 @@ Vocabularios
             <CardTitle tag='h4'>{i.Palabra}</CardTitle>
             <CardText key={i._id + 3}>
             <ul className='list-unstyled' >
-          <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Categoria:</span> {i.Categoria}</li>
-          <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Silaba:</span> {i.Silaba}</li>
+          <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Categoría:</span> {i.Categoria}</li>
+          <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Silabas:</span> {i.Silaba}</li>
           <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Estado:</span> {i.Estado}</li>
               </ul>
             </CardText>

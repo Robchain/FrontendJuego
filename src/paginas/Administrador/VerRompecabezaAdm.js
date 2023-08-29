@@ -152,7 +152,7 @@ const VerRompecabezaAdm = () => {
                           className="fw-bolder"
                           style={{ color: "#8cc5b0" }}
                         >
-                          Numero de piezas:
+                          Número de piezas:
                         </span>{" "}
                         {i.Pieza}{" "}
                       </li>
@@ -209,7 +209,7 @@ const VerRompecabezaAdm = () => {
                           className="fw-bolder"
                           style={{ color: "#8cc5b0" }}
                         >
-                          Numero de piezas:
+                          Número de piezas:
                         </span>{" "}
                         {i.Pieza}{" "}
                       </li>

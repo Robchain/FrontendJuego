@@ -83,7 +83,7 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
     <ModalFooter>
     <Button  outline style={{color:'#592a98'}} disabled={bloqueoSecu} onClick={toggle}>
             Cancelar
-          </Button>{' '}
+          </Button>&nbsp;&nbsp;
           <Button  onClick={()=>{uploaddata()}} disabled={bloqueo} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
           { loading && <Spinner size="sm">
     Loading...

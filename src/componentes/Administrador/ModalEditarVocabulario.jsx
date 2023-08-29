@@ -114,7 +114,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
             <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar Vocabulario</ModalHeader>
             <ModalBody>
                 <div className='mb-2'>
-                <Label className='form-label' for='categoria'>Categoria</Label><br/>
+                <Label className='form-label' for='categoria'>Categoría</Label><br/>
               <Select  name="Categoria" defaultValue={{value:"123", label:dataBase.Categoria}} options={vocabularioOpciones.map(i=>{return {label:i.NombreCategoria,value:i._id}})}   onChange={ event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={false} />
               <Label className='form-label' for='palabra'>Palabra</Label>
               <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value })} defaultValue={dataBase.Palabra} />
@@ -127,11 +127,11 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
           </Label>
           <Input type='file' id='inputImage' name='FileImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileImagen", value: e.target.files[0] })} />
           <Label className='form-label' for='inputVideoM'>
-            Video de Muestra
+          {'Video de muestra (Respuesta)'}
           </Label>
           <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileMuestra", value: e.target.files[0] })} />
           <Label className='form-label' for='inputask'>
-            Video Pregunta
+            Video de pregunta
           </Label>
           <Input type='file' id='inputask' name='FilePregunta' onChange={e => disparodeAccion({ type: "onchange", field: "FilePregunta", value: e.target.files[0] })} />
                     </div>}
@@ -140,14 +140,14 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
             <ModalFooter>
                 <Button outline style={{ color: '#592a98' }} onClick={()=>{setBloqueo(true); setCheckbos(false); toggle();}} disabled={bloqueoSecu}>
                     Cancelar
-                </Button>{' '}
+                </Button>&nbsp;&nbsp;
                 <Button onClick={() => {
                     uploadData();
                 }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
                     {loading &&  <Spinner size="sm">
                         Loading...
                     </Spinner>}
-                   {" "} Agregar
+                    Editar
                 </Button>
             </ModalFooter>
         </Modal>

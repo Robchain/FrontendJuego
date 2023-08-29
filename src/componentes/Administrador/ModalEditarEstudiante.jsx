@@ -155,10 +155,10 @@ try {
               <Input
                 type='radio'
                 name="TipoUsuario"
-                value="MAESTRO"
+                value="DOCENTE"
                 onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })}
-              defaultChecked={dataBase.TipoUsuario === "MAESTRO"}
-              />Maestro
+              defaultChecked={dataBase.TipoUsuario === "DOCENTE"}
+              />Docente
             </Label>
           </Col>
         </Row>
@@ -166,12 +166,12 @@ try {
       <ModalFooter>
         <Button outline disabled={bloqueoSecu} style={{ color: '#592a98' }} onClick={()=>{toggle(); setCheckbosDos(false);}}>
           Cancelar
-        </Button>{' '}
+        </Button>&nbsp;&nbsp;
         <Button disabled={bloqueo} onClick={() => { onsubmit() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
         {loading && <Spinner size="sm">
             Loading...
           </Spinner>} 
-          Agregar
+          Editar
         </Button>
       </ModalFooter>
     </Modal>

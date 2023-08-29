@@ -18,13 +18,13 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, 
     <Card className="mt-5">
       <CardBody>
         <div className='content-header'>
-          <h5 className='mb-0'>Tiempo de la Actividad</h5>
+          <h5 className='mb-0'>Tiempo de la actividad</h5>
           <small></small>
         </div>
         <Row>
           <Col d='6' className='mb-1' >
             <Label className='form-label' for='DateGameM'>
-              Rango de Fecha
+              Rango de fecha
             </Label>
             <Flatpickr
             placeholder='Fecha'

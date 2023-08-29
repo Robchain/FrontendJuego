@@ -35,7 +35,7 @@ const Index = () => {
         try {
            const data = await  LoginAPI({Email:Datos.Email, Password:Datos.Password});
            if (data.respuesta !== 'Contraseña incorrecta' && data.respuesta !== 'falta correo y contraseña' && data.respuesta !== 'Correo o contraseña incorrecta') {
-            if (data.TipoUsuario === 'MAESTRO') {
+            if (data.TipoUsuario === 'DOCENTE') {
                 localStorage.setItem("Usuario", data.Nombre)
                 localStorage.setItem("Email", data.Email)
                 localStorage.setItem("Identificacion", data.Identificacion)

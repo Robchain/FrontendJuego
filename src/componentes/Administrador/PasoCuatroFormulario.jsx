@@ -34,14 +34,14 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
     <Card className="mt-5">
       <CardBody>
         <div className='content-header'>
-          <h5 className='mb-0'>Confirmacion de la Informacion</h5>
-          <small>Resumen de la Actividad</small>
+          <h5 className='mb-0'>Confirmación de la información</h5>
+          <small>Resumen de la actividad</small>
         </div>
         <Row>
           <Col md='6' className='mb-1'>
             <Label>Grupos de trabajo</Label>
             <p>{NumeroDeGrupos.label}</p>
-            <Label>Tarjetas De Actividades</Label>
+            <Label>Tarjetas De actividades</Label>
             {NombreDeEquipo.map(i=>{
               return (<p key={i.value}> - {i.label}</p>)
             })}
@@ -60,7 +60,7 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
             }
           </Col>
           <Col md='6' className='mb-1'>
-            <Label>Fecha de la Actividad</Label>
+            <Label>Fecha de la actividad</Label>
             {
               picker.map((i, index)=>(
                 <p key={index}>- <Label>{index ===0 ? "Fecha de Inicio: " : "Fecha de Fin: "}</Label> {i.toLocaleDateString()}</p>
@@ -68,7 +68,7 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
             }
           </Col>
           <Col md='6' className='mb-1'>
-            <Label>Tipo de Juego :&ensp;
+            <Label>Tipo de juego:&ensp;
              {
               TipoDeJuego == '1' && <span>Vocabularios</span>
             }

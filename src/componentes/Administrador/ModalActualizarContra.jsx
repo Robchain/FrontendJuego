@@ -63,7 +63,7 @@ setBloqueo(true);
       } 
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered'>
-    <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Actulizar Contraseña</ModalHeader>
+    <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Actulizar contraseña</ModalHeader>
     <ModalBody>
      <Row><Col>
      <Label className='form-label' for='EmailMulti'>
@@ -73,9 +73,9 @@ setBloqueo(true);
             onChange={event => disparodeAccion({ type: "onchange", field: "ContraseñaUno", value: event.target.value })}
             value={ContraseñaUno}
             /><br/>
-   {ContraseñaDos !== ContraseñaUno && <small style={{color:'red'}}> la contraseña no coincide</small>}
+   {ContraseñaDos !== ContraseñaUno && <small style={{color:'red'}}> La contraseña no coincide</small>}
      <Label className='form-label' for='EmailMulti2'>
-              Repetir Contraseña
+              Repetir contraseña
             </Label>
             <Input type='password' name='Password' id='EmailMulti2' placeholder=' Repetir Contraseña'
             onChange={event => disparodeAccion({ type: "onchange", field: "ContraseñaDos", value: event.target.value })}

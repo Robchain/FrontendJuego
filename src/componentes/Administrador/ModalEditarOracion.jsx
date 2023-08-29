@@ -130,7 +130,7 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
             <ModalBody>
                 <Row>
                     <Col md='6' sm='12' className='mb-1'>
-                        <Label className='form-label' for='Categoria'>Categoria</Label><br />
+                        <Label className='form-label' for='Categoria'>Categoría</Label><br />
                         <Select name="Categoria" isSearchable={false} defaultValue={{label:dataBase.Categoria, value:""}} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
@@ -159,13 +159,13 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
                     {checkbosDos === true && <>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileSujetoImagen' >
-                                Imagen Sujeto
+                            Imagen del quien
                             </Label>
                             <Input type='file' id='FileSujetoImagen' name='FileSujetoImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileSujetoImagen", value: e.target.files[0] })} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileVideoMuestra'>
-                                Video Respuesta
+                            {"Video oración (respuesta)"}
                             </Label>
                             <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoMuestra", value: e.target.files[0] })} />
                         </Col>
@@ -193,11 +193,11 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
             <ModalFooter>
                 <Button outline style={{ color: '#592a98' }} disabled={bloqueoSecu} onClick={() => { setCheckbosDos(false); toggle();  }}>
                     Cancelar
-                </Button>{' '}
+                </Button>&nbsp;&nbsp;
                 <Button onClick={() => { uploadData(); }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
                     {loading && <Spinner size="sm">
                         Loading...
-                    </Spinner>}   Agregar
+                    </Spinner>}   Editar
                 </Button>
             </ModalFooter>
         </Modal>

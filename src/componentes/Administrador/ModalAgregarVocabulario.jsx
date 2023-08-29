@@ -84,7 +84,7 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Agregar Vocabulario</ModalHeader>
       <ModalBody>
         <div className='mb-2'>
-          <Label className='form-label' for='categoria'>Categoria</Label><br />
+          <Label className='form-label' for='categoria'>Categoría</Label><br />
           <Select name="Categoria" options={vocabularioOpciones.map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={false} />
           <Label className='form-label' for='palabra'>Palabra</Label>
           <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} />
@@ -95,11 +95,11 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
           </Label>
           <Input type='file' id='inputImage' name='FileImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileImagen", value: e.target.files[0] })} />
           <Label className='form-label' for='inputVideoM'>
-            Video de Muestra
+            {'Video de muestra (Respuesta)'}
           </Label>
           <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileMuestra", value: e.target.files[0] })} />
           <Label className='form-label' for='inputask'>
-            Video Pregunta
+            Video de pregunta
           </Label>
           <Input type='file' id='inputask' name='FilePregunta' onChange={e => disparodeAccion({ type: "onchange", field: "FilePregunta", value: e.target.files[0] })} />
         </div>
@@ -107,7 +107,7 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
       <ModalFooter>
         <Button outline style={{ color: '#592a98' }} onClick={() => { toggle(); disparodeAccion({ type: "reset" }); }} disabled={bloqueoSecu}>
           Cancelar
-        </Button>{' '}
+        </Button>&nbsp;&nbsp;
         <Button onClick={() => { uploadData() }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           {loading && <Spinner size="sm">
             Loading...

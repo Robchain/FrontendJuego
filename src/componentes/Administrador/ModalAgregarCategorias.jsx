@@ -56,12 +56,12 @@ const data  = await  CrearPostCategoria({Juego,NombreCategoria});
   
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered'>
-    <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Agregar Categoria</ModalHeader>
+    <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Agregar Categoría</ModalHeader>
     <ModalBody>
      <Row><Col>
      <Label for="Juego">Juego</Label>
-     <Select placeholder="Seleccione" name='Juego' className='react-select' options={[{label:"Vocabulario",value:"Vocabulario"},{label:"Oracion",value:"Oracion"}]}  onChange={event => disparodeAccion({ type: "onchange", field: "Juego", value: event })} />
-     <Label for='NombreCategoria'>Categoria</Label>
+     <Select placeholder="Seleccione" name='Juego' className='react-select' options={[{label:"Vocabulario",value:"Vocabulario"},{label:"Oración",value:"Oración"}]}  onChange={event => disparodeAccion({ type: "onchange", field: "Juego", value: event })} />
+     <Label for='NombreCategoria'>Categoría</Label>
      <Input name='NombreCategoria'  onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}  />
      </Col></Row>
     </ModalBody>

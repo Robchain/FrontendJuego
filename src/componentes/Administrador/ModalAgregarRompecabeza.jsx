@@ -84,7 +84,7 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
             Foto Blanco y Negro
           </Label>
           <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => disparodeAccion({ type: "onchange", field: "FileBlanco", value: event.target.files[0] })} />
-          <Label>Pieza</Label><br />
+          <Label>Piezas</Label><br />
           <Label>
             <Input
               style={{ color: '#8b8b8c' }}

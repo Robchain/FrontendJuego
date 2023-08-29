@@ -170,7 +170,7 @@ MySwal.fire({
             <CardTitle tag='h4'>{i.Oracion}</CardTitle>
             <CardText>
             <ul className='list-unstyled'>
-            <li><span  className="fw-bolder" style={{color:'#8cc5b0'}}>Categoria:</span> {i.Categoria}</li>
+            <li><span  className="fw-bolder" style={{color:'#8cc5b0'}}>Categoría:</span> {i.Categoria}</li>
             <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Verbo:</span> {i.Verbo}</li>
           <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Estado:</span> {i.Estado}</li>
               </ul>
@@ -198,7 +198,7 @@ MySwal.fire({
             <CardTitle tag='h4'>{i.Oracion}</CardTitle>
             <CardText>
             <ul className='list-unstyled'>
-            <li><span  className="fw-bolder" style={{color:'#8cc5b0'}}>Categoria:</span> {i.Categoria}</li>
+            <li><span  className="fw-bolder" style={{color:'#8cc5b0'}}>Categoría:</span> {i.Categoria}</li>
             <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Verbo:</span> {i.Verbo}</li>
           <li><span className="fw-bolder" style={{color:'#8cc5b0'}}>Estado:</span> {i.Estado}</li>
               </ul>

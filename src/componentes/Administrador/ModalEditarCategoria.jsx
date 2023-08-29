@@ -67,21 +67,21 @@ setBloqueo(true);
       } 
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered'>
-    <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Editar Categoria</ModalHeader>
+    <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Editar Categoría</ModalHeader>
     <ModalBody>
      <Row><Col>
      <Label for="Juego"  style={{color:'#8b8b8c', fontWeight:"700"}} >Juego</Label>
-     <Select placeholder="Seleccione" name='Juego' className='react-select' defaultValue={juego === "VOCABULARIO" ? {label:"Vocabulario",value:"Vocabulario"} :  {label:"ORACION",value:"ORACION"}} isDisabled={true} options={[{label:"Vocabulario",value:"Vocabulario"},{label:"Oracion",value:"Oracion"}]}  onChange={event => disparodeAccion({ type: "onchange", field: "Juego", value: event })} />
-     <Label for='NombreCategoria'  style={{color:'#8b8b8c', fontWeight:"700"}}>Categoria</Label>
+     <Select placeholder="Seleccione" name='Juego' className='react-select' defaultValue={juego === "VOCABULARIO" ? {label:"Vocabulario",value:"Vocabulario"} :  {label:"Oración",value:"Oración"}} isDisabled={true} options={[{label:"Vocabulario",value:"Vocabulario"},{label:"Oracion",value:"Oracion"}]}  onChange={event => disparodeAccion({ type: "onchange", field: "Juego", value: event })} />
+     <Label for='NombreCategoria'  style={{color:'#8b8b8c', fontWeight:"700"}}>Categoría</Label>
      <Input name='NombreCategoria'  onChange={event => disparodeAccion({ type: "onchange", field: "NombreCategoria", value: event.target.value.toUpperCase() })} defaultValue={data.NombreCategoria} />
      </Col></Row>
     </ModalBody>
     <ModalFooter>
     <Button  outline style={{color:'#592a98'}} onClick={()=>{toggle(); }}>
             Cancelar
-          </Button>{' '}
+          </Button>&nbsp;&nbsp;
           <Button  onClick={()=>{EditarData();}} disabled={bloqueo} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
-            Agregar
+            Editar
           </Button>
     </ModalFooter>
   </Modal>

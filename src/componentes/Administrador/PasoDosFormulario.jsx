@@ -47,7 +47,7 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
     <Card className="mt-5">
       <CardBody>
         <div className='content-header'>
-          <h5 className='mb-0'>Seleccion de los participantes</h5>
+          <h5 className='mb-0'>Selección de los participantes</h5>
           <small>Especifique los integrantes de los grupos </small>
         </div>
         
