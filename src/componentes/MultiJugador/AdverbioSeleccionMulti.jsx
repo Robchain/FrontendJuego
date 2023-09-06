@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'reactstrap'
-//import { JuecoContext } from '../../../context/Juego/JuecoContext';
 import buentrajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
 import Quien from '../../assets/img/AssetsGame/ico_Que.png'
@@ -8,21 +7,21 @@ import Que from '../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
-import { resultadoMultiJu } from '../../helpers/contador'
+import { resultadoOracionAdverbio } from '../../helpers/contador'
 const MostrarQue = ({ data, window, ...props }) => {
-  const [verbo, setVerbo] = useState("")
+  const [verbo, setVerbo] = useState({value:'', label:''})
   useEffect(() => {
     if (data[`Juego${window.id}`].Oraciones[0].Respuesta === "CORRECTO") {
-      setVerbo(data[`Juego${window.id}`].Oraciones[0].FileAdjetivoImagen)
+      setVerbo(data[`Juego${window.id}`].Oraciones[0].Que)
     } else if (data[`Juego${window.id}`].Oraciones[1].Respuesta === "CORRECTO") {
-      setVerbo(data[`Juego${window.id}`].Oraciones[1].FileAdjetivoImagen)
+      setVerbo(data[`Juego${window.id}`].Oraciones[1].Que)
     } else if (data[`Juego${window.id}`].Oraciones[2].Respuesta === "CORRECTO") {
-      setVerbo(data[`Juego${window.id}`].Oraciones[2].FileAdjetivoImagen)
+      setVerbo(data[`Juego${window.id}`].Oraciones[2].Que)
     }
   }, [data])
 
 
-  return (<img src={verbo} alt='opcion que' {...props} />)
+  return (<img src={verbo.value} alt='opcion que' {...props} />)
 }
 const RespuestaImagen = ({ data, setImagen, imagen, window, Queselec, setMomento, momento }) => {
 
@@ -65,7 +64,6 @@ const RespuestaImagen = ({ data, setImagen, imagen, window, Queselec, setMomento
   </>)
 }
 const Preguntasecction = ({ data }) => {
-  //  const { oraciondata } = useContext(JuecoContext);
   const [videoseleccionado, setVideoseleccionado] = useState("");
   useEffect(() => {
     let pregunta = "";
@@ -90,7 +88,6 @@ const Preguntasecction = ({ data }) => {
   )
 };
 const Respuestasecction = ({ data }) => {
-  //const { oraciondata } = useContext(JuecoContext);
   const [videoseleccionado, setVideoseleccionado] = useState("");
   useEffect(() => {
     let pregunta = "";
@@ -135,31 +132,28 @@ const SeleccionAdverbio = ({ QueSelecion, data, window, ...props }) => {
   )
 }
 const VerVerboRespuesta = ({ data, window, ...props }) => {
-
-  const [verbo, setVerbo] = useState("")
-  useEffect(() => {
+  let verbo = "";
     if (data[`Juego${window.id}`].Oraciones[0].Respuesta === "CORRECTO") {
-      setVerbo(data[`Juego${window.id}`].Oraciones[0].Verbo)
+      verbo = data[`Juego${window.id}`].Oraciones[0].Verbo
     } else if (data[`Juego${window.id}`].Oraciones[1].Respuesta === "CORRECTO") {
-      setVerbo(data[`Juego${window.id}`].Oraciones[1].Verbo)
+      verbo = data[`Juego${window.id}`].Oraciones[1].Verbo
     } else if (data[`Juego${window.id}`].Oraciones[2].Respuesta === "CORRECTO") {
-      setVerbo(data[`Juego${window.id}`].Oraciones[2].Verbo)
+      verbo = data[`Juego${window.id}`].Oraciones[2].Verbo
     }
-  }, [data])
   return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{verbo}</span>)
 }
 const VerSeleccionQuien = ({ data, window, ...props }) => {
-  const [selecion, setSelecion] = useState("");
+  const [selecion, setSelecion] = useState({label:'', value:''});
   useEffect(() => {
     if (data[`Juego${window.id}`].Oraciones[0].Respuesta === "CORRECTO") {
-      setSelecion(data[`Juego${window.id}`].Oraciones[0].FileSujetoImagen)
+      setSelecion(data[`Juego${window.id}`].Oraciones[0].Sujeto)
     } else if (data[`Juego${window.id}`].Oraciones[1].Respuesta === "CORRECTO") {
-      setSelecion(data[`Juego${window.id}`].Oraciones[1].FileSujetoImagen)
+      setSelecion(data[`Juego${window.id}`].Oraciones[1].Sujeto)
     } else if (data[`Juego${window.id}`].Oraciones[2].Respuesta === "CORRECTO") {
-      setSelecion(data[`Juego${window.id}`].Oraciones[2].FileSujetoImagen)
+      setSelecion(data[`Juego${window.id}`].Oraciones[2].Sujeto)
     }
   }, [data])
-  return (<>{selecion.length > 2 && (<img src={selecion} alt='opcion1' {...props} />)}</>)
+  return (<>{selecion.value.length != 0 && (<img src={selecion.value} alt='opcion1' {...props} />)}</>)
 }
 export const AdverbioSeleccionMulti = ({ window, siguiente, data, Progreso }) => {
   const [momento, setMomento] = useState("inicial");
@@ -177,18 +171,16 @@ export const AdverbioSeleccionMulti = ({ window, siguiente, data, Progreso }) =>
     setPointer("none")
     setOpacity2(0.4);
     setOpacity3(0.4);
-    Progreso({ type: "PROGRESO", PalabraCorrecta: resultadoMultiJu({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: data[`Juego${window.id}`].Oraciones[0].Adverbio, Resultado: data[`Juego${window.id}`].Oraciones[0].Respuesta })
+    Progreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${window.id}`].Oraciones[0].Adverbio}`, Resultado: data[`Juego${window.id}`].Oraciones[0].Respuesta })
     setTimeout(() => { siguiente(window.id) }, 9000)
   }
-
-
   const onhandleClickQueSegundo = () => {
     setQueSelecion(2);
     setQueselec(data[`Juego${window.id}`].Oraciones[1].Adverbio);
     setPointer("none")
     setOpacity3(0.4);
     setOpacity1(0.4);
-    Progreso({ type: "PROGRESO", PalabraCorrecta: resultadoMultiJu({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: data[`Juego${window.id}`].Oraciones[1].Adverbio, Resultado: data[`Juego${window.id}`].Oraciones[1].Respuesta })
+    Progreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${window.id}`].Oraciones[1].Adverbio}`, Resultado: data[`Juego${window.id}`].Oraciones[1].Respuesta })
     setTimeout(() => { siguiente(window.id) }, 9000)
   }
   const onhandleClickQueTercero = () => {
@@ -197,7 +189,7 @@ export const AdverbioSeleccionMulti = ({ window, siguiente, data, Progreso }) =>
     setPointer("none")
     setOpacity1(0.4);
     setOpacity2(0.4);
-    Progreso({ type: "PROGRESO", PalabraCorrecta: resultadoMultiJu({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: data[`Juego${window.id}`].Oraciones[2].Adverbio, Resultado: data[`Juego${window.id}`].Oraciones[2].Respuesta })
+    Progreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${window.id}`].Oraciones[2].Adverbio}`, Resultado: data[`Juego${window.id}`].Oraciones[2].Respuesta })
     setTimeout(() => { siguiente(window.id) }, 9000)
   }
   return (

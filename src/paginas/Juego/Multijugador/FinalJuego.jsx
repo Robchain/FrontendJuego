@@ -7,7 +7,7 @@ import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { ActualizarJuegoFinal } from '../../../service/Multijugador'
 import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 export const FinalJuego = () => {
-  const {MultiProgreso, dispatchMutli,InfoEstudiaSituacion,LLamadaIncial } = useContext(JuecoContext);
+  const {MultiProgreso, dispatchMutli,InfoEstudiaSituacion, } = useContext(JuecoContext);
   const navegar = useNavigate();
   const [cargandod, setCargando] = useState(true);
   const Actualizaciones = async () => {

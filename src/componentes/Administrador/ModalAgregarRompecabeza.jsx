@@ -77,11 +77,11 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
           <Label className='form-label' for='Nombre'>Nombre</Label>
           <Input type='text' id='Nombre' name="Nombre" placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} />
           <Label className='form-label' for='FileColor'>
-            Foto Color
+            Foto color
           </Label>
-          <Input type='file' id='FileColor' name='FileColor' onChange={event => disparodeAccion({ type: "onchange", field: "FileColor", value: event.target.files[0] })} />
+          <Input type='file' id='FileColor' name='FileColor' onChange={event => disparodeAccion({ type: "onchange", field: "FileColor", value: event.target.files[0] })} ><span>archj</span></Input>
           <Label className='form-label' for='FileBlanco'>
-            Foto Blanco y Negro
+            Foto blanco y negro
           </Label>
           <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => disparodeAccion({ type: "onchange", field: "FileBlanco", value: event.target.files[0] })} />
           <Label>Piezas</Label><br />
@@ -94,7 +94,7 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
               value={4}
               defaultChecked={Pieza === 4}
               onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
-            />{" "}4</Label><br />
+            />&nbsp;&nbsp;4</Label><br />
           <Label><Input
             style={{ color: '#8b8b8c' }}
             type='radio'
@@ -103,13 +103,13 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
             value={6}
             defaultChecked={Pieza === 6}
             onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
-          />{" "}6 </Label><br />
+          />&nbsp;&nbsp;6 </Label><br />
         </div>
       </ModalBody>
       <ModalFooter>
         <Button outline style={{ color: '#592a98' }} onClick={toggle} disabled={bloqueoSecu}>
           Cancelar
-        </Button>{' '}
+        </Button>&nbsp;&nbsp;
         <Button onClick={() => {
           uploadData();
         }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>

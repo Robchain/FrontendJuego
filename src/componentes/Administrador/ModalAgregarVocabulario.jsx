@@ -95,7 +95,7 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
           </Label>
           <Input type='file' id='inputImage' name='FileImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileImagen", value: e.target.files[0] })} />
           <Label className='form-label' for='inputVideoM'>
-            {'Video de muestra (Respuesta)'}
+          Video respuesta
           </Label>
           <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileMuestra", value: e.target.files[0] })} />
           <Label className='form-label' for='inputask'>

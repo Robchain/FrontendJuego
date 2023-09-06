@@ -148,13 +148,17 @@ text-align: center;
     padding: 10px 15px;
 }
 
-.tabvs .active {
+.tabvs .active  {
     background-color: #fff !important;
     color: #fff !important;
     border-radius: 50px !important;
     box-shadow: 0 0 10px 1px #Fff !important;
 }
 
+.tabvs .active  .form-label {
+
+    color: #000 !important;
+}
 .tabvs .active .card {
     background-color: #fff !important;
     color: #000 !important;

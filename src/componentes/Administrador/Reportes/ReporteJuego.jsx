@@ -87,7 +87,7 @@ export const ReporteJuego = () => {
             disabled={bloqueo}
           >
             Buscar
-          </Button>{" "}
+          </Button>&nbsp;&nbsp;
           <PDFDownloadLink document={<DescargarJuegoReporte data={MostrarVocabulario} juego={Juego} />} fileName="prueba.pdf">
           <Button
             style={{

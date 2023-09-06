@@ -4,10 +4,10 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Label, Input, Spinner } from 'reactstrap';
 import { llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Categoria';
-import { GuardadodeOracionPost } from '../../service/Adminstrador/Oracion';
+import { GuardadodeOracionPost, listadoQuienImagen } from '../../service/Adminstrador/Oracion';
 import { llamadaDeDataTodosActivos } from '../../service/Adminstrador/Vocabulario';
 import { subidaIOracion } from '../../firebase/config';
-const BaseInicialFormulario = { Categoria: "", Oracion: "", Verbo: "", Adverbio: undefined, FileSujetoImagen: undefined, FileAdjetivoImagen: undefined, FileVideoPreguntaQue: undefined, FileVideoPreguntaQuien: undefined, FileVideoMuestra: undefined }
+const BaseInicialFormulario = { Categoria: "", Oracion: "", Verbo: "", Adverbio: undefined, Que: undefined, Sujeto: undefined, FileVideoPreguntaQue: undefined, FileVideoPreguntaQuien: undefined, FileVideoMuestra: undefined }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
     case 'onchange':
@@ -21,8 +21,9 @@ function llenadodeFormulario(state, action) {
 const optionsAdverbio = [{ value: "", label: "NINGUNO" }, { value: "UNO", label: "UNO" }, { value: "UN", label: "UN" }, { value: "DOS", label: "DOS" }, { value: "MUCHOS", label: "MUCHOS" }, { value: "MUCHAS", label: "MUCHAS" }]
 
 export const ModalAgregarOracion = ({ modal, toggle }) => {
-  const [{ Categoria, Oracion, Verbo, Adverbio, FileSujetoImagen, FileAdjetivoImagen, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
+  const [{ Categoria, Oracion, Verbo, Adverbio,Sujeto, Que, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
   const [checkboss, setCheckbos] = useState(false);
+  const [ListadoImagenQuien, setListadoImagenQuien] = useState([]);
   const [loading, setLoading] = useState(false);
   const MySwal = withReactContent(Swal)
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
@@ -37,20 +38,30 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
     const data = await llamadaDeDataTodosActivos()
     setListadoOptionsQue(data);
   }
+  const llamadainicialQuienImagen = async()=>{
+    const data= await listadoQuienImagen();
+    setListadoImagenQuien(data)
+  }
   useEffect(() => {
     llamdaInicialListado();
     llamdaInicialListadoVocabulario();
   }, [])
+
+
+  useEffect(() => {
+    llamadainicialQuienImagen();
+  }, [])
+  
   const uploadData = async () => {
     try {
       setBloqueoSecu(true);
       setBloqueo(true);
       setLoading(true);
-      const fileSujetoImagen = await subidaIOracion(FileSujetoImagen);
+      // const fileSujeto = await subidaIOracion(FileSujetoImagen);
       const fileVideoPreguntaQue = await subidaIOracion(FileVideoPreguntaQue);
       const fileVideoMuestra = await subidaIOracion(FileVideoMuestra);
       const fileVideoPreguntaQuien = await subidaIOracion(FileVideoPreguntaQuien);
-      const data = await GuardadodeOracionPost({ Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, FileSujetoImagen: fileSujetoImagen, FileAdjetivoImagen: FileAdjetivoImagen, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
+      const data = await GuardadodeOracionPost({ Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, Sujeto: Sujeto, Que: Que, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
       MySwal.fire({
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
@@ -84,8 +95,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
     }
   }
   useEffect(() => {
-    if (Categoria.length > 0 && Oracion.length > 0 && Verbo.length > 0 && FileSujetoImagen !== undefined && FileAdjetivoImagen !== undefined && FileVideoPreguntaQue !== undefined && FileVideoPreguntaQuien !== undefined && FileVideoMuestra !== undefined) {
-
+    if (Categoria.length > 0 && Oracion.length > 0 && Verbo.length > 0 && Sujeto !== undefined && Que !== undefined && FileVideoPreguntaQue !== undefined && FileVideoPreguntaQuien !== undefined && FileVideoMuestra !== undefined) {
       if (Adverbio !== undefined && checkboss === true) {
         setBloqueo(false);
       } else if (Adverbio === undefined && checkboss === true) {
@@ -96,12 +106,14 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
     } else {
       setBloqueo(true);
     }
-  }, [Categoria, Oracion, Verbo, Adverbio, FileSujetoImagen, FileAdjetivoImagen, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra])
+  }, [Categoria, Oracion, Verbo, Adverbio, Sujeto, Que, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra])
+
+
 
 
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
-      <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Agregar Oracion</ModalHeader>
+      <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Agregar Oración</ModalHeader>
       <ModalBody>
         <Row>
           <Col md='6' sm='12' className='mb-1'>
@@ -109,20 +121,21 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
             <Select name="Categoria" isSearchable={false} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
-            <Label className='form-label' for='FileSujetoImagen' >
+            <Label className='form-label' for='Sujeto' >
             Imagen del quien
             </Label>
-            <Input type='file' id='FileSujetoImagen' name='FileSujetoImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileSujetoImagen", value: e.target.files[0] })} />
+            {/* <Input type='file' id='FileSujetoImagen' name='FileSujetoImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileSujetoImagen", value: e.target.files[0] })} /> */}
+            <Select name="Sujeto" isSearchable={false} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Oracion'>
-              Oracion
+            Oración
             </Label>
-            <Input type='text' name='Oracion' id='Oracion' placeholder='Oracion' onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} value={Oracion} />
+            <Input type='text' name='Oracion' id='Oracion' placeholder='Oración' onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} value={Oracion} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='FileVideoMuestra'>
-            {"Video oración (respuesta)"}
+            Video respuesta
             </Label>
             <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoMuestra", value: e.target.files[0] })} />
           </Col>
@@ -134,7 +147,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='FileVideoPreguntaQue'>
-              Video Pregunta Que
+              Video pregunta Que
             </Label>
             <Input type='file' id='FileVideoPreguntaQue' name='FileVideoPreguntaQue' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoPreguntaQue", value: e.target.files[0] })} />
           </Col>
@@ -147,15 +160,15 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='FileVideoPreguntaQuien'>
-              Video Pregunta Quien
+              Video pregunta Quien
             </Label>
             <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoPreguntaQuien", value: e.target.files[0] })} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
-            <Label className='form-label' for='FileAdjetivoImagen'>
+            <Label className='form-label' for='Que'>
               Imagenes del Que
             </Label>
-            <Select name="FileAdjetivoImagen" isSearchable={false} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "FileAdjetivoImagen", value: event.value })} />
+            <Select name="Que" isSearchable={false} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
           </Col>
         </Row>
       </ModalBody>

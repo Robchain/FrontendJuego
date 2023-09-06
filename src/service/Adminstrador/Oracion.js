@@ -38,3 +38,30 @@ export const armandoJuegosOracionesPorPiezas = async ({num})=>{
     const data = await Api.get(`/armandoJuegosOracionesPorPiezas/${num}`);
     return data.data
 }
+
+
+export const listadoQuienImagen = async()=>{
+
+    const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
+    return data.data;
+}
+export const CrearQuienImagen = async({Nombre, Imagen})=>{
+
+    const data = await Api.post("/OracionAdmi/ImagenQuienCrear", {Nombre:Nombre, Imagen:Imagen});
+    return data.data;
+}
+// export const listadoQuienImagen = async()=>{
+
+//     const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
+//     return data.data;
+// }
+// export const listadoQuienImagen = async()=>{
+
+//     const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
+//     return data.data;
+// }
+// export const listadoQuienImagen = async()=>{
+
+//     const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
+//     return data.data;
+// }

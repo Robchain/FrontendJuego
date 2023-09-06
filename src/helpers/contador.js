@@ -24,15 +24,40 @@ export const resultado = ({objeto1, objeto2, objeto3})=>{
     return objeto3.Palabra
   }
 }
-
-
 export const resultadoOracion = ({objeto1, objeto2, objeto3})=>{
   if(objeto1.Respuesta === "CORRECTO"){
-    return objeto1.Oracion
+    return `El Sujeto correcto es: ${objeto1.Sujeto.label} ${objeto1.Adverbio ?  `- El adverbio correcto es: ${objeto1.Adverbio}` : '' } - El Que correcto es: ${objeto1.Sujeto.label}`
   }else if(objeto2.Respuesta === "CORRECTO"){
-    return objeto2.Oracion
+    return `El Sujeto correcto es: ${objeto2.Sujeto.label} ${objeto2.Adverbio ?  `- El adverbio correcto es: ${objeto2.Adverbio}` : '' }  - El Que correcto es: ${objeto2.Sujeto.label}`
   }else if(objeto3.Respuesta === "CORRECTO"){
-    return objeto3.Oracion
+    return `El Sujeto correcto es: ${objeto3.Sujeto.label} ${objeto3.Adverbio ?  `- El adverbio correcto es: ${objeto3.Adverbio}` : '' }  - El Que correcto es:${objeto3.Sujeto.label}`
+  }
+}
+export const resultadoOracionAdverbio = ({objeto1, objeto2, objeto3})=>{
+  if(objeto1.Respuesta === "CORRECTO"){
+    return `El Adverbio correcto es: ${ objeto1.Adverbio}`
+  }else if(objeto2.Respuesta === "CORRECTO"){
+    return `El Adverbio correcto es: ${ objeto2.Adverbio}`
+  }else if(objeto3.Respuesta === "CORRECTO"){
+    return `El Adverbio correcto es: ${ objeto3.Adverbio}`
+  }
+}
+export const resultadoOracionQuien = ({objeto1, objeto2, objeto3})=>{
+  if(objeto1.Respuesta === "CORRECTO"){
+    return `El Sujeto correcto es: ${ objeto1.Sujeto.label}`
+  }else if(objeto2.Respuesta === "CORRECTO"){
+    return `El Sujeto correcto es: ${ objeto1.Sujeto.label}`
+  }else if(objeto3.Respuesta === "CORRECTO"){
+    return `El Sujeto correcto es: ${ objeto1.Sujeto.label}`
+  }
+}
+export const resultadoOracionQue = ({objeto1, objeto2, objeto3})=>{
+  if(objeto1.Respuesta === "CORRECTO"){
+    return `El Que correcto es: ${objeto1.Que.label}`
+  }else if(objeto2.Respuesta === "CORRECTO"){
+    return `El Que correcto es: ${objeto2.Que.label}`
+  }else if(objeto3.Respuesta === "CORRECTO"){
+    return `El Que correcto es: ${objeto3.Que.label}`
   }
 }
 export const resultadoMultiJu = ({objeto1, objeto2, objeto3})=>{

@@ -111,23 +111,23 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
 
     return (
         <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
-            <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar Vocabulario</ModalHeader>
+            <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar vocabulario</ModalHeader>
             <ModalBody>
                 <div className='mb-2'>
                 <Label className='form-label' for='categoria'>Categoría</Label><br/>
               <Select  name="Categoria" defaultValue={{value:"123", label:dataBase.Categoria}} options={vocabularioOpciones.map(i=>{return {label:i.NombreCategoria,value:i._id}})}   onChange={ event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={false} />
               <Label className='form-label' for='palabra'>Palabra</Label>
-              <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value })} defaultValue={dataBase.Palabra} />
+              <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} defaultValue={dataBase.Palabra} /> {/* revisar esto*/}
               <Label className='form-label' for='categoria'>Silaba</Label>
-              <Input type='text' id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value })} defaultValue={dataBase.Silaba} />
-                    <Input  id="ImagenCheck" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }}    />{" "} <Label check for="ImagenCheck"  style={{color:'#8b8b8c',fontWeight:"700"}} >Editar Imagenes </Label>
+              <Input type='text' id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} defaultValue={dataBase.Silaba} />
+                    <Input  id="ImagenCheck" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }}    />&nbsp;&nbsp; <Label check for="ImagenCheck"  style={{color:'#8b8b8c',fontWeight:"700"}} >Editar imágenes </Label>
                     { checkbos && <div className='mt-1'>
           <Label className='form-label' for='inputImage'> 
           Imagen 
           </Label>
           <Input type='file' id='inputImage' name='FileImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileImagen", value: e.target.files[0] })} />
           <Label className='form-label' for='inputVideoM'>
-          {'Video de muestra (Respuesta)'}
+          Video respuesta
           </Label>
           <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileMuestra", value: e.target.files[0] })} />
           <Label className='form-label' for='inputask'>

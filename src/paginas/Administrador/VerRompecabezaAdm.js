@@ -120,7 +120,7 @@ const VerRompecabezaAdm = () => {
                         type="checkbox"
                         checked={showAll}
                        onChange={handleCheckboxChange}
-                    />{" "}
+                    />&nbsp;&nbsp;
                     <Label
                         check
                         for="exampleCheck"
@@ -144,7 +144,7 @@ const VerRompecabezaAdm = () => {
                           style={{ color: "#8cc5b0" }}
                         >
                           Nombre:
-                        </span>{" "}
+                        </span>&nbsp;&nbsp;
                         {i.Nombre}
                       </li>
                       <li>
@@ -153,8 +153,8 @@ const VerRompecabezaAdm = () => {
                           style={{ color: "#8cc5b0" }}
                         >
                           Número de piezas:
-                        </span>{" "}
-                        {i.Pieza}{" "}
+                        </span>&nbsp;&nbsp;
+                        {i.Pieza}&nbsp;&nbsp;
                       </li>
                       <li>
                         <span
@@ -162,7 +162,7 @@ const VerRompecabezaAdm = () => {
                           style={{ color: "#8cc5b0" }}
                         >
                           Estado:
-                        </span>{" "}
+                        </span>&nbsp;&nbsp;
                         {i.Estado}
                       </li>
                     </ul>
@@ -201,7 +201,7 @@ const VerRompecabezaAdm = () => {
                           style={{ color: "#8cc5b0" }}
                         >
                           Nombre:
-                        </span>{" "}
+                        </span>&nbsp;&nbsp;
                         {i.Nombre}
                       </li>
                       <li>
@@ -210,8 +210,8 @@ const VerRompecabezaAdm = () => {
                           style={{ color: "#8cc5b0" }}
                         >
                           Número de piezas:
-                        </span>{" "}
-                        {i.Pieza}{" "}
+                        </span>&nbsp;&nbsp;
+                        {i.Pieza}&nbsp;&nbsp;
                       </li>
                       <li>
                         <span
@@ -219,7 +219,7 @@ const VerRompecabezaAdm = () => {
                           style={{ color: "#8cc5b0" }}
                         >
                           Estado:
-                        </span>{" "}
+                        </span>&nbsp;&nbsp;
                         {i.Estado}
                       </li>
                     </ul>

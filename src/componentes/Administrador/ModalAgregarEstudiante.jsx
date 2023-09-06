@@ -90,19 +90,19 @@ try {
             <Label className='form-label' for='nameMulti'>
               Nombre
             </Label>
-            <Input type='text' name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Nombre} />
+            <Input type='text' name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Nombre} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='lastNameMulti'>
               Apellido
             </Label>
-            <Input type='text' name='Apellido' id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Apellido} />
+            <Input type='text' name='Apellido' id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Apellido} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='cityMulti'>
             Identificación
             </Label>
-            <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificación' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Identificacion} />
+            <Input type='number' name='Identificacion' id='cityMulti' placeholder='Identificación' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Identificacion} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CountryMulti'>
@@ -115,7 +115,7 @@ try {
               Usuario
             </Label>
             <Input type='text' name='Usuario' id='CompanyMulti' placeholder='Usuario' 
-            onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Usuario} />
+            onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Usuario} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='EmailMulti'>

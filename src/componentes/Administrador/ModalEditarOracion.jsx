@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Label, Input, Spinner } from 'reactstrap';
 import { llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Categoria';
-import { EdtiarOracion, EdtiarOracionSinImagen, GuardadodeOracionPost } from '../../service/Adminstrador/Oracion';
+import { EdtiarOracion, EdtiarOracionSinImagen, GuardadodeOracionPost, listadoQuienImagen } from '../../service/Adminstrador/Oracion';
 import { llamadaDeDataTodosActivos } from '../../service/Adminstrador/Vocabulario';
 import { subidaIOracion } from '../../firebase/config';
 
@@ -18,13 +18,14 @@ function llenadodeFormulario(state, action) {
 }
 const optionsAdverbio = [{ value: "", label: "NINGUNO" }, { value: "UNO", label: "UNO" }, { value: "UN", label: "UN" }, { value: "DOS", label: "DOS" }, { value: "MUCHOS", label: "MUCHOS" }, { value: "MUCHAS", label: "MUCHAS" }]
 export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
-    const BaseInicialFormulario = { Categoria: dataBase.Categoria, Oracion: dataBase.Oracion, Verbo: dataBase.Verbo, Adverbio: dataBase.Adverbio, FileSujetoImagen: dataBase.FileSujetoImagen, FileAdjetivoImagen: dataBase.FileAdjetivoImagen, FileVideoPreguntaQue: dataBase.FileVideoPreguntaQue, FileVideoPreguntaQuien: dataBase.FileVideoPreguntaQuien, FileVideoMuestra: dataBase.FileVideoMuestra }
-    const [{ Categoria, Oracion, Verbo, Adverbio, FileSujetoImagen, FileAdjetivoImagen, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
+    const BaseInicialFormulario = { Categoria: dataBase.Categoria, Oracion: dataBase.Oracion, Verbo: dataBase.Verbo, Adverbio: dataBase.Adverbio, Sujeto: dataBase.Sujeto, Que: dataBase.Que, FileVideoPreguntaQue: dataBase.FileVideoPreguntaQue, FileVideoPreguntaQuien: dataBase.FileVideoPreguntaQuien, FileVideoMuestra: dataBase.FileVideoMuestra }
+    const [{ Categoria, Oracion, Verbo, Adverbio, Sujeto, Que, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
     const [checkbos, setCheckbos] = useState(false);
     const [checkbosDos, setCheckbosDos] = useState(false);
     const [loading, setLoading] = useState(false);
     const MySwal = withReactContent(Swal)
     const [bloqueoSecu, setBloqueoSecu] = useState(false);
+    const [ListadoImagenQuien, setListadoImagenQuien] = useState([]);
     const [bloqueo, setBloqueo] = useState(true);
     const [listadoOption, setListadoOption] = useState([])
     const [listadoOptionsQue, setListadoOptionsQue] = useState([])
@@ -32,6 +33,13 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
         const data = await llamadaGetApiCategoriaOracion();
         setListadoOption(data);
     }
+    const llamadainicialQuienImagen = async()=>{
+        const data= await listadoQuienImagen();
+        setListadoImagenQuien(data)
+      }
+      useEffect(() => {
+        llamadainicialQuienImagen();
+      }, [])
     const llamdaInicialListadoVocabulario = async () => {
         const data = await llamadaDeDataTodosActivos()
         setListadoOptionsQue(data);
@@ -42,7 +50,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
     }, [])
     const uploadData = async () => {
         try {
-            let fileSujetoImagen = dataBase.FileSujetoImagen;
+            let fileSujetoImagen = dataBase.Sujeto;
  let fileVideoPreguntaQue = dataBase.FileVideoPreguntaQue;
 let fileVideoMuestra = dataBase.FileVideoMuestra;
 let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
@@ -51,8 +59,8 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
             setBloqueo(true);
             setLoading(true);
             if(checkbosDos === true ){
-                if(dataBase.FileSujetoImagen !== FileSujetoImagen){
-                     fileSujetoImagen = await subidaIOracion(FileSujetoImagen);
+                if(dataBase.Sujeto !== Sujeto){
+                     fileSujetoImagen = await subidaIOracion(Sujeto);
                 }
                 if(dataBase.FileVideoPreguntaQue !== FileVideoPreguntaQue ){
                     fileVideoPreguntaQue = await subidaIOracion(FileVideoPreguntaQue);
@@ -63,7 +71,7 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
                 if(dataBase.FileVideoPreguntaQuien !== FileVideoPreguntaQuien){
                      fileVideoPreguntaQuien = await subidaIOracion(FileVideoPreguntaQuien);
                 }                
-                const data = await EdtiarOracion({_id:_id,Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, FileSujetoImagen: fileSujetoImagen, FileAdjetivoImagen: FileAdjetivoImagen, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
+                const data = await EdtiarOracion({_id:_id,Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, Sujeto: Sujeto, Que: Que, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -121,12 +129,12 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
         } else {
             setBloqueo(true);
         }
-    }, [Categoria, Oracion, Verbo, Adverbio, FileSujetoImagen, FileAdjetivoImagen, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra])
+    }, [Categoria, Oracion, Verbo, Adverbio, Sujeto, Que, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra])
 
 
     return (
         <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
-            <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar Oracion</ModalHeader>
+            <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar oración</ModalHeader>
             <ModalBody>
                 <Row>
                     <Col md='6' sm='12' className='mb-1'>
@@ -148,44 +156,44 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Oracion'>
-                            Oracion
+                        Oración
                         </Label>
                         <Input type='text' name='Oracion' id='Oracion' defaultValue={dataBase.Oracion} placeholder='Oracion' onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} />
                     </Col>
                 </Row>
-                <Input id="exampleCheck"    name="check" type="checkbox"   onChange={e => { setCheckbosDos(e.target.checked) }} />{" "}
-                <Label  check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}> Editar Imagenes </Label>
+                <Input id="exampleCheck"    name="check" type="checkbox"   onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
+                <Label  check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}>   Editar imágenes </Label>
                 <Row>
                     {checkbosDos === true && <>
                         <Col md='6' sm='12' className='mb-1'>
-                            <Label className='form-label' for='FileSujetoImagen' >
+                            <Label className='form-label' for='Sujeto' >
                             Imagen del quien
                             </Label>
-                            <Input type='file' id='FileSujetoImagen' name='FileSujetoImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileSujetoImagen", value: e.target.files[0] })} />
+                            <Select name="Sujeto" isSearchable={false} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileVideoMuestra'>
-                            {"Video oración (respuesta)"}
+                            Video respuesta
                             </Label>
                             <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoMuestra", value: e.target.files[0] })} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileVideoPreguntaQue'>
-                                Video Pregunta Que
+                                Video pregunta Que
                             </Label>
                             <Input type='file' id='FileVideoPreguntaQue' name='FileVideoPreguntaQue' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoPreguntaQue", value: e.target.files[0] })} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileVideoPreguntaQuien'>
-                                Video Pregunta Quien
+                                Video pregunta Quien
                             </Label>
                             <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoPreguntaQuien", value: e.target.files[0] })} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
-                            <Label className='form-label' for='FileAdjetivoImagen'>
-                                Imagenes Del Que
+                            <Label className='form-label' for='Que'>
+                                Imagenes del Que
                             </Label>
-                            <Select name="FileAdjetivoImagen" isSearchable={false} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "FileAdjetivoImagen", value: event.value })} />
+                            <Select name="Que" isSearchable={false} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
                         </Col>
                     </>}
                 </Row>

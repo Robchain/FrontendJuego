@@ -167,7 +167,7 @@ Vocabularios
                         type="checkbox"
                         checked={showAll}
                        onChange={handleCheckboxChange}
-                    />{" "}
+                    />&nbsp;&nbsp;
                     <Label
                         check
                         for="exampleCheck"

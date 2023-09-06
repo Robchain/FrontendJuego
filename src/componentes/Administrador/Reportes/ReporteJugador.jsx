@@ -71,8 +71,8 @@ setMostrarVocabulario(data);
       <Row className="bot1">
         <Col lg="6" sm="12" md="6" xl="6">
           <Label className="form-label" for="Curso">
-            {" "}
-            Curso{" "}
+            &nbsp;&nbsp;
+            Curso&nbsp;&nbsp;
           </Label>
           <Select
             name="Curso"
@@ -91,8 +91,8 @@ setMostrarVocabulario(data);
             ]}
           />
           <Label className="form-label" for="Paralelo">
-            {" "}
-            Paralelo{" "}
+            &nbsp;&nbsp;
+            Paralelo&nbsp;&nbsp;
           </Label>
           <Select
             name="Paralelo"
@@ -161,7 +161,7 @@ setMostrarVocabulario(data);
             disabled={bloqueo}
           >
             Buscar
-          </Button>{" "}
+          </Button>&nbsp;&nbsp;
           <PDFDownloadLink document={<DescargarJuegadorReporte data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes}/>} fileName="prueba.pdf">
           <Button
             style={{

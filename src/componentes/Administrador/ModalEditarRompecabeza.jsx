@@ -93,7 +93,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
 
     return (
         <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
-            <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar Rompecabeza</ModalHeader>
+            <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar rompecabeza</ModalHeader>
             <ModalBody>
                 <div className=''>
                     <Label style={{color:'#8b8b8c',fontWeight:"700"}} className='form-label' for='Nombre'>Nombre</Label>
@@ -108,7 +108,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                             value={4}
                             defaultChecked={dataBase.Pieza === 4}
                             onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
-                        />{" "}4</Label><br />
+                        />&nbsp;&nbsp;4</Label><br />
                     <Label><Input
                         style={{ color: '#8b8b8c' }}
                         type='radio'
@@ -117,7 +117,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                         value={6}
                         defaultChecked={dataBase.Pieza === 6}
                         onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
-                    />{" "}6 </Label>
+                    />&nbsp;&nbsp;6 </Label>
                     <br/>
                     <Input
                         id="exampleCheck"
@@ -125,38 +125,38 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                         type="checkbox"
                         
                         onChange={e => { setCheckbos(e.target.checked) }}
-                    />{" "}
+                    />&nbsp;&nbsp;
                     <Label
                         check
                         for="exampleCheck"
                         style={{color:'#8b8b8c',fontWeight:"700"}}
                     >
-                        Editar Imagenes
+                        Editar imágenes
                     </Label>
 
                     { checkbos === true && <div className='mt-1'>
                     <Label className='form-label' for='FileColor' style={{color:'#8b8b8c',fontWeight:"700"}}>
-                        Imagen Color
+                    Foto color
                     </Label><br />
                         <Input type='file' id='FileColor' name='FileColor' onChange={event => disparodeAccion({ type: "onchange", field: "FileColor", value: event.target.files[0] })} />
                         <Label className='form-label' for='FileBlanco' style={{color:'#8b8b8c',fontWeight:"700"}}>
-                            Imagen Blanco y Negro
+                        Foto blanco y negro
                         </Label>
                         <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => disparodeAccion({ type: "onchange", field: "FileBlanco", value: event.target.files[0] })} />
                     </div>}
                 </div>
             </ModalBody>
             <ModalFooter>
-                <Button outline style={{ color: '#592a98' }} onClick={toggle} disabled={bloqueoSecu}>
+                <Button outline style={{ color: '#592a98' }} onClick={()=>{ setCheckbos(false);toggle()}} disabled={bloqueoSecu}>
                     Cancelar
-                </Button>{' '}
+                </Button>&nbsp;&nbsp;
                 <Button onClick={() => {
                     uploadData();
                 }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
                     {loading &&  <Spinner size="sm">
                         Loading...
                     </Spinner>}
-                   {" "} Editar
+                    &nbsp;&nbsp;Editar
                 </Button>
             </ModalFooter>
         </Modal>

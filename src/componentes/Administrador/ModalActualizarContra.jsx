@@ -72,8 +72,7 @@ setBloqueo(true);
             <Input type='password' name='Password' id='EmailMulti' placeholder='Contraseña'
             onChange={event => disparodeAccion({ type: "onchange", field: "ContraseñaUno", value: event.target.value })}
             value={ContraseñaUno}
-            /><br/>
-   {ContraseñaDos !== ContraseñaUno && <small style={{color:'red'}}> La contraseña no coincide</small>}
+            />
      <Label className='form-label' for='EmailMulti2'>
               Repetir contraseña
             </Label>
@@ -81,6 +80,9 @@ setBloqueo(true);
             onChange={event => disparodeAccion({ type: "onchange", field: "ContraseñaDos", value: event.target.value })}
             value={ContraseñaDos}
             />
+          <small style={ (ContraseñaUno.length <5 || ContraseñaUno.length < 5)?{color:'red'}:{display:'none'}}> Debe de tener mínimo 5 caracteres</small><br/>
+             <small style={ContraseñaDos !== ContraseñaUno ?{color:'red'} :{display:'none'}}> La contraseña no coincide</small>
+            
      </Col></Row>
     </ModalBody>
     <ModalFooter>

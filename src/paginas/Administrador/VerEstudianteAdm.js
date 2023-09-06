@@ -142,7 +142,7 @@ const VerEstudianteAdm = () => {
                          type="checkbox"
                          checked={showAll}
                         onChange={handleCheckboxChange}
-                     />{" "}
+                     />&nbsp;&nbsp;
                      <Label
                          check
                          for="exampleCheck"
@@ -232,7 +232,7 @@ const VerEstudianteAdm = () => {
                          type="checkbox"
                          checked={showAll}
                         onChange={handleCheckboxChange}
-                     />{" "}
+                     />&nbsp;&nbsp;
                      <Label
                          check
                          for="exampleCheck"

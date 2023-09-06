@@ -94,36 +94,36 @@ try {
             <Label className='form-label' for='nameMulti'>
               Nombre
             </Label>
-            <Input type='text' name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Nombre} />
+            <Input type='text' name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='lastNameMulti'>
               Apellido
             </Label>
-            <Input type='text' name='Apellido' id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Apellido} />
+            <Input type='text' name='Apellido' id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Apellido} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='cityMulti'>
-              Identificacion
+            Identificación
             </Label>
-            <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificacion' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Identificacion} />
+            <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificación' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Identificacion} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CountryMulti'>
-              Correo Electronico
+            Correo electrónico
             </Label>
-            <Input type='text' name='Email' id='CountryMulti' placeholder='Correo Electronico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Email} />
+            <Input type='text' name='Email' id='CountryMulti' placeholder='Correo electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Email} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CompanyMulti'>
               Usuario
             </Label>
             <Input type='text' name='Usuario' id='CompanyMulti' placeholder='Usuario' 
-            onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Usuario} />
+            onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Usuario} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
-          <Input id="exampleCheck"    name="check" type="checkbox"   onChange={e => { setCheckbosDos(e.target.checked) }} />{" "}
-                <Label  check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}> Editar Imagene</Label>
+          <Input id="exampleCheck"    name="check" type="checkbox"   onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
+                <Label  check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}> Editar imagen</Label>
                 {checkbosDos &&<><br/>
             <Label className='form-label' for='inputFile'>
               Foto de perfil
