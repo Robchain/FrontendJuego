@@ -28,6 +28,25 @@ export const DescargarJuegadorReporte = ({data, actividad,Estudiantes,Estudiante
       <View style={styles.tableColFecha}>
     <Text style={styles.tableCell}> <Text style={{color:'#85858C'}} > Fecha de creacion del juego:</Text> {fechaEcuador(i.createdAt)} --- <Text style={{color:'#85858C'}}>ultima fecha de actualizacion:</Text> {fechaEcuador(i.updatedAt)}</Text>
 </View>
+
+<View style={{height:'10px'}}></View>
+<Text style={{ color: "#000",fontSize:'16px', textAlign:'center'}}>Correctos</Text>
+<View style={{height:'10px'}}></View>
+      <View style={styles.table}>
+    <View style={styles.tableRow}>
+      <View style={styles.tableColMain}>
+        <Text style={styles.tableCell}>Palabra seleccionada</Text>
+      </View>
+    </View>
+    {i.Avance.Correcto.map((e)=>(
+  <View style={styles.tableRow}>
+  <View style={styles.tableCol}>
+         <Text style={styles.tableCell}>{e} </Text> 
+         </View>
+    </View>))}
+      </View>
+      <View style={{height:'10px'}}></View>
+      <Text style={{ color: "#000",fontSize:'16px', textAlign:'center'}}>Incorrectos</Text>
       <View style={{height:'10px'}}></View>
       <View style={styles.table}>
     <View style={styles.tableRow}>
@@ -37,11 +56,8 @@ export const DescargarJuegadorReporte = ({data, actividad,Estudiantes,Estudiante
       <View style={styles.tableColMain}>
         <Text style={styles.tableCell}>Palabra a evaluar</Text>
       </View>
-      <View style={styles.tableColMain}>
-        <Text style={styles.tableCell}>Resultado</Text>
-      </View>
     </View>
-    {i.Avance.map((e)=>(
+    {i.Avance.Incorrecto.map((e)=>(
   <View style={styles.tableRow}>
   <View style={styles.tableCol}>
          <Text style={styles.tableCell}>{e.PalabraASeleccionada} </Text> 
@@ -49,9 +65,7 @@ export const DescargarJuegadorReporte = ({data, actividad,Estudiantes,Estudiante
          <View style={styles.tableCol}>
          <Text style={styles.tableCell}> {e.PalabraAEvaluar} </Text>
          </View>
-         <View style={styles.tableCol}>
-         <Text style={styles.tableCell}>{e.Resultado} </Text>
-         </View>
+         
     </View>))}
       </View>
 </>))

@@ -7,7 +7,9 @@ import Que from '../../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
-import { resultadoOracionAdverbio } from '../../../helpers/contador'
+import { OracionRespuesta, resultadoOracionAdverbio } from '../../../helpers'
+
+
 const MostrarQue = ({ data, window, ...props }) => {
   const [verbo, setVerbo] = useState({value:'', label:''})
   useEffect(() => {
@@ -174,7 +176,7 @@ const Adverbio = ({ window, siguiente, dispatchProgreso, data }) => {
     setPointer("none")
     setOpacity2(0.4);
     setOpacity3(0.4);
-    dispatchProgreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego` + window.id].Oraciones[0], objeto2: data[`Juego` + window.id].Oraciones[1], objeto3: data[`Juego` + window.id].Oraciones[2] }), selecionado: `Se seleccionó: ${data[`Juego` + window.id].Oraciones[0].Adverbio}`, Resul: data[`Juego` + window.id].Oraciones[0].Respuesta })
+    dispatchProgreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego` + window.id].Oraciones[0], objeto2: data[`Juego` + window.id].Oraciones[1], objeto3: data[`Juego` + window.id].Oraciones[2] }), selecionado: `Se seleccionó: ${data[`Juego` + window.id].Oraciones[0].Adverbio}`, Resul: data[`Juego` + window.id].Oraciones[0].Respuesta, OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + window.id].Oraciones[0], objecto2:data[`Juego` + window.id].Oraciones[1], objecto3:data[`Juego` + window.id].Oraciones[2]}) });
     setTimeout(() => { siguiente(window.id) }, 11000)
   }
 
@@ -185,7 +187,7 @@ const Adverbio = ({ window, siguiente, dispatchProgreso, data }) => {
     setPointer("none")
     setOpacity3(0.4);
     setOpacity1(0.4);
-    dispatchProgreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego` + window.id].Oraciones[0], objeto2: data[`Juego` + window.id].Oraciones[1], objeto3: data[`Juego` + window.id].Oraciones[2] }), selecionado: `Se seleccionó: ${data[`Juego` + window.id].Oraciones[1].Adverbio}`, Resul: data[`Juego` + window.id].Oraciones[1].Respuesta })
+    dispatchProgreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego` + window.id].Oraciones[0], objeto2: data[`Juego` + window.id].Oraciones[1], objeto3: data[`Juego` + window.id].Oraciones[2] }), selecionado: `Se seleccionó: ${data[`Juego` + window.id].Oraciones[1].Adverbio}`, Resul: data[`Juego` + window.id].Oraciones[1].Respuesta, OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + window.id].Oraciones[0], objecto2:data[`Juego` + window.id].Oraciones[1], objecto3:data[`Juego` + window.id].Oraciones[2]}) })
     setTimeout(() => { siguiente(window.id) }, 11000)
   }
 
@@ -195,7 +197,7 @@ const Adverbio = ({ window, siguiente, dispatchProgreso, data }) => {
     setPointer("none")
     setOpacity1(0.4);
     setOpacity2(0.4);
-    dispatchProgreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego` + window.id].Oraciones[0], objeto2: data[`Juego` + window.id].Oraciones[1], objeto3: data[`Juego` + window.id].Oraciones[2] }), selecionado: `Se seleccionó: ${data[`Juego` + window.id].Oraciones[2].Adverbio}`, Resul: data[`Juego` + window.id].Oraciones[2].Respuesta })
+    dispatchProgreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego` + window.id].Oraciones[0], objeto2: data[`Juego` + window.id].Oraciones[1], objeto3: data[`Juego` + window.id].Oraciones[2] }), selecionado: `Se seleccionó: ${data[`Juego` + window.id].Oraciones[2].Adverbio}`, Resul: data[`Juego` + window.id].Oraciones[2].Respuesta, OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + window.id].Oraciones[0], objecto2:data[`Juego` + window.id].Oraciones[1], objecto3:data[`Juego` + window.id].Oraciones[2]}) })
     setTimeout(() => { siguiente(window.id) },11000)
   }
 

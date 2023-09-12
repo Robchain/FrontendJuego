@@ -164,7 +164,7 @@ export function ordenarYagrupar(arrayDeObjetos, numeroDeGrupos, numeroDeIntegran
 
     // Verificar si se alcanzó el número máximo de integrantes por grupo
     if (grupoActual.length === numeroDeIntegrantes || i === cantidadTotal - 1) {
-      grupos[`Equipo ${grupoIndex}`] = grupoActual;
+      grupos[`Equipo ${grupoIndex +1}`] = grupoActual;
 
       // Reiniciar el grupo actual
       grupoActual = [];
@@ -192,6 +192,7 @@ if(objecto!== undefined){
     let num = objecto.Avance.length /5;
     return objecto.Integrantes[num].label;
   }else if(objecto.Avance===null){
+debugger
     return objecto.Integrantes[0].label;
   }
 }

@@ -7,7 +7,8 @@ import Que from '../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
-import {  resultadoOracion } from '../../helpers/contador';
+import { OracionRespuesta, resultadoOracion } from '../../helpers'
+
 const Preguntasecction = ({  data }) => {
     const [videoPreguntaSecctionTodo, setVideoPreguntaSecctionTodo] = useState("")
     useEffect(() => {
@@ -181,10 +182,10 @@ const Preguntasecction = ({  data }) => {
       useEffect(() => {
         if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec)) {
           base = "CORRECTO"
-          setTimeout(() => {  Progreso({type:"PROGRESO", PalabraCorrecta: resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec}  - En el Que, se seleccionó ${palabrasEstdo.Queselec}`, Resultado:base});  siguiente(window.id); }, 9000)
+          setTimeout(() => {  Progreso({type:"PROGRESOORACION", PalabraCorrecta: resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec}  - En el Que, se seleccionó ${palabrasEstdo.Queselec}`, Resultado:base ,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})});  siguiente(window.id); }, 10000)
         } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec) {
           base = "INCORRECTO"
-          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec}  - En el Que, se seleccionó ${palabrasEstdo.Queselec}`, Resultado:base});  siguiente(window.id) }, 9000)
+          setTimeout(() => { Progreso({type:"PROGRESOORACION", PalabraCorrecta:resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec}  - En el Que, se seleccionó ${palabrasEstdo.Queselec}`, Resultado:base ,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})});  siguiente(window.id) }, 10000)
         }
         setopcionRes(base);
       }, [palabrasEstdo.Queselec, palabrasEstdo.QuienSelec])
@@ -245,11 +246,11 @@ const Preguntasecction = ({  data }) => {
         if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec) && (palabrasEstdo.AdverSelec === AdverbioRespuesta)) {
           base = "CORRECTO"
           setMomento("Respuesta");
-          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec} - ${palabrasEstdo.AdverSelec ?  `- En el Adverbio, se seleccionó: ${palabrasEstdo.AdverSelec}` : '' } - En el Que, se seleccionó: ${palabrasEstdo.Queselec}`, Resultado:base}); siguiente(window.id) }, 9000)
+          setTimeout(() => { Progreso({type:"PROGRESOORACION", PalabraCorrecta:resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec} - ${palabrasEstdo.AdverSelec ?  `- En el Adverbio, se seleccionó: ${palabrasEstdo.AdverSelec}` : '' } - En el Que, se seleccionó: ${palabrasEstdo.Queselec}`, Resultado:base,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})}); siguiente(window.id) }, 10000)
         } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec || AdverbioRespuesta !== palabrasEstdo.AdverSelec) {
           base = "INCORRECTO"
           setMomento("Respuesta");
-          setTimeout(() => { Progreso({type:"PROGRESO", PalabraCorrecta:resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec} - ${palabrasEstdo.AdverSelec ?  `- En el Adverbio, se seleccionó: ${palabrasEstdo.AdverSelec}` : '' } - En el Que, se seleccionó: ${palabrasEstdo.Queselec}`, Resultado:base}); siguiente(window.id) }, 9000)
+          setTimeout(() => { Progreso({type:"PROGRESOORACION", PalabraCorrecta:resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec} - ${palabrasEstdo.AdverSelec ?  `- En el Adverbio, se seleccionó: ${palabrasEstdo.AdverSelec}` : '' } - En el Que, se seleccionó: ${palabrasEstdo.Queselec}`, Resultado:base,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})}); siguiente(window.id) }, 10000)
         }
         setopcionRes(base);
       }, [palabrasEstdo.QuienSelec, palabrasEstdo.Queselec, palabrasEstdo.AdverSelec])

@@ -34,19 +34,33 @@ export const ReportePDFJugador = ({data, actividad,Estudiante, Estudiantes}) => 
     <div style={{ backgroundColor: "#E6DFF0", color: "#62269E" }}>
               <p style={{fontWeight:700}}> <span style={{color:'#85858C'}} > Fecha de creacion del juego:</span> {fechaEcuador(i.createdAt)} --- <span style={{color:'#85858C'}}>ultima fecha de actualizacion:</span> {fechaEcuador(i.updatedAt)}</p>
             </div>
+          
+            <h5>Correctos</h5>
+   <Table striped>
+   <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
+            <tr>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Palabra/Oracion seleccionada</th>
+            </tr>
+            </thead>
+            <tbody>
+            {i.Avance.Correcto.map((e)=>(<tr className='m-4'>
+         <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{e}</span> </td>
+    </tr>))}
+            </tbody>
+   </Table>
+          <h5>Incorrectos</h5>
    <Table striped>
    <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
             <tr>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Palabra seleccionada</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Palabra a evaluar</th>
-              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Resultado</th>
             </tr>
             </thead>
             <tbody>
-            {i.Avance.map((e)=>(<tr className='m-4'>
+            {i.Avance.Incorrecto.map((e)=>(<tr className='m-4'>
          <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{e.PalabraASeleccionada}</span> </td>
          <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{e.PalabraAEvaluar} </span></td>
-         <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{e.Resultado}</span></td>
+         
     </tr>))}
             </tbody>
    </Table>

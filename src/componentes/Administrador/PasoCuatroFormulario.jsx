@@ -16,7 +16,10 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
     customClass: {
       confirmButton: 'btn btn-primary'
     },
-    buttonsStyling: false})  
+    buttonsStyling: false});
+    setTimeout(function() {
+      window.location.reload();
+    }, 5000);
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
@@ -84,7 +87,7 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
       </CardBody>
       <CardFooter className="d-flex justify-content-between">
         <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
-          Atras
+        Atrás
         </Button>
         <Button onClick={onclickGuardar} style={{ borderRadius: "10px", backgroundColor: "#28c76f", color: "#fff", borderColor: "#28c76f" }}>
           Guardar

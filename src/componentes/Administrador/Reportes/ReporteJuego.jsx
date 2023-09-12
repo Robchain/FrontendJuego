@@ -1,5 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import Select from "react-select";
+import Flatpickr from 'react-flatpickr'
+import "flatpickr/dist/themes/dark.css"; 
 import { Button, Col, Label, Row } from "reactstrap";
 import { ReporteJuegoApi } from "../../../service/Adminstrador/Reporte";
 import { ReportePDFJuego } from "./ReportePDFJuego";
@@ -22,6 +24,7 @@ function llenadodeFormulario(state, action) {
   }
 }
 export const ReporteJuego = () => {
+  const [picker, setPicker] = useState(new Date());
   const [{ Juego }, disparodeAccion] = useReducer(
     llenadodeFormulario,
     BaseInicialFormulario
@@ -38,19 +41,21 @@ export const ReporteJuego = () => {
   }, [Juego]);
   const Buscar = async () => {
     setMostrarVocabulario([]);
-    if (Juego === "vocabulario") {
-      const data = await ReporteJuegoApi({ Pregunta: Juego });
-      setMostrarVocabulario(data);
-    } else if (Juego === "oracion") {
-      const data = await ReporteJuegoApi({ Pregunta: Juego });
-      setMostrarVocabulario(data);
-    } else if (Juego === "Multi-Jugador") {
-      const data = await ReporteJuegoApi({ Pregunta: Juego });
-      setMostrarVocabulario(data);
-    } else if (Juego === "Todos") {
-      const data = await ReporteJuegoApi({ Pregunta: Juego });
-      setMostrarVocabulario(data);
-    }
+    const data = await ReporteJuegoApi({ Pregunta: Juego, Fecha:picker });
+    setMostrarVocabulario(data);
+    // if (Juego === "vocabulario") {
+    //   const data = await ReporteJuegoApi({ Pregunta: Juego });
+    //   setMostrarVocabulario(data);
+    // } else if (Juego === "oracion") {
+    //   const data = await ReporteJuegoApi({ Pregunta: Juego });
+    //   setMostrarVocabulario(data);
+    // } else if (Juego === "Colaborativo") {
+    //   const data = await ReporteJuegoApi({ Pregunta: Juego });
+    //   setMostrarVocabulario(data);
+    // } else if (Juego === "Todos") {
+    //   const data = await ReporteJuegoApi({ Pregunta: Juego });
+    //   setMostrarVocabulario(data);
+    // }
   };
   return (
     <>
@@ -59,12 +64,12 @@ export const ReporteJuego = () => {
           <Label className="form-label" for="Juego">
             Juegos
           </Label>
-          <Select
+          <Select 
             name="Juego"
             options={[
               { label: "Vocabularios", value: "vocabulario" },
               { label: "Oraciones", value: "oracion" },
-              { label: "Multi-Jugador", value: "Multi-Jugador" },
+              { label: "Colaborativo", value: "Colaborativo" },
               { label: "Todos", value: "Todos" },
             ]}
             onChange={(evente) =>
@@ -75,6 +80,22 @@ export const ReporteJuego = () => {
               })
             }
           />
+           <Label className='form-label' for='DateGameM'>
+              Rango de fecha
+            </Label>
+            <Flatpickr
+            placeholder='Fecha'
+              data-enable-time
+              value={picker}
+              id='DateGameM'
+              className='form-control'
+              onChange={date => setPicker(date)}
+              options={{
+                altFormat: "m/d/Y h:i K",
+                mode: 'range',
+                minDate: 'today',
+              }}
+            />
           <br />
           <Button
             onClick={() => Buscar()}
@@ -88,7 +109,7 @@ export const ReporteJuego = () => {
           >
             Buscar
           </Button>&nbsp;&nbsp;
-          <PDFDownloadLink document={<DescargarJuegoReporte data={MostrarVocabulario} juego={Juego} />} fileName="prueba.pdf">
+          <PDFDownloadLink document={<DescargarJuegoReporte data={MostrarVocabulario} juego={Juego} />} fileName="Reporte Juego.pdf">
           <Button
             style={{
               borderRadius: "10px",

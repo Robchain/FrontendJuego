@@ -7,7 +7,8 @@ import Que from '../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
-import { resultadoOracionAdverbio } from '../../helpers/contador'
+import { OracionRespuesta, resultadoOracionAdverbio } from '../../helpers'
+
 const MostrarQue = ({ data, window, ...props }) => {
   const [verbo, setVerbo] = useState({value:'', label:''})
   useEffect(() => {
@@ -171,7 +172,7 @@ export const AdverbioSeleccionMulti = ({ window, siguiente, data, Progreso }) =>
     setPointer("none")
     setOpacity2(0.4);
     setOpacity3(0.4);
-    Progreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${window.id}`].Oraciones[0].Adverbio}`, Resultado: data[`Juego${window.id}`].Oraciones[0].Respuesta })
+    Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${window.id}`].Oraciones[0].Adverbio}`, Resultado: data[`Juego${window.id}`].Oraciones[0].Respuesta,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})  })
     setTimeout(() => { siguiente(window.id) }, 9000)
   }
   const onhandleClickQueSegundo = () => {
@@ -180,7 +181,7 @@ export const AdverbioSeleccionMulti = ({ window, siguiente, data, Progreso }) =>
     setPointer("none")
     setOpacity3(0.4);
     setOpacity1(0.4);
-    Progreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${window.id}`].Oraciones[1].Adverbio}`, Resultado: data[`Juego${window.id}`].Oraciones[1].Respuesta })
+    Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${window.id}`].Oraciones[1].Adverbio}`, Resultado: data[`Juego${window.id}`].Oraciones[1].Respuesta,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]}) })
     setTimeout(() => { siguiente(window.id) }, 9000)
   }
   const onhandleClickQueTercero = () => {
@@ -189,7 +190,7 @@ export const AdverbioSeleccionMulti = ({ window, siguiente, data, Progreso }) =>
     setPointer("none")
     setOpacity1(0.4);
     setOpacity2(0.4);
-    Progreso({ type: "PROGRESO", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${window.id}`].Oraciones[2].Adverbio}`, Resultado: data[`Juego${window.id}`].Oraciones[2].Respuesta })
+    Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracionAdverbio({ objeto1: data[`Juego${window.id}`].Oraciones[0], objeto2: data[`Juego${window.id}`].Oraciones[1], objeto3: data[`Juego${window.id}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${window.id}`].Oraciones[2].Adverbio}`, Resultado: data[`Juego${window.id}`].Oraciones[2].Respuesta ,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]}) })
     setTimeout(() => { siguiente(window.id) }, 9000)
   }
   return (

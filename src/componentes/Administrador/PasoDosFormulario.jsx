@@ -1,5 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react';
 import { useState } from 'react';
 import { ArrowLeft, ArrowRight } from 'react-feather';
 import { useForm, Controller } from 'react-hook-form'
@@ -50,22 +49,24 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
           <h5 className='mb-0'>Selección de los participantes</h5>
           <small>Especifique los integrantes de los grupos </small>
         </div>
-        
         <Row >
-        <Col className='align-self-end' lg='12'>
-<Button style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} onClick={()=>{onClickAleatorio(); dispatch({ type: "actualizarData", field: "Aleatorio", value: !Aleatorio})}}>Aleatorio</Button>
-        </Col>
+        <div >
+<span>Si selecciona aleatorio se respeta el criterio ingresado en número de integrantes</span>&nbsp;&nbsp;<Button style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} onClick={()=>{onClickAleatorio(); dispatch({ type: "actualizarData", field: "Aleatorio", value: !Aleatorio})}}>Aleatorio</Button>
+        </div>
         {
           Aleatorio===true ? <>
           {
+            Object.keys(AleotorioArmado) ? <>{
             Object.keys(AleotorioArmado).map((grupoKey) => (
           <Col key={grupoKey}>
-            <h3>{grupoKey +1}</h3>
+            <h3>{grupoKey}</h3>
             {AleotorioArmado[grupoKey].map(i=>(
-              <div key={i.value}>{i.label}</div>
+              <div key={i.value}>{`- ${i.label}`}</div>
             ))}
           </Col>
+          
         ))
+      }</>:<></>
           }
           <div className='d-flex justify-content-between mt-5'>
           <Button onClick={prevButton} disabled={index === 1}  style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
@@ -83,7 +84,7 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
               i => (<Row key={i}>
                 <Col md='6' className='mb-1'>
                   <Label className='form-label' for='firstName'>
-                    Grupo {i + 1}
+                    Grupo {i + 1 }
                   </Label>
                 </Col>
                 <Label className='form-label' for={`Equipo ${i}`}  >
@@ -111,7 +112,7 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
           <div className='d-flex justify-content-between mt-5'>
           <Button onClick={prevButton} disabled={index === 1}  style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           <ArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
-          Atras
+          Atrás
         </Button>
         <Button type='submit' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
           Siguiente

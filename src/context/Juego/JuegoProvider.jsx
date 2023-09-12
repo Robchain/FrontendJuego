@@ -79,6 +79,7 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
             PalabraAEvaluar: action.PalabraCorrecta,
             PalabraASeleccionada: action.selecionado,
             Resultado: action.Resul,
+            OracionCorrecta:action.OracionCorrecta,
             Terminado: true,
           },
         ];
@@ -92,7 +93,7 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
 
   const progresoMulti = (state, action) => {
     switch (action.type) {
-      case "PROGRESO":
+      case "PROGRESOVOCABULARIO":
         return [
           ...state,
           {
@@ -102,6 +103,17 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
             Terminado: true,
           },
         ];
+        case "PROGRESOORACION":
+          return [
+            ...state,
+            {
+              PalabraAEvaluar: action.PalabraCorrecta,
+              PalabraASeleccionada: action.PalabraSeleccionada,
+              Resultado: action.Resultado,
+              OracionCorrecta:action.OracionCorrecta,
+              Terminado: true,
+            },
+          ];
       case "RESETEAR":
         return initialStateMulti;
       default:

@@ -8,7 +8,6 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, 
  const [bloqueo, setBloqueo] = useState(true);
 
  useEffect(() => {
-   
   if(Array.isArray(picker)){
     setBloqueo(false)
   }
@@ -46,7 +45,7 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, 
       </CardBody>
       <CardFooter className="d-flex justify-content-between">
         <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
-          Atras
+        Atrás
         </Button>
         <Button onClick={nextButton} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Siguiente

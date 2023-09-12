@@ -78,7 +78,7 @@ useEffect(() => {
     }
   };
   const onClickAleatorio = ()=>{
-    setAleotorioArmado(ordenarYagrupar(Estudiantes,2,2));
+    setAleotorioArmado(ordenarYagrupar(Estudiantes,parseInt(NumeroDeGrupos.value),parseInt(NumeroDeIntegrantes.value)));
     }
   return (
     <Container>

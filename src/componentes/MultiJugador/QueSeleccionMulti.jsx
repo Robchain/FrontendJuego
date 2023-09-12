@@ -7,7 +7,8 @@ import Que from '../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
-import { resultadoOracionQue } from '../../helpers/contador'
+import { OracionRespuesta, resultadoOracionQue } from '../../helpers'
+
 const VerVerboRespuesta = ({data, window, ...props })=>{
     const [palabra, setPalabra] = useState("");
     useEffect(() => {
@@ -174,8 +175,8 @@ export const QueSeleccionMulti = ({ window, siguiente, data, Progreso}) => {
       setPointer("none")
       setOpacity2(0.4);
       setOpacity3(0.4);
-      Progreso({type:"PROGRESO", PalabraCorrecta:resultadoOracionQue({objeto1:data[`Juego${window.id}`].Oraciones[0].Oracion1,objeto2:data[`Juego${window.id}`].Oraciones[1],objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`Se seleccionó: ${data[`Juego${window.id}`].Oraciones[0].Que.label}`, Resultado:data[`Juego${window.id}`].Oraciones[0].Respuesta});
-      setTimeout(() => { siguiente(window.id) },  9000)
+      Progreso({type:"PROGRESOORACION", PalabraCorrecta:resultadoOracionQue({objeto1:data[`Juego${window.id}`].Oraciones[0].Oracion1,objeto2:data[`Juego${window.id}`].Oraciones[1],objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`Se seleccionó: ${data[`Juego${window.id}`].Oraciones[0].Que.label}`, Resultado:data[`Juego${window.id}`].Oraciones[0].Respuesta ,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})});
+      setTimeout(() => { siguiente(window.id) },  10000)
     }
   
     const onhandleClickQueSegundo =()=>{
@@ -184,8 +185,8 @@ export const QueSeleccionMulti = ({ window, siguiente, data, Progreso}) => {
       setPointer("none")
       setOpacity3(0.4);
       setOpacity1(0.4);
-      Progreso({type:"PROGRESO", PalabraCorrecta:resultadoOracionQue({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1],objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`Se seleccionó: ${data[`Juego${window.id}`].Oraciones[1].Que.label}`, Resultado:data[`Juego${window.id}`].Oraciones[1].Respuesta});
-      setTimeout(() => { siguiente(window.id) }, 9000)
+      Progreso({type:"PROGRESOORACION", PalabraCorrecta:resultadoOracionQue({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1],objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`Se seleccionó: ${data[`Juego${window.id}`].Oraciones[1].Que.label}`, Resultado:data[`Juego${window.id}`].Oraciones[1].Respuesta ,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})});
+      setTimeout(() => { siguiente(window.id) }, 10000)
     }
     const onhandleClickQueTercero = ()=>{
       setQueSelecion(3);
@@ -193,8 +194,8 @@ export const QueSeleccionMulti = ({ window, siguiente, data, Progreso}) => {
       setPointer("none")
       setOpacity1(0.4);
       setOpacity2(0.4);
-      Progreso({type:"PROGRESO", PalabraCorrecta:resultadoOracionQue({objeto1:data[`Juego${window.id}`].Oraciones[0].Oracion1,objeto2:data[`Juego${window.id}`].Oraciones[1],objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`Se seleccionó: ${data[`Juego${window.id}`].Oraciones[2].Que.label}`, Resultado:data[`Juego${window.id}`].Oraciones[2].Respuesta});
-      setTimeout(() => { siguiente(window.id) }, 9000)
+      Progreso({type:"PROGRESOORACION", PalabraCorrecta:resultadoOracionQue({objeto1:data[`Juego${window.id}`].Oraciones[0].Oracion1,objeto2:data[`Juego${window.id}`].Oraciones[1],objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`Se seleccionó: ${data[`Juego${window.id}`].Oraciones[2].Que.label}`, Resultado:data[`Juego${window.id}`].Oraciones[2].Respuesta ,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})});
+      setTimeout(() => { siguiente(window.id) }, 10000)
     }
    
   return (

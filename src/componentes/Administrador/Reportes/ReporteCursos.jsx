@@ -1,5 +1,7 @@
 import React, { useEffect, useReducer, useState } from "react";
 import Select from "react-select";
+import Flatpickr from 'react-flatpickr'
+import "flatpickr/dist/themes/dark.css"; 
 import { Button, Col, Label, Row } from "reactstrap";
 import { ReporteCurso } from "../../../service/Adminstrador/Reporte";
 import { ReportePDFCurso } from "./ReportePDFCurso";
@@ -27,6 +29,7 @@ export const ReporteCursos = () => {
   );
   const [bloqueodos, setBloqueodos] = useState(true);
   const [bloqueo, setBloqueo] = useState(true);
+  const [picker, setPicker] = useState(new Date());
   const [MostrarVocabulario, setMostrarVocabulario] = useState([]);
 
   useEffect(() => {
@@ -48,35 +51,13 @@ export const ReporteCursos = () => {
 
   const Buscar = async () => {
     setMostrarVocabulario([]);
-    if (Juego === "vocabulario") {
-      const data = await ReporteCurso({
-        Curso: Curso,
-        Pregunta: Juego,
-        Paralelo: Paralelo,
-      });
-      setMostrarVocabulario(data);
-    } else if (Juego === "oracion") {
-      const data = await ReporteCurso({
-        Curso: Curso,
-        Pregunta: Juego,
-        Paralelo: Paralelo,
-      });
-      setMostrarVocabulario(data);
-    } else if (Juego === "Multi-Jugador") {
-      const data = await ReporteCurso({
-        Curso: Curso,
-        Pregunta: Juego,
-        Paralelo: Paralelo,
-      });
-      setMostrarVocabulario(data);
-    } else if (Juego === "Todos") {
-      const data = await ReporteCurso({
-        Curso: Curso,
-        Pregunta: Juego,
-        Paralelo: Paralelo,
-      });
-      setMostrarVocabulario(data);
-    }
+    const data = await ReporteCurso({
+      Curso: Curso,
+      Pregunta: Juego,
+      Paralelo: Paralelo,
+      Fecha:picker
+    });
+    setMostrarVocabulario(data);
   };
   return (
     <>
@@ -135,7 +116,7 @@ export const ReporteCursos = () => {
             options={[
               { label: "Vocabularios", value: "vocabulario" },
               { label: "Oraciones", value: "oracion" },
-              { label: "Multi-Jugador", value: "Multi-Jugador" },
+              { label: "Colaborativo", value: "Colaborativo" },
               { label: "Todos", value: "Todos" },
             ]}
             onChange={(evente) =>
@@ -147,6 +128,22 @@ export const ReporteCursos = () => {
             }
             isDisabled={bloqueodos}
           />
+           <Label className='form-label' for='DateGameM'>
+              Rango de fecha
+            </Label>
+            <Flatpickr
+            placeholder='Fecha'
+              data-enable-time
+              value={picker}
+              id='DateGameM'
+              className='form-control'
+              onChange={date => setPicker(date)}
+              options={{
+                altFormat: "m/d/Y h:i K",
+                mode: 'range',
+                minDate: 'today',
+              }}
+            />
           <br />
           <Button
             onClick={() => Buscar()}
@@ -160,7 +157,7 @@ export const ReporteCursos = () => {
           >
             Buscar
           </Button>&nbsp;&nbsp;
-          <PDFDownloadLink document={<DescargaCursoReporte data={MostrarVocabulario} juego={Juego}  Curso={Curso} Paralelo={Paralelo}/>} fileName="prueba.pdf">
+          <PDFDownloadLink document={<DescargaCursoReporte data={MostrarVocabulario} juego={Juego}  Curso={Curso} Paralelo={Paralelo}/>} fileName="Reporte curso.pdf">
           <Button
             style={{
               borderRadius: "10px",
