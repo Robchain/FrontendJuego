@@ -7,7 +7,7 @@ import { llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Catego
 import { EdtiarOracion, EdtiarOracionSinImagen, GuardadodeOracionPost, listadoQuienImagen } from '../../service/Adminstrador/Oracion';
 import { llamadaDeDataTodosActivos } from '../../service/Adminstrador/Vocabulario';
 import { subidaIOracion } from '../../firebase/config';
-
+const BaseInicialFormulario = { Categoria: '', Oracion: '', Verbo: '', Adverbio: undefined, Sujeto: undefined, Que: undefined, FileVideoPreguntaQue: undefined, FileVideoPreguntaQuien: undefined, FileVideoMuestra: undefined }
 function llenadodeFormulario(state, action) {
     switch (action.type) {
         case 'onchange':
@@ -18,7 +18,7 @@ function llenadodeFormulario(state, action) {
 }
 const optionsAdverbio = [{ value: "", label: "NINGUNO" }, { value: "UNO", label: "UNO" }, { value: "UN", label: "UN" }, { value: "DOS", label: "DOS" }, { value: "MUCHOS", label: "MUCHOS" }, { value: "MUCHAS", label: "MUCHAS" }]
 export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
-    const BaseInicialFormulario = { Categoria: dataBase.Categoria, Oracion: dataBase.Oracion, Verbo: dataBase.Verbo, Adverbio: dataBase.Adverbio, Sujeto: dataBase.Sujeto, Que: dataBase.Que, FileVideoPreguntaQue: dataBase.FileVideoPreguntaQue, FileVideoPreguntaQuien: dataBase.FileVideoPreguntaQuien, FileVideoMuestra: dataBase.FileVideoMuestra }
+
     const [{ Categoria, Oracion, Verbo, Adverbio, Sujeto, Que, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
     const [checkbos, setCheckbos] = useState(false);
     const [checkbosDos, setCheckbosDos] = useState(false);
@@ -29,17 +29,23 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
     const [bloqueo, setBloqueo] = useState(true);
     const [listadoOption, setListadoOption] = useState([])
     const [listadoOptionsQue, setListadoOptionsQue] = useState([])
+    useEffect(() => {
+        disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
+        disparodeAccion({ type: "onchange", field: "Oracion", value: dataBase.Oracion });
+        disparodeAccion({ type: "onchange", field: "Verbo", value: dataBase.Verbo });
+
+    }, [])
     const llamdaInicialListado = async () => {
         const data = await llamadaGetApiCategoriaOracion();
         setListadoOption(data);
     }
-    const llamadainicialQuienImagen = async()=>{
-        const data= await listadoQuienImagen();
+    const llamadainicialQuienImagen = async () => {
+        const data = await listadoQuienImagen();
         setListadoImagenQuien(data)
-      }
-      useEffect(() => {
+    }
+    useEffect(() => {
         llamadainicialQuienImagen();
-      }, [])
+    }, [])
     const llamdaInicialListadoVocabulario = async () => {
         const data = await llamadaDeDataTodosActivos()
         setListadoOptionsQue(data);
@@ -48,30 +54,32 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
         llamdaInicialListado();
         llamdaInicialListadoVocabulario();
     }, [])
+
+
     const uploadData = async () => {
         try {
             let fileSujetoImagen = dataBase.Sujeto;
- let fileVideoPreguntaQue = dataBase.FileVideoPreguntaQue;
-let fileVideoMuestra = dataBase.FileVideoMuestra;
-let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
+            let fileVideoPreguntaQue = dataBase.FileVideoPreguntaQue;
+            let fileVideoMuestra = dataBase.FileVideoMuestra;
+            let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
             let _id = dataBase._id;
             setBloqueoSecu(true);
             setBloqueo(true);
             setLoading(true);
-            if(checkbosDos === true ){
-                if(dataBase.Sujeto !== Sujeto){
-                     fileSujetoImagen = await subidaIOracion(Sujeto);
+            if (checkbosDos === true) {
+                if (dataBase.Sujeto !== Sujeto) {
+                    fileSujetoImagen = await subidaIOracion(Sujeto);
                 }
-                if(dataBase.FileVideoPreguntaQue !== FileVideoPreguntaQue ){
+                if (dataBase.FileVideoPreguntaQue !== FileVideoPreguntaQue) {
                     fileVideoPreguntaQue = await subidaIOracion(FileVideoPreguntaQue);
                 }
-                if(dataBase.FileVideoMuestra !== FileVideoMuestra){
-                     fileVideoMuestra = await subidaIOracion(FileVideoMuestra);
+                if (dataBase.FileVideoMuestra !== FileVideoMuestra) {
+                    fileVideoMuestra = await subidaIOracion(FileVideoMuestra);
                 }
-                if(dataBase.FileVideoPreguntaQuien !== FileVideoPreguntaQuien){
-                     fileVideoPreguntaQuien = await subidaIOracion(FileVideoPreguntaQuien);
-                }                
-                const data = await EdtiarOracion({_id:_id,Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, Sujeto: Sujeto, Que: Que, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
+                if (dataBase.FileVideoPreguntaQuien !== FileVideoPreguntaQuien) {
+                    fileVideoPreguntaQuien = await subidaIOracion(FileVideoPreguntaQuien);
+                }
+                const data = await EdtiarOracion({ _id: _id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, Sujeto: Sujeto, Que: Que, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -82,8 +90,8 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
                     buttonsStyling: false
                 })
             }
-            if(checkbosDos === false){
-                const data = await EdtiarOracionSinImagen({ _id:_id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio})
+            if (checkbosDos === false) {
+                const data = await EdtiarOracionSinImagen({ _id: _id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio })
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -114,8 +122,8 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
         }
     }
     useEffect(() => {
-        if (Categoria !== dataBase.Categoria && Oracion !== dataBase.Oracion && Verbo !== dataBase.Verbo ) {
-            if(dataBase.Adverbio){
+        if (Categoria !== dataBase.Categoria && Oracion !== dataBase.Oracion && Verbo !== dataBase.Verbo) {
+            if (dataBase.Adverbio) {
                 if (Adverbio !== undefined && checkbos === true) {
                     setBloqueo(false);
                 } else if (Adverbio === undefined && checkbos === true) {
@@ -123,7 +131,7 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
                 } else {
                     setBloqueo(false);
                 }
-            }else{
+            } else {
                 setBloqueo(false);
             }
         } else {
@@ -139,13 +147,13 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
                 <Row>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Categoria'>Categoría</Label><br />
-                        <Select name="Categoria" isSearchable={false} defaultValue={{label:dataBase.Categoria, value:""}} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
+                        <Select name="Categoria" isSearchable={false} defaultValue={{ label: dataBase.Categoria, value: "" }} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Verbo'>
                             Verbo
                         </Label>
-                        <Input type='text' name='Verbo' id='Verbo' placeholder='Verbo' defaultValue={dataBase.Verbo} onChange={event => disparodeAccion({ type: "onchange", field: "Verbo", value: event.target.value.toUpperCase() })} />
+                        <Input type='text' name='Verbo' id='Verbo' placeholder='Verbo' defaultValue={dataBase.Verbo} value={Verbo} onChange={event => disparodeAccion({ type: "onchange", field: "Verbo", value: event.target.value.toUpperCase() })} />
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                         <Input id="AdverbioCheck" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} /> <Label check for="AdverbioCheck" style={{ color: '#8b8b8c', fontWeight: "700" }} className="mb-2" >Adverbio</Label>
@@ -156,24 +164,24 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Oracion'>
-                        Oración
+                            Oración
                         </Label>
-                        <Input type='text' name='Oracion' id='Oracion' defaultValue={dataBase.Oracion} placeholder='Oracion' onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} />
+                        <Input type='text' name='Oracion' id='Oracion' defaultValue={dataBase.Oracion} placeholder='Oracion' value={Oracion} onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} />
                     </Col>
                 </Row>
-                <Input id="exampleCheck"    name="check" type="checkbox"   onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
-                <Label  check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}>   Editar imágenes </Label>
+                <Input id="exampleCheck" name="check" type="checkbox" onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
+                <Label check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}>   Editar imágenes </Label>
                 <Row>
                     {checkbosDos === true && <>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='Sujeto' >
-                            Imagen del quien
+                                Imagen del quien
                             </Label>
                             <Select name="Sujeto" isSearchable={false} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileVideoMuestra'>
-                            Video respuesta
+                                Video respuesta
                             </Label>
                             <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoMuestra", value: e.target.files[0] })} />
                         </Col>
@@ -199,7 +207,13 @@ let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
                 </Row>
             </ModalBody>
             <ModalFooter>
-                <Button outline style={{ color: '#592a98' }} disabled={bloqueoSecu} onClick={() => { setCheckbosDos(false); toggle();  }}>
+                <Button outline style={{ color: '#592a98' }} disabled={bloqueoSecu} onClick={() => {
+                    disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
+                    disparodeAccion({ type: "onchange", field: "Oracion", value: dataBase.Oracion });
+                    disparodeAccion({ type: "onchange", field: "Verbo", value: dataBase.Verbo }); 
+                    setCheckbosDos(false); 
+                    toggle();
+                }}>
                     Cancelar
                 </Button>&nbsp;&nbsp;
                 <Button onClick={() => { uploadData(); }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>

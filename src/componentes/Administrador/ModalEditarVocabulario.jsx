@@ -6,7 +6,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { subidaIVocabulario } from '../../firebase/config';
 import { EditarVocabulario, EditarVocabularioSinArchivos } from '../../service/Adminstrador/Vocabulario';
 import { llamadaDeLaApiCategoriaGet } from '../../service/Adminstrador/Categoria';
-
+const BaseInicialFormulario = { Categoria: '', Palabra: '', Silaba: '', FileImagen: undefined, FileMuestra: undefined, FilePregunta: undefined };
 function llenadodeFormulario(state, action) {
     switch (action.type) {
         case 'onchange':
@@ -17,7 +17,7 @@ function llenadodeFormulario(state, action) {
 }
 
 export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
-    const BaseInicialFormulario = { Categoria: dataBase.Categoria, Palabra: dataBase.Palabra, Silaba: dataBase.Silaba,FileImagen: dataBase.FileImagen, FileMuestra: dataBase.FileMuestra, FilePregunta: dataBase.FilePregunta};
+
     const [{ Categoria, Palabra, Silaba, FileImagen, FileMuestra, FilePregunta }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
     const MySwal = withReactContent(Swal)
     const [loading, setLoading] = useState(false)
@@ -25,40 +25,47 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
     const [vocabularioOpciones, setVocabularioOpciones] = useState([]);
     const [checkbos, setCheckbos] = useState(false);
     const [bloqueo, setBloqueo] = useState(true);
-    const llenadoDataInicial = async ()=>{
+    const llenadoDataInicial = async () => {
         const data = await llamadaDeLaApiCategoriaGet();
         setVocabularioOpciones(data);
-       }
-       useEffect(() => {
-         llenadoDataInicial();
-       }, [])
+    }
     useEffect(() => {
-        if (Categoria !== dataBase.Categoria  ||  Palabra !== dataBase.Palabra || Silaba !== dataBase.Silaba) {
-            if(checkbos === true ){
+        llenadoDataInicial();
+    }, [])
+    useEffect(() => {
+        if (Categoria !== dataBase.Categoria || Palabra !== dataBase.Palabra || Silaba !== dataBase.Silaba) {
+            if (checkbos === true) {
                 setBloqueo(false);
-            }else if(checkbos === false){
+            } else if (checkbos === false) {
                 setBloqueo(false);
             }
         } else {
-            if(checkbos === true ){
+            if (checkbos === true) {
                 setBloqueo(false);
-            }else if(checkbos === false){
+            } else if (checkbos === false) {
                 setBloqueo(true);
             }
         }
-    }, [Categoria, Palabra, Silaba, FileImagen, FileMuestra, FilePregunta,checkbos])
+    }, [Categoria, Palabra, Silaba, FileImagen, FileMuestra, FilePregunta, checkbos])
 
+    useEffect(() => {
+        disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
+        disparodeAccion({ type: "onchange", field: "Palabra", value: dataBase.Palabra });
+        disparodeAccion({ type: "onchange", field: "Silaba", value: dataBase.Silaba });
+
+
+    }, [])
     const uploadData = async () => {
         try {
             let _id = dataBase._id;
-            if(checkbos === true){
+            if (checkbos === true) {
                 setBloqueoSecu(true);
                 setBloqueo(true);
                 setLoading(true);
                 const fileImage = await subidaIVocabulario(FileImagen)
-      const fileMuestra = await subidaIVocabulario(FileMuestra)
-      const filePregunta = await subidaIVocabulario(FilePregunta)
-                const data = await EditarVocabulario({ Categoria: Categoria, Palabra: Palabra, Silaba: Silaba, FileMuestra: fileMuestra, FileImagen: fileImage, FilePregunta: filePregunta, _id:_id });
+                const fileMuestra = await subidaIVocabulario(FileMuestra)
+                const filePregunta = await subidaIVocabulario(FilePregunta)
+                const data = await EditarVocabulario({ Categoria: Categoria, Palabra: Palabra, Silaba: Silaba, FileMuestra: fileMuestra, FileImagen: fileImage, FilePregunta: filePregunta, _id: _id });
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -72,11 +79,11 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
-            }else if(checkbos === false){
+            } else if (checkbos === false) {
                 setBloqueoSecu(true);
                 setBloqueo(true);
                 setLoading(true);
-                const data = await EditarVocabularioSinArchivos({Categoria: Categoria, Palabra: Palabra, Silaba: Silaba,_id:_id});
+                const data = await EditarVocabularioSinArchivos({ Categoria: Categoria, Palabra: Palabra, Silaba: Silaba, _id: _id });
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -91,7 +98,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                 setLoading(false);
                 toggle();
             }
-           
+
         } catch (error) {
             MySwal.fire({
                 title: 'Error!',
@@ -114,37 +121,41 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
             <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar vocabulario</ModalHeader>
             <ModalBody>
                 <div className='mb-2'>
-                <Label className='form-label' for='categoria'>Categoría</Label><br/>
-              <Select  name="Categoria" defaultValue={{value:"123", label:dataBase.Categoria}} options={vocabularioOpciones.map(i=>{return {label:i.NombreCategoria,value:i._id}})}   onChange={ event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={false} />
-              <Label className='form-label' for='palabra'>Palabra</Label>
-              <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} defaultValue={dataBase.Palabra} /> {/* revisar esto*/}
-              <Label className='form-label' for='categoria'>Silaba</Label>
-              <Input type='text' id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} defaultValue={dataBase.Silaba} />
-                    <Input  id="ImagenCheck" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }}    />&nbsp;&nbsp; <Label check for="ImagenCheck"  style={{color:'#8b8b8c',fontWeight:"700"}} >Editar imágenes </Label>
-                    { checkbos && <div className='mt-1'>
-          <Label className='form-label' for='inputImage'> 
-          Imagen 
-          </Label>
-          <Input type='file' id='inputImage' name='FileImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileImagen", value: e.target.files[0] })} />
-          <Label className='form-label' for='inputVideoM'>
-          Video respuesta
-          </Label>
-          <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileMuestra", value: e.target.files[0] })} />
-          <Label className='form-label' for='inputask'>
-            Video de pregunta
-          </Label>
-          <Input type='file' id='inputask' name='FilePregunta' onChange={e => disparodeAccion({ type: "onchange", field: "FilePregunta", value: e.target.files[0] })} />
+                    <Label className='form-label' for='categoria'>Categoría</Label><br />
+                    <Select name="Categoria" defaultValue={{ value: "123", label: dataBase.Categoria }} options={vocabularioOpciones.map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={false} />
+                    <Label className='form-label' for='palabra'>Palabra</Label>
+                    <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} defaultValue={dataBase.Palabra} /> {/* revisar esto*/}
+                    <Label className='form-label' for='categoria'>Silaba</Label>
+                    <Input type='text' id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} defaultValue={dataBase.Silaba} value={Silaba} />
+                    <Input id="ImagenCheck" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} />&nbsp;&nbsp; <Label check for="ImagenCheck" style={{ color: '#8b8b8c', fontWeight: "700" }} >Editar imágenes </Label>
+                    {checkbos && <div className='mt-1'>
+                        <Label className='form-label' for='inputImage'>
+                            Imagen
+                        </Label>
+                        <Input type='file' id='inputImage' name='FileImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileImagen", value: e.target.files[0] })} />
+                        <Label className='form-label' for='inputVideoM'>
+                            Video respuesta
+                        </Label>
+                        <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileMuestra", value: e.target.files[0] })} />
+                        <Label className='form-label' for='inputask'>
+                            Video de pregunta
+                        </Label>
+                        <Input type='file' id='inputask' name='FilePregunta' onChange={e => disparodeAccion({ type: "onchange", field: "FilePregunta", value: e.target.files[0] })} />
                     </div>}
                 </div>
             </ModalBody>
             <ModalFooter>
-                <Button outline style={{ color: '#592a98' }} onClick={()=>{setBloqueo(true); setCheckbos(false); toggle();}} disabled={bloqueoSecu}>
+                <Button outline style={{ color: '#592a98' }} onClick={() => {
+                    disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
+                    disparodeAccion({ type: "onchange", field: "Palabra", value: dataBase.Palabra });
+                    disparodeAccion({ type: "onchange", field: "Silaba", value: dataBase.Silaba }); setBloqueo(true); setCheckbos(false); toggle();
+                }} disabled={bloqueoSecu}>
                     Cancelar
                 </Button>&nbsp;&nbsp;
                 <Button onClick={() => {
                     uploadData();
                 }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
-                    {loading &&  <Spinner size="sm">
+                    {loading && <Spinner size="sm">
                         Loading...
                     </Spinner>}
                     Editar

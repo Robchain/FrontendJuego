@@ -62,7 +62,7 @@ const data  = await  CrearPostCategoria({Juego,NombreCategoria});
      <Label for="Juego">Juego</Label>
      <Select placeholder="Seleccione" name='Juego' className='react-select' options={[{label:"Vocabulario",value:"Vocabulario"},{label:"Oración",value:"Oración"}]}  onChange={event => disparodeAccion({ type: "onchange", field: "Juego", value: event })} />
      <Label for='NombreCategoria'>Categoría</Label>
-     <Input name='NombreCategoria'  onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}  />
+     <Input name='NombreCategoria'  onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={NombreCategoria}  />
      </Col></Row>
     </ModalBody>
     <ModalFooter>

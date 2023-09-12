@@ -4,7 +4,7 @@ import { EditarDataRompecabeza, EditarDataRompecabezaSinArchivo } from '../../se
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { subidaIRompecabeza } from '../../firebase/config';
-
+const BaseInicialFormulario = { Nombre: '', FileBlanco: undefined, FileColor: undefined, Pieza: 0 };
 function llenadodeFormulario(state, action) {
     switch (action.type) {
         case 'onchange':
@@ -15,7 +15,7 @@ function llenadodeFormulario(state, action) {
 }
 
 export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
-    const BaseInicialFormulario = { Nombre: dataBase.Nombre, FileBlanco: dataBase.FileBlanco, FileColor: dataBase.FileColor, Pieza:dataBase.Pieza };
+
     const [{ Nombre, FileBlanco, FileColor, Pieza }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
     const MySwal = withReactContent(Swal)
     const [loading, setLoading] = useState(false)
@@ -23,24 +23,31 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
     const [checkbos, setCheckbos] = useState(false);
     const [bloqueo, setBloqueo] = useState(true);
 
+ 
     useEffect(() => {
-        if (Nombre !== dataBase.Nombre  && Pieza !== 0 ) {
+        if (Nombre !== dataBase.Nombre && Pieza !== 0) {
             setBloqueo(false);
         } else {
             setBloqueo(true);
         }
     }, [Nombre, FileBlanco, FileColor, Pieza])
+    
+    useEffect(() => {
+        disparodeAccion({ type: "onchange", field: "Nombre", value: dataBase.Nombre });
+        disparodeAccion({ type: "onchange", field: "Pieza", value: dataBase.Pieza });
+
+    }, [])    
 
     const uploadData = async () => {
         try {
             let _id = dataBase._id;
-            if(checkbos === true){
+            if (checkbos === true) {
                 setBloqueoSecu(true);
                 setBloqueo(true);
                 setLoading(true);
                 const ulrC = await subidaIRompecabeza(FileColor)
                 const ulrB = await subidaIRompecabeza(FileBlanco)
-                const data = await EditarDataRompecabeza({ FileBlanco: ulrB, FileColor: ulrC, Nombre: Nombre, Pieza: Pieza, _id:_id });
+                const data = await EditarDataRompecabeza({ FileBlanco: ulrB, FileColor: ulrC, Nombre: Nombre, Pieza: Pieza, _id: _id });
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -54,11 +61,11 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
-            }else if(checkbos === false){
+            } else if (checkbos === false) {
                 setBloqueoSecu(true);
                 setBloqueo(true);
                 setLoading(true);
-                const data = await EditarDataRompecabezaSinArchivo({ Nombre: Nombre, Pieza: Pieza, _id:_id });
+                const data = await EditarDataRompecabezaSinArchivo({ Nombre: Nombre, Pieza: Pieza, _id: _id });
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -73,7 +80,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 setLoading(false);
                 toggle();
             }
-           
+
         } catch (error) {
             MySwal.fire({
                 title: 'Error!',
@@ -96,9 +103,9 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
             <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar rompecabeza</ModalHeader>
             <ModalBody>
                 <div className=''>
-                    <Label style={{color:'#8b8b8c',fontWeight:"700"}} className='form-label' for='Nombre'>Nombre</Label>
-                    <Input type='text' id='Nombre' name="Nombre" defaultValue={dataBase.Nombre} placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} />
-                    <Label style={{color:'#8b8b8c',fontWeight:"700"}} >Piezas</Label><br />
+                    <Label style={{ color: '#8b8b8c', fontWeight: "700" }} className='form-label' for='Nombre'>Nombre</Label>
+                    <Input name="Nombre"  placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} value={Nombre} />
+                    <Label style={{ color: '#8b8b8c', fontWeight: "700" }} >Piezas</Label><br />
                     <Label>
                         <Input
                             style={{ color: '#8b8b8c' }}
@@ -118,42 +125,47 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                         defaultChecked={dataBase.Pieza === 6}
                         onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
                     />&nbsp;&nbsp;6 </Label>
-                    <br/>
+                    <br />
                     <Input
                         id="exampleCheck"
                         name="check"
                         type="checkbox"
-                        
+
                         onChange={e => { setCheckbos(e.target.checked) }}
                     />&nbsp;&nbsp;
                     <Label
                         check
                         for="exampleCheck"
-                        style={{color:'#8b8b8c',fontWeight:"700"}}
+                        style={{ color: '#8b8b8c', fontWeight: "700" }}
                     >
                         Editar imágenes
                     </Label>
 
-                    { checkbos === true && <div className='mt-1'>
-                    <Label className='form-label' for='FileColor' style={{color:'#8b8b8c',fontWeight:"700"}}>
-                    Foto color
-                    </Label><br />
+                    {checkbos === true && <div className='mt-1'>
+                        <Label className='form-label' for='FileColor' style={{ color: '#8b8b8c', fontWeight: "700" }}>
+                            Foto color
+                        </Label><br />
                         <Input type='file' id='FileColor' name='FileColor' onChange={event => disparodeAccion({ type: "onchange", field: "FileColor", value: event.target.files[0] })} />
-                        <Label className='form-label' for='FileBlanco' style={{color:'#8b8b8c',fontWeight:"700"}}>
-                        Foto blanco y negro
+                        <Label className='form-label' for='FileBlanco' style={{ color: '#8b8b8c', fontWeight: "700" }}>
+                            Foto blanco y negro
                         </Label>
                         <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => disparodeAccion({ type: "onchange", field: "FileBlanco", value: event.target.files[0] })} />
                     </div>}
                 </div>
             </ModalBody>
             <ModalFooter>
-                <Button outline style={{ color: '#592a98' }} onClick={()=>{ setCheckbos(false);toggle()}} disabled={bloqueoSecu}>
+                <Button outline style={{ color: '#592a98' }} onClick={() => {
+                    disparodeAccion({ type: "onchange", field: "Nombre", value: dataBase.Nombre });
+                    disparodeAccion({ type: "onchange", field: "Pieza", value: dataBase.Pieza }); 
+                    setCheckbos(false); 
+                    toggle()
+                }} disabled={bloqueoSecu}>
                     Cancelar
                 </Button>&nbsp;&nbsp;
                 <Button onClick={() => {
                     uploadData();
                 }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
-                    {loading &&  <Spinner size="sm">
+                    {loading && <Spinner size="sm">
                         Loading...
                     </Spinner>}
                     &nbsp;&nbsp;Editar

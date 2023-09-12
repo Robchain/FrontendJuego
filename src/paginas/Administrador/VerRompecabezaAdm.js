@@ -178,7 +178,7 @@ const VerRompecabezaAdm = () => {
                   <span>&nbsp;&nbsp;&nbsp;</span>
                   <Button
                     style={{ background: "#5b2998", color: "#fff" }}
-                    outline onClick={() => {setDataSeleccionada(i); toggleEdtiar(); }}
+                    outline onClick={() => {toggleEdtiar(); setDataSeleccionada(i); }}
                   >
                     Editar
                   </Button>
