@@ -8,6 +8,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { ModalAgregarVocabulario } from '../../componentes/Administrador/ModalAgregarVocabulario';
 import { llamadaDeDataTodosActivos,HabilitarVocabularioApi,desabilitarVocabularioApi, ActivarJuegoPorCursoParaleloVocabulario } from '../../service/Adminstrador/Vocabulario';
 import { ModalEditarVocabulario } from '../../componentes/Administrador/ModalEditarVocabulario';
+import { ListadoJuegoActivos } from '../../componentes/Administrador/ListadoJuegoActivos';
 const BaseInicialFormulario = { Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -254,6 +255,7 @@ Vocabularios
           Agregar
         </Button>
         </Col>
+<ListadoJuegoActivos />
       </Row>
     </TabPane>
         </TabContent>

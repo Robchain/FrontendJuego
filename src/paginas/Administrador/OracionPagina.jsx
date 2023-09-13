@@ -8,6 +8,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { NavBar } from '../../componentes/NavBar'
 import { ActivarJuegoPorCursoParaleloOracion, CrearQuienImagen, DesabilitarOracion, HabilitarOracion, MetodoGetDellamadaOracionActivas } from '../../service/Adminstrador/Oracion'
 import { ModalEditarOracion } from '../../componentes/Administrador/ModalEditarOracion'
+import { ListadoJuegoActivosOracion } from '../../componentes/Administrador/ListadoJuegoActivosOracion';
 const BaseInicialFormulario = { Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -297,6 +298,7 @@ MySwal.fire({
           &nbsp;&nbsp; Agregar
         </Button>
         </Col>
+        <ListadoJuegoActivosOracion/>
       </Row>
     </TabPane>
     <TabPane tabId="3" >

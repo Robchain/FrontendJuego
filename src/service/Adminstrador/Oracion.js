@@ -50,6 +50,10 @@ export const CrearQuienImagen = async({Nombre, Imagen})=>{
     const data = await Api.post("/OracionAdmi/ImagenQuienCrear", {Nombre:Nombre, Imagen:Imagen});
     return data.data;
 }
+export const JuegosActivosOracion=async ()=>{
+    const data = await Api.get('/OracionAdmi/JuegosActivosOracion');
+    return data.data
+}
 // export const listadoQuienImagen = async()=>{
 
 //     const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
