@@ -172,7 +172,7 @@ const Buscar = async ()=>{
             Buscar
           </Button>&nbsp;&nbsp;
           {
-            MostrarVocabulario.length>0 ?  <PDFDownloadLink document={<DescargarJuegadorReporte data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes}/>} fileName={`Reporte ${MostrarVocabulario[0].Estudiante.Nombre}.pdf`}>
+            MostrarVocabulario.length>0 ?  <PDFDownloadLink document={<DescargarJuegadorReporte data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes}/>} fileName={`Reporte ${MostrarVocabulario[0].documentos.Estudiante.Nombre}.pdf`}>
             <Button
               style={{
                 borderRadius: "10px",

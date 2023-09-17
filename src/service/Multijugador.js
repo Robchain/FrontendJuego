@@ -54,3 +54,8 @@ export const CreaJuegoMulti = async ({num})=>{
     const data = await Api.get(`/CreaJuegoMulti/${num}`);
     return data.data
 }
+
+export const historialJuego = async ({Curso, Paralelo})=>{
+const data = await Api.post('/historialJuego',{Curso:Curso, Paralelo:Paralelo});
+return data.data;
+}

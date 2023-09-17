@@ -133,6 +133,17 @@ return fechaFormateada;
 }
 
 
+export const actividadCaducadaBool=(fecha)=>{
+  const fechaActual = new Date();
+  const fechaInput = new Date(fecha);
+  if(fechaActual > fechaInput){
+    return true
+  }else if(fechaActual < fechaInput){
+    return false
+  }
+}
+
+
 
 
 function shuffle(array) {
