@@ -40,32 +40,34 @@ export const armandoJuegosOracionesPorPiezas = async ({num})=>{
 }
 
 
-export const listadoQuienImagen = async()=>{
 
-    const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
-    return data.data;
-}
-export const CrearQuienImagen = async({Nombre, Imagen})=>{
-
-    const data = await Api.post("/OracionAdmi/ImagenQuienCrear", {Nombre:Nombre, Imagen:Imagen});
-    return data.data;
-}
 export const JuegosActivosOracion=async ()=>{
     const data = await Api.get('/OracionAdmi/JuegosActivosOracion');
     return data.data
 }
-// export const listadoQuienImagen = async()=>{
+// quien
+export const listadoQuienImagen = async()=>{
+    const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
+    return data.data;
+}
+export const CrearQuienImagen = async({Nombre, Imagen})=>{
+    const data = await Api.post("/OracionAdmi/ImagenQuienCrear", {Nombre:Nombre, Imagen:Imagen});
+    return data.data;
+}
 
-//     const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
-//     return data.data;
-// }
-// export const listadoQuienImagen = async()=>{
-
-//     const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
-//     return data.data;
-// }
-// export const listadoQuienImagen = async()=>{
-
-//     const data = await Api.get("/OracionAdmi/ImagenQuienMostrar");
-//     return data.data;
-// }
+export const ImagenQuienDesibilitar = async({_id})=>{
+    const data = await Api.post("/OracionAdmi/ImagenQuienDesibilitar",{_id:_id});
+    return data.data;
+}
+export const ImagenQuienHabilitar = async({_id})=>{
+    const data = await Api.post("/OracionAdmi/ImagenQuienHabilitar",{_id:_id});
+    return data.data;
+}
+export const ImagenEditarQuien = async({_id,Nombre, Imagen})=>{
+    const data = await Api.post("/OracionAdmi/editarQuien", {_id:_id,Nombre:Nombre, Imagen:Imagen});
+    return data.data;
+}
+export const ImagenEditarQuienSinImagen = async({_id,Nombre})=>{
+    const data = await Api.post("/OracionAdmi/editarQuienSinImagen", {_id:_id,Nombre:Nombre});
+    return data.data;
+}

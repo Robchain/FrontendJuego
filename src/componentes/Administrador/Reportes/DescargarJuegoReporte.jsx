@@ -13,48 +13,51 @@ export const DescargarJuegoReporte = ({data, juego,}) => {
       <Image src={bliblaimagen} style={{width:'100px',marginTop:'20px'}}/>
          <Text style={{ color: "#9696D3",fontSize:'16px', textAlign:'center'}}>Reporte {`${juego}`}</Text>
       </View>
-      {filtradoCurso({data:data}).filter((item) => item.Avance.length > 0).map((i,index)=>(
-        <>
+      {
+        data.map((i, index)=>(<>
         <View style={{fontSize:'12px', marginBottom:'11px', textAlign:'left'}} break={index > 0 && true}>
-        {i.Estudiante!==undefined &&<>
-          <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Estudiante:</Text> {i.Estudiante.Nombre}</Text>
-         <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Cedula:</Text> {i.Estudiante.Identificacion}</Text>
-         <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Curso:</Text> {i.Estudiante.Curso}  &ensp;  <Text style={{fontWeight:700,color:'#8cc5b0'}}>Paralelo:</Text> {i.Estudiante.Paralelo}</Text>
+        {i.documentos.Estudiante!==undefined &&<>
+          <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Estudiante:</Text> {i.documentos.Estudiante.Nombre}</Text>
+         <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Cedula:</Text> {i.documentos.Estudiante.Identificacion}</Text>
+         <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Curso:</Text> {i.documentos.Estudiante.Curso}  &ensp;  <Text style={{fontWeight:700,color:'#8cc5b0'}}>Paralelo:</Text> {i.documentos.Estudiante.Paralelo}</Text>
         </>}
-
+        <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Actividad:</Text> {(i.documentos.Integrantes !== undefined && i.documentos.Integrantes !== null) ? 'Colaborativo' : juego}</Text>
         {
-  (i.Equipo!==undefined && i.Equipo!==null ) &&<><Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Equipo:</Text> {i.Equipo.Nombre}</Text>
-  <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Integrantes:</Text></Text>
-  {i.Integrantes.map((e)=>(<>
+  (i.documentos.Equipo!==undefined && i.Equipo!==null ) &&<><Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Equipo:</Text> {i.documentos.Equipo.Nombre}</Text></>}
+  {(i.documentos.Integrantes !== undefined && i.documentos.Integrantes !== null) &&
+    <>
+    <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Integrantes:</Text></Text>
+  {i.documentos.Integrantes.map((e)=>(<>
           <Text style={{fontWeight:700}}>{e.value} -- {e.label}</Text>
-         </>))}
-  </>
-}
-         <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Actividad:</Text> {juego}</Text>
+         </>))}</>
+  }
+         
     </View>
     <View style={styles.tableColFecha}>
-    <Text style={styles.tableCell}> <Text style={{color:'#85858C'}} > Fecha de creacion del juego:</Text> {fechaEcuador(i.createdAt)} --- {i.updatedAt && <><Text style={{color:'#85858C'}}>ultima fecha de actualizacion:</Text> {fechaEcuador(i.updatedAt)}</>} {i.FechaDeFin && <><Text style={{color:'#85858C'}}>Fecha de cierre del juego:</Text> {fechaEcuador(i.FechaDeFin)}</>} </Text>
+    <Text style={styles.tableCell}> <Text style={{color:'#85858C'}} > Fecha de creacion del juego:</Text> {fechaEcuador(i.documentos.createdAt)} --- {i.documentos.updatedAt && <><Text style={{color:'#85858C'}}>ultima fecha de actualizacion:</Text> {fechaEcuador(i.documentos.updatedAt)}</>} {i.documentos.FechaDeFin && <><Text style={{color:'#85858C'}}>Fecha de cierre del juego:</Text> {fechaEcuador(i.documentos.FechaDeFin)}</>} </Text>
 </View>
-<View style={{height:'10px'}}></View>
+    {
+       (i.documentos.Avance !== null && i.documentos.Avance !== undefined) && i.documentos.Avance.map((avance, index) => (<>
+       <View style={{height:'10px'}}></View>
 <Text style={{ color: "#000",fontSize:'16px', textAlign:'center'}}>Correctos</Text>
 <View style={{height:'10px'}}></View>
-    <View style={styles.table}>
+<View style={styles.table}>
     <View style={styles.tableRow}>
       <View style={styles.tableColMain}>
         <Text style={styles.tableCell}>Palabra seleccionada</Text>
       </View>
     </View>
-    {i.Avance.Correcto.map((e)=>(
+    {(avance.Correcto !== null && avance.Correcto !== undefined) && avance.Correcto.map((e)=>(
   <View style={styles.tableRow}>
   <View style={styles.tableCol}>
          <Text style={styles.tableCell}>{e} </Text> 
          </View>
     </View>))}
     </View>
-<View style={{height:'10px'}}></View>
+    <View style={{height:'10px'}}></View>
 <Text style={{ color: "#000",fontSize:'16px', textAlign:'center'}}>Incorrectos</Text>
 <View style={{height:'10px'}}></View>
-    <View style={styles.table}>
+<View style={styles.table}>
     <View style={styles.tableRow}>
       <View style={styles.tableColMain}>
         <Text style={styles.tableCell}>Palabra seleccionada</Text>
@@ -63,7 +66,7 @@ export const DescargarJuegoReporte = ({data, juego,}) => {
         <Text style={styles.tableCell}>Palabra a evaluar</Text>
       </View>
     </View>
-    {i.Avance.Incorrecto.map((e)=>(
+    {(avance.Incorrecto !== null && avance.Incorrecto !== undefined) && avance.Incorrecto.map((e)=>(
   <View style={styles.tableRow}>
   <View style={styles.tableCol}>
          <Text style={styles.tableCell}>{e.PalabraASeleccionada} </Text> 
@@ -73,9 +76,10 @@ export const DescargarJuegoReporte = ({data, juego,}) => {
          </View>
     </View>))}
     </View>
-);
-        </>
-      ))}
+       </>))
+    }
+        </>))
+      }
       </View>
       </Page>
         </Document>

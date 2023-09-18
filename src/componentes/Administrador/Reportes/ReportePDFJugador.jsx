@@ -19,9 +19,9 @@ export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) 
               {
                 data[0].documentos.Estudiante !== undefined ? <>
                   <p><span style={{ fontWeight: 700, color: '#8cc5b0' }}>Estudiante:</span> {data[0].documentos.Estudiante.Nombre}</p>
-                  <p><span style={{ fontWeight: 700, color: '#8cc5b0' }}>Cedula:</span> {data[0].documentos.Estudiante.Identificacion}</p>
+                  <p><span style={{ fontWeight: 700, color: '#8cc5b0' }}>Cédula:</span> {data[0].documentos.Estudiante.Identificacion}</p>
                 </> : <><p><span style={{ fontWeight: 700, color: '#8cc5b0' }}>Estudiante:</span> {buscarValor(Estudiantes, Estudiante).label}</p>
-                  <p><span style={{ fontWeight: 700, color: '#8cc5b0' }}>Cedula:</span> {buscarValor(Estudiantes, Estudiante).value}</p></>
+                  <p><span style={{ fontWeight: 700, color: '#8cc5b0' }}>Cédula:</span> {buscarValor(Estudiantes, Estudiante).value}</p></>
               }
               <p><span style={{ fontWeight: 700, color: '#8cc5b0' }}>Actividad:</span> {actividad}</p>
             </Col>
@@ -33,8 +33,8 @@ export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) 
                   <div style={{ backgroundColor: "#E6DFF0", color: "#62269E" }}>
                     <p style={{ fontWeight: 700 }}> <span style={{ color: '#85858C' }} > Fecha de creación del juego:</span> {fechaEcuador(i.documentos.createdAt)} --- <span style={{ color: '#85858C' }}>última fecha de actualización:</span> {fechaEcuador(i.documentos.updatedAt)}</p>
                   </div>
-                  {i.documentos.Avance.map((j, index) => (<>
-                    <h5>{`Juego ${index + 1}`}</h5>
+                  {( i.documentos.Avance !== null && i.documentos.Avance!==undefined) && i.documentos.Avance.map((j, index) => (<>
+                    <h5>{`Actividades ${index + 1}`}</h5>
                     <br />
                     <h5>Correctos</h5>
                     <Table striped>
@@ -44,7 +44,7 @@ export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) 
                         </tr>
                       </thead>
                       <tbody>
-                        {j.Correcto !== null && j.Correcto.map(e => (
+                        {(j.Correcto !== null && j.Correcto !== undefined) && j.Correcto.map(e => (
                           <tr className='m-4'>
                             <td style={{ fontWeight: 700 }}><span style={{ color: "#85858C" }}>{e}</span> </td>
                           </tr>
@@ -61,7 +61,7 @@ export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) 
                         </tr>
                       </thead>
                       <tbody>
-                        {j.Incorrecto !== null && j.Incorrecto.map(e => (
+                        {(j.Incorrecto !== null && j.Incorrecto !== undefined) && j.Incorrecto.map(e => (
                           <tr className='m-4'>
                             <td style={{ fontWeight: 700 }}><span style={{ color: "#85858C" }}>{e.PalabraASeleccionada}</span> </td>
                             <td style={{ fontWeight: 700 }}><span style={{ color: "#85858C" }}>{e.PalabraAEvaluar} </span></td>

@@ -18,7 +18,7 @@ export const DescargarJuegadorReporte = ({ data, actividad, Estudiantes, Estudia
           <View style={{ fontSize: '12px', marginBottom: '11px', textAlign: 'left' }}>
             {data[0].documentos.Estudiante !== undefined ? <>
               <Text><Text style={{ fontWeight: 700, color: '#8cc5b0' }}>Estudiante:</Text> {data[0].documentos.Estudiante.Nombre}</Text>
-              <Text><Text style={{ fontWeight: 700, color: '#8cc5b0' }}>Cedula:</Text> {data[0].documentos.Estudiante.Identificacion}</Text>
+              <Text><Text style={{ fontWeight: 700, color: '#8cc5b0' }}>Cédula:</Text> {data[0].documentos.Estudiante.Identificacion}</Text>
             </> : <> <Text><Text style={{ fontWeight: 700, color: '#8cc5b0' }}>Estudiante:</Text> {buscarValor(Estudiantes, Estudiante).label}</Text>
               <Text><Text style={{ fontWeight: 700, color: '#8cc5b0' }}>Cedula:</Text> {buscarValor(Estudiantes, Estudiante).value}</Text></>}
             <Text><Text style={{ fontWeight: 700, color: '#8cc5b0' }}>Actividad:</Text> {actividad}</Text>
@@ -31,7 +31,7 @@ export const DescargarJuegadorReporte = ({ data, actividad, Estudiantes, Estudia
                   <Text style={styles.tableCell}> <Text style={{ color: '#85858C' }} > Fecha de creación del juego:</Text> {fechaEcuador(i.documentos.createdAt)} --- <Text style={{ color: '#85858C' }}>última fecha de actualización:</Text> {fechaEcuador(i.documentos.updatedAt)}</Text>
                 </View>
                 <View style={{ height: '10px' }}></View>
-                {i.documentos.Avance.map((j, index) => (<>
+                {( i.documentos.Avance !== null && i.documentos.Avance!==undefined) && i.documentos.Avance.map((j, index) => (<>
                 <Text style={{ color: "#000", fontSize: '16px', textAlign: 'left' }}>{`Juego ${index + 1}`}</Text>
                 <View style={{ height: '10px' }}></View>
                 <Text style={{ color: "#000", fontSize: '16px', textAlign: 'center' }}>Correctos</Text>
@@ -42,7 +42,7 @@ export const DescargarJuegadorReporte = ({ data, actividad, Estudiantes, Estudia
                       <Text style={styles.tableCell}>Palabra/Oracion seleccionada</Text>
                     </View>
                   </View>
-                  {j.Correcto !== null && j.Correcto.map((e) => (
+                  {(j.Correcto !== null && j.Correcto !== undefined) && j.Correcto.map((e) => (
                     <View style={styles.tableRow}>
                       <View style={styles.tableCol}>
                         <Text style={styles.tableCell}>{e} </Text>
@@ -61,7 +61,7 @@ export const DescargarJuegadorReporte = ({ data, actividad, Estudiantes, Estudia
                       <Text style={styles.tableCell}>Palabra a evaluar</Text>
                     </View>
                   </View>
-                  {j.Incorrecto !== null && j.Incorrecto.map((e) => (
+                  {(j.Incorrecto !== null && j.Incorrecto !== undefined) && j.Incorrecto.map((e) => (
                     <View style={styles.tableRow}>
                       <View style={styles.tableCol}>
                         <Text style={styles.tableCell}>{e.PalabraASeleccionada} </Text>

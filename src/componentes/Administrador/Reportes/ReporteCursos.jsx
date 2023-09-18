@@ -172,7 +172,7 @@ export const ReporteCursos = () => {
           </PDFDownloadLink>
         </Col>
       </Row>
-      <ReportePDFCurso data={MostrarVocabulario} juego={Juego}  Curso={Curso} Paralelo={Paralelo}/>
+       <ReportePDFCurso data={MostrarVocabulario} juego={Juego}  Curso={Curso} Paralelo={Paralelo}/> 
     </>
   );
 };

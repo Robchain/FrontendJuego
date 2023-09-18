@@ -43,19 +43,6 @@ export const ReporteJuego = () => {
     setMostrarVocabulario([]);
     const data = await ReporteJuegoApi({ Pregunta: Juego, Fecha:picker });
     setMostrarVocabulario(data);
-    // if (Juego === "vocabulario") {
-    //   const data = await ReporteJuegoApi({ Pregunta: Juego });
-    //   setMostrarVocabulario(data);
-    // } else if (Juego === "oracion") {
-    //   const data = await ReporteJuegoApi({ Pregunta: Juego });
-    //   setMostrarVocabulario(data);
-    // } else if (Juego === "Colaborativo") {
-    //   const data = await ReporteJuegoApi({ Pregunta: Juego });
-    //   setMostrarVocabulario(data);
-    // } else if (Juego === "Todos") {
-    //   const data = await ReporteJuegoApi({ Pregunta: Juego });
-    //   setMostrarVocabulario(data);
-    // }
   };
   return (
     <>

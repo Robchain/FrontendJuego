@@ -50,7 +50,12 @@ export  const subidaIOracion =   async  file  =>  {
   const url   = await getDownloadURL(storageRef)
   return  url
 }
-
+export  const subidaQuienImagen =   async  file  =>  {    
+  const storageRef = ref(storage, `oracion/opcionessujeto/${file.name}`)
+  await uploadBytes(storageRef, file)
+  const url   = await getDownloadURL(storageRef)
+  return  url
+}
 export  const subidaIEquipo =   async  file  =>  {    
   const storageRef = ref(storage, `oracion/${file.name}`)
   await uploadBytes(storageRef, file)

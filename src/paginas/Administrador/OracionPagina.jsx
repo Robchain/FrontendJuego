@@ -9,6 +9,8 @@ import { NavBar } from '../../componentes/NavBar'
 import { ActivarJuegoPorCursoParaleloOracion, CrearQuienImagen, DesabilitarOracion, HabilitarOracion, MetodoGetDellamadaOracionActivas } from '../../service/Adminstrador/Oracion'
 import { ModalEditarOracion } from '../../componentes/Administrador/ModalEditarOracion'
 import { ListadoJuegoActivosOracion } from '../../componentes/Administrador/ListadoJuegoActivosOracion';
+import {subidaQuienImagen } from '../../firebase/config';
+import { ListadoQuienAdministrador } from '../../componentes/Administrador/ListadoQuienAdministrador';
 const BaseInicialFormulario = { Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -148,7 +150,8 @@ MySwal.fire({
           try {
             setBloqueoAgregar(true);
             setLoadingAgregar(true);
-            const data = await CrearQuienImagen({Nombre:Nombre, Imagen:Imagen})
+            const fileVideoMuestra = await      subidaQuienImagen(Imagen)
+            const data = await CrearQuienImagen({Nombre:Nombre, Imagen:fileVideoMuestra})
             MySwal.fire({
               title: `${data.titulo}`,
               text: `${data.respuesta}`,
@@ -303,8 +306,8 @@ MySwal.fire({
     </TabPane>
     <TabPane tabId="3" >
       <Row>
-        <Col xl='12' lg="12" className='d-xl p-0 mt-2'>
-        <h3 style={{ color: "#9696D3" }}>Administrar opciones</h3>
+      <h3 style={{ color: "#9696D3" }}>Administrar opciones</h3>
+        <Col xl='6' lg="6" className='d-xl p-0 mt-2'>
         <Col md='6' sm='12' className='mb-1'>
         <h4 style={{ color: "#9696D3" }}>Imagen Quien</h4>
             <Label className='form-label ' for='Nombre'>
@@ -323,6 +326,7 @@ MySwal.fire({
           &nbsp;&nbsp;Agregar
         </Button>
         </Col>
+        <ListadoQuienAdministrador />
       </Row>
     </TabPane>
     </TabContent>
