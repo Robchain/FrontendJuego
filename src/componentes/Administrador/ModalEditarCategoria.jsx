@@ -87,7 +87,7 @@ export const ModalEditarCategoria = ({ modal, toggle, data, juego }) => {
         </Col></Row>
       </ModalBody>
       <ModalFooter>
-        <Button outline style={{ color: '#592a98' }} onClick={() => { disparodeAccion({ type: "onchange", field: "NombreCategoria", value: data.NombreCategoria }); toggle(); }}>
+        <Button outline style={{ color: '#592a98' }} onClick={() => {  toggle(); }}>
           Cancelar
         </Button>&nbsp;&nbsp;
         <Button onClick={() => { EditarData(); }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>

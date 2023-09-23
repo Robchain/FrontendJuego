@@ -107,7 +107,7 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
         </div>
       </ModalBody>
       <ModalFooter>
-        <Button outline style={{ color: '#592a98' }} onClick={toggle} disabled={bloqueoSecu}>
+        <Button outline style={{ color: '#592a98' }} onClick={()=>{ disparodeAccion({type: "reset"});toggle();}} disabled={bloqueoSecu}>
           Cancelar
         </Button>&nbsp;&nbsp;
         <Button onClick={() => {

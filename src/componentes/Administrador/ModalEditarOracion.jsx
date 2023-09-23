@@ -33,8 +33,9 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
         disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
         disparodeAccion({ type: "onchange", field: "Oracion", value: dataBase.Oracion });
         disparodeAccion({ type: "onchange", field: "Verbo", value: dataBase.Verbo });
-
-    }, [])
+        setCheckbos(false);
+        setCheckbosDos(false);
+    }, [dataBase, modal])
     const llamdaInicialListado = async () => {
         const data = await llamadaGetApiCategoriaOracion();
         setListadoOption(data);
@@ -208,10 +209,6 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
             </ModalBody>
             <ModalFooter>
                 <Button outline style={{ color: '#592a98' }} disabled={bloqueoSecu} onClick={() => {
-                    disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
-                    disparodeAccion({ type: "onchange", field: "Oracion", value: dataBase.Oracion });
-                    disparodeAccion({ type: "onchange", field: "Verbo", value: dataBase.Verbo }); 
-                    setCheckbosDos(false); 
                     toggle();
                 }}>
                     Cancelar

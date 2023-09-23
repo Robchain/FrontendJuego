@@ -33,6 +33,11 @@ export const ModalEditarEquipo = ({modal, toggle,baseData}) => {
       }
   }, [Nombre, Imagen])
   
+  useEffect(() => {
+    disparodeAccion({ type: "onchange", field: "Nombre", value: baseData.Nombre })
+  }, [baseData, modal]);
+
+
   const uploaddata = async ()=>{
     try {
         let _id = baseData._id;
@@ -89,6 +94,7 @@ export const ModalEditarEquipo = ({modal, toggle,baseData}) => {
               <Input type='text' id='Nombre' name="Nombre" placeholder='Nombre' 
              onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}
               defaultValue={baseData.Nombre}
+              value={Nombre}
               />
               <Input id="exampleCheck"    name="check" type="checkbox"   onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
                 <Label  check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}> Editar imagen</Label>

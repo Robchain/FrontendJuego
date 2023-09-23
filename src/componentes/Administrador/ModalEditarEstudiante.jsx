@@ -7,7 +7,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { useReducer } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, Input, Spinner } from 'reactstrap';
 import { subidaIPerfil } from '../../firebase/config';
-import { editarPersonaconImagen, editarPersonasinImagen } from '../../service/Adminstrador/Usuarios';
+import { MostrarCurso, MostrarParalelo, editarPersonaconImagen, editarPersonasinImagen } from '../../service/Adminstrador/Usuarios';
 
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -21,6 +21,8 @@ function llenadodeFormulario(state, action) {
 export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
     const BaseInicialFormulario = { Nombre: dataBase.Nombre, Apellido: dataBase.Apellido, Identificacion: dataBase.Identificacion,FotoPerfil:undefined, Email:dataBase.Email, Usuario: dataBase.Usuario, TipoUsuario: dataBase.TipoUsuario, Curso:  dataBase.Curso, Paralelo:  dataBase.Paralelo }
   const [loading, setLoading] = useState(false);
+  const [cursoData, setcursoData] = useState([]);
+  const [paraleloData, setparaleloData] = useState([])
   const MySwal = withReactContent(Swal)
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
   const [checkbosDos, setCheckbosDos] = useState(false);
@@ -34,6 +36,19 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
     }
   }, [Nombre, Apellido, Identificacion, Email, Usuario, TipoUsuario, Curso, Paralelo,FotoPerfil])
 
+  const dataCurso = async ()=>{
+
+    const data = await MostrarCurso();
+    setcursoData(data);
+  }
+  const dataParalelo = async ()=>{
+    const data = await MostrarParalelo();
+    setparaleloData(data)
+  }
+  useEffect(() => {
+    dataCurso();
+    dataParalelo();
+  }, [])
   const onsubmit = async ()=>{
 try {
     let _id=dataBase._id;
@@ -134,11 +149,11 @@ try {
             <Label className='form-label' for='Curso'>
               Curso
             </Label>
-            <Select name="Curso" isSearchable={false} defaultValue={{value:dataBase.Curso,label:dataBase.Curso}} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={[{value:"PRIMERO", label:"PRIMERO"},{value:"SEGUNDO", label:"SEGUNDO"},{value:"TERCERO", label:"TERCERO"},]} />
+            <Select name="Curso" isSearchable={false} defaultValue={{value:dataBase.Curso,label:dataBase.Curso}} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.label }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
             <Label className='form-label' for='Paralelo'>
               Paralelo
             </Label>
-            <Select name="Paralelo" isSearchable={false} defaultValue={{value:dataBase.Paralelo,label:dataBase.Paralelo}} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={[{value:"A", label:"A"},{value:"B", label:"B "},{value:"C", label:"C"},{value:"D", label:"D"},{value:"E", label:"E"},{value:"F", label:"F"},]}  />
+            <Select name="Paralelo" isSearchable={false} defaultValue={{value:dataBase.Paralelo,label:dataBase.Paralelo}} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.label }) }   options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
           </Col>     
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='EmailMulti'>

@@ -306,7 +306,7 @@ MySwal.fire({
     </TabPane>
     <TabPane tabId="3" >
       <Row>
-      <h3 style={{ color: "#9696D3" }}>Administrar opciones</h3>
+      <h3 style={{ color: "#9696D3" }}>Administrador de opciones</h3>
         <Col xl='6' lg="6" className='d-xl p-0 mt-2'>
         <Col md='6' sm='12' className='mb-1'>
         <h4 style={{ color: "#9696D3" }}>Imagen Quien</h4>

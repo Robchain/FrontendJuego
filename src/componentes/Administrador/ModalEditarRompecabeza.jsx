@@ -35,8 +35,8 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
     useEffect(() => {
         disparodeAccion({ type: "onchange", field: "Nombre", value: dataBase.Nombre });
         disparodeAccion({ type: "onchange", field: "Pieza", value: dataBase.Pieza });
-
-    }, [])    
+        setCheckbos(false); 
+    }, [dataBase, modal])    
 
     const uploadData = async () => {
         try {
@@ -155,9 +155,6 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
             </ModalBody>
             <ModalFooter>
                 <Button outline style={{ color: '#592a98' }} onClick={() => {
-                    disparodeAccion({ type: "onchange", field: "Nombre", value: dataBase.Nombre });
-                    disparodeAccion({ type: "onchange", field: "Pieza", value: dataBase.Pieza }); 
-                    setCheckbos(false); 
                     toggle()
                 }} disabled={bloqueoSecu}>
                     Cancelar

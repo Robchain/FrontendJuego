@@ -1,4 +1,4 @@
-import React from 'react'
+ import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Select from 'react-select';
@@ -7,7 +7,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { useReducer } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, Input, Spinner } from 'reactstrap';
 import { subidaIPerfil } from '../../firebase/config';
-import { CrearUsuario, signupsinfoto } from '../../service/Adminstrador/Usuarios';
+import { CrearUsuario, MostrarCurso, MostrarParalelo, signupsinfoto } from '../../service/Adminstrador/Usuarios';
 
 const BaseInicialFormulario = { Nombre: "", Apellido: "", Identificacion: "",FotoPerfil:undefined, Email: "", Usuario: "", Password: "", TipoUsuario: "", Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
@@ -25,6 +25,8 @@ export const ModalAgregarEstudiante = ({ modal, toggle }) => {
   const [loading, setLoading] = useState(false);
   const MySwal = withReactContent(Swal)
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
+  const [cursoData, setcursoData] = useState([]);
+  const [paraleloData, setparaleloData] = useState([])
     const [contraseñaUno, setContraseñaUno] = useState("");
     const [contraseñaDos, setContraseñaDos] = useState("");
   const [bloqueo, setbloqueo] = useState(true)
@@ -36,6 +38,20 @@ export const ModalAgregarEstudiante = ({ modal, toggle }) => {
       setbloqueo(true);
     }
   }, [Nombre, Apellido, Identificacion, Email, Usuario, Password, TipoUsuario, Curso, Paralelo,contraseñaUno,contraseñaUno,FotoPerfil])
+
+const dataCurso = async ()=>{
+
+  const data = await MostrarCurso();
+  setcursoData(data);
+}
+const dataParalelo = async ()=>{
+  const data = await MostrarParalelo();
+  setparaleloData(data)
+}
+useEffect(() => {
+  dataCurso();
+  dataParalelo();
+}, [])
 
   const onsubmit = async ()=>{
 try {
@@ -147,11 +163,11 @@ try {
             <Label className='form-label' for='Curso'>
               Curso
             </Label>
-            <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={[{value:"PRIMERO", label:"PRIMERO"},{value:"SEGUNDO", label:"SEGUNDO"},{value:"TERCERO", label:"TERCERO"},]} />
+            <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.label }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
             <Label className='form-label' for='Paralelo'>
               Paralelo
             </Label>
-            <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={[{value:"A", label:"A"},{value:"B", label:"B "},{value:"C", label:"C"},{value:"D", label:"D"},{value:"E", label:"E"},{value:"F", label:"F"},]}  />
+            <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.label }) } options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
           </Col>     
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='EmailMulti'>

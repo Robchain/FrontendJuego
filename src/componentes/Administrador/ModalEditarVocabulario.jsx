@@ -52,9 +52,9 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
         disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
         disparodeAccion({ type: "onchange", field: "Palabra", value: dataBase.Palabra });
         disparodeAccion({ type: "onchange", field: "Silaba", value: dataBase.Silaba });
+        setBloqueo(true); setCheckbos(false);
 
-
-    }, [])
+    }, [dataBase, modal])
     const uploadData = async () => {
         try {
             let _id = dataBase._id;
@@ -146,9 +146,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
             </ModalBody>
             <ModalFooter>
                 <Button outline style={{ color: '#592a98' }} onClick={() => {
-                    disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
-                    disparodeAccion({ type: "onchange", field: "Palabra", value: dataBase.Palabra });
-                    disparodeAccion({ type: "onchange", field: "Silaba", value: dataBase.Silaba }); setBloqueo(true); setCheckbos(false); toggle();
+                     toggle();
                 }} disabled={bloqueoSecu}>
                     Cancelar
                 </Button>&nbsp;&nbsp;

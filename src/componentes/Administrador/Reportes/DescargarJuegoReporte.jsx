@@ -23,7 +23,7 @@ export const DescargarJuegoReporte = ({data, juego,}) => {
         </>}
         <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Actividad:</Text> {(i.documentos.Integrantes !== undefined && i.documentos.Integrantes !== null) ? 'Colaborativo' : juego}</Text>
         {
-  (i.documentos.Equipo!==undefined && i.Equipo!==null ) &&<><Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Equipo:</Text> {i.documentos.Equipo.Nombre}</Text></>}
+  (i.documentos.Equipo!==undefined && i.documentos.Equipo!==null ) &&<><Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Equipo:</Text> {i.documentos.Equipo.Nombre}</Text></>}
   {(i.documentos.Integrantes !== undefined && i.documentos.Integrantes !== null) &&
     <>
     <Text><Text style={{fontWeight:700,color:'#8cc5b0'}}>Integrantes:</Text></Text>
@@ -39,7 +39,7 @@ export const DescargarJuegoReporte = ({data, juego,}) => {
     {
        (i.documentos.Avance !== null && i.documentos.Avance !== undefined) && i.documentos.Avance.map((avance, index) => (<>
        <View style={{height:'10px'}}></View>
-<Text style={{ color: "#000",fontSize:'16px', textAlign:'center'}}>Correctos</Text>
+<Text style={{ color: "#000",fontSize:'16px', textAlign:'left'}}>Correctos</Text>
 <View style={{height:'10px'}}></View>
 <View style={styles.table}>
     <View style={styles.tableRow}>
@@ -55,7 +55,7 @@ export const DescargarJuegoReporte = ({data, juego,}) => {
     </View>))}
     </View>
     <View style={{height:'10px'}}></View>
-<Text style={{ color: "#000",fontSize:'16px', textAlign:'center'}}>Incorrectos</Text>
+<Text style={{ color: "#000",fontSize:'16px', textAlign:'left'}}>Incorrectos</Text>
 <View style={{height:'10px'}}></View>
 <View style={styles.table}>
     <View style={styles.tableRow}>
@@ -95,19 +95,17 @@ const styles = StyleSheet.create({
     display: 'table',
     width: 'auto',
     borderStyle: 'solid',
-    borderWidth: 1,
     borderRightWidth: 0,
     borderBottomWidth: 0,
   },
   tableRow: {
-    margin: 'auto',
+    margin: '0 10',
     flexDirection: 'row',
   },
   tableCol: {
     width: '33%',
     borderStyle: 'solid',
     borderWidth: 1,
-    borderLeftWidth: 0,
     borderTopWidth: 0,
     color:"#85858C"
   },
@@ -115,8 +113,8 @@ const styles = StyleSheet.create({
     width: '33%',
     borderStyle: 'solid',
     borderWidth: 1,
-    borderLeftWidth: 0,
-    borderTopWidth: 0,
+    // borderLeftWidth: 0,
+    // borderTopWidth: 0,
     color:"#62269E",
     backgroundColor:'#E6DFF0'
   },

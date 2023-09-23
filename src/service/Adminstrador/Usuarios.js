@@ -117,3 +117,58 @@ export const editarPersonaconImagen = async ({_id,Nombre,
       const data = await Api.post("/Perfiles/ActualizarContrasenia",{_id:_id,Password:Password});
       return data.data;
     }
+
+
+
+
+  // curso
+export const CrearCurso = async({Nombre})=>{
+  const data = await Api.post('/CrearCurso', {Nombre:Nombre});
+  return data.data;
+}
+
+export const MostrarCurso = async()=>{
+  const data = await Api.get('/MostrarCurso');
+  return data.data;
+}
+export const DesibilitarCurso = async({_id})=>{
+  const data = await Api.post('/DesibilitarCurso', {_id:_id});
+  return data.data;
+}
+export const HabilitarCurso = async({_id})=>{
+  const data = await Api.post('/HabilitarCurso', {_id:_id});
+  return data.data;
+}
+
+export const EditarCurso = async({_id, Nombre})=>{
+  const data = await Api.post('/EditarCurso', {_id:_id,Nombre:Nombre});
+  return data.data;
+}
+
+
+  //paralelo
+  export const CrearParalelo = async({Nombre})=>{
+    const data = await Api.post('/CrearParalelo', {Nombre:Nombre});
+    return data.data;
+  }
+
+  export const MostrarParalelo = async()=>{
+    const data = await Api.get('/MostrarParalelo');
+    return data.data;
+  }
+  
+  export const DesibilitarParalelo = async({_id})=>{
+    const data = await Api.post('/DesibilitarParalelo', {_id:_id});
+    return data.data;
+  }
+  
+  export const HabilitarParalelo = async({_id})=>{
+    const data = await Api.post('/HabilitarParalelo', {_id:_id});
+    return data.data;
+  }
+  
+  export const EditarParalelo = async({_id, Nombre})=>{
+    const data = await Api.post('/EditarParalelo', {_id:_id,Nombre:Nombre});
+    return data.data;
+  }
+  

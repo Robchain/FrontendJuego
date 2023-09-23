@@ -32,6 +32,12 @@ export const ModalEditarQuienData = ({modal, toggle, baseData}) => {
           }
         }
     }, [Nombre, Imagen])
+
+    useEffect(() => {
+      disparodeAccion({ type: "onchange", field: "Nombre", value: baseData.Nombre })
+      setCheckbosDos(false);
+    }, [baseData, modal])
+    
     
     const uploaddata = async ()=>{
       try {
@@ -82,13 +88,14 @@ export const ModalEditarQuienData = ({modal, toggle, baseData}) => {
     }
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
-    <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Editar equipo</ModalHeader>
+    <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Editar Sujetos</ModalHeader>
     <ModalBody>
     <div className='mb-2'>
-              <Label className='form-label' for='Nombre'>Nombre</Label>
+              <Label className='form-label' for='Nombre'>Sujeto</Label>
               <Input type='text' id='Nombre' name="Nombre" placeholder='Nombre' 
              onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}
               defaultValue={baseData.Nombre}
+              value={Nombre}
               />
               <Input id="exampleCheck"    name="check" type="checkbox"   onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
                 <Label  check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}> Editar imagen</Label>
@@ -100,7 +107,7 @@ export const ModalEditarQuienData = ({modal, toggle, baseData}) => {
    } </div>
     </ModalBody>
     <ModalFooter>
-    <Button  outline style={{color:'#592a98'}} disabled={bloqueoSecu} onClick={() => { setCheckbosDos(false); toggle();  }}>
+    <Button  outline style={{color:'#592a98'}} disabled={bloqueoSecu} onClick={() => {  toggle();  }}>
             Cancelar
           </Button>&nbsp;&nbsp;
           <Button  onClick={()=>{uploaddata()}} disabled={bloqueo} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>

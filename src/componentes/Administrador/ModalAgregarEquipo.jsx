@@ -27,7 +27,11 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
       }else{
         setBloqueo(true);
       }
+
   }, [Nombre, Imagen])
+
+
+  
   
   const uploaddata = async ()=>{
     try {
@@ -51,7 +55,7 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo Crear",
+        text: "No se puede crear",
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -72,6 +76,7 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
     <div className='mb-2'>
               <Label className='form-label' for='Nombre'>Nombre</Label>
               <Input type='text' id='Nombre' name="Nombre" placeholder='Nombre' 
+              value={Nombre}
              onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}
               />
               <Label className='form-label' for='Imagen'>
@@ -81,7 +86,7 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
             </div>
     </ModalBody>
     <ModalFooter>
-    <Button  outline style={{color:'#592a98'}} disabled={bloqueoSecu} onClick={toggle}>
+    <Button  outline style={{color:'#592a98'}} disabled={bloqueoSecu} onClick={()=>{ disparodeAccion({type: "reset"});toggle();}}>
             Cancelar
           </Button>&nbsp;&nbsp;
           <Button  onClick={()=>{uploaddata()}} disabled={bloqueo} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>

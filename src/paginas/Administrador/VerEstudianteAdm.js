@@ -10,6 +10,7 @@ import { MostrarEstudiante, desabilitarPersonasApi, habilitarPersonasApi, listad
 import { ModalEditarEstudiante } from '../../componentes/Administrador/ModalEditarEstudiante';
 import { ModalDetalleUsuario } from '../../componentes/Administrador/ModalDetalleUsuario';
 import { ModalActualizarContra } from '../../componentes/Administrador/ModalActualizarContra';
+import { AdministradorOpcionesEstudiante } from '../../componentes/Administrador/AdministradorOpcionesEstudiante';
 const VerEstudianteAdm = () => {
   const [modalDetalle, setModalDetalle] = useState(false);
   const MySwal = withReactContent(Swal)
@@ -118,6 +119,14 @@ const VerEstudianteAdm = () => {
                 onClick={() => { setTabs("2") }}
               >
                 Profesores
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                style={{ color: "#62259E" }}
+                onClick={() => { setTabs("3") }}
+              >
+                Administrador de opciones
               </NavLink>
             </NavItem>
           </Nav>
@@ -311,6 +320,9 @@ const VerEstudianteAdm = () => {
             </tbody>
           </Table>
         </Col>
+        </TabPane>
+        <TabPane tabId="3" >
+<AdministradorOpcionesEstudiante/>
         </TabPane>
         </TabContent>
       </Row>

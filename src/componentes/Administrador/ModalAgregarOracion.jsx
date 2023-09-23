@@ -173,7 +173,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
         </Row>
       </ModalBody>
       <ModalFooter>
-        <Button outline style={{ color: '#592a98' }} disabled={bloqueoSecu} onClick={() => { toggle(); setCheckbos(false); disparodeAccion({ type: "reset" }); }}>
+        <Button outline style={{ color: '#592a98' }} disabled={bloqueoSecu} onClick={() => { disparodeAccion({ type: "reset" });setCheckbos(false); toggle();   }}>
           Cancelar
         </Button>&nbsp;&nbsp;
         <Button onClick={() => { uploadData(); }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>

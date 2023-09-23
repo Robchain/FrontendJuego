@@ -33,6 +33,7 @@ const Index = () => {
     }
     const postUsurio = async () => {
         try {
+            setBloqeo(true);
            const data = await  LoginAPI({Email:Datos.Email, Password:Datos.Password});
            if (data.respuesta !== 'Contraseña incorrecta' && data.respuesta !== 'falta correo y contraseña' && data.respuesta !== 'Correo o contraseña incorrecta') {
             if (data.TipoUsuario === 'DOCENTE') {
@@ -52,11 +53,15 @@ const Index = () => {
                 localStorage.setItem("Apellido", data.Apellido)
                 entrar('/MenuJuego');
             }
+            setBloqeo(false);
         } else {
+
             setMensajeContraseña(true);
+            setBloqeo(false);
         }
         } catch (e) {
             SetMensajeServicio(true)
+            setBloqeo(false);
         }
     }
     const handleSudmit = (e) => {
