@@ -74,7 +74,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
       setBloqueoSecu(false);
       setBloqueo(false);
       setLoading(false);
-
+      toggle();
 
     } catch (error) {
       MySwal.fire({
@@ -110,7 +110,27 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
 
 
 
+  const handleChangeFile = ({event,field }) => {
+    const selectedFile = event.target.files[0];
 
+    if (selectedFile) {
+      // Verificar la extensión del archivo
+      const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+      const fileNameParts = selectedFile.name.split('.');
+      const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+
+      if (!allowedExtensions.includes(fileExtension)) {
+        // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
+        alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
+        event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+        return;
+      } 
+
+      // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
+      // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
+      disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+    }
+  };
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Agregar Oración</ModalHeader>
@@ -137,7 +157,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
             <Label className='form-label' for='FileVideoMuestra'>
             Video respuesta
             </Label>
-            <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoMuestra", value: e.target.files[0] })} />
+            <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra' onChange={e => handleChangeFile({event:e, field:'FileVideoMuestra'}) } />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Verbo'>
@@ -149,7 +169,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
             <Label className='form-label' for='FileVideoPreguntaQue'>
               Video pregunta Que
             </Label>
-            <Input type='file' id='FileVideoPreguntaQue' name='FileVideoPreguntaQue' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoPreguntaQue", value: e.target.files[0] })} />
+            <Input type='file' id='FileVideoPreguntaQue' name='FileVideoPreguntaQue' onChange={e => handleChangeFile({event:e, field:'FileVideoPreguntaQue'}) } />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Input id="AdverbioCheck" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} /> <Label check for="AdverbioCheck" style={{ color: '#8b8b8c', fontWeight: "700" }} >Adverbio</Label>
@@ -162,7 +182,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
             <Label className='form-label' for='FileVideoPreguntaQuien'>
               Video pregunta Quien
             </Label>
-            <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => disparodeAccion({ type: "onchange", field: "FileVideoPreguntaQuien", value: e.target.files[0] })} />
+            <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => handleChangeFile({event:e, field:'FileVideoPreguntaQuien'}) } />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Que'>

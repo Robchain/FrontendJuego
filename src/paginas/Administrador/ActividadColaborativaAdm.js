@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { Button, Card, CardBody, CardImg, Col, Container, Label, Row } from "reactstrap";
+import { Button, Col, Container, Label, Row } from "reactstrap";
 import { Stepbar } from "../../componentes/Administrador/Stepbar";
 import { AdmiMenu } from "../../componentes/AdmiMenu";
 import { NavBar } from "../../componentes/NavBar";
@@ -8,9 +8,11 @@ import { PasoUnoFormulario } from "../../componentes/Administrador/PasoUnoFormul
 import { PasoDosFormulario } from "../../componentes/Administrador/PasoDosFormulario";
 import { PasoTresFormulario } from "../../componentes/Administrador/PasoTresFormulario";
 import { PasoCuatroFormulario } from "../../componentes/Administrador/PasoCuatroFormulario";
-import { fechaEcuador, nombre, ordenarYagrupar } from "../../helpers/contador";
+import {  ordenarYagrupar } from "../../helpers/contador";
 import { LlamadaDeLLenadoDeEstudianteMultiJugador, historialJuego } from "../../service/Multijugador";
 import { HistorialDeAsignaciones } from "../../componentes/Administrador/HistorialDeAsignaciones";
+import { ListadoHistoriaDeAsignaciones } from "../../componentes/Administrador/ListadoHistoriaDeAsignaciones";
+
 const estadoInicialFormularioActividad = { NumeroDeGrupos: {}, NumeroDeIntegrantes: {}, NombreDeEquipo: [], TipoDeJuego: 1, Aleatorio: false }
 
 function ActualizacionDeDataFormularioEquipo(state, action) {
@@ -185,11 +187,11 @@ debugger
           }
           {
             historial.length > 0 && <div> <br /> <h4 style={{ color: "#85858C", fontSize: '1.5em' }}>Historial de juegos</h4> 
-            
+
             {historial.map(i=>(
- <HistorialDeAsignaciones data={i.documentos} />)
- 
-            )}
+ < ListadoHistoriaDeAsignaciones data={i.documentos}/>
+            ))
+            }
            </div>
           }
 

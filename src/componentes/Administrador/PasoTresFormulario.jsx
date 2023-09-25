@@ -18,7 +18,7 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, 
       <CardBody>
         <div className='content-header'>
           <h5 className='mb-0'>Tiempo de la actividad</h5>
-          <small></small>
+          <small>La fecha de inicio y fecha final de la actividad no deben de chocar con las demás actividades</small>
         </div>
         <Row>
           <Col d='6' className='mb-1' >

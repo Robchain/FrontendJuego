@@ -62,6 +62,7 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
       setBloqueoSecu(false);
       setBloqueo(false);
       setLoading(false);
+      toggle();
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
@@ -78,6 +79,27 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
       toggle();
     }
   }
+  const handleChange = ({event,field }) => {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      // Verificar la extensión del archivo
+      const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+      const fileNameParts = selectedFile.name.split('.');
+      const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+
+      if (!allowedExtensions.includes(fileExtension)) {
+        // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
+        alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
+        event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+        return;
+      } 
+
+      // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
+      // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
+      disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+    }
+  };
 
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered'>
@@ -93,15 +115,15 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
           <Label className='form-label' for='inputImage'>
             Imagen
           </Label>
-          <Input type='file' id='inputImage' name='FileImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileImagen", value: e.target.files[0] })} />
+          <Input type='file' id='inputImage' name='FileImagen' onChange={e => handleChange({event:e, field:'FileImagen'})} />
           <Label className='form-label' for='inputVideoM'>
           Video respuesta
           </Label>
-          <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => disparodeAccion({ type: "onchange", field: "FileMuestra", value: e.target.files[0] })} />
+          <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => handleChange({event:e, field:'FileMuestra'})} />
           <Label className='form-label' for='inputask'>
             Video de pregunta
           </Label>
-          <Input type='file' id='inputask' name='FilePregunta' onChange={e => disparodeAccion({ type: "onchange", field: "FilePregunta", value: e.target.files[0] })} />
+          <Input type='file' id='inputask' name='FilePregunta' onChange={e => handleChange({event:e, field:'FilePregunta'})} />
         </div>
       </ModalBody>
       <ModalFooter>

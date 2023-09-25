@@ -49,6 +49,20 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
     dataCurso();
     dataParalelo();
   }, [])
+
+useEffect(() => {
+  
+  disparodeAccion({ type: "onchange", field: "Nombre" , value: dataBase.Nombre })
+  disparodeAccion({ type: "onchange", field: "Apellido" , value: dataBase.Apellido })
+  disparodeAccion({ type: "onchange", field: "Identificacion" , value: dataBase.Identificacion })
+  disparodeAccion({ type: "onchange", field: "Email" , value: dataBase.Email })
+  disparodeAccion({ type: "onchange", field: "Usuario" , value: dataBase.Usuario })
+  disparodeAccion({ type: "onchange", field: "TipoUsuario" , value: dataBase.TipoUsuario })
+
+  setCheckbosDos(false);
+}, [dataBase, modal])
+
+
   const onsubmit = async ()=>{
 try {
     let _id=dataBase._id;
@@ -73,7 +87,7 @@ try {
       title: `${data.titulo}`,
       text: `${data.respuesta}`,
       icon: `${data.type}`,
-      customClass: {
+      customClass: { 
         confirmButton: 'btn btn-primary'
       },
       buttonsStyling: false
@@ -99,7 +113,36 @@ try {
   toggle();
 }
   }
+  const handleChangeFile = ({event,field }) => {
+    const selectedFile = event.target.files[0];
 
+    if (selectedFile) {
+      // Verificar la extensión del archivo
+      const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+      const fileNameParts = selectedFile.name.split('.');
+      const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+
+      if (!allowedExtensions.includes(fileExtension)) {
+        // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
+        alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
+        event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+        return;
+      } 
+
+      // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
+      // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
+      disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+    }
+  };
+  const handleChange = (event) => {
+    // Aquí puedes agregar lógica para limitar la longitud máxima a 15 caracteres
+    const inputValue = event.target.value.slice(0, 15);
+
+    // Aquí puedes permitir números y letras, eliminando cualquier otro carácter no deseado
+    const cleanedValue = inputValue.replace(/[^A-Za-z0-9]/g, '');
+
+    disparodeAccion({ type: "onchange", field: event.target.name, value: cleanedValue })
+  };
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar Usuario</ModalHeader>
@@ -109,32 +152,32 @@ try {
             <Label className='form-label' for='nameMulti'>
               Nombre
             </Label>
-            <Input type='text' name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} />
+            <Input type='text' name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} value={Nombre} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='lastNameMulti'>
               Apellido
             </Label>
-            <Input type='text' name='Apellido' id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Apellido} />
+            <Input type='text' name='Apellido' id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Apellido} value={Apellido} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='cityMulti'>
             Identificación
             </Label>
-            <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificación' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Identificacion} />
+            <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificación' onChange={handleChange} defaultValue={dataBase.Identificacion} value={Identificacion} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CountryMulti'>
             Correo electrónico
             </Label>
-            <Input type='text' name='Email' id='CountryMulti' placeholder='Correo electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Email} />
+            <Input type='text' name='Email' id='CountryMulti' placeholder='Correo electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Email}  value={Email} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CompanyMulti'>
               Usuario
             </Label>
             <Input type='text' name='Usuario' id='CompanyMulti' placeholder='Usuario' 
-            onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Usuario} />
+            onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Usuario}  value={Usuario}/>
           </Col>
           <Col md='6' sm='12' className='mb-1'>
           <Input id="exampleCheck"    name="check" type="checkbox"   onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
@@ -143,7 +186,7 @@ try {
             <Label className='form-label' for='inputFile'>
               Foto de perfil
             </Label>
-            <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => disparodeAccion({ type: "onchange", field: 'FotoPerfil', value: e.target.files[0] }) } />
+            <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({event:e, field:"FotoPerfil"})} />
             </>}</Col>
             <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Curso'>
@@ -179,7 +222,7 @@ try {
         </Row>
       </ModalBody>
       <ModalFooter>
-        <Button outline disabled={bloqueoSecu} style={{ color: '#592a98' }} onClick={()=>{toggle(); setCheckbosDos(false);}}>
+        <Button outline disabled={bloqueoSecu} style={{ color: '#592a98' }} onClick={()=>{toggle();}}>
           Cancelar
         </Button>&nbsp;&nbsp;
         <Button disabled={bloqueo} onClick={() => { onsubmit() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>

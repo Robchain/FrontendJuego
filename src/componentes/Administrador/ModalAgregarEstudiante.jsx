@@ -97,6 +97,36 @@ try {
 }
   }
 
+  const handleChange = (event) => {
+    // Aquí puedes agregar lógica para limitar la longitud máxima a 15 caracteres
+    const inputValue = event.target.value.slice(0, 15);
+
+    // Aquí puedes permitir números y letras, eliminando cualquier otro carácter no deseado
+    const cleanedValue = inputValue.replace(/[^A-Za-z0-9]/g, '');
+
+    disparodeAccion({ type: "onchange", field: event.target.name, value: cleanedValue })
+  };
+  const handleChangeFile = ({event,field }) => {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      // Verificar la extensión del archivo
+      const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+      const fileNameParts = selectedFile.name.split('.');
+      const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+
+      if (!allowedExtensions.includes(fileExtension)) {
+        // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
+        alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
+        event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+        return;
+      } 
+
+      // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
+      // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
+      disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+    }
+  };
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Agregar Usuario</ModalHeader>
@@ -118,7 +148,7 @@ try {
             <Label className='form-label' for='cityMulti'>
             Identificación
             </Label>
-            <Input type='number' name='Identificacion' id='cityMulti' placeholder='Identificación' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Identificacion} />
+            <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificación' onChange={handleChange} value={Identificacion} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CountryMulti'>
@@ -146,7 +176,7 @@ try {
             <Label className='form-label' for='inputFile'>
               Foto de perfil
             </Label>
-            <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => disparodeAccion({ type: "onchange", field: 'FotoPerfil', value: e.target.files[0] }) } />
+            <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({event:e, field:'FotoPerfil'}) } />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='EmailMulti2'>

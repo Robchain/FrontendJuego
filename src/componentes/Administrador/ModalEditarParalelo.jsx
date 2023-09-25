@@ -22,8 +22,8 @@ import { EditarParalelo } from '../../service/Adminstrador/Usuarios';
 
 
   const EditarData = async () => {
+    let _id = data._id 
     try {
-      let _id = data._id
       const data = await EditarParalelo({ _id:_id, Nombre:Paralelo });
       MySwal.fire({
         title: `${data.titulo}`,

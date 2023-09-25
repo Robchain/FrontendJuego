@@ -17,6 +17,17 @@ const Options2 = [
 ]
 export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo,TipoDeJuego }) => {
   const [TeamData, setTeamData] = useState([]);
+  const [bloqueosiguiente, setbloqueosiguiente] = useState(true);
+
+
+  useEffect(() => {
+   if( NombreDeEquipo.length >= parseInt(NumeroDeGrupos.value)){
+    setbloqueosiguiente(false)
+   }else{ setbloqueosiguiente(true)
+
+   }
+  }, [NombreDeEquipo, NumeroDeGrupos])
+  
   const llamadaDataInicial  = async ()=>{
     const data = await todosTeam();
     setTeamData(data);
@@ -26,10 +37,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
     llamadaDataInicial()
   }, [])
 
-  useEffect(() => {
-    console.log(TipoDeJuego)
-  }, [TipoDeJuego])
-  
+
   return (
     <Card className="mt-5">
       <CardBody>
@@ -109,7 +117,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
         <ArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
         Atrás
         </Button>
-        <Button onClick={nextButton} disabled={NombreDeEquipo.length < 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+        <Button onClick={nextButton} disabled={bloqueosiguiente} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Siguiente
           <ArrowRight  size={14} className='align-middle ms-sm-25 ms-0'/>
         </Button>

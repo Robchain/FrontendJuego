@@ -32,8 +32,8 @@ const [{Curso}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFormulari
 
 
   const EditarData = async () => {
+    let _id = data._id
     try {
-      let _id = data._id
       const data = await EditarCurso({ _id:_id, Nombre:Curso });
       MySwal.fire({
         title: `${data.titulo}`,
@@ -70,7 +70,7 @@ const [{Curso}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFormulari
         <Button outline style={{ color: '#592a98' }} onClick={() => { toggle(); }}>
           Cancelar
         </Button>&nbsp;&nbsp;
-        <Button onClick={() => { EditarData(); }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+        <Button onClick={EditarData} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Editar
         </Button>
       </ModalFooter>

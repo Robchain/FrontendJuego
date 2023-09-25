@@ -238,7 +238,7 @@ MySwal.fire({
           </CardBody>
           <CardFooter>
            <Button style={{color:'#592a98'}} outline  onClick={() => i.Estado==="ACTIVO" ?  Desabilitar(i) : Habilitar(i)} >
-           {i.Estado==="ACTIVO" ? <span>Eliminar</span> : <span>Activar</span>}
+           {i.Estado==="ACTIVO" ? <span>Desactivar</span> : <span>Activar</span>}
             </Button>
             <span>&nbsp;&nbsp;&nbsp;</span>
             <Button style={{background:'#5b2998', color:'#fff'}} outline onClick={() =>  {setDataSeleccionada(i);toggleEdicion();}} >
@@ -266,7 +266,7 @@ MySwal.fire({
           </CardBody>
           <CardFooter>
            <Button style={{color:'#592a98'}} outline  onClick={() => i.Estado==="ACTIVO" ?  Desabilitar(i) : Habilitar(i)} >
-           {i.Estado==="ACTIVO" ? <span>Eliminar</span> : <span>Activar</span>}
+           {i.Estado==="ACTIVO" ? <span>Desactivar</span> : <span>Activar</span>}
             </Button>
             <span>&nbsp;&nbsp;&nbsp;</span>
             <Button style={{background:'#5b2998', color:'#fff'}} outline onClick={() =>  {setDataSeleccionada(i);toggleEdicion();}} >

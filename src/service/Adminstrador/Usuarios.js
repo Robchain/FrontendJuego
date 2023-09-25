@@ -141,7 +141,7 @@ export const HabilitarCurso = async({_id})=>{
 }
 
 export const EditarCurso = async({_id, Nombre})=>{
-  const data = await Api.post('/EditarCurso', {_id:_id,Nombre:Nombre});
+  const data = await Api.post("/EditarCurso", {_id:_id,Nombre:Nombre});
   return data.data;
 }
 
@@ -168,7 +168,7 @@ export const EditarCurso = async({_id, Nombre})=>{
   }
   
   export const EditarParalelo = async({_id, Nombre})=>{
-    const data = await Api.post('/EditarParalelo', {_id:_id,Nombre:Nombre});
+    const data = await Api.post("/EditarParalelo", {_id:_id,Nombre:Nombre});
     return data.data;
   }
   

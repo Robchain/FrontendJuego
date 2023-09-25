@@ -85,6 +85,28 @@ export const ModalEditarEquipo = ({modal, toggle,baseData}) => {
         toggle();
     }
   }
+
+  const handleChange = ({event,field }) => {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      // Verificar la extensión del archivo
+      const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+      const fileNameParts = selectedFile.name.split('.');
+      const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+
+      if (!allowedExtensions.includes(fileExtension)) {
+        // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
+        alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
+        event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+        return;
+      } 
+
+      // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
+      // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
+      disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+    }
+  };
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
     <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Editar equipo</ModalHeader>
@@ -101,7 +123,7 @@ export const ModalEditarEquipo = ({modal, toggle,baseData}) => {
                 {checkbosDos && <> <br/>  <Label className='form-label' for='Imagen'>
               Foto Del Equipo
             </Label>
-            <Input type='file' id='Imagen' name='Imagen' onChange={event => disparodeAccion({ type: "onchange", field: "Imagen", value: event.target.files[0] })} />
+            <Input type='file' id='Imagen' name='Imagen' onChange={event => handleChange({event:event, field:'Imagen'})} />
             </>
    } </div>
     </ModalBody>

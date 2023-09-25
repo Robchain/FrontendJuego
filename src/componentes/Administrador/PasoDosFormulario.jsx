@@ -51,7 +51,7 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
         </div>
         <Row >
         <div >
-<span>Si selecciona aleatorio se respeta el criterio ingresado en número de integrantes</span>&nbsp;&nbsp;<Button style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} onClick={()=>{onClickAleatorio(); dispatch({ type: "actualizarData", field: "Aleatorio", value: !Aleatorio})}}>Aleatorio</Button>
+<small>Si selecciona aleatorio se respeta el criterio ingresado en número de integrantes</small>&nbsp;&nbsp;<Button style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} onClick={()=>{onClickAleatorio(); dispatch({ type: "actualizarData", field: "Aleatorio", value: !Aleatorio})}}>Aleatorio</Button>
         </div>
         {
           Aleatorio===true ? <>
