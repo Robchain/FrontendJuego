@@ -166,7 +166,8 @@ try {
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='EmailMulti'>
               Contraseña
-            </Label>
+            </Label> 
+            <p style={{lineHeight:'2px', fontWeight:'bold'}}><small>Mínimo de 6 caracteres</small></p>
             <Input type='password' name='Password' id='EmailMulti' placeholder='Contraseña'
             onChange={event =>{setContraseñaUno(event.target.value)}} 
             value={contraseñaUno}

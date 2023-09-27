@@ -141,18 +141,18 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
         }
     }, [Categoria, Oracion, Verbo, Adverbio, Sujeto, Que, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra])
 
-    const handleChangeFile = ({event,field }) => {
+    const handleChangeFileImage = ({event,field }) => {
         const selectedFile = event.target.files[0];
     
         if (selectedFile) {
           // Verificar la extensión del archivo
-          const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+          const allowedExtensions = ['mp4', 'avi', 'mov', 'mkv', 'wmv'];
           const fileNameParts = selectedFile.name.split('.');
           const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
     
           if (!allowedExtensions.includes(fileExtension)) {
             // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
-            alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
+            alert('Por favor, seleccione un archivo de video válido (mp4, avi, mov, mkv, wmv).');
             event.target.value = ''; // Limpia el input para eliminar el archivo no válido
             return;
           } 
@@ -205,19 +205,19 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                             <Label className='form-label' for='FileVideoMuestra'>
                                 Video respuesta
                             </Label>
-                            <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra'  onChange={e => handleChangeFile({event:e, field:"FileVideoMuestra"})} />
+                            <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra'  onChange={e => handleChangeFileImage({event:e, field:"FileVideoMuestra"})} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileVideoPreguntaQue'>
                                 Video pregunta Que
                             </Label>
-                            <Input type='file' id='FileVideoPreguntaQue' name='FileVideoPreguntaQue' onChange={e => handleChangeFile({event:e, field:"FileVideoPreguntaQue"})} />
+                            <Input type='file' id='FileVideoPreguntaQue' name='FileVideoPreguntaQue' onChange={e => handleChangeFileImage({event:e, field:"FileVideoPreguntaQue"})} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileVideoPreguntaQuien'>
                                 Video pregunta Quien
                             </Label>
-                            <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => handleChangeFile({event:e, field:"FileVideoPreguntaQuien"})} />
+                            <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => handleChangeFileImage({event:e, field:"FileVideoPreguntaQuien"})} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='Que'>

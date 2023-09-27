@@ -43,7 +43,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
       <CardBody>
         <div className='content-header'>
           <h5 className='mb-0'>Armar Grupos</h5>
-          <small className='text-muted'>Especificar el nombre de los integrantes</small>
+          <small className='text-muted'>Especificar el número de los integrantes</small>
         </div>
         <Row>
           <Col md="6" className="mb-1">

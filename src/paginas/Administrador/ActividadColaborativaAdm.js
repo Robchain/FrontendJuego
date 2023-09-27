@@ -104,7 +104,7 @@ debugger
   }
   return (
     <Container>
-      <NavBar toggle={toggle} Seccion={"Actividad Colaborativa"} />
+      <NavBar toggle={toggle} Seccion={"Juego colaborativo"} />
       <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <Row>
         <Col lg="6" sm="12" md="6" xl="6">

@@ -29,7 +29,7 @@ export const AdmiMenu = ({toggle, isOpen}) => {
     <NavLink    to='/Equipo'    className='linkNav'><Users  size={20}/>&nbsp;&nbsp;Equipo</NavLink>
     </NavItem>
     <NavItem     className="item">
-    <NavLink    to='/ActividadColaborativa' className='linkNav'><Layers  size={20}/>&nbsp;&nbsp;Actividades</NavLink>
+    <NavLink    to='/ActividadColaborativa' className='linkNav'><Layers  size={20}/>&nbsp;&nbsp;Juego colaborativo</NavLink>
     </NavItem>
     <NavItem    className="item" >
     <NavLink    to='/ReporteEstudiante' className='linkNav'><img  src={ReporteDeNegocio}  alt='test'/>&nbsp;&nbsp;Reportes</NavLink>

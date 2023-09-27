@@ -69,6 +69,7 @@ setBloqueo(true);
      <Label className='form-label' for='EmailMulti'>
               Contraseña
             </Label>
+            <p style={{lineHeight:'2px', fontWeight:'bold'}}><small>Mínimo de 6 caracteres</small></p>
             <Input type='password' name='Password' id='EmailMulti' placeholder='Contraseña'
             onChange={event => disparodeAccion({ type: "onchange", field: "ContraseñaUno", value: event.target.value })}
             value={ContraseñaUno}

@@ -79,6 +79,28 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
       toggle();
     }
   }
+  const handleChangeFileVideo = ({event,field }) => {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      // Verificar la extensión del archivo
+      const allowedExtensions = ['mp4', 'avi', 'mov', 'mkv', 'wmv'];
+      const fileNameParts = selectedFile.name.split('.');
+      const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+
+      if (!allowedExtensions.includes(fileExtension)) {
+        // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
+        alert('Por favor, seleccione un archivo de video válido (mp4, avi, mov, mkv, wmv).');
+        event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+        return;
+      } 
+
+      // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
+      // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
+      disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+    }
+  };
+
   const handleChange = ({event,field }) => {
     const selectedFile = event.target.files[0];
 
@@ -119,11 +141,11 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
           <Label className='form-label' for='inputVideoM'>
           Video respuesta
           </Label>
-          <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => handleChange({event:e, field:'FileMuestra'})} />
+          <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => handleChangeFileVideo({event:e, field:'FileMuestra'})} />
           <Label className='form-label' for='inputask'>
             Video de pregunta
           </Label>
-          <Input type='file' id='inputask' name='FilePregunta' onChange={e => handleChange({event:e, field:'FilePregunta'})} />
+          <Input type='file' id='inputask' name='FilePregunta' onChange={e => handleChangeFileVideo({event:e, field:'FilePregunta'})} />
         </div>
       </ModalBody>
       <ModalFooter>
