@@ -47,7 +47,7 @@ const SeleccionQUIEN = ({ data,  window, QueSelecion, ...props }) => {
   }, [QueSelecion])
 
   return (<>{
-   selcci.label.length !=0?  (
+   selcci.label.length !==0?  (
       <img src={selcci.value} alt='opcion1'  {...props}/>
     ):<div></div>
   }</>)

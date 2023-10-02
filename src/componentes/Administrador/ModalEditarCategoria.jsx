@@ -48,7 +48,11 @@ export const ModalEditarCategoria = ({ modal, toggle, data, juego }) => {
           buttonsStyling: false
         })
         toggle();
-
+        if(!bloqueo){
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          }
       } else if (juego === "ORACION") {
         const data = await EditarApiCategoriaOracion({ _id, NombreCategoria });
         MySwal.fire({
@@ -61,6 +65,11 @@ export const ModalEditarCategoria = ({ modal, toggle, data, juego }) => {
           buttonsStyling: false
         })
         toggle();
+        if(!bloqueo){
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          }
       }
     } catch (error) {
       MySwal.fire({

@@ -4,7 +4,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Label, Input, Spinner } from 'reactstrap';
 import { llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Categoria';
-import { EdtiarOracion, EdtiarOracionSinImagen, GuardadodeOracionPost, listadoQuienImagen } from '../../service/Adminstrador/Oracion';
+import { EdtiarOracion, EdtiarOracionSinImagen, listadoQuienImagen } from '../../service/Adminstrador/Oracion';
 import { llamadaDeDataTodosActivos } from '../../service/Adminstrador/Vocabulario';
 import { subidaIOracion } from '../../firebase/config';
 const BaseInicialFormulario = { Categoria: '', Oracion: '', Verbo: '', Adverbio: undefined, Sujeto: undefined, Que: undefined, FileVideoPreguntaQue: undefined, FileVideoPreguntaQuien: undefined, FileVideoMuestra: undefined }
@@ -18,7 +18,6 @@ function llenadodeFormulario(state, action) {
 }
 const optionsAdverbio = [{ value: "", label: "NINGUNO" }, { value: "UNO", label: "UNO" }, { value: "UN", label: "UN" }, { value: "DOS", label: "DOS" }, { value: "MUCHOS", label: "MUCHOS" }, { value: "MUCHAS", label: "MUCHAS" }]
 export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
-
     const [{ Categoria, Oracion, Verbo, Adverbio, Sujeto, Que, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
     const [checkbos, setCheckbos] = useState(false);
     const [checkbosDos, setCheckbosDos] = useState(false);
@@ -107,6 +106,11 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
             setBloqueo(false);
             setLoading(false);
             toggle();
+            if(!bloqueo){
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+                }
         } catch (error) {
             MySwal.fire({
                 title: 'Error!',

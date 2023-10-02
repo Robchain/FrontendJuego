@@ -75,7 +75,11 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
       setBloqueo(false);
       setLoading(false);
       toggle();
-
+      if(!bloqueo){
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        }
     } catch (error) {
       MySwal.fire({
         title: 'Error!',

@@ -84,6 +84,11 @@ MySwal.fire({
     confirmButton: 'btn btn-primary'
   },
   buttonsStyling: false}) 
+  if(data.titulo){
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+    } 
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
@@ -106,6 +111,11 @@ MySwal.fire({
     confirmButton: 'btn btn-primary'
   },
   buttonsStyling: false}) 
+  if(data.titulo){
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+    } 
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
@@ -133,6 +143,11 @@ MySwal.fire({
           buttonsStyling: false}) 
           setBloqueo(true);
         setLoading(false);
+        if (data.titulo) {
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+        }
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
@@ -162,6 +177,12 @@ MySwal.fire({
               buttonsStyling: false}) 
               setBloqueoAgregar(true);
               setLoadingAgregar(false);
+              if(!bloqueoAgregar){
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+                }
+              
           } catch (error) {
             MySwal.fire({
               title: 'Error!',

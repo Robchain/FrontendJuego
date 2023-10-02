@@ -33,6 +33,11 @@ const data  = await  CrearPostCategoria({Juego,NombreCategoria});
     },
     buttonsStyling: false}) 
     toggle();
+    if(!bloqueo){
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+      }
     } catch (error) {
       MySwal.fire({
         title: 'Error!',

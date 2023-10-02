@@ -36,6 +36,11 @@ export const ListadoQuienAdministrador = () => {
           },
           buttonsStyling: false
         })
+        if(output.titulo){
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          } 
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
@@ -61,6 +66,11 @@ export const ListadoQuienAdministrador = () => {
           },
           buttonsStyling: false
         })
+        if(output.titulo){
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          } 
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
@@ -101,7 +111,7 @@ const toggleditar=()=>{
                 <Table striped>
                 <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}><tr>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>QUIEN</th>
-              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Estado</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ESTADO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>
             </tr></thead>
             <tbody>

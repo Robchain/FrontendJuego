@@ -17,9 +17,9 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
       confirmButton: 'btn btn-primary'
     },
     buttonsStyling: false});
-    setTimeout(function() {
+    if(data.titulo){
       window.location.reload();
-    }, 5000);
+    }
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
@@ -42,9 +42,7 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
         </div>
         <Row>
           <Col md='6' className='mb-1'>
-            <Label>Grupos de trabajo</Label>
-            <p>{NumeroDeGrupos.label}</p>
-            <Label>Tarjetas De actividades</Label>
+            <Label>Opciones de nombre de equipos</Label>
             {NombreDeEquipo.map(i=>{
               return (<p key={i.value}> - {i.label}</p>)
             })}

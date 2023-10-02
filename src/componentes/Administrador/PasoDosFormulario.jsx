@@ -5,7 +5,6 @@ import { useForm, Controller } from 'react-hook-form'
 import Select from 'react-select'
 import { Button, Card, CardBody, Col, Label, Row, Form } from "reactstrap";
 import Repeater from '../Repeater';
-import { ordenarYagrupar } from '../../helpers/contador';
 export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,AleotorioArmado, nextButton,Aleatorio, index, setSegundo, NumeroDeGrupos,NumeroDeIntegrantes,Estudiantes }) => {
   const {
     control,

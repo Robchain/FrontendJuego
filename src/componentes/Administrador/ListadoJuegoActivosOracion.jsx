@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import { DropdownItem, DropdownMenu, DropdownToggle, Table, UncontrolledDropdown } from 'reactstrap'
-import { JuegosActivosOracion } from '../../service/Adminstrador/Oracion';
 import { Check,  MoreVertical, Trash } from 'react-feather';
+import { DesibilitarHabilitarJuego, HabilitarHabilitarJuego, MostrarHabilitarJuego } from '../../service/Adminstrador/Vocabulario';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
 export const ListadoJuegoActivosOracion = () => {
 
 const [data, setData] = useState([]);
-
+const MySwal = withReactContent(Swal)
 const llamadoServicio=async()=>{
-const input =await  JuegosActivosOracion();
+const input =await  MostrarHabilitarJuego();
 setData(input);
 }
 
@@ -15,11 +17,64 @@ useEffect(() => {
     llamadoServicio()
 }, []);
 
-const desactivarPersonaFunc = async(i)=>{
+const desactivarPersonaFunc = async(objeto)=>{
+  try {
+    const data = await DesibilitarHabilitarJuego({ _id: objeto._id });
+    MySwal.fire({
+      title: `${data.titulo}`,
+      text: `${data.respuesta}`,
+      icon: `${data.type}`,
+      customClass: {
+        confirmButton: 'btn btn-primary'
+      },
+      buttonsStyling: false
+    })
+    if (data.titulo) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    }
 
+  } catch (error) {
+    MySwal.fire({
+      title: 'Error!',
+      text: "Falto un campo",
+      icon: 'error',
+      customClass: {
+        confirmButton: 'btn btn-primary'
+      },
+      buttonsStyling: false
+    })
+  }
 }
-const habilitarPersonaFunc =async(i)=>{
-
+const habilitarPersonaFunc =async(objeto)=>{
+  try {
+    const data = await HabilitarHabilitarJuego({ _id: objeto._id });
+    MySwal.fire({
+      title: `${data.titulo}`,
+      text: `${data.respuesta}`,
+      icon: `${data.type}`,
+      customClass: {
+        confirmButton: 'btn btn-primary'
+      },
+      buttonsStyling: false
+    })
+    if (data.titulo) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    }
+  } catch (error) {
+    MySwal.fire({
+      title: 'Error!',
+      text: "Falto un campo",
+      icon: 'error',
+      customClass: {
+        confirmButton: 'btn btn-primary'
+      },
+      buttonsStyling: false
+    })
+  }
 }
   return (
     <>
@@ -34,18 +89,18 @@ const habilitarPersonaFunc =async(i)=>{
             </tr>
             </thead>
              <tbody>
-            {data.map((i)=>(<tr className='m-4'>
+            {data.filter(e=>e.Juego==="ORACION").map((i)=>(<tr className='m-4'>
          <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{i.Curso}</span> </td>
          <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{i.Paralelo} </span></td>
-         <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{i.Activo} </span></td>
+         <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{i.Estado} </span></td>
          <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
                         <MoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
-                        <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Activo === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
-                        {i.Activo === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
+                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>

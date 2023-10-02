@@ -1,4 +1,4 @@
-import React, { /*useContext,*/ useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'reactstrap'
 import buentrajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
@@ -46,7 +46,7 @@ const SeleccionQUIEN = ({data, window, QueSelecion, ...props}) => {
     if (QueSelecion === 3) {setSelcci(data[`Juego${window.id}`].Oraciones[2].Sujeto) }
   }, [QueSelecion])
  return (<>{
-  selcci.label.length !=0 ? (
+  selcci.label.length !==0 ? (
     <img src={selcci} alt='opcion1' {...props}/>
   ):<div></div>
  }</>)

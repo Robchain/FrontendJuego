@@ -10,7 +10,6 @@ import { PasoTresFormulario } from "../../componentes/Administrador/PasoTresForm
 import { PasoCuatroFormulario } from "../../componentes/Administrador/PasoCuatroFormulario";
 import {  ordenarYagrupar } from "../../helpers/contador";
 import { LlamadaDeLLenadoDeEstudianteMultiJugador, historialJuego } from "../../service/Multijugador";
-import { HistorialDeAsignaciones } from "../../componentes/Administrador/HistorialDeAsignaciones";
 import { ListadoHistoriaDeAsignaciones } from "../../componentes/Administrador/ListadoHistoriaDeAsignaciones";
 
 const estadoInicialFormularioActividad = { NumeroDeGrupos: {}, NumeroDeIntegrantes: {}, NombreDeEquipo: [], TipoDeJuego: 1, Aleatorio: false }
@@ -172,7 +171,7 @@ debugger
             Estudiantes[0].value && <Row>
               <Stepbar steps={index} />
               {
-                index === 1 && <PasoUnoFormulario TipoDeJuego={TipoDeJuego} index={index} nextButton={nextButton} prevButton={prevButton} dispatch={dispatch} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} NombreDeEquipo={NombreDeEquipo} />
+                index === 1 && <PasoUnoFormulario estudiantevalue={Estudiantes.length} TipoDeJuego={TipoDeJuego} index={index} nextButton={nextButton} prevButton={prevButton} dispatch={dispatch} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} NombreDeEquipo={NombreDeEquipo}  />
               }
               {
                 index === 2 && <PasoDosFormulario dispatch={dispatch} AleotorioArmado={AleotorioArmado} onClickAleatorio={onClickAleatorio} Aleatorio={Aleatorio} Estudiantes={Estudiantes} index={index} nextButton={nextButton} prevButton={prevButton} setSegundo={setSegundo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} />

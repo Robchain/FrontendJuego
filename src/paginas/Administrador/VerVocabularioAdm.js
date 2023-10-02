@@ -59,7 +59,13 @@ const VerVocabularioAdm = () => {
         customClass: {
           confirmButton: 'btn btn-primary'
         },
-        buttonsStyling: false}) 
+        buttonsStyling: false})
+        if(data.titulo){
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          } 
+
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
@@ -82,6 +88,11 @@ const VerVocabularioAdm = () => {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false}) 
+         if(data.titulo){
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          } 
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
@@ -114,6 +125,11 @@ try {
     buttonsStyling: false}) 
     setBloqueo(true);
   setLoading(false);
+  if (data.titulo) {
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+  }
 } catch (error) {
   MySwal.fire({
     title: 'Error!',

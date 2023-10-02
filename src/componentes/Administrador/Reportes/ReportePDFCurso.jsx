@@ -1,5 +1,5 @@
 import React from 'react'
-import { fechaEcuador, filtradoCurso } from '../../../helpers/contador'
+import { fechaEcuador } from '../../../helpers/contador'
 import { Col, Container, Row, Table } from 'reactstrap'
 
 export const ReportePDFCurso = ({ data, juego, Curso, Paralelo }) => {

@@ -46,6 +46,11 @@ const VerRompecabezaAdm = () => {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false}) 
+        if(data.titulo){
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          } 
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
@@ -68,6 +73,11 @@ const VerRompecabezaAdm = () => {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false}) 
+        if(data.titulo){
+          setTimeout(() => {  
+            window.location.reload();
+          }, 2000);
+          } 
     } catch (error) {
       MySwal.fire({
         title: 'Error!',

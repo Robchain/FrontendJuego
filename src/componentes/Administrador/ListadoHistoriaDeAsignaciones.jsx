@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Check, Edit, MoreVertical, Trash } from 'react-feather';
 import { DropdownItem, DropdownMenu, DropdownToggle, Table, UncontrolledDropdown } from 'reactstrap'
-import { fechaEcuador, nombre } from '../../helpers/contador';
+import { fechaEcuador, fechaEcuadoracutal, nombre } from '../../helpers/contador';
+import { ModalEditarColaborativo } from './ModalEditarColaborativo';
 
 export const ListadoHistoriaDeAsignaciones = ({data}) => {
+  const [modal, setModal] = useState(false)
+
+  const [dataseleccionada, setDataseleccionada] = useState({})
+  const toggledos = () => { setModal(!modal) }
     const desactivarPersonaFunc =(i)=>{
 
     }
@@ -11,6 +16,8 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
         
     }
   return (
+    <>
+    <ModalEditarColaborativo data={dataseleccionada} modal={modal} toggle={toggledos} />
    <Table striped>
          <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}><tr>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>INTEGRANTES</th>
@@ -41,14 +48,14 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
                   }</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{fechaEcuador(i.FechaDeInicio)}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{fechaEcuador(i.FechaDeFin)}</td>
-                  <td style={{borderBottomColor:"#f8f8f8"}}>{(i.Avance!==null&&(i.Avance.length/5===i.Integrantes.length)) ? "Juego terminado":"Juego en proceso"}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{fechaEcuadoracutal(i.FechaDeFin) || ((i.Avance!==null)&&(i.Avance.length/5 === i.Integrantes.length)) ? "Juego terminado":"Juego en proceso"}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
                         <MoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
-                        <DropdownItem href='#' onClick={e => {e.preventDefault()} }>
+                        <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggledos()} }>
                           <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
@@ -61,5 +68,6 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
 )}
                 </tbody>
     </Table>
+    </>
   )
 }

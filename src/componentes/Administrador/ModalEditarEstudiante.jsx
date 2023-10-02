@@ -18,7 +18,7 @@ function llenadodeFormulario(state, action) {
   }
 }
 
-export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
+export const ModalEditarEstudiante = ({ modal, toggle, dataBase,setData }) => {
     const BaseInicialFormulario = { Nombre: dataBase.Nombre, Apellido: dataBase.Apellido, Identificacion: dataBase.Identificacion,FotoPerfil:undefined, Email:dataBase.Email, Usuario: dataBase.Usuario, TipoUsuario: dataBase.TipoUsuario, Curso:  dataBase.Curso, Paralelo:  dataBase.Paralelo }
   const [loading, setLoading] = useState(false);
   const [cursoData, setcursoData] = useState([]);
@@ -97,11 +97,17 @@ try {
   setbloqueo(false);
   setLoading(false);
   toggle();
+  if(!bloqueo){
+setTimeout(() => {
+  window.location.reload();
+}, 2000);
+}
+  //setData((prev)=>[...prev, {_id:_id,Nombre:Nombre, Apellido:Apellido, Identificacion:Identificacion, Email:Email, Usuario:Usuario, TipoUsuario:TipoUsuario, Curso:Curso, Paralelo:Paralelo}])
 } catch (error) {
   MySwal.fire({
     title: 'Error!',
     text: "No se pudo Crear",
-    icon: 'error',
+    icon: 'error',  
     customClass: {
       confirmButton: 'btn btn-primary'
     },
@@ -111,6 +117,11 @@ try {
   setbloqueo(false);
   setLoading(false);
   toggle();
+  if(!bloqueo){
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+    }
 }
   }
   const handleChangeFile = ({event,field }) => {

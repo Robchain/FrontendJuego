@@ -94,7 +94,7 @@ const VerSeleccionQuien = ({ data,  window , ...opc }) => {
 
   return (<>
     {
-      queselec.value.length != 0 && (<img src={queselec.value} alt='opcion1' {...opc}  />)
+      queselec.value.length !== 0 && (<img src={queselec.value} alt='opcion1' {...opc}  />)
     }
   </>)
 
@@ -123,7 +123,7 @@ const SeleccionQue = ({ QueSelecion, data,  window, ...props}) => {
   }, [QueSelecion])
 
   return (<>{
-    seleccionPal.label.length != 0 ? (
+    seleccionPal.label.length !== 0 ? (
       <img src={seleccionPal.value} alt='opcion1'  {...props}/>
     ):<div></div>
   }
@@ -141,7 +141,7 @@ const RespuestaImagen = ({ Queselec, data,  window, setMomento, momento }) => {
       AdjectivoRespuesta = data[`Juego` + window.id].Oraciones[2].Que;
     }
 
-    if (Queselec.label.length != 0) {
+    if (Queselec.label.length !== 0) {
       if (AdjectivoRespuesta.label === Queselec.label) {
         setMomento("Respuesta");
         setImagense(buentrajo);

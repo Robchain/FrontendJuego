@@ -134,8 +134,8 @@ const VerEstudianteAdm = () => {
             Agregar
           </Button>
           { /*aqui va  el modal*/}
-         <ModalEditarEstudiante modal={modaleditar}  toggle={toggleditar}  dataBase={dataseleccionada}/>
-          <ModalAgregarEstudiante modal={modal} toggle={toggledos} />
+         <ModalEditarEstudiante modal={modaleditar}  toggle={toggleditar} setData={setData}  dataBase={dataseleccionada}/>
+          <ModalAgregarEstudiante modal={modal} toggle={toggledos}   setData={setData}/>
           <ModalDetalleUsuario dataBase={dataseleccionada} modal={modalDetalle} toggle={toggleDetalle} />
           <ModalActualizarContra database={dataseleccionada} modal={modalContra} toggle={toggleContra}/>
         </Col>

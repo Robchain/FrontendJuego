@@ -132,6 +132,20 @@ const fechaFormateada = fechaLocal.toLocaleDateString('es-EC', options);
 return fechaFormateada;
 }
 
+export const fechaEcuadoracutal =(fecha)=>{
+  let resultado = false;
+ // Obtener la fecha actual en formato ISO8601 sin la hora
+ const fechaActual = new Date();
+
+ // Extraer el día de la fecha actual y la fecha proporcionada
+ 
+ const diaFecha = new Date(fecha)
+ debugger
+ // Comparar los días y devolver el resultado
+ resultado = fechaActual > diaFecha;
+ return resultado;
+}
+
 
 export const actividadCaducadaBool=(fecha)=>{
   const fechaActual = new Date();

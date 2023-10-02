@@ -15,18 +15,28 @@ const Options2 = [
   { value: '4', label: '4' },
   { value: '6', label: '6' }
 ]
-export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo,TipoDeJuego }) => {
+
+const prueba=({num, estudiante, equipos})=>{
+  
+if(estudiante/num<equipos){
+  return true;
+}else if(estudiante/num<equipos){
+  return false;
+}
+}
+
+export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo,TipoDeJuego, estudiantevalue }) => {
   const [TeamData, setTeamData] = useState([]);
   const [bloqueosiguiente, setbloqueosiguiente] = useState(true);
 
 
   useEffect(() => {
-   if( NombreDeEquipo.length >= parseInt(NumeroDeGrupos.value)){
+   if( prueba({num:NumeroDeIntegrantes.value , estudiante:estudiantevalue, equipos:NombreDeEquipo.length})){
     setbloqueosiguiente(false)
    }else{ setbloqueosiguiente(true)
-
+/// revisar esto
    }
-  }, [NombreDeEquipo, NumeroDeGrupos])
+  }, [NombreDeEquipo, NumeroDeGrupos, estudiantevalue])
   
   const llamadaDataInicial  = async ()=>{
     const data = await todosTeam();

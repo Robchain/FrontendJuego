@@ -1,7 +1,7 @@
 import React from 'react'
 import { Document, Image, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import bliblaimagen from '../../../assets/img/Icons/LOGO BLIPBLA.png'
-import { fechaEcuador, filtradoCurso } from '../../../helpers/contador';
+import { fechaEcuador } from '../../../helpers/contador';
 export const DescargarJuegoReporte = ({data, juego,}) => {
   return (
     <>

@@ -7,7 +7,6 @@ import { BuscarPorCursoYParalelo, ReportesJugadorApi } from "../../../service/Ad
 import { ReportePDFJugador } from "./ReportePDFJugador";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { DescargarJuegadorReporte } from "./DescargarJuegadorReporte";
-import { buscarValor } from "../../../helpers/contador";
 const BaseInicialFormulario = { Curso: undefined, Paralelo: undefined,Estudiante:undefined, Juego:undefined }
 function llenadodeFormulario(state, action) {
     switch (action.type) {
@@ -42,7 +41,7 @@ if(Curso && Paralelo){
 }, [Curso,Paralelo])
 
 useEffect(() => {
-  if(Estudiante !== undefined && Juego !== undefined || Array.isArray(picker)){
+  if((Estudiante !== undefined && Juego !== undefined) || Array.isArray(picker)){
     setBloqueo(false)
   }
 }, [Estudiante,Juego])
@@ -171,7 +170,6 @@ const Buscar = async ()=>{
           >
             Buscar
           </Button>&nbsp;&nbsp;
-          
   <PDFDownloadLink document={<DescargarJuegadorReporte data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes}/>} fileName={`Reporte.pdf`}>
             <Button
               style={{
@@ -185,8 +183,6 @@ const Buscar = async ()=>{
               Descargar
             </Button>
             </PDFDownloadLink> :<></>
-          
-         
         </Col>
       </Row>
       <ReportePDFJugador data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes} />

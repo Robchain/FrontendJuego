@@ -35,6 +35,11 @@ import { EditarParalelo } from '../../service/Adminstrador/Usuarios';
         buttonsStyling: false
       })
       toggle();
+      if(!bloqueo){
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        }
     } catch (error) {
       MySwal.fire({
         title: 'Error!',

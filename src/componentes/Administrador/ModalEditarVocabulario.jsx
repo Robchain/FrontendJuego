@@ -79,6 +79,11 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
+                if(!bloqueo){
+                    setTimeout(() => {
+                      window.location.reload();
+                    }, 2000);
+                    }
             } else if (checkbos === false) {
                 setBloqueoSecu(true);
                 setBloqueo(true);
@@ -97,6 +102,11 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
+                if(!bloqueo){
+                    setTimeout(() => {
+                      window.location.reload();
+                    }, 2000);
+                    }
             }
 
         } catch (error) {

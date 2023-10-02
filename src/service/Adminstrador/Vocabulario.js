@@ -40,3 +40,18 @@ export const JuegosActivos=async ()=>{
     const data = await Api.get('/vocabulario/JuegosActivos');
     return data.data
 }
+
+export const MostrarHabilitarJuego=async ()=>{
+    const data =await Api.get('/MostrarHabilitarJuego');
+    return data.data
+}
+
+
+export const  HabilitarHabilitarJuego = async ({_id})=>{
+    const data = await Api.post("/HabilitarHabilitarJuego",{_id:_id});
+    return data.data
+}
+export const  DesibilitarHabilitarJuego = async ({_id})=>{
+    const data = await Api.post("/DesibilitarHabilitarJuego",{_id:_id});
+    return data.data
+}
