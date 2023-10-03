@@ -59,3 +59,18 @@ export const historialJuego = async ({Curso, Paralelo})=>{
 const data = await Api.post('/historialJuego',{Curso:Curso, Paralelo:Paralelo});
 return data.data;
 }
+
+export const DesactivarCoolaborativo = async ({_id})=>{
+    const data = await Api.post('/DesactivarCoolaborativo', {_id:_id});
+    return data.data;
+}
+export const ActivarCoolaborativo = async ({_id})=>{
+    const data = await Api.post('/ActivarCoolaborativo', {_id:_id});
+    return data.data;
+}
+
+
+export const ActualizarCoolaborativo = async ({_id, picker, TipoDeJuego})=>{
+    const data = await Api.post('/ActualizarCoolaborativo', {_id:_id, picker:picker, TipoDeJuego:TipoDeJuego});
+    return data.data;
+}

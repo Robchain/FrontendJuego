@@ -60,6 +60,11 @@ const VerEstudianteAdm = () => {
         },
         buttonsStyling: false
       })
+      if(data.titulo){
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        }
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
@@ -84,6 +89,11 @@ const VerEstudianteAdm = () => {
         },
         buttonsStyling: false
       })
+      if(data.titulo){
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        }
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
@@ -134,8 +144,8 @@ const VerEstudianteAdm = () => {
             Agregar
           </Button>
           { /*aqui va  el modal*/}
-         <ModalEditarEstudiante modal={modaleditar}  toggle={toggleditar} setData={setData}  dataBase={dataseleccionada}/>
-          <ModalAgregarEstudiante modal={modal} toggle={toggledos}   setData={setData}/>
+         <ModalEditarEstudiante modal={modaleditar}  toggle={toggleditar}  dataBase={dataseleccionada}/>
+          <ModalAgregarEstudiante modal={modal} toggle={toggledos}/>
           <ModalDetalleUsuario dataBase={dataseleccionada} modal={modalDetalle} toggle={toggleDetalle} />
           <ModalActualizarContra database={dataseleccionada} modal={modalContra} toggle={toggleContra}/>
         </Col>

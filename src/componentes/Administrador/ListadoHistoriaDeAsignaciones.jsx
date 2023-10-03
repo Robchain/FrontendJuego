@@ -3,17 +3,71 @@ import { Check, Edit, MoreVertical, Trash } from 'react-feather';
 import { DropdownItem, DropdownMenu, DropdownToggle, Table, UncontrolledDropdown } from 'reactstrap'
 import { fechaEcuador, fechaEcuadoracutal, nombre } from '../../helpers/contador';
 import { ModalEditarColaborativo } from './ModalEditarColaborativo';
-
+import { ActivarCoolaborativo, DesactivarCoolaborativo } from '../../service/Multijugador';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content';
 export const ListadoHistoriaDeAsignaciones = ({data}) => {
   const [modal, setModal] = useState(false)
-
+  const MySwal = withReactContent(Swal)
   const [dataseleccionada, setDataseleccionada] = useState({})
   const toggledos = () => { setModal(!modal) }
-    const desactivarPersonaFunc =(i)=>{
-
+    const desactivarPersonaFunc =async(objecto)=>{
+      try {
+        const data = await DesactivarCoolaborativo({ _id: objecto._id });
+        MySwal.fire({
+          title: `${data.titulo}`,
+          text: `${data.respuesta}`,
+          icon: `${data.type}`,
+          customClass: {
+            confirmButton: 'btn btn-primary'
+          },
+          buttonsStyling: false
+        })
+        if(data.titulo){
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          }
+      } catch (error) {
+        MySwal.fire({
+          title: 'Error!',
+          text: "Falto un campo",
+          icon: 'error',
+          customClass: {
+            confirmButton: 'btn btn-primary'
+          },
+          buttonsStyling: false
+        })
+      }
     }
-    const habilitarPersonaFunc =(i)=>{
-        
+    const habilitarPersonaFunc =async(objecto)=>{
+      try {
+        const data = await ActivarCoolaborativo({ _id: objecto._id });
+        MySwal.fire({
+          title: `${data.titulo}`,
+          text: `${data.respuesta}`,
+          icon: `${data.type}`,
+          customClass: {
+            confirmButton: 'btn btn-primary'
+          },
+          buttonsStyling: false
+        })
+        if(data.titulo){
+          setTimeout(() => {
+            window.location.reload();
+          }, 2000);
+          }
+      } catch (error) {
+        MySwal.fire({
+          title: 'Error!',
+          text: "Falto un campo",
+          icon: 'error',
+          customClass: {
+            confirmButton: 'btn btn-primary'
+          },
+          buttonsStyling: false
+        })
+      }
     }
   return (
     <>
@@ -27,7 +81,7 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>FECHA DE INICIO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>FECHA FINAL</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ESTADO</th>
-              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>
+              {<th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>}
             </tr></thead>
             <tbody>
 {data.map( i=>(
@@ -48,7 +102,7 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
                   }</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{fechaEcuador(i.FechaDeInicio)}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{fechaEcuador(i.FechaDeFin)}</td>
-                  <td style={{borderBottomColor:"#f8f8f8"}}>{fechaEcuadoracutal(i.FechaDeFin) || ((i.Avance!==null)&&(i.Avance.length/5 === i.Integrantes.length)) ? "Juego terminado":"Juego en proceso"}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado==="INACTIVO"&&(fechaEcuadoracutal(i.FechaDeFin) || ((i.Avance!==null)&&(i.Avance.length/5 === i.Integrantes.length))) ? "Juego terminado":"Juego en proceso"}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
@@ -58,9 +112,9 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggledos()} }>
                           <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
-                        <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
+                    { !(fechaEcuadoracutal(i.FechaDeFin) || ((i.Avance!==null)&&(i.Avance.length/5 === i.Integrantes.length))) &&<DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
                         {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
-                        </DropdownItem>
+                        </DropdownItem>}
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </td>

@@ -18,7 +18,7 @@ function llenadodeFormulario(state, action) {
   }
 }
 
-export const ModalEditarEstudiante = ({ modal, toggle, dataBase,setData }) => {
+export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
     const BaseInicialFormulario = { Nombre: dataBase.Nombre, Apellido: dataBase.Apellido, Identificacion: dataBase.Identificacion,FotoPerfil:undefined, Email:dataBase.Email, Usuario: dataBase.Usuario, TipoUsuario: dataBase.TipoUsuario, Curso:  dataBase.Curso, Paralelo:  dataBase.Paralelo }
   const [loading, setLoading] = useState(false);
   const [cursoData, setcursoData] = useState([]);

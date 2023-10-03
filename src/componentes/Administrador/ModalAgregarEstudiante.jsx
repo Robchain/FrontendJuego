@@ -21,7 +21,7 @@ function llenadodeFormulario(state, action) {
   }
 }
 
-export const ModalAgregarEstudiante = ({ modal, toggle,setData  }) => {
+export const ModalAgregarEstudiante = ({ modal, toggle  }) => {
   const [loading, setLoading] = useState(false);
   const MySwal = withReactContent(Swal)
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
@@ -74,12 +74,16 @@ try {
     },
     buttonsStyling: false
   })
-  setData((prev)=>[...prev, {Nombre,Apellido, Identificacion, Email, TipoUsuario, Estado:"ACTIVO", Usuario, Curso, Paralelo, FotoPerfil}]);
   setBloqueoSecu(false);
   setbloqueo(false);
   setLoading(false);
   disparodeAccion({ type: "reset" });
   toggle();
+  if(!bloqueo){
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
+    }
 } catch (error) {
   MySwal.fire({
     title: 'Error!',
