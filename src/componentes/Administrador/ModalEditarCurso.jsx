@@ -45,7 +45,7 @@ const [{Curso}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFormulari
         buttonsStyling: false
       })
       toggle();
-      if(!bloqueo){
+      if(data.titulo){
         setTimeout(() => {
           window.location.reload();
         }, 2000);

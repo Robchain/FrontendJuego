@@ -35,7 +35,7 @@ import { EditarParalelo } from '../../service/Adminstrador/Usuarios';
         buttonsStyling: false
       })
       toggle();
-      if(!bloqueo){
+      if(data.titulo){
         setTimeout(() => {
           window.location.reload();
         }, 2000);

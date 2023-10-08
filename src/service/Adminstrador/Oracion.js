@@ -5,8 +5,8 @@ export const MetodoGetDellamadaOracionActivas = async () => {
     return data.data;
 }
 
-export const GuardadodeOracionPost = async ({ Categoria, Oracion, Verbo, Adverbio, FileSujetoImagen, FileAdjetivoImagen, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }) => {
-    const data = await Api.post("/OracionAdmi", { Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, FileSujetoImagen: FileSujetoImagen, FileAdjetivoImagen: FileAdjetivoImagen, FileVideoPreguntaQue: FileVideoPreguntaQue, FileVideoPreguntaQuien: FileVideoPreguntaQuien, FileVideoMuestra: FileVideoMuestra });
+export const GuardadodeOracionPost = async ({  Sujeto, Que,Categoria, Oracion, Verbo, Adverbio, FileSujetoImagen, FileAdjetivoImagen, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }) => {
+    const data = await Api.post("/OracionAdmi", { Sujeto: Sujeto, Que: Que, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, FileSujetoImagen: FileSujetoImagen, FileAdjetivoImagen: FileAdjetivoImagen, FileVideoPreguntaQue: FileVideoPreguntaQue, FileVideoPreguntaQuien: FileVideoPreguntaQuien, FileVideoMuestra: FileVideoMuestra });
     return data.data;
 }
 

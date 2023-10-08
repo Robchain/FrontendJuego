@@ -46,6 +46,11 @@ const onsudmitAgregarCurso = async()=>{
       setloadingAgregarCurso(false);
       setbloqueoAgregarCurso(false);
       setbloqueoAgregarParalale(true);
+      if(data.titulo){
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        }
   } catch (error) {
     MySwal.fire({
       title: 'Error!',
@@ -78,6 +83,11 @@ const onsudmitAgregarParalelo = async()=>{
       setloadingAgregarParalelo(false);
       setbloqueoAgregarParalale(false);
       setbloqueoAgregarCurso(true);
+      if(data.titulo){
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+        }
   } catch (error) {
     MySwal.fire({
       title: 'Error!',
@@ -90,6 +100,7 @@ const onsudmitAgregarParalelo = async()=>{
       setloadingAgregarParalelo(false);
       setbloqueoAgregarParalale(false);
       setbloqueoAgregarCurso(true);
+
   }
 }
 
