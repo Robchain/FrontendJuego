@@ -20,8 +20,8 @@ export const DesabilitarOracion = async ({ _id }) => {
     return data.data;
 }
 
-export const EdtiarOracionSinImagen = async ({ _id, Categoria, Oracion, Verbo, Adverbio }) => {
-    const data = await Api.post("/OracionAdmi/EditarSinImagenes", { _id: _id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio });
+export const EdtiarOracionSinImagen = async ({ _id, Categoria, Oracion, Verbo, Adverbio,Sujeto, Que, }) => {
+    const data = await Api.post("/OracionAdmi/EditarSinImagenes", { _id: _id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio,Sujeto: Sujeto, Que: Que, });
     return data.data;
 }
 

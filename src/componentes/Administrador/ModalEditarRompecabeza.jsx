@@ -25,28 +25,38 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
 
  
     useEffect(() => {
-        if (Nombre !== dataBase.Nombre && Pieza !== 0) {
+        if ((Nombre !== dataBase.Nombre && Pieza !== 0) || (FileBlanco || FileColor)) {
             setBloqueo(false);
         } else {
             setBloqueo(true);
         }
     }, [Nombre, FileBlanco, FileColor, Pieza])
+
+    
     
     useEffect(() => {
         disparodeAccion({ type: "onchange", field: "Nombre", value: dataBase.Nombre });
         disparodeAccion({ type: "onchange", field: "Pieza", value: dataBase.Pieza });
+        disparodeAccion({ type: "onchange", field: "FileColor", value: undefined });
+        disparodeAccion({ type: "onchange", field: "FileBlanco", value: undefined });
         setCheckbos(false); 
     }, [dataBase, modal])    
 
     const uploadData = async () => {
         try {
             let _id = dataBase._id;
+            let ulrC = dataBase.FileColor;
+            let ulrB = dataBase.FileBlanco;
             if (checkbos === true) {
                 setBloqueoSecu(true);
                 setBloqueo(true);
                 setLoading(true);
-                const ulrC = await subidaIRompecabeza(FileColor)
-                const ulrB = await subidaIRompecabeza(FileBlanco)
+                if(FileColor){
+                     ulrC = await subidaIRompecabeza(FileColor)
+                }
+                if(FileBlanco){
+                    ulrB = await subidaIRompecabeza(FileBlanco)
+               }
                 const data = await EditarDataRompecabeza({ FileBlanco: ulrB, FileColor: ulrC, Nombre: Nombre, Pieza: Pieza, _id: _id });
                 MySwal.fire({
                     title: `${data.titulo}`,
@@ -129,6 +139,26 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
           disparodeAccion({ type: "onchange", field: field, value: selectedFile })
         }
       };
+      const handleChangeFilePDF = ({ event, field }) => {
+        const selectedFile = event.target.files[0];
+      
+        if (selectedFile) {
+          // Verificar la extensión del archivo
+          const allowedExtensions = ['pdf'];
+          const fileNameParts = selectedFile.name.split('.');
+          const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+      
+          if (!allowedExtensions.includes(fileExtension)) {
+            // El archivo no tiene una extensión PDF, puedes manejar el error aquí
+            alert('Por favor, seleccione un archivo PDF válido.');
+            event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+            return;
+          }
+      
+          // Si llegamos aquí, el archivo es un PDF válido, puedes realizar la acción deseada
+          disparodeAccion({ type: "onchange", field: field, value: selectedFile });
+        }
+      };
     return (
         <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
             <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar rompecabeza</ModalHeader>
@@ -158,7 +188,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                     />&nbsp;&nbsp;6 </Label>
                     <br />
                     <Input
-                        id="exampleCheck"
+                        id="editarImagen"
                         name="check"
                         type="checkbox"
 
@@ -166,7 +196,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                     />&nbsp;&nbsp;
                     <Label
                         check
-                        for="exampleCheck"
+                        for="editarImagen"
                         style={{ color: '#8b8b8c', fontWeight: "700" }}
                     >
                         Editar imágenes
@@ -180,12 +210,13 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                         <Label className='form-label' for='FileBlanco' style={{ color: '#8b8b8c', fontWeight: "700" }}>
                             Foto blanco y negro
                         </Label>
-                        <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => handleChange({event:event, field:'FileBlanco'})} />
+                        <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => handleChangeFilePDF({event:event, field:'FileBlanco'})} />
                     </div>}
                 </div>
             </ModalBody>
             <ModalFooter>
                 <Button outline style={{ color: '#592a98' }} onClick={() => {
+
                     toggle()
                 }} disabled={bloqueoSecu}>
                     Cancelar

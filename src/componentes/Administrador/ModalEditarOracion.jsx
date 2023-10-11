@@ -30,6 +30,8 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
     const [listadoOptionsQue, setListadoOptionsQue] = useState([])
     useEffect(() => {
         disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
+        disparodeAccion({ type: "onchange", field: "Sujeto", value: dataBase.Sujeto });
+        disparodeAccion({ type: "onchange", field: "Que", value: dataBase.Que });
         disparodeAccion({ type: "onchange", field: "Oracion", value: dataBase.Oracion });
         disparodeAccion({ type: "onchange", field: "Verbo", value: dataBase.Verbo });
         setCheckbos(false);
@@ -58,7 +60,6 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
 
     const uploadData = async () => {
         try {
-            let fileSujetoImagen = dataBase.Sujeto;
             let fileVideoPreguntaQue = dataBase.FileVideoPreguntaQue;
             let fileVideoMuestra = dataBase.FileVideoMuestra;
             let fileVideoPreguntaQuien = dataBase.FileVideoPreguntaQuien;
@@ -67,16 +68,13 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
             setBloqueo(true);
             setLoading(true);
             if (checkbosDos === true) {
-                if (dataBase.Sujeto !== Sujeto) {
-                    fileSujetoImagen = await subidaIOracion(Sujeto);
-                }
-                if (dataBase.FileVideoPreguntaQue !== FileVideoPreguntaQue) {
+                if (FileVideoPreguntaQue) {
                     fileVideoPreguntaQue = await subidaIOracion(FileVideoPreguntaQue);
                 }
-                if (dataBase.FileVideoMuestra !== FileVideoMuestra) {
+                if (FileVideoMuestra) {
                     fileVideoMuestra = await subidaIOracion(FileVideoMuestra);
                 }
-                if (dataBase.FileVideoPreguntaQuien !== FileVideoPreguntaQuien) {
+                if (FileVideoPreguntaQuien) {
                     fileVideoPreguntaQuien = await subidaIOracion(FileVideoPreguntaQuien);
                 }
                 const data = await EdtiarOracion({ _id: _id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, Sujeto: Sujeto, Que: Que, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
@@ -91,7 +89,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                 })
             }
             if (checkbosDos === false) {
-                const data = await EdtiarOracionSinImagen({ _id: _id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio })
+                const data = await EdtiarOracionSinImagen({ _id: _id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio,Sujeto: Sujeto, Que: Que, })
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
@@ -173,7 +171,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                 <Row>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Categoria'>Categoría</Label><br />
-                        <Select name="Categoria" isSearchable={false} defaultValue={{ label: dataBase.Categoria, value: "" }} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
+                        <Select name="Categoria" isSearchable={false} defaultValue={{ label: dataBase.Categoria, value: dataBase.Categoria }} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Verbo'>
@@ -194,17 +192,24 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         </Label>
                         <Input type='text' name='Oracion' id='Oracion' defaultValue={dataBase.Oracion} placeholder='Oracion' value={Oracion} onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} />
                     </Col>
-                </Row>
-                <Input id="exampleCheck" name="check" type="checkbox" onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
-                <Label check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}>   Editar imágenes </Label>
-                <Row>
-                    {checkbosDos === true && <>
+                    <Col md='6' sm='12' className='mb-1'>
+                            <Label className='form-label' for='Que'>
+                                Imagenes del Que
+                            </Label>
+                            <Select name="Que" isSearchable={false} defaultValue={dataBase.Que} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
+                        </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='Sujeto' >
                                 Imagen del quien
                             </Label>
-                            <Select name="Sujeto" isSearchable={false} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
+                            <Select name="Sujeto" isSearchable={false} defaultValue={dataBase.Sujeto} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
                         </Col>
+                </Row>
+                <Input id="editarVideoOracion" name="check" type="checkbox" onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
+                <Label check for="editarVideoOracion" style={{ color: '#8b8b8c', fontWeight: "700" }}>   Editar imágenes </Label>
+                <Row>
+                    {checkbosDos === true && <>
+                        
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileVideoMuestra'>
                                 Video respuesta
@@ -223,12 +228,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                             </Label>
                             <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => handleChangeFileImage({event:e, field:"FileVideoPreguntaQuien"})} />
                         </Col>
-                        <Col md='6' sm='12' className='mb-1'>
-                            <Label className='form-label' for='Que'>
-                                Imagenes del Que
-                            </Label>
-                            <Select name="Que" isSearchable={false} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
-                        </Col>
+                        
                     </>}
                 </Row>
             </ModalBody>

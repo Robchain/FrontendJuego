@@ -94,6 +94,26 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
       disparodeAccion({ type: "onchange", field: field, value: selectedFile })
     }
   };
+  const handleChangeFilePDF = ({ event, field }) => {
+    const selectedFile = event.target.files[0];
+  
+    if (selectedFile) {
+      // Verificar la extensión del archivo
+      const allowedExtensions = ['pdf'];
+      const fileNameParts = selectedFile.name.split('.');
+      const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+  
+      if (!allowedExtensions.includes(fileExtension)) {
+        // El archivo no tiene una extensión PDF, puedes manejar el error aquí
+        alert('Por favor, seleccione un archivo PDF válido.');
+        event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+        return;
+      }
+  
+      // Si llegamos aquí, el archivo es un PDF válido, puedes realizar la acción deseada
+      disparodeAccion({ type: "onchange", field: field, value: selectedFile });
+    }
+  };
 
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
@@ -109,7 +129,7 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
           <Label className='form-label' for='FileBlanco'>
             Foto blanco y negro
           </Label>
-         <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event =>handleChange({event:event, field:"FileBlanco"})} />
+         <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event =>handleChangeFilePDF({event:event, field:"FileBlanco"})} />
           <Label>Piezas</Label><br />
           <Label>
             <Input

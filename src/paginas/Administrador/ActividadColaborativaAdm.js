@@ -106,7 +106,7 @@ debugger
       <NavBar toggle={toggle} Seccion={"Juego colaborativo"} />
       <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <Row>
-        <Col lg="6" sm="12" md="6" xl="6">
+        <Col lg="5" sm="12" md="5" xl="5">
           <Label className="form-label" for="Curso">
             Curso
           </Label>
@@ -128,7 +128,7 @@ debugger
           />
         </Col>
 
-        <Col lg="6" sm="12" md="6" xl="6">
+        <Col lg="5" sm="12" md="5" xl="5">
           <Label className="form-label" for="Paralelo">
             Paralelo
           </Label>
@@ -186,9 +186,8 @@ debugger
           }
           {
             historial.length > 0 && <div> <br /> <h4 style={{ color: "#85858C", fontSize: '1.5em' }}>Historial de juegos</h4> 
-
             {historial.map(i=>(
- < ListadoHistoriaDeAsignaciones data={i.documentos}/>
+ <ListadoHistoriaDeAsignaciones data={i.documentos}/>
             ))
             }
            </div>

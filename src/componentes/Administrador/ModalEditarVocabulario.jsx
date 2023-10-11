@@ -58,13 +58,25 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
     const uploadData = async () => {
         try {
             let _id = dataBase._id;
+            let fileImage = dataBase.FileImagen;
+            let fileMuestra = dataBase.FileMuestra;
+            let filePregunta = dataBase.FilePregunta;
+
             if (checkbos === true) {
                 setBloqueoSecu(true);
                 setBloqueo(true);
                 setLoading(true);
-                const fileImage = await subidaIVocabulario(FileImagen)
-                const fileMuestra = await subidaIVocabulario(FileMuestra)
-                const filePregunta = await subidaIVocabulario(FilePregunta)
+                if(FileImagen){
+                    const fileImage = await subidaIVocabulario(FileImagen)
+                }
+
+               if(FileMuestra){
+                fileMuestra = await subidaIVocabulario(FileMuestra)
+               }
+                
+               if(FilePregunta){
+                filePregunta = await subidaIVocabulario(FilePregunta)
+               }
                 const data = await EditarVocabulario({ Categoria: Categoria, Palabra: Palabra, Silaba: Silaba, FileMuestra: fileMuestra, FileImagen: fileImage, FilePregunta: filePregunta, _id: _id });
                 MySwal.fire({
                     title: `${data.titulo}`,
@@ -157,7 +169,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                     <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} defaultValue={dataBase.Palabra} /> {/* revisar esto*/}
                     <Label className='form-label' for='categoria'>Silaba</Label>
                     <Input type='text' id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} defaultValue={dataBase.Silaba} value={Silaba} />
-                    <Input id="ImagenCheck" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} />&nbsp;&nbsp; <Label check for="ImagenCheck" style={{ color: '#8b8b8c', fontWeight: "700" }} >Editar imágenes </Label>
+                    <Input id="EditarImagen" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} />&nbsp;&nbsp; <Label check for="EditarImagen" style={{ color: '#8b8b8c', fontWeight: "700" }} >Editar imágenes </Label>
                     {checkbos && <div className='mt-1'>
                         <Label className='form-label' for='inputImage'>
                             Imagen
