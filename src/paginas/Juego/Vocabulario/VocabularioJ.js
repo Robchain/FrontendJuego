@@ -167,7 +167,7 @@ const Vocabulario = () => {
                   <Col lg="12" className="d-flex justify-content-end "><h3 style={{fontWeight:700, color:"#85858C"}}>Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}</h3></Col>
                   <Col lg="6">
                     {
-                      momento === "inicial" && <VideosPreguntas pointerEvent={pointerEvent} progreso={progreso} siguiente={siguiente}  window={window} data={dataJuegoVocabulario[`Juego` + window.id].Palabras}  playref={playref} setOpa1={setOpa1} setOpa2={setOpa2}  setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual} />
+                      momento === "inicial" && <VideosPreguntas pointerEvent={pointerEvent} progreso={progreso} siguiente={siguiente}  window={window} data={dataJuegoVocabulario[`Juego${window.id}`].Palabras}  playref={playref} setOpa1={setOpa1} setOpa2={setOpa2}  setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual} />
                     }
                     {
                       momento === "respuesta" && <VideosRespuesta window={window} data={dataJuegoVocabulario[`Juego${window.id}`].Palabras}   playref={playref} />
