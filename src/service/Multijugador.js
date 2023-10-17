@@ -38,7 +38,7 @@ try {
     return null
 }
 }
-// actualizacion del juego al final
+// actualización del juego al final
 
 export const ActualizarJuegoFinal = async ({idOutput,Avance})=>{
     try {

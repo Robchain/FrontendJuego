@@ -182,7 +182,7 @@ const Buscar = async ()=>{
             >
               Descargar
             </Button>
-            </PDFDownloadLink> :<></>
+            </PDFDownloadLink><></>
         </Col>
       </Row>
       <ReportePDFJugador data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes} />

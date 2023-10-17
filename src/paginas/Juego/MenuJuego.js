@@ -70,7 +70,7 @@ const MenuJuego = () => {
       <Col lg="3"  sm="12" className="ms-3" >
       <Button  disabled={Oraciones} outline style={{border:'none'}} >
       <NavLink  to={'/RompecabezaJO'} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}>
-        <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:250, height:197,background:"#EDCD90", textDecoration:"none", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"> <OracionIcon/><h4  className="">ORACION</h4> </div></div>
+        <div className="position-relative  start-50  translate-middle-x OracionMenu" style={{width:250, height:197,background:"#EDCD90", textDecoration:"none", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}> <div className="py-5"> <OracionIcon/><h4  className="">ORACIÓN</h4> </div></div>
       </NavLink>
       </Button>
       </Col>

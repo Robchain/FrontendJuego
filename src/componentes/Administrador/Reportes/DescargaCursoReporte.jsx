@@ -40,7 +40,7 @@ export const DescargaCursoReporte = ({ data, juego, Curso, Paralelo }) => {
                 </View>
                 <View>
               <View style={styles.tableColFecha}>
-                <Text style={styles.tableCell}> <Text style={{ color: '#85858C' }} > Fecha de creacion del juego:</Text> {fechaEcuador(documentos.documentos.createdAt)} --- {documentos.documentos.updatedAt && <><Text style={{ color: '#85858C' }}>ultima fecha de actualizacion:</Text> {fechaEcuador(documentos.documentos.updatedAt)}</>} {documentos.documentos.FechaDeFin && <><Text style={{ color: '#85858C' }}>Fecha de cierre del juego:</Text> {fechaEcuador(documentos.documentos.FechaDeFin)}</>}  </Text>
+                <Text style={styles.tableCell}> <Text style={{ color: '#85858C' }} > Fecha de creación del juego:</Text> {fechaEcuador(documentos.documentos.createdAt)} --- {documentos.documentos.updatedAt && <><Text style={{ color: '#85858C' }}>última fecha de actualización:</Text> {fechaEcuador(documentos.documentos.updatedAt)}</>} {documentos.documentos.FechaDeFin && <><Text style={{ color: '#85858C' }}>Fecha de cierre del juego:</Text> {fechaEcuador(documentos.documentos.FechaDeFin)}</>}  </Text>
               </View>
               {(documentos.documentos.Avance !== null && documentos.documentos.Avance !== undefined) && documentos.documentos.Avance.map((avance, index) => (<>
                 <View style={{ height: '10px' }}></View>

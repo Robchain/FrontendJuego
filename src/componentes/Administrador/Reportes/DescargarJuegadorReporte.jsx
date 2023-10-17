@@ -39,7 +39,7 @@ export const DescargarJuegadorReporte = ({ data, actividad, Estudiantes, Estudia
                 <View style={styles.table}>
                   <View style={styles.tableRow}>
                     <View style={styles.tableColMain}>
-                      <Text style={styles.tableCell}>Palabra/Oracion seleccionada</Text>
+                      <Text style={styles.tableCell}>Palabra/Oración seleccionada</Text>
                     </View>
                   </View>
                   {(j.Correcto !== null && j.Correcto !== undefined) && j.Correcto.map((e) => (

@@ -28,7 +28,7 @@ export const ReportePDFCurso = ({ data, juego, Curso, Paralelo }) => {
                 </Row>
                 <Col className='m-4'>
                   <div style={{ backgroundColor: "#E6DFF0", color: "#62269E" }}>
-                    <p style={{ fontWeight: 700 }}> <span style={{ color: '#85858C' }} > Fecha de creacion del juego:</span> {fechaEcuador(documentos.documentos.createdAt)} ---  {documentos.documentos.updatedAt && <><span style={{ color: '#85858C' }}>ultima fecha de actualizacion:</span> {fechaEcuador(documentos.documentos.updatedAt)}</>} {documentos.documentos.FechaDeFin && <><span style={{ color: '#85858C' }}>Fecha de cierre del juego:</span> {fechaEcuador(documentos.documentos.FechaDeFin)}</>}</p>
+                    <p style={{ fontWeight: 700 }}> <span style={{ color: '#85858C' }} > Fecha de creación del juego:</span> {fechaEcuador(documentos.documentos.createdAt)} ---  {documentos.documentos.updatedAt && <><span style={{ color: '#85858C' }}>última fecha de actualización:</span> {fechaEcuador(documentos.documentos.updatedAt)}</>} {documentos.documentos.FechaDeFin && <><span style={{ color: '#85858C' }}>Fecha de cierre del juego:</span> {fechaEcuador(documentos.documentos.FechaDeFin)}</>}</p>
                   </div>
                   {(documentos.documentos.Avance !== null && documentos.documentos.Avance !== undefined) && documentos.documentos.Avance.map((avance, index) => (<>
                     <h5>{`Actividades ${index + 1}`}</h5>
@@ -36,7 +36,7 @@ export const ReportePDFCurso = ({ data, juego, Curso, Paralelo }) => {
                     <Table striped>
                       <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
                         <tr>
-                          <th style={{ borderBottomColor: "#f8f8f8", fontSize: 14 }}>Palabra/Oracion seleccionada</th>
+                          <th style={{ borderBottomColor: "#f8f8f8", fontSize: 14 }}>Palabra/Oración seleccionada</th>
                         </tr>
                       </thead>
                       <tbody>

@@ -40,7 +40,7 @@ export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) 
                     <Table striped>
                       <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
                         <tr>
-                          <th style={{ borderBottomColor: "#f8f8f8", fontSize: 14 }}>Palabra/Oracion seleccionada</th>
+                          <th style={{ borderBottomColor: "#f8f8f8", fontSize: 14 }}>Palabra/Oración seleccionada</th>
                         </tr>
                       </thead>
                       <tbody>

@@ -175,7 +175,8 @@ const VerEstudianteAdm = () => {
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>NOMBRE</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>APELLIDO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>EMAIL</th>
-              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>TIPO DE USUARIO</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>CURSO</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>PARALELO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ESTADO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>
             </tr></thead>
@@ -185,7 +186,8 @@ const VerEstudianteAdm = () => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Nombre}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Apellido}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Email}</td>
-                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.TipoUsuario}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.Curso}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.Paralelo}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
@@ -213,7 +215,8 @@ const VerEstudianteAdm = () => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Nombre}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Apellido}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Email}</td>
-                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.TipoUsuario}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.Curso}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.Paralelo}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
@@ -265,7 +268,6 @@ const VerEstudianteAdm = () => {
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>NOMBRE</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>APELLIDO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>EMAIL</th>
-              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>TIPO DE USUARIO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ESTADO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>
             </tr></thead>
@@ -275,7 +277,6 @@ const VerEstudianteAdm = () => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Nombre}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Apellido}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Email}</td>
-                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.TipoUsuario}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
@@ -303,7 +304,6 @@ const VerEstudianteAdm = () => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Nombre}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Apellido}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Email}</td>
-                  <td style={{borderBottomColor:"#f8f8f8"}}>{i.TipoUsuario}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>

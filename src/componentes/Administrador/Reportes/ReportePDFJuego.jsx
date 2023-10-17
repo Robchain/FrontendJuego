@@ -30,7 +30,7 @@ export const ReportePDFJuego = ({ data, juego }) => {
               </Row>
               <Col className='m-4'>
               <div style={{ backgroundColor: "#E6DFF0", color: "#62269E" }}>
-                <p style={{ fontWeight: 700 }}> <span style={{ color: '#85858C' }} > Fecha de creacion del juego:</span> {fechaEcuador(i.documentos.createdAt)} --- {i.documentos.updatedAt && <><span style={{ color: '#85858C' }}>ultima fecha de actualizacion:</span> {fechaEcuador(i.documentos.updatedAt)}</>} {i.documentos.FechaDeFin && <><span style={{ color: '#85858C' }}>Fecha de cierre del juego:</span> {fechaEcuador(i.documentos.FechaDeFin)}</>}</p>
+                <p style={{ fontWeight: 700 }}> <span style={{ color: '#85858C' }} > Fecha de creación del juego:</span> {fechaEcuador(i.documentos.createdAt)} --- {i.documentos.updatedAt && <><span style={{ color: '#85858C' }}>última fecha de actualización:</span> {fechaEcuador(i.documentos.updatedAt)}</>} {i.documentos.FechaDeFin && <><span style={{ color: '#85858C' }}>Fecha de cierre del juego:</span> {fechaEcuador(i.documentos.FechaDeFin)}</>}</p>
               </div>
 {
  (i.documentos.Avance !== null && i.documentos.Avance !== undefined) && i.documentos.Avance.map((avance, index) => (<>
@@ -39,7 +39,7 @@ export const ReportePDFJuego = ({ data, juego }) => {
               <Table striped>
                 <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
                   <tr>
-                    <th style={{ borderBottomColor: "#f8f8f8", fontSize: 14 }}>Palabra/Oracion seleccionada</th>
+                    <th style={{ borderBottomColor: "#f8f8f8", fontSize: 14 }}>Palabra/Oración seleccionada</th>
                   </tr>
                 </thead>
                 <tbody>

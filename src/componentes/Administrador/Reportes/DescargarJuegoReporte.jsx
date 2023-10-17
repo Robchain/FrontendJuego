@@ -34,7 +34,7 @@ export const DescargarJuegoReporte = ({data, juego,}) => {
          
     </View>
     <View style={styles.tableColFecha}>
-    <Text style={styles.tableCell}> <Text style={{color:'#85858C'}} > Fecha de creacion del juego:</Text> {fechaEcuador(i.documentos.createdAt)} --- {i.documentos.updatedAt && <><Text style={{color:'#85858C'}}>ultima fecha de actualizacion:</Text> {fechaEcuador(i.documentos.updatedAt)}</>} {i.documentos.FechaDeFin && <><Text style={{color:'#85858C'}}>Fecha de cierre del juego:</Text> {fechaEcuador(i.documentos.FechaDeFin)}</>} </Text>
+    <Text style={styles.tableCell}> <Text style={{color:'#85858C'}} > Fecha de creación del juego:</Text> {fechaEcuador(i.documentos.createdAt)} --- {i.documentos.updatedAt && <><Text style={{color:'#85858C'}}>última fecha de actualización:</Text> {fechaEcuador(i.documentos.updatedAt)}</>} {i.documentos.FechaDeFin && <><Text style={{color:'#85858C'}}>Fecha de cierre del juego:</Text> {fechaEcuador(i.documentos.FechaDeFin)}</>} </Text>
 </View>
     {
        (i.documentos.Avance !== null && i.documentos.Avance !== undefined) && i.documentos.Avance.map((avance, index) => (<>
