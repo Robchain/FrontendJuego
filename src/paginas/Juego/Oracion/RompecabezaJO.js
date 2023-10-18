@@ -92,7 +92,7 @@ const Modalaqui = ({ data, modal, setModal }) => {
         <ModalBody>
         <Row>
         <Col>
-        {data !== null &&  <img className='print cac' src={data.Rompecabeza.FileColor} alt={data.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  /> }
+        {data !== null &&  <img className='print cac' src={data.Rompecabeza.FileColor} alt={data.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7",maxWidth:'450px'}}  /> }
           </Col>
           </Row>
         </ModalBody>
