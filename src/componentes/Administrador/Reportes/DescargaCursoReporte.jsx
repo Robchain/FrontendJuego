@@ -87,7 +87,11 @@ export const DescargaCursoReporte = ({ data, juego, Curso, Paralelo }) => {
               </>
             ))
           }
-        </View></Page></Document>
+        </View>
+        <Text style={styles.pageNumbers} render={({ pageNumber, totalPages }) => (
+        `${pageNumber} / ${totalPages}`
+      )} fixed />
+      </Page></Document>
       }</>
   )
 }
@@ -135,5 +139,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     color: "#62269E",
     backgroundColor: '#E6DFF0'
+  },
+  pageNumbers: {
+    position: 'absolute',
+    bottom: 20,
+    left: 0,
+    right: 0,
+    textAlign: 'center'
   },
 });

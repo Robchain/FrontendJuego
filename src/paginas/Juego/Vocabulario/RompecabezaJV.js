@@ -77,24 +77,31 @@ const RompecabezaJV = () => {
 }
 const Modalaqui = ({ data , modal, setModal }) => {
   const toggle = () => setModal(!modal)
-  const impresion = () => {
-    document.querySelector(".print").classList.add("print-image");
-    document.querySelector(".bot").classList.add("desaparecer");
-    document.querySelector(".a").classList.add("desaparecer");
-    window.print();
-    document.querySelector(".print").classList.remove("print-image");
-    document.querySelector(".bot").classList.remove("desaparecer");
-    document.querySelector(".a").classList.remove("desaparecer");
+  const impresion = (urlDelArchivo, nombreDelArchivo) => {
+    const enlace = document.createElement('a');
+    enlace.href = urlDelArchivo;
+    enlace.download = nombreDelArchivo;
+    enlace.style.display = 'none';
+    document.body.appendChild(enlace);
+    enlace.click();
+    document.body.removeChild(enlace);
+
+    // document.querySelector(".print").classList.add("print-image");
+    // document.querySelector(".bot").classList.add("desaparecer");
+    // document.querySelector(".a").classList.add("desaparecer");
+    // window.print();
+    // document.querySelector(".print").classList.remove("print-image");
+    // document.querySelector(".bot").classList.remove("desaparecer");
+    // document.querySelector(".a").classList.remove("desaparecer");
   }
   return (
     <div>
-      <Modal isOpen={modal} toggle={toggle} backdrop={false} style={{textAlign:"center"}}  >
+      <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered'  >
         <ModalHeader  style={{backgroundColor:"#E6DFF0",color:"#62269E"}}><span style={{fontWeight:"bold", textAlign:"center"}}>Rompecabeza Completado</span></ModalHeader>
         <ModalBody>
         {
-          data!==null &&  <img className='print cac' src={data.Rompecabeza.FileColor} alt={data.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7"}}  />
-        }
-          
+          data!==null &&  <img className='print cac' src={data.Rompecabeza.FileColor} alt={data.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7", maxWidth:'450px'}}  />
+        } 
         </ModalBody>
         <ModalFooter className='justify-content-center'>
         <Row className='justify-content-center'>
@@ -104,8 +111,8 @@ const Modalaqui = ({ data , modal, setModal }) => {
           </Button>
           </Col>
           <Col lg="6" md="6" sm="6" xs="6" >
-          <Button  className='bot' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}} onClick={() => { impresion() }}>
-            Imprimir
+          <Button  className='bot' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}} onClick={() => { impresion(data.Rompecabeza.FileBlanco,data.Rompecabeza.Nombre) }}>
+            Descargar
           </Button>
           </Col>
           </Row>

@@ -87,7 +87,7 @@ const Modalaqui = ({ data, modal, setModal }) => {
   }
   return (
     <div>
-      <Modal isOpen={modal} toggle={toggle} backdrop={false} style={{textAlign:"center"}}  >
+      <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered'  >
         <ModalHeader  style={{backgroundColor:"#E6DFF0",color:"#62269E"}}><span style={{fontWeight:"bold", textAlign:"center"}}>Rompecabeza Completado</span></ModalHeader>
         <ModalBody>
         <Row>
