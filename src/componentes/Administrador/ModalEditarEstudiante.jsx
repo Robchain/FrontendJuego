@@ -29,7 +29,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
   const [bloqueo, setbloqueo] = useState(true)
   const [{ Nombre, Apellido, Identificacion, Email, Usuario, TipoUsuario,FotoPerfil, Curso, Paralelo }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   useEffect(() => {
-    if (Nombre!== dataBase.Nombre || Apellido !== dataBase.Apellido || Identificacion !== dataBase.Identificacion || Email !== dataBase.Email || Usuario!== dataBase.Usuario ) {
+    if (Nombre!== dataBase.Nombre || Apellido !== dataBase.Apellido || Identificacion !== dataBase.Identificacion || Email !== dataBase.Email || Usuario!== dataBase.Usuario || Curso !== dataBase.Curso|| Paralelo!==  dataBase.Paralelo) {
       setbloqueo(false);
     }else{
       setbloqueo(true);
@@ -58,6 +58,8 @@ useEffect(() => {
   disparodeAccion({ type: "onchange", field: "Email" , value: dataBase.Email })
   disparodeAccion({ type: "onchange", field: "Usuario" , value: dataBase.Usuario })
   disparodeAccion({ type: "onchange", field: "TipoUsuario" , value: dataBase.TipoUsuario })
+  disparodeAccion({ type: "onchange", field: "Curso" , value: dataBase.Curso })
+  disparodeAccion({ type: "onchange", field: "Paralelo" , value: dataBase.Paralelo })
 
   setCheckbosDos(false);
 }, [dataBase, modal])
@@ -203,11 +205,11 @@ setTimeout(() => {
             <Label className='form-label' for='Curso'>
               Curso
             </Label>
-            <Select name="Curso" isSearchable={false} defaultValue={{value:dataBase.Curso,label:dataBase.Curso}} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.label }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
+            <Select name="Curso" isSearchable={false} defaultValue={{value:dataBase.Curso,label:dataBase.Curso}} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.label }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}  />
             <Label className='form-label' for='Paralelo'>
               Paralelo
             </Label>
-            <Select name="Paralelo" isSearchable={false} defaultValue={{value:dataBase.Paralelo,label:dataBase.Paralelo}} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.label }) }   options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
+            <Select name="Paralelo" isSearchable={false} defaultValue={{value:dataBase.Paralelo,label:dataBase.Paralelo}} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.label }) }   options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}  />
           </Col>     
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='EmailMulti'>

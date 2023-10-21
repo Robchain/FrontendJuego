@@ -274,7 +274,7 @@ MySwal.fire({
         <Col lg='4' md='6' className='my-2'>
        <CardGroup> 
         <Card>
-          <CardImg top src={i.FileSujetoImagen} alt={i.Oracion} />
+          <CardImg top src={i.Que.value} alt={i.Oracion} />
           <CardBody>
             <CardTitle tag='h4'>{i.Oracion}</CardTitle>
             <CardText>

@@ -110,7 +110,7 @@ const VerEstudianteAdm = () => {
 
   return (
     <Container >
-      <NavBar toggle={toggle} Seccion={"Estudiantes"} />
+      <NavBar toggle={toggle} Seccion={"Usuario"} />
       <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <Row className='justify-content-center fuente fuenteDoce' >
         <Col xl='11' lg="12" className='d-flex justify-content-between '>

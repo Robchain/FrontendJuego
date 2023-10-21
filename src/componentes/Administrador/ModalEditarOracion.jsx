@@ -171,7 +171,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                 <Row>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Categoria'>Categoría</Label><br />
-                        <Select name="Categoria" isSearchable={false} defaultValue={{ label: dataBase.Categoria, value: dataBase.Categoria }} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
+                        <Select name="Categoria" isSearchable={true} defaultValue={{ label: dataBase.Categoria, value: dataBase.Categoria }} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Verbo'>
@@ -194,13 +194,13 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='Que'>
-                                Imagenes del Que
+                            Imágenes del Que
                             </Label>
                             <Select name="Que" isSearchable={false} defaultValue={dataBase.Que} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='Sujeto' >
-                                Imagen del quien
+                            Imagen del Quién
                             </Label>
                             <Select name="Sujeto" isSearchable={false} defaultValue={dataBase.Sujeto} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
                         </Col>
@@ -224,7 +224,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='FileVideoPreguntaQuien'>
-                                Video pregunta Quien
+                                Video pregunta Quién
                             </Label>
                             <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => handleChangeFileImage({event:e, field:"FileVideoPreguntaQuien"})} />
                         </Col>

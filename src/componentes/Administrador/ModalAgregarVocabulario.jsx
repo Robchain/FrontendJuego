@@ -134,7 +134,7 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
       <ModalBody>
         <div className='mb-2'>
           <Label className='form-label' for='categoria'>Categoría</Label><br />
-          <Select name="Categoria" options={vocabularioOpciones.map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={false} />
+          <Select name="Categoria" options={vocabularioOpciones.map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={true} />
           <Label className='form-label' for='palabra'>Palabra</Label>
           <Input type='text' id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} />
           <Label className='form-label' for='categoria'>Silaba</Label>

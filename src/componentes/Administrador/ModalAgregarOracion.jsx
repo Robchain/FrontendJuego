@@ -142,14 +142,14 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
         <Row>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Categoria'>Categoría</Label><br />
-            <Select name="Categoria" isSearchable={false} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
+            <Select name="Categoria" isSearchable={true} options={listadoOption.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Sujeto' >
-            Imagen del quien
+            Imagen del Quién
             </Label>
             {/* <Input type='file' id='FileSujetoImagen' name='FileSujetoImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileSujetoImagen", value: e.target.files[0] })} /> */}
-            <Select name="Sujeto" isSearchable={false} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
+            <Select name="Sujeto" isSearchable={true} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Oracion'>
@@ -171,7 +171,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='FileVideoPreguntaQue'>
-              Video pregunta Que
+            Video pregunta Que
             </Label>
             <Input type='file' id='FileVideoPreguntaQue' name='FileVideoPreguntaQue' onChange={e => handleChangeFileVideo({event:e, field:'FileVideoPreguntaQue'}) } />
           </Col>
@@ -190,9 +190,9 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Que'>
-              Imagenes del Que
+            Imágenes del Que
             </Label>
-            <Select name="Que" isSearchable={false} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
+            <Select name="Que" isSearchable={true} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
           </Col>
         </Row>
       </ModalBody>
