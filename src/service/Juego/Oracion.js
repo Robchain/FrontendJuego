@@ -11,3 +11,8 @@ export const Juego1Oracion= async ({_id,Avance})=>{
     })
   }
   
+
+  export const TrofeoOracion =async({id})=>{
+    const data = await Api.post('/llamarJuegoterminados', {id:id});
+    return data.data;
+  }

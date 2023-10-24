@@ -7,6 +7,7 @@ import { BuscarPorCursoYParalelo, ReportesJugadorApi } from "../../../service/Ad
 import { ReportePDFJugador } from "./ReportePDFJugador";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { DescargarJuegadorReporte } from "./DescargarJuegadorReporte";
+import { MostrarCurso, MostrarParalelo } from "../../../service/Adminstrador/Usuarios";
 const BaseInicialFormulario = { Curso: undefined, Paralelo: undefined,Estudiante:undefined, Juego:undefined }
 function llenadodeFormulario(state, action) {
     switch (action.type) {
@@ -22,6 +23,8 @@ export const ReporteJugador = () => {
   const [{ Curso, Paralelo,Estudiante,Juego, }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   const [Estudiantes, setEstudiantes] = useState([])
   const [picker, setPicker] = useState(new Date())
+  const [cursoData, setcursoData] = useState([]);
+  const [paraleloData, setparaleloData] = useState([])
   const [bloqueodos, setBloqueodos] = useState(true)
   const [bloqueo, setBloqueo] = useState(true)
   const [MostrarVocabulario, setMostrarVocabulario] = useState([]);
@@ -34,6 +37,19 @@ export const ReporteJugador = () => {
         setEstudiantes([])
     }
 }
+const dataCurso = async ()=>{
+
+  const data = await MostrarCurso();
+  setcursoData(data);
+}
+const dataParalelo = async ()=>{
+  const data = await MostrarParalelo();
+  setparaleloData(data)
+}
+useEffect(() => {
+  dataCurso();
+  dataParalelo();
+}, [])
 useEffect(() => {
 if(Curso && Paralelo){
     llamddeData()
@@ -76,11 +92,7 @@ const Buscar = async ()=>{
                 value: e.value,
               })
             }
-            options={[
-              { value: "PRIMERO", label: "PRIMERO" },
-              { value: "SEGUNDO", label: "SEGUNDO" },
-              { value: "TERCERO", label: "TERCERO" },
-            ]}
+            options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
           />
           <Label className="form-label" for="Paralelo">
             &nbsp;&nbsp;
@@ -96,14 +108,7 @@ const Buscar = async ()=>{
                 value: e.value,
               })
             }}
-            options={[
-              { value: "A", label: "A" },
-              { value: "B", label: "B " },
-              { value: "C", label: "C" },
-              { value: "D", label: "D" },
-              { value: "E", label: "E" },
-              { value: "F", label: "F" },
-            ]}
+            options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
           />
         </Col>
         <Col lg="6" sm="12" md="6" xl="6">

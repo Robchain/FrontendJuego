@@ -7,6 +7,7 @@ import { ReporteCurso } from "../../../service/Adminstrador/Reporte";
 import { ReportePDFCurso } from "./ReportePDFCurso";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { DescargaCursoReporte } from "./DescargaCursoReporte";
+import { MostrarCurso, MostrarParalelo } from "../../../service/Adminstrador/Usuarios";
 const BaseInicialFormulario = {
   Curso: undefined,
   Paralelo: undefined,
@@ -27,11 +28,25 @@ export const ReporteCursos = () => {
     llenadodeFormulario,
     BaseInicialFormulario
   );
+  const [cursoData, setcursoData] = useState([]);
+  const [paraleloData, setparaleloData] = useState([])
   const [bloqueodos, setBloqueodos] = useState(true);
   const [bloqueo, setBloqueo] = useState(true);
   const [picker, setPicker] = useState(new Date());
   const [MostrarVocabulario, setMostrarVocabulario] = useState([]);
+  const dataCurso = async ()=>{
 
+    const data = await MostrarCurso();
+    setcursoData(data);
+  }
+  const dataParalelo = async ()=>{
+    const data = await MostrarParalelo();
+    setparaleloData(data)
+  }
+  useEffect(() => {
+    dataCurso();
+    dataParalelo();
+  }, [])
   useEffect(() => {
     if ((Curso, Paralelo)) {
       setBloqueodos(false);
@@ -77,11 +92,7 @@ export const ReporteCursos = () => {
                 value: e.value,
               })
             }
-            options={[
-              { value: "PRIMERO", label: "PRIMERO" },
-              { value: "SEGUNDO", label: "SEGUNDO" },
-              { value: "TERCERO", label: "TERCERO" },
-            ]}
+            options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
           />
           <Label className="form-label" for="Paralelo">
             &nbsp;&nbsp;
@@ -97,14 +108,7 @@ export const ReporteCursos = () => {
                 value: e.value,
               })
             }
-            options={[
-              { value: "A", label: "A" },
-              { value: "B", label: "B " },
-              { value: "C", label: "C" },
-              { value: "D", label: "D" },
-              { value: "E", label: "E" },
-              { value: "F", label: "F" },
-            ]}
+            options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
           />
         </Col>
         <Col lg="6" sm="12" md="6" xl="6">

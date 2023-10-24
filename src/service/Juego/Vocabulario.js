@@ -13,3 +13,8 @@ export const Juego1= async ({_id,Avance})=>{
   }
   
 
+
+  export const TrofeoVocabulario =async({id})=>{
+    const data = await Api.post('/llamadaPartidaVocabularioRompecabeza', {id:id});
+    return data.data;
+  }
