@@ -5,6 +5,9 @@ import  Rompecabezas from '../../../assets/img/AssetsGame/puzzles.gif'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { TrofeoVocabulario } from '../../../service/Juego/Vocabulario'
 import { TrofeoOracion } from '../../../service/Juego/Oracion'
+import  MedallaOro from '../../../assets/img/AssetsGame/medallaOro.png'
+import  MedallaSilver from '../../../assets/img/AssetsGame/medallaSilver.png'
+import  MedallaBronce from '../../../assets/img/AssetsGame/medallaBronce.png'
 export const Trofeos = () => {
 
   const { oraciondata,setOraciondata,dataJuegoInicialVocabulario,setDataJuegoInicialVocabulario } = useContext(JuecoContext);
@@ -49,7 +52,7 @@ export const Trofeos = () => {
 <Row className="justify-content-evenly  mt-2 mx-2">
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Vocabularios</h3>
 {
-  dataJuegoInicialVocabulario !== null && (
+  dataJuegoInicialVocabulario !== null ? (
   dataJuegoInicialVocabulario.map(i=>(
  <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4"  className='my-2'>
         <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
@@ -57,13 +60,15 @@ export const Trofeos = () => {
         </div>
 </Col>
   ))
-  )
+  ):<span>
+  No hay rompecabeza ganados
+</span>
 }
 </Row>
 <Row className="justify-content-evenly  mt-2 mx-2">
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Oraciones</h3>
 {
-  oraciondata !==null && (
+  oraciondata !==null ? (
   oraciondata.map(i=>(
  <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" className='my-2' >
         <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
@@ -71,23 +76,22 @@ export const Trofeos = () => {
         </div>
 </Col>
   ))
-  )
+  ):<span>
+    No hay rompecabeza ganados
+  </span>
 }
 </Row>
 <Row className="justify-content-evenly  mt-2 mx-2">
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Colaborativo</h3>
-{
-  //ver esto 
-  oraciondata !==null && (
-  oraciondata.filter((item) => item.Terminado === true).map(i=>(
- <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" >
-        <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
-          <img src={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
-        </div>
-</Col>
-  ))
-  )
-}
+<div style={{display:'flex', justifyContent:'space-evenly', }}><div>
+<img src={MedallaOro} width={'100px'} alt='medalla de oro'/> <span><strong>0</strong></span>
+</div>
+<div>
+<img src={MedallaSilver} width={'100px'} alt='medalla de plata'/> <span><strong>0</strong></span>
+</div>
+<div>
+<img src={MedallaBronce} width={'100px'} alt='medalla de bronce'/> <span><strong>0</strong></span>
+</div></div>
 </Row>
     </Container>
   )

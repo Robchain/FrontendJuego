@@ -8,3 +8,17 @@ export const OracionRespuesta = ({objecto1, objecto2, objecto3}) => {
     }
 
   }
+
+
+  export const SinRepeticiones = ({input})=>{
+    // const palabras = ["manzana", "banana", "manzana", "uva", "naranja", "banana"];
+
+// Crear un conjunto para almacenar palabras únicas
+const palabrasUnicas = new Set(input);
+
+// Convertir el conjunto en un array
+const palabrasSinRepetir = Array.from(palabrasUnicas);
+
+return  palabrasSinRepetir; // Esto mostrará ["manzana", "banana", "uva", "naranja"]
+
+  }

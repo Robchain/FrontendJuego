@@ -12,6 +12,7 @@ import TrofeoIcon from "../../componentes/iconosCom/TrofeoIcon"
 const MenuJuego = () => {
   const { datoVocabulario, dataOracion,dispatchMutli,LLamadaIncial,Vocabulario, Oraciones, MultiJugador} = useContext(JuecoContext);
   const [usuario, setUsuario] = useState("");
+  const [idState, setIdState] = useState("");
   const [Email, setEmail] = useState("");
   const [Identificacion, setIdentificacion] = useState(0);
   const navegar = useNavigate();
@@ -22,9 +23,10 @@ const MenuJuego = () => {
     setEmail(localStorage.getItem("Email"));
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUsuario(localStorage.getItem("Usuario"))
+    setIdState(localStorage.getItem("Id"))
     dispatchMutli({type:"RESETEAR"})
     dataOracion(localStorage.getItem("Usuario"));
-    datoVocabulario(localStorage.getItem("Usuario"));
+    datoVocabulario(localStorage.getItem("Id"));
     LLamadaIncial()
   }, [])
   
@@ -65,7 +67,7 @@ const MenuJuego = () => {
    <Row className="">
     <Col lg="3" sm="12" className="offset-lg-3" >
     <Button  disabled={Vocabulario} outline style={{border:'none'}} >
-      <div   className="position-relative  start-50  top-0  translate-middle-x OracionMenu " style={{width:250, height:197, background:"#BFBFD9", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}  >    <NavLink   to={'/RompecabezaJV'}  onClick={()=>datoVocabulario(usuario)} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}> <div className="py-5"><VocabularioIcon/><h4  className="">VOCABULARIO</h4></div></NavLink></div>
+      <div   className="position-relative  start-50  top-0  translate-middle-x OracionMenu " style={{width:250, height:197, background:"#BFBFD9", borderRadius:"10px", boxShadow: "5px 5px rgba(0, 0, 0, 0.13)"}}  >    <NavLink   to={'/RompecabezaJV'}  onClick={()=>datoVocabulario(idState)} style={{color:"#fff", textDecoration:"none", textAlign:"center"}}> <div className="py-5"><VocabularioIcon/><h4  className="">VOCABULARIO</h4></div></NavLink></div>
       </Button></Col>
       <Col lg="3"  sm="12" className="ms-3" >
       <Button  disabled={Oraciones} outline style={{border:'none'}} >

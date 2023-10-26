@@ -1,7 +1,7 @@
 import { Api } from "../api";
 
-export const llamadaRompecabezaGet =async ({user})=>{
-    const data = await Api.post("/llamadaPartidaVocabulario",{ Usuario: user});
+export const llamadaRompecabezaGet =async ({id})=>{
+    const data = await Api.post("/llamadaPartidaVocabulario",{ id: id});
     return data.data;
 }
 

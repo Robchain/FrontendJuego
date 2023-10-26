@@ -31,7 +31,7 @@ export const ReportePDFCurso = ({ data, juego, Curso, Paralelo }) => {
                     <p style={{ fontWeight: 700 }}> <span style={{ color: '#85858C' }} > Fecha de creación del juego:</span> {fechaEcuador(documentos.documentos.createdAt)} ---  {documentos.documentos.updatedAt && <><span style={{ color: '#85858C' }}>última fecha de actualización:</span> {fechaEcuador(documentos.documentos.updatedAt)}</>} {documentos.documentos.FechaDeFin && <><span style={{ color: '#85858C' }}>Fecha de cierre del juego:</span> {fechaEcuador(documentos.documentos.FechaDeFin)}</>}</p>
                   </div>
                   {(documentos.documentos.Avance !== null && documentos.documentos.Avance !== undefined) && documentos.documentos.Avance.map((avance, index) => (<>
-                    <h5>{`Actividades ${index + 1}`}</h5>
+                    <h5 style={{ fontWeight: 700, color: '#8cc5b0' }}>{`Actividades ${index + 1}`}</h5>
                     <h5>Correctos</h5>
                     <Table striped>
                       <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>

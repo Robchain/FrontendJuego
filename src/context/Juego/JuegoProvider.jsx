@@ -133,9 +133,9 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
     ]);
   };
 
-  const datoVocabulario = async (user) => {
+  const datoVocabulario = async (id) => {
     try {
-      const data = await llamadaRompecabezaGet({ user: user });
+      const data = await llamadaRompecabezaGet({ id: id });
       if (data !== null) {
         setDataJuegoInicialVocabulario(data);
       } else if (data === null) {

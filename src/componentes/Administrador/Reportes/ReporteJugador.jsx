@@ -190,6 +190,7 @@ const Buscar = async ()=>{
             </PDFDownloadLink><></>
         </Col>
       </Row>
+      
       <ReportePDFJugador data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes} />
     </>
   );

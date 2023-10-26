@@ -13,8 +13,8 @@ const RompecabezaJV = () => {
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const navegar = useNavigate();
-  const datoVocabulario = async (user) => {
-   const data = await  llamadaRompecabezaGet({user});
+  const datoVocabulario = async (id) => {
+   const data = await  llamadaRompecabezaGet({id});
    setDataJuegoInicialVocabulario(data);
   }
 
@@ -22,7 +22,7 @@ const RompecabezaJV = () => {
 
   useEffect(() => {
     setavance([]);
-    datoVocabulario(localStorage.getItem("Usuario"));
+    datoVocabulario(localStorage.getItem("Id"));
   }, [])
   
 

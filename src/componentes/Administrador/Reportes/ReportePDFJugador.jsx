@@ -1,6 +1,7 @@
 import React from 'react'
 import { Col, Container, Row, Table } from 'reactstrap'
 import { buscarValor, fechaEcuador } from '../../../helpers/contador'
+import { SinRepeticiones } from '../../../helpers'
 
 export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) => {
 
@@ -11,10 +12,10 @@ export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) 
         data.length > 0 && <Container className='m-3'>
           <Row>
             <Col>
-              <h3 style={{ color: "#9696D3" }}>Reporte por Estudiante</h3>
+              <h4 style={{ color: "#9696D3" }}>Reporte por Estudiante</h4>
             </Col>
           </Row>
-          <Row className='m-3'>
+          <Row className='m-2'>
             <Col>
               {
                 data[0].documentos.Estudiante !== undefined ? <>
@@ -34,7 +35,7 @@ export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) 
                     <p style={{ fontWeight: 700 }}> <span style={{ color: '#85858C' }} > Fecha de creación del juego:</span> {fechaEcuador(i.documentos.createdAt)} --- <span style={{ color: '#85858C' }}>última fecha de actualización:</span> {fechaEcuador(i.documentos.updatedAt)}</p>
                   </div>
                   {( i.documentos.Avance !== null && i.documentos.Avance!==undefined) && i.documentos.Avance.map((j, index) => (<>
-                    <h5>{`Actividades ${index + 1}`}</h5>
+                    <h5 style={{ fontWeight: 700, color: '#8cc5b0' }}>{`Actividades ${index + 1}`}</h5>
                     <br />
                     <h5>Correctos</h5>
                     <Table striped>
@@ -44,7 +45,7 @@ export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) 
                         </tr>
                       </thead>
                       <tbody>
-                        {(j.Correcto !== null && j.Correcto !== undefined) && j.Correcto.map(e => (
+                        {(j.Correcto !== null && j.Correcto !== undefined) &&  SinRepeticiones({input:j.Correcto}).map(e => (
                           <tr className='m-4'>
                             <td style={{ fontWeight: 700 }}><span style={{ color: "#85858C" }}>{e}</span> </td>
                           </tr>
@@ -61,12 +62,16 @@ export const ReportePDFJugador = ({ data, actividad, Estudiante, Estudiantes }) 
                         </tr>
                       </thead>
                       <tbody>
-                        {(j.Incorrecto !== null && j.Incorrecto !== undefined) && j.Incorrecto.map(e => (
+                        {((j.Incorrecto !== null && j.Incorrecto !== undefined) && j.Incorrecto.length >0) ? j.Incorrecto.map(e => (
                           <tr className='m-4'>
                             <td style={{ fontWeight: 700 }}><span style={{ color: "#85858C" }}>{e.PalabraASeleccionada}</span> </td>
                             <td style={{ fontWeight: 700 }}><span style={{ color: "#85858C" }}>{e.PalabraAEvaluar} </span></td>
                           </tr>
-                        ))
+                        )):
+                        <tr className='m-4'>
+                            <td style={{ fontWeight: 700 }}><span style={{ color: "#85858C" }}>No hay palabra</span> </td>
+                            <td style={{ fontWeight: 700 }}><span style={{ color: "#85858C" }}>No hay palabra </span></td>
+                          </tr>
                         }
                       </tbody>
                     </Table>
