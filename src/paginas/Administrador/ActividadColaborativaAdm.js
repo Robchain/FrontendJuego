@@ -48,7 +48,7 @@ const ActividadColaborativaAdm = () => {
   const [historial, setHistorial] = useState([])
   const [Segundo, setSegundo] = useState([]);
   const [Estudiantes, setEstudiantes] = useState([]);
-debugger
+
   const llamddeHistorial = async () => {
     try {
       const data = await historialJuego({ Curso: Curso, Paralelo: Paralelo });

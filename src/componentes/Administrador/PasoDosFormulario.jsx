@@ -33,10 +33,10 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
 
   const manejoData = (data) => {
     if (Aleatorio === true) {
-      console.log(data);
+      
      setSegundo(data);
     } else {
-      console.log(data);
+      
       setSegundo(data) 
     }
   }

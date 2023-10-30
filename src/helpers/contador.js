@@ -140,7 +140,7 @@ export const fechaEcuadoracutal =(fecha)=>{
  // Extraer el día de la fecha actual y la fecha proporcionada
  
  const diaFecha = new Date(fecha)
- debugger
+ 
  // Comparar los días y devolver el resultado
  resultado = fechaActual > diaFecha;
  return resultado;
@@ -217,7 +217,7 @@ if(objecto!== undefined){
     let num = objecto.Avance.length /5;
     return objecto.Integrantes[num].label;
   }else if(objecto.Avance===null){
-debugger
+
     return objecto.Integrantes[0].label;
   }
 }
