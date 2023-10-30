@@ -113,7 +113,7 @@ const onsudmitAgregarParalelo = async()=>{
           <Label className='form-label ' for='Nombre'>
             Curso
           </Label>
-          <Input type='text' name='Nombre' id='Nombre' placeholder='Curso' onChange={event => setCurso(event.target.value.toUpperCase())} value={Curso} />
+          <Input type='text' maxLength={20} name='Nombre' id='Nombre' placeholder='Curso' onChange={event => setCurso(event.target.value.toUpperCase())} value={Curso} />
         </Col>     
         <Button disabled={bloqueoAgregarCurso} onClick={() => { onsudmitAgregarCurso() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
       {loadingAgregarCurso && <Spinner size="sm">
@@ -129,7 +129,7 @@ const onsudmitAgregarParalelo = async()=>{
           <Label className='form-label ' for='Nombre'>
             Paralelo
           </Label>
-          <Input type='text' name='Nombre' id='Nombre' placeholder='Paralelo' onChange={event => setParalelo(event.target.value.toUpperCase())} value={Paralelo} />
+          <Input type='text' maxLength={20} name='Nombre' id='Nombre' placeholder='Paralelo' onChange={event => setParalelo(event.target.value.toUpperCase())} value={Paralelo} />
         </Col>     
         <Button disabled={bloqueoAgregarParalale} onClick={() => { onsudmitAgregarParalelo()}} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
       {loadingAgregarParalelo && <Spinner size="sm">

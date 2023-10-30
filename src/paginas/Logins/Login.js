@@ -86,7 +86,7 @@ const Index = () => {
                     <Form onSubmit={handleSudmit}>
                         <div className="">
                             <Label for="Login-Email"><small>Correo</small></Label><br/>
-                            <Input placeholder="usuario@ejemplo.com" type="text" name="Email" value={Datos.Email} onChange={handleChange} id="Login-Email"></Input><br />
+                            <Input placeholder="usuario@ejemplo.com" type="text" maxLength={55} name="Email" value={Datos.Email} onChange={handleChange} id="Login-Email"></Input><br />
                         </div>
                         <div>
                             <small><Label for="Login-Password">Contraseña</Label></small><br /><Input placeholder="*********" id="Login-Password" type="password" name="Password" value={Datos.Password} onChange={handleChange}></Input><br />

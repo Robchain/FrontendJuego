@@ -9,6 +9,7 @@ import { ModalAgregarVocabulario } from '../../componentes/Administrador/ModalAg
 import { llamadaDeDataTodosActivos,HabilitarVocabularioApi,desabilitarVocabularioApi, ActivarJuegoPorCursoParaleloVocabulario } from '../../service/Adminstrador/Vocabulario';
 import { ModalEditarVocabulario } from '../../componentes/Administrador/ModalEditarVocabulario';
 import { ListadoJuegoActivos } from '../../componentes/Administrador/ListadoJuegoActivos';
+import { MostrarCurso, MostrarParalelo } from '../../service/Adminstrador/Usuarios';
 const BaseInicialFormulario = { Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -27,6 +28,8 @@ const VerVocabularioAdm = () => {
   const [Data, setData] = useState([])
   const [bloqueo, setBloqueo] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [cursoData, setcursoData] = useState([]);
+  const [paraleloData, setparaleloData] = useState([])
   const [modal, setModal] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const toggle  = ()  =>  {setIsOpen(!isOpen)}
@@ -48,6 +51,20 @@ const VerVocabularioAdm = () => {
     
     mostrar();
   }, [])
+
+const dataCurso = async ()=>{
+
+  const data = await MostrarCurso();
+  setcursoData(data);
+}
+const dataParalelo = async ()=>{
+  const data = await MostrarParalelo();
+  setparaleloData(data)
+}
+useEffect(() => {
+  dataCurso();
+  dataParalelo();
+}, [])
   
   const desabilitarVocabularios = async (objeto)=>{
     try {
@@ -258,11 +275,11 @@ Vocabularios
             <Label className='form-label' for='Curso'>
               Curso
             </Label>
-            <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={[{value:"PRIMERO", label:"PRIMERO"},{value:"SEGUNDO", label:"SEGUNDO"},{value:"TERCERO", label:"TERCERO"},]} />
+            <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })} />
             <Label className='form-label' for='Paralelo'>
               Paralelo
             </Label>
-            <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={[{value:"A", label:"A"},{value:"B", label:"B "},{value:"C", label:"C"},{value:"D", label:"D"},{value:"E", label:"E"},{value:"F", label:"F"},]}  />
+            <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}  />
           </Col>     
           <Button disabled={bloqueo} onClick={() => { onsubmit() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
         {loading && <Spinner size="sm">

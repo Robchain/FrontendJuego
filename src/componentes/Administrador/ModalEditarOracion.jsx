@@ -177,7 +177,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         <Label className='form-label' for='Verbo'>
                             Verbo
                         </Label>
-                        <Input type='text' name='Verbo' id='Verbo' placeholder='Verbo' defaultValue={dataBase.Verbo} value={Verbo} onChange={event => disparodeAccion({ type: "onchange", field: "Verbo", value: event.target.value.toUpperCase() })} />
+                        <Input type='text' maxLength={15} name='Verbo' id='Verbo' placeholder='Verbo' defaultValue={dataBase.Verbo} value={Verbo} onChange={event => disparodeAccion({ type: "onchange", field: "Verbo", value: event.target.value.toUpperCase() })} />
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                         <Input id="AdverbioCheck" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} /> <Label check for="AdverbioCheck" style={{ color: '#8b8b8c', fontWeight: "700" }} className="mb-2" >Adverbio</Label>
@@ -190,7 +190,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         <Label className='form-label' for='Oracion'>
                             Oración
                         </Label>
-                        <Input type='text' name='Oracion' id='Oracion' defaultValue={dataBase.Oracion} placeholder='Oracion' value={Oracion} onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} />
+                        <Input type='text' maxLength={55} name='Oracion' id='Oracion' defaultValue={dataBase.Oracion} placeholder='Oracion' value={Oracion} onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} />
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='Que'>

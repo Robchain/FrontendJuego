@@ -11,6 +11,7 @@ import { ModalEditarOracion } from '../../componentes/Administrador/ModalEditarO
 import { ListadoJuegoActivosOracion } from '../../componentes/Administrador/ListadoJuegoActivosOracion';
 import {subidaQuienImagen } from '../../firebase/config';
 import { ListadoQuienAdministrador } from '../../componentes/Administrador/ListadoQuienAdministrador';
+import { MostrarCurso, MostrarParalelo } from '../../service/Adminstrador/Usuarios';
 const BaseInicialFormulario = { Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -44,6 +45,8 @@ export const OracionPagina = () => {
   const [loading, setLoading] = useState(false);
   const [loadingAgregar, setLoadingAgregar] = useState(false);
   const [modal, setModal] = useState(false)
+  const [cursoData, setcursoData] = useState([]);
+  const [paraleloData, setparaleloData] = useState([])
   const [dataSeleccionada, setDataSeleccionada] = useState({})
     const [isOpen, setIsOpen] = useState(false)
     const [modalEdicion, setModalEdicion] = useState(false)
@@ -62,6 +65,18 @@ export const OracionPagina = () => {
       }
     }, [Curso,Paralelo])
 
+    const dataCurso = async ()=>{
+      const data = await MostrarCurso();
+      setcursoData(data);
+    }
+    const dataParalelo = async ()=>{
+      const data = await MostrarParalelo();
+      setparaleloData(data)
+    }
+    useEffect(() => {
+      dataCurso();
+      dataParalelo();
+    }, [])
     useEffect(() => {
       if(Nombre !== undefined && Imagen !== undefined){
         setBloqueoAgregar(false);
@@ -69,7 +84,6 @@ export const OracionPagina = () => {
     }, [Nombre,Imagen])
     
     useEffect(() => {
-      console.log(process.env.REACT_APP_CONFIGFIREBASE, "dasdad");
       llamdainicial();
     }, [])
     const toggledos = () => { setModal(!modal) }
@@ -182,7 +196,6 @@ MySwal.fire({
                   window.location.reload();
                 }, 2000);
                 }
-              
           } catch (error) {
             MySwal.fire({
               title: 'Error!',
@@ -309,11 +322,11 @@ MySwal.fire({
             <Label className='form-label' for='Curso'>
               Curso
             </Label>
-            <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={[{value:"PRIMERO", label:"PRIMERO"},{value:"SEGUNDO", label:"SEGUNDO"},{value:"TERCERO", label:"TERCERO"},]} />
+            <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })} />
             <Label className='form-label' for='Paralelo'>
               Paralelo
             </Label>
-            <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={[{value:"A", label:"A"},{value:"B", label:"B "},{value:"C", label:"C"},{value:"D", label:"D"},{value:"E", label:"E"},{value:"F", label:"F"},]}  />
+            <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}  />
           </Col>     
           <Button disabled={bloqueo} onClick={() => { onsubmit() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
         {loading && <Spinner size="sm">
@@ -334,7 +347,7 @@ MySwal.fire({
             <Label className='form-label ' for='Nombre'>
               Quien
             </Label>
-            <Input type='text' name='Nombre' id='Nombre' placeholder='Nombre' onChange={event => disparodeAccionQuien({ type: "onchange", field: "Nombre", value: event.target.value.toUpperCase() })} value={Nombre} />
+            <Input type='text' maxLength={20} name='Nombre' id='Nombre' placeholder='Nombre' onChange={event => disparodeAccionQuien({ type: "onchange", field: "Nombre", value: event.target.value.toUpperCase() })} value={Nombre} />
             <Label className='form-label' for='Imagen'>
               Imagen
             </Label>

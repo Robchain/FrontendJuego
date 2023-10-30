@@ -97,7 +97,7 @@ export const ModalEditarQuienData = ({modal, toggle, baseData}) => {
     <ModalBody>
     <div className='mb-2'>
               <Label className='form-label' for='Nombre'>Sujeto</Label>
-              <Input type='text' id='Nombre' name="Nombre" placeholder='Nombre' 
+              <Input type='text' maxLength={15} id='Nombre' name="Nombre" placeholder='Nombre' 
              onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}
               defaultValue={baseData.Nombre}
               value={Nombre}

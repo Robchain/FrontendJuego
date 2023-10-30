@@ -100,7 +100,7 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
     <ModalBody>
     <div className='mb-2'>
               <Label className='form-label' for='Nombre'>Nombre</Label>
-              <Input type='text' id='Nombre' name="Nombre" placeholder='Nombre' 
+              <Input type='text' maxLength={20} id='Nombre' name="Nombre" placeholder='Nombre' 
               value={Nombre}
              onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}
               />

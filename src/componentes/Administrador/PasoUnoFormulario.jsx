@@ -53,7 +53,8 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
       <CardBody>
         <div className='content-header'>
           <h5 className='mb-0'>Armar Grupos</h5>
-          <small className='text-muted'>Especificar el número de los integrantes</small>
+          <small className='text-muted'>Especificar el número de los integrantes</small><br/>
+          <small className='text-muted'>Nota: hay {estudiantevalue} estudiantes registrados</small>
         </div>
         <Row>
           <Col md="6" className="mb-1">
@@ -69,7 +70,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
           </Col>
           <Col md="6" className="mb-1">
             <Label className='form-label' for='equipos'>
-              Nombres de equipos &nbsp;&nbsp;&nbsp;&nbsp; <small>Nota: hay {estudiantevalue} estudiantes registrados</small>
+              Nombres de equipos &nbsp;&nbsp;&nbsp;&nbsp;
             </Label>
             <Select
             value={NombreDeEquipo}

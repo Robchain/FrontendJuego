@@ -11,6 +11,7 @@ import { PasoCuatroFormulario } from "../../componentes/Administrador/PasoCuatro
 import {  ordenarYagrupar } from "../../helpers/contador";
 import { LlamadaDeLLenadoDeEstudianteMultiJugador, historialJuego } from "../../service/Multijugador";
 import { ListadoHistoriaDeAsignaciones } from "../../componentes/Administrador/ListadoHistoriaDeAsignaciones";
+import { MostrarCurso, MostrarParalelo } from "../../service/Adminstrador/Usuarios";
 
 const estadoInicialFormularioActividad = { NumeroDeGrupos: {}, NumeroDeIntegrantes: {}, NombreDeEquipo: [], TipoDeJuego: 1, Aleatorio: false }
 
@@ -38,6 +39,8 @@ function llenadodeFormulario(state, action) {
 const ActividadColaborativaAdm = () => {
   const [{ NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, TipoDeJuego, Aleatorio }, dispatch] = useReducer(ActualizacionDeDataFormularioEquipo, estadoInicialFormularioActividad)
   const [index, setIndex] = useState(1);
+  const [cursoData, setcursoData] = useState([]);
+  const [paraleloData, setparaleloData] = useState([])
   const [bloqueo, setBloqueo] = useState(true);
   const [AleotorioArmado, setAleotorioArmado] = useState({});
   const [{ Curso, Paralelo }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
@@ -55,7 +58,19 @@ debugger
       setEstudiantes([]);
     }
   }
+  const dataCurso = async ()=>{
 
+    const data = await MostrarCurso();
+    setcursoData(data);
+  }
+  const dataParalelo = async ()=>{
+    const data = await MostrarParalelo();
+    setparaleloData(data)
+  }
+  useEffect(() => {
+    dataCurso();
+    dataParalelo();
+  }, [])
   useEffect(() => {
     if (Curso && Paralelo) {
       llamddeHistorial()
@@ -120,11 +135,7 @@ debugger
                 value: e.value,
               })
             }
-            options={[
-              { value: "PRIMERO", label: "PRIMERO" },
-              { value: "SEGUNDO", label: "SEGUNDO" },
-              { value: "TERCERO", label: "TERCERO" },
-            ]}
+            options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
           />
         </Col>
 
@@ -142,14 +153,7 @@ debugger
                 value: e.value,
               })
             }}
-            options={[
-              { value: "A", label: "A" },
-              { value: "B", label: "B " },
-              { value: "C", label: "C" },
-              { value: "D", label: "D" },
-              { value: "E", label: "E" },
-              { value: "F", label: "F" },
-            ]}
+            options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
           />
         </Col>
         <Col lg="6" sm="12" md="6" xl="6" className="my-2">

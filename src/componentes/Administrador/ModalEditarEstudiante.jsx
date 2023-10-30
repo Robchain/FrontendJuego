@@ -165,31 +165,31 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
             <Label className='form-label' for='nameMulti'>
               Nombre
             </Label>
-            <Input type='text' name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} value={Nombre} />
+            <Input type='text' maxLength={25} name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} value={Nombre} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='lastNameMulti'>
               Apellido
             </Label>
-            <Input type='text' name='Apellido' id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Apellido} value={Apellido} />
+            <Input type='text' maxLength={25} name='Apellido' id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Apellido} value={Apellido} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='cityMulti'>
               Identificación
             </Label>
-            <Input type='text' name='Identificacion' id='cityMulti' placeholder='Identificación' onChange={handleChange} defaultValue={dataBase.Identificacion} value={Identificacion} />
+            <Input type='text' name='Identificacion' maxLength={15} id='cityMulti' placeholder='Identificación' onChange={handleChange} defaultValue={dataBase.Identificacion} value={Identificacion} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CountryMulti'>
               Correo electrónico
             </Label>
-            <Input type='text' name='Email' id='CountryMulti' placeholder='Correo electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Email} value={Email} />
+            <Input type='text' name='Email' id='CountryMulti' maxLength={60} placeholder='Correo electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Email} value={Email} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CompanyMulti'>
               Usuario
             </Label>
-            <Input type='text' name='Usuario' id='CompanyMulti' placeholder='Usuario'
+            <Input type='text' maxLength={25} name='Usuario' id='CompanyMulti' placeholder='Usuario'
               onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Usuario} value={Usuario} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
