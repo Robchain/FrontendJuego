@@ -170,9 +170,9 @@ debugger
         </Col>
       </Row>
       {
-        Estudiantes.length > 0 && <>
+        Estudiantes.length >0 && <>
           {
-            Estudiantes[0].value && <Row>
+            Estudiantes[0].value !=="NO HAY ESTUDIANTES" ? <Row>
               <Stepbar steps={index} />
               {
                 index === 1 && <PasoUnoFormulario estudiantevalue={Estudiantes.length} TipoDeJuego={TipoDeJuego} index={index} nextButton={nextButton} prevButton={prevButton} dispatch={dispatch} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} NombreDeEquipo={NombreDeEquipo}  />
@@ -186,7 +186,9 @@ debugger
               {
                 index === 4 && <PasoCuatroFormulario Curso={Curso} Paralelo={Paralelo} index={index} nextButton={nextButton} prevButton={prevButton} Segundo={Segundo} NombreDeEquipo={NombreDeEquipo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} picker={picker} TipoDeJuego={TipoDeJuego} />
               }
-            </Row>
+            </Row> :<>
+            NO HAY SUFICIENTES ESTUDIANTES
+            </>
           }
           {
             historial.length > 0 && <div> <br /> <h4 style={{ color: "#85858C", fontSize: '1.5em' }}>Historial de juegos</h4> 
@@ -199,6 +201,7 @@ debugger
 
         </>
       }
+      
 
     </Container>
   )
