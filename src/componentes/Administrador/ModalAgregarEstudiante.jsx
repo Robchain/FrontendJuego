@@ -141,7 +141,7 @@ try {
             <Label className='form-label' for='nameMulti'>
               Nombre
             </Label>
-            <Input type='text' maxLength={25} name="Nombre" id='nameMulti' placeholder='Nombreca' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Nombre} />
+            <Input type='text' maxLength={25} name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Nombre} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='lastNameMulti'>
