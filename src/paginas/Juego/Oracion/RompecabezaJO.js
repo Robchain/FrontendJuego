@@ -14,9 +14,9 @@ const {oraciondata, setOraciondata, dispatchProgreso,setDataOracionJuego,setPiez
 const [dataSelecionada, setDataSelecionada] = useState(null)
 const [loading, setLoading] = useState(false);
 const navegar = useNavigate();
-const dataOracion = async (user)=>{
+const dataOracion = async (id)=>{
   try {
-  const data = await llamadaPartidaOracion({Usuario:user});
+  const data = await llamadaPartidaOracion({id:id});
   setOraciondata(data); 
   } catch (error) {
     setOraciondata([]);
@@ -37,7 +37,7 @@ setDataOracionJuego(data);
   }
 useEffect(() => {
   dispatchProgreso({type:"RESETEAR"});
-  dataOracion(localStorage.getItem("Usuario"));
+  dataOracion(localStorage.getItem("Id"));
 }, []);
 
 

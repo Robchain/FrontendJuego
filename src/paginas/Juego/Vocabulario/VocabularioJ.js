@@ -173,8 +173,7 @@ const Vocabulario = () => {
                       momento === "respuesta" && <VideosRespuesta window={window} data={dataJuegoVocabulario[`Juego${window.id}`].Palabras}   playref={playref} />
                     }
                   </Col>
-                    <Col className='mt-1  align-items-end' lg="6">
-
+                    <Col className='mt-1  align-items-end' lg="6" sm="12" >
                     <div style={{ pointerEvents: pointerEvent, opacity: opa1 }} className='m-auto Mi-diseñodiv' onClick={() => { setCorrecto1(dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Respuesta); resultados(dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Palabra, dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Respuesta); setCorrecto2("NADA"); setCorrecto3("NADA");setOpa2(0.4); setOpa3(0.4); progreso({palabraCorrecta:resultado({objeto1:dataJuegoVocabulario[`Juego` + window.id].Palabras[0],objeto2:dataJuegoVocabulario[`Juego` + window.id].Palabras[1],objeto3:dataJuegoVocabulario[`Juego` + window.id].Palabras[2]}), selecionado:dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Palabra, Resul:dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Respuesta});  setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }} >
                       <div style={{ width: "150px" }}><p style={{ fontWeight: 'bold', fontSize: '1.5vw', color: '#8B8B8C' }}>{dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Palabra}</p></div>
                       <img style={{borderRadius:"15px"}} src={dataJuegoVocabulario[`Juego` + window.id].Palabras[0].FileImagen} alt={dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Palabra} width='200' />

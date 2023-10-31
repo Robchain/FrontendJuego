@@ -47,7 +47,7 @@ const OracionJ = () => {
     if(dataOracionJuego ===null){
       navegar(`/MenuJuego`);
     }
-    dataOracion(localStorage.getItem("Usuario"));
+    dataOracion(localStorage.getItem("Id"));
   }, [])
   useEffect(() => {
     toggleWindow(1);

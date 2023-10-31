@@ -150,9 +150,9 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
     }
   };
 
-  const dataOracion = async (user) => {
+  const dataOracion = async (id) => {
     try {
-      const data = await llamadaPartidaOracion({ Usuario: user });
+      const data = await llamadaPartidaOracion({id:id});
       if (data !== null) {
         setOraciondata(data);
       } else if (data === null) {

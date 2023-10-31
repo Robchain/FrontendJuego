@@ -1,7 +1,7 @@
 import { Api } from "../api";
 
-export const llamadaPartidaOracion = async ({Usuario})=>{
-    const data = await Api.post("/llamadaPartidaOracion",{Usuario:Usuario});
+export const llamadaPartidaOracion = async ({id})=>{
+    const data = await Api.post("/llamadaPartidaOracion",{id:id});
     return data.data
 }
 

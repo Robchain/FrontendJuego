@@ -354,8 +354,100 @@ body {
 
 }
 
+@media screen and (max-width: 800px) and (min-width:300px) {  /* mi nuevo media screen  tamaño de la tableta de vertical*/
+    
+    /*categorias menu*/
+    .Cate-menu-alto{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .Cate-cuadro-voca  {
+        min-width: 300px;
+        width: 35vw;
+    }
+    .Cate-cuadro-ora {
+        min-width: 300px;
+        width: 35vw;
+    }
+    .Cate-menu-bajo{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+    .Cate-cuadro-multi{
+        min-width: 300px;
+        width: 35vw;
+    }
+    .Cate-cuadro-tro{
+        min-width: 300px;
+        width: 35vw;
+    }
+}
 
-@media screen and (max-width: 767px) and (min-width:320px) {
+@media screen and (max-width: 1280px) and (min-width:801px) {  /* mi nuevo media screen  tamaño de la tableta de horizontal*/
+ 
+ /*categorias menu*/
+ .Cate-menu-alto{
+    display: flex;
+    justify-content: center;
+    
+}
+.Cate-cuadro-voca  {
+    min-width: 300px;
+    width: 35vw;
+}
+.Cate-cuadro-ora {
+    min-width: 300px;
+    width: 35vw;
+}
+.Cate-menu-bajo{
+    display: flex;
+    justify-content: center;
+    
+}
+.Cate-cuadro-multi{
+    min-width: 300px;
+    width: 35vw;
+}
+.Cate-cuadro-tro{
+    min-width: 300px;
+    width: 35vw;
+}
+}
+
+@media screen and (max-width: 1440px) and (min-width:1281px) {  /* mi nuevo media screen  tamaño de laptod*/
+   
+ /*categorias menu*/
+ .Cate-menu-alto{
+    display: flex;
+    justify-content: center;
+    
+}
+.Cate-cuadro-voca  {
+    
+    width: 25vw;
+}
+.Cate-cuadro-ora {
+    
+    width: 25vw;
+}
+.Cate-menu-bajo{
+    display: flex;
+    justify-content: center;
+    
+}
+.Cate-cuadro-multi{
+    width: 25vw;
+}
+.Cate-cuadro-tro{
+    width: 25vw;
+}
+   }
+
+
+
+@media screen and (max-width: 800px) and (min-width:320px) {
     .minicuadrito .encima {
         z-index: 30;
         width: 50.5vw;
@@ -384,7 +476,7 @@ body {
 
     #imagenRompecabeza {
         width: 50vw
-            /*273px*/
+            
         ;
     }
 
@@ -408,7 +500,7 @@ body {
 
 }
 
-@media screen and (max-width: 1024px) and (min-width:768px) {
+@media screen and (max-width: 1024px) and (min-width:900px) {
     .minicuadrito .encima {
         z-index: 30;
         width: 25.5vw
