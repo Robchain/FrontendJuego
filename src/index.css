@@ -85,39 +85,43 @@
     box-shadow: 0 0 10px 1px #8cc5b0
 }
 
-.zonainteractiva{
+.zonainteractiva {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
 }
+
 .pruebaDise {
     display: flex;
     justify-content: center;
-   width: fit-content;
+    width: fit-content;
     flex-direction: column;
-    
+
 }
 
-.pruebaDise .opciones{
+.pruebaDise .opciones {
     display: flex;
     justify-content: space-around;
     flex-direction: row;
 }
-.pruebaDise .opciones .imagenOpc{
+
+.pruebaDise .opciones .imagenOpc {
     width: 5rem;
 
 }
+
 .pruebaDise .opciones {
     margin-right: 0rem;
 }
 
 
-.pruebaDise .seleccion{
+.pruebaDise .seleccion {
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
 }
-.pruebaDise .seleccion div{
+
+.pruebaDise .seleccion div {
     display: flex;
     justify-content: center;
     align-items: start;
@@ -125,40 +129,43 @@
     margin-right: 0.6rem;
 }
 
-.pruebaDise .seleccion span{
-text-align: center;
+.pruebaDise .seleccion span {
+    text-align: center;
     font-size: 1.7rem;
 }
 
 
-.pruebaDise .seleccion .opcionesSelec{
-    width: 9rem;
-}
-.pruebaDise .seleccion div{
+.pruebaDise .seleccion .opcionesSelec {
     width: 9rem;
 }
 
-.pruebaDise .seleccion div{
+.pruebaDise .seleccion div {
+    width: 9rem;
+}
+
+.pruebaDise .seleccion div {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 .linkNav {
     margin: 0;
     padding: 10px 15px;
 }
 
-.tabvs .active  {
+.tabvs .active {
     background-color: #fff !important;
     color: #fff !important;
     border-radius: 50px !important;
     box-shadow: 0 0 10px 1px #Fff !important;
 }
 
-.tabvs .active  .form-label {
+.tabvs .active .form-label {
 
     color: #000 !important;
 }
+
 .tabvs .active .card {
     background-color: #fff !important;
     color: #000 !important;
@@ -233,13 +240,10 @@ body {
     background-position-x: left;
 }
 
-.Mi-diseñodiv {
-    width: 300 !important;
-    height: 180 !important;
-    border-radius: 100 !important;
-    display: flex !important;
-    justify-content: space-evenly !important;
-    align-items: center !important;
+
+
+.minicuadrito {
+    position: relative;
 }
 
 .minicuadrito .encima {
@@ -333,347 +337,239 @@ body {
   Media Queries
   */
 
-@media screen and (max-width: 426px) {
 
-    .minicuadrito .encima {
-        z-index: 30;
-        width: 280px;
-        height: 100%;
-        position: fixed;
-    }
+@media screen and (max-width: 800px) and (min-width:300px) {
+    /* mi nuevo media screen  tamaño de la tableta de vertical*/
 
-    #imagenFinal {
-        width: 273px;
-    }
-
-    #imagenRompecabeza {
-        width: 273px;
-    }
-
-
-
-}
-
-@media screen and (max-width: 800px) and (min-width:300px) {  /* mi nuevo media screen  tamaño de la tableta de vertical*/
-    
     /*categorias menu*/
-    .Cate-menu-alto{
+    .Cate-menu-alto {
         display: flex;
         align-items: center;
         flex-direction: column;
     }
-    .Cate-cuadro-voca  {
+
+    .Cate-cuadro-voca {
         min-width: 300px;
         width: 35vw;
     }
+
     .Cate-cuadro-ora {
         min-width: 300px;
         width: 35vw;
     }
-    .Cate-menu-bajo{
+
+    .Cate-menu-bajo {
         display: flex;
         align-items: center;
         flex-direction: column;
     }
-    .Cate-cuadro-multi{
+
+    .Cate-cuadro-multi {
         min-width: 300px;
         width: 35vw;
     }
-    .Cate-cuadro-tro{
+
+    .Cate-cuadro-tro {
         min-width: 300px;
         width: 35vw;
     }
-}
 
-@media screen and (max-width: 1280px) and (min-width:801px) {  /* mi nuevo media screen  tamaño de la tableta de horizontal*/
- 
- /*categorias menu*/
- .Cate-menu-alto{
-    display: flex;
-    justify-content: center;
-    
-}
-.Cate-cuadro-voca  {
-    min-width: 300px;
-    width: 35vw;
-}
-.Cate-cuadro-ora {
-    min-width: 300px;
-    width: 35vw;
-}
-.Cate-menu-bajo{
-    display: flex;
-    justify-content: center;
-    
-}
-.Cate-cuadro-multi{
-    min-width: 300px;
-    width: 35vw;
-}
-.Cate-cuadro-tro{
-    min-width: 300px;
-    width: 35vw;
-}
-}
-
-@media screen and (max-width: 1440px) and (min-width:1281px) {  /* mi nuevo media screen  tamaño de laptod*/
-   
- /*categorias menu*/
- .Cate-menu-alto{
-    display: flex;
-    justify-content: center;
-    
-}
-.Cate-cuadro-voca  {
-    
-    width: 25vw;
-}
-.Cate-cuadro-ora {
-    
-    width: 25vw;
-}
-.Cate-menu-bajo{
-    display: flex;
-    justify-content: center;
-    
-}
-.Cate-cuadro-multi{
-    width: 25vw;
-}
-.Cate-cuadro-tro{
-    width: 25vw;
-}
-   }
-
-
-
-@media screen and (max-width: 800px) and (min-width:320px) {
-    .minicuadrito .encima {
-        z-index: 30;
-        width: 50.5vw;
-        height: 100%;
-        position: fixed;
-    }
-
-    .minicuadrito .encimados .c {
-        display: block;
-        background-color: #FBFBFB;
-        width: 12vw;
-        height: 100%;
-    }
-
-    .minicuadrito .encimados .d {
-        display: block;
-        background-color: #FBFBFB;
-        width: 8vw;
-        height: 100%;
+    .rompecabezas-grupo {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
 
     #imagenFinal {
         width: 65vw;
     }
 
-
     #imagenRompecabeza {
-        width: 50vw
-            
-        ;
+        width: 50vw;
     }
 
-    .cac {
-        width: 280px;
-    }
-
-    .minicuadrito .encima .a {
-        display: block;
-        background-color: #FBFBFB;
-        width: 5vw;
-        height: 100%;
-    }
-
-    .minicuadrito .encima .b {
-        display: block;
-        background-color: #FBFBFB;
-        width: 3.34vw;
-        height: 100%;
-    }
-
-}
-
-@media screen and (max-width: 1024px) and (min-width:900px) {
     .minicuadrito .encima {
         z-index: 30;
-        width: 25.5vw
-            /*280px*/
-        ;
-    }
-    #imagenFinal {
-        width: 48vw;
-    }
-    #imagenRompecabeza {
-        width: 25vw
-            /*273px*/;
-    }
-    .print {
-        width: 60vw;
-    }
-    .minicuadrito .encima .a {
-        display: block;
-        background-color: #FBFBFB;
-        width: 5vw;
+        width: 50vw;
         height: 100%;
+        position: fixed;
     }
-    .minicuadrito .encima .b {
-        display: block;
-        background-color: #FBFBFB;
-        width: 3.64vw;
-        height: 100%;
-    }
+
     .minicuadrito .encimados .c {
         display: block;
         background-color: #FBFBFB;
         width: 10vw;
         height: 100%;
     }
-    .minicuadrito .encimados {
-        z-index: 30;
-        width: 50vw
-            /*280px*/
-        ;
-        height: 100%;
-        position: fixed;
-    }
-    #imagenFinal {
-        width: 50vw;
-    }
+
     .minicuadrito .encimados .d {
         display: block;
         background-color: #FBFBFB;
         width: 7.14vw;
         height: 100%;
     }
-}
-
-
-@media screen and (max-width: 1024px) and (min-width:776px) {
-    .print {
-        width: 45vw;
-    }
-
-
-
-}
-
-@media screen and (max-width: 1440px) and (min-width:1025px) {
-    .print {
-        width: 32vw;
-    }
-
-    #imagenFinal {
-        width: 48vw;
-    }
-    .minicuadrito .encimados .c {
-        display: block;
-        background-color: #FBFBFB;
-        width: 12vw;
-        height: 100%;
-    }
-
-    .minicuadrito .encimados .d {
-        display: block;
-        background-color: #FBFBFB;
-        width: 8vw;
-        height: 100%;
-    }
-}
-
-
-@media screen and (max-width: 1440px) and (min-width:1025px) {
-    .minicuadrito .encima {
-        z-index: 30;
-        width: 25.5vw
-            /*280px*/
-        ;
-        height: 100%;
-        position: fixed;
-    }
-
-    .minicuadrito .encimados {
-        z-index: 30;
-        width: 25.5vw
-            /*280px*/
-        ;
-        height: 100%;
-        position: fixed;
-    }
-
-    #imagenRompecabeza {
-        width: 25vw
-            /*273px*/
-        ;
-    }
-
-    #imagenFinal {
-        width: 48vw;
-    }
 
     .minicuadrito .encima .a {
         display: block;
         background-color: #FBFBFB;
-        width: 5vw;
-        height: 100%;
-    }
-
-
-    .minicuadrito .encima .b {
-        display: block;
-        background-color: #FBFBFB;
-        width: 3.34vw;
-        height: 100%;
-    }
-}
-
-@media screen and (max-width: 2560px) and (min-width:1441px) {
-    .minicuadrito .encima {
-        z-index: 30;
-        width: 20vw
-            /* 25.5vw 280px*/
-        ;
-        height: 100%;
-        position: fixed;
-    }
-
-    #imagenRompecabeza {
-        width: 20vw
-            /*273px*/
-        ;
-    }
-
-    .minicuadrito .encima .a {
-        display: block;
-        background-color: #FBFBFB;
-        width: 5vw
-            /*5vw*/
-        ;
+        width: 10vw;
         height: 100%;
     }
 
     .minicuadrito .encima .b {
         display: block;
         background-color: #FBFBFB;
-        width: 3.34vw;
+        width: 7.14vw;
         height: 100%;
+    }
+
+    .contenedor-juego {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contenedor-juego .puntaje-juego {
+        align-self: flex-end;
+        font-weight: 700;
+        color: #85858C;
+        font-size: 1.3em;
+    }
+
+    .contenedor-juego .puntaje-juego .opciones-juego-vocabulario {
+        align-items: center;
+    }
+    .contenedor-juego .contenedor-juego .video-juego-vocabulario .video-pregunta-vocabulario{
+        width: 66vw !important;
+    }
+    .contenedor-juego .contenedor-juego .video-juego-vocabulario .video-respuesta-vocabulario{
+        width: 66vw !important;
+    }
+
+    .Mi-diseñodiv {
+        margin: auto;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .Mi-diseñodiv .palabra {
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #8B8B8C;
+    }
+
+    .Mi-diseñodiv img {
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        width: 24vw;
+    }
+
+    .Mi-diseñodiv div .imagen-respuesta {
+        width: 8vw;
+    }
+
+    /*oracion*/
+    .contenido-una-oracion{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .contenido-una-oracion .seccion-videos-oracion .video-pregunta-oracion-una{
+        width: 55vw !important;
+        height: 36vh !important;
+        margin-bottom: 10px;
+    }
+    .contenido-una-oracion .seccion-videos-oracion .video-respuesta-oracion-una{
+        width: 55vw !important;
+        height: 36vh !important;
+        margin-bottom: 10px;
+    }
+    .contenido-una-oracion .seccion-opciones-oracion{
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .contenido-una-oracion .seccion-opciones-oracion .imagen-pregunta-una img{
+        width: 12vw;   
+        margin-right: 10px;
+    }
+    
+    .contenido-una-oracion .seccion-opciones-oracion .opcion-imagen-una img{
+        width: 20vw;
+        margin-right: 15px;
+    }
+
+    .opcion-una-letras{
+        margin-left:100px;
+        font-size: 1.9em;
+    font-weight: 700;
+        color:#85858C;
+}
+
+}
+
+@media screen and (max-width: 1280px) and (min-width:801px) {
+    /* mi nuevo media screen  tamaño de la tableta de horizontal*/
+
+    /*categorias menu*/
+    .Cate-menu-alto {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .Cate-cuadro-voca {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .Cate-cuadro-ora {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .Cate-menu-bajo {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .Cate-cuadro-multi {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .Cate-cuadro-tro {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .rompecabezas-grupo {
+        flex-direction: column;
+        display: flex;
     }
 
     #imagenFinal {
         width: 48vw;
     }
 
+    #imagenRompecabeza {
+        width: 25.5vw;
+    }
+
     .minicuadrito .encimados {
         z-index: 30;
-        width: 48vw
-            /* 25.5vw 280px*/
-        ;
+        width: 25.5vw;
+        height: 100%;
+        position: fixed;
+    }
+
+    .minicuadrito .encima {
+        z-index: 30;
+        width: 25.5vw;
         height: 100%;
         position: fixed;
     }
@@ -681,17 +577,123 @@ body {
     .minicuadrito .encimados .c {
         display: block;
         background-color: #FBFBFB;
-        width: 12vw;
+        width: 10vw;
         height: 100%;
     }
 
     .minicuadrito .encimados .d {
         display: block;
         background-color: #FBFBFB;
-        width: 8vw;
+        width: 7.14vw;
         height: 100%;
     }
+
+    .minicuadrito .encima .a {
+        display: block;
+        background-color: #FBFBFB;
+        width: 10vw;
+        height: 100%;
+    }
+
+    .minicuadrito .encima .b {
+        display: block;
+        background-color: #FBFBFB;
+        width: 7.14vw;
+        height: 100%;
+    }
+
+    .contenedor-juego {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .contenedor-juego .contenedor-juego{
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    .contenedor-juego .puntaje-juego {
+        align-self: flex-end;
+        font-weight: 700;
+        color: #85858C;
+        font-size: 1.3em;
+    }
+
+.contenedor-juego .contenedor-juego .video-juego-vocabulario .video-respuesta-vocabulario{
+    width: 40vw !important;
 }
+
+.contenedor-juego .contenedor-juego .video-juego-vocabulario .video-pregunta-vocabulario{
+    width: 40vw !important;
+}
+
+    .contenedor-juego .puntaje-juego .opciones-juego-vocabulario {
+        align-self: flex-end;
+    }
+
+    .Mi-diseñodiv {
+        margin-left: 10px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+
+    .Mi-diseñodiv .palabra {
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #8B8B8C;
+    }
+
+    .Mi-diseñodiv img {
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        width: 22vw;
+    }
+
+    .Mi-diseñodiv div .imagen-respuesta {
+        width: 8vw;
+    }
+}
+
+@media screen and (max-width: 1440px) and (min-width:1281px) {
+    /* mi nuevo media screen  tamaño de laptod*/
+
+    /*categorias menu*/
+    .Cate-menu-alto {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .Cate-cuadro-voca {
+
+        width: 25vw;
+    }
+
+    .Cate-cuadro-ora {
+
+        width: 25vw;
+    }
+
+    .Cate-menu-bajo {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .Cate-cuadro-multi {
+        width: 25vw;
+    }
+
+    .Cate-cuadro-tro {
+        width: 25vw;
+    }
+}
+
 
 .offcanvas,
 .offcanvas-lg,

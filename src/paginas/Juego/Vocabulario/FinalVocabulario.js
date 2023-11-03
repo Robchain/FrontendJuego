@@ -33,15 +33,19 @@ const Pantalla =()=>{
     return(
       <Container className='fondoMC img-fluid vh-100' >
     <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
- <Row className='justify-content-center'>
- <Col lg="6" md="6" sm="8" xs="8">
+ <div className='contenido-final-vocabulario'>
+ <div className='rompecabeza-final-vocabulario'>
  <RompecabaSolitaria principal={false} Avance={avance0} alt={dataRompecabeza.Nombre}  url={dataRompecabeza.FileColor} piezas={dataRompecabeza.Pieza} terminado={isfinished}/>
- <h1 className='mx-auto'>{`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length}`}</h1>
- </Col>
- <Col lg="7" md="6" sm="8" xs="8" >
-  <div><NavLink to={"/MenuJuego"} className="mx-auto" ><img width={75} src={cuadros} alt='al inicio'/></NavLink></div>
- </Col>
- </Row>
+ <h1 className='puntuacion-final'>{`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length}`}</h1>
+ </div>
+ <div>
+  <div className='menu-final'>
+    <NavLink to={"/MenuJuego"} className="navegacion-final-vocabuarlio">
+      <img src={cuadros} alt='al inicio' className='imagen-icono-final' />
+    </NavLink>
+  </div>
+ </div>
+ </div>
  </Container>
     )
   }

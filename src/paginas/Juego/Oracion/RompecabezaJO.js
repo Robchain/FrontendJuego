@@ -57,15 +57,15 @@ useEffect(() => {
       </div>
     )}
          <NavBarJuego Seccion={"Oracion"} urlBack={"/MenuJuego"} />
-            <Row className="justify-content-evenly  mt-2 mx-2" >
+            <div className="rompecabezas-grupo" >
           
             {oraciondata.map(i=>(
-              <Col lg="4" md="4" sm="10" xs="10">
+              <div className='my-2'>
               <div  onClick={(e) =>{ setPiezaJuegoIndi(i.Rompecabeza.Pieza);setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setDataSelecionada(i);clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)}} > <RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  url={i.Rompecabeza.FileColor} piezas={i.Rompecabeza.Pieza} /></div><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${Piezacalcular({ objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza})}/${i.Rompecabeza.Pieza}`}</span></p> 
-              </Col>
+              </div>
             ))
           }
-            </Row>
+            </div>
         </Container>
       )
     }

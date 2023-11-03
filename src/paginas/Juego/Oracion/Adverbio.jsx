@@ -67,7 +67,7 @@ const RespuestaImagen = ({ data, setImagen, imagen, window, Queselec, setMomento
     )}
   </>)
 }
-const Preguntasecction = ({ data }) => {
+const Preguntasecction = ({ data, ...props }) => {
   const [videoseleccionado, setVideoseleccionado] = useState("");
   useEffect(() => {
     let pregunta = "";
@@ -83,15 +83,14 @@ const Preguntasecction = ({ data }) => {
     <div>
       <ReactPlayer
         url={videoseleccionado}
-        height={225}
-        width={300}
         playing
         loop={true}
+        {...props}
       />
     </div>
   )
 };
-const Respuestasecction = ({ data }) => {
+const Respuestasecction = ({ data, ...props }) => {
   const [videoseleccionado, setVideoseleccionado] = useState("");
   useEffect(() => {
     let pregunta = "";
@@ -108,9 +107,9 @@ const Respuestasecction = ({ data }) => {
     <div>
       <ReactPlayer
         url={videoseleccionado}
-        height={225}
-        width={300}
         playing
+        loop={true}
+        {...props}
       />
     </div>
   )
@@ -203,31 +202,36 @@ const Adverbio = ({ window, siguiente, dispatchProgreso, data }) => {
 
 
   return (
-    <>
-      <Col className='' lg="4" sm="12" md="12" >
+    <div className='contenido-una-oracion'>
+      <div className='seccion-videos-oracion' >
         {
-          momento === "inicial" && <Preguntasecction data={data[`Juego` + window.id].Oraciones} />
+          momento === "inicial" && <Preguntasecction data={data[`Juego` + window.id].Oraciones} className="video-pregunta-oracion-una"/>
         }
         {
-          momento === "Respuesta" && <Respuestasecction data={data[`Juego` + window.id].Oraciones} />
+          momento === "Respuesta" && <Respuestasecction data={data[`Juego` + window.id].Oraciones}  className="video-respuesta-oracion-una" />
         }
-      </Col>
-      <Col lg="8" className='align-self-center'>
-        <Row >
-          <Col style={{ width: "95px" }}>
-            <img alt='que' src={Cantidad} width="75" />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity1 }} onClick={onhandleClickQuePrimero}>
-            <h3 style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego` + window.id].Oraciones[0].Adverbio}</h3>
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity2 }} onClick={onhandleClickQueSegundo}>
-            <h3 style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego` + window.id].Oraciones[1].Adverbio}</h3>
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: pointerEvent, opacity: opacity3 }} onClick={onhandleClickQueTercero}>
-            <h3 style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego` + window.id].Oraciones[2].Adverbio}</h3>
-          </Col>
-        </Row>
-      </Col>
+      </div>
+      <div className='seccion-opciones-oracion'>
+          <div className='imagen-pregunta-una'>
+            <img alt='que' src={Cantidad} />
+          </div>
+          <div style={{ pointerEvents: pointerEvent, opacity: opacity1 }} onClick={onhandleClickQuePrimero}>
+            <div className='opcion-una-letras' >
+            <span className=''>{data[`Juego` + window.id].Oraciones[0].Adverbio}</span>
+            </div>
+          </div>
+          <div style={{  pointerEvents: pointerEvent, opacity: opacity2 }} onClick={onhandleClickQueSegundo}>
+            <div className='opcion-una-letras'>
+            <span style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego` + window.id].Oraciones[1].Adverbio}</span>
+            </div>
+          </div>
+          <div style={{  pointerEvents: pointerEvent, opacity: opacity3 }} onClick={onhandleClickQueTercero}>
+            <div className='opcion-una-letras'>
+            <span style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego` + window.id].Oraciones[2].Adverbio}</span>
+            </div>
+          </div>
+
+      </div>
       <div className='zonainteractiva'>
       <div  className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
         <div className='opciones'>
@@ -267,7 +271,7 @@ const Adverbio = ({ window, siguiente, dispatchProgreso, data }) => {
       </div>
       <div ><RespuestaImagen imagen={imagen} setImagen={setImagen} data={data} Queselec={Queselec} window={window} setMomento={setMomento} momento={momento} /></div>
       </div>
-    </>
+    </div>
   )
 }
 

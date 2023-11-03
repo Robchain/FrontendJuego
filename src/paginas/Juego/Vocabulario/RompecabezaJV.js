@@ -47,7 +47,7 @@ const RompecabezaJV = () => {
       return (<div>Cargando...</div>)
     } else {
       return (
-          <Container className='fondoMC a'>
+          <Container className='fondoMC'>
           <Modalaqui  data={dataseleccionada}  modal={modal} setModal={setModal} />
           {loading && (
       <div className="loading-overlay">
@@ -55,17 +55,16 @@ const RompecabezaJV = () => {
       </div>
     )}
             <NavBarJuego  Seccion={"Vocabulario"} urlBack={"/MenuJuego"} />
-              <Row className="justify-content-evenly  mt-2 mx-2">
+              <div className="rompecabezas-grupo">
               {
                 dataJuegoInicialVocabulario.map(i=>(
-                  <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" >
-                  
-                  <div onClick={(e) => {setDataseleccionada(i); setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setPiezaJuegoIndi(i.Rompecabeza.Pieza); clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)} }><RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  piezas={i.Rompecabeza.Pieza} url={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} /> </div> <p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })}/${i.Rompecabeza.Pieza}`}</span></p>
-                </Col>
+                  <div className='my-2'>
+                  <div onClick={(e) => {setDataseleccionada(i); setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setPiezaJuegoIndi(i.Rompecabeza.Pieza); clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)} }><RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  piezas={i.Rompecabeza.Pieza} url={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} /> </div> <p className='my-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })}/${i.Rompecabeza.Pieza}`}</span></p>
+                </div>
                 ))
               
               }
-              </Row>
+              </div>
           </Container>
       )
     }
