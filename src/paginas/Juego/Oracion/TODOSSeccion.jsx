@@ -9,7 +9,7 @@ import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
 import { OracionRespuesta, resultadoOracion } from '../../../helpers';
 
-const Preguntasecction = ({ data }) => {
+const Preguntasecction = ({ data, ...props }) => {
 
   const [videoPreguntaSecctionTodo, setVideoPreguntaSecctionTodo] = useState("")
   useEffect(() => {
@@ -42,17 +42,16 @@ const Preguntasecction = ({ data }) => {
     <div>
       <ReactPlayer
         url={videoPreguntaSecctionTodo}
-        height={225}
-        width={300}
         playing
         loop={true}
+        {...props}
       />
     </div>
   )
 };
 
 
-const Respuestasecction = ({ data }) => {
+const Respuestasecction = ({ data, ...props }) => {
   const [videoRespuestaSeleccionadoTodo, setvideoRespuestaSeleccionadoTodo] = useState("")
   useEffect(() => {
     let pregunta = "";
@@ -69,9 +68,9 @@ const Respuestasecction = ({ data }) => {
     <div>
       <ReactPlayer
         url={videoRespuestaSeleccionadoTodo}
-        height={225}
-        width={300}
         playing
+        loop={true}
+        {...props}
       />
     </div>
   )
@@ -361,63 +360,87 @@ const TODOSSeccion = ({ window, siguiente, dispatchProgreso, data }) => {
 
 
   return (
-    <>
-      <Col className='mt-2' lg="4" sm="12" md="12" >
+    <div className='contenido-una-oracion'>
+      <div className='seccion-videos-oracion' >
         {
-          momento === "inicial" && <Preguntasecction data={data[`Juego` + window.id].Oraciones} />
+          momento === "inicial" && <Preguntasecction data={data[`Juego` + window.id].Oraciones}  className="video-pregunta-oracion-una"/>
         }
         {
-          momento === "Respuesta" && <Respuestasecction data={data[`Juego` + window.id].Oraciones} />
+          momento === "Respuesta" && <Respuestasecction data={data[`Juego` + window.id].Oraciones} className="video-respuesta-oracion-una" />
         }
-      </Col>
-      <Col lg="8">
-        <Row lg="12" className='align-items-center'>
-          <Col style={{ width: "95px", height: "120px" }}>
-            <img alt='sujeto' src={Quien} width="75" />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien1 }} onClick={() => { onhandleClickPrimero() }}>
-            <img src={data[`Juego` + window.id].Oraciones[0].Sujeto.value} width="150" alt='opcion1' />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien2 }} onClick={() => { onhandleClickSegundo() }}>
-            <img src={data[`Juego` + window.id].Oraciones[1].Sujeto.value} width="150" alt='opcion2' />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien3 }} onClick={() => { onhandleClickTercero() }}>
-            <img src={data[`Juego` + window.id].Oraciones[2].Sujeto.value} width="150" alt='opcion3' />
-          </Col>
-        </Row>
+      </div>
+      <div className='opcion-multi-oracion'>
+        <div className='seccion-quien-multiple'>
+          <div className='imagen-pregunta-quien-multi'>
+            <img alt='sujeto' src={Quien} />
+          </div>
+          <div style={{ pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien1 }} onClick={() => { onhandleClickPrimero() }}>
+            <div className='opcion-imagen-multi'>
+            <img src={data[`Juego` + window.id].Oraciones[0].Sujeto.value} alt='opcion1' className='opcion-imagen-multi-neta' />
+            </div>
+          </div>
+          <div style={{ pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien2 }} onClick={() => { onhandleClickSegundo() }}>
+            <div className='opcion-imagen-multi'>
+            <img src={data[`Juego` + window.id].Oraciones[1].Sujeto.value} alt='opcion2' className='opcion-imagen-multi-neta' />
+            </div>
+          </div>
+          <div style={{ pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien3 }} onClick={() => { onhandleClickTercero() }}>
+            <div className='opcion-imagen-multi'>
+            <img src={data[`Juego` + window.id].Oraciones[2].Sujeto.value} alt='opcion3' className='opcion-imagen-multi-neta' />
+            </div>
+          </div>
+        </div>
         {
           isAdverbio(window, data)
           && (
-            <Row lg="12" className='align-items-center'>
-              <Col style={{ width: "150px", height: "120px" }}>
-                <img alt='sujeto' src={Cantidad} width="100" />
-              </Col>
-              <Col style={{ width: "150px", height: "100px", pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity1 }} onClick={onhandleClickAdvePrimero}>
-                <span style={{ color: "blue" }}>{data[`Juego` + window.id].Oraciones[0].Adverbio}</span>
-              </Col>
-              <Col style={{ width: "150px", height: "100px", pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity2 }} onClick={onhandleClickAdveSegundo} >
-                <span style={{ color: "blue" }}>{data[`Juego` + window.id].Oraciones[1].Adverbio}</span>
-              </Col>
-              <Col style={{ width: "150px", height: "100px", pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity3 }} onClick={onhandleClickAdveTercero} >
-                <span style={{ color: "blue" }}>{data[`Juego` + window.id].Oraciones[2].Adverbio}</span>
-              </Col>
-            </Row>)
+            <div className='seccion-adv-multiple'>
+              <div className='imagen-pregunta-adv-multi'>
+                <img alt='sujeto' src={Cantidad}  />
+              </div>
+              <div style={{  pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity1 }} onClick={onhandleClickAdvePrimero}>
+                <div className='opcion-multi-letras'>
+                  <div>
+                  <span style={{ color: "blue" }}>{data[`Juego` + window.id].Oraciones[0].Adverbio}</span>
+                  </div>
+                </div>
+              </div>
+              <div style={{  pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity2 }} onClick={onhandleClickAdveSegundo} >
+                <div className='opcion-multi-letras'>
+                  <div>
+                  <span style={{ color: "blue" }}>{data[`Juego` + window.id].Oraciones[1].Adverbio}</span>
+                  </div>
+                </div>
+              </div>
+              <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity3 }} onClick={onhandleClickAdveTercero} >
+                <div className='opcion-multi-letras'>
+                  <div>
+                  <span style={{ color: "blue" }}>{data[`Juego` + window.id].Oraciones[2].Adverbio}</span>
+                  </div>
+                </div>
+              </div>
+            </div>)
         }
-        <Row lg="12" className='align-items-center'>
-          <Col style={{ width: "95px" }}>
-            <img alt='que' src={Que} width="75" />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue1 }} onClick={() => { onhandleClickQuePrimero() }}>
-            <img src={data[`Juego` + window.id].Oraciones[0].Que.value} width="150" alt='opcion1' />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue2 }} onClick={() => { onhandleClickQueSegundo() }}>
-            <img src={data[`Juego` + window.id].Oraciones[1].Que.value} width="150" alt='opcion2' />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue3 }} onClick={() => { onhandleClickQueTercero() }}>
-            <img src={data[`Juego` + window.id].Oraciones[2].Que.value} width="150" alt='opcion3' />
-          </Col>
-        </Row>
-      </Col>
+        <div className='seccion-que-multiple'>
+          <div className='imagen-pregunta-que-multi'>
+            <img alt='que' src={Que}/>
+          </div>
+          <div style={{ pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue1 }} onClick={() => { onhandleClickQuePrimero() }}>
+           <div className='opcion-imagen-multi'>
+           <img src={data[`Juego` + window.id].Oraciones[0].Que.value}  alt='opcion1' className='opcion-imagen-multi-neta' />
+           </div>
+          </div>
+          <div style={{  pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue2 }} onClick={() => { onhandleClickQueSegundo() }}>
+            <div className='opcion-imagen-multi'>
+            <img src={data[`Juego` + window.id].Oraciones[1].Que.value} alt='opcion2' className='opcion-imagen-multi-neta' />
+            </div>
+          </div>
+          <div style={{  pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue3 }} onClick={() => { onhandleClickQueTercero() }}>
+            <div className='opcion-imagen-multi'>
+            <img src={data[`Juego` + window.id].Oraciones[2].Que.value} alt='opcion3' className='opcion-imagen-multi-neta' />
+            </div>
+          </div>
+        </div>
+      </div>
       <div className='zonainteractiva'>
         <div className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
           <div className='opciones' >
@@ -465,7 +488,7 @@ const TODOSSeccion = ({ window, siguiente, dispatchProgreso, data }) => {
           }
         </div>
       </div>
-    </>
+    </div>
   )
 }
 
