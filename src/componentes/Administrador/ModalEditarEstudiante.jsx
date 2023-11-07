@@ -183,7 +183,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
             <Label className='form-label' for='CountryMulti'>
               Correo electrónico
             </Label>
-            <Input type='text' name='Email' id='CountryMulti' maxLength={60} placeholder='Correo electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Email} value={Email} />
+            <Input type='text' name='Email' id='CountryMulti' maxLength={30} placeholder='Correo electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Email} value={Email} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CompanyMulti'>

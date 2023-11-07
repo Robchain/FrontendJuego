@@ -10,6 +10,11 @@
     align-items: flex-start;
 }
 
+.offcanvas-backdrop{
+    width: 100% !important;
+    height: 100% !important;
+}
+
 .step.completed {
     background-color: rgba(96, 38, 158, 0.5);
     color: black;
@@ -187,8 +192,8 @@ body {
 }
 
 .fuenteDoce {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .minav {
@@ -332,6 +337,9 @@ body {
     height: 0px;
     visibility: hidden;
 }
+.navegacion-interna-menu-administador button{
+    margin-top: 10px; 
+}
 
 /*
   Media Queries
@@ -340,6 +348,83 @@ body {
 
 @media screen and (max-width: 800px) and (min-width:300px) {
     /* mi nuevo media screen  tamaño de la tableta de vertical*/
+
+/*generales*/
+.nav-superior-nombre{
+    margin-top: 10px;
+}
+.titulo-nav{
+    margin-top: 10px;
+}
+ .barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border: #f6f6f6 solid;
+    box-shadow: 5px 5px #d7d7d7 ;
+
+ }
+  
+ .barra-superior .menu-icono-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5px;
+ }
+
+ .barra-superior .menu-icono-div .menu-div{
+    font-size: 2em;
+    margin: 5px;
+    
+ }
+ 
+ .barra-superior .menu-icono-div .logo-blipbla-div .logo-blipbla{
+    margin-left:15px ;
+    width: 8em;
+ }
+ .barra-superior .info-foto-salida-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .barra-superior .info-foto-salida-div .informacion-div{
+    color:#777;
+    font-weight: 600;
+    margin-right: 10px;
+ }
+ .barra-superior .info-foto-salida-div .informacion-div p{
+    text-align: end;
+ }
+
+ .barra-superior .info-foto-salida-div .circulo-usuario-div{
+    margin: 0px 10px;
+ }
+
+ .barra-superior .info-foto-salida-div .puerta-icono-div{
+    font-size: 2em;
+    
+ }
+ .barra-superior .info-foto-salida-div .puerta-icono-div  a .puerta-icono{
+    color:#777;
+ }
+
+
+
+
+
+
+/* menu administrador*/
+
+.navegacion-interna-menu-administador button{
+    margin-top: 10px; 
+}
+
+
+
+
+
+
 
     /*categorias menu*/
     .Cate-menu-alto {
@@ -560,6 +645,66 @@ font-weight: 600;
 
 @media screen and (max-width: 1280px) and (min-width:801px) {
     /* mi nuevo media screen  tamaño de la tableta de horizontal*/
+/*generales*/
+.nav-superior-nombre{
+    margin-top: 10px;
+}
+.titulo-nav{
+    margin-top: 10px;
+}
+ .barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border: #f6f6f6 solid;
+    box-shadow: 5px 5px #d7d7d7 ;
+
+ }
+  
+ .barra-superior .menu-icono-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5px;
+ }
+
+ .barra-superior .menu-icono-div .menu-div{
+    font-size: 2em;
+    margin: 5px;
+    
+ }
+ 
+ .barra-superior .menu-icono-div .logo-blipbla-div .logo-blipbla{
+    margin-left:15px ;
+    width: 8em;
+ }
+ .barra-superior .info-foto-salida-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .barra-superior .info-foto-salida-div .informacion-div{
+    color:#777;
+    font-weight: 600;
+    margin-right: 10px;
+ }
+ .barra-superior .info-foto-salida-div .informacion-div p{
+    text-align: end;
+ }
+
+ .barra-superior .info-foto-salida-div .circulo-usuario-div{
+    margin: 0px 10px;
+ }
+
+ .barra-superior .info-foto-salida-div .puerta-icono-div{
+    font-size: 2em;
+    
+ }
+ .barra-superior .info-foto-salida-div .puerta-icono-div  a .puerta-icono{
+    color:#777;
+ }
+
 
     /*categorias menu*/
     .Cate-menu-alto {
@@ -780,6 +925,66 @@ margin-right: 15px;
 
 @media screen and (max-width: 1440px) and (min-width:1281px) {
     /* mi nuevo media screen  tamaño de laptod*/
+/*generales*/
+.nav-superior-nombre{
+    margin-top: 10px;
+}
+.titulo-nav{
+    margin-top: 10px;
+}
+ .barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border: #f6f6f6 solid;
+    box-shadow: 5px 5px #d7d7d7 ;
+
+ }
+  
+ .barra-superior .menu-icono-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5px;
+ }
+
+ .barra-superior .menu-icono-div .menu-div{
+    font-size: 2em;
+    margin: 5px;
+    
+ }
+ 
+ .barra-superior .menu-icono-div .logo-blipbla-div .logo-blipbla{
+    margin-left:15px ;
+    width: 8em;
+ }
+ .barra-superior .info-foto-salida-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .barra-superior .info-foto-salida-div .informacion-div{
+    color:#777;
+    font-weight: 600;
+    margin-right: 10px;
+ }
+ .barra-superior .info-foto-salida-div .informacion-div p{
+    text-align: end;
+ }
+
+ .barra-superior .info-foto-salida-div .circulo-usuario-div{
+    margin: 0px 10px;
+ }
+
+ .barra-superior .info-foto-salida-div .puerta-icono-div{
+    font-size: 2em;
+    
+ }
+ .barra-superior .info-foto-salida-div .puerta-icono-div  a .puerta-icono{
+    color:#777;
+ }
+
 
     /*categorias menu*/
     .Cate-menu-alto {
@@ -812,7 +1017,70 @@ margin-right: 15px;
         width: 25vw;
     }
 }
+@media screen and (max-width: 2560px) and (min-width:1441px) {
+    /*generales*/
+.nav-superior-nombre{
+    margin-top: 10px;
+}
+.titulo-nav{
+    margin-top: 10px;
+}
+ .barra-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border: #f6f6f6 solid;
+    box-shadow: 5px 5px #d7d7d7 ;
 
+ }
+  
+ .barra-superior .menu-icono-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5px;
+ }
+
+ .barra-superior .menu-icono-div .menu-div{
+    font-size: 2em;
+    margin: 5px;
+    
+ }
+ 
+ .barra-superior .menu-icono-div .logo-blipbla-div .logo-blipbla{
+    margin-left:15px ;
+    width: 8em;
+ }
+ .barra-superior .info-foto-salida-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+ }
+ .barra-superior .info-foto-salida-div .informacion-div{
+    color:#777;
+    font-weight: 600;
+    margin-right: 10px;
+ }
+ .barra-superior .info-foto-salida-div .informacion-div p{
+    text-align: end;
+ }
+
+ .barra-superior .info-foto-salida-div .circulo-usuario-div{
+    margin: 0px 10px;
+ }
+
+ .barra-superior .info-foto-salida-div .puerta-icono-div{
+    font-size: 2em;
+    
+ }
+ .barra-superior .info-foto-salida-div .puerta-icono-div  a .puerta-icono{
+    color:#777;
+ }
+
+
+
+}
 
 .offcanvas,
 .offcanvas-lg,

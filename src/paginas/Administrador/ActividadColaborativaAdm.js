@@ -45,6 +45,7 @@ const ActividadColaborativaAdm = () => {
   const [AleotorioArmado, setAleotorioArmado] = useState({});
   const [{ Curso, Paralelo }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
   const [picker, setPicker] = useState(new Date());
+  const [picker2, setPicker2] = useState(new Date());
   const [historial, setHistorial] = useState([])
   const [Segundo, setSegundo] = useState([]);
   const [Estudiantes, setEstudiantes] = useState([]);
@@ -181,10 +182,10 @@ const ActividadColaborativaAdm = () => {
                 index === 2 && <PasoDosFormulario dispatch={dispatch} AleotorioArmado={AleotorioArmado} onClickAleatorio={onClickAleatorio} Aleatorio={Aleatorio} Estudiantes={Estudiantes} index={index} nextButton={nextButton} prevButton={prevButton} setSegundo={setSegundo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} />
               }
               {
-                index === 3 && <PasoTresFormulario index={index} nextButton={nextButton} prevButton={prevButton} setPicker={setPicker} picker={picker} />
+                index === 3 && <PasoTresFormulario index={index} nextButton={nextButton} prevButton={prevButton} setPicker={setPicker} picker={picker} picker2={picker2} setPicker2={setPicker2}/>
               }
               {
-                index === 4 && <PasoCuatroFormulario Curso={Curso} Paralelo={Paralelo} index={index} nextButton={nextButton} prevButton={prevButton} Segundo={Segundo} NombreDeEquipo={NombreDeEquipo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} picker={picker} TipoDeJuego={TipoDeJuego} />
+                index === 4 && <PasoCuatroFormulario Curso={Curso} Paralelo={Paralelo} index={index} nextButton={nextButton} prevButton={prevButton} Segundo={Segundo} picker2={picker2} NombreDeEquipo={NombreDeEquipo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} picker={picker} TipoDeJuego={TipoDeJuego} />
               }
             </Row> :<>
             NO HAY SUFICIENTES ESTUDIANTES

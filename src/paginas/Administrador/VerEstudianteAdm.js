@@ -109,11 +109,15 @@ const VerEstudianteAdm = () => {
 
 
   return (
-    <Container >
+    <Container>
       <NavBar toggle={toggle} Seccion={"Usuario"} />
       <AdmiMenu toggle={toggle} isOpen={isOpen} />
-      <Row className='justify-content-center fuente fuenteDoce' >
-        <Col xl='11' lg="12" className='d-flex justify-content-between '>
+      <ModalEditarEstudiante modal={modaleditar}  toggle={toggleditar}  dataBase={dataseleccionada}/>
+          <ModalAgregarEstudiante modal={modal} toggle={toggledos}/>
+          <ModalDetalleUsuario dataBase={dataseleccionada} modal={modalDetalle} toggle={toggleDetalle} />
+          <ModalActualizarContra database={dataseleccionada} modal={modalContra} toggle={toggleContra}/>
+      <div className='fuenteDoce' >
+        <div className='navegacion-interna-menu-administador'>
         <Nav tabs style={{ fontSize: 14 }} >
             <NavItem>
               <NavLink
@@ -140,15 +144,10 @@ const VerEstudianteAdm = () => {
               </NavLink>
             </NavItem>
           </Nav>
-          <Button onClick={toggledos} className='px-4 ' data-bs-toggle="modal" data-bs-target="#staticBackdrop" style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+          <Button onClick={toggledos} className='px-4' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
             Agregar
           </Button>
-          { /*aqui va  el modal*/}
-         <ModalEditarEstudiante modal={modaleditar}  toggle={toggleditar}  dataBase={dataseleccionada}/>
-          <ModalAgregarEstudiante modal={modal} toggle={toggledos}/>
-          <ModalDetalleUsuario dataBase={dataseleccionada} modal={modalDetalle} toggle={toggleDetalle} />
-          <ModalActualizarContra database={dataseleccionada} modal={modalContra} toggle={toggleContra}/>
-        </Col>
+        </div>
         <TabContent activeTab={tabs} className="tabvs">
         <TabPane tabId="1" >
         
@@ -335,7 +334,7 @@ const VerEstudianteAdm = () => {
 <AdministradorOpcionesEstudiante/>
         </TabPane>
         </TabContent>
-      </Row>
+      </div>
     </Container>
   )
 }

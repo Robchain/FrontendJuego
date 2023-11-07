@@ -4,7 +4,7 @@ import { crearMultiJugador } from '../../service/Multijugador';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
-export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, prevButton, index, Segundo,TipoDeJuego,Curso, Paralelo }) => {
+export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, prevButton, index, Segundo,TipoDeJuego,Curso, Paralelo, picker2 }) => {
   const MySwal = withReactContent(Swal)
   const onclickGuardar = async()=>{
     try {
