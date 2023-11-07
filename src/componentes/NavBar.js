@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import doorout from "../assets/img/AssetsGame/doorout.png"
 import {AiOutlineMenu}from  'react-icons/ai'; 
 import{PiDoorOpen} from 'react-icons/pi';
-import Alinieacion from './iconosCom/Alinieacion_del_texto' //borrar
 import LogoBlipBlaPalabra from './iconosCom/LogoBlipBlaPalabra'
 export const NavBar = ({toggle, Seccion }) => {
   const [Email, setEmail] = useState("");

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import { Row, Col, Container, Button } from "reactstrap"
 import { NavLink, useNavigate } from "react-router-dom"
-import doorout from "../../assets/img/AssetsGame/doorout.png"
+import{PiDoorOpen} from 'react-icons/pi';
 import { JuecoContext } from "../../context/Juego/JuecoContext"
 import LogoBlipBlaPalabra from "../../componentes/iconosCom/LogoBlipBlaPalabra"
 import VocabularioIcon from "../../componentes/iconosCom/VocabularioIcon"
@@ -51,7 +51,7 @@ const MenuJuego = () => {
                 </Col>
                 <Col lg="1" md="1" sm="1" xs="2">
                   <NavLink to={"/"}>
-                    <img src={doorout} width="20" className="mt-3" alt="salida" />
+                  <PiDoorOpen className='puerta-icono'/>
                   </NavLink>
                 </Col>
               </Row>

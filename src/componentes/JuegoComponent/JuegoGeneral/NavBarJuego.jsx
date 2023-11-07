@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Col, Row } from 'reactstrap'
+import{PiDoorOpen} from 'react-icons/pi';
 import LogoBlipBlaPalabra from '../../iconosCom/LogoBlipBlaPalabra'
-import doorout from "../../../assets/img/AssetsGame/doorout.png"
-import backbutton from "../../../assets/img/AssetsGame/backbotton.png"
+import {MdOutlineArrowBackIos} from 'react-icons/md'
+
 export const NavBarJuego = ({ urlBack,Seccion }) => {
   const [Email, setEmail] = useState("");
 const [usuario, setUsuario] = useState("")
@@ -23,7 +24,7 @@ const [Identificacion, setIdentificacion] = useState("")
     <Row>
     <Col lg="1" sm="1" xs="2" md="1">
     <NavLink to={urlBack}>
-    <img src={backbutton} width="14" className="mt-3 ms-4" alt="salida"/>
+    <MdOutlineArrowBackIos/>
     </NavLink>
     </Col>
       <Col  lg="1"  sm="1" xs="2" md="1">
@@ -41,7 +42,7 @@ const [Identificacion, setIdentificacion] = useState("")
       </Col>
       <Col  lg="1"  sm="1" xs="2" md="2">
       <NavLink to={"/"}>
-<img src={doorout} width="20" className="mt-3" alt="salida"/>
+      <PiDoorOpen className='puerta-icono'/>
    </NavLink>
       </Col>
       </Row>

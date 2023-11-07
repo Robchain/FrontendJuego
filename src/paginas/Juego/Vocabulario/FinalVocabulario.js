@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import {  NavLink, Navigate } from 'react-router-dom'
-import cuadros from '../../../assets/img/Cuadros.png'
-import { Col, Container, Row } from 'reactstrap'
+import {PiSquaresFourDuotone} from 'react-icons/pi'
+import {  Container } from 'reactstrap'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { Juego1 } from '../../../service/Juego/Vocabulario'
@@ -41,7 +41,7 @@ const Pantalla =()=>{
  <div>
   <div className='menu-final'>
     <NavLink to={"/MenuJuego"} className="navegacion-final-vocabuarlio">
-      <img src={cuadros} alt='al inicio' className='imagen-icono-final' />
+    <PiSquaresFourDuotone/>
     </NavLink>
   </div>
  </div>

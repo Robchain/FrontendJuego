@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState} from 'react'
 import {  NavLink} from 'react-router-dom'
 import { Col, Container, Row } from 'reactstrap'
-import cuadros from '../../../assets/img/Cuadros.png'
+import {PiSquaresFourDuotone} from 'react-icons/pi'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { Juego1Oracion} from '../../../service/Juego/Oracion'
@@ -37,7 +37,7 @@ export const FinalOracionJuego = () => {
  <h1 className='mx-auto'>{`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}/${Oracionprogreso.length}`}</h1>
  </Col>
  <Col lg="7" md="6" sm="8" xs="8" >
-  <div><NavLink to={"/MenuJuego"} className="mx-auto" ><img width={75} src={cuadros} alt='al inicio'/></NavLink></div>
+  <div><NavLink to={"/MenuJuego"} className="mx-auto" ><PiSquaresFourDuotone/></NavLink></div>
  </Col>
  </Row>
  </Container>):(<><>Cargando...</></>)
