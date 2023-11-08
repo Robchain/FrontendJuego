@@ -6,7 +6,9 @@ import { NavBar } from '../../componentes/NavBar';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { ModalAgregarCategorias } from '../../componentes/Administrador/ModalAgregarCategorias';
-import { Edit, MoreVertical, Trash, Check } from 'react-feather';
+import {LuMoreVertical} from 'react-icons/lu'
+import {AiOutlineCheck, AiOutlineEdit} from 'react-icons/ai'
+import {BsTrash} from 'react-icons/bs'
 import { desabilitarCategoriaOracion, desabilitarCategoriaVocabulario, habilitarCategoriaOracion, habilitarCategoriaVocabulario, llamadaDeLaApiCategoriaGet, llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Categoria';
 import { ModalEditarCategoria } from '../../componentes/Administrador/ModalEditarCategoria';
 const VerCategoriaAdm = () => {
@@ -220,14 +222,14 @@ const VerCategoriaAdm = () => {
                       <td style={{ borderBottomColor: "#f8f8f8" }}>
                         <UncontrolledDropdown>
                           <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm'>
-                            <MoreVertical size={15} />
+                            <LuMoreVertical size={15} />
                           </DropdownToggle>
                           <DropdownMenu>
                             <DropdownItem href='#' onClick={e => { e.preventDefault(); setJuegoAModificar("VOCABULARIO"); setDataSeleccionada(i); toggleEdtiar(); }} >
-                              <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                              <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                             </DropdownItem>
                             <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarCategoriaVocabulario(i) : activarCategoriaVocabulario(i);  }} >
-                            {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                            {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                             </DropdownItem>
                           </DropdownMenu>
                         </UncontrolledDropdown>
@@ -239,14 +241,14 @@ const VerCategoriaAdm = () => {
                         <td style={{ borderBottomColor: "#f8f8f8" }}>
                           <UncontrolledDropdown>
                             <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm'>
-                              <MoreVertical size={15} />
+                              <LuMoreVertical size={15} />
                             </DropdownToggle>
                             <DropdownMenu>
                               <DropdownItem href='#' onClick={e => { e.preventDefault(); setJuegoAModificar("VOCABULARIO"); setDataSeleccionada(i); toggleEdtiar(); }} >
-                                <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                                <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                               </DropdownItem>
                               <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarCategoriaVocabulario(i) : activarCategoriaVocabulario(i); }} >
-                              {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                              {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>
@@ -290,14 +292,14 @@ const VerCategoriaAdm = () => {
                       <td style={{ borderBottomColor: "#f8f8f8" }}>
                         <UncontrolledDropdown>
                           <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm'>
-                            <MoreVertical size={15} />
+                            <LuMoreVertical size={15} />
                           </DropdownToggle>
                           <DropdownMenu>
                             <DropdownItem href='#' onClick={e => { e.preventDefault(); setJuegoAModificar("ORACION"); setDataSeleccionada(i); toggleEdtiar(); }}>
-                              <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                              <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                             </DropdownItem>
                             <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarCategoriaOracion(i) : habilitarCategoriaOracions(i); }}  >
-                            {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /> <span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                            {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /> <span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                             </DropdownItem>
                           </DropdownMenu>
                         </UncontrolledDropdown>
@@ -309,14 +311,14 @@ const VerCategoriaAdm = () => {
                         <td style={{ borderBottomColor: "#f8f8f8" }}>
                           <UncontrolledDropdown>
                             <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm'>
-                              <MoreVertical size={15} />
+                              <LuMoreVertical size={15} />
                             </DropdownToggle>
                             <DropdownMenu>
                               <DropdownItem href='#' onClick={e => { e.preventDefault(); setJuegoAModificar("ORACION"); setDataSeleccionada(i); toggleEdtiar(); }}>
-                                <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                                <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                               </DropdownItem>
                               <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarCategoriaOracion(i) : habilitarCategoriaOracions(i); }}  >
-                                 {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                                 {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                               </DropdownItem>
                             </DropdownMenu>
                           </UncontrolledDropdown>

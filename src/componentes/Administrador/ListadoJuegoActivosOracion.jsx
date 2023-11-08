@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { DropdownItem, DropdownMenu, DropdownToggle, Table, UncontrolledDropdown } from 'reactstrap'
-import { Check,  MoreVertical, Trash } from 'react-feather';
+import {LuMoreVertical} from 'react-icons/lu'
+import {AiOutlineCheck} from 'react-icons/ai'
+import {BsTrash} from 'react-icons/bs'
 import { DesibilitarHabilitarJuego, HabilitarHabilitarJuego, MostrarHabilitarJuego } from '../../service/Adminstrador/Vocabulario';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
@@ -96,11 +98,11 @@ const habilitarPersonaFunc =async(objeto)=>{
          <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
-                        <MoreVertical size={15} />
+                        <LuMoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
-                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>

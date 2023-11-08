@@ -1,7 +1,9 @@
 import React, { useEffect, useReducer, useState } from "react";
 import Select from "react-select";
-import Flatpickr from 'react-flatpickr'
-import "flatpickr/dist/themes/dark.css"; 
+import DateTimePicker from 'react-datetime-picker';
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import 'react-clock/dist/Clock.css'
 import { Button, Col, Label, Row } from "reactstrap";
 import { ReporteJuegoApi } from "../../../service/Adminstrador/Reporte";
 import { ReportePDFJuego } from "./ReportePDFJuego";
@@ -70,19 +72,25 @@ export const ReporteJuego = () => {
            <Label className='form-label' for='DateGameM'>
               Rango de fecha
             </Label>
-            <Flatpickr
-            placeholder='Fecha'
-              data-enable-time
-              value={picker}
-              id='DateGameM'
-              className='form-control'
-              onChange={date => setPicker(date)}
-              options={{
-                altFormat: "m/d/Y h:i K",
-                mode: 'range',
-                minDate: 'today',
-              }}
-            />
+            <DateTimePicker
+            amPmAriaLabel="Select AM/PM"
+            calendarAriaLabel="Toggle calendar"
+            clearAriaLabel="Clear value"
+            dayAriaLabel="Day"
+            hourAriaLabel="Hour"
+            maxDetail="second"
+            minDate={new Date()}
+            minuteAriaLabel="Minute"
+            monthAriaLabel="Month"
+            nativeInputAriaLabel="Date and time"
+            onChange={setPicker}
+            secondAriaLabel="Second"
+            value={picker}
+            yearAriaLabel="Year"
+          />
+          {
+            // este era un date pick range sin hora
+          }
           <br />
           <Button
             onClick={() => Buscar()}

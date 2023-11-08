@@ -1,11 +1,10 @@
 import React from 'react'
 import { Button, Card, CardBody, CardFooter, Col, Label, Row } from "reactstrap";
-import Flatpickr from 'react-flatpickr'
 import DateTimePicker from 'react-datetime-picker';
+import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css'
-import "flatpickr/dist/themes/dark.css"; //material_green.css, material_blue.css, material_red.css, material_orange.css, dark.css
 import { useEffect } from 'react';
 import { useState } from 'react';
 export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, picker,picker2, setPicker2 }) => {
@@ -48,18 +47,22 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, 
             <Label className='form-label mt-2' for='DateGameM' >
               Fecha de cierre
             </Label>
-            <Flatpickr
-            placeholder='Fecha'
-              data-enable-time
-              id='DateGameM'
-              className='form-control'
-              onChange={date => setPicker2(date)}
-              options={{
-                altFormat: "m/d/Y h:i K",
-                mode: 'simple',
-                minDate: 'today',
-              }}
-            />
+            <DateTimePicker
+            amPmAriaLabel="Select AM/PM"
+            calendarAriaLabel="Toggle calendar"
+            clearAriaLabel="Clear value"
+            dayAriaLabel="Day"
+            hourAriaLabel="Hour"
+            maxDetail="second"
+            minDate={new Date()}
+            minuteAriaLabel="Minute"
+            monthAriaLabel="Month"
+            nativeInputAriaLabel="Date and time"
+            onChange={setPicker2}
+            secondAriaLabel="Second"
+            value={picker2}
+            yearAriaLabel="Year"
+          />
           </Col>
         </Row>
         <Row>
@@ -69,10 +72,12 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, 
       </CardBody>
       <CardFooter className="d-flex justify-content-between">
         <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
+        <AiOutlineArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
         Atrás
         </Button>
         <Button onClick={nextButton} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Siguiente
+          <AiOutlineArrowRight size={14} className='align-middle ms-sm-25 ms-0'/>
         </Button>
       </CardFooter>
     </Card>

@@ -1,7 +1,8 @@
 import React from "react";
 import "react-step-progress-bar/styles.css";
 import { ProgressBar, Step } from "react-step-progress-bar";
-import { FileText, User, Calendar, CheckCircle } from 'react-feather'
+import {BiUser} from 'react-icons/bi'
+import {AiOutlineFileText, AiOutlineCalendar, AiOutlineCheckCircle} from 'react-icons/ai'
 export const Stepbar = ({ steps }) => {
   return (
     <ProgressBar
@@ -11,28 +12,28 @@ export const Stepbar = ({ steps }) => {
       <Step transition="scale">
         {({ accomplished, index }) => (
           <div className={`step ${accomplished ? "completed" : ""}`}>
-            <FileText size={18} />
+            <AiOutlineFileText size={18} />
           </div>
         )}
       </Step>
       <Step transition="scale">
         {({ accomplished, index }) => (
           <div className={`step ${accomplished ? "completed" : ""}`}>
-            <User size={18} />
+            <BiUser size={18} />
           </div>
         )}
       </Step>
       <Step transition="scale">
         {({ accomplished, index }) => (
           <div className={`step ${accomplished ? "completed" : ""}`}>
-            <Calendar size={18} />
+            <AiOutlineCalendar size={18} />
           </div>
         )}
       </Step>
       <Step transition="scale">
         {({ accomplished, index }) => (
           <div className={`step ${accomplished ? "completed" : ""}`}>
-            <CheckCircle size={18} />
+            <AiOutlineCheckCircle size={18} />
           </div>
         )}
       </Step>

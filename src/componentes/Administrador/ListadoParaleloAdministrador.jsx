@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react'
-import { Check, Edit, MoreVertical, Trash } from 'react-feather';
+import {LuMoreVertical} from 'react-icons/lu'
+import {AiOutlineCheck, AiOutlineEdit} from 'react-icons/ai'
+import {BsTrash} from 'react-icons/bs'
 import { Col, DropdownItem, DropdownMenu, DropdownToggle, Input, Label, Table, UncontrolledDropdown } from 'reactstrap'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
@@ -120,14 +122,14 @@ export const ListadoParaleloAdministrador = () => {
     <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
-                        <MoreVertical size={15} />
+                        <LuMoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleditar()} }>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>  
                         <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarParaleloFunc(i) : habilitarParaleloFunc(i); }}>
-                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
@@ -141,14 +143,14 @@ data.filter(item=>item.Estado==='ACTIVO').map((i, index)=>(<>
   <td style={{borderBottomColor:"#f8f8f8"}}>
                   <UncontrolledDropdown>
                     <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
-                      <MoreVertical size={15} />
+                      <LuMoreVertical size={15} />
                     </DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleditar()} }>
-                        <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                        <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                       </DropdownItem>
                       <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarParaleloFunc(i) : habilitarParaleloFunc(i); }}>
-                      {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                      {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                       </DropdownItem>
                     </DropdownMenu>
                   </UncontrolledDropdown>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react';
-import { ArrowLeft, ArrowRight } from 'react-feather';
+import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import { useForm, Controller } from 'react-hook-form'
 import Select from 'react-select'
 import { Button, Card, CardBody, Col, Label, Row, Form } from "reactstrap";
@@ -69,12 +69,12 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
           }
           <div className='d-flex justify-content-between mt-5'>
           <Button onClick={prevButton} disabled={index === 1}  style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
-          <ArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
+          <AiOutlineArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
           Atras
         </Button>
         <Button onClick={()=>{manejoData(AleotorioArmado); nextButton()}} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
           Siguiente
-          <ArrowRight size={14} className='align-middle ms-sm-25 ms-0'/>
+          <AiOutlineArrowRight size={14} className='align-middle ms-sm-25 ms-0'/>
         </Button>
         </div>
           </> : <Form onSubmit={handleSubmit((data) => { manejoData(data); nextButton()})}>
@@ -110,12 +110,12 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
           </Repeater>
           <div className='d-flex justify-content-between mt-5'>
           <Button onClick={prevButton} disabled={index === 1}  style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
-          <ArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
+          <AiOutlineArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
           Atrás
         </Button>
         <Button type='submit' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} >
           Siguiente
-          <ArrowRight size={14} className='align-middle ms-sm-25 ms-0'/>
+          <AiOutlineArrowRight size={14} className='align-middle ms-sm-25 ms-0'/>
         </Button>
         </div>
           </Form>

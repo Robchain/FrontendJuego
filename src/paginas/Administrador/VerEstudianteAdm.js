@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { NavBar } from '../../componentes/NavBar';
-import { Edit, Trash, MoreVertical, Clipboard,Check } from 'react-feather'
+import {LuMoreVertical} from 'react-icons/lu'
+import {AiOutlineCheck, AiOutlineEdit} from 'react-icons/ai'
+import {BsTrash, BsClipboard} from 'react-icons/bs'
 import { Table, Button, Container, Col, Row, DropdownItem, DropdownMenu, UncontrolledDropdown, DropdownToggle, Input, Label, NavLink, NavItem, Nav, TabContent, TabPane } from 'reactstrap';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
@@ -191,20 +193,20 @@ const VerEstudianteAdm = () => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
-                        <MoreVertical size={15} />
+                        <LuMoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleDetalle();}} >
-                          <Clipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
+                          <BsClipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleditar()} }>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
-                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleContra()} }>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
@@ -220,20 +222,20 @@ const VerEstudianteAdm = () => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
-                        <MoreVertical size={15} />
+                        <LuMoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem href='#' /*onClick={e =>  abrirDetalle(i, e)}*/>
-                          <Clipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
+                          <BsClipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleditar()}}>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
                         <DropdownItem href='#'onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}  >
-                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleContra()} }>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
@@ -280,20 +282,20 @@ const VerEstudianteAdm = () => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
-                        <MoreVertical size={15} />
+                        <LuMoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleDetalle();}} >
-                          <Clipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
+                          <BsClipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleditar()} }>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
-                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleContra()} }>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
@@ -307,20 +309,20 @@ const VerEstudianteAdm = () => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
-                        <MoreVertical size={15} />
+                        <LuMoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem href='#' /*onClick={e =>  abrirDetalle(i, e)}*/>
-                          <Clipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
+                          <BsClipboard className='me-50' size={15} /> <span className='align-middle'>Detalle</span>
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleditar()}}>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
                         <DropdownItem href='#'onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}  >
-                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggleContra()} }>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar Contraseña</span>
                         </DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>

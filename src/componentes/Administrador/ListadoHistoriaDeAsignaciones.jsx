@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Check, Edit, MoreVertical, Trash } from 'react-feather';
+import {LuMoreVertical} from 'react-icons/lu'
+import {AiOutlineCheck, AiOutlineEdit} from 'react-icons/ai'
+import {BsTrash} from 'react-icons/bs'
 import { DropdownItem, DropdownMenu, DropdownToggle, Table, UncontrolledDropdown } from 'reactstrap'
 import { fechaEcuador, fechaEcuadoracutal, nombre } from '../../helpers/contador';
 import { ModalEditarColaborativo } from './ModalEditarColaborativo';
@@ -106,14 +108,14 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
                   <td style={{borderBottomColor:"#f8f8f8"}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
-                        <MoreVertical size={15} />
+                        <LuMoreVertical size={15} />
                       </DropdownToggle>
                       <DropdownMenu>
                         <DropdownItem href='#' onClick={e => {e.preventDefault(); setDataseleccionada(i); toggledos()} }>
-                          <Edit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
+                          <AiOutlineEdit className='me-50' size={15} /> <span className='align-middle'>Editar</span>
                         </DropdownItem>
                     { !(fechaEcuadoracutal(i.FechaDeFin) || ((i.Avance!==null)&&(i.Avance.length/5 === i.Integrantes.length))) &&<DropdownItem href='#' onClick={e => { e.preventDefault(); i.Estado === "ACTIVO" ? desactivarPersonaFunc(i) : habilitarPersonaFunc(i); }}>
-                        {i.Estado === "ACTIVO" ? <><Trash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><Check className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
+                        {i.Estado === "ACTIVO" ? <><BsTrash className='me-50' size={15} /><span className='align-middle'>Desactivar</span></> : <><AiOutlineCheck className='me-50' size={15} /><span className='align-middle'>Activar</span></>}
                         </DropdownItem>}
                       </DropdownMenu>
                     </UncontrolledDropdown>

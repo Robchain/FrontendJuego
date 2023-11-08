@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Card, CardBody, Col, Input, Label, Row } from "reactstrap";
 import Select from 'react-select'
 import { todosTeam } from '../../service/Equipo';
-import { ArrowLeft, ArrowRight } from 'react-feather';
+import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 const Options = [
   { value: '2', label: '2' },
   { value: '3', label: '3' },
@@ -125,12 +125,12 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
         </Row>
         <div className='d-flex justify-content-between mt-3'>
         <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
-        <ArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
+        <AiOutlineArrowLeft size={14} className='align-middle me-sm-25 me-0'/>
         Atrás
         </Button>
         <Button onClick={nextButton} disabled={bloqueosiguiente} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Siguiente
-          <ArrowRight  size={14} className='align-middle ms-sm-25 ms-0'/>
+          <AiOutlineArrowRight  size={14} className='align-middle ms-sm-25 ms-0'/>
         </Button>
         </div>
       </CardBody>
