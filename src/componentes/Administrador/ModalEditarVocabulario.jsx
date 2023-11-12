@@ -166,9 +166,9 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                     <Label className='form-label' for='categoria'>Categoría</Label><br />
                     <Select name="Categoria" defaultValue={{ value: "123", label: dataBase.Categoria }} options={vocabularioOpciones.map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={true} />
                     <Label className='form-label' for='palabra'>Palabra</Label>
-                    <Input type='text' maxLength={25} id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} defaultValue={dataBase.Palabra} /> {/* revisar esto*/}
+                    <Input type='text' maxLength={20} id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} defaultValue={dataBase.Palabra} /> {/* revisar esto*/}
                     <Label className='form-label' for='categoria'>Silaba</Label>
-                    <Input type='text' maxLength={30} id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} defaultValue={dataBase.Silaba} value={Silaba} />
+                    <Input type='text' maxLength={25} id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} defaultValue={dataBase.Silaba} value={Silaba} />
                     <Input id="EditarImagen" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} />&nbsp;&nbsp; <Label check for="EditarImagen" style={{ color: '#8b8b8c', fontWeight: "700" }} >Editar imágenes </Label>
                     {checkbos && <div className='mt-1'>
                         <Label className='form-label' for='inputImage'>

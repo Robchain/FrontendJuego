@@ -213,7 +213,10 @@ MySwal.fire({
     <Container>
     <NavBar toggle={toggle} Seccion={"Oraciones"} />
     <AdmiMenu toggle={toggle} isOpen={isOpen}/> 
-    <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-between'>
+    <ModalAgregarOracion modal={modal} toggle={toggledos}  />
+          <ModalEditarOracion dataBase={dataSeleccionada} modal={modalEdicion}  toggle={toggleEdicion} />
+    <div className='fuenteDoce'>
+      <div className='navegacion-interna-menu-administador'>
     <Nav tabs style={{ fontSize: 14 }} >
             <NavItem>
               <NavLink
@@ -243,9 +246,8 @@ MySwal.fire({
        <Button onClick={toggledos}  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
        Agregar
           </Button>
-          <ModalAgregarOracion modal={modal} toggle={toggledos}  />
-          <ModalEditarOracion dataBase={dataSeleccionada} modal={modalEdicion}  toggle={toggleEdicion} />
-        </Col>
+          </div>
+        </div>
         <TabContent activeTab={tabs} className="tabvs">
         <TabPane tabId="1" >
     <Row className='match-height mb-2'>
@@ -347,7 +349,7 @@ MySwal.fire({
             <Label className='form-label ' for='Nombre'>
               Quien
             </Label>
-            <Input type='text' maxLength={20} name='Nombre' id='Nombre' placeholder='Nombre' onChange={event => disparodeAccionQuien({ type: "onchange", field: "Nombre", value: event.target.value.toUpperCase() })} value={Nombre} />
+            <Input type='text' maxLength={10} name='Nombre' id='Nombre' placeholder='Nombre' onChange={event => disparodeAccionQuien({ type: "onchange", field: "Nombre", value: event.target.value.toUpperCase() })} value={Nombre} />
             <Label className='form-label' for='Imagen'>
               Imagen
             </Label>

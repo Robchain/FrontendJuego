@@ -14,6 +14,10 @@
     width: 100% !important;
     height: 100% !important;
 }
+.modal-backdrop{
+    width: 100% !important;
+    height: 100% !important;
+}
 
 .step.completed {
     background-color: rgba(96, 38, 158, 0.5);
@@ -358,6 +362,7 @@ body {
 }
  .barra-superior {
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
@@ -395,6 +400,7 @@ body {
  }
  .barra-superior .info-foto-salida-div .informacion-div p{
     text-align: end;
+    font-size: 0.8em;
  }
 
  .barra-superior .info-foto-salida-div .circulo-usuario-div{
@@ -704,7 +710,23 @@ font-weight: 600;
  .barra-superior .info-foto-salida-div .puerta-icono-div  a .puerta-icono{
     color:#777;
  }
+/* contenido de paso uno colaborativo */
+.contenido-paso-uno{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.contenido-paso-uno .up-side{
+display: flex;
+flex-direction: column;
+width: 45%;
+}
 
+.contenido-paso-uno .down-side{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    }
 
     /*categorias menu*/
     .Cate-menu-alto {
@@ -985,7 +1007,23 @@ margin-right: 15px;
     color:#777;
  }
 
+/* contenido de paso uno colaborativo */
+.contenido-paso-uno{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.contenido-paso-uno .up-side{
+display: flex;
+flex-direction: column;
+width: 45%;
+}
 
+.contenido-paso-uno .down-side{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    }
     /*categorias menu*/
     .Cate-menu-alto {
         display: flex;
@@ -1077,7 +1115,23 @@ margin-right: 15px;
  .barra-superior .info-foto-salida-div .puerta-icono-div  a .puerta-icono{
     color:#777;
  }
+/* contenido de paso uno colaborativo */
+.contenido-paso-uno{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.contenido-paso-uno .up-side{
+display: flex;
+flex-direction: column;
+width: 45%;
+}
 
+.contenido-paso-uno .down-side{
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+    }
 
 
 }

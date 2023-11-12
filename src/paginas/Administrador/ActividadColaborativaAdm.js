@@ -1,5 +1,5 @@
 import React, { useState, useReducer, useEffect } from "react";
-import { Button, Col, Container, Label, Row } from "reactstrap";
+import { Button, Col, Container, Label, Nav, NavItem, NavLink, Row, TabContent, TabPane } from "reactstrap";
 import { Stepbar } from "../../componentes/Administrador/Stepbar";
 import { AdmiMenu } from "../../componentes/AdmiMenu";
 import { NavBar } from "../../componentes/NavBar";
@@ -39,6 +39,7 @@ function llenadodeFormulario(state, action) {
 const ActividadColaborativaAdm = () => {
   const [{ NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, TipoDeJuego, Aleatorio }, dispatch] = useReducer(ActualizacionDeDataFormularioEquipo, estadoInicialFormularioActividad)
   const [index, setIndex] = useState(1);
+  const [tabs, setTabs] = useState("1")
   const [cursoData, setcursoData] = useState([]);
   const [paraleloData, setparaleloData] = useState([])
   const [bloqueo, setBloqueo] = useState(true);
@@ -166,14 +167,35 @@ const ActividadColaborativaAdm = () => {
           }}
             onClick={llamddeData}
             disabled={bloqueo}>
-            Crear Asignación
+            Buscar
           </Button>
         </Col>
+        <Nav tabs style={{ fontSize: 14 }} >
+            <NavItem>
+              <NavLink
+                style={{ color: "#62259E" }}
+                onClick={() => { setTabs("1") }}
+              >
+                 Crear Asignación
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink
+                style={{ color: "#62259E" }}
+                onClick={() => { setTabs("2") }}
+              >
+                Historial de juegos
+              </NavLink>
+            </NavItem>
+          </Nav>
       </Row>
+      <TabContent activeTab={tabs} className="tabvs">
       {
         Estudiantes.length >0 && <>
           {
-            Estudiantes[0].value !=="NO HAY ESTUDIANTES" ? <Row>
+            Estudiantes[0].value !=="NO HAY ESTUDIANTES" ?    <TabPane tabId="1" >
+
+            <Row className="mt-4">
               <Stepbar steps={index} />
               {
                 index === 1 && <PasoUnoFormulario estudiantevalue={Estudiantes.length} TipoDeJuego={TipoDeJuego} index={index} nextButton={nextButton} prevButton={prevButton} dispatch={dispatch} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} NombreDeEquipo={NombreDeEquipo}  />
@@ -187,11 +209,11 @@ const ActividadColaborativaAdm = () => {
               {
                 index === 4 && <PasoCuatroFormulario Curso={Curso} Paralelo={Paralelo} index={index} nextButton={nextButton} prevButton={prevButton} Segundo={Segundo} picker2={picker2} NombreDeEquipo={NombreDeEquipo} NumeroDeGrupos={NumeroDeGrupos} NumeroDeIntegrantes={NumeroDeIntegrantes} picker={picker} TipoDeJuego={TipoDeJuego} />
               }
-            </Row> :<>
+            </Row> </TabPane>:<>
             NO HAY SUFICIENTES ESTUDIANTES
             </>
           }
-          {
+                  <TabPane tabId="2" >{
             historial.length > 0 && <div> <br /> <h4 style={{ color: "#85858C", fontSize: '1.5em' }}>Historial de juegos</h4> 
             {historial.map(i=>(
  <ListadoHistoriaDeAsignaciones data={i.documentos}/>
@@ -199,9 +221,16 @@ const ActividadColaborativaAdm = () => {
             }
            </div>
           }
-
+</TabPane>
         </>
       }
+      
+     
+
+
+          
+      
+        </TabContent>
       
 
     </Container>

@@ -1,7 +1,7 @@
 import { Api } from "./api";
 
-export const crearMultiJugador = async ({NombreDeEquipo, NumeroDeGrupos, NumeroDeIntegrantes, Segundo, picker,TipoDeJuego, Curso, Paralelo}) => {
-    const data = await Api.post('/MultiJugador', {NombreDeEquipo:NombreDeEquipo, NumeroDeGrupos:NumeroDeGrupos, NumeroDeIntegrantes:NumeroDeIntegrantes, Segundo:Segundo,Curso:Curso,Paralelo:Paralelo, picker:picker,TipoDeJuego:TipoDeJuego})
+export const crearMultiJugador = async ({NombreDeEquipo, NumeroDeGrupos, NumeroDeIntegrantes, Segundo, picker,TipoDeJuego, Curso, Paralelo, picker2}) => {
+    const data = await Api.post('/MultiJugador', {NombreDeEquipo:NombreDeEquipo, NumeroDeGrupos:NumeroDeGrupos, NumeroDeIntegrantes:NumeroDeIntegrantes, Segundo:Segundo,Curso:Curso,Paralelo:Paralelo, picker:picker,picker2:picker2,TipoDeJuego:TipoDeJuego})
     return data.data
 }
 
@@ -70,7 +70,7 @@ export const ActivarCoolaborativo = async ({_id})=>{
 }
 
 
-export const ActualizarCoolaborativo = async ({_id, picker, TipoDeJuego})=>{
-    const data = await Api.post('/ActualizarCoolaborativo', {_id:_id, picker:picker, TipoDeJuego:TipoDeJuego});
+export const ActualizarCoolaborativo = async ({_id, picker, TipoDeJuego, picker2})=>{
+    const data = await Api.post('/ActualizarCoolaborativo', {_id:_id, picker:picker, TipoDeJuego:TipoDeJuego,picker2:picker2 });
     return data.data;
 }

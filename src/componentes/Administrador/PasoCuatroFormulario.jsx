@@ -8,7 +8,7 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
   const MySwal = withReactContent(Swal)
   const onclickGuardar = async()=>{
     try {
-  const data = await  crearMultiJugador({NombreDeEquipo:NombreDeEquipo,NumeroDeGrupos:NumeroDeGrupos,NumeroDeIntegrantes:NumeroDeIntegrantes, Segundo:Segundo,Curso:Curso, Paralelo:Paralelo, picker:picker, Estado:"ACTIVO",TipoDeJuego:TipoDeJuego})
+  const data = await  crearMultiJugador({NombreDeEquipo:NombreDeEquipo,NumeroDeGrupos:NumeroDeGrupos,NumeroDeIntegrantes:NumeroDeIntegrantes, Segundo:Segundo,Curso:Curso, Paralelo:Paralelo, picker:picker,picker2:picker2, Estado:"ACTIVO",TipoDeJuego:TipoDeJuego})
   MySwal.fire({
     title: `${data.titulo}`,
     text: `${data.respuesta}`,
@@ -42,13 +42,13 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
         </div>
         <Row>
           <Col md='6' className='mb-1'>
-            <Label>Opciones de nombre de equipos</Label>
+            <b>Opciones de nombre de equipos</b>
             {NombreDeEquipo.map(i=>{
               return (<p key={i.value}> - {i.label}</p>)
             })}
           </Col>
           <Col md='6' className='mb-1'>
-            <Label>Jugadores por grupo</Label>
+            <b>Jugadores por grupo</b>
             {
               Object.keys(Segundo).map((grupoKey, e)=>(
                   <Col key={grupoKey}>
@@ -61,15 +61,12 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
             }
           </Col>
           <Col md='6' className='mb-1'>
-            <Label>Fecha de la actividad</Label>
-            {
-              picker.map((i, index)=>(
-                <p key={index}>- <Label>{index ===0 ? "Fecha de Inicio: " : "Fecha de Fin: "}</Label> {i.toLocaleDateString()}</p>
-              ))
-            }
+            <b>Fecha de la actividad</b>
+            <p>Fecha de inicio: {picker.toLocaleDateString()}</p>
+            <p>Fecha de finalización: {picker2.toLocaleDateString()}</p>
           </Col>
           <Col md='6' className='mb-1'>
-            <Label>Tipo de juego:&ensp;
+            <Label><b>Tipo de juego:</b>&ensp;
              {
               TipoDeJuego == '1' && <span>Vocabularios</span>
             }

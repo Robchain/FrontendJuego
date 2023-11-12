@@ -12,51 +12,41 @@ function llenadodeFormulario(state, action) {
       throw new Error();
   }
 }
-export const ModalEditarEquipo = ({modal, toggle,baseData}) => {
-    const BaseInicialFormulario = { Nombre: baseData.Nombre, Imagen:baseData.Imagen};
+export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
+  const BaseInicialFormulario = { Nombre: baseData.Nombre, Imagen: baseData.Imagen };
   const MySwal = withReactContent(Swal)
-  const [{Nombre, Imagen}, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
+  const [{ Nombre, Imagen }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
   const [bloqueo, setBloqueo] = useState(true);
   const [checkbosDos, setCheckbosDos] = useState(false);
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-      if(Nombre !== baseData.Nombre  ){
-             setBloqueo(false);
-        
-      }else if(Nombre === baseData.Nombre){
-        if(checkbosDos === true){
-            setBloqueo(false);
-        }else if(checkbosDos === false){
-            setBloqueo(true)
-        }
+    if (Nombre !== baseData.Nombre) {
+      setBloqueo(false);
+
+    } else if (Nombre === baseData.Nombre) {
+      if (checkbosDos === true) {
+        setBloqueo(false);
+      } else if (checkbosDos === false) {
+        setBloqueo(true)
       }
+    }
   }, [Nombre, Imagen])
-  
+
   useEffect(() => {
     disparodeAccion({ type: "onchange", field: "Nombre", value: baseData.Nombre })
   }, [baseData, modal]);
 
 
-  const uploaddata = async ()=>{
+  const uploaddata = async () => {
     try {
-        let _id = baseData._id;
-      setBloqueoSecu(true); 
+      let _id = baseData._id;
+      setBloqueoSecu(true);
       setBloqueo(true);
       setLoading(true);
-    if(checkbosDos === true){
-      const urlImagen = await subidaIEquipo(Imagen)
-      const data = await  EditarconImagen({_id:_id,Imagen:urlImagen,Nombre:Nombre });
-      MySwal.fire({
-        title: `${data.titulo}`,
-        text: `${data.respuesta}`,
-        icon: `${data.type}`,
-        customClass: {
-          confirmButton: 'btn btn-primary'
-        },
-        buttonsStyling: false}) 
-     }else if(checkbosDos === false){
-        const data = await  EditarsinImagen({_id:_id,Nombre:Nombre });
+      if (checkbosDos === true) {
+        const urlImagen = await subidaIEquipo(Imagen)
+        const data = await EditarconImagen({ _id: _id, Imagen: urlImagen, Nombre: Nombre });
         MySwal.fire({
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
@@ -64,17 +54,29 @@ export const ModalEditarEquipo = ({modal, toggle,baseData}) => {
           customClass: {
             confirmButton: 'btn btn-primary'
           },
-          buttonsStyling: false}) 
+          buttonsStyling: false
+        })
+      } else if (checkbosDos === false) {
+        const data = await EditarsinImagen({ _id: _id, Nombre: Nombre });
+        MySwal.fire({
+          title: `${data.titulo}`,
+          text: `${data.respuesta}`,
+          icon: `${data.type}`,
+          customClass: {
+            confirmButton: 'btn btn-primary'
+          },
+          buttonsStyling: false
+        })
       }
       setBloqueoSecu(false);
       setBloqueo(true);
       setLoading(false);
       toggle();
-      if(!bloqueo){
+      if (!bloqueo) {
         setTimeout(() => {
           window.location.reload();
         }, 2000);
-        }
+      }
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
@@ -83,15 +85,16 @@ export const ModalEditarEquipo = ({modal, toggle,baseData}) => {
         customClass: {
           confirmButton: 'btn btn-primary'
         },
-        buttonsStyling: false})
-        setBloqueoSecu(false);
-        setBloqueo(true);
-        setLoading(false);
-        toggle();
+        buttonsStyling: false
+      })
+      setBloqueoSecu(false);
+      setBloqueo(true);
+      setLoading(false);
+      toggle();
     }
   }
 
-  const handleChange = ({event,field }) => {
+  const handleChange = ({ event, field }) => {
     const selectedFile = event.target.files[0];
 
     if (selectedFile) {
@@ -105,7 +108,7 @@ export const ModalEditarEquipo = ({modal, toggle,baseData}) => {
         alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
         event.target.value = ''; // Limpia el input para eliminar el archivo no válido
         return;
-      } 
+      }
 
       // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
       // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
@@ -114,35 +117,69 @@ export const ModalEditarEquipo = ({modal, toggle,baseData}) => {
   };
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
-    <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Editar equipo</ModalHeader>
-    <ModalBody>
-    <div className='mb-2'>
-              <Label className='form-label' for='Nombre'>Nombre</Label>
-              <Input type='text' maxLength={25} id='Nombre' name="Nombre" placeholder='Nombre' 
-             onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}
-              defaultValue={baseData.Nombre}
-              value={Nombre}
-              />
-              <Input id="exampleCheck"    name="check" type="checkbox"   onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
-                <Label  check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}> Editar imagen</Label>
-                {checkbosDos && <> <br/>  <Label className='form-label' for='Imagen'>
+      <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar equipo</ModalHeader>
+      <ModalBody>
+        <div className='mb-2'>
+          <Label
+            className='form-label'
+            for='Nombre'>
+            Nombre
+          </Label>
+          <Input
+            type='text'
+            maxLength={20}
+            id='Nombre'
+            name="Nombre"
+            placeholder='Nombre'
+            onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })}
+            defaultValue={baseData.Nombre}
+            value={Nombre}
+          />
+          <Input id="exampleCheck"
+            name="check"
+            type="checkbox"
+            onChange={e => { setCheckbosDos(e.target.checked) }} />
+          &nbsp;&nbsp;
+          <Label
+            check
+            for="exampleCheck"
+            style={{ color: '#8b8b8c', fontWeight: "700" }}>
+            Editar imagen
+          </Label>
+          {checkbosDos && <> <br />
+            <Label
+              className='form-label'
+              for='Imagen'>
               Foto Del Equipo
             </Label>
-            <Input type='file' id='Imagen' name='Imagen' onChange={event => handleChange({event:event, field:'Imagen'})} />
-            </>
-   } </div>
-    </ModalBody>
-    <ModalFooter>
-    <Button  outline style={{color:'#592a98'}} disabled={bloqueoSecu} onClick={() => { setCheckbosDos(false); toggle();  }}>
-            Cancelar
-          </Button>&nbsp;&nbsp;
-          <Button  onClick={()=>{uploaddata()}} disabled={bloqueo} style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
-          { loading && <Spinner size="sm">
-    Loading...
-  </Spinner>  }
-            Editar
-          </Button>
-    </ModalFooter>
-  </Modal>
+            <Input type='file'
+              id='Imagen'
+              name='Imagen'
+              onChange={event => handleChange({ event: event, field: 'Imagen' })}
+            />
+          </>
+          } </div>
+      </ModalBody>
+      <ModalFooter>
+        <Button
+          outline
+          style={{ color: '#592a98' }}
+          disabled={bloqueoSecu}
+          onClick={() => { setCheckbosDos(false); toggle(); }}>
+          Cancelar
+        </Button>
+        &nbsp;&nbsp;
+        <Button
+          onClick={() => { uploaddata() }}
+          disabled={bloqueo}
+          style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+          {loading && <Spinner
+            size="sm">
+            Loading...
+          </Spinner>}
+          Editar
+        </Button>
+      </ModalFooter>
+    </Modal>
   )
 }

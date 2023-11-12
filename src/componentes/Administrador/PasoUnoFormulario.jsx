@@ -56,19 +56,35 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
           <small className='text-muted'>Especificar el número de los integrantes</small><br/>
           <small className='text-muted'>Nota: hay {estudiantevalue} estudiantes registrados</small>
         </div>
-        <Row>
-          <Col md="6" className="mb-1">
+        <div className='contenido-paso-uno'>
+          <div className='up-side'>
+          <div className='NumeroGrupos'>
             <Label className='form-label' for='grupos'>
             Número de grupos             
             </Label>
             <Select
             value={NumeroDeGrupos}
+            isSearchable={false}
               onChange={e =>{dispatch({ type: "actualizarData", field: "NumeroDeGrupos", value: e})}}
               options={Options}
               name="NumeroDeGrupos"
             />
-          </Col>
-          <Col md="6" className="mb-1">
+          </div>
+          <div className='NumeroIntegrante'>
+            <Label className='form-label' for='integrantes'>
+            Número de integrantes
+            </Label>
+            <Select
+            isSearchable={false}
+               value={NumeroDeIntegrantes}
+            onChange={e =>{dispatch({ type: "actualizarData", field: "NumeroDeIntegrantes", value: e })}}
+            name='NumeroDeIntegrantes'
+              options={Options2}
+            />
+          </div>
+          </div>
+          <div className='down-side'>
+          <div className='NombreEquipos'>
             <Label className='form-label' for='equipos'>
               Nombres de equipos &nbsp;&nbsp;&nbsp;&nbsp;
             </Label>
@@ -83,19 +99,9 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
                         value: i._id }
                       })}
             />
-          </Col>
-          <Col md='6' className='mb-1'>
-            <Label className='form-label' for='integrantes'>
-            Número de integrantes
-            </Label>
-            <Select
-               value={NumeroDeIntegrantes}
-            onChange={e =>{dispatch({ type: "actualizarData", field: "NumeroDeIntegrantes", value: e })}}
-            name='NumeroDeIntegrantes'
-              options={Options2}
-            />
-          </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          </div>
+         
+          <div className='TipoJuego'>
             <Label>
               Tipo de Juego
             </Label><br />
@@ -121,8 +127,10 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
                 onChange={event => dispatch({ type: "actualizarData", field: "TipoDeJuego", value: event.target.value })}
               defaultChecked={TipoDeJuego == '3'}
               /> Oraciones y Vocabulario
-          </Col>
-        </Row>
+          </div>
+          </div>
+        </div>
+        
         <div className='d-flex justify-content-between mt-3'>
         <Button onClick={prevButton} disabled={index === 1} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
         <AiOutlineArrowLeft size={14} className='align-middle me-sm-25 me-0'/>

@@ -21,9 +21,10 @@ export const ModalEditarColaborativo = ({toggle,modal, data }) => {
 const [{TipoDeJuego}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFormulario)
     const MySwal = withReactContent(Swal);
     const [picker, setPicker] = useState(new Date());
+    const [picker2, setPicker2] = useState(new Date());
   const [bloqueo, setBloqueo] = useState(true);
   useEffect(() => { 
-    if (TipoDeJuego !== data.TipoDeJuego || Array.isArray(picker)) {
+    if (TipoDeJuego !== data.TipoDeJuego || picker != Date() || picker2 !=Date()) {
       setBloqueo(false);
     } else {
       setBloqueo(true)  ;
@@ -32,6 +33,7 @@ const [{TipoDeJuego}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFor
 
   useEffect(() => {
     setPicker(new Date());
+    setPicker2(new Date());
     dispatch( { type: "onchange", field: "TipoDeJuego", value:data.TipoDeJuego })
   }, [data, modal]);
 
@@ -39,7 +41,7 @@ const [{TipoDeJuego}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFor
   const EditarData = async () => {
     let _id = data._id
     try {
-      const data = await ActualizarCoolaborativo({ _id:_id, picker:picker, TipoDeJuego:TipoDeJuego });
+      const data = await ActualizarCoolaborativo({ _id:_id, picker:picker, picker2:picker2, TipoDeJuego:TipoDeJuego });
       MySwal.fire({
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
@@ -72,8 +74,49 @@ const [{TipoDeJuego}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFor
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered'>
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar colaborativo</ModalHeader>
       <ModalBody>
-        <Row>
-        <Col>
+        
+        
+      <Label className='form-label' >
+            Feha de inicio
+            </Label><br/>
+            <DateTimePicker
+            amPmAriaLabel="Select AM/PM"
+            calendarAriaLabel="Toggle calendar"
+            clearAriaLabel="Clear value"
+            dayAriaLabel="Day"
+            hourAriaLabel="Hour"
+            maxDetail="second"
+            minDate={new Date()}
+            minuteAriaLabel="Minute"
+            monthAriaLabel="Month"
+            nativeInputAriaLabel="Date and time"
+            onChange={setPicker}
+            secondAriaLabel="Second"
+            value={picker}
+            yearAriaLabel="Year"
+          /><br/>
+          
+         
+          <Label className='form-label mt-2' >
+              Fecha de cierre
+            </Label> <br/>
+            <DateTimePicker
+            amPmAriaLabel="Select AM/PM"
+            calendarAriaLabel="Toggle calendar"
+            clearAriaLabel="Clear value"
+            dayAriaLabel="Day"
+            hourAriaLabel="Hour"
+            maxDetail="second"
+            minDate={new Date(picker)}
+            minuteAriaLabel="Minute"
+            monthAriaLabel="Month"
+            nativeInputAriaLabel="Date and time"
+            onChange={setPicker2}
+            secondAriaLabel="Second"
+            value={picker2}
+            yearAriaLabel="Year"
+          /><br/>
+
         <Label>
               Tipo de Juego
             </Label><br />
@@ -99,31 +142,8 @@ const [{TipoDeJuego}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFor
                 onChange={event => dispatch({ type: "onchange", field: "TipoDeJuego", value: event.target.value })}
               defaultChecked={data.TipoDeJuego == '3'}
               /> Oraciones y Vocabulario
-        </Col> <Col d='6' className='mb-1' >
-            <Label className='form-label' for='DateGameM'>
-              Rango de fecha
-            </Label>
-            <DateTimePicker
-            amPmAriaLabel="Select AM/PM"
-            calendarAriaLabel="Toggle calendar"
-            clearAriaLabel="Clear value"
-            dayAriaLabel="Day"
-            hourAriaLabel="Hour"
-            maxDetail="second"
-            minDate={new Date()}
-            minuteAriaLabel="Minute"
-            monthAriaLabel="Month"
-            nativeInputAriaLabel="Date and time"
-            onChange={setPicker}
-            secondAriaLabel="Second"
-            value={picker}
-            yearAriaLabel="Year"
-          />
-          {
-            // este es con rango
-          }
-          </Col>
-        </Row>
+        
+                
       </ModalBody>
       <ModalFooter>
         <Button outline style={{ color: '#592a98' }} onClick={() => { toggle(); }}>

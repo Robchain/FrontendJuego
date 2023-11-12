@@ -23,7 +23,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
     const [checkbos, setCheckbos] = useState(false);
     const [bloqueo, setBloqueo] = useState(true);
 
- 
+
     useEffect(() => {
         if ((Nombre !== dataBase.Nombre && Pieza !== 0) || (FileBlanco || FileColor)) {
             setBloqueo(false);
@@ -32,15 +32,15 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
         }
     }, [Nombre, FileBlanco, FileColor, Pieza])
 
-    
-    
+
+
     useEffect(() => {
         disparodeAccion({ type: "onchange", field: "Nombre", value: dataBase.Nombre });
         disparodeAccion({ type: "onchange", field: "Pieza", value: dataBase.Pieza });
         disparodeAccion({ type: "onchange", field: "FileColor", value: undefined });
         disparodeAccion({ type: "onchange", field: "FileBlanco", value: undefined });
-        setCheckbos(false); 
-    }, [dataBase, modal])    
+        setCheckbos(false);
+    }, [dataBase, modal])
 
     const uploadData = async () => {
         try {
@@ -51,12 +51,12 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 setBloqueoSecu(true);
                 setBloqueo(true);
                 setLoading(true);
-                if(FileColor){
-                     ulrC = await subidaIRompecabeza(FileColor)
+                if (FileColor) {
+                    ulrC = await subidaIRompecabeza(FileColor)
                 }
-                if(FileBlanco){
+                if (FileBlanco) {
                     ulrB = await subidaIRompecabeza(FileBlanco)
-               }
+                }
                 const data = await EditarDataRompecabeza({ FileBlanco: ulrB, FileColor: ulrC, Nombre: Nombre, Pieza: Pieza, _id: _id });
                 MySwal.fire({
                     title: `${data.titulo}`,
@@ -71,11 +71,11 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
-                if(!bloqueo){
+                if (!bloqueo) {
                     setTimeout(() => {
-                      window.location.reload();
+                        window.location.reload();
                     }, 2000);
-                    }
+                }
             } else if (checkbos === false) {
                 setBloqueoSecu(true);
                 setBloqueo(true);
@@ -94,11 +94,11 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
-                if(!bloqueo){
+                if (!bloqueo) {
                     setTimeout(() => {
-                      window.location.reload();
+                        window.location.reload();
                     }, 2000);
-                    }
+                }
             }
 
         } catch (error) {
@@ -117,55 +117,55 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
             toggle();
         }
     }
-    
-    const handleChange = ({event,field }) => {
+
+    const handleChange = ({ event, field }) => {
         const selectedFile = event.target.files[0];
-    
+
         if (selectedFile) {
-          // Verificar la extensión del archivo
-          const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
-          const fileNameParts = selectedFile.name.split('.');
-          const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
-    
-          if (!allowedExtensions.includes(fileExtension)) {
-            // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
-            alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
-            event.target.value = ''; // Limpia el input para eliminar el archivo no válido
-            return;
-          } 
-    
-          // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
-          // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
-          disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+            // Verificar la extensión del archivo
+            const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
+            const fileNameParts = selectedFile.name.split('.');
+            const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+
+            if (!allowedExtensions.includes(fileExtension)) {
+                // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
+                alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
+                event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+                return;
+            }
+
+            // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
+            // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
+            disparodeAccion({ type: "onchange", field: field, value: selectedFile })
         }
-      };
-      const handleChangeFilePDF = ({ event, field }) => {
+    };
+    const handleChangeFilePDF = ({ event, field }) => {
         const selectedFile = event.target.files[0];
-      
+
         if (selectedFile) {
-          // Verificar la extensión del archivo
-          const allowedExtensions = ['pdf'];
-          const fileNameParts = selectedFile.name.split('.');
-          const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
-      
-          if (!allowedExtensions.includes(fileExtension)) {
-            // El archivo no tiene una extensión PDF, puedes manejar el error aquí
-            alert('Por favor, seleccione un archivo PDF válido.');
-            event.target.value = ''; // Limpia el input para eliminar el archivo no válido
-            return;
-          }
-      
-          // Si llegamos aquí, el archivo es un PDF válido, puedes realizar la acción deseada
-          disparodeAccion({ type: "onchange", field: field, value: selectedFile });
+            // Verificar la extensión del archivo
+            const allowedExtensions = ['pdf'];
+            const fileNameParts = selectedFile.name.split('.');
+            const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+
+            if (!allowedExtensions.includes(fileExtension)) {
+                // El archivo no tiene una extensión PDF, puedes manejar el error aquí
+                alert('Por favor, seleccione un archivo PDF válido.');
+                event.target.value = ''; // Limpia el input para eliminar el archivo no válido
+                return;
+            }
+
+            // Si llegamos aquí, el archivo es un PDF válido, puedes realizar la acción deseada
+            disparodeAccion({ type: "onchange", field: field, value: selectedFile });
         }
-      };
+    };
     return (
         <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
             <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar rompecabeza</ModalHeader>
             <ModalBody>
                 <div className=''>
                     <Label style={{ color: '#8b8b8c', fontWeight: "700" }} className='form-label' for='Nombre'>Nombre</Label>
-                    <Input name="Nombre"  placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} value={Nombre} />
+                    <Input name="Nombre" placeholder='Nombre' maxLength={20} onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} value={Nombre} />
                     <Label style={{ color: '#8b8b8c', fontWeight: "700" }} >Piezas</Label><br />
                     <Label>
                         <Input
@@ -206,11 +206,11 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                         <Label className='form-label' for='FileColor' style={{ color: '#8b8b8c', fontWeight: "700" }}>
                             Foto color
                         </Label><br />
-                        <Input type='file' id='FileColor' name='FileColor' onChange={event => handleChange({event:event, field:'FileColor'})} />
+                        <Input type='file' id='FileColor' name='FileColor' onChange={event => handleChange({ event: event, field: 'FileColor' })} />
                         <Label className='form-label' for='FileBlanco' style={{ color: '#8b8b8c', fontWeight: "700" }}>
                             Foto blanco y negro
                         </Label>
-                        <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => handleChangeFilePDF({event:event, field:'FileBlanco'})} />
+                        <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => handleChangeFilePDF({ event: event, field: 'FileBlanco' })} />
                     </div>}
                 </div>
             </ModalBody>
