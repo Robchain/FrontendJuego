@@ -193,7 +193,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         <Label className='form-label' for='Oracion'>
                             Oración
                         </Label>
-                        <Input type='text' maxLength={55} name='Oracion' id='Oracion' defaultValue={dataBase.Oracion} placeholder='Oracion' value={Oracion} onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} />
+                        <Input type='text' maxLength={30} name='Oracion' id='Oracion' defaultValue={dataBase.Oracion} placeholder='Oracion' value={Oracion} onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} />
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='Que'>

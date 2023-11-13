@@ -157,7 +157,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
             <Label className='form-label' for='Oracion'>
             Oración
             </Label>
-            <Input type='text' maxLength={55} name='Oracion' id='Oracion' placeholder='Oración' onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} value={Oracion} />
+            <Input type='text' maxLength={30} name='Oracion' id='Oracion' placeholder='Oración' onChange={event => disparodeAccion({ type: "onchange", field: "Oracion", value: event.target.value.toUpperCase() })} value={Oracion} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='FileVideoMuestra'>

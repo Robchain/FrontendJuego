@@ -161,7 +161,7 @@ try {
             <Label className='form-label' for='CountryMulti'>
             Correo Electrónico
             </Label>
-            <Input type='text' maxLength={60} name='Email' id='CountryMulti' placeholder='Correo Electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Email} />
+            <Input type='text' maxLength={30} name='Email' id='CountryMulti' placeholder='Correo Electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Email} />
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='CompanyMulti'>
