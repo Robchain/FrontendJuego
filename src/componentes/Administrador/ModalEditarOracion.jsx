@@ -7,6 +7,7 @@ import { llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Catego
 import { EdtiarOracion, EdtiarOracionSinImagen, listadoQuienImagen } from '../../service/Adminstrador/Oracion';
 import { llamadaDeDataTodosActivos } from '../../service/Adminstrador/Vocabulario';
 import { subidaIOracion } from '../../firebase/config';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Categoria: '', Oracion: '', Verbo: '', Adverbio: undefined, Sujeto: undefined, Que: undefined, FileVideoPreguntaQue: undefined, FileVideoPreguntaQuien: undefined, FileVideoMuestra: undefined }
 function llenadodeFormulario(state, action) {
     switch (action.type) {
@@ -114,7 +115,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
         } catch (error) {
             MySwal.fire({
                 title: 'Error!',
-                text: "No se pudo Crear",
+                text: responseformualrio.Editadar.editadoFracaso,
                 icon: 'error',
                 customClass: {
                     confirmButton: 'btn btn-primary'

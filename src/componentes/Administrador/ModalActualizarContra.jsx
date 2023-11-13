@@ -3,6 +3,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Input, Label, Col } from 'reactstrap';
 import { ActulizarContraseña } from '../../service/Adminstrador/Usuarios';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { ContraseñaUno:"", ContraseñaDos:""}
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -55,7 +56,7 @@ setBloqueo(true);
         } catch (error) {
           MySwal.fire({
             title: 'Error!',
-            text: "Falto un campo",
+            text: responseformualrio.Editadar.editadoFracaso,
             icon: 'error',
             customClass: {
               confirmButton: 'btn btn-primary'

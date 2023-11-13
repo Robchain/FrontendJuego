@@ -3,6 +3,7 @@ import { Button, Card, CardBody, CardFooter, Col, Label, Row } from "reactstrap"
 import { crearMultiJugador } from '../../service/Multijugador';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { responseformualrio } from '../../helpers';
 
 export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrantes, NombreDeEquipo, prevButton, index, Segundo,TipoDeJuego,Curso, Paralelo, picker2 }) => {
   const MySwal = withReactContent(Swal)
@@ -24,7 +25,7 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo Crear",
+        text: responseformualrio.Editadar.editadoFracaso,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

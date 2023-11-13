@@ -6,6 +6,7 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Spinn
 import { GuardadoDeVocabulario } from '../../service/Adminstrador/Vocabulario';
 import { subidaIVocabulario } from '../../firebase/config';
 import { llamadaDeLaApiCategoriaGet } from '../../service/Adminstrador/Categoria';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Categoria: "", Palabra: "", Silaba: "", FileImagen: undefined, FileMuestra: undefined, FilePregunta: undefined }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -72,7 +73,7 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo Crear",
+        text: responseformualrio.Creado.NoCreado,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

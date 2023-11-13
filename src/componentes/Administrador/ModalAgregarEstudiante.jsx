@@ -8,6 +8,7 @@ import { useReducer } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, Input, Spinner } from 'reactstrap';
 import { subidaIPerfil } from '../../firebase/config';
 import { CrearUsuario, MostrarCurso, MostrarParalelo, signupsinfoto } from '../../service/Adminstrador/Usuarios';
+import { responseformualrio } from '../../helpers';
 
 const BaseInicialFormulario = { Nombre: "", Apellido: "", Identificacion: "",FotoPerfil:undefined, Email: "", Usuario: "", Password: "", TipoUsuario: "", Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
@@ -88,7 +89,7 @@ try {
 } catch (error) {
   MySwal.fire({
     title: 'Error!',
-    text: "No se pudo Crear",
+    text: responseformualrio.Creado.NoCreado,
     icon: 'error',
     customClass: {
       confirmButton: 'btn btn-primary'

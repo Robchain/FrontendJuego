@@ -11,6 +11,7 @@ import {AiOutlineCheck, AiOutlineEdit} from 'react-icons/ai'
 import {BsTrash} from 'react-icons/bs'
 import { desabilitarCategoriaOracion, desabilitarCategoriaVocabulario, habilitarCategoriaOracion, habilitarCategoriaVocabulario, llamadaDeLaApiCategoriaGet, llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Categoria';
 import { ModalEditarCategoria } from '../../componentes/Administrador/ModalEditarCategoria';
+import { responseformualrio } from '../../helpers';
 const VerCategoriaAdm = () => {
   const MySwal = withReactContent(Swal)
   const [modal, setModal] = useState(false)
@@ -56,7 +57,7 @@ const VerCategoriaAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Activar.NoActivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -86,7 +87,7 @@ const VerCategoriaAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Desactivar.NoDesactivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -116,7 +117,7 @@ const VerCategoriaAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Desactivar.NoDesactivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -146,7 +147,7 @@ const VerCategoriaAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Activar.NoActivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

@@ -5,6 +5,7 @@ import { ListadoParaleloAdministrador } from './ListadoParaleloAdministrador';
 import { CrearCurso, CrearParalelo } from '../../service/Adminstrador/Usuarios';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
+import { responseformualrio } from '../../helpers';
 
 export const AdministradorOpcionesEstudiante = () => {
   const MySwal = withReactContent(Swal)
@@ -55,7 +56,7 @@ const onsudmitAgregarCurso = async()=>{
   } catch (error) {
     MySwal.fire({
       title: 'Error!',
-      text: "No se agregar",
+      text: responseformualrio.Creado.NoCreado,
       icon: 'error',
       customClass: {
         confirmButton: 'btn btn-primary'
@@ -93,7 +94,7 @@ const onsudmitAgregarParalelo = async()=>{
   } catch (error) {
     MySwal.fire({
       title: 'Error!',
-      text: "No se agregar",
+      text: responseformualrio.Creado.NoCreado,
       icon: 'error',
       customClass: {
         confirmButton: 'btn btn-primary'

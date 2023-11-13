@@ -3,6 +3,7 @@ import { Button, Col, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { EditarCurso } from '../../service/Adminstrador/Usuarios';
+import { responseformualrio } from '../../helpers';
 function llenadodeFormulario(state, action) {
   switch (action.type) {
     case 'onchange':
@@ -54,7 +55,7 @@ const [{Curso}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFormulari
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo editar",
+        text: responseformualrio.Editadar.editadoFracaso,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

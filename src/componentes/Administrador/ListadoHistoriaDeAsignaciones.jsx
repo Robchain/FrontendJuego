@@ -8,6 +8,7 @@ import { ModalEditarColaborativo } from './ModalEditarColaborativo';
 import { ActivarCoolaborativo, DesactivarCoolaborativo } from '../../service/Multijugador';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
+import { responseformualrio } from '../../helpers/mensajes'
 export const ListadoHistoriaDeAsignaciones = ({data}) => {
   const [modal, setModal] = useState(false)
   const MySwal = withReactContent(Swal)
@@ -34,7 +35,7 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
-          text: "Falto un campo",
+          text: responseformualrio.Desactivar.NoDesactivar,
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-primary'
@@ -64,7 +65,7 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
-          text: "Falto un campo",
+          text: responseformualrio.Activar.NoActivar,
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-primary'

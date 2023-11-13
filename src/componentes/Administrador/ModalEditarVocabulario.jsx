@@ -6,6 +6,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { subidaIVocabulario } from '../../firebase/config';
 import { EditarVocabulario, EditarVocabularioSinArchivos } from '../../service/Adminstrador/Vocabulario';
 import { llamadaDeLaApiCategoriaGet } from '../../service/Adminstrador/Categoria';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Categoria: '', Palabra: '', Silaba: '', FileImagen: undefined, FileMuestra: undefined, FilePregunta: undefined };
 function llenadodeFormulario(state, action) {
     switch (action.type) {
@@ -126,7 +127,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
         } catch (error) {
             MySwal.fire({
                 title: 'Error!',
-                text: "No se pudo Crear",
+                text: responseformualrio.Editadar.editadoFracaso,
                 icon: 'error',
                 customClass: {
                     confirmButton: 'btn btn-primary'

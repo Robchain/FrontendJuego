@@ -21,6 +21,7 @@ import { NavBar } from "../../componentes/NavBar";
 import { ModalAgregarRompecabeza } from "../../componentes/Administrador/ModalAgregarRompecabeza";
 import { desabilitarRompecabeza, HabilitarRompecabeza, llamadaGetRompecabezaActivos } from "../../service/Adminstrador/Rompecabeza";
 import { ModalEditarRompecabeza } from "../../componentes/Administrador/ModalEditarRompecabeza";
+import { responseformualrio } from "../../helpers";
 const VerRompecabezaAdm = () => {
   const [cards, setCards] = useState([]);
   const MySwal = withReactContent(Swal)
@@ -55,7 +56,7 @@ const VerRompecabezaAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Desactivar.NoDesactivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -83,7 +84,7 @@ const VerRompecabezaAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Activar.NoActivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

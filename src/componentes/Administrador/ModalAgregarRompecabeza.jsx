@@ -4,6 +4,7 @@ import { CrearRompecabeza } from '../../service/Adminstrador/Rompecabeza';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { subidaIRompecabeza } from '../../firebase/config';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Nombre: "", FileBlanco: undefined, FileColor: undefined, Pieza: 0 };
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -61,7 +62,7 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo Crear",
+        text: responseformualrio.Creado.NoCreado,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

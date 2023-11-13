@@ -7,6 +7,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { DesibilitarCurso, HabilitarCurso, MostrarCurso } from '../../service/Adminstrador/Usuarios';
 import { ModalEditarCurso } from './ModalEditarCurso';
+import { responseformualrio } from '../../helpers'
 export const ListadoCUrsosAdministrador = () => {
     const MySwal = withReactContent(Swal)
     const [showAll, setShowAll] = useState(true)
@@ -53,7 +54,7 @@ export const ListadoCUrsosAdministrador = () => {
         } catch (error) {
           MySwal.fire({
             title: 'Error!',
-            text: "No se puede cambiar",
+            text: responseformualrio.Desactivar.NoDesactivar,
             icon: 'error',
             customClass: {
               confirmButton: 'btn btn-primary'
@@ -81,7 +82,7 @@ export const ListadoCUrsosAdministrador = () => {
         } catch (error) {
           MySwal.fire({
             title: 'Error!',
-            text: "No se puede cambiar",
+            text: responseformualrio.Activar.NoActivar,
             icon: 'error',
             customClass: {
               confirmButton: 'btn btn-primary'

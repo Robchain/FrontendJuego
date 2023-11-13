@@ -8,6 +8,7 @@ import 'react-clock/dist/Clock.css'
 import withReactContent from 'sweetalert2-react-content';
 //material_green.css, material_blue.css, material_red.css, material_orange.css, dark.css
 import { ActualizarCoolaborativo } from '../../service/Multijugador';
+import { responseformualrio } from '../../helpers';
 function llenadodeFormulario(state, action) {
     switch (action.type) {
       case 'onchange':
@@ -61,7 +62,7 @@ const [{TipoDeJuego}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFor
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo editar ",
+        text: responseformualrio.Editadar.editadoFracaso,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

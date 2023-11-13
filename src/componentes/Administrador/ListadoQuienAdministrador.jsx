@@ -8,6 +8,7 @@ import { ImagenQuienDesibilitar, ImagenQuienHabilitar, listadoQuienImagen } from
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { ModalEditarQuienData } from './ModalEditarQuienData'
+import { responseformualrio } from '../../helpers'
 export const ListadoQuienAdministrador = () => {
   const MySwal = withReactContent(Swal)
     const [data, setdata] = useState([])
@@ -48,7 +49,7 @@ export const ListadoQuienAdministrador = () => {
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
-          text: "No se pudo desactivar",
+          text: responseformualrio.Desactivar.NoDesactivar,
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-primary'
@@ -79,7 +80,7 @@ export const ListadoQuienAdministrador = () => {
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
-          text: "No se pudo desactivar",
+          text: responseformualrio.Activar.NoActivar,
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-primary'

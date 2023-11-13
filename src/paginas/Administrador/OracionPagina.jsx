@@ -12,6 +12,7 @@ import { ListadoJuegoActivosOracion } from '../../componentes/Administrador/List
 import {subidaQuienImagen } from '../../firebase/config';
 import { ListadoQuienAdministrador } from '../../componentes/Administrador/ListadoQuienAdministrador';
 import { MostrarCurso, MostrarParalelo } from '../../service/Adminstrador/Usuarios';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -107,7 +108,7 @@ MySwal.fire({
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
-          text: "Falto un campo",
+          text: responseformualrio.Desactivar.NoDesactivar,
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-primary'
@@ -135,7 +136,7 @@ MySwal.fire({
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
-          text: "Falto un campo",
+          text: responseformualrio.Activar.NoActivar,
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-primary'
@@ -168,7 +169,7 @@ MySwal.fire({
       } catch (error) {
         MySwal.fire({
           title: 'Error!',
-          text: "Falto un campo",
+          text: responseformualrio.Creado.NoCreado,
           icon: 'error',
           customClass: {
             confirmButton: 'btn btn-primary'
@@ -203,7 +204,7 @@ MySwal.fire({
           } catch (error) {
             MySwal.fire({
               title: 'Error!',
-              text: "Falto un campo",
+              text: responseformualrio.Creado.NoCreado,
               icon: 'error',
               customClass: {
                 confirmButton: 'btn btn-primary'

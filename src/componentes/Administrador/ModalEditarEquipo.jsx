@@ -4,6 +4,7 @@ import { subidaIEquipo } from '../../firebase/config';
 import { EditarconImagen, EditarsinImagen } from '../../service/Adminstrador/Equipo';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
+import { responseformualrio } from '../../helpers';
 function llenadodeFormulario(state, action) {
   switch (action.type) {
     case 'onchange':
@@ -82,7 +83,7 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo Crear",
+        text: responseformualrio.Editadar.editadoFracaso,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

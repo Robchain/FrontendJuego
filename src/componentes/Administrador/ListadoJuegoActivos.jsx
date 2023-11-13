@@ -6,6 +6,7 @@ import {AiOutlineCheck} from 'react-icons/ai'
 import {BsTrash} from 'react-icons/bs'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
+import { responseformualrio } from '../../helpers/mensajes';
 export const ListadoJuegoActivos = () => {
 
   const [data, setData] = useState([]);
@@ -41,7 +42,7 @@ export const ListadoJuegoActivos = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Desactivar.NoDesactivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -71,7 +72,7 @@ export const ListadoJuegoActivos = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Activar.NoActivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

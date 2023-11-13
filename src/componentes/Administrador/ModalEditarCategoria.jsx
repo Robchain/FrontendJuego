@@ -4,6 +4,7 @@ import withReactContent from 'sweetalert2-react-content';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Input, Label, Col } from 'reactstrap';
 import Select from 'react-select';
 import { EditarApiCategoriaOracion, EditarApiCategoriaVocabulario } from '../../service/Adminstrador/Categoria';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { NombreCategoria: '' }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -76,7 +77,7 @@ export const ModalEditarCategoria = ({ modal, toggle, data, juego }) => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Editadar.editadoFracaso,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

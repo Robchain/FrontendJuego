@@ -4,6 +4,7 @@ import { subidaIEquipo } from '../../firebase/config';
 import { PostCrearEquipo } from '../../service/Adminstrador/Equipo';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Nombre: "", Imagen:null};
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -61,7 +62,7 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se puede crear",
+        text: responseformualrio.Creado.NoCreado,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

@@ -6,6 +6,7 @@ import {BsTrash} from 'react-icons/bs'
 import { DesibilitarHabilitarJuego, HabilitarHabilitarJuego, MostrarHabilitarJuego } from '../../service/Adminstrador/Vocabulario';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
+import { responseformualrio } from '../../helpers/mensajes'
 export const ListadoJuegoActivosOracion = () => {
 
 const [data, setData] = useState([]);
@@ -41,7 +42,7 @@ const desactivarPersonaFunc = async(objeto)=>{
   } catch (error) {
     MySwal.fire({
       title: 'Error!',
-      text: "Falto un campo",
+      text: responseformualrio.Desactivar.NoDesactivar,
       icon: 'error',
       customClass: {
         confirmButton: 'btn btn-primary'
@@ -71,7 +72,7 @@ const habilitarPersonaFunc =async(objeto)=>{
   } catch (error) {
     MySwal.fire({
       title: 'Error!',
-      text: "Falto un campo",
+      text: responseformualrio.Activar.NoActivar,
       icon: 'error',
       customClass: {
         confirmButton: 'btn btn-primary'

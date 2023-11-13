@@ -7,6 +7,7 @@ import { llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Catego
 import { GuardadodeOracionPost, listadoQuienImagen } from '../../service/Adminstrador/Oracion';
 import { llamadaDeDataTodosActivos } from '../../service/Adminstrador/Vocabulario';
 import { subidaIOracion } from '../../firebase/config';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Categoria: "", Oracion: "", Verbo: "", Adverbio: undefined, Que: undefined, Sujeto: undefined, FileVideoPreguntaQue: undefined, FileVideoPreguntaQuien: undefined, FileVideoMuestra: undefined }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -84,7 +85,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo Crear",
+        text: responseformualrio.Creado.NoCreado,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

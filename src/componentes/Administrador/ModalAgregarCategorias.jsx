@@ -4,6 +4,7 @@ import Select from 'react-select';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Input, Label, Col } from 'reactstrap';
 import { CrearPostCategoria } from '../../service/Adminstrador/Categoria';
 import withReactContent from 'sweetalert2-react-content';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Juego: "", NombreCategoria:""}
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -42,7 +43,7 @@ const data  = await  CrearPostCategoria({Juego,NombreCategoria});
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Creado.NoCreado,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

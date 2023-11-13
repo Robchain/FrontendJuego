@@ -13,6 +13,7 @@ import { ModalEditarEstudiante } from '../../componentes/Administrador/ModalEdit
 import { ModalDetalleUsuario } from '../../componentes/Administrador/ModalDetalleUsuario';
 import { ModalActualizarContra } from '../../componentes/Administrador/ModalActualizarContra';
 import { AdministradorOpcionesEstudiante } from '../../componentes/Administrador/AdministradorOpcionesEstudiante';
+import { responseformualrio } from '../../helpers';
 const VerEstudianteAdm = () => {
   const [modalDetalle, setModalDetalle] = useState(false);
   const MySwal = withReactContent(Swal)
@@ -71,7 +72,7 @@ const VerEstudianteAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo desactivar",
+        text: responseformualrio.Desactivar.NoDesactivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -101,7 +102,7 @@ const VerEstudianteAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Activar.NoActivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

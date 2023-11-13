@@ -7,6 +7,7 @@ import { DesabilitarEquipo, HabilitarEquipo, llamadaGetActivo } from '../../serv
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { ModalEditarEquipo } from '../../componentes/Administrador/ModalEditarEquipo';
+import { responseformualrio } from '../../helpers';
 
 const EquipoAdm = () => {
   const MySwal = withReactContent(Swal)
@@ -52,7 +53,7 @@ const EquipoAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Desactivar.NoDesactivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -82,7 +83,7 @@ const EquipoAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Activar.NoActivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'

@@ -4,6 +4,7 @@ import { EditarDataRompecabeza, EditarDataRompecabezaSinArchivo } from '../../se
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { subidaIRompecabeza } from '../../firebase/config';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Nombre: '', FileBlanco: undefined, FileColor: undefined, Pieza: 0 };
 function llenadodeFormulario(state, action) {
     switch (action.type) {
@@ -106,7 +107,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
         } catch (error) {
             MySwal.fire({
                 title: 'Error!',
-                text: "No se pudo Crear",
+                text: responseformualrio.Editadar.editadoFracaso,
                 icon: 'error',
                 customClass: {
                     confirmButton: 'btn btn-primary'

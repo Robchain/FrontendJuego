@@ -8,6 +8,7 @@ import { useReducer } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, Input, Spinner } from 'reactstrap';
 import { subidaIPerfil } from '../../firebase/config';
 import { MostrarCurso, MostrarParalelo, editarPersonaconImagen, editarPersonasinImagen } from '../../service/Adminstrador/Usuarios';
+import { responseformualrio } from '../../helpers';
 
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -110,7 +111,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo Crear",
+        text: responseformualrio.Editadar.editadoFracaso,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
