@@ -33,36 +33,36 @@ const MenuJuego = () => {
   return (
 
     <Container className="fondoImagen vh-100" fluid  >
-      <Row className="mx-2 j">
-        <Col className="mt-3" lg="12" md="12" sm="12" xs="12" style={{ borderRadius: "10px", border: "#f6f6f6 solid", boxShadow: "5px 5px #d7d7d7", height: "64px" }}>
-          <Row>
-            <Col lg="1" md="1" sm="1" xs="2">
-              <LogoBlipBlaPalabra className="ms-3 mt-1" style={{ width: "8em" }} />
-            </Col>
-            <Col lg="11" sm="11" xs="9" md="11">
-              <Row className="justify-content-end" lg="10">
-                <Col lg="10" md="10" sm="10" xs="10" style={{ fontSize: "12px" }} className="float-end d-none d-sm-block">
-                  <p className="text-end mt-1" style={{ color: "#777777" }}><span>{`${Email}`}</span><br /><span> {`${usuario}`}</span> <br /><span>{`${Identificacion}`}</span></p>
-                </Col>
-                <Col lg="1" md="1" sm="1" xs="4">
+      <div className='nav-superior-nombre'>
+        <div  className='barra-superior'>
+          <div className='menu-icono-div'>
+          <div className='logo-blipbla-div'>
+              <LogoBlipBlaPalabra className="logo-blipbla" />
+            </div>
+          </div>
+            
+            <div className='info-foto-salida-div'>
+                <div className="informacion-div">
+                  <p><span>{`${Email}`}</span><br /><span> {`${usuario}`}</span> <br /><span>{`${Identificacion}`}</span></p>
+                </div>
+                <div className="circulo-usuario-div">
                   <div className="mt-2 position-relative" style={{ background: "#777777", width: "40px", borderRadius: "100px", height: "40px" }}>
                     <div className="position-absolute bottom-0 end-0" style={{ background: "#4BAD4B", width: "15px", borderRadius: "100px", height: "15px" }}></div>
                   </div>
-                </Col>
-                <Col lg="1" md="1" sm="1" xs="2">
+                </div>
+                <div className='puerta-icono-div'>
                   <NavLink to={"/"}>
                   <PiDoorOpen className='puerta-icono'/>
                   </NavLink>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </Col>
+                </div>
+            </div>
+          
+        </div>
         {  /*---------------NOMBRE DE LA SECCION--------------*/}
         <Col sm="11" lg="11" md="11" xs="11" className="mt-3" style={{ color: "#8B8B8C" }}>
           <h2 >Categoría</h2>
         </Col>
-      </Row>
+      </div>
       {/*----------------------OPCIONES------------------------------- */}
       <div className="Cate-menu-alto" >
         <div className="Cate-cuadro-voca">
