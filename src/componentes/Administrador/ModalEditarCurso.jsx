@@ -39,13 +39,14 @@ const [{Curso}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFormulari
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
         icon: `${data.type}`,
+        showConfirmButton:data.titulo !== "Excelente",
         customClass: {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
       })
       toggle();
-      if(data.titulo){
+      if(data.titulo ==="Excelente"){
         setTimeout(() => {
           window.location.reload();
         }, 2000);
@@ -53,7 +54,7 @@ const [{Curso}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFormulari
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo ",
+        text: "No se pudo editar",
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -68,7 +69,7 @@ const [{Curso}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFormulari
       <ModalBody>
         <Row><Col>
           <Label for='Curso' style={{ color: '#8b8b8c', fontWeight: "700" }}>Curso</Label>
-          <Input name='Curso' placeholder='Curso' onChange={event => dispatch( { type: "onchange", field: "Curso", value: event.target.value.toUpperCase()})} defaultValue={Curso}  value={Curso} />
+          <Input name='Curso' maxLength={20} placeholder='Curso' onChange={event => dispatch( { type: "onchange", field: "Curso", value: event.target.value.toUpperCase()})} defaultValue={Curso}  value={Curso} />
         </Col></Row>
       </ModalBody>
       <ModalFooter>

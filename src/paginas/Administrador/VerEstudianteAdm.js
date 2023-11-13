@@ -57,12 +57,13 @@ const VerEstudianteAdm = () => {
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
         icon: `${data.type}`,
+        showConfirmButton:data.titulo !== "Excelente",
         customClass: {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
       })
-      if(data.titulo){
+      if(data.titulo ==="Excelente"){
         setTimeout(() => {
           window.location.reload();
         }, 2000);
@@ -70,7 +71,7 @@ const VerEstudianteAdm = () => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: "No se pudo desactivar",
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -86,12 +87,13 @@ const VerEstudianteAdm = () => {
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
         icon: `${data.type}`,
+        showConfirmButton:data.titulo !== "Excelente",
         customClass: {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
       })
-      if(data.titulo){
+      if(data.titulo ==="Excelente"){
         setTimeout(() => {
           window.location.reload();
         }, 2000);

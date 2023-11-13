@@ -3,6 +3,7 @@ import { Button, Col, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content';
 import { EditarParalelo } from '../../service/Adminstrador/Usuarios';
+import { responseformualrio } from '../../helpers';
  export const ModalEditarParalelo = ({toggle,modal, data }) => {
     const MySwal = withReactContent(Swal);
   const [bloqueo, setBloqueo] = useState(true);
@@ -29,13 +30,14 @@ import { EditarParalelo } from '../../service/Adminstrador/Usuarios';
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
         icon: `${data.type}`,
+        showConfirmButton:data.titulo !== "Excelente",
         customClass: {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false
       })
       toggle();
-      if(data.titulo){
+      if(data.titulo ==="Excelente"){
         setTimeout(() => {
           window.location.reload();
         }, 2000);
@@ -43,7 +45,7 @@ import { EditarParalelo } from '../../service/Adminstrador/Usuarios';
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "No se pudo ",
+        text: responseformualrio.Editadar.editadoFracaso,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -58,7 +60,7 @@ import { EditarParalelo } from '../../service/Adminstrador/Usuarios';
     <ModalBody>
       <Row><Col>
         <Label for='Paralelo' style={{ color: '#8b8b8c', fontWeight: "700" }}>Paralelo</Label>
-        <Input name='Paralelo' placeholder='Paralelo' onChange={event => setParalelo(event.target.value.toUpperCase())} defaultValue={data.Nombre} value={Paralelo} />
+        <Input name='Paralelo' maxLength={20} placeholder='Paralelo' onChange={event => setParalelo(event.target.value.toUpperCase())} defaultValue={data.Nombre} value={Paralelo} />
       </Col></Row>
     </ModalBody>
     <ModalFooter>

@@ -54,6 +54,7 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
         icon: `${data.type}`,
+        showConfirmButton:data.titulo !== "Excelente",
         customClass: {
           confirmButton: 'btn btn-primary'
         },
@@ -63,7 +64,7 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
       setBloqueo(false);
       setLoading(false);
       toggle();
-      if(!bloqueo){
+      if(data.titulo ==="Excelente"){
         setTimeout(() => {
           window.location.reload();
         }, 2000);

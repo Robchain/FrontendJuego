@@ -51,6 +51,7 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
@@ -62,6 +63,7 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },

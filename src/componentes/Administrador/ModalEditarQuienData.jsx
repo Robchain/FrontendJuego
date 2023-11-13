@@ -52,6 +52,7 @@ export const ModalEditarQuienData = ({modal, toggle, baseData}) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
@@ -61,6 +62,7 @@ export const ModalEditarQuienData = ({modal, toggle, baseData}) => {
           MySwal.fire({
             title: `${data.titulo}`,
             text: `${data.respuesta}`,
+            showConfirmButton:data.titulo !== "Excelente",
             icon: `${data.type}`,
             customClass: {
               confirmButton: 'btn btn-primary'

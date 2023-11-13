@@ -80,6 +80,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                 const data = await EdtiarOracion({ _id: _id, Categoria: Categoria, Oracion: Oracion, Verbo: Verbo, Adverbio: Adverbio, Sujeto: Sujeto, Que: Que, FileVideoPreguntaQue: fileVideoPreguntaQue, FileVideoPreguntaQuien: fileVideoPreguntaQuien, FileVideoMuestra: fileVideoMuestra })
                 MySwal.fire({
                     title: `${data.titulo}`,
+                    showConfirmButton:data.titulo !== "Excelente",
                     text: `${data.respuesta}`,
                     icon: `${data.type}`,
                     customClass: {
@@ -93,6 +94,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
+                    showConfirmButton:data.titulo !== "Excelente",
                     icon: `${data.type}`,
                     customClass: {
                         confirmButton: 'btn btn-primary'

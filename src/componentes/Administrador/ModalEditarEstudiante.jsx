@@ -78,6 +78,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
@@ -89,6 +90,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },

@@ -10,6 +10,7 @@ import { llamadaDeDataTodosActivos,HabilitarVocabularioApi,desabilitarVocabulari
 import { ModalEditarVocabulario } from '../../componentes/Administrador/ModalEditarVocabulario';
 import { ListadoJuegoActivos } from '../../componentes/Administrador/ListadoJuegoActivos';
 import { MostrarCurso, MostrarParalelo } from '../../service/Adminstrador/Usuarios';
+import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -73,11 +74,12 @@ useEffect(() => {
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
         icon: `${data.type}`,
+        showConfirmButton:data.titulo !== "Excelente",
         customClass: {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false})
-        if(data.titulo){
+        if(data.titulo ==="Excelente"){
           setTimeout(() => {
             window.location.reload();
           }, 2000);
@@ -86,7 +88,7 @@ useEffect(() => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Desactivar.NoDesactivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -101,11 +103,12 @@ useEffect(() => {
         title: `${data.titulo}`,
         text: `${data.respuesta}`,
         icon: `${data.type}`,
+        showConfirmButton:data.titulo !== "Excelente",
         customClass: {
           confirmButton: 'btn btn-primary'
         },
         buttonsStyling: false}) 
-         if(data.titulo){
+        if(data.titulo ==="Excelente"){
           setTimeout(() => {
             window.location.reload();
           }, 2000);
@@ -113,7 +116,7 @@ useEffect(() => {
     } catch (error) {
       MySwal.fire({
         title: 'Error!',
-        text: "Falto un campo",
+        text: responseformualrio.Activar.NoActivar,
         icon: 'error',
         customClass: {
           confirmButton: 'btn btn-primary'
@@ -136,13 +139,14 @@ try {
     title: `${data.titulo}`,
     text: `${data.respuesta}`,
     icon: `${data.type}`,
+    showConfirmButton:data.titulo !== "Excelente",
     customClass: {
       confirmButton: 'btn btn-primary'
     },
     buttonsStyling: false}) 
     setBloqueo(true);
   setLoading(false);
-  if (data.titulo) {
+  if(data.titulo ==="Excelente"){
     setTimeout(() => {
       window.location.reload();
     }, 2000);
@@ -150,7 +154,7 @@ try {
 } catch (error) {
   MySwal.fire({
     title: 'Error!',
-    text: "Hubo un Error, No se pudo Crear Juegos",
+    text: responseformualrio.Activar.NoActivar,
     icon: 'error',
     customClass: {
       confirmButton: 'btn btn-primary'

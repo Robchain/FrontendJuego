@@ -34,12 +34,13 @@ export const ListadoQuienAdministrador = () => {
           title: `${output.titulo}`,
           text: `${output.respuesta}`,
           icon: `${output.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false
         })
-        if(output.titulo){
+        if(data.titulo ==="Excelente"){
           setTimeout(() => {
             window.location.reload();
           }, 2000);
@@ -64,12 +65,13 @@ export const ListadoQuienAdministrador = () => {
           title: `${output.titulo}`,
           text: `${output.respuesta}`,
           icon: `${output.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false
         })
-        if(output.titulo){
+        if(data.titulo ==="Excelente"){
           setTimeout(() => {
             window.location.reload();
           }, 2000);

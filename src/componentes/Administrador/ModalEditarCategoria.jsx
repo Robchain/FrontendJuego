@@ -42,13 +42,14 @@ export const ModalEditarCategoria = ({ modal, toggle, data, juego }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false
         })
         toggle();
-        if(!bloqueo){
+        if(data.titulo ==="Excelente"){
           setTimeout(() => {
             window.location.reload();
           }, 2000);
@@ -59,13 +60,14 @@ export const ModalEditarCategoria = ({ modal, toggle, data, juego }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false
         })
         toggle();
-        if(!bloqueo){
+        if(data.titulo ==="Excelente"){
           setTimeout(() => {
             window.location.reload();
           }, 2000);

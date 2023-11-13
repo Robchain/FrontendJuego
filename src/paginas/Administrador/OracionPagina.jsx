@@ -94,11 +94,12 @@ MySwal.fire({
   title: `${data.titulo}`,
   text: `${data.respuesta}`,
   icon: `${data.type}`,
+  showConfirmButton:data.titulo !== "Excelente",
   customClass: {
     confirmButton: 'btn btn-primary'
   },
   buttonsStyling: false}) 
-  if(data.titulo){
+  if(data.titulo ==="Excelente"){
     setTimeout(() => {
       window.location.reload();
     }, 2000);
@@ -121,11 +122,12 @@ MySwal.fire({
   title: `${data.titulo}`,
   text: `${data.respuesta}`,
   icon: `${data.type}`,
+  showConfirmButton:data.titulo !== "Excelente",
   customClass: {
     confirmButton: 'btn btn-primary'
   },
   buttonsStyling: false}) 
-  if(data.titulo){
+  if(data.titulo ==="Excelente"){
     setTimeout(() => {
       window.location.reload();
     }, 2000);
@@ -151,13 +153,14 @@ MySwal.fire({
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false}) 
           setBloqueo(true);
         setLoading(false);
-        if (data.titulo) {
+        if(data.titulo ==="Excelente"){
           setTimeout(() => {
             window.location.reload();
           }, 2000);
@@ -185,13 +188,14 @@ MySwal.fire({
               title: `${data.titulo}`,
               text: `${data.respuesta}`,
               icon: `${data.type}`,
+              showConfirmButton:data.titulo !== "Excelente",
               customClass: {
                 confirmButton: 'btn btn-primary'
               },
               buttonsStyling: false}) 
               setBloqueoAgregar(true);
               setLoadingAgregar(false);
-              if(!bloqueoAgregar){
+              if(data.titulo ==="Excelente"){
                 setTimeout(() => {
                   window.location.reload();
                 }, 2000);

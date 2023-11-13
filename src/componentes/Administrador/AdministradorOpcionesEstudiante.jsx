@@ -39,6 +39,7 @@ const onsudmitAgregarCurso = async()=>{
       title: `${data.titulo}`,
       text: `${data.respuesta}`,
       icon: `${data.type}`,
+      showConfirmButton:data.titulo !== "Excelente",
       customClass: {
         confirmButton: 'btn btn-primary'
       },
@@ -46,7 +47,7 @@ const onsudmitAgregarCurso = async()=>{
       setloadingAgregarCurso(false);
       setbloqueoAgregarCurso(false);
       setbloqueoAgregarParalale(true);
-      if(data.titulo){
+      if(data.titulo ==="Excelente"){
         setTimeout(() => {
           window.location.reload();
         }, 2000);
@@ -76,6 +77,7 @@ const onsudmitAgregarParalelo = async()=>{
       title: `${data.titulo}`,
       text: `${data.respuesta}`,
       icon: `${data.type}`,
+      showConfirmButton:data.titulo !== "Excelente",
       customClass: {
         confirmButton: 'btn btn-primary'
       },
@@ -83,7 +85,7 @@ const onsudmitAgregarParalelo = async()=>{
       setloadingAgregarParalelo(false);
       setbloqueoAgregarParalale(false);
       setbloqueoAgregarCurso(true);
-      if(data.titulo){
+      if(data.titulo ==="Excelente"){
         setTimeout(() => {
           window.location.reload();
         }, 2000);

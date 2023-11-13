@@ -38,6 +38,7 @@ setBloqueo(true);
                   title: `${data.titulo}`,
                   text: `${data.respuesta}`,
                   icon: `${data.type}`,
+                  showConfirmButton:data.titulo !== "Excelente",
                   customClass: {
                     confirmButton: 'btn btn-primary'
                   },
@@ -46,7 +47,7 @@ setBloqueo(true);
            setbloqueodos(false);
            disparodeAccion({ type: "defaultvalue"});
                   toggle();
-                  if(!bloqueo){
+                  if(data.titulo ==="Excelente"){
                     setTimeout(() => {
                       window.location.reload();
                     }, 2000);

@@ -82,6 +82,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
                     icon: `${data.type}`,
+                    showConfirmButton:data.titulo !== "Excelente",
                     customClass: {
                         confirmButton: 'btn btn-primary'
                     },
@@ -91,7 +92,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
-                if(!bloqueo){
+                if(data.titulo ==="Excelente"){
                     setTimeout(() => {
                       window.location.reload();
                     }, 2000);
@@ -104,6 +105,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
+                    showConfirmButton:data.titulo !== "Excelente",
                     icon: `${data.type}`,
                     customClass: {
                         confirmButton: 'btn btn-primary'
@@ -114,7 +116,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
-                if(!bloqueo){
+                if(data.titulo ==="Excelente"){
                     setTimeout(() => {
                       window.location.reload();
                     }, 2000);

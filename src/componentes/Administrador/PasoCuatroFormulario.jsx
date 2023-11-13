@@ -13,11 +13,12 @@ export const PasoCuatroFormulario = ({picker, NumeroDeGrupos, NumeroDeIntegrante
     title: `${data.titulo}`,
     text: `${data.respuesta}`,
     icon: `${data.type}`,
+    showConfirmButton:data.titulo !== "Excelente",
     customClass: {
       confirmButton: 'btn btn-primary'
     },
     buttonsStyling: false});
-    if(data.titulo){
+    if(data.titulo ==="Excelente"){
       window.location.reload();
     }
     } catch (error) {

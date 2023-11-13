@@ -69,6 +69,7 @@ try {
     title: `${data.titulo}`,
     text: `${data.respuesta}`,
     icon: `${data.type}`,
+    showConfirmButton:data.titulo !== "Excelente",
     customClass: {
       confirmButton: 'btn btn-primary'
     },

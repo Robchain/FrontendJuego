@@ -20,12 +20,13 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false
         })
-        if(data.titulo){
+        if(data.titulo ==="Excelente"){
           setTimeout(() => {
             window.location.reload();
           }, 2000);
@@ -49,12 +50,13 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
+          showConfirmButton:data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false
         })
-        if(data.titulo){
+        if(data.titulo ==="Excelente"){
           setTimeout(() => {
             window.location.reload();
           }, 2000);
