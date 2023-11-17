@@ -49,7 +49,7 @@ const RespuestaImagen = ({ data, setImagen, imagen, window, Queselec, setMomento
 
   const adjetivoRespuesta = () => {
     if (data[`Juego` + window.id].Oraciones[0].Respuesta === "CORRECTO") {
-      AdjectivoRespuesta = data[`Juego` + window.id].Oraciones[0].Adverbio;
+      AdjectivoRespuesta = data[`Juego` + window.id].Oraciones[0].Adverbio ;
     } else if (data[`Juego` + window.id].Oraciones[1].Respuesta === "CORRECTO") {
       AdjectivoRespuesta = data[`Juego` + window.id].Oraciones[1].Adverbio
     } else if (data[`Juego` + window.id].Oraciones[2].Respuesta === "CORRECTO") {
@@ -124,9 +124,9 @@ const isAdverbio = (window, data) => {
 const SeleccionAdverbio = ({ QueSelecion, data, window, ...props }) => {
   const [seleccionpal, setSeleccionpal] = useState("");
   useEffect(() => {
-    if (QueSelecion === 1) { setSeleccionpal(data[`Juego` + window.id].Oraciones[0].Adverbio) }
-    if (QueSelecion === 2) { setSeleccionpal(data[`Juego` + window.id].Oraciones[1].Adverbio) }
-    if (QueSelecion === 3) { setSeleccionpal(data[`Juego` + window.id].Oraciones[2].Adverbio) }
+    if (QueSelecion === 1) { setSeleccionpal(data[`Juego` + window.id].Oraciones[0].Adverbio || '') }
+    if (QueSelecion === 2) { setSeleccionpal(data[`Juego` + window.id].Oraciones[1].Adverbio || '') }
+    if (QueSelecion === 3) { setSeleccionpal(data[`Juego` + window.id].Oraciones[2].Adverbio || '') }
   }, [QueSelecion])
 
 
@@ -269,7 +269,9 @@ const Adverbio = ({ window, siguiente, dispatchProgreso, data }) => {
           </div>
         </div>
       </div>
-      <div ><RespuestaImagen imagen={imagen} setImagen={setImagen} data={data} Queselec={Queselec} window={window} setMomento={setMomento} momento={momento} /></div>
+      <div className='respuesta-seccion'>
+        <RespuestaImagen imagen={imagen} setImagen={setImagen} data={data} Queselec={Queselec} window={window} setMomento={setMomento} momento={momento} />
+        </div>
       </div>
     </div>
   )

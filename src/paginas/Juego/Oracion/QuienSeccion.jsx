@@ -270,7 +270,9 @@ const QuienSeccion = ({  window, siguiente, dispatchProgreso, data }) => {
           </div>
         </div>
       </div>
-      <div  ><RespuestaImagen momento={momento} Queselec={Queselec} setMomento={setMomento} data={data}  window={window} /></div>
+      <div  className='respuesta-seccion' >
+        <RespuestaImagen momento={momento} Queselec={Queselec} setMomento={setMomento} data={data}  window={window} />
+        </div>
    </div>
     </div>
   )

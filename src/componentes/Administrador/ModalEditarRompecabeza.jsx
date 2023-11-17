@@ -207,11 +207,11 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
 
                     {checkbos === true && <div className='mt-1'>
                         <Label className='form-label' for='FileColor' style={{ color: '#8b8b8c', fontWeight: "700" }}>
-                            Foto color
+                        Foto color (jpg, jpeg, png, o gif)
                         </Label><br />
                         <Input type='file' id='FileColor' name='FileColor' onChange={event => handleChange({ event: event, field: 'FileColor' })} />
                         <Label className='form-label' for='FileBlanco' style={{ color: '#8b8b8c', fontWeight: "700" }}>
-                            Foto blanco y negro
+                        Archivo blanco y negro (PDF)
                         </Label>
                         <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => handleChangeFilePDF({ event: event, field: 'FileBlanco' })} />
                     </div>}

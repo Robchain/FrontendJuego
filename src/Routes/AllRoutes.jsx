@@ -22,6 +22,7 @@ import { PantallaParteDos } from '../paginas/Juego/Multijugador/PantallaParteDos
 import { Intermedio } from '../paginas/Juego/Multijugador/Intermedio'
 import { FinalJuego } from '../paginas/Juego/Multijugador/FinalJuego'
 import { Podio } from '../paginas/Juego/Multijugador/Podio'
+import { NuevoVocabulario } from '../paginas/Juego/Vocabulario/NuevoVocabulario'
 export const AllRoutes = () => {
   return (<>
     <Routes>
@@ -40,7 +41,7 @@ export const AllRoutes = () => {
       <Route path='/MenuJuego' element={<MenuJuego />} />
       {/* Vocabulario*/}
       <Route path='/RompecabezaJV' element={<RompecabezaJV />} />
-      <Route path='/VocabularioJuego' element={<VocabularioJ />} />
+      <Route path='/VocabularioJuego' element={<NuevoVocabulario />} />
       <Route path='/finalVocabulario' element={<FinalVocabulario />} />
       {/* Oracion*/}
       <Route path='/RompecabezaJO' element={<RompecabezaJO />} />

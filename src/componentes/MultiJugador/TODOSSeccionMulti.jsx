@@ -229,17 +229,17 @@ const Preguntasecction = ({  data }) => {
       if (data[`Juego${window.id}`].Oraciones[0].Respuesta === "CORRECTO") {
         sujetoRespuesta = data[`Juego${window.id}`].Oraciones[0].FileSujetoImagen;
         AdjectivoRespuesta = data[`Juego${window.id}`].Oraciones[0].FileAdjetivoImagen;
-        AdverbioRespuesta = data[`Juego${window.id}`].Oraciones[0].Adverbio
+        AdverbioRespuesta = data[`Juego${window.id}`].Oraciones[0].Adverbio || 'no habia';
         oraciones = data[`Juego${window.id}`].Oraciones[0].Oracion;
       } else if (data[`Juego${window.id}`].Oraciones[1].Respuesta === "CORRECTO") {
         sujetoRespuesta = data[`Juego${window.id}`].Oraciones[1].FileSujetoImagen;
         AdjectivoRespuesta = data[`Juego${window.id}`].Oraciones[1].FileAdjetivoImagen;
-        AdverbioRespuesta = data[`Juego${window.id}`].Oraciones[1].Adverbio
+        AdverbioRespuesta = data[`Juego${window.id}`].Oraciones[1].Adverbio || 'no habia';
         oraciones = data[`Juego${window.id}`].Oraciones[0].Oracion;
       } else if (data[`Juego${window.id}`].Oraciones[2].Respuesta === "CORRECTO") {
         sujetoRespuesta = data[`Juego${window.id}`].Oraciones[2].FileSujetoImagen;
         AdjectivoRespuesta = data[`Juego${window.id}`].Oraciones[2].FileAdjetivoImagen;
-        AdverbioRespuesta = data[`Juego${window.id}`].Oraciones[2].Adverbio
+        AdverbioRespuesta = data[`Juego${window.id}`].Oraciones[2].Adverbio || 'no habia';
         oraciones = data[`Juego${window.id}`].Oraciones[0].Oracion;
       }
       useEffect(() => {
@@ -332,14 +332,14 @@ export const TODOSSeccionMulti = ({ window, siguiente, data, Progreso}) => {
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity2", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego${window.id}`].Oraciones[0].Adverbio })
+    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego${window.id}`].Oraciones[0].Adverbio || 'no habia' })
   }
   const onhandleClickAdveSegundo = () => {
     DisparadordeImagenes({ type: "seleccionImagen", field: "AdverbNSeleccion", value: 2 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity1", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego${window.id}`].Oraciones[1].Adverbio })
+    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego${window.id}`].Oraciones[1].Adverbio || 'no habia' })
   }
 
   const onhandleClickAdveTercero = () => {
@@ -347,7 +347,7 @@ export const TODOSSeccionMulti = ({ window, siguiente, data, Progreso}) => {
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity1", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity2", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego${window.id}`].Oraciones[2].Adverbio })
+    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego${window.id}`].Oraciones[2].Adverbio || 'no habia' })
   }
 
 

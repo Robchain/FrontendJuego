@@ -125,11 +125,11 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
           <Label className='form-label' for='Nombre'>Nombre</Label>
           <Input type='text' maxLength={20} id='Nombre' name="Nombre" placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Nombre} />
           <Label className='form-label' for='FileColor'>
-            Foto color
+            Foto color (jpg, jpeg, png, o gif)
           </Label>
           <Input type='file' id='FileColor' name='FileColor' onChange={event =>handleChange({event:event, field:"FileColor"})} />
           <Label className='form-label' for='FileBlanco'>
-            Foto blanco y negro
+           Archivo blanco y negro (PDF)
           </Label>
          <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event =>handleChangeFilePDF({event:event, field:"FileBlanco"})} />
           <Label>Piezas</Label><br />

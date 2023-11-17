@@ -102,7 +102,7 @@ const MenuJuego = () => {
             <NavLink to={`/Trofeo`} style={{ color: "#fff", textDecoration: "none", textAlign: "center" }}>
                 <div style={{background: "#E5BDB1", borderRadius: "10px", boxShadow: "5px 5px  rgba(0, 0, 0, 0.13)" }} className="py-5 px-2">
                   <TrofeoIcon />
-                   <h4 className="">TROFEO</h4></div>
+                   <h4 className="">TROFEOS</h4></div>
             </NavLink>
           </Button></div>
         {/*--------------------FIN--------------------------------- */}

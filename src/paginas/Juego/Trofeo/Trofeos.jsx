@@ -99,6 +99,8 @@ export const Trofeos = () => {
 const Modalaqui = ({ data , modal, setModal }) => {
   const toggle = () => setModal(!modal)
   const impresion = (urlDelArchivo, nombreDelArchivo) => {
+
+
     const enlace = document.createElement('a');
     enlace.href = urlDelArchivo;
     enlace.download = nombreDelArchivo;
@@ -106,6 +108,8 @@ const Modalaqui = ({ data , modal, setModal }) => {
     document.body.appendChild(enlace);
     enlace.click();
     document.body.removeChild(enlace);
+
+
     // document.querySelector(".print").classList.add("print-image");
     // document.querySelector(".bot").classList.add("desaparecer");
     // document.querySelector(".a").classList.add("desaparecer");
@@ -122,19 +126,21 @@ const Modalaqui = ({ data , modal, setModal }) => {
         {
           data!==null &&  <img className='print cac' src={data.Rompecabeza.FileColor} alt={data.Rompecabeza.Nombre} style={{ borderRadius:10,boxShadow: "5px 5px 5px 5px #d7d7d7", maxWidth:'450px'}}  />
         }
-          
         </ModalBody>
         <ModalFooter className='justify-content-center'>
-        <Row className='justify-content-center'>
+        <Row className='justify-content-center '>
         <Col lg="6" md="6" sm="6" xs="6">
-        <Button outline className='bot' onClick={toggle}  style={{borderRadius:"10px",color:"#62259E", borderColor:"#62259E"}}>
+        <Button outline className='bot' onClick={toggle}  style={{borderRadius:"10px",color:"#62259E", borderColor:"#62259E" }}>
             Cancelar
           </Button>
           </Col>
           <Col lg="6" md="6" sm="6" xs="6" >
-          <Button  className='bot' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}} onClick={() => { impresion(data.Rompecabeza.FileBlanco,data.Rompecabeza.Nombre) }}>
+          {/* <Button  className='bot' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}} onClick={() => { impresion(data.Rompecabeza.FileColor,data.Rompecabeza.Nombre) }}>
           Descargar
-          </Button>
+          </Button> */}
+          { data!=null && <a className='bot' style={{display:'block',textDecoration:'none', borderRadius:"10px", padding:'9px', backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}} href={data.Rompecabeza.FileColor} download={data.Rompecabeza.Nombre}>
+          Descargar
+          </a> }
           </Col>
           </Row>
         </ModalFooter>
