@@ -16,7 +16,7 @@ export const NuevoOracion = () => {
     const navegar = useNavigate();
     const siguienteObjeto = () => {
         if(indice === rango){
-            navegar(`/finalVocabulario`);
+            navegar(`/finalOracionJuego`);
         }
         
         setIndice((prevIndice) => (prevIndice % rango) + 1);
@@ -76,7 +76,7 @@ export const NuevoOracion = () => {
         }
         {
                       // EN CASO DE QUIEN
-                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "QUIEN") && (<QuienSeccion indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto}  dispatchProgreso={dispatchProgreso}/>)
+                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "QUIEN") && (<QuienSeccion indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto}  Progreso={dispatchProgreso}/>)
         }
         {
                       // EN CASO DE ADVERBIO

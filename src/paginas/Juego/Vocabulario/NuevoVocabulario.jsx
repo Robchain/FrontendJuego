@@ -29,7 +29,7 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
         setMomento("inicial");
       }
       if (correcto === "NADA") {
-        setPointerEvent("auto"); setMomento("respuesta");
+        setPointerEvent("none"); setMomento("respuesta");
       }
   
     }, [correcto])
@@ -87,11 +87,9 @@ export const NuevoVocabulario = () => {
     const [opa1, setOpa1] = useState(0.4)
   const [opa2, setOpa2] = useState(0.4)
   const [opa3, setOpa3] = useState(0.4)
-  const [duracion, setDuracion] = useState(null)
   const [rango, setRango] = useState(piezaJuegoIndi+1);
   const playref = useRef(null);
   const navegar = useNavigate();
-  const [noRespondio, setnoRespondio] = useState(null)
   const [correcto1, setCorrecto1] = useState(null)
   const [correcto2, setCorrecto2] = useState(null)
   const [correcto3, setCorrecto3] = useState(null)

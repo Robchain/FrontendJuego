@@ -8,13 +8,12 @@ import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
 import { OracionRespuesta, resultadoOracion } from '../../../helpers';
 
-const Preguntasecction = ({ data, ...props }) => {
+const Preguntasecction = ({ data, indice, ...props }) => {
 
   const [videoPreguntaSecctionTodo, setVideoPreguntaSecctionTodo] = useState("")
   useEffect(() => {
     setVideoPreguntaSecctionTodo(preguntavideo)
-  }, [])
-
+  }, [data, indice])
   const preguntavideo = () => {
     var Pregu = Math.floor(Math.random() * (2 - 1 + 1) + 1)
     let pregunta = "";
@@ -69,6 +68,7 @@ const Respuestasecction = ({ siguiente, data, ...props }) => {
       <ReactPlayer
         url={videoRespuestaSeleccionadoTodo}
         playing={true}
+        controls={true}
         onEnded={siguiente}
         {...props}
       />
@@ -82,6 +82,8 @@ function apuntadores(state, action) {
   switch (action.type) {
     case 'puntador':
       return { ...state, [action.field]: action.value };
+      case 'resetear':
+        return estadoInicialApuntadores;
     default:
       throw new Error();
   }
@@ -93,6 +95,8 @@ function opacarsOpacidadQuien(state, action) {
   switch (action.type) {
     case 'opacarQuien':
       return { ...state, [action.field]: action.value };
+      case 'resetear':
+        return estadoInicialOpacidadQuien;
     default:
       throw new Error();
   }
@@ -104,6 +108,8 @@ function seleccionDeImagenesf(state, action) {
   switch (action.type) {
     case 'seleccionImagen':
       return { ...state, [action.field]: action.value };
+      case 'resetear':
+        return selecciondeImagenes;
     default:
       throw new Error();
   }
@@ -115,6 +121,8 @@ function opacarsOpacidadQue(state, action) {
   switch (action.type) {
     case 'opacarQue':
       return { ...state, [action.field]: action.value };
+      case 'resetear':
+        return estadoInicialOpacidadQue;
     default:
       throw new Error();
   }
@@ -125,6 +133,8 @@ function opacarsOpacidadAdverbio(state, action) {
   switch (action.type) {
     case 'opacarAdverbio':
       return { ...state, [action.field]: action.value };
+      case 'resetear':
+        return estadoInicialOpacidadAdverbio;
     default:
       throw new Error();
   }
@@ -135,6 +145,8 @@ function seleccionDePalabrasSelecion(state, action) {
   switch (action.type) {
     case 'seleccion':
       return { ...state, [action.field]: action.value };
+      case 'resetear':
+        return estadoInicialSelecionPalabras;
     default:
       throw new Error();
   }
@@ -287,6 +299,18 @@ const TODOSSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
   const [{ QueSelecion, QuienSeleccion, AdverbNSeleccion }, DisparadordeImagenes] = useReducer(seleccionDeImagenesf, selecciondeImagenes)
   const [momento, setMomento] = useState("inicial");
 
+useEffect(() => {
+  setMomento("inicial");
+  setopcionRes("Nada");
+  dispatch({ type: "resetear"})
+  disparadorQuien({ type: "resetear"})
+  disparadorQue({ type: "resetear"})
+  disparadorAdverbio({ type: "resetear"})
+  disparadorPalabras({ type: "resetear"})
+  DisparadordeImagenes({ type: "resetear"})
+}, [indice])
+
+
 
 
   const onhandleClickPrimero = () => {
@@ -363,7 +387,7 @@ const TODOSSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
     <div className='contenido-una-oracion'>
       <div className='seccion-videos-oracion' >
         {
-          momento === "inicial" && <Preguntasecction data={data[`Juego` + indice].Oraciones} className="video-pregunta-oracion-una" />
+          momento === "inicial" && <Preguntasecction data={data[`Juego` + indice].Oraciones} indice={indice} className="video-pregunta-oracion-una" />
         }
         {
           momento === "Respuesta" && <Respuestasecction siguiente={siguiente} data={data[`Juego` + indice].Oraciones} className="video-respuesta-oracion-una" />

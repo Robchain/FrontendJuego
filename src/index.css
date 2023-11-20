@@ -952,6 +952,7 @@ font-weight: 700;
     color:#85858C;
 }
 
+
 .contenido-una-oracion .opcion-multi-oracion{
 margin-bottom: 20px;
 display: flex;
@@ -969,6 +970,23 @@ margin-right: 10px;
 .contenido-una-oracion .opcion-multi-oracion  .seccion-quien-multiple .opcion-imagen-multi img{
 width: 20vw;
 margin-right: 15px;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple .imagen-pregunta-adv-multi img{
+width: 12vw;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple .opcion-multi-letras{
+    width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    font-size: 1.2em;
+font-weight: 600;
 }
 
 .contenido-una-oracion .opcion-multi-oracion  .seccion-que-multiple{

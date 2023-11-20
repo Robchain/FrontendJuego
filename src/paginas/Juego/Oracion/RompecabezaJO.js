@@ -104,9 +104,12 @@ const Modalaqui = ({ data, modal, setModal }) => {
           </Button>
           </Col>
           <Col lg="6" md="6" sm="6" xs="6" >
-          <Button  className='bot' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}} onClick={() => { impresion() }}>
+          {/* <Button  className='bot' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}} onClick={() => { impresion() }}>
             Imprimir
-          </Button>
+          </Button> */}
+                    { data!=null && <a className='bot' style={{display:'block',textDecoration:'none', borderRadius:"10px", padding:'9px', backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}} href={data.Rompecabeza.FileColor} download={data.Rompecabeza.Nombre}>
+          Descargar
+          </a> }
           </Col>
           </Row>
         </ModalFooter>
