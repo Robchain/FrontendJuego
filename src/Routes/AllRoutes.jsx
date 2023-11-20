@@ -13,7 +13,6 @@ import RompecabezaJO from '../paginas/Juego/Oracion/RompecabezaJO'
 import Login from "../paginas/Logins/Login"
 import { FinalVocabulario } from '../paginas/Juego/Vocabulario/FinalVocabulario'
 import RompecabezaJV from '../paginas/Juego/Vocabulario/RompecabezaJV'
-import VocabularioJ from '../paginas/Juego/Vocabulario/VocabularioJ'
 import { FinalOracionJuego } from '../paginas/Juego/Oracion/FinalOracionJuego'
 import { OracionPagina } from '../paginas/Administrador/OracionPagina'
 import { Trofeos } from '../paginas/Juego/Trofeo/Trofeos'
@@ -23,6 +22,7 @@ import { Intermedio } from '../paginas/Juego/Multijugador/Intermedio'
 import { FinalJuego } from '../paginas/Juego/Multijugador/FinalJuego'
 import { Podio } from '../paginas/Juego/Multijugador/Podio'
 import { NuevoVocabulario } from '../paginas/Juego/Vocabulario/NuevoVocabulario'
+import { NuevoOracion } from '../paginas/Juego/Oracion/NuevoOracion'
 export const AllRoutes = () => {
   return (<>
     <Routes>
@@ -45,7 +45,7 @@ export const AllRoutes = () => {
       <Route path='/finalVocabulario' element={<FinalVocabulario />} />
       {/* Oracion*/}
       <Route path='/RompecabezaJO' element={<RompecabezaJO />} />
-      <Route path='/OracionJuego' element={<OracionJ />} />
+      <Route path='/OracionJuego' element={<NuevoOracion/>} />
       <Route path='/finalOracionJuego' element={<FinalOracionJuego />} />
       {/*Co-operativo*/}
     <Route path='/SeleccionDeEquipo' element={<PantallaParteUno/>}/>

@@ -61,7 +61,7 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
       }
     }, [data])
   
-    return (<>{data.length === 3 && <ReactPlayer url={videos[videoActual]} controls={true} playing  onEnded={() => { if (3 === videoActual) { setPointerEvent("auto"); setOpa1(1); setOpa2(1); setOpa3(1) } else { setVideoActual(videoActual + 1); } }} {...props} />
+    return (<>{data.length === 3 && <ReactPlayer url={videos[videoActual]} controls={true} playing={true}  onEnded={() => { if (3 === videoActual) { setPointerEvent("auto"); setOpa1(1); setOpa2(1); setOpa3(1) } else { setVideoActual(videoActual + 1); } }} {...props} />
     }</>)
   }
   const VideosRespuesta = ({ data, playref,siguienteObjeto, ...props }) => {
@@ -80,10 +80,10 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
       }
   
     }, [data])
-    return <ReactPlayer url={videos} playing={true} onEnded={siguienteObjeto} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" {...props} />
+    return <ReactPlayer url={videos} playing={true} controls={true} onEnded={siguienteObjeto} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" {...props} />
   }
 export const NuevoVocabulario = () => {
-    const { resultados, avance0, progreso, dataJuegoVocabulario, piezaJuegoIndi } = useContext(JuecoContext);
+    const {  avance0, progreso, dataJuegoVocabulario, piezaJuegoIndi } = useContext(JuecoContext);
     const [opa1, setOpa1] = useState(0.4)
   const [opa2, setOpa2] = useState(0.4)
   const [opa3, setOpa3] = useState(0.4)
@@ -120,9 +120,12 @@ export const NuevoVocabulario = () => {
 
   // Función para manejar la transición automática al siguiente objeto después de un tiempo
   const avanzarAutomaticamente = () => {
-    if(indice === rango){
-        navegar(`/finalVocabulario`);
+    if(dataJuegoVocabulario!=null){
+      progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: "---", Resul: "NO CONTESTO" });
     }
+    if(indice === rango){
+      navegar(`/finalVocabulario`);
+  }
     setOpa1(0.4)
     setOpa2(0.4)
     setOpa3(0.4)
@@ -137,7 +140,7 @@ export const NuevoVocabulario = () => {
 
   // Establecer un temporizador para avanzar automáticamente después de un tiempo
   useEffect(() => {
-    const temporizador = setTimeout(avanzarAutomaticamente, 60000 /*180000*/); // 5000 milisegundos (5 segundos)
+    const temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 180000); // 5000 milisegundos (5 segundos)
     // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
     return () => clearTimeout(temporizador);
   }, [indice, rango]);
@@ -165,15 +168,15 @@ export const NuevoVocabulario = () => {
                       <div className='contenedor-juego'>
                       <div className='video-juego-vocabulario'>
                         {
-                          momento === "inicial" && <VideosPreguntas pointerEvent={pointerEvent} progreso={progreso} siguiente={siguienteObjeto} window={window} data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual}  className='video-pregunta-vocabulario'/>
+                          momento === "inicial" && <VideosPreguntas pointerEvent={pointerEvent} progreso={progreso} data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual}  className='video-pregunta-vocabulario'/>
                         }
                         {
-                          momento === "respuesta" && <VideosRespuesta window={window} data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} siguienteObjeto={siguienteObjeto} className='video-respuesta-vocabulario'  />
+                          momento === "respuesta" && <VideosRespuesta data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} siguienteObjeto={siguienteObjeto} className='video-respuesta-vocabulario'  />
                         }
                       </div>
 
                       <div className='opciones-juego-vocabulario' >
-                        <div style={{ pointerEvents: pointerEvent, opacity: opa1 }} onClick={() => { setCorrecto1(dataJuegoVocabulario[`Juego` + indice].Palabras[0].Respuesta); resultados(dataJuegoVocabulario[`Juego` + indice].Palabras[0].Palabra, dataJuegoVocabulario[`Juego` + indice].Palabras[0].Respuesta); setCorrecto2("NADA"); setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4); progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: dataJuegoVocabulario[`Juego` + indice].Palabras[0].Palabra, Resul: dataJuegoVocabulario[`Juego` + indice].Palabras[0].Respuesta }); setVideoActual(0); }} >
+                        <div style={{ pointerEvents: pointerEvent, opacity: opa1 }} onClick={() => { setCorrecto1(dataJuegoVocabulario[`Juego` + indice].Palabras[0].Respuesta);  setCorrecto2("NADA"); setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4); progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: dataJuegoVocabulario[`Juego` + indice].Palabras[0].Palabra, Resul: dataJuegoVocabulario[`Juego` + indice].Palabras[0].Respuesta }); setVideoActual(0); }} >
                           <div className='Mi-diseñodiv'>
                             <div className='palabra'>
                               <p>{dataJuegoVocabulario[`Juego` + indice].Palabras[0].Palabra}</p>
@@ -184,7 +187,7 @@ export const NuevoVocabulario = () => {
                             </div>
                           </div>
                         </div>
-                        <div style={{ pointerEvents: pointerEvent, opacity: opa2 }} onClick={() => { setCorrecto2(dataJuegoVocabulario[`Juego` + indice].Palabras[1].Respuesta); resultados(dataJuegoVocabulario[`Juego` + indice].Palabras[1].Palabra, dataJuegoVocabulario[`Juego` + indice].Palabras[1].Respuesta); setCorrecto1("NADA"); setCorrecto3("NADA"); setOpa1(0.4); setOpa3(0.4); progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: dataJuegoVocabulario[`Juego` + indice].Palabras[1].Palabra, Resul: dataJuegoVocabulario[`Juego` + indice].Palabras[1].Respuesta }); setVideoActual(0); }}>
+                        <div style={{ pointerEvents: pointerEvent, opacity: opa2 }} onClick={() => { setCorrecto2(dataJuegoVocabulario[`Juego` + indice].Palabras[1].Respuesta);  setCorrecto1("NADA"); setCorrecto3("NADA"); setOpa1(0.4); setOpa3(0.4); progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: dataJuegoVocabulario[`Juego` + indice].Palabras[1].Palabra, Resul: dataJuegoVocabulario[`Juego` + indice].Palabras[1].Respuesta }); setVideoActual(0); }}>
                           <div className='Mi-diseñodiv'>
                             <div className='palabra'>
                               <p>{dataJuegoVocabulario[`Juego` + indice].Palabras[1].Palabra}</p>
@@ -195,7 +198,7 @@ export const NuevoVocabulario = () => {
                             </div>
                           </div>
                         </div>
-                        <div style={{ pointerEvents: pointerEvent, opacity: opa3 }} onClick={() => { setCorrecto3(dataJuegoVocabulario[`Juego` + indice].Palabras[2].Respuesta); resultados(dataJuegoVocabulario[`Juego` + indice].Palabras[2].Palabra, dataJuegoVocabulario[`Juego` + indice].Palabras[2].Respuesta); setCorrecto2("NADA"); setCorrecto1("NADA"); setOpa1(0.4); setOpa2(0.4); progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: dataJuegoVocabulario[`Juego` + indice].Palabras[2].Palabra, Resul: dataJuegoVocabulario[`Juego` + indice].Palabras[2].Respuesta });  setVideoActual(0); }}>
+                        <div style={{ pointerEvents: pointerEvent, opacity: opa3 }} onClick={() => { setCorrecto3(dataJuegoVocabulario[`Juego` + indice].Palabras[2].Respuesta); setCorrecto2("NADA"); setCorrecto1("NADA"); setOpa1(0.4); setOpa2(0.4); progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: dataJuegoVocabulario[`Juego` + indice].Palabras[2].Palabra, Resul: dataJuegoVocabulario[`Juego` + indice].Palabras[2].Respuesta });  setVideoActual(0); }}>
                           <div className='Mi-diseñodiv'>
                             <div className='palabra'>
                               <p>{dataJuegoVocabulario[`Juego` + indice].Palabras[2].Palabra}</p>

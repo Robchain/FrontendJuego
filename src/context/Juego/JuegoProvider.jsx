@@ -8,7 +8,6 @@ import { llamadaPartidaOracion } from "../../service/Juego/Oracion";
 import { llamadaRompecabezaGet } from "../../service/Juego/Vocabulario";
 
 export const JuegoProvider = ({ children }) => {
-  const [respuesta, setRespuesta] = useState([]);
   const [piezaJuegoIndi, setPiezaJuegoIndi] = useState(0);
   const [cardEquipo, setCardEquipo] = useState([]);
   const [dataJuegoInicialVocabulario, setDataJuegoInicialVocabulario] = useState([]);
@@ -63,11 +62,9 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
     }
   };
 
-  const [
-    { Vocabulario, Oraciones, MultiJugador },
-    disparodeAcciones,
-  ] = useReducer(controladordelosBotones, EstadoDeLosBotones);
+  const [{ Vocabulario, Oraciones, MultiJugador },disparodeAcciones,] = useReducer(controladordelosBotones, EstadoDeLosBotones);
 
+  
   const initialState = [];
 
   const progresoOraciom = (state, action) => {
@@ -163,15 +160,6 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
     }
   };
 
-  const resultados = (palabra = "", respuestas = "") => {
-    setRespuesta([
-      ...respuesta,
-      {
-        palabra: palabra,
-        respuestar: respuestas,
-      },
-    ]);
-  };
 
   const [Oracionprogreso, dispatchProgreso] = useReducer(
     progresoOraciom,
@@ -208,7 +196,6 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
         oraciondata,
         progreso,
         datoVocabulario,
-        resultados,
         setdataJuegoVocabulario,
         dataJuegoVocabulario,
         dataOracionJuego, 

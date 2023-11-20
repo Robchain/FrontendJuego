@@ -289,12 +289,6 @@ body {
 @media screen and (max-width: 800px) and (min-width:300px) {
     /* mi nuevo media screen  tamaño de la tableta de vertical*/
 
-
-
-
-
-
-
     
 /*generales*/
 .nav-superior-nombre{
@@ -414,14 +408,11 @@ body {
         flex-direction: column;
     }
 
-    #imagenFinal {
-        width: 65vw;
-    }
+    
 
     #imagenRompecabeza {
         width: 50vw;
     }
-
     .minicuadrito .encima {
         z-index: 30;
         width: 50vw;
@@ -429,17 +420,26 @@ body {
         position: fixed;
     }
 
+    #imagenFinal {
+        width: 70vw;
+    }
+    .minicuadrito .encimados{
+        z-index: 30;
+        width: 70vw;
+        height: 100%;
+        position: fixed;
+    }
     .minicuadrito .encimados .c {
         display: block;
         background-color: #FBFBFB;
-        width: 10vw;
+        width: 14vw;
         height: 100%;
     }
 
     .minicuadrito .encimados .d {
         display: block;
         background-color: #FBFBFB;
-        width: 7.14vw;
+        width: 10vw;
         height: 100%;
     }
 
@@ -666,7 +666,30 @@ font-weight: 600;
         justify-content: center;
         align-items: center;
     }
-    
+       /* apartado final */
+
+       .contenido-final-vocabulario{
+        display: flex;
+        flex-direction: column;
+        align-items:center;
+            }
+            .contenido-final-vocabulario .rompecabeza-final-vocabulario{
+        display: flex;
+        flex-direction: column;
+        align-items :center;
+            }
+            .contenido-final-vocabulario .rompecabeza-final-vocabulario h1{
+                margin-top: 10px;
+            }
+            .contenido-final-vocabulario .menu-final{
+                display: flex;
+            }
+            .contenido-final-vocabulario .menu-final .navegacion-final-vocabuarlio{
+                font-size: 7em;
+                color: #777;
+                height: 100%;
+                margin-top: -30px;
+            }
 }
 
 @media screen and (max-width: 1280px) and (min-width:801px) {
@@ -783,25 +806,13 @@ width: 45%;
 
     .rompecabezas-grupo {
         display: grid;
-        grid-template-columns: 33% 33% 33%;
+        grid-template-columns: 35% 35% 35%;
         grid-template-rows: 50% 50%;
-    }
-
-    #imagenFinal {
-        width: 48vw;
     }
 
     #imagenRompecabeza {
         width: 25.5vw;
     }
-
-    .minicuadrito .encimados {
-        z-index: 30;
-        width: 25.5vw;
-        height: 100%;
-        position: fixed;
-    }
-
     .minicuadrito .encima {
         z-index: 30;
         width: 25.5vw;
@@ -809,17 +820,26 @@ width: 45%;
         position: fixed;
     }
 
+    #imagenFinal {
+        width: 70vw;
+    }
+    .minicuadrito .encimados{
+        z-index: 30;
+        width: 70vw;
+        height: 100%;
+        position: fixed;
+    }
     .minicuadrito .encimados .c {
         display: block;
         background-color: #FBFBFB;
-        width: 10vw;
+        width: 14vw;
         height: 100%;
     }
 
     .minicuadrito .encimados .d {
         display: block;
         background-color: #FBFBFB;
-        width: 7.14vw;
+        width: 10vw;
         height: 100%;
     }
 
@@ -836,6 +856,7 @@ width: 45%;
         width: 7.14vw;
         height: 100%;
     }
+
 
     .contenedor-juego {
         display: flex;
@@ -1034,7 +1055,29 @@ margin-right: 15px;
     align-items: center;
 }
 
-
+/* apartado final */
+.contenido-final-vocabulario{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+        }
+        .contenido-final-vocabulario .rompecabeza-final-vocabulario{
+    display: flex;
+    flex-direction: column;
+    align-items :center;
+        }
+        .contenido-final-vocabulario .rompecabeza-final-vocabulario h1{
+            margin-top: 10px;
+        }
+        .contenido-final-vocabulario .menu-final{
+            display: flex;
+        }
+        .contenido-final-vocabulario .menu-final .navegacion-final-vocabuarlio{
+            font-size: 7em;
+            color: #777;
+            height: 100%;
+            margin-top: -30px;
+        }
 }
 
 
@@ -1224,21 +1267,9 @@ width: 45%;
         grid-template-rows: 50% 50%;
     }
 
-    #imagenFinal {
-        width: 48vw;
-    }
-
     #imagenRompecabeza {
         width: 25.5vw;
     }
-
-    .minicuadrito .encimados {
-        z-index: 30;
-        width: 25.5vw;
-        height: 100%;
-        position: fixed;
-    }
-
     .minicuadrito .encima {
         z-index: 30;
         width: 25.5vw;
@@ -1246,17 +1277,26 @@ width: 45%;
         position: fixed;
     }
 
+    #imagenFinal {
+        width: 70vw;
+    }
+    .minicuadrito .encimados{
+        z-index: 30;
+        width: 70vw;
+        height: 100%;
+        position: fixed;
+    }
     .minicuadrito .encimados .c {
         display: block;
         background-color: #FBFBFB;
-        width: 10vw;
+        width: 14vw;
         height: 100%;
     }
 
     .minicuadrito .encimados .d {
         display: block;
         background-color: #FBFBFB;
-        width: 7.14vw;
+        width: 10vw;
         height: 100%;
     }
 
@@ -1273,6 +1313,32 @@ width: 45%;
         width: 7.14vw;
         height: 100%;
     }
+
+    /* apartado final */
+.contenido-final-vocabulario{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+        }
+        .contenido-final-vocabulario .rompecabeza-final-vocabulario{
+    display: flex;
+    flex-direction: column;
+    align-items :center;
+        }
+        .contenido-final-vocabulario .rompecabeza-final-vocabulario h1{
+            margin-top: 10px;
+        }
+        .contenido-final-vocabulario .menu-final{
+            display: flex;
+        }
+        .contenido-final-vocabulario .menu-final .navegacion-final-vocabuarlio{
+            font-size: 7em;
+            color: #777;
+            height: 100%;
+            margin-top: -30px;
+        }
+ 
+
 
 }
 @media screen and (max-width: 2560px) and (min-width:1441px) {
@@ -1431,21 +1497,9 @@ width: 45%;
         grid-template-rows: 50% 50%;
     }
 
-    #imagenFinal {
-        width: 48vw;
-    }
-
     #imagenRompecabeza {
         width: 25.5vw;
     }
-
-    .minicuadrito .encimados {
-        z-index: 30;
-        width: 25.5vw;
-        height: 100%;
-        position: fixed;
-    }
-
     .minicuadrito .encima {
         z-index: 30;
         width: 25.5vw;
@@ -1453,6 +1507,15 @@ width: 45%;
         position: fixed;
     }
 
+    #imagenFinal {
+        width: 50vw;
+    }
+    .minicuadrito .encimados{
+        z-index: 30;
+        width: 50vw;
+        height: 100%;
+        position: fixed;
+    }
     .minicuadrito .encimados .c {
         display: block;
         background-color: #FBFBFB;
@@ -1481,6 +1544,29 @@ width: 45%;
         height: 100%;
     }
 
+/* apartado final */
+.contenido-final-vocabulario{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+        }
+        .contenido-final-vocabulario .rompecabeza-final-vocabulario{
+    display: flex;
+    flex-direction: column;
+    align-items :center;
+        }
+        .contenido-final-vocabulario .rompecabeza-final-vocabulario h1{
+            margin-top: 10px;
+        }
+        .contenido-final-vocabulario .menu-final{
+            display: flex;
+        }
+        .contenido-final-vocabulario .menu-final .navegacion-final-vocabuarlio{
+            font-size: 7em;
+            color: #777;
+            height: 100%;
+            margin-top: -30px;
+        }
 
 }
 

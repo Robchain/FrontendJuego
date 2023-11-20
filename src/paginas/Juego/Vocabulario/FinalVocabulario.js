@@ -38,12 +38,10 @@ const Pantalla =()=>{
  <RompecabaSolitaria principal={false} Avance={avance0} alt={dataRompecabeza.Nombre}  url={dataRompecabeza.FileColor} piezas={dataRompecabeza.Pieza} terminado={isfinished}/>
  <h1 className='puntuacion-final'>{`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length}`}</h1>
  </div>
- <div>
   <div className='menu-final'>
     <NavLink to={"/MenuJuego"} className="navegacion-final-vocabuarlio">
     <PiSquaresFourDuotone/>
     </NavLink>
-  </div>
  </div>
  </div>
  </Container>

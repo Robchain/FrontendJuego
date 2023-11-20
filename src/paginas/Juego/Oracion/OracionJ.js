@@ -42,7 +42,7 @@ const OracionJ = () => {
     setWindows(newWindows);
   }
 
-
+ 
   useEffect(() => {
     if(dataOracionJuego ===null){
       navegar(`/MenuJuego`);
