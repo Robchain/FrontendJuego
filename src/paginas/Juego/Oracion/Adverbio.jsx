@@ -25,7 +25,7 @@ const MostrarQue = ({ data, indice, ...props }) => {
 
   return (<img src={verbo.value} alt='opcion que' {...props} />)
 }
-const RespuestaImagen = ({ data, answer,dispatchProgreso, setImagen, imagen, indice, Queselec, setMomento, momento }) => {
+const RespuestaImagen = ({ data, answer,dispatchProgreso, setImagen, imagen, indice, Queselec, setMomento, momento, ...opc }) => {
 
   let AdjectivoRespuesta = ""
 
@@ -65,7 +65,7 @@ const RespuestaImagen = ({ data, answer,dispatchProgreso, setImagen, imagen, ind
   return (<>
 
     {momento === "Respuesta" && (
-      <img src={imagen} width="100" alt='adverbioRespuesta' />
+      <img src={imagen} alt='adverbioRespuesta' {...opc} />
     )}
   </>)
 }
@@ -286,7 +286,9 @@ const Adverbio = ({ indice, siguiente, dispatchProgreso, data }) => {
         </div>
       </div>
       <div className='respuesta-seccion'>
-        <RespuestaImagen answer={answer} dispatchProgreso={dispatchProgreso} imagen={imagen} setImagen={setImagen} data={data} Queselec={Queselec} indice={indice} setMomento={setMomento} momento={momento} />
+        <div>
+        <RespuestaImagen answer={answer} dispatchProgreso={dispatchProgreso} imagen={imagen} setImagen={setImagen} data={data} Queselec={Queselec} indice={indice} setMomento={setMomento} momento={momento} className='imagen-respuesta-oracion' />
+        </div> 
         </div>
       </div>
     </div>

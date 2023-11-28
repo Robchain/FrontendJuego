@@ -167,7 +167,6 @@ const Vocabulario = () => {
                           momento === "respuesta" && <VideosRespuesta window={window} data={dataJuegoVocabulario[`Juego${window.id}`].Palabras} playref={playref} className='video-respuesta-vocabulario' />
                         }
                       </div>
-
                       <div className='opciones-juego-vocabulario' >
                         <div style={{ pointerEvents: pointerEvent, opacity: opa1 }} onClick={() => { setCorrecto1(dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Respuesta); resultados(dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Palabra, dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Respuesta); setCorrecto2("NADA"); setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4); progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + window.id].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + window.id].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + window.id].Palabras[2] }), selecionado: dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Palabra, Resul: dataJuegoVocabulario[`Juego` + window.id].Palabras[0].Respuesta }); setTimeout(() => { siguiente(window.id) }, /*playref.current.getDuration()*1900*/ 9000); setVideoActual(0); }} >
                           <div className='Mi-diseñodiv'>

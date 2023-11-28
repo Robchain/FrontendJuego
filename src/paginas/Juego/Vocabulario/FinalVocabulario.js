@@ -5,6 +5,8 @@ import {  Container } from 'reactstrap'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import { Juego1 } from '../../../service/Juego/Vocabulario'
+import { PiCoinVerticalDuotone } from "react-icons/pi";
+import { FaPuzzlePiece } from "react-icons/fa";
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 
 export const FinalVocabulario = () => {
@@ -36,7 +38,14 @@ const Pantalla =()=>{
  <div className='contenido-final-vocabulario'>
  <div className='rompecabeza-final-vocabulario'>
  <RompecabaSolitaria principal={false} Avance={avance0} alt={dataRompecabeza.Nombre}  url={dataRompecabeza.FileColor} piezas={dataRompecabeza.Pieza} terminado={isfinished}/>
- <h1 className='puntuacion-final'>{`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length}`}</h1>
+ <div className='puntos-seccion'>
+ <div className='puzzle-div'>
+ <h1 className='puntuacion-final-puzzle'><FaPuzzlePiece/> {`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length-1}`}  </h1>
+ </div>
+ <div className='puntuacion-div'>
+ <h1 className='puntuacion-final-coin'><PiCoinVerticalDuotone/> {`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length}`}</h1>
+ </div>
+ </div>
  </div>
   <div className='menu-final'>
     <NavLink to={"/MenuJuego"} className="navegacion-final-vocabuarlio">

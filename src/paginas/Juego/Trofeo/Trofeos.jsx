@@ -40,7 +40,7 @@ export const Trofeos = () => {
 
   return (
     <Container className='a'>
-    <NavBarJuego  Seccion={"Trofeo"} urlBack={"/MenuJuego"} />
+    <NavBarJuego  Seccion={"Trofeos"} urlBack={"/MenuJuego"} />
     <Modalaqui  data={dataseleccionada}  modal={modal} setModal={setModal} />
 <Row>
   <Col className='d-flex align-items-center'>

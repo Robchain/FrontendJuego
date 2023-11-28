@@ -5,8 +5,10 @@ import buentrabajo from "../../../assets/img/AssetsGame/GOOD JOD.png"
 import malTrabajo from "../../../assets/img/AssetsGame/Bad Jood.png"
 import { useNavigate } from 'react-router-dom';
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
+import { PiCoinVerticalDuotone } from "react-icons/pi";
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego';
 import { resultado } from '../../../helpers/contador';
+import Cronometro from '../../../componentes/JuegoComponent/JuegoGeneral/Cronometro';
 const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setOpa2, setOpa3, ...props }) => {
     const [imagenRes, setImagenRes] = useState("")
     useEffect(() => {
@@ -87,6 +89,7 @@ export const NuevoVocabulario = () => {
     const [opa1, setOpa1] = useState(0.4)
   const [opa2, setOpa2] = useState(0.4)
   const [opa3, setOpa3] = useState(0.4)
+  const [cronometro, setCronometro] = useState(true);
   const [rango, setRango] = useState(piezaJuegoIndi+1);
   const playref = useRef(null);
   const navegar = useNavigate();
@@ -133,6 +136,7 @@ export const NuevoVocabulario = () => {
     setCorrecto2("INICIAL")
     setCorrecto3("INICIAL")
     setVideoActual(0);
+
     setIndice((prevIndice) => (prevIndice % rango) + 1);
   };
 
@@ -160,9 +164,14 @@ export const NuevoVocabulario = () => {
                   <Container className='fondoImagenVocabulario vh-100'>
                     <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
                     <div className="contenedor-juego">
+                      <div className="puntaje-cronometro">
+                      <div className='cronometro-juego'>
+                      <Cronometro minutosInicio={3} reiniciarCronometro={indice}/>
+                      </div>
                       <div className="puntaje-juego">
-                        <p >Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}</p>
-                      </div> 
+                        <p>Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}<PiCoinVerticalDuotone /> </p>
+                      </div>
+                      </div>
                       <div className='contenedor-juego'>
                       <div className='video-juego-vocabulario'>
                         {

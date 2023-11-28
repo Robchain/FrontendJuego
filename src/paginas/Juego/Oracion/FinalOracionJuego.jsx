@@ -30,7 +30,7 @@ export const FinalOracionJuego = () => {
     <>{
       dataOracionJuego !== null ? 
       (<Container className='fondoMC'>
-    <NavBarJuego Seccion={"Oracion"} urlBack={"/RompecabezaJO"} />
+    <NavBarJuego Seccion={"Oración"} urlBack={"/RompecabezaJO"} />
  <div className='contenido-final-vocabulario'>
  <div className='rompecabeza-final-vocabulario'>
  <RompecabaSolitaria principal={false} Avance={Oracionprogreso}  alt={dataRompecabeza.Nombre} url={dataRompecabeza.FileColor} piezas={dataRompecabeza.Pieza} terminado={isfinished}/>

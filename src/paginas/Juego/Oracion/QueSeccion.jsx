@@ -119,7 +119,7 @@ const SeleccionQue = ({ QueSelecion, data, indice, ...props }) => {
     if (QueSelecion === 1) { setSeleccionPal(data[`Juego` + indice].Oraciones[0].Que) }
     if (QueSelecion === 2) { setSeleccionPal(data[`Juego` + indice].Oraciones[1].Que) }
     if (QueSelecion === 3) { setSeleccionPal(data[`Juego` + indice].Oraciones[2].Que) }
-  }, [QueSelecion])
+  }, [QueSelecion,indice])
 
   return (<>{
     seleccionPal.label.length !== 0 ? (
@@ -128,7 +128,7 @@ const SeleccionQue = ({ QueSelecion, data, indice, ...props }) => {
   }
   </>)
 }
-const RespuestaImagen = ({ Queselec, data, indice, setMomento, momento }) => {
+const RespuestaImagen = ({ Queselec, data, indice, setMomento, momento, ...opc }) => {
   const [imagense, setImagense] = useState("")
   let AdjectivoRespuesta = { label: '', value: '' };
   useEffect(() => {
@@ -155,7 +155,7 @@ const RespuestaImagen = ({ Queselec, data, indice, setMomento, momento }) => {
   }, [Queselec])
 
   return (<>{
-    momento === "Respuesta" && (<img src={imagense} width="100" alt='imagen' />)}
+    momento === "Respuesta" && (<img src={imagense} alt='imagen' {...opc} />)}
     <></>
   </>)
 }
@@ -280,7 +280,9 @@ const QueSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
           </div>
         </div>
         <div className='respuesta-seccion'>
-          <RespuestaImagen momento={momento} setMomento={setMomento} Queselec={Queselec} data={data} indice={indice} />
+          <div>
+          <RespuestaImagen momento={momento} setMomento={setMomento} Queselec={Queselec} data={data} indice={indice} className='imagen-respuesta-oracion'/>
+          </div>
         </div>
       </div>
     </div>

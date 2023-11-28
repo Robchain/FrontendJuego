@@ -10,6 +10,22 @@
     align-items: flex-start;
 }
 
+/* Cronometro.css */
+
+.cronometro {
+    font-size: 1.3em;
+    padding: 10px;
+    font-weight: bold;
+    display: inline-block;
+color:#85858C ;
+  }
+  
+  .cronometro.rojo {
+    color: red;
+    border-color: red;
+  }
+
+  
 .offcanvas-backdrop{
     width: 100% !important;
     height: 100% !important;
@@ -174,8 +190,6 @@ body {
     background-image: url("./assets/img/AssetsGame/Blipbla-pantalla-1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-
-
 }
 
 .fondoImagenVocabulario {
@@ -463,7 +477,11 @@ body {
         align-items: center;
     }
 
-    .contenedor-juego .puntaje-juego {
+    .contenedor-juego .puntaje-cronometro{
+        display: flex;
+    }
+
+    .puntaje-cronometro .puntaje-cronometro .puntaje-juego {
         align-self: flex-end;
         font-weight: 700;
         color: #85858C;
@@ -474,6 +492,7 @@ body {
         align-items: center;
         width: 100%;
     }
+    
     .contenedor-juego .contenedor-juego .video-juego-vocabulario .video-pregunta-vocabulario{
         width: 66vw !important;
         margin-bottom: 10px;
@@ -488,7 +507,7 @@ body {
         margin: auto;
         margin-bottom: 30px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
     }
 
@@ -507,7 +526,7 @@ body {
     }
 
     .Mi-diseñodiv div .imagen-respuesta {
-        width: 8vw;
+        width: 7vw;
     }
 
     /*oracion*/
@@ -699,7 +718,7 @@ font-weight: 600;
     margin-top: 10px;
 }
 .titulo-nav{
-    margin-top: 10px;
+    margin-top: 5px;
 }
  .barra-superior {
     display: flex;
@@ -806,8 +825,8 @@ width: 45%;
 
     .rompecabezas-grupo {
         display: grid;
-        grid-template-columns: 35% 35% 35%;
-        grid-template-rows: 50% 50%;
+        grid-template-columns: 39% 39% 39%;
+        grid-template-rows: 45% 45%;
     }
 
     #imagenRompecabeza {
@@ -821,11 +840,11 @@ width: 45%;
     }
 
     #imagenFinal {
-        width: 70vw;
+        width: 40vw;
     }
     .minicuadrito .encimados{
         z-index: 30;
-        width: 70vw;
+        width: 40vw;
         height: 100%;
         position: fixed;
     }
@@ -866,52 +885,63 @@ width: 45%;
     .contenedor-juego .contenedor-juego{
         display: flex;
         flex-direction: row;
-        
+        justify-content: space-between;
     }
-
-    .contenedor-juego .puntaje-juego {
+  
+    .contenedor-juego  .puntaje-cronometro {
+        display: flex;
+width: 100%;
+justify-content: space-between;
+    }
+    .contenedor-juego  .cronometro-juego {
+align-self: flex-start;
+    }
+    .contenedor-juego .puntaje-cronometro .puntaje-juego {
         align-self: flex-end;
         font-weight: 700;
         color: #85858C;
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
 
 .contenedor-juego .contenedor-juego .video-juego-vocabulario .video-respuesta-vocabulario{
-    width: 40vw !important;
+    width: 32vw !important;
+    height: 32vh !important;
 }
 
 .contenedor-juego .contenedor-juego .video-juego-vocabulario .video-pregunta-vocabulario{
-    width: 40vw !important;
+    width: 32vw !important;
+    height: 32vh !important;
 }
 
-    .contenedor-juego .puntaje-juego .opciones-juego-vocabulario {
+    .contenedor-juego  .opciones-juego-vocabulario {
         align-self: flex-end;
+        margin-left:50px ;
     }
 
     .Mi-diseñodiv {
-        margin-left: 10px;
-        margin-bottom: 30px;
+    
+        margin-bottom: 18px;
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         align-items: center;
+        width: 100%;
     }
 
 
     .Mi-diseñodiv .palabra {
         font-weight: bold;
-        font-size: 1.2em;
+        font-size: 1em;
         color: #8B8B8C;
     }
 
     .Mi-diseñodiv img {
         margin-left: 10px;
-        margin-right: 10px;
         border-radius: 20px;
-        width: 22vw;
+        width: 16vw;
     }
 
     .Mi-diseñodiv div .imagen-respuesta {
-        width: 8vw;
+        width: 5vw;
     }
 
  /*oracion*/
@@ -936,12 +966,12 @@ width: 45%;
     justify-content: space-evenly;
 }
 .contenido-una-oracion .seccion-opciones-oracion .imagen-pregunta-una img{
-    width: 12vw;   
+    width: 10vw;   
     margin-right: 10px;
 }
 
 .contenido-una-oracion .seccion-opciones-oracion .opcion-imagen-una img{
-    width: 20vw;
+    width: 15vw;
     margin-right: 15px;
 }
 
@@ -963,12 +993,12 @@ display: flex;
 justify-content: space-evenly;
 }
 .contenido-una-oracion .opcion-multi-oracion  .seccion-quien-multiple .imagen-pregunta-quien-multi img{
-width: 12vw;
+width: 10vw;
 margin-right: 10px;
 }
 
 .contenido-una-oracion .opcion-multi-oracion  .seccion-quien-multiple .opcion-imagen-multi img{
-width: 20vw;
+width: 16vw;
 margin-right: 15px;
 }
 .contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple{
@@ -994,11 +1024,11 @@ display: flex;
 justify-content: space-evenly;
 }
 .contenido-una-oracion .opcion-multi-oracion  .seccion-que-multiple .imagen-pregunta-que-multi img{
-width: 12vw;
+width: 10vw;
 margin-right: 10px;
 }
 .contenido-una-oracion .opcion-multi-oracion  .seccion-que-multiple .opcion-imagen-multi img{
-width: 20vw;
+width: 16vw;
 margin-right: 15px;
 }
 /* oracione respuesta secccion */
@@ -1007,12 +1037,15 @@ margin-right: 15px;
     display: flex;
     align-content: space-around;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
 }
-.respuesta-seccion{
+.zonainteractiva  .respuesta-seccion{
     margin-top: 20px;
     display: flex;
     justify-content: center;
+}
+.zonainteractiva  .respuesta-seccion div .imagen-respuesta-oracion{
+    width: 7vw;
 }
 
 .pruebaDise {
@@ -1079,28 +1112,133 @@ margin-right: 15px;
     flex-direction: column;
     align-items:center;
         }
+
         .contenido-final-vocabulario .rompecabeza-final-vocabulario{
     display: flex;
     flex-direction: column;
     align-items :center;
         }
+        .contenido-final-vocabulario .rompecabeza-final-vocabulario .puntos-seccion{
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+        }
         .contenido-final-vocabulario .rompecabeza-final-vocabulario h1{
             margin-top: 10px;
+            font-size: 1.9em;
         }
         .contenido-final-vocabulario .menu-final{
             display: flex;
         }
         .contenido-final-vocabulario .menu-final .navegacion-final-vocabuarlio{
-            font-size: 7em;
+            font-size: 5em;
             color: #777;
             height: 100%;
             margin-top: -30px;
+            margin-bottom: 0px;
         }
 }
 
 
 @media screen and (max-width: 1440px) and (min-width:1281px) {
     /* mi nuevo media screen  tamaño de laptod*/
+    .contenedor-juego {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .contenedor-juego .contenedor-juego{
+        display: flex;
+        flex-direction: row;
+        
+    }
+    .contenedor-juego .puntaje-cronometro{
+        display: flex;
+    }
+
+    .puntaje-cronometro .puntaje-cronometro .puntaje-juego {
+        align-self: flex-end;
+        font-weight: 700;
+        color: #85858C;
+        font-size: 1.3em;
+    }
+    
+
+.contenedor-juego .contenedor-juego .video-juego-vocabulario .video-respuesta-vocabulario{
+    width: 40vw !important;
+}
+
+.contenedor-juego .contenedor-juego .video-juego-vocabulario .video-pregunta-vocabulario{
+    width: 40vw !important;
+}
+
+    .contenedor-juego  .opciones-juego-vocabulario {
+        align-self: flex-end;
+        margin-left:50px ;
+    }
+
+    .Mi-diseñodiv {
+        margin-left: 10px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+       
+        width: 100%;
+    }
+
+
+    .Mi-diseñodiv .palabra {
+        
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #8B8B8C;
+    }
+
+    .Mi-diseñodiv img {
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        width: 22vw;
+    }
+
+    .Mi-diseñodiv div .imagen-respuesta {
+        width: 6vw;
+    }
+
+    /*categorias menu*/
+    .Cate-menu-alto {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .Cate-cuadro-voca {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .Cate-cuadro-ora {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .Cate-menu-bajo {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .Cate-cuadro-multi {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .Cate-cuadro-tro {
+        min-width: 300px;
+        width: 35vw;
+    }
+
 /*generales*/
 .nav-superior-nombre{
     margin-top: 10px;
@@ -1355,11 +1493,101 @@ width: 45%;
             height: 100%;
             margin-top: -30px;
         }
- 
-
-
 }
 @media screen and (max-width: 2560px) and (min-width:1441px) {
+    .contenedor-juego {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .contenedor-juego .contenedor-juego{
+        display: flex;
+        flex-direction: row;
+        
+    }
+
+    .contenedor-juego .puntaje-juego {
+        align-self: flex-end;
+        font-weight: 700;
+        color: #85858C;
+        font-size: 1.3em;
+    }
+
+.contenedor-juego .contenedor-juego .video-juego-vocabulario .video-respuesta-vocabulario{
+    width: 40vw !important;
+}
+
+.contenedor-juego .contenedor-juego .video-juego-vocabulario .video-pregunta-vocabulario{
+    width: 40vw !important;
+}
+
+    .contenedor-juego  .opciones-juego-vocabulario {
+        align-self: flex-end;
+        margin-left:50px ;
+    }
+
+    .Mi-diseñodiv {
+        margin-left: 10px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+       
+        width: 100%;
+    }
+
+
+    .Mi-diseñodiv .palabra {
+        
+        font-weight: bold;
+        font-size: 1.2em;
+        color: #8B8B8C;
+    }
+
+    .Mi-diseñodiv img {
+        margin-left: 10px;
+        margin-right: 10px;
+        border-radius: 20px;
+        width: 17vw;
+    }
+
+    .Mi-diseñodiv div .imagen-respuesta {
+        width: 6vw;
+    }
+
+    /*categorias menu*/
+    .Cate-menu-alto {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .Cate-cuadro-voca {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .Cate-cuadro-ora {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .Cate-menu-bajo {
+        display: flex;
+        justify-content: center;
+
+    }
+
+    .Cate-cuadro-multi {
+        min-width: 300px;
+        width: 35vw;
+    }
+
+    .Cate-cuadro-tro {
+        min-width: 300px;
+        width: 35vw;
+    }
+
     /*generales*/
 .nav-superior-nombre{
     margin-top: 10px;

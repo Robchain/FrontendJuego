@@ -123,7 +123,7 @@ const Respuestasecction = ({ siguiente, data, ...props  }) => {
     </div>
   )
 };
-const RespuestaImagen = ({answer, momento, Queselec, data, indice, setMomento, Progreso }) => {
+const RespuestaImagen = ({answer, momento, Queselec, data, indice, setMomento, Progreso, ...opc }) => {
   const [imagense, setImagense] = useState({value:'', label:''})
   let AdjectivoRespuesta = {value:'', label:''};
   useEffect(() => {
@@ -154,7 +154,7 @@ const RespuestaImagen = ({answer, momento, Queselec, data, indice, setMomento, P
 
   return (<>
     {
-      momento === "Respuesta" && (<img src={imagense} width="100" alt='incorrecto' />)
+      momento === "Respuesta" && (<img src={imagense} alt='incorrecto' {...opc} />)
     }
   </>)
 }
@@ -289,7 +289,7 @@ useEffect(() => {
         </div>
       </div>
       <div  className='respuesta-seccion' >
-        <RespuestaImagen answer={answer} momento={momento} Queselec={Queselec} setMomento={setMomento} data={data} Progreso={Progreso}  indice={indice} />
+      <div>  <RespuestaImagen answer={answer} momento={momento} Queselec={Queselec} setMomento={setMomento} data={data} Progreso={Progreso}  indice={indice} className='imagen-respuesta-oracion' /></div>
         </div>
    </div>
     </div>

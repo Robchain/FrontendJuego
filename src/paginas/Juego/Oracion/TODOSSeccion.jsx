@@ -176,7 +176,7 @@ const SeleccionQuien = ({ QuienSeleccion, data, indice, ...props }) => {
   return (<div {...props}></div>)
 }
 
-const RespuestaImagen = ({ data, indice, dispatchProgreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento }) => {
+const RespuestaImagen = ({ data, indice, dispatchProgreso, palabrasEstdo, setopcionRes, opcionRes, setMomento, ...opc }) => {
   let sujetoRespuesta = "";
   let AdjectivoRespuesta = "";
   let oracion = "";
@@ -211,11 +211,11 @@ const RespuestaImagen = ({ data, indice, dispatchProgreso, palabrasEstdo, siguie
       }, [palabrasEstdo.Queselec, palabrasEstdo.QuienSelec])
       if (opcionRes === "CORRECTO") {
         setMomento("Respuesta");
-        return (<><img src={buentrajo} width="100" alt="buen trabajo" /></>);
+        return (<><img src={buentrajo}  alt="buen trabajo" {...opc} /></>);
       }
       if (opcionRes === "INCORRECTO") {
         setMomento("Respuesta");
-        return (<><img src={malTrabajo} width="100" alt='mal trabajo' /></>);
+        return (<><img src={malTrabajo} width="100" alt='mal trabajo' {...opc}/></>);
       }
     }
   }
@@ -240,7 +240,7 @@ const isAdverbio = (indice, data) => {
   }
 }
 
-const RespuestaImagenconAdverbio = ({ indice, dispatchProgreso, palabrasEstdo, setopcionRes, opcionRes, setMomento, data, }) => {
+const RespuestaImagenconAdverbio = ({ indice, dispatchProgreso, palabrasEstdo, setopcionRes, opcionRes, setMomento, data, ...opc}) => {
 
   let sujetoRespuesta = "";
   let AdjectivoRespuesta = "";
@@ -280,10 +280,10 @@ const RespuestaImagenconAdverbio = ({ indice, dispatchProgreso, palabrasEstdo, s
 
 
       if (opcionRes === "CORRECTO") {
-        return (<><img src={buentrajo} width="100" alt="buen trabajo" /></>);
+        return (<><img src={buentrajo}  alt="buen trabajo" {...opc} /></>);
       }
       if (opcionRes === "INCORRECTO") {
-        return (<><img src={malTrabajo} width="100" alt='mal trabajo' /></>);
+        return (<><img src={malTrabajo} alt='mal trabajo' {...opc} /></>);
       }
 
     }
@@ -507,8 +507,8 @@ useEffect(() => {
           </div>
         </div>
         <div className='respuesta-seccion' >
-          {isAdverbio(indice, data) ? <RespuestaImagenconAdverbio data={data} dispatchProgreso={dispatchProgreso} indice={indice} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} />
-            : <RespuestaImagen data={data} dispatchProgreso={dispatchProgreso} indice={indice} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} />
+          {isAdverbio(indice, data) ? <div><RespuestaImagenconAdverbio data={data} dispatchProgreso={dispatchProgreso} indice={indice} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} className='imagen-respuesta-oracion'  /></div>
+            : <div><RespuestaImagen data={data} dispatchProgreso={dispatchProgreso} indice={indice} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} className='imagen-respuesta-oracion'  /></div>
           }
         </div>
       </div>

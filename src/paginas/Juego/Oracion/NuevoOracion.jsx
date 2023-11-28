@@ -60,7 +60,7 @@ export const NuevoOracion = () => {
 
   return (
     dataOracionJuego !==null && indice !== NaN ? (<Container className="fluid">
-    <NavBarJuego Seccion={"Oracion"} urlBack={"/RompecabezaJO"} />
+    <NavBarJuego Seccion={"Oración"} urlBack={"/RompecabezaJO"} />
     <div className='contenido-oracion-general'>
     <div>
         <h3 style={{fontWeight:700, color:"#85858C"}}>Puntos: {`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3>

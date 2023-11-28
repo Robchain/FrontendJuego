@@ -56,7 +56,7 @@ useEffect(() => {
         <img src={cargando} alt='cargando'/>
       </div>
     )}
-         <NavBarJuego Seccion={"Oracion"} urlBack={"/MenuJuego"} />
+         <NavBarJuego Seccion={"Oración"} urlBack={"/MenuJuego"} />
             <div className="rompecabezas-grupo" >
           
             {oraciondata.map(i=>(
