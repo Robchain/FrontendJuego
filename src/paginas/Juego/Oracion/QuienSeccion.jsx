@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'reactstrap'
 import buentrajo from '../../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../../assets/img/AssetsGame/Bad Jood.png'
 import Quien from '../../../assets/img/AssetsGame/ico_Que.png'
@@ -220,6 +219,7 @@ useEffect(() => {
 
   return (
     <div className='contenido-una-oracion'>
+      <div className='up-side-oracion'>
       <div className='seccion-videos-oracion' >
         {
           momento === "inicial" && <Preguntasecction data={data[`Juego` + indice].Oraciones} className="video-pregunta-oracion-una"  />
@@ -246,6 +246,7 @@ useEffect(() => {
             <img src={data[`Juego` + indice].Oraciones[2].Sujeto.value} alt='opcion3' className='opcion-imagen-neta' />
             </div>
           </div>
+        </div>
         </div>
       <div className='zonainteractiva'>
       <div   className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>

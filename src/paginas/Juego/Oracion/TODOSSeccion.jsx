@@ -385,6 +385,7 @@ useEffect(() => {
 
   return (
     <div className='contenido-una-oracion'>
+      <div className='up-side-oracion'> 
       <div className='seccion-videos-oracion' >
         {
           momento === "inicial" && <Preguntasecction data={data[`Juego` + indice].Oraciones} indice={indice} className="video-pregunta-oracion-una" />
@@ -424,21 +425,21 @@ useEffect(() => {
               <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity1 }} onClick={onhandleClickAdvePrimero}>
                 <div className='opcion-multi-letras'>
                   <div>
-                    <span style={{ color: "blue" }}>{data[`Juego` + indice].Oraciones[0].Adverbio}</span>
+                    <p>{data[`Juego` + indice].Oraciones[0].Adverbio}</p>
                   </div>
                 </div>
               </div>
               <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity2 }} onClick={onhandleClickAdveSegundo} >
                 <div className='opcion-multi-letras'>
                   <div>
-                    <span style={{ color: "blue" }}>{data[`Juego` + indice].Oraciones[1].Adverbio}</span>
+                    <p>{data[`Juego` + indice].Oraciones[1].Adverbio}</p>
                   </div>
                 </div>
               </div>
               <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity3 }} onClick={onhandleClickAdveTercero} >
                 <div className='opcion-multi-letras'>
                   <div>
-                    <span style={{ color: "blue" }}>{data[`Juego` + indice].Oraciones[2].Adverbio}</span>
+                    <p >{data[`Juego` + indice].Oraciones[2].Adverbio}</p>
                   </div>
                 </div>
               </div>
@@ -464,6 +465,7 @@ useEffect(() => {
             </div>
           </div>
         </div>
+      </div>
       </div>
       <div className='zonainteractiva'>
         <div className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>

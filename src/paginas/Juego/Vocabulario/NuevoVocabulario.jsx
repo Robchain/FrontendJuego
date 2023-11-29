@@ -89,7 +89,6 @@ export const NuevoVocabulario = () => {
     const [opa1, setOpa1] = useState(0.4)
   const [opa2, setOpa2] = useState(0.4)
   const [opa3, setOpa3] = useState(0.4)
-  const [cronometro, setCronometro] = useState(true);
   const [rango, setRango] = useState(piezaJuegoIndi+1);
   const playref = useRef(null);
   const navegar = useNavigate();
@@ -142,7 +141,7 @@ export const NuevoVocabulario = () => {
 
   // Establecer un temporizador para avanzar automáticamente después de un tiempo
   useEffect(() => {
-    const temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 180000); // 5000 milisegundos (5 segundos)
+    const temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 120000); // 5000 milisegundos (5 segundos)
     // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
     return () => clearTimeout(temporizador);
   }, [indice, rango]);
@@ -166,7 +165,7 @@ export const NuevoVocabulario = () => {
                     <div className="contenedor-juego">
                       <div className="puntaje-cronometro">
                       <div className='cronometro-juego'>
-                      <Cronometro minutosInicio={3} reiniciarCronometro={indice}/>
+                      <Cronometro minutosInicio={2} reiniciarCronometro={indice}/>
                       </div>
                       <div className="puntaje-juego">
                         <p>Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}<PiCoinVerticalDuotone /> </p>

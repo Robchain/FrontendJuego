@@ -219,6 +219,7 @@ const Adverbio = ({ indice, siguiente, dispatchProgreso, data }) => {
 
   return (
     <div className='contenido-una-oracion'>
+      <div className='up-side-oracion'>
       <div className='seccion-videos-oracion' >
         {
           momento === "inicial" && <Preguntasecction data={data[`Juego` + indice].Oraciones} className="video-pregunta-oracion-una"/>
@@ -233,20 +234,21 @@ const Adverbio = ({ indice, siguiente, dispatchProgreso, data }) => {
           </div>
           <div style={{ pointerEvents: pointerEvent, opacity: opacity1 }} onClick={onhandleClickQuePrimero}>
             <div className='opcion-una-letras' >
-            <span className=''>{data[`Juego` + indice].Oraciones[0].Adverbio}</span>
+            <p>{data[`Juego` + indice].Oraciones[0].Adverbio}</p>
             </div>
           </div>
           <div style={{  pointerEvents: pointerEvent, opacity: opacity2 }} onClick={onhandleClickQueSegundo}>
             <div className='opcion-una-letras'>
-            <span style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego` + indice].Oraciones[1].Adverbio}</span>
+            <p>{data[`Juego` + indice].Oraciones[1].Adverbio}</p>
             </div>
           </div>
           <div style={{  pointerEvents: pointerEvent, opacity: opacity3 }} onClick={onhandleClickQueTercero}>
             <div className='opcion-una-letras'>
-            <span style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego` + indice].Oraciones[2].Adverbio}</span>
+            <p>{data[`Juego` + indice].Oraciones[2].Adverbio}</p>
             </div>
           </div>
 
+      </div>
       </div>
       <div className='zonainteractiva'>
       <div  className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>

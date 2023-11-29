@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import Adverbio from './Adverbio'
+import { PiCoinVerticalDuotone } from "react-icons/pi";
 import QueSeccion from './QueSeccion'
 import QuienSeccion from './QuienSeccion'
 import TODOSSeccion from './TODOSSeccion'
 import { OracionRespuesta, resultadoOracion, resultadoOracionAdverbio, resultadoOracionQue, resultadoOracionQuien } from '../../../helpers'
+import Cronometro from '../../../componentes/JuegoComponent/JuegoGeneral/Cronometro'
 
 export const NuevoOracion = () => {
     const { dataOracion, Oracionprogreso,dispatchProgreso,piezaJuegoIndi, dataOracionJuego} = useContext(JuecoContext);
@@ -46,7 +48,7 @@ export const NuevoOracion = () => {
     
       // Establecer un temporizador para avanzar automáticamente después de un tiempo
       useEffect(() => {
-        const temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 180000); // 5000 milisegundos (5 segundos)
+        const temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 120000); // 5000 milisegundos (5 segundos)
         // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
         return () => clearTimeout(temporizador);
       }, [indice, rango]);
@@ -62,9 +64,15 @@ export const NuevoOracion = () => {
     dataOracionJuego !==null && indice !== NaN ? (<Container className="fluid">
     <NavBarJuego Seccion={"Oración"} urlBack={"/RompecabezaJO"} />
     <div className='contenido-oracion-general'>
-    <div>
-        <h3 style={{fontWeight:700, color:"#85858C"}}>Puntos: {`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}`}</h3>
+      <div className='puntaje-cronometro'>
+      <div className='cronometro-juego'>
+      <Cronometro minutosInicio={2} reiniciarCronometro={indice}/>
+      </div>
+    <div className='puntaje-juego'>
+        <p>Puntos: {`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}`}<PiCoinVerticalDuotone /></p>
     </div>
+      </div>
+      
         <Suspense  fallback={<>Cargandos...</>}>
         {
                      //EN CASO DE TODOS 

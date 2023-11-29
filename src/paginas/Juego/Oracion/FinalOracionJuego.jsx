@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState} from 'react'
 import {  NavLink} from 'react-router-dom'
-import { Col, Container, Row } from 'reactstrap'
+import { Container } from 'reactstrap'
+import { PiCoinVerticalDuotone } from "react-icons/pi";
+import { FaPuzzlePiece } from "react-icons/fa";
 import {PiSquaresFourDuotone} from 'react-icons/pi'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
@@ -34,7 +36,14 @@ export const FinalOracionJuego = () => {
  <div className='contenido-final-vocabulario'>
  <div className='rompecabeza-final-vocabulario'>
  <RompecabaSolitaria principal={false} Avance={Oracionprogreso}  alt={dataRompecabeza.Nombre} url={dataRompecabeza.FileColor} piezas={dataRompecabeza.Pieza} terminado={isfinished}/>
- <h1 className='mx-auto'>{`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}/${Oracionprogreso.length}`}</h1>
+ <div className='puntos-seccion'>
+ <div className='puzzle-div'>
+ <h1 className='puntuacion-final-puzzle'> <FaPuzzlePiece/>{`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}/${Oracionprogreso.length-1}`}</h1>
+ </div>
+ <div className='puntuacion-div'>
+ <h1 className='puntuacion-final-coin'><PiCoinVerticalDuotone/>{`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}/${Oracionprogreso.length}`}</h1>
+ </div>
+ </div>
  </div>
  <div className='menu-final' >
     <NavLink to={"/MenuJuego"} className="navegacion-final-vocabuarlio" >

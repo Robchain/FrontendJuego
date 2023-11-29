@@ -209,6 +209,7 @@ const QueSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
 
   return (
     <div className='contenido-una-oracion'>
+      <div className='up-side-oracion'>
       <div className='seccion-videos-oracion'>
         {
           momento === "inicial" && <Preguntasecction data={data[`Juego` + indice].Oraciones} className="video-pregunta-oracion-una" />
@@ -237,6 +238,7 @@ const QueSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
           </div>
         </div>
 
+      </div>
       </div>
       <div className='zonainteractiva'>
         <div className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>

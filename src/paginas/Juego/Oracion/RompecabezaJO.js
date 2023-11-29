@@ -2,6 +2,7 @@ import React, { useContext, useEffect,  useState } from 'react'
 import {  useNavigate} from 'react-router-dom'
 import { Button, Col, Container, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap'
 import {JuecoContext} from "../../../context/Juego/JuecoContext"
+import { IoExtensionPuzzleOutline } from "react-icons/io5";
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego';
 import { llamadaPartidaOracion } from '../../../service/Juego/Oracion';
@@ -61,7 +62,7 @@ useEffect(() => {
           
             {oraciondata.map(i=>(
               <div className='my-2'>
-              <div  onClick={(e) =>{ setPiezaJuegoIndi(i.Rompecabeza.Pieza);setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setDataSelecionada(i);clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)}} > <RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  url={i.Rompecabeza.FileColor} piezas={i.Rompecabeza.Pieza} /></div><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>Piezas:</span> <span style={{color:"#62269E"}}>{`${Piezacalcular({ objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza})}/${i.Rompecabeza.Pieza}`}</span></p> 
+              <div  onClick={(e) =>{ setPiezaJuegoIndi(i.Rompecabeza.Pieza);setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setDataSelecionada(i);clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)}} > <RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  url={i.Rompecabeza.FileColor} piezas={i.Rompecabeza.Pieza} /></div><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}><IoExtensionPuzzleOutline /></span> <span style={{color:"#62269E"}}>{`${Piezacalcular({ objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza})}/${i.Rompecabeza.Pieza}`}</span></p> 
               </div>
             ))
           }
