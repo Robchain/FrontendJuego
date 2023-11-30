@@ -174,7 +174,7 @@ export const NuevoVocabulario = () => {
                       <div className='contenedor-juego'>
                       <div className='video-juego-vocabulario'>
                         {
-                          momento === "inicial" && <VideosPreguntas pointerEvent={pointerEvent} progreso={progreso} data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual}  className='video-pregunta-vocabulario'/>
+                          momento === "inicial" && <VideosPreguntas  progreso={progreso} data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual}  className='video-pregunta-vocabulario'/>
                         }
                         {
                           momento === "respuesta" && <VideosRespuesta data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} siguienteObjeto={siguienteObjeto} className='video-respuesta-vocabulario'  />

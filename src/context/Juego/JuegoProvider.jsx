@@ -13,6 +13,7 @@ export const JuegoProvider = ({ children }) => {
   const [dataJuegoInicialVocabulario, setDataJuegoInicialVocabulario] = useState([]);
   const [dataJuegoVocabulario, setdataJuegoVocabulario] = useState(null)
   const [dataRompecabeza, setDataRompecabeza] = useState(null);
+  const [quienlist, setQuienlist] = useState([])
   const [dataOracionJuego, setDataOracionJuego] = useState(null);
   const [oraciondata, setOraciondata] = useState(null);
   const [InfoEstudiaSituacion, setInfoEstudiaSituacion] = useState(null);
@@ -203,7 +204,8 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
         avance0,
         setDataJuegoInicialVocabulario,
         piezaJuegoIndi, setPiezaJuegoIndi,idRompecabeza, setIdRompecabeza,
-        dataRompecabeza, setDataRompecabeza
+        dataRompecabeza, setDataRompecabeza,
+        quienlist, setQuienlist
       }}
     >
       {children}

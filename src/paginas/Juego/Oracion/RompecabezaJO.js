@@ -6,12 +6,12 @@ import { IoExtensionPuzzleOutline } from "react-icons/io5";
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego';
 import { llamadaPartidaOracion } from '../../../service/Juego/Oracion';
-import { armandoJuegosOracionesPorPiezas } from '../../../service/Adminstrador/Oracion'
+import { armandoJuegosOracionesPorPiezas, listadoQuienImagen } from '../../../service/Adminstrador/Oracion'
 import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 import { Piezacalcular } from '../../../helpers/contador'
 const RompecabezaJO = () => {
 const [modal, setModal] = useState(false)
-const {oraciondata, setOraciondata, dispatchProgreso,setDataOracionJuego,setPiezaJuegoIndi,setIdRompecabeza, setDataRompecabeza} = useContext(JuecoContext);
+const {oraciondata,setQuienlist, setOraciondata, dispatchProgreso,setDataOracionJuego,setPiezaJuegoIndi,setIdRompecabeza, setDataRompecabeza} = useContext(JuecoContext);
 const [dataSelecionada, setDataSelecionada] = useState(null)
 const [loading, setLoading] = useState(false);
 const navegar = useNavigate();
@@ -27,7 +27,9 @@ const clickHandle =async (event, condicional,pieza) => {
   if(condicional ===false){
   setLoading(true);
 const data = await armandoJuegosOracionesPorPiezas({num:pieza})
+const quielist = await listadoQuienImagen();
 setDataOracionJuego(data);
+setQuienlist(quielist);
   setLoading(false);
   navegar(`/OracionJuego`);
 }else if (condicional ===true) {
