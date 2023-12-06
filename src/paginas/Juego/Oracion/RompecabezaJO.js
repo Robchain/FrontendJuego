@@ -11,7 +11,7 @@ import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 import { Piezacalcular } from '../../../helpers/contador'
 const RompecabezaJO = () => {
 const [modal, setModal] = useState(false)
-const {oraciondata,setQuienlist, setOraciondata, dispatchProgreso,setDataOracionJuego,setPiezaJuegoIndi,setIdRompecabeza, setDataRompecabeza} = useContext(JuecoContext);
+const {oraciondata,setQuienlist,setOraciondata, dispatchProgreso,setDataOracionJuego,setPiezaJuegoIndi,setIdRompecabeza, setDataRompecabeza} = useContext(JuecoContext);
 const [dataSelecionada, setDataSelecionada] = useState(null)
 const [loading, setLoading] = useState(false);
 const navegar = useNavigate();

@@ -8,7 +8,6 @@ import VerEstudianteAdm from '../paginas/Administrador/VerEstudianteAdm'
 import VerRompecabezaAdm from '../paginas/Administrador/VerRompecabezaAdm'
 import VerVocabularioAdm from '../paginas/Administrador/VerVocabularioAdm'
 import MenuJuego from '../paginas/Juego/MenuJuego'
-import OracionJ from '../paginas/Juego/Oracion/OracionJ'
 import RompecabezaJO from '../paginas/Juego/Oracion/RompecabezaJO'
 import Login from "../paginas/Logins/Login"
 import { FinalVocabulario } from '../paginas/Juego/Vocabulario/FinalVocabulario'

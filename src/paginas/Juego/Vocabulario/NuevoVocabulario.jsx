@@ -41,7 +41,7 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
       </>
     )
   }
-  const VideosPreguntas = ({ data, videoActual, setPointerEvent, setOpa1, setOpa2, setOpa3, setVideoActual, playref , ...props}) => {
+  const VideosPreguntas = ({ data, videoActual, setPointerEvent, setOpa1, setOpa2, setOpa3, setVideoActual, playref,setcro , ...props}) => {
     const [videos, setVideos] = useState("")
     const navegar = useNavigate();
   
@@ -63,7 +63,7 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
       }
     }, [data])
   
-    return (<>{data.length === 3 && <ReactPlayer url={videos[videoActual]} controls={true} playing={true}  onEnded={() => { if (3 === videoActual) { setPointerEvent("auto"); setOpa1(1); setOpa2(1); setOpa3(1) } else { setVideoActual(videoActual + 1); } }} {...props} />
+    return (<>{data.length === 3 && <ReactPlayer url={videos[videoActual]} controls={true} playing={true}  onEnded={() => { if (3 === videoActual) { setPointerEvent("auto"); setOpa1(1); setOpa2(1); setOpa3(1);setcro("pregunta") } else { setVideoActual(videoActual + 1); } }} {...props} />
     }</>)
   }
   const VideosRespuesta = ({ data, playref,siguienteObjeto, ...props }) => {
@@ -95,6 +95,7 @@ export const NuevoVocabulario = () => {
   const [correcto1, setCorrecto1] = useState(null)
   const [correcto2, setCorrecto2] = useState(null)
   const [correcto3, setCorrecto3] = useState(null)
+  const [cro, setcro] = useState("inicial");
   const [videoActual, setVideoActual] = useState(0);
   const [pointerEvent, setPointerEvent] = useState("none")
   const [momento, setMomento] = useState("inicial");
@@ -109,6 +110,7 @@ export const NuevoVocabulario = () => {
     setOpa1(0.4)
     setOpa2(0.4)
     setOpa3(0.4)
+    setcro("inicial");
     setPointerEvent("none"); 
     setMomento("inicial");   
     setCorrecto1("INICIAL")
@@ -141,7 +143,10 @@ export const NuevoVocabulario = () => {
 
   // Establecer un temporizador para avanzar automáticamente después de un tiempo
   useEffect(() => {
-    const temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 120000); // 5000 milisegundos (5 segundos)
+    let temporizador ;
+    if(cro==='pregunta'){
+       temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 120000); // 5000 milisegundos (5 segundos)
+    }
     // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
     return () => clearTimeout(temporizador);
   }, [indice, rango]);
@@ -165,7 +170,7 @@ export const NuevoVocabulario = () => {
                     <div className="contenedor-juego">
                       <div className="puntaje-cronometro">
                       <div className='cronometro-juego'>
-                      <Cronometro minutosInicio={2} reiniciarCronometro={indice}/>
+                      <Cronometro minutosInicio={2} reiniciarCronometro={cro}/>
                       </div>
                       <div className="puntaje-juego">
                         <p>Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}<PiCoinVerticalDuotone /> </p>
@@ -174,7 +179,7 @@ export const NuevoVocabulario = () => {
                       <div className='contenedor-juego'>
                       <div className='video-juego-vocabulario'>
                         {
-                          momento === "inicial" && <VideosPreguntas  progreso={progreso} data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual}  className='video-pregunta-vocabulario'/>
+                          momento === "inicial" && <VideosPreguntas setcro={setcro} progreso={progreso} data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual}  className='video-pregunta-vocabulario'/>
                         }
                         {
                           momento === "respuesta" && <VideosRespuesta data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} siguienteObjeto={siguienteObjeto} className='video-respuesta-vocabulario'  />

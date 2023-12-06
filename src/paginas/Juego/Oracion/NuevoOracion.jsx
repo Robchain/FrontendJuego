@@ -14,6 +14,7 @@ import Cronometro from '../../../componentes/JuegoComponent/JuegoGeneral/Cronome
 export const NuevoOracion = () => {
     const { dataOracion, Oracionprogreso,dispatchProgreso,piezaJuegoIndi, dataOracionJuego} = useContext(JuecoContext);
     const [rango, setRango] = useState(piezaJuegoIndi+1);
+    const [cro, setcro] = useState("inicial");
     const [indice, setIndice] = useState(1);
     const navegar = useNavigate();
     const siguienteObjeto = () => {
@@ -48,8 +49,11 @@ export const NuevoOracion = () => {
     
       // Establecer un temporizador para avanzar automáticamente después de un tiempo
       useEffect(() => {
-        const temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 120000); // 5000 milisegundos (5 segundos)
+        let temporizador ;
+        if(cro==='pregunta'){
+         temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 120000); // 5000 milisegundos (5 segundos)
         // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
+        }
         return () => clearTimeout(temporizador);
       }, [indice, rango]);
     
@@ -66,7 +70,7 @@ export const NuevoOracion = () => {
     <div className='contenido-oracion-general'>
       <div className='puntaje-cronometro'>
       <div className='cronometro-juego'>
-      <Cronometro minutosInicio={2} reiniciarCronometro={indice}/>
+      <Cronometro minutosInicio={2} reiniciarCronometro={cro}/>
       </div>
     <div className='puntaje-juego'>
         <p>Puntos: {`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}`}<PiCoinVerticalDuotone /></p>
@@ -76,19 +80,19 @@ export const NuevoOracion = () => {
         <Suspense  fallback={<>Cargandos...</>}>
         {
                      //EN CASO DE TODOS 
-                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "TODOS") && (<TODOSSeccion indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto}  dispatchProgreso={dispatchProgreso}/>)
+                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "TODOS") && (<TODOSSeccion setcro={setcro} indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto}  dispatchProgreso={dispatchProgreso}/>)
         }
         {
                       // EN CASO DE QUE
-                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "QUE") && (<QueSeccion indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto}  dispatchProgreso={dispatchProgreso}/>)
+                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "QUE") && (<QueSeccion setcro={setcro} indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto}  dispatchProgreso={dispatchProgreso}/>)
         }
         {
                       // EN CASO DE QUIEN
-                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "QUIEN") && (<QuienSeccion indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto}  Progreso={dispatchProgreso}/>)
+                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "QUIEN") && (<QuienSeccion setcro={setcro} indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto}  Progreso={dispatchProgreso}/>)
         }
         {
                       // EN CASO DE ADVERBIO
-                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "ADVERBIO") && (<Adverbio indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto} dispatchProgreso={dispatchProgreso}/>)
+                    (dataOracionJuego[`Juego` + indice].TipoPregunta === "ADVERBIO") && (<Adverbio setcro={setcro} indice={indice} data={dataOracionJuego} siguiente={siguienteObjeto} dispatchProgreso={dispatchProgreso}/>)
         }
         </Suspense>
     </div>

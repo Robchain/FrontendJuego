@@ -28,7 +28,7 @@ const isAdverbio = (indice, data) => {
     return false;
   }
 }
-const Preguntasecction = ({ setOpacity1, setOpacity2,setOpacity3,setPointer, setVideoActual, videoActual, data, ...props }) => {
+const Preguntasecction = ({ setcro, setOpacity1, setOpacity2,setOpacity3,setPointer, setVideoActual, videoActual, data, ...props }) => {
 
   const [videoseleccionado, setVideoseleccionado] = useState("");
   useEffect(() => {
@@ -50,7 +50,9 @@ const Preguntasecction = ({ setOpacity1, setOpacity2,setOpacity3,setPointer, set
         onEnded={() => { if (1 === videoActual) {   setPointer('auto');
         setOpacity1(1);
         setOpacity2(1);
-        setOpacity3(1); } else { setVideoActual(videoActual + 1); } }}
+        setOpacity3(1); 
+        setcro("pregunta")
+      } else { setVideoActual(videoActual + 1);  } }}
         playing={true}
         controls={true}
         
@@ -181,7 +183,7 @@ const RespuestaImagen = ({ Queselec, data, indice, setMomento, momento, ...opc }
   </>)
 }
 
-const QueSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
+const QueSeccion = ({setcro, indice, siguiente, dispatchProgreso, data }) => {
   const [momento, setMomento] = useState("inicial");
   const [Queselec, setQueselec] = useState({ label: "", value: "" });
   const [QueSelecion, setQueSelecion] = useState(0);
@@ -191,6 +193,7 @@ const QueSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
   const [opacity2, setOpacity2] = useState(0.4);
   const [opacity3, setOpacity3] = useState(0.4);
   useEffect(() => {
+    setcro("inicial")
     setMomento("inicial")
     setQueselec({ label: '', value: '' });
     setQueSelecion(0);
@@ -235,7 +238,7 @@ const QueSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
       <div className='up-side-oracion'>
         <div className='seccion-videos-oracion'>
           {
-            momento === "inicial" && <Preguntasecction setOpacity1={setOpacity1} setOpacity2={setOpacity2} setOpacity3={setOpacity3} setPointer={setPointer} setVideoActual={setVideoActual} videoActual={videoActual} data={data[`Juego` + indice].Oraciones} className="video-pregunta-oracion-una" />
+            momento === "inicial" && <Preguntasecction setcro={setcro} setOpacity1={setOpacity1} setOpacity2={setOpacity2} setOpacity3={setOpacity3} setPointer={setPointer} setVideoActual={setVideoActual} videoActual={videoActual} data={data[`Juego` + indice].Oraciones} className="video-pregunta-oracion-una" />
           }
           {
             momento === "Respuesta" && <Respuestasecction siguiente={siguiente} data={data[`Juego` + indice].Oraciones} className="video-respuesta-oracion-una" />

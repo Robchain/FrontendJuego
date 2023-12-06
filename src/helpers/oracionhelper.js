@@ -49,13 +49,11 @@ return  palabrasSinRepetir; // Esto mostrará ["manzana", "banana", "uva", "nara
         objeto.Estado === "ACTIVO"
       );
     }).sort(() => Math.random() - 0.5).slice(0, 2);
-    
     // Organizar los resultados en un formato de etiquetas y valores
     const etiquetasYValores = resultadosFiltrados.map(objeto => ({
       label: objeto.Nombre,
       value: objeto.Imagen
     }));
-    debugger
     if(data[`Juego` + indice].Oraciones[0].Respuesta ==="CORRECTO"){
       salida =[{label: data[`Juego` + indice].Oraciones[0].Sujeto.label, value: data[`Juego` + indice].Oraciones[0].Sujeto.value },{ label: etiquetasYValores[0].label, value: etiquetasYValores[0].value },{ label: etiquetasYValores[1].label, value: etiquetasYValores[1].value  }]
     }
@@ -64,6 +62,47 @@ return  palabrasSinRepetir; // Esto mostrará ["manzana", "banana", "uva", "nara
     }
     if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
       salida =[{ label: etiquetasYValores[0].label, value: etiquetasYValores[0].value },{ label: etiquetasYValores[1].label, value: etiquetasYValores[1].value  },{label: data[`Juego` + indice].Oraciones[2].Sujeto.label, value: data[`Juego` + indice].Oraciones[2].Sujeto.value }]
+    }
+
+
+      return salida;
+  }
+
+
+  export const analizarAdverbios =({data, indice})=>{
+    const optionsAdverbio = [{ value: "UNO", label: "UNO" }, { value: "UN", label: "UN" }, { value: "DOS", label: "DOS" }, { value: "MUCHOS", label: "MUCHOS" }, { value: "MUCHAS", label: "MUCHAS" }]
+    let salida =[]
+    let nombreExcluir;
+    
+    if(data[`Juego` + indice].Oraciones[0].Respuesta ==="CORRECTO"){
+      nombreExcluir =data[`Juego` + indice].Oraciones[0].Adverbio
+      
+    }
+    if(data[`Juego` + indice].Oraciones[1].Respuesta==="CORRECTO"){
+      nombreExcluir =data[`Juego` + indice].Oraciones[1].Adverbio
+      
+    }
+    if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
+      nombreExcluir =data[`Juego` + indice].Oraciones[2].Adverbio
+      
+    }
+    const resultadosFiltrados = optionsAdverbio.filter(objeto => {
+      return (
+        objeto.value !== nombreExcluir
+      );
+    }).sort(() => Math.random() - 0.5).slice(0, 2);
+    // Organizar los resultados en un formato de etiquetas y valores
+    const etiquetasYValores = resultadosFiltrados.map(objeto => ({
+      value: objeto.value,
+    }));
+    if(data[`Juego` + indice].Oraciones[0].Respuesta ==="CORRECTO"){
+      salida =[{Adverbio: data[`Juego` + indice].Oraciones[0].Adverbio },{ Adverbio: etiquetasYValores[0].value },{ Adverbio: etiquetasYValores[1].value  }]
+    }
+    if(data[`Juego` + indice].Oraciones[1].Respuesta==="CORRECTO"){
+      salida =[{Adverbio: etiquetasYValores[0].value  },{Adverbio: data[`Juego` + indice].Oraciones[1].Adverbio },{ Adverbio: etiquetasYValores[1].value  }]
+    }
+    if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
+      salida =[{ Adverbio: etiquetasYValores[0].value },{Adverbio: etiquetasYValores[1].value  },{Adverbio: data[`Juego` + indice].Oraciones[2].Adverbio }]
     }
 
 

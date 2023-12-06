@@ -205,7 +205,7 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
         setDataJuegoInicialVocabulario,
         piezaJuegoIndi, setPiezaJuegoIndi,idRompecabeza, setIdRompecabeza,
         dataRompecabeza, setDataRompecabeza,
-        quienlist, setQuienlist
+        quienlist, setQuienlist,
       }}
     >
       {children}

@@ -6,10 +6,10 @@ import Que from '../../../assets/img/AssetsGame/icon_Que.png';
 import Verbo from "../../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
-import { OracionRespuesta, analizaradentro, resultadoOracion } from '../../../helpers';
+import { OracionRespuesta, analizarAdverbios, analizaradentro, resultadoOracion } from '../../../helpers';
 import { JuecoContext } from '../../../context/Juego/JuecoContext';
 
-const Preguntasecction = ({dispatch,disparadorQuien, disparadorQue, disparadorAdverbio,setVideoActual,videoActual,data, indice, ...props }) => {
+const Preguntasecction = ({setcro,dispatch,disparadorQuien, disparadorQue, disparadorAdverbio,setVideoActual,videoActual,data, indice, ...props }) => {
 
   const [videoPreguntaSecctionTodo, setVideoPreguntaSecctionTodo] = useState("")
   useEffect(() => {
@@ -63,9 +63,9 @@ const Preguntasecction = ({dispatch,disparadorQuien, disparadorQue, disparadorAd
       dispatch({ type: "puntador", field: "pointer2", value: "auto" })
       dispatch({ type: "puntador", field: "pointer3", value: "auto" })
       dispatch({ type: "puntador", field: "pointer", value: "auto" })
+      setcro("pregunta")
 
-
-         } else { setVideoActual(videoActual + 1); } }}
+         } else {setVideoActual(videoActual + 1);  } }}
         {...props}
       />
     </div>
@@ -183,11 +183,11 @@ const SeleccionQue = ({ QueSelecion, data, indice, ...props }) => {
   return (<div {...props}></div>)
 }
 
-const SeleccionCantidad = ({ AdverbNSeleccion, data, indice, ...props }) => {
+const SeleccionCantidad = ({ Adverbios,AdverbNSeleccion, data, indice, ...props }) => {
 
-  if (AdverbNSeleccion === 1) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{data[`Juego` + indice].Oraciones[0].Adverbio || ''}</span>) }
-  if (AdverbNSeleccion === 2) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{data[`Juego` + indice].Oraciones[1].Adverbio || ''}</span>) }
-  if (AdverbNSeleccion === 3) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{data[`Juego` + indice].Oraciones[2].Adverbio || ''}</span>) }
+  if (AdverbNSeleccion === 1) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{Adverbios[0].Adverbio || ''}</span>) }
+  if (AdverbNSeleccion === 2) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{Adverbios[1].Adverbio || ''}</span>) }
+  if (AdverbNSeleccion === 3) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{Adverbios[2].Adverbio || ''}</span>) }
   if (AdverbNSeleccion === 0) { return (<div {...props}></div>) }
   return (<div {...props}></div>)
 }
@@ -311,7 +311,7 @@ const RespuestaImagenconAdverbio = ({ indice, dispatchProgreso, palabrasEstdo, s
     }
   }
 }
-const TODOSSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
+const TODOSSeccion = ({ setcro, indice, siguiente, dispatchProgreso, data }) => {
   const { quienlist} = useContext(JuecoContext);
   const [estate, dispatch] = useReducer(apuntadores, estadoInicialApuntadores)
   const [videoActual, setVideoActual] = useState(0);
@@ -321,17 +321,24 @@ const TODOSSeccion = ({ indice, siguiente, dispatchProgreso, data }) => {
   const [opacarAdverbio, disparadorAdverbio] = useReducer(opacarsOpacidadAdverbio, estadoInicialOpacidadAdverbio)
   const [palabrasEstdo, disparadorPalabras] = useReducer(seleccionDePalabrasSelecion, estadoInicialSelecionPalabras)
   const [opcionRes, setopcionRes] = useState("Nada");
+  const [Adverbios, setAdverbios] = useState([])
   const [{ QueSelecion, QuienSeleccion, AdverbNSeleccion }, DisparadordeImagenes] = useReducer(seleccionDeImagenesf, selecciondeImagenes)
   const [momento, setMomento] = useState("inicial");
-
   useEffect(() => {
     if(data!=null){
-      const info = analizaradentro({quienlist:quienlist, data:data, indice:indice});
-      setmodeloquienMostrar(info);
+      const info = analizarAdverbios({data:data, indice:indice});
+      setAdverbios(info);
+    }
+  }, [indice])
+  useEffect(() => {
+    if(data!=null){
+      const info2 = analizaradentro({quienlist:quienlist, data:data, indice:indice});
+      setmodeloquienMostrar(info2);
     }
   }, [indice])
 
 useEffect(() => {
+  setcro("inicial")
   setMomento("inicial");
   setopcionRes("Nada");
   setVideoActual(0);
@@ -397,14 +404,14 @@ useEffect(() => {
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity2", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego` + indice].Oraciones[0].Adverbio || 'no habia' })
+    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: Adverbios[0].Adverbio || 'no habia' })
   }
   const onhandleClickAdveSegundo = () => {
     DisparadordeImagenes({ type: "seleccionImagen", field: "AdverbNSeleccion", value: 2 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity1", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego` + indice].Oraciones[1].Adverbio || 'no habia' })
+    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: Adverbios[1].Adverbio || 'no habia' })
   }
 
   const onhandleClickAdveTercero = () => {
@@ -412,7 +419,7 @@ useEffect(() => {
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity1", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity2", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego` + indice].Oraciones[2].Adverbio || 'no habia' })
+    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: Adverbios[2].Adverbio || 'no habia' })
   }
 
 
@@ -421,7 +428,7 @@ useEffect(() => {
       <div className='up-side-oracion'> 
       <div className='seccion-videos-oracion' >
         {
-          momento === "inicial" && <Preguntasecction dispatch={dispatch} disparadorQuien={disparadorQuien} disparadorQue={disparadorQue}  disparadorAdverbio={disparadorAdverbio}   setVideoActual={setVideoActual} videoActual={videoActual} data={data[`Juego` + indice].Oraciones} indice={indice} className="video-pregunta-oracion-una" />
+          momento === "inicial" && <Preguntasecction setcro={setcro} dispatch={dispatch} disparadorQuien={disparadorQuien} disparadorQue={disparadorQue}  disparadorAdverbio={disparadorAdverbio}   setVideoActual={setVideoActual} videoActual={videoActual} data={data[`Juego` + indice].Oraciones} indice={indice} className="video-pregunta-oracion-una" />
         }
         {
           momento === "Respuesta" && <Respuestasecction siguiente={siguiente} data={data[`Juego` + indice].Oraciones} className="video-respuesta-oracion-una" />
@@ -450,8 +457,8 @@ useEffect(() => {
         </div>:<div className='seccion-quien-multiple'>
           </div>}
         {
-          isAdverbio(indice, data)
-          && (
+     Adverbios.length > 0 &&  isAdverbio(indice, data)
+          ? (
             <div className='seccion-adv-multiple'>
               <div className='imagen-pregunta-adv-multi'>
                 <img alt='sujeto' src={Cantidad} />
@@ -459,25 +466,25 @@ useEffect(() => {
               <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity1 }} onClick={onhandleClickAdvePrimero}>
                 <div className='opcion-multi-letras'>
                   <div>
-                    <p>{data[`Juego` + indice].Oraciones[0].Adverbio}</p>
+                    <p>{Adverbios[0].Adverbio}</p>
                   </div>
                 </div>
               </div>
               <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity2 }} onClick={onhandleClickAdveSegundo} >
                 <div className='opcion-multi-letras'>
                   <div>
-                    <p>{data[`Juego` + indice].Oraciones[1].Adverbio}</p>
+                    <p>{Adverbios[1].Adverbio}</p>
                   </div>
                 </div>
               </div>
               <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity3 }} onClick={onhandleClickAdveTercero} >
                 <div className='opcion-multi-letras'>
                   <div>
-                    <p >{data[`Juego` + indice].Oraciones[2].Adverbio}</p>
+                    <p >{Adverbios[2].Adverbio}</p>
                   </div>
                 </div>
               </div>
-            </div>)
+            </div>) :<div className='seccion-adv-multiple'></div>
         }
         <div className='seccion-que-multiple'>
           <div className='imagen-pregunta-que-multi'>
@@ -533,7 +540,7 @@ useEffect(() => {
               isAdverbio(indice, data)
               && (
                 <div style={{ padding: '0px' }}>
-                  <SeleccionCantidad indice={indice} AdverbNSeleccion={AdverbNSeleccion} data={data} className='opcionesSelec' />
+                  <SeleccionCantidad Adverbios={Adverbios} indice={indice} AdverbNSeleccion={AdverbNSeleccion} data={data} className='opcionesSelec' />
                 </div>
               )
             }
