@@ -257,6 +257,10 @@ const esCorrecto = ultimoObjeto.Resultado === "CORRECTO";
         return 3;
       }else if(count===4){
         return 4;
+      }else if(count===5){
+        return 4;
+      }else if(count===6){
+        return 4;
       }
   }else if(esCorrecto){
     if(count===0){
@@ -270,6 +274,8 @@ const esCorrecto = ultimoObjeto.Resultado === "CORRECTO";
     }else if(count===4){
       return 4;
     }else if(count===5){
+      return 4;
+    }else if(count===6){
       return 4;
     }
   }
@@ -290,6 +296,10 @@ const esCorrecto = ultimoObjeto.Resultado === "CORRECTO";
         return 5;
       }else if(count==6){
         return 6;
+      }else if(count==7){
+        return 6;
+      }else if(count==8){
+        return 6;
       }
   }else if(esCorrecto){
     if(count===0){
@@ -307,6 +317,8 @@ const esCorrecto = ultimoObjeto.Resultado === "CORRECTO";
     }else if(count===6){
       return 6;
     }else if(count===7){
+      return 6;
+    }else if(count==8){
       return 6;
     }
   }

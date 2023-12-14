@@ -9,6 +9,7 @@ import { PiCoinVerticalDuotone } from "react-icons/pi";
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego';
 import { resultado } from '../../../helpers/contador';
 import Cronometro from '../../../componentes/JuegoComponent/JuegoGeneral/Cronometro';
+import { sumadordePunto } from '../../../helpers';
 const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setOpa2, setOpa3, ...props }) => {
     const [imagenRes, setImagenRes] = useState("")
     useEffect(() => {
@@ -85,11 +86,11 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
     return <ReactPlayer url={videos} playing={true} controls={true} onEnded={siguienteObjeto} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" {...props} />
   }
 export const NuevoVocabulario = () => {
-    const {  avance0, progreso, dataJuegoVocabulario, piezaJuegoIndi } = useContext(JuecoContext);
-    const [opa1, setOpa1] = useState(0.4)
-  const [opa2, setOpa2] = useState(0.4)
-  const [opa3, setOpa3] = useState(0.4)
-  const [rango, setRango] = useState(piezaJuegoIndi+1);
+    const {  avance0, progreso, dataJuegoVocabulario, piezaAvanzadas,piezaJuegoIndi } = useContext(JuecoContext);
+    const [opa1, setOpa1] = useState(0.4);
+  const [opa2, setOpa2] = useState(0.4);
+  const [opa3, setOpa3] = useState(0.4);
+  const [rango, setRango] = useState(piezaJuegoIndi +2);
   const playref = useRef(null);
   const navegar = useNavigate();
   const [correcto1, setCorrecto1] = useState(null)
@@ -104,7 +105,7 @@ export const NuevoVocabulario = () => {
 
   // Función para avanzar al siguiente objeto en el array
   const siguienteObjeto = () => {
-    if(indice === rango){
+    if(indice === (rango)){
         navegar(`/finalVocabulario`);
     }
     setOpa1(0.4)
@@ -116,7 +117,7 @@ export const NuevoVocabulario = () => {
     setCorrecto1("INICIAL")
     setCorrecto2("INICIAL")
     setCorrecto3("INICIAL")
-    setIndice((prevIndice) => (prevIndice % rango) + 1);
+    setIndice((prevIndice) => (prevIndice % (rango)) + 1);
         
   };
 
@@ -125,7 +126,7 @@ export const NuevoVocabulario = () => {
     if(dataJuegoVocabulario!=null){
       progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: "---", Resul: "NO CONTESTO" });
     }
-    if(indice === rango){
+    if(indice === rango || sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length}) ===rango){
       navegar(`/finalVocabulario`);
   }
     setOpa1(0.4)
@@ -138,7 +139,7 @@ export const NuevoVocabulario = () => {
     setCorrecto3("INICIAL")
     setVideoActual(0);
 
-    setIndice((prevIndice) => (prevIndice % rango) + 1);
+    setIndice((prevIndice) => (prevIndice % rango +1) + 1);
   };
 
   // Establecer un temporizador para avanzar automáticamente después de un tiempo
@@ -150,6 +151,7 @@ export const NuevoVocabulario = () => {
     // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
     return () => clearTimeout(temporizador);
   }, [indice, rango]);
+
 
   useEffect(() => {
     if (dataJuegoVocabulario === null) {
@@ -170,10 +172,10 @@ export const NuevoVocabulario = () => {
                     <div className="contenedor-juego">
                       <div className="puntaje-cronometro">
                       <div className='cronometro-juego'>
-                      <Cronometro minutosInicio={2} reiniciarCronometro={cro}/>
+                      <Cronometro minutosInicio={1} reiniciarCronometro={cro} segundosInicio={50}/>
                       </div>
                       <div className="puntaje-juego">
-                        <p>Puntos: {`${avance0.filter(obj => obj.Resultado === "CORRECTO").length}`}<PiCoinVerticalDuotone /> </p>
+                        <p>Puntos: {`${sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length})}`}<PiCoinVerticalDuotone /> </p>
                       </div>
                       </div>
                       <div className='contenedor-juego'>
@@ -223,6 +225,7 @@ export const NuevoVocabulario = () => {
                       </div>
                       </div>
                     </div>
+                    {JSON.stringify(piezaJuegoIndi)}
                   </Container>
                 
               </div>

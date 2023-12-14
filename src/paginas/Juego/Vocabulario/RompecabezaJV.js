@@ -9,8 +9,9 @@ import { llamadaRompecabezaGet } from '../../../service/Juego/Vocabulario'
 import { CrearJuegoVocabularioIndividual } from '../../../service/Adminstrador/Vocabulario'
 import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 import { Piezacalcular } from '../../../helpers/contador'
+import { cantidadDePartidas } from '../../../helpers';
 const RompecabezaJV = () => {
-  const { dataJuegoInicialVocabulario, setavance, setIdRompecabeza, setDataJuegoInicialVocabulario,setdataJuegoVocabulario, setPiezaJuegoIndi,setDataRompecabeza } = useContext(JuecoContext);
+  const { dataJuegoInicialVocabulario, setavance, setpiezaAvanzadas,setIdRompecabeza, setDataJuegoInicialVocabulario,setdataJuegoVocabulario,setprevAvance, setPiezaJuegoIndi,setDataRompecabeza } = useContext(JuecoContext);
   const [modal, setModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const navegar = useNavigate();
@@ -60,7 +61,7 @@ const RompecabezaJV = () => {
               {
                 dataJuegoInicialVocabulario.map(i=>(
                   <div className='my-2'>
-                  <div onClick={(e) => {setDataseleccionada(i); setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setPiezaJuegoIndi(i.Rompecabeza.Pieza); clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)} }><RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  piezas={i.Rompecabeza.Pieza} url={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} /> </div> <p className='my-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>{/*Piezas:*/}<IoExtensionPuzzleOutline /> </span> <span style={{color:"#62269E"}}>{`${Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })}/${i.Rompecabeza.Pieza}`}</span></p>
+                  <div onClick={(e) => {setDataseleccionada(i); setprevAvance(i.Avance); setIdRompecabeza(i._id);setpiezaAvanzadas(Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })); setDataRompecabeza(i.Rompecabeza);setPiezaJuegoIndi( cantidadDePartidas({piezasfaltantes:Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza }), piezasinicial:i.Rompecabeza.Pieza})); clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)} }><RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  piezas={i.Rompecabeza.Pieza} url={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} /> </div> <p className='my-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>{/*Piezas:*/}<IoExtensionPuzzleOutline /> </span> <span style={{color:"#62269E"}}>{`${Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })}/${i.Rompecabeza.Pieza}`}</span></p>
                 </div>
                 ))
               

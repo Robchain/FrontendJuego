@@ -10,12 +10,12 @@ import { FaPuzzlePiece } from "react-icons/fa";
 import { RompecabaSolitaria } from '../../../componentes/JuegoComponent/JuegoGeneral/RompecabaSolitaria'
 
 export const FinalVocabulario = () => {
-  const { avance0,dataJuegoVocabulario,idRompecabeza,dataRompecabeza} = useContext(JuecoContext);
+  const { avance0,dataJuegoVocabulario,idRompecabeza,dataRompecabeza,prevAvance} = useContext(JuecoContext);
 const [isfinished, setisfinished] = useState(false)
 
   const ActualizarJuego1= async ()=>{
       if(avance0!==undefined && dataRompecabeza.Pieza){
-       if ((avance0.filter(obj => obj.Resultado==="CORRECTO").length / dataRompecabeza.Pieza) >= 1 ){
+       if ((prevAvance.concat(avance0).filter(obj => obj.Resultado==="CORRECTO").length / dataRompecabeza.Pieza) >= 1 ){
         setisfinished(true)
        }
       }
@@ -26,6 +26,10 @@ const [isfinished, setisfinished] = useState(false)
     ActualizarJuego1();
   }, [])
    
+  // useEffect(() => {
+  //   setfinalAvance( prevAvance.concat(avance0))
+  // }, [])
+  
  
 
 const Pantalla =()=>{
@@ -37,13 +41,13 @@ const Pantalla =()=>{
     <NavBarJuego Seccion={"Vocabulario"} urlBack={"/RompecabezaJV"} />
  <div className='contenido-final-vocabulario'>
  <div className='rompecabeza-final-vocabulario'>
- <RompecabaSolitaria principal={false} Avance={avance0} alt={dataRompecabeza.Nombre}  url={dataRompecabeza.FileColor} piezas={dataRompecabeza.Pieza} terminado={isfinished}/>
+ <RompecabaSolitaria principal={false} Avance={prevAvance.concat(avance0)} alt={dataRompecabeza.Nombre}  url={dataRompecabeza.FileColor} piezas={dataRompecabeza.Pieza} terminado={isfinished}/>
  <div className='puntos-seccion'>
  <div className='puzzle-div'>
- <h1 className='puntuacion-final-puzzle'><FaPuzzlePiece/> {`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length-1}`}  </h1>
+ <h1 className='puntuacion-final-puzzle'><FaPuzzlePiece/> {`${prevAvance.concat(avance0).filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length-1}`}  </h1>
  </div>
  <div className='puntuacion-div'>
- <h1 className='puntuacion-final-coin'><PiCoinVerticalDuotone/> {`${avance0.filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length}`}</h1>
+ <h1 className='puntuacion-final-coin'><PiCoinVerticalDuotone/> {`${prevAvance.concat(avance0).filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length}`}</h1>
  </div>
  </div>
  </div>

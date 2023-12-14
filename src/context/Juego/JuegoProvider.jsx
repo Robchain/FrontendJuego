@@ -10,11 +10,13 @@ import { llamadaRompecabezaGet } from "../../service/Juego/Vocabulario";
 export const JuegoProvider = ({ children }) => {
   const [piezaJuegoIndi, setPiezaJuegoIndi] = useState(0);
   const [cardEquipo, setCardEquipo] = useState([]);
+  const [piezaAvanzadas, setpiezaAvanzadas] = useState(0);
   const [dataJuegoInicialVocabulario, setDataJuegoInicialVocabulario] = useState([]);
   const [dataJuegoVocabulario, setdataJuegoVocabulario] = useState(null)
   const [dataRompecabeza, setDataRompecabeza] = useState(null);
   const [quienlist, setQuienlist] = useState([])
   const [dataOracionJuego, setDataOracionJuego] = useState(null);
+  const [prevAvance, setprevAvance] = useState([])
   const [oraciondata, setOraciondata] = useState(null);
   const [InfoEstudiaSituacion, setInfoEstudiaSituacion] = useState(null);
 const [idRompecabeza, setIdRompecabeza] = useState(null)
@@ -204,11 +206,14 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
         avance0,
         setDataJuegoInicialVocabulario,
         piezaJuegoIndi, setPiezaJuegoIndi,idRompecabeza, setIdRompecabeza,
-        dataRompecabeza, setDataRompecabeza,
+        dataRompecabeza, setDataRompecabeza,prevAvance, setprevAvance,
         quienlist, setQuienlist,
+        piezaAvanzadas, setpiezaAvanzadas
       }}
     >
       {children}
     </JuecoContext.Provider>
   );
 };
+
+

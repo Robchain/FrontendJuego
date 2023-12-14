@@ -1,5 +1,17 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { ordenarPorResultado } from '../../../helpers'
 export const RompecabaSolitaria = ({ Avance,piezas=4, url, alt, principal=true, terminado=false}) => {
+const [piezastraida, setpiezas] = useState([])
+
+useEffect(() => {
+  if(Avance!==null){
+    const finalPiezas = ordenarPorResultado(Avance);
+    setpiezas(finalPiezas);
+  }
+}, [Avance])
+
+
+
 
   return (  
    <div  className="minicuadrito">
@@ -8,8 +20,8 @@ export const RompecabaSolitaria = ({ Avance,piezas=4, url, alt, principal=true, 
    {
     (piezas === 4) && (<>
     {
-      Avance !==null ? Avance.map( (i,index)=>(
-        index < 5 &&
+      Avance !==null ? piezastraida.map( (i,index)=>(
+        index < 4 &&
         <div    className={principal ? 'a':'c'}  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
     </div>
       )
@@ -23,8 +35,8 @@ export const RompecabaSolitaria = ({ Avance,piezas=4, url, alt, principal=true, 
      }{
     (piezas === 6) && (<>
       {
-      Avance !==null ? Avance.map( (i,index)=>(
-        index < 7 &&
+      Avance !==null ? piezastraida.map( (i,index)=>(
+        index < 6 &&
         <div    className={principal ? 'b':'d'}  style={{visibility:i.Resultado==="CORRECTO" &&'hidden' }}>
     </div>
       )
