@@ -225,9 +225,7 @@ export const NuevoVocabulario = () => {
                       </div>
                       </div>
                     </div>
-                    {JSON.stringify(piezaJuegoIndi)}
                   </Container>
-                
               </div>
           </div>
         ) : <><>Cargando...</></>

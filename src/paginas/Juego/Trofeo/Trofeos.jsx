@@ -53,7 +53,7 @@ export const Trofeos = () => {
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Vocabularios</h3>
 {
   dataJuegoInicialVocabulario !== null ? (
-  dataJuegoInicialVocabulario.map(i=>(
+  dataJuegoInicialVocabulario.filter(i=>i.Terminado===true).map(i=>(
  <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4"  className='my-2'>
         <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
           <img src={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
@@ -69,7 +69,7 @@ export const Trofeos = () => {
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Oraciones</h3>
 {
   oraciondata !==null ? (
-  oraciondata.map(i=>(
+  oraciondata.filter(i=>i.Terminado===true).map(i=>(
  <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" className='my-2' >
         <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
           <img src={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
