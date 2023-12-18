@@ -105,7 +105,7 @@ export const NuevoVocabulario = () => {
 
   // Función para avanzar al siguiente objeto en el array
   const siguienteObjeto = () => {
-    if(indice === (rango)){
+    if(indice === (rango) || sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length}) === piezaJuegoIndi ){
         navegar(`/finalVocabulario`);
     }
     setOpa1(0.4)
@@ -126,7 +126,7 @@ export const NuevoVocabulario = () => {
     if(dataJuegoVocabulario!=null){
       progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: "---", Resul: "NO CONTESTO" });
     }
-    if(indice === rango || sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length}) ===rango){
+    if(indice === rango || sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length}) ===piezaJuegoIndi){
       navegar(`/finalVocabulario`);
   }
     setOpa1(0.4)
@@ -187,7 +187,6 @@ export const NuevoVocabulario = () => {
                           momento === "respuesta" && <VideosRespuesta data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} siguienteObjeto={siguienteObjeto} className='video-respuesta-vocabulario'  />
                         }
                       </div>
-
                       <div className='opciones-juego-vocabulario' >
                         <div style={{ pointerEvents: pointerEvent, opacity: opa1 }} onClick={() => { setCorrecto1(dataJuegoVocabulario[`Juego` + indice].Palabras[0].Respuesta);  setCorrecto2("NADA"); setCorrecto3("NADA"); setOpa2(0.4); setOpa3(0.4); progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: dataJuegoVocabulario[`Juego` + indice].Palabras[0].Palabra, Resul: dataJuegoVocabulario[`Juego` + indice].Palabras[0].Respuesta }); setVideoActual(0); }} >
                           <div className='Mi-diseñodiv'>

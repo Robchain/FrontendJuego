@@ -41,6 +41,14 @@ const RompecabezaJV = () => {
     }
   }
 
+  const guardadoavancePrev =(Avance)=>{
+    if(Avance===null){
+      setprevAvance([]);
+    }else if(Avance!==null){
+      setprevAvance(Avance)
+    }
+  }
+
   
 
   const Pantalla = () => {
@@ -61,7 +69,7 @@ const RompecabezaJV = () => {
               {
                 dataJuegoInicialVocabulario.map(i=>(
                   <div className='my-2'>
-                  <div onClick={(e) => {setDataseleccionada(i); setprevAvance(i.Avance); setIdRompecabeza(i._id);setpiezaAvanzadas(Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })); setDataRompecabeza(i.Rompecabeza);setPiezaJuegoIndi( cantidadDePartidas({piezasfaltantes:Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza }), piezasinicial:i.Rompecabeza.Pieza})); clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)} }><RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  piezas={i.Rompecabeza.Pieza} url={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} /> </div> <p className='my-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>{/*Piezas:*/}<IoExtensionPuzzleOutline /> </span> <span style={{color:"#62269E"}}>{`${Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })}/${i.Rompecabeza.Pieza}`}</span></p>
+                  <div onClick={(e) => {setDataseleccionada(i); guardadoavancePrev(i.Avance); setIdRompecabeza(i._id);setpiezaAvanzadas(Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })); setDataRompecabeza(i.Rompecabeza);setPiezaJuegoIndi( cantidadDePartidas({piezasfaltantes:Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza }), piezasinicial:i.Rompecabeza.Pieza})); clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)} }><RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  piezas={i.Rompecabeza.Pieza} url={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} /> </div> <p className='my-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}>{/*Piezas:*/}<IoExtensionPuzzleOutline /> </span> <span style={{color:"#62269E"}}>{`${Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })}/${i.Rompecabeza.Pieza}`}</span></p>
                 </div>
                 ))
               

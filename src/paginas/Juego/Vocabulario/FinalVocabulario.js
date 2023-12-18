@@ -44,10 +44,10 @@ const Pantalla =()=>{
  <RompecabaSolitaria principal={false} Avance={prevAvance.concat(avance0)} alt={dataRompecabeza.Nombre}  url={dataRompecabeza.FileColor} piezas={dataRompecabeza.Pieza} terminado={isfinished}/>
  <div className='puntos-seccion'>
  <div className='puzzle-div'>
- <h1 className='puntuacion-final-puzzle'><FaPuzzlePiece/> {`${prevAvance.concat(avance0).filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length-1}`}  </h1>
+ <h1 className='puntuacion-final-puzzle'><FaPuzzlePiece/> {`${prevAvance.concat(avance0).filter(obj => obj.Resultado==="CORRECTO").length}/${dataRompecabeza.Pieza}`}  </h1>
  </div>
  <div className='puntuacion-div'>
- <h1 className='puntuacion-final-coin'><PiCoinVerticalDuotone/> {`${prevAvance.concat(avance0).filter(obj => obj.Resultado==="CORRECTO").length}/${avance0.length}`}</h1>
+ <h1 className='puntuacion-final-coin'><PiCoinVerticalDuotone/> {`${prevAvance.concat(avance0).filter(obj => obj.Resultado==="CORRECTO").length}/${dataRompecabeza.Pieza}`}</h1>
  </div>
  </div>
  </div>
