@@ -302,8 +302,13 @@ body {
 
 @media screen and (max-width: 800px) and (min-width:300px) {
     /* mi nuevo media screen  tamaño de la tableta de vertical*/
-
-    
+    .cuadro-cronometro{
+        display: flex;
+        
+    }
+    .cuadro-cronometro .imagen-alerta{
+        width: 65px;
+    }
 /*generales*/
 .nav-superior-nombre{
     margin-top: 10px;
@@ -319,8 +324,8 @@ body {
     border-radius: 10px;
     border: #f6f6f6 solid;
     box-shadow: 5px 5px #d7d7d7 ;
-
  }
+
   
  .barra-superior .menu-icono-div{
     display: flex;
@@ -476,17 +481,21 @@ body {
         flex-direction: column;
         align-items: center;
     }
-
-    .contenedor-juego .puntaje-cronometro{
+    .contenedor-juego  .puntaje-cronometro {
         display: flex;
+width: 100%;
+justify-content: space-between;
     }
-
-    .puntaje-cronometro .puntaje-cronometro .puntaje-juego {
+    .contenedor-juego  .cronometro-juego {
+align-self: flex-start;
+    }
+    .contenedor-juego .puntaje-cronometro .puntaje-juego {
         align-self: flex-end;
         font-weight: 700;
         color: #85858C;
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
+
 
     .contenedor-juego .opciones-juego-vocabulario {
         align-items: center;
@@ -1179,6 +1188,14 @@ margin-right: 15px;
             margin-top: -30px;
             margin-bottom: 0px;
         }
+        .cuadro-cronometro{
+            display: flex;
+            
+        }
+        .cuadro-cronometro .imagen-alerta{
+            width: 65px;
+        }
+        
 }
 
 

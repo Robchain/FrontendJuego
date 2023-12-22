@@ -6,9 +6,9 @@ export const llamadaRompecabezaGet =async ({id})=>{
 }
 
 
-export const Juego1= async ({_id,Avance})=>{
+export const Juego1= async ({_id,Avance,end})=>{
     Api.post("/UpdateTerminadoVocabulario",{ id:_id,
-    Avance:Avance
+    Avance:Avance, end:end
     })
   }
   

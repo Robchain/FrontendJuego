@@ -19,7 +19,7 @@ const [isfinished, setisfinished] = useState(false)
         setisfinished(true)
        }
       }
-    await  Juego1({_id:idRompecabeza,Avance:avance0})
+    await  Juego1({_id:idRompecabeza,Avance:avance0,end:isfinished})
     }
 
   useEffect(() => {

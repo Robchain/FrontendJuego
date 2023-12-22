@@ -67,9 +67,10 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
     return (<>{data.length === 3 && <ReactPlayer url={videos[videoActual]} controls={true} playing={true}  onEnded={() => { if (3 === videoActual) { setPointerEvent("auto"); setOpa1(1); setOpa2(1); setOpa3(1);setcro("pregunta") } else { setVideoActual(videoActual + 1); } }} {...props} />
     }</>)
   }
-  const VideosRespuesta = ({ data, playref,siguienteObjeto, ...props }) => {
+  const VideosRespuesta = ({ setcro,data, playref,siguienteObjeto, ...props }) => {
     const [videos, setvideos] = useState("");
     useEffect(() => {
+      setcro('respuesta');
       let pregunta = "";
       for (let i = 0; i < data.length; i++) {
         if (data[i].Respuesta === 'CORRECTO') {
@@ -86,7 +87,7 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
     return <ReactPlayer url={videos} playing={true} controls={true} onEnded={siguienteObjeto} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" {...props} />
   }
 export const NuevoVocabulario = () => {
-    const {  avance0, progreso, dataJuegoVocabulario, piezaAvanzadas,piezaJuegoIndi } = useContext(JuecoContext);
+    const {  avance0, progreso, dataJuegoVocabulario, piezaAvanzadas,piezaJuegoIndi,prevAvance,dataRompecabeza } = useContext(JuecoContext);
     const [opa1, setOpa1] = useState(0.4);
   const [opa2, setOpa2] = useState(0.4);
   const [opa3, setOpa3] = useState(0.4);
@@ -105,7 +106,8 @@ export const NuevoVocabulario = () => {
 
   // Función para avanzar al siguiente objeto en el array
   const siguienteObjeto = () => {
-    if(indice === (rango) || sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length}) === piezaJuegoIndi ){
+    
+      if(indice === rango || prevAvance.concat(avance0).filter(obj => obj.Resultado==="CORRECTO").length === dataRompecabeza.Pieza ){
         navegar(`/finalVocabulario`);
     }
     setOpa1(0.4)
@@ -126,7 +128,7 @@ export const NuevoVocabulario = () => {
     if(dataJuegoVocabulario!=null){
       progreso({ palabraCorrecta: resultado({ objeto1: dataJuegoVocabulario[`Juego` + indice].Palabras[0], objeto2: dataJuegoVocabulario[`Juego` + indice].Palabras[1], objeto3: dataJuegoVocabulario[`Juego` + indice].Palabras[2] }), selecionado: "---", Resul: "NO CONTESTO" });
     }
-    if(indice === rango || sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length}) ===piezaJuegoIndi){
+    if(indice === rango || prevAvance.concat(avance0).filter(obj => obj.Resultado==="CORRECTO").length === dataRompecabeza.Pieza){
       navegar(`/finalVocabulario`);
   }
     setOpa1(0.4)
@@ -137,20 +139,21 @@ export const NuevoVocabulario = () => {
     setCorrecto1("INICIAL")
     setCorrecto2("INICIAL")
     setCorrecto3("INICIAL")
+    setcro("inicial");
     setVideoActual(0);
 
-    setIndice((prevIndice) => (prevIndice % rango +1) + 1);
+    setIndice((prevIndice) => (prevIndice % (rango)) + 1);
   };
 
   // Establecer un temporizador para avanzar automáticamente después de un tiempo
   useEffect(() => {
     let temporizador ;
     if(cro==='pregunta'){
-       temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 120000); // 5000 milisegundos (5 segundos)
+       temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 60000); // 5000 milisegundos (5 segundos)
     }
     // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
     return () => clearTimeout(temporizador);
-  }, [indice, rango]);
+  }, [indice, rango,cro]);
 
 
   useEffect(() => {
@@ -172,7 +175,7 @@ export const NuevoVocabulario = () => {
                     <div className="contenedor-juego">
                       <div className="puntaje-cronometro">
                       <div className='cronometro-juego'>
-                      <Cronometro minutosInicio={1} reiniciarCronometro={cro} segundosInicio={50}/>
+                      <Cronometro minutosInicio={0} reiniciarCronometro={cro} segundosInicio={59}/>
                       </div>
                       <div className="puntaje-juego">
                         <p>Puntos: {`${sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length})}`}<PiCoinVerticalDuotone /> </p>
@@ -184,7 +187,7 @@ export const NuevoVocabulario = () => {
                           momento === "inicial" && <VideosPreguntas setcro={setcro} progreso={progreso} data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual}  className='video-pregunta-vocabulario'/>
                         }
                         {
-                          momento === "respuesta" && <VideosRespuesta data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} siguienteObjeto={siguienteObjeto} className='video-respuesta-vocabulario'  />
+                          momento === "respuesta" && <VideosRespuesta setcro={setcro} data={dataJuegoVocabulario[`Juego${indice}`].Palabras} playref={playref} siguienteObjeto={siguienteObjeto} className='video-respuesta-vocabulario'  />
                         }
                       </div>
                       <div className='opciones-juego-vocabulario' >
