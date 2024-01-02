@@ -21,10 +21,14 @@ const VerVerboRespuesta = ({ data, indice, ...opc }) => {
 
   return (<span style={{ fontWeight: 700, color: "#85858C" }} {...opc}>{palabra}</span>)
 }
-const isAdverbio = (indice, data) => {
-  if (data[`Juego` + indice].Oraciones[2].Adverbio || data[`Juego` + indice].Oraciones[1].Adverbio || data[`Juego` + indice].Oraciones[0].Adverbio) {
+const isAdverbio = ( indice, data) => {
+  if(data[`Juego` + indice].Oraciones[0].Respuesta === "CORRECTO" && data[`Juego` + indice].Oraciones[0].Adverbio){
+return true
+  }else if(data[`Juego` + indice].Oraciones[1].Respuesta === "CORRECTO" && data[`Juego` + indice].Oraciones[1].Adverbio){
     return true;
-  } else {
+  }else if(data[`Juego` + indice].Oraciones[2].Respuesta === "CORRECTO" && data[`Juego` + indice].Oraciones[2].Adverbio){
+    return true;
+  }else {
     return false;
   }
 }
@@ -62,9 +66,10 @@ const Preguntasecction = ({ setcro, setOpacity1, setOpacity2,setOpacity3,setPoin
   )
 };
 
-const Respuestasecction = ({ siguiente, data, ...props }) => {
+const Respuestasecction = ({setcro, siguiente, data, ...props }) => {
   const [videoseleccionado2, setVideoseleccionado2] = useState("");
   useEffect(() => {
+    setcro('respuesta');
     let pregunta = "";
     for (let i = 0; i < data.length; i++) {
       if (data[i].Respuesta === 'CORRECTO') {
@@ -97,7 +102,7 @@ const VerSeleccionQuien = ({ data, indice, ...opc }) => {
     } else if (data[`Juego` + indice].Oraciones[2].Respuesta === "CORRECTO") {
       setQueselec(data[`Juego` + indice].Oraciones[2].Sujeto)
     }
-  }, [data])
+  }, [data, indice])
 
   return (<>
     {
@@ -117,7 +122,7 @@ const VerCantidad = ({ data, indice, ...props }) => {
     } else if (data[`Juego` + indice].Oraciones[2].Respuesta === "CORRECTO") {
       setSeleccion(data[`Juego` + indice].Oraciones[2].Adverbio)
     }
-  }, [data])
+  }, [data, indice])
 
   return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{seleccion}</span>)
 }
@@ -241,7 +246,7 @@ const QueSeccion = ({setcro, indice, siguiente, dispatchProgreso, data }) => {
             momento === "inicial" && <Preguntasecction setcro={setcro} setOpacity1={setOpacity1} setOpacity2={setOpacity2} setOpacity3={setOpacity3} setPointer={setPointer} setVideoActual={setVideoActual} videoActual={videoActual} data={data[`Juego` + indice].Oraciones} className="video-pregunta-oracion-una" />
           }
           {
-            momento === "Respuesta" && <Respuestasecction siguiente={siguiente} data={data[`Juego` + indice].Oraciones} className="video-respuesta-oracion-una" />
+            momento === "Respuesta" && <Respuestasecction  setcro={setcro} siguiente={siguiente} data={data[`Juego` + indice].Oraciones} className="video-respuesta-oracion-una" />
           }
         </div>
         <div className='seccion-opciones-oracion'>

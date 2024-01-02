@@ -26,11 +26,6 @@ const [isfinished, setisfinished] = useState(false)
     ActualizarJuego1();
   }, [])
    
-  // useEffect(() => {
-  //   setfinalAvance( prevAvance.concat(avance0))
-  // }, [])
-  
- 
 
 const Pantalla =()=>{
   if(dataJuegoVocabulario===null){

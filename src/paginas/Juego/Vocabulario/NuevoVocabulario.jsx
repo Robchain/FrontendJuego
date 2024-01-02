@@ -141,7 +141,6 @@ export const NuevoVocabulario = () => {
     setCorrecto3("INICIAL")
     setcro("inicial");
     setVideoActual(0);
-
     setIndice((prevIndice) => (prevIndice % (rango)) + 1);
   };
 

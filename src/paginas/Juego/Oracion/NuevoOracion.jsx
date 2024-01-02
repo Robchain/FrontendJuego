@@ -8,21 +8,21 @@ import { PiCoinVerticalDuotone } from "react-icons/pi";
 import QueSeccion from './QueSeccion'
 import QuienSeccion from './QuienSeccion'
 import TODOSSeccion from './TODOSSeccion'
-import { OracionRespuesta, resultadoOracion, resultadoOracionAdverbio, resultadoOracionQue, resultadoOracionQuien } from '../../../helpers'
+import { OracionRespuesta, resultadoOracion, resultadoOracionAdverbio, resultadoOracionQue, resultadoOracionQuien, sumadordePunto } from '../../../helpers'
 import Cronometro from '../../../componentes/JuegoComponent/JuegoGeneral/Cronometro'
 
 export const NuevoOracion = () => {
-    const { dataOracion, Oracionprogreso,dispatchProgreso,piezaJuegoIndi, dataOracionJuego} = useContext(JuecoContext);
-    const [rango, setRango] = useState(piezaJuegoIndi+1);
+    const { dataOracion,prevAvance, Oracionprogreso,dispatchProgreso,piezaJuegoIndi, dataOracionJuego,piezaAvanzadas, dataRompecabeza} = useContext(JuecoContext);
+    const [rango, setRango] = useState(piezaJuegoIndi+2);
     const [cro, setcro] = useState("inicial");
     const [indice, setIndice] = useState(1);
     const navegar = useNavigate();
     const siguienteObjeto = () => {
-        if(indice === rango){
+        if(indice === rango || prevAvance.concat(Oracionprogreso).filter(obj => obj.Resultado==="CORRECTO").length === dataRompecabeza.Pieza){
             navegar(`/finalOracionJuego`);
         }
         
-        setIndice((prevIndice) => (prevIndice % rango) + 1);
+        setIndice((prevIndice) => (prevIndice % (rango)) + 1);
 
       };
       const avanzarAutomaticamente = () => {
@@ -41,21 +41,21 @@ export const NuevoOracion = () => {
             }
            
         }
-        if(indice === rango){
+        if(indice === rango || prevAvance.concat(Oracionprogreso).filter(obj => obj.Resultado==="CORRECTO").length === dataRompecabeza.Pieza ){
             navegar(`/finalOracionJuego`);
       }
-        setIndice((prevIndice) => (prevIndice % rango) + 1);
+        setIndice((prevIndice) => (prevIndice % (rango)) + 1);
       };
     
       // Establecer un temporizador para avanzar automáticamente después de un tiempo
       useEffect(() => {
         let temporizador ;
         if(cro==='pregunta'){
-         temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 120000); // 5000 milisegundos (5 segundos)
+         temporizador = setTimeout(avanzarAutomaticamente, /*60000*/ 60000); // 5000 milisegundos (5 segundos)
         // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
         }
         return () => clearTimeout(temporizador);
-      }, [indice, rango]);
+      }, [indice, rango,cro]);
     
       useEffect(() => {
         if(dataOracionJuego ===null){
@@ -70,10 +70,10 @@ export const NuevoOracion = () => {
     <div className='contenido-oracion-general'>
       <div className='puntaje-cronometro'>
       <div className='cronometro-juego'>
-      <Cronometro minutosInicio={2} reiniciarCronometro={cro}/>
+      <Cronometro  minutosInicio={0} reiniciarCronometro={cro} segundosInicio={59}/>
       </div>
     <div className='puntaje-juego'>
-        <p>Puntos: {`${Oracionprogreso.filter(obj => obj.Resultado==="CORRECTO").length}`}<PiCoinVerticalDuotone /></p>
+        <p>Puntos: {`${sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:Oracionprogreso.filter(obj => obj.Resultado === "CORRECTO").length})}`}<PiCoinVerticalDuotone /></p>
     </div>
       </div>
       

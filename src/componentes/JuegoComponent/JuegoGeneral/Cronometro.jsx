@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Alert from '../../../assets/img/Alert.gif'
+import Alert from '../../../assets/img/Alert.png'
 const Cronometro = ({ minutosInicio, segundosInicio, reiniciarCronometro }) => {
   const [tiempoRestante, setTiempoRestante] = useState({
     minutos: minutosInicio,

@@ -32,12 +32,10 @@ return  palabrasSinRepetir; // Esto mostrará ["manzana", "banana", "uva", "nara
     if(data[`Juego` + indice].Oraciones[0].Respuesta ==="CORRECTO"){
       nombreExcluir =data[`Juego` + indice].Oraciones[0].Sujeto.label
       imagenExcluir =data[`Juego` + indice].Oraciones[0].Sujeto.value
-    }
-    if(data[`Juego` + indice].Oraciones[1].Respuesta==="CORRECTO"){
+    }else if(data[`Juego` + indice].Oraciones[1].Respuesta==="CORRECTO"){
       nombreExcluir =data[`Juego` + indice].Oraciones[1].Sujeto.label
       imagenExcluir =data[`Juego` + indice].Oraciones[1].Sujeto.value
-    }
-    if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
+    }else if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
       nombreExcluir =data[`Juego` + indice].Oraciones[2].Sujeto.label
       imagenExcluir =data[`Juego` + indice].Oraciones[2].Sujeto.value
     }

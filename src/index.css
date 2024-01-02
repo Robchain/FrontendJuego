@@ -544,10 +544,15 @@ align-self: flex-start;
         flex-direction: column;
         align-items: center;
     }
+    .contenido-una-oracion .seccion-videos-oracion div{
+display: flex;
+justify-content: center;
+    }
     .contenido-una-oracion .seccion-videos-oracion .video-pregunta-oracion-una{
         width: 55vw !important;
         height: 22vh !important;
         margin-bottom: 10px;
+        
     }
     .contenido-una-oracion .seccion-videos-oracion .video-respuesta-oracion-una{
         width: 55vw !important;
@@ -570,7 +575,7 @@ align-self: flex-start;
     }
 
     .opcion-una-letras{
-        margin-left:100px;
+        margin-left:65px;
         font-size: 1.9em;
     font-weight: 700;
         color:#85858C;
@@ -737,6 +742,10 @@ font-weight: 600;
                 color: #85858C;
                 font-size: 1.2em;
             }
+            .zonainteractiva  .respuesta-seccion div .imagen-respuesta-oracion{
+                width: 8vw;
+            }
+            
 }
 
 @media screen and (max-width: 1280px) and (min-width:801px) {

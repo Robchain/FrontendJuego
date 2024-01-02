@@ -9,9 +9,10 @@ import { llamadaPartidaOracion } from '../../../service/Juego/Oracion';
 import { armandoJuegosOracionesPorPiezas, listadoQuienImagen } from '../../../service/Adminstrador/Oracion'
 import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 import { Piezacalcular } from '../../../helpers/contador'
+import { cantidadDePartidas } from '../../../helpers';
 const RompecabezaJO = () => {
 const [modal, setModal] = useState(false)
-const {oraciondata,setQuienlist,setOraciondata, dispatchProgreso,setDataOracionJuego,setPiezaJuegoIndi,setIdRompecabeza, setDataRompecabeza} = useContext(JuecoContext);
+const {oraciondata,setpiezaAvanzadas,setprevAvance,setQuienlist,setOraciondata, dispatchProgreso,setDataOracionJuego,setPiezaJuegoIndi,setIdRompecabeza, setDataRompecabeza} = useContext(JuecoContext);
 const [dataSelecionada, setDataSelecionada] = useState(null)
 const [loading, setLoading] = useState(false);
 const navegar = useNavigate();
@@ -46,6 +47,13 @@ useEffect(() => {
 
 
 
+const guardadoavancePrev =(Avance)=>{
+  if(Avance===null){
+    setprevAvance([]);
+  }else if(Avance!==null){
+    setprevAvance(Avance)
+  }
+}
 
   const Pantalla = () => {
     if (oraciondata === null) {
@@ -64,7 +72,7 @@ useEffect(() => {
           
             {oraciondata.map(i=>(
               <div className='my-2'>
-              <div  onClick={(e) =>{ setPiezaJuegoIndi(i.Rompecabeza.Pieza);setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setDataSelecionada(i);clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)}} > <RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  url={i.Rompecabeza.FileColor} piezas={i.Rompecabeza.Pieza} /></div><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}><IoExtensionPuzzleOutline /></span> <span style={{color:"#62269E"}}>{`${Piezacalcular({ objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza})}/${i.Rompecabeza.Pieza}`}</span></p> 
+              <div  onClick={(e) =>{guardadoavancePrev(i.Avance);setpiezaAvanzadas(Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza })); setPiezaJuegoIndi(cantidadDePartidas({piezasfaltantes:Piezacalcular({objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza }), piezasinicial:i.Rompecabeza.Pieza}));setIdRompecabeza(i._id); setDataRompecabeza(i.Rompecabeza);setDataSelecionada(i);clickHandle(e, i.Terminado,i.Rompecabeza.Pieza)}} > <RompecabaSolitaria terminado={i.Terminado} Avance={i.Avance}  url={i.Rompecabeza.FileColor} piezas={i.Rompecabeza.Pieza} /></div><p className='mt-2' style={{fontWeight:700}}><span style={{color:"#8B8B8C"}}><IoExtensionPuzzleOutline /></span> <span style={{color:"#62269E"}}>{`${Piezacalcular({ objecto:i.Avance,piezatotales:i.Rompecabeza.Pieza})}/${i.Rompecabeza.Pieza}`}</span></p> 
               </div>
             ))
           }

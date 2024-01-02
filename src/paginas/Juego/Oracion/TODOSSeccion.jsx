@@ -73,9 +73,10 @@ const Preguntasecction = ({setcro,dispatch,disparadorQuien, disparadorQue, dispa
 };
 
 
-const Respuestasecction = ({ siguiente, data, ...props }) => {
+const Respuestasecction = ({setcro, siguiente, data, ...props }) => {
   const [videoRespuestaSeleccionadoTodo, setvideoRespuestaSeleccionadoTodo] = useState("")
   useEffect(() => {
+    setcro('respuesta');
     let pregunta = "";
     for (let i = 0; i < data.length; i++) {
       if (data[i].Respuesta === 'CORRECTO') {
@@ -183,7 +184,7 @@ const SeleccionQue = ({ QueSelecion, data, indice, ...props }) => {
   return (<div {...props}></div>)
 }
 
-const SeleccionCantidad = ({ Adverbios,AdverbNSeleccion, data, indice, ...props }) => {
+const SeleccionCantidad = ({ Adverbios,AdverbNSeleccion, indice, ...props }) => {
 
   if (AdverbNSeleccion === 1) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{Adverbios[0].Adverbio || ''}</span>) }
   if (AdverbNSeleccion === 2) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{Adverbios[1].Adverbio || ''}</span>) }
@@ -191,10 +192,10 @@ const SeleccionCantidad = ({ Adverbios,AdverbNSeleccion, data, indice, ...props 
   if (AdverbNSeleccion === 0) { return (<div {...props}></div>) }
   return (<div {...props}></div>)
 }
-const SeleccionQuien = ({ QuienSeleccion, data, indice, ...props }) => {
-  if (QuienSeleccion === 1) { return (<img src={data[`Juego` + indice].Oraciones[0].Sujeto.value} width="150" alt='opcion1' {...props} />) }
-  if (QuienSeleccion === 2) { return (<img src={data[`Juego` + indice].Oraciones[1].Sujeto.value} width="150" alt='opcion2' {...props} />) }
-  if (QuienSeleccion === 3) { return (<img src={data[`Juego` + indice].Oraciones[2].Sujeto.value} width="150" alt='opcion3' {...props} />) }
+const SeleccionQuien = ({ modeloquienMostrar,QuienSeleccion, data, indice, ...props }) => {
+  if (QuienSeleccion === 1) { return (<img src={modeloquienMostrar[0].value} width="150" alt='opcion1' {...props} />) }
+  if (QuienSeleccion === 2) { return (<img src={modeloquienMostrar[1].value} width="150" alt='opcion2' {...props} />) }
+  if (QuienSeleccion === 3) { return (<img src={modeloquienMostrar[2].value} width="150" alt='opcion3' {...props} />) }
   if (QuienSeleccion === 0) { return (<div {...props}></div>) }
   return (<div {...props}></div>)
 }
@@ -431,7 +432,7 @@ useEffect(() => {
           momento === "inicial" && <Preguntasecction setcro={setcro} dispatch={dispatch} disparadorQuien={disparadorQuien} disparadorQue={disparadorQue}  disparadorAdverbio={disparadorAdverbio}   setVideoActual={setVideoActual} videoActual={videoActual} data={data[`Juego` + indice].Oraciones} indice={indice} className="video-pregunta-oracion-una" />
         }
         {
-          momento === "Respuesta" && <Respuestasecction siguiente={siguiente} data={data[`Juego` + indice].Oraciones} className="video-respuesta-oracion-una" />
+          momento === "Respuesta" && <Respuestasecction setcro={setcro} siguiente={siguiente} data={data[`Juego` + indice].Oraciones} className="video-respuesta-oracion-una" />
         }
       </div>
       <div className='opcion-multi-oracion'>
@@ -531,7 +532,7 @@ useEffect(() => {
           {/*parte de seleccion */}
           <div className='seleccion' >
             <div style={{ padding: '0px' }} >
-              <SeleccionQuien QuienSeleccion={QuienSeleccion} indice={indice} data={data} className='opcionesSelec' />
+              <SeleccionQuien modeloquienMostrar={modeloquienMostrar} QuienSeleccion={QuienSeleccion} indice={indice} data={data} className='opcionesSelec' />
             </div>
             <div style={{ padding: '0px' }} >
               <VerboRespuesta indice={indice} data={data} className='opcionesSelec' />
