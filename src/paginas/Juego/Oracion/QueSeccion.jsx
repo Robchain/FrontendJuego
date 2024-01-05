@@ -126,30 +126,8 @@ const VerCantidad = ({ data, indice, ...props }) => {
 
   return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{seleccion}</span>)
 }
-const SeleccionQueO = ({ QueSelecion, data, indice, ...props }) => {
-  const [seleccionPal, setSeleccionPal] = useState({ label: '', value: '' });
-  useEffect(() => {
-    if (QueSelecion === 1) { setSeleccionPal(data[`Juego` + indice].Oraciones[0].Que) }
-    if (QueSelecion === 2) { setSeleccionPal(data[`Juego` + indice].Oraciones[1].Que) }
-    if (QueSelecion === 3) { setSeleccionPal(data[`Juego` + indice].Oraciones[2].Que) }
-  }, [QueSelecion])
 
-  useEffect(() => {
-    if(QueSelecion===null){
-      setSeleccionPal({ label: '', value: '' })
-    }
-    
-  }, [indice])
-  
-  return (<>{
-    seleccionPal.label.length !== 0 ? (
-      <img src={seleccionPal.value} alt='opcion1'  {...props} />
-    ) : <div></div>
-  }
-  </>)
-}
 const SeleccionQue = ({ QueSelecion, data, indice, ...props }) => {
-  
   if (QueSelecion === 1) { return (<img src={data[`Juego` + indice].Oraciones[0].Que.value} alt='opcion1'  {...props} />) }
   if (QueSelecion === 2) { return (<img src={data[`Juego` + indice].Oraciones[1].Que.value} alt='opcion1'  {...props} />)  }
   if (QueSelecion === 3) {  return (<img src={data[`Juego` + indice].Oraciones[2].Que.value} alt='opcion1'  {...props} />)}
@@ -197,6 +175,7 @@ const QueSeccion = ({setcro, indice, siguiente, dispatchProgreso, data }) => {
   const [opacity1, setOpacity1] = useState(0.4);
   const [opacity2, setOpacity2] = useState(0.4);
   const [opacity3, setOpacity3] = useState(0.4);
+  
   useEffect(() => {
     setcro("inicial")
     setMomento("inicial")

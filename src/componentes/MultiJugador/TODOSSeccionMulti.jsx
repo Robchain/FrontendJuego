@@ -1,5 +1,4 @@
-import React, { useReducer,useEffect, useState } from 'react'
-import { Col, Row } from 'reactstrap'
+import React, { useReducer, useEffect, useState, useContext } from 'react'
 import buentrajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
 import Quien from '../../assets/img/AssetsGame/ico_Que.png'
@@ -7,285 +6,353 @@ import Que from '../../assets/img/AssetsGame/icon_Que.png'
 import Verbo from "../../assets/img/AssetsGame/ico_verbo.png";
 import Cantidad from '../../assets/img/AssetsGame/ico_cantidad.png'
 import ReactPlayer from 'react-player';
-import { OracionRespuesta, resultadoOracion } from '../../helpers'
+import { OracionRespuesta, analizarAdverbios, analizaradentro, resultadoOracion } from '../../helpers'
+import { JuecoContext } from '../../context/Juego/JuecoContext'
 
-const Preguntasecction = ({  data }) => {
-    const [videoPreguntaSecctionTodo, setVideoPreguntaSecctionTodo] = useState("")
-    useEffect(() => {
-      setVideoPreguntaSecctionTodo(preguntavideo)
-    }, [])
-  
-    const preguntavideo = () => {
-      var Pregu = Math.floor(Math.random() * (2 - 1 + 1) + 1)
-      let pregunta;
-      if (Pregu === 1) {
-        for(let i=0; i<data.length; i++){
-          if(data[i].Respuesta === 'CORRECTO'){
-            pregunta = data[i].FileVideoPreguntaQue
-            break; // para salir del bucle una vez que se encuentra la respuesta correcta
-          }
-        }
-      } else if (Pregu === 2) {
-        for(let i=0; i<data.length; i++){
-          if(data[i].Respuesta === 'CORRECTO'){
-            pregunta = data[i].FileVideoPreguntaQuien
-            break; // para salir del bucle una vez que se encuentra la respuesta correcta
-          }
-        }
-      }
-    return pregunta;
-    }
-    return (
-      <div>
-        <ReactPlayer
-          url={videoPreguntaSecctionTodo}
-          height={225}
-        width={300}
-          playing
-          loop={true}
-        />
-      </div>
-    )
-  };
-  
-  
-  const Respuestasecction = ({data }) => {
-    const [videoRespuestaSeleccionadoTodo, setvideoRespuestaSeleccionadoTodo] = useState("")
-    useEffect(() => {
-      let pregunta = ""; 
-      for(let i=0; i<data.length; i++){
-        if(data[i].Respuesta === 'CORRECTO'){
-          pregunta = data[i].FileVideoMuestra
+const Preguntasecction = ({ data, videoActual, setVideoActual, disparadorAdverbio, disparadorQuien, disparadorQue, dispatch, setcro, ...props }) => {
+  const [videoPreguntaSecctionTodo, setVideoPreguntaSecctionTodo] = useState("")
+  useEffect(() => {
+    setVideoPreguntaSecctionTodo(preguntavideo)
+  }, [])
+
+  const preguntavideo = () => {
+    var Pregu = Math.floor(Math.random() * (2 - 1 + 1) + 1)
+    let pregunta;
+    let respuesta;
+    if (Pregu === 1) {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].Respuesta === 'CORRECTO') {
+          respuesta = data[i].FileVideoMuestra
+          pregunta = data[i].FileVideoPreguntaQue
           break; // para salir del bucle una vez que se encuentra la respuesta correcta
         }
       }
-      setvideoRespuestaSeleccionadoTodo(pregunta);
-    }, [data])
-    return (
-      <div>
-        <ReactPlayer
-          url={videoRespuestaSeleccionadoTodo}
-          height={225}
-        width={300}
-          playing
-        />
-      </div>
-    )
-  };
-  
-  
-  const estadoInicialApuntadores = { pointer: "auto", pointer2: "auto", pointer3: "auto" };
-  function apuntadores(state, action) {
-    switch (action.type) {
-      case 'puntador':
-        return { ...state, [action.field]: action.value };
-      default:
-        throw new Error();
-    }
-  }
-  
-  const estadoInicialOpacidadQuien = { opacityquien1: 1, opacityquien2: 1, opacityquien3: 1 }
-  
-  function opacarsOpacidadQuien(state, action) {
-    switch (action.type) {
-      case 'opacarQuien':
-        return { ...state, [action.field]: action.value };
-      default:
-        throw new Error();
-    }
-  }
-  const selecciondeImagenes = { QueSelecion: 0, AdverbNSeleccion: 0, QuienSeleccion: 0 }
-  
-  function seleccionDeImagenesf(state, action) {
-    switch (action.type) {
-      case 'seleccionImagen':
-        return { ...state, [action.field]: action.value };
-      default:
-        throw new Error();
-    }
-  }
-  
-  const estadoInicialOpacidadQue = { opacityQue1: 1, opacityQue2: 1, opacityQue3: 1 }
-  
-  function opacarsOpacidadQue(state, action) {
-    switch (action.type) {
-      case 'opacarQue':
-        return { ...state, [action.field]: action.value };
-      default:
-        throw new Error();
-    }
-  }
-  const estadoInicialOpacidadAdverbio = { opacity1: 1, opacity2: 1, opacity3: 1 }
-  
-  function opacarsOpacidadAdverbio(state, action) {
-    switch (action.type) {
-      case 'opacarAdverbio':
-        return { ...state, [action.field]: action.value };
-      default:
-        throw new Error();
-    }
-  }
-  const estadoInicialSelecionPalabras = { QuienSelec: "", AdverSelec: "", Queselec: "" }
-  
-  function seleccionDePalabrasSelecion(state, action) {
-    switch (action.type) {
-      case 'seleccion':
-        return { ...state, [action.field]: action.value };
-      default:
-        throw new Error();
-    }
-  }
-  const SeleccionQue = ({ data, QueSelecion, window, ...props }) => {
-    if (QueSelecion === 1) { return (<img src={data[`Juego${window.id}`].Oraciones[0].Que.value} alt='opcion1' {...props} />) }
-    if (QueSelecion === 2) { return (<img src={data[`Juego${window.id}`].Oraciones[1].Que.value} alt='opcion2' {...props}/>) }
-    if (QueSelecion === 3) { return (<img src={data[`Juego${window.id}`].Oraciones[2].Que.value} alt='opcion3' {...props}/>) }
-    if (QueSelecion === 0) { return (<div {...props}></div>) }
-    return (<div {...props}></div>)
-  }
-  
-  const SeleccionCantidad = ({ AdverbNSeleccion, window, data,...props }) => {
-    if (AdverbNSeleccion === 1) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{data[`Juego${window.id}`].Oraciones[0].Adverbio}</span>) }
-    if (AdverbNSeleccion === 2) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{data[`Juego${window.id}`].Oraciones[1].Adverbio}</span>) }
-    if (AdverbNSeleccion === 3) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{data[`Juego${window.id}`].Oraciones[2].Adverbio}</span>) }
-    if (AdverbNSeleccion === 0) { return (<div {...props}></div>) }
-    return (<div {...props}></div>)
-  }
-  const SeleccionQuien = ({ QuienSeleccion, window, data, ...props }) => {
-    if (QuienSeleccion === 1) { return (<img src={data[`Juego${window.id}`].Oraciones[0].Sujeto.value}  alt='opcion1' {...props} />) }
-    if (QuienSeleccion === 2) { return (<img src={data[`Juego${window.id}`].Oraciones[1].Sujeto.value}  alt='opcion2' {...props} />) }
-    if (QuienSeleccion === 3) { return (<img src={data[`Juego${window.id}`].Oraciones[2].Sujeto.value}  alt='opcion3' { ...props}/>) }
-    if (QuienSeleccion === 0) { return (<div {...props}></div>) }
-    return (<div {...props}></div>)
-  }
-  
-  const RespuestaImagen = ({ window, Progreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento, data }) => {
-    let sujetoRespuesta = "";
-    let AdjectivoRespuesta = "";
-    let oracion = "";
-  
-    let base = "Nada";
-    if (palabrasEstdo.QuienSelec.length > 2 && palabrasEstdo.Queselec.length > 2) {
-      if (data[`Juego${window.id}`].Oraciones[0].Respuesta === "CORRECTO") {
-        oracion = data[`Juego${window.id}`].Oraciones[0].Oracion;
-        sujetoRespuesta = data[`Juego${window.id}`].Oraciones[0].Sujeto.label;
-        AdjectivoRespuesta = data[`Juego${window.id}`].Oraciones[0].Que.label;
-      } else if (data[`Juego${window.id}`].Oraciones[1].Respuesta === "CORRECTO") {
-        sujetoRespuesta = data[`Juego${window.id}`].Oraciones[1].Sujeto.label;
-        oracion = data[`Juego${window.id}`].Oraciones[1].Oracion;
-        AdjectivoRespuesta = data[`Juego${window.id}`].Oraciones[1].Que.label;
-      } else if (data[`Juego${window.id}`].Oraciones[2].Respuesta === "CORRECTO") {
-        sujetoRespuesta = data[`Juego${window.id}`].Oraciones[2].Sujeto.label;
-        oracion = data[`Juego${window.id}`].Oraciones[2].Oracion;
-        AdjectivoRespuesta = data[`Juego${window.id}`].Oraciones[2].Que.label;
+    } else if (Pregu === 2) {
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].Respuesta === 'CORRECTO') {
+          respuesta = data[i].FileVideoMuestra
+          pregunta = data[i].FileVideoPreguntaQuien
+          break; // para salir del bucle una vez que se encuentra la respuesta correcta
+        }
       }
-  
+    }
+    return [respuesta, pregunta];
+  }
+  return (
+    <div>
+      <ReactPlayer
+        url={videoPreguntaSecctionTodo[videoActual]}
+        playing
+        controls={true}
+        onEnded={() => {
+          if (1 === videoActual) {
+            disparadorAdverbio({ type: "opacarAdverbio", field: "opacity1", value: 1 })
+            disparadorAdverbio({ type: "opacarAdverbio", field: "opacity3", value: 1 })
+            disparadorAdverbio({ type: "opacarAdverbio", field: "opacity2", value: 1 })
+
+            // quien
+            disparadorQuien({ type: "opacarQuien", field: "opacityquien2", value: 1 })
+            disparadorQuien({ type: "opacarQuien", field: "opacityquien3", value: 1 })
+            disparadorQuien({ type: "opacarQuien", field: "opacityquien1", value: 1 })
+            //que
+            disparadorQue({ type: "opacarQue", field: "opacityQue3", value: 1 })
+            disparadorQue({ type: "opacarQue", field: "opacityQue2", value: 1 })
+            disparadorQue({ type: "opacarQue", field: "opacityQue1", value: 1 })
+            //pointer
+            dispatch({ type: "puntador", field: "pointer2", value: "auto" })
+            dispatch({ type: "puntador", field: "pointer3", value: "auto" })
+            dispatch({ type: "puntador", field: "pointer", value: "auto" })
+            setcro("pregunta")
+          } else { setVideoActual(videoActual + 1); }
+        }}
+        {...props}
+      />
+    </div>
+  )
+};
+
+
+const Respuestasecction = ({ setcro, data, siguiente, ...props }) => {
+  const [videoRespuestaSeleccionadoTodo, setvideoRespuestaSeleccionadoTodo] = useState("")
+  useEffect(() => {
+    setcro('respuesta');
+    let pregunta = "";
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].Respuesta === 'CORRECTO') {
+        pregunta = data[i].FileVideoMuestra
+        break; // para salir del bucle una vez que se encuentra la respuesta correcta
+      }
+    }
+    setvideoRespuestaSeleccionadoTodo(pregunta);
+  }, [data])
+  return (
+    <div>
+      <ReactPlayer
+        url={videoRespuestaSeleccionadoTodo}
+        playing={true}
+        controls={true}
+        onEnded={siguiente}
+        {...props}
+      />
+    </div>
+  )
+};
+
+
+const estadoInicialApuntadores = { pointer: "none", pointer2: "none", pointer3: "none" };
+function apuntadores(state, action) {
+  switch (action.type) {
+    case 'puntador':
+      return { ...state, [action.field]: action.value };
+    case 'resetear':
+      return estadoInicialApuntadores;
+    default:
+      throw new Error();
+  }
+}
+
+const estadoInicialOpacidadQuien = { opacityquien1: 0.4, opacityquien2: 0.4, opacityquien3: 0.4 }
+
+function opacarsOpacidadQuien(state, action) {
+  switch (action.type) {
+    case 'opacarQuien':
+      return { ...state, [action.field]: action.value };
+    case 'resetear':
+      return estadoInicialOpacidadQuien;
+    default:
+      throw new Error();
+  }
+}
+const selecciondeImagenes = { QueSelecion: null, AdverbNSeleccion: null, QuienSeleccion: null }
+
+function seleccionDeImagenesf(state, action) {
+  switch (action.type) {
+    case 'seleccionImagen':
+      return { ...state, [action.field]: action.value };
+    case 'resetear':
+      return selecciondeImagenes;
+    default:
+      throw new Error();
+  }
+}
+
+const estadoInicialOpacidadQue = { opacityQue1: 0.4, opacityQue2: 0.4, opacityQue3: 0.4 }
+
+function opacarsOpacidadQue(state, action) {
+  switch (action.type) {
+    case 'opacarQue':
+      return { ...state, [action.field]: action.value };
+    case 'resetear':
+      return estadoInicialOpacidadQue;
+    default:
+      throw new Error();
+  }
+}
+const estadoInicialOpacidadAdverbio = { opacity1: 0.4, opacity2: 0.4, opacity3: 0.4 }
+
+function opacarsOpacidadAdverbio(state, action) {
+  switch (action.type) {
+    case 'opacarAdverbio':
+      return { ...state, [action.field]: action.value };
+    case 'resetear':
+      return estadoInicialOpacidadAdverbio;
+    default:
+      throw new Error();
+  }
+}
+const estadoInicialSelecionPalabras = { QuienSelec: undefined, AdverSelec: undefined, Queselec: undefined }
+
+function seleccionDePalabrasSelecion(state, action) {
+  switch (action.type) {
+    case 'seleccion':
+      return { ...state, [action.field]: action.value };
+    case 'resetear':
+      return estadoInicialSelecionPalabras;
+    default:
+      throw new Error();
+  }
+}
+const SeleccionQue = ({ data, QueSelecion, indice, ...props }) => {
+  if (QueSelecion === 1) { return (<img src={data[`Juego${indice}`].Oraciones[0].Que.value} alt='opcion1' {...props} />) }
+  if (QueSelecion === 2) { return (<img src={data[`Juego${indice}`].Oraciones[1].Que.value} alt='opcion2' {...props} />) }
+  if (QueSelecion === 3) { return (<img src={data[`Juego${indice}`].Oraciones[2].Que.value} alt='opcion3' {...props} />) }
+  if (QueSelecion === 0) { return (<div {...props}></div>) }
+  return (<div {...props}></div>)
+}
+
+const SeleccionCantidad = ({ Adverbios, AdverbNSeleccion, ...props }) => {
+  if (AdverbNSeleccion === 1) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{Adverbios[0].Adverbio || ''}</span>) }
+  if (AdverbNSeleccion === 2) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{Adverbios[1].Adverbio || ''}</span>) }
+  if (AdverbNSeleccion === 3) { return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{Adverbios[2].Adverbio || ''}</span>) }
+  if (AdverbNSeleccion === 0) { return (<div {...props}></div>) }
+  return (<div {...props}></div>)
+}
+const SeleccionQuien = ({ modeloquienMostrar, QuienSeleccion, ...props }) => {
+  if (QuienSeleccion === 1) { return (<img src={modeloquienMostrar[0].value} alt='opcion1' {...props} />) }
+  if (QuienSeleccion === 2) { return (<img src={modeloquienMostrar[1].value} alt='opcion2' {...props} />) }
+  if (QuienSeleccion === 3) { return (<img src={modeloquienMostrar[2].value} alt='opcion3' {...props} />) }
+  if (QuienSeleccion === 0) { return (<div {...props}></div>) }
+  return (<div {...props}></div>)
+}
+
+const RespuestaImagen = ({ indice, Progreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento, data, ...opc }) => {
+  let sujetoRespuesta = "";
+  let AdjectivoRespuesta = "";
+  let oracion = "";
+
+  let base = "Nada";
+  if (palabrasEstdo.QuienSelec && palabrasEstdo.Queselec) {
+    if (palabrasEstdo.QuienSelec.length != 0 && palabrasEstdo.Queselec.length != 0) {
+      if (data[`Juego${indice}`].Oraciones[0].Respuesta === "CORRECTO") {
+        oracion = data[`Juego${indice}`].Oraciones[0].Oracion;
+        sujetoRespuesta = data[`Juego${indice}`].Oraciones[0].Sujeto.label;
+        AdjectivoRespuesta = data[`Juego${indice}`].Oraciones[0].Que.label;
+      } else if (data[`Juego${indice}`].Oraciones[1].Respuesta === "CORRECTO") {
+        sujetoRespuesta = data[`Juego${indice}`].Oraciones[1].Sujeto.label;
+        oracion = data[`Juego${indice}`].Oraciones[1].Oracion;
+        AdjectivoRespuesta = data[`Juego${indice}`].Oraciones[1].Que.label;
+      } else if (data[`Juego${indice}`].Oraciones[2].Respuesta === "CORRECTO") {
+        sujetoRespuesta = data[`Juego${indice}`].Oraciones[2].Sujeto.label;
+        oracion = data[`Juego${indice}`].Oraciones[2].Oracion;
+        AdjectivoRespuesta = data[`Juego${indice}`].Oraciones[2].Que.label;
+      }
+
       useEffect(() => {
         if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec)) {
           base = "CORRECTO"
-          setTimeout(() => {  Progreso({type:"PROGRESOORACION", PalabraCorrecta: resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec}  - En el Que, se seleccionó ${palabrasEstdo.Queselec}`, Resultado:base ,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})});  siguiente(window.id); }, 10000)
+          Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracion({ objeto1: data[`Juego${indice}`].Oraciones[0], objeto2: data[`Juego${indice}`].Oraciones[1], objeto3: data[`Juego${indice}`].Oraciones[2] }), PalabraSeleccionada: `En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec}  - En el Que, se seleccionó ${palabrasEstdo.Queselec}`, Resultado: base, OracionCorrecta: OracionRespuesta({ objecto1: data[`Juego${indice}`].Oraciones[0], objecto2: data[`Juego${indice}`].Oraciones[1], objecto3: data[`Juego${indice}`].Oraciones[2] }) }); siguiente(indice);
         } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec) {
           base = "INCORRECTO"
-          setTimeout(() => { Progreso({type:"PROGRESOORACION", PalabraCorrecta:resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec}  - En el Que, se seleccionó ${palabrasEstdo.Queselec}`, Resultado:base ,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})});  siguiente(window.id) }, 10000)
+          Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracion({ objeto1: data[`Juego${indice}`].Oraciones[0], objeto2: data[`Juego${indice}`].Oraciones[1], objeto3: data[`Juego${indice}`].Oraciones[2] }), PalabraSeleccionada: `En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec}  - En el Que, se seleccionó ${palabrasEstdo.Queselec}`, Resultado: base, OracionCorrecta: OracionRespuesta({ objecto1: data[`Juego${indice}`].Oraciones[0], objecto2: data[`Juego${indice}`].Oraciones[1], objecto3: data[`Juego${indice}`].Oraciones[2] }) }); siguiente(indice)
         }
         setopcionRes(base);
       }, [palabrasEstdo.Queselec, palabrasEstdo.QuienSelec])
       if (opcionRes === "CORRECTO") {
         setMomento("Respuesta");
-        return (<><img src={buentrajo} width="100" alt="buen trabajo" /></>);
+        return (<><img src={buentrajo} alt="buen trabajo" {...opc} /></>);
       }
       if (opcionRes === "INCORRECTO") {
         setMomento("Respuesta");
-        return (<><img src={malTrabajo} width="100" alt='mal trabajo' /></>);
+        return (<><img src={malTrabajo} alt='mal trabajo' {...opc} /></>);
       }
     }
   }
-  const VerboRespuesta = ({  window, data, ...props }) => {
-    let verbo = "";
-    if (data[`Juego${window.id}`].Oraciones[0].Respuesta === "CORRECTO") {
-      verbo = data[`Juego${window.id}`].Oraciones[0].Verbo
-    } else if (data[`Juego${window.id}`].Oraciones[1].Respuesta === "CORRECTO") {
-      verbo = data[`Juego${window.id}`].Oraciones[1].Verbo
-    } else if (data[`Juego${window.id}`].Oraciones[2].Respuesta === "CORRECTO") {
-      verbo = data[`Juego${window.id}`].Oraciones[2].Verbo
-    }
-    return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props} >{verbo}</span>)
+
+}
+const VerboRespuesta = ({ indice, data, ...props }) => {
+  let verbo = "";
+  if (data[`Juego${indice}`].Oraciones[0].Respuesta === "CORRECTO") {
+    verbo = data[`Juego${indice}`].Oraciones[0].Verbo
+  } else if (data[`Juego${indice}`].Oraciones[1].Respuesta === "CORRECTO") {
+    verbo = data[`Juego${indice}`].Oraciones[1].Verbo
+  } else if (data[`Juego${indice}`].Oraciones[2].Respuesta === "CORRECTO") {
+    verbo = data[`Juego${indice}`].Oraciones[2].Verbo
   }
-  
-  const isAdverbio = ( window, data) => {
-    if (data[`Juego${window.id}`].Oraciones[2].Adverbio && data[`Juego${window.id}`].Oraciones[1].Adverbio ||data[`Juego${window.id}`].Oraciones[3].Adverbio) {
-      return true;
-    } else {
-      return false;
-    }
+  return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props} >{verbo}</span>)
+}
+
+const isAdverbio = (indice, data) => {
+  if (data[`Juego${indice}`].Oraciones[2].Adverbio && data[`Juego${indice}`].Oraciones[1].Adverbio || data[`Juego${indice}`].Oraciones[3].Adverbio) {
+    return true;
+  } else {
+    return false;
   }
-  
-  const RespuestaImagenconAdverbio = ({  window, Progreso, palabrasEstdo, siguiente, setopcionRes, opcionRes, setMomento, data }) => {
-    let sujetoRespuesta = "";
-    let AdjectivoRespuesta = "";
-    let AdverbioRespuesta = "";
-    let base = "Nada";
-    let oraciones = "";
-    if (palabrasEstdo.QuienSelec.length > 2 && palabrasEstdo.Queselec.length > 2 && palabrasEstdo.AdverSelec.length > 1) {
-      if (data[`Juego${window.id}`].Oraciones[0].Respuesta === "CORRECTO") {
-        sujetoRespuesta = data[`Juego${window.id}`].Oraciones[0].FileSujetoImagen;
-        AdjectivoRespuesta = data[`Juego${window.id}`].Oraciones[0].FileAdjetivoImagen;
-        AdverbioRespuesta = data[`Juego${window.id}`].Oraciones[0].Adverbio || 'no habia';
-        oraciones = data[`Juego${window.id}`].Oraciones[0].Oracion;
-      } else if (data[`Juego${window.id}`].Oraciones[1].Respuesta === "CORRECTO") {
-        sujetoRespuesta = data[`Juego${window.id}`].Oraciones[1].FileSujetoImagen;
-        AdjectivoRespuesta = data[`Juego${window.id}`].Oraciones[1].FileAdjetivoImagen;
-        AdverbioRespuesta = data[`Juego${window.id}`].Oraciones[1].Adverbio || 'no habia';
-        oraciones = data[`Juego${window.id}`].Oraciones[0].Oracion;
-      } else if (data[`Juego${window.id}`].Oraciones[2].Respuesta === "CORRECTO") {
-        sujetoRespuesta = data[`Juego${window.id}`].Oraciones[2].FileSujetoImagen;
-        AdjectivoRespuesta = data[`Juego${window.id}`].Oraciones[2].FileAdjetivoImagen;
-        AdverbioRespuesta = data[`Juego${window.id}`].Oraciones[2].Adverbio || 'no habia';
-        oraciones = data[`Juego${window.id}`].Oraciones[0].Oracion;
+}
+
+const RespuestaImagenconAdverbio = ({ indice, Progreso, palabrasEstdo, setopcionRes, opcionRes, setMomento, data, ...opc }) => {
+  let sujetoRespuesta = "";
+  let AdjectivoRespuesta = "";
+  let AdverbioRespuesta = "";
+  let base = "Nada";
+  let oraciones = "";
+  if (palabrasEstdo.QuienSelec && palabrasEstdo.Queselec && palabrasEstdo.AdverSelec) {
+  if (palabrasEstdo.QuienSelec.length != 0 && palabrasEstdo.Queselec.length != 0 && (palabrasEstdo.AdverSelec.length >= 1 || palabrasEstdo.AdverSelec.length === 0)) {
+    if (data[`Juego${indice}`].Oraciones[0].Respuesta === "CORRECTO") {
+      sujetoRespuesta = data[`Juego${indice}`].Oraciones[0].FileSujetoImagen;
+      AdjectivoRespuesta = data[`Juego${indice}`].Oraciones[0].FileAdjetivoImagen;
+      AdverbioRespuesta = data[`Juego${indice}`].Oraciones[0].Adverbio || 'no habia';
+      oraciones = data[`Juego${indice}`].Oraciones[0].Oracion;
+    } else if (data[`Juego${indice}`].Oraciones[1].Respuesta === "CORRECTO") {
+      sujetoRespuesta = data[`Juego${indice}`].Oraciones[1].FileSujetoImagen;
+      AdjectivoRespuesta = data[`Juego${indice}`].Oraciones[1].FileAdjetivoImagen;
+      AdverbioRespuesta = data[`Juego${indice}`].Oraciones[1].Adverbio || 'no habia';
+      oraciones = data[`Juego${indice}`].Oraciones[0].Oracion;
+    } else if (data[`Juego${indice}`].Oraciones[2].Respuesta === "CORRECTO") {
+      sujetoRespuesta = data[`Juego${indice}`].Oraciones[2].FileSujetoImagen;
+      AdjectivoRespuesta = data[`Juego${indice}`].Oraciones[2].FileAdjetivoImagen;
+      AdverbioRespuesta = data[`Juego${indice}`].Oraciones[2].Adverbio || 'no habia';
+      oraciones = data[`Juego${indice}`].Oraciones[0].Oracion;
+    }
+    useEffect(() => {
+      if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec) && (palabrasEstdo.AdverSelec === AdverbioRespuesta)) {
+        base = "CORRECTO"
+        setMomento("Respuesta");
+        Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracion({ objeto1: data[`Juego${indice}`].Oraciones[0], objeto2: data[`Juego${indice}`].Oraciones[1], objeto3: data[`Juego${indice}`].Oraciones[2] }), PalabraSeleccionada: `En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec} - ${palabrasEstdo.AdverSelec ? `- En el Adverbio, se seleccionó: ${palabrasEstdo.AdverSelec}` : ''} - En el Que, se seleccionó: ${palabrasEstdo.Queselec}`, Resultado: base, OracionCorrecta: OracionRespuesta({ objecto1: data[`Juego${indice}`].Oraciones[0], objecto2: data[`Juego${indice}`].Oraciones[1], objecto3: data[`Juego${indice}`].Oraciones[2] }) }); 
+      } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec || AdverbioRespuesta !== palabrasEstdo.AdverSelec) {
+        base = "INCORRECTO"
+        setMomento("Respuesta");
+        Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracion({ objeto1: data[`Juego${indice}`].Oraciones[0], objeto2: data[`Juego${indice}`].Oraciones[1], objeto3: data[`Juego${indice}`].Oraciones[2] }), PalabraSeleccionada: `En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec} - ${palabrasEstdo.AdverSelec ? `- En el Adverbio, se seleccionó: ${palabrasEstdo.AdverSelec}` : ''} - En el Que, se seleccionó: ${palabrasEstdo.Queselec}`, Resultado: base, OracionCorrecta: OracionRespuesta({ objecto1: data[`Juego${indice}`].Oraciones[0], objecto2: data[`Juego${indice}`].Oraciones[1], objecto3: data[`Juego${indice}`].Oraciones[2] }) });
       }
-      useEffect(() => {
-        if ((sujetoRespuesta === palabrasEstdo.QuienSelec) && (AdjectivoRespuesta === palabrasEstdo.Queselec) && (palabrasEstdo.AdverSelec === AdverbioRespuesta)) {
-          base = "CORRECTO"
-          setMomento("Respuesta");
-          setTimeout(() => { Progreso({type:"PROGRESOORACION", PalabraCorrecta:resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec} - ${palabrasEstdo.AdverSelec ?  `- En el Adverbio, se seleccionó: ${palabrasEstdo.AdverSelec}` : '' } - En el Que, se seleccionó: ${palabrasEstdo.Queselec}`, Resultado:base,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})}); siguiente(window.id) }, 10000)
-        } else if (sujetoRespuesta !== palabrasEstdo.QuienSelec || AdjectivoRespuesta !== palabrasEstdo.Queselec || AdverbioRespuesta !== palabrasEstdo.AdverSelec) {
-          base = "INCORRECTO"
-          setMomento("Respuesta");
-          setTimeout(() => { Progreso({type:"PROGRESOORACION", PalabraCorrecta:resultadoOracion({objeto1:data[`Juego${window.id}`].Oraciones[0],objeto2:data[`Juego${window.id}`].Oraciones[1], objeto3:data[`Juego${window.id}`].Oraciones[2]}),PalabraSeleccionada:`En el Quien, se seleccionó: ${palabrasEstdo.QuienSelec} - ${palabrasEstdo.AdverSelec ?  `- En el Adverbio, se seleccionó: ${palabrasEstdo.AdverSelec}` : '' } - En el Que, se seleccionó: ${palabrasEstdo.Queselec}`, Resultado:base,OracionCorrecta: OracionRespuesta({objecto1: data[`Juego${window.id}`].Oraciones[0], objecto2: data[`Juego${window.id}`].Oraciones[1], objecto3: data[`Juego${window.id}`].Oraciones[2]})}); siguiente(window.id) }, 10000)
-        }
-        setopcionRes(base);
-      }, [palabrasEstdo.QuienSelec, palabrasEstdo.Queselec, palabrasEstdo.AdverSelec])
-  
-  
-  
-      switch (opcionRes) {
-        case "CORRECTO":
-          return (<><img src={buentrajo} width="100" alt="buen trabajo" /></>);
-        case "INCORRECTO":
-          return (<><img src={malTrabajo} width="100" alt='mal trabajo' /></>);
-        case "Nada":
-          return (<></>)
-        default:
-          return (<></>);
-      }
+      setopcionRes(base);
+    }, [palabrasEstdo.QuienSelec, palabrasEstdo.Queselec, palabrasEstdo.AdverSelec])
+
+
+    if (opcionRes === "CORRECTO") {
+      return (<><img src={buentrajo}  alt="buen trabajo" {...opc} /></>);
+    }
+    if (opcionRes === "INCORRECTO") {
+      return (<><img src={malTrabajo} alt='mal trabajo' {...opc} /></>);
     }
   }
-export const TODOSSeccionMulti = ({ window, siguiente, data, Progreso}) => {
+}
+}
+export const TODOSSeccionMulti = ({ indice, siguiente, data, Progreso, setcro }) => {
   const [estate, dispatch] = useReducer(apuntadores, estadoInicialApuntadores)
+  const [videoActual, setVideoActual] = useState(0);
+  const { quienlist } = useContext(JuecoContext);
   const [opacarQuien, disparadorQuien] = useReducer(opacarsOpacidadQuien, estadoInicialOpacidadQuien)
   const [opacarQue, disparadorQue] = useReducer(opacarsOpacidadQue, estadoInicialOpacidadQue)
   const [opacarAdverbio, disparadorAdverbio] = useReducer(opacarsOpacidadAdverbio, estadoInicialOpacidadAdverbio)
   const [palabrasEstdo, disparadorPalabras] = useReducer(seleccionDePalabrasSelecion, estadoInicialSelecionPalabras)
   const [opcionRes, setopcionRes] = useState("Nada");
+  const [modeloquienMostrar, setmodeloquienMostrar] = useState([])
+  const [Adverbios, setAdverbios] = useState([])
   const [{ QueSelecion, QuienSeleccion, AdverbNSeleccion }, DisparadordeImagenes] = useReducer(seleccionDeImagenesf, selecciondeImagenes)
   const [momento, setMomento] = useState("inicial");
 
+  useEffect(() => {
+    if (data != null) {
+      const info = analizarAdverbios({ data: data, indice: indice });
+      setAdverbios(info);
+    }
+  }, [indice])
+
+  useEffect(() => {
+    if (data != null) {
+      const info2 = analizaradentro({ quienlist: quienlist, data: data, indice: indice });
+      setmodeloquienMostrar(info2);
+    }
+  }, [indice])
+
+  useEffect(() => {
+    setcro("inicial")
+    setMomento("inicial");
+    setopcionRes("Nada");
+    setVideoActual(0);
+    dispatch({ type: "resetear" })
+    disparadorQuien({ type: "resetear" })
+    disparadorQue({ type: "resetear" })
+    disparadorAdverbio({ type: "resetear" })
+    disparadorPalabras({ type: "resetear" })
+    DisparadordeImagenes({ type: "resetear" })
+  }, [indice])
 
   const onhandleClickPrimero = () => {
     DisparadordeImagenes({ type: "seleccionImagen", field: "QuienSeleccion", value: 1 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien2", value: 0.4 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: data[`Juego${window.id}`].Oraciones[0].Sujeto.label })
+    disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: modeloquienMostrar[0].label })
   }
 
   const onhandleClickSegundo = () => {
@@ -294,14 +361,14 @@ export const TODOSSeccionMulti = ({ window, siguiente, data, Progreso}) => {
     disparadorQuien({ type: "opacarQuien", field: "opacityquien1", value: 0.4 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: data[`Juego${window.id}`].Oraciones[1].Sujeto.label })
+    disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: modeloquienMostrar[1].label })
   }
   const onhandleClickTercero = () => {
     DisparadordeImagenes({ type: "seleccionImagen", field: "QuienSeleccion", value: 3 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien1", value: 0.4 })
     disparadorQuien({ type: "opacarQuien", field: "opacityquien2", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: data[`Juego${window.id}`].Oraciones[2].Sujeto.label })
+    disparadorPalabras({ type: "seleccion", field: "QuienSelec", value: modeloquienMostrar[2].label })
   }
   //-------------------
   const onhandleClickQuePrimero = () => {
@@ -309,14 +376,14 @@ export const TODOSSeccionMulti = ({ window, siguiente, data, Progreso}) => {
     disparadorQue({ type: "opacarQue", field: "opacityQue2", value: 0.4 })
     disparadorQue({ type: "opacarQue", field: "opacityQue3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer2", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "Queselec", value: data[`Juego${window.id}`].Oraciones[0].Que.label })
+    disparadorPalabras({ type: "seleccion", field: "Queselec", value: data[`Juego${indice}`].Oraciones[0].Que.label })
   }
   const onhandleClickQueSegundo = () => {
     DisparadordeImagenes({ type: "seleccionImagen", field: "QueSelecion", value: 2 })
     disparadorQue({ type: "opacarQue", field: "opacityQue1", value: 0.4 })
     disparadorQue({ type: "opacarQue", field: "opacityQue3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer2", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "Queselec", value: data[`Juego${window.id}`].Oraciones[1].Que.label })
+    disparadorPalabras({ type: "seleccion", field: "Queselec", value: data[`Juego${indice}`].Oraciones[1].Que.label })
 
   }
   const onhandleClickQueTercero = () => {
@@ -324,7 +391,7 @@ export const TODOSSeccionMulti = ({ window, siguiente, data, Progreso}) => {
     disparadorQue({ type: "opacarQue", field: "opacityQue2", value: 0.4 })
     disparadorQue({ type: "opacarQue", field: "opacityQue1", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer2", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "Queselec", value: data[`Juego${window.id}`].Oraciones[2].Que.label })
+    disparadorPalabras({ type: "seleccion", field: "Queselec", value: data[`Juego${indice}`].Oraciones[2].Que.label })
   }
   //---------------
   const onhandleClickAdvePrimero = () => {
@@ -332,14 +399,14 @@ export const TODOSSeccionMulti = ({ window, siguiente, data, Progreso}) => {
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity2", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego${window.id}`].Oraciones[0].Adverbio || 'no habia' })
+    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: Adverbios[0].Adverbio || 'no habia' })
   }
   const onhandleClickAdveSegundo = () => {
     DisparadordeImagenes({ type: "seleccionImagen", field: "AdverbNSeleccion", value: 2 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity1", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity3", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego${window.id}`].Oraciones[1].Adverbio || 'no habia' })
+    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: Adverbios[1].Adverbio || 'no habia' })
   }
 
   const onhandleClickAdveTercero = () => {
@@ -347,115 +414,145 @@ export const TODOSSeccionMulti = ({ window, siguiente, data, Progreso}) => {
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity1", value: 0.4 })
     disparadorAdverbio({ type: "opacarAdverbio", field: "opacity2", value: 0.4 })
     dispatch({ type: "puntador", field: "pointer3", value: "none" })
-    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: data[`Juego${window.id}`].Oraciones[2].Adverbio || 'no habia' })
+    disparadorPalabras({ type: "seleccion", field: "AdverSelec", value: Adverbios[2].Adverbio || 'no habia' })
   }
 
 
   return (
-    <>
-      <Col className='mt-2' lg="4" sm="12" md="12" >
-        {
-          momento === "inicial" && <Preguntasecction data={data[`Juego` + window.id].Oraciones} />
-        }
-        {
-          momento === "Respuesta" && <Respuestasecction data={data[`Juego` + window.id].Oraciones}/>
-        }
-      </Col>
-      <Col lg="8">
-        <Row lg="12" className='align-items-center'>
-          <Col style={{ width: "95px", height: "120px" }}>
-            <img alt='sujeto' src={Quien} width="75" />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien1 }} onClick={() => { onhandleClickPrimero() }}>
-            <img src={data[`Juego${window.id}`].Oraciones[0].Sujeto.value} width="150" alt='opcion1' />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien2 }} onClick={() => { onhandleClickSegundo() }}>
-            <img src={data[`Juego${window.id}`].Oraciones[1].Sujeto.value} width="150" alt='opcion2' />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien3 }} onClick={() => { onhandleClickTercero() }}>
-            <img src={data[`Juego${window.id}`].Oraciones[2].Sujeto.value} width="150" alt='opcion3' />
-          </Col>
-        </Row>
-        {
-          isAdverbio( window, data)
-          && (
-            <Row lg="12" className='align-items-center'>
-              <Col style={{ width: "150px", height: "120px" }}>
-                <img alt='sujeto' src={Cantidad} width="100" />
-              </Col>
-              <Col style={{ width: "150px", height: "100px", pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity1 }} onClick={onhandleClickAdvePrimero}>
-                <h3 style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego${window.id}`].Oraciones[0].Adverbio}</h3>
-              </Col>
-              <Col style={{ width: "150px", height: "100px", pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity2 }} onClick={onhandleClickAdveSegundo} >
-                <h3 style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego${window.id}`].Oraciones[1].Adverbio}</h3>
-              </Col>
-              <Col style={{ width: "150px", height: "100px", pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity3 }} onClick={onhandleClickAdveTercero} >
-                <h3 style={{ fontWeight: 700, color: "#85858C" }}>{data[`Juego${window.id}`].Oraciones[2].Adverbio}</h3>
-              </Col>
-            </Row>)
-        }
-        <Row lg="12" className='align-items-center'>
-          <Col style={{ width: "95px" }}>
-            <img alt='que' src={Que} width="75" />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue1 }} onClick={() => { onhandleClickQuePrimero() }}>
-            <img src={data[`Juego${window.id}`].Oraciones[0].Que.value} width="150" alt='opcion1' />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue2 }} onClick={() => { onhandleClickQueSegundo() }}>
-            <img src={data[`Juego${window.id}`].Oraciones[1].Que.value} width="150" alt='opcion2' />
-          </Col>
-          <Col style={{ width: "175px", pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue3 }} onClick={() => { onhandleClickQueTercero() }}>
-            <img src={data[`Juego${window.id}`].Oraciones[2].Que.value} width="150" alt='opcion3' />
-          </Col>
-        </Row>
-      </Col>
-      <div className='zonainteractiva'>
-      <div className='pruebaDise' style={{borderRadius:"10px", border:"#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor:"#F8F7FD"}}>
-        <div className='opciones'>
-          <div style={{padding:'0px'}} >
-            <img alt='que' src={Quien}  className='imagenOpc'/>
-          </div>
-          <div style={{padding:'0px'}} >
-            <img src={Verbo} alt='opcion1'  className='imagenOpc' />
-          </div>
-          {isAdverbio( window, data)
-            &&
-            (
-              <div style={{padding:'0px'}} >
-                <img src={Cantidad} alt='opcion1'  className='imagenOpc' />
-              </div>)
-          }
-          <div style={{padding:'0px'}} >
-            <img alt='que' src={Que}  className='imagenOpc' />
-          </div>
-        </div>
-        <div className='seleccion' >
-          <div style={{padding:'0px'}} >
-            <SeleccionQuien QuienSeleccion={QuienSeleccion} data={data} window={window} className='opcionesSelec' />
-          </div>
-          <div style={{padding:'0px'}} >
-            <VerboRespuesta window={window} data={data} className='opcionesSelec'/>
-          </div>
+    <div className='contenido-una-oracion'>
+      <div className='up-side-oracion'>
+        <div className='seccion-videos-oracion'>
           {
-            isAdverbio( window, data)
-            && (
-              <div style={{padding:'0px'}} >
-                <SeleccionCantidad  window={window} AdverbNSeleccion={AdverbNSeleccion}  data={data} className='opcionesSelec'/>
-              </div>
-            )
+            momento === "inicial" && <Preguntasecction setcro={setcro} videoActual={videoActual} data={data[`Juego` + indice].Oraciones} disparadorAdverbio={disparadorAdverbio} disparadorQuien={disparadorQuien} disparadorQue={disparadorQue} dispatch={dispatch} className="video-pregunta-oracion-una" />
           }
-          <div style={{padding:'0px'}} >
-            <SeleccionQue QueSelecion={QueSelecion} window={window} data={data} className='opcionesSelec' />
+          {
+            momento === "Respuesta" && <Respuestasecction setcro={setcro} data={data[`Juego` + indice].Oraciones} siguiente={siguiente} className="video-respuesta-oracion-una" />
+          }
+        </div>
+        <div className='opcion-multi-oracion'>
+          {
+            modeloquienMostrar.length > 0 ? (<div className='seccion-quien-multiple'>
+              <div className='imagen-pregunta-quien-multi'>
+                <img alt='sujeto' src={Quien} />
+              </div>
+              <div style={{ pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien1 }} onClick={() => { onhandleClickPrimero() }}>
+                <div className='opcion-imagen-multi'>
+                  <img src={modeloquienMostrar[0].value} className='opcion-imagen-multi-neta' alt='opcion1' />
+                </div>
+              </div>
+              <div style={{ pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien2 }} onClick={() => { onhandleClickSegundo() }}>
+                <div className='opcion-imagen-multi'>
+                  <img src={modeloquienMostrar[0].value} className='opcion-imagen-multi-neta' alt='opcion2' />
+                </div>
+              </div>
+              <div style={{ pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien3 }} onClick={() => { onhandleClickTercero() }}>
+                <div className='opcion-imagen-multi'>
+                  <img src={modeloquienMostrar[0].value} className='opcion-imagen-multi-neta' alt='opcion3' />
+                </div>
+              </div>
+            </div>) : (<div className='seccion-quien-multiple'>
+
+            </div>)
+          }
+          {
+            Adverbios.length > 0 && isAdverbio(indice, data)
+              ? (
+                <div className='seccion-adv-multiple'>
+                  <div className='imagen-pregunta-adv-multi'>
+                    <img alt='sujeto' src={Cantidad} />
+                  </div>
+                  <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity1 }} onClick={onhandleClickAdvePrimero}>
+                    <div className='opcion-multi-letras'>
+                      <div>
+                        <p>{Adverbios[0].Adverbio}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity2 }} onClick={onhandleClickAdveSegundo} >
+                    <div className='opcion-multi-letras'>
+                      <div>
+                        <p>{Adverbios[1].Adverbio}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div style={{ pointerEvents: estate.pointer3, opacity: opacarAdverbio.opacity3 }} onClick={onhandleClickAdveTercero} >
+                    <div className='opcion-multi-letras'>
+                      <div>
+                        <p>{Adverbios[2].Adverbio}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>) : (<div className='seccion-adv-multiple'> </div>)
+          }
+          <div className='seccion-que-multiple'>
+            <div className='imagen-pregunta-que-multi'>
+              <img alt='que' src={Que} />
+            </div>
+            <div style={{ pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue1 }} onClick={() => { onhandleClickQuePrimero() }}>
+              <div className='opcion-imagen-multi'>
+                <img src={data[`Juego${indice}`].Oraciones[0].Que.value} width="150" alt='opcion1' className='opcion-imagen-multi-neta' />
+              </div>
+            </div>
+            <div style={{ pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue2 }} onClick={() => { onhandleClickQueSegundo() }}>
+              <div className='opcion-imagen-multi'>
+                <img src={data[`Juego${indice}`].Oraciones[1].Que.value} width="150" alt='opcion2' className='opcion-imagen-multi-neta' />
+              </div>
+            </div>
+            <div style={{ pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue3 }} onClick={() => { onhandleClickQueTercero() }}>
+              <div className='opcion-imagen-multi'>
+                <img src={data[`Juego${indice}`].Oraciones[2].Que.value} width="150" alt='opcion3' className='opcion-imagen-multi-neta' />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div >
-        {isAdverbio( window, data) ? <RespuestaImagenconAdverbio data={data} window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} Progreso={Progreso} />
-          : <RespuestaImagen  data={data}  window={window} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente}  Progreso={Progreso}/>
-        }
+      <div className='zonainteractiva'>
+        <div className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
+          <div className='opciones'>
+            <div style={{ padding: '0px' }} >
+              <img alt='que' src={Quien} className='imagenOpc' />
+            </div>
+            <div style={{ padding: '0px' }} >
+              <img src={Verbo} alt='opcion1' className='imagenOpc' />
+            </div>
+            {isAdverbio(indice, data)
+              &&
+              (
+                <div style={{ padding: '0px' }} >
+                  <img src={Cantidad} alt='opcion1' className='imagenOpc' />
+                </div>)
+            }
+            <div style={{ padding: '0px' }} >
+              <img alt='que' src={Que} className='imagenOpc' />
+            </div>
+          </div>
+          <div className='seleccion' >
+            <div style={{ padding: '0px' }} >
+              <SeleccionQuien modeloquienMostrar={modeloquienMostrar} QuienSeleccion={QuienSeleccion} className='opcionesSelec' />
+            </div>
+            <div style={{ padding: '0px' }} >
+              <VerboRespuesta indice={indice} data={data} className='opcionesSelec' />
+            </div>
+            {
+              isAdverbio(indice, data)
+              && (
+                <div style={{ padding: '0px' }} >
+                  <SeleccionCantidad Adverbios={Adverbios} AdverbNSeleccion={AdverbNSeleccion} className='opcionesSelec' />
+                </div>
+              )
+            }
+            <div style={{ padding: '0px' }} >
+              <SeleccionQue QueSelecion={QueSelecion} indice={indice} data={data} className='opcionesSelec' />
+            </div>
+          </div>
+        </div>
+        <div >
+          {isAdverbio(indice, data) ? <RespuestaImagenconAdverbio data={data} indice={indice} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} Progreso={Progreso} className='imagen-respuesta-oracion' />
+            : <RespuestaImagen data={data} indice={indice} palabrasEstdo={palabrasEstdo} opcionRes={opcionRes} setMomento={setMomento} setopcionRes={setopcionRes} siguiente={siguiente} Progreso={Progreso} className='imagen-respuesta-oracion' />
+          }
+        </div>
+
       </div>
-      
-      </div>
-    </>
+    </div>
   )
 }

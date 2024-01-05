@@ -93,7 +93,7 @@ const Index = () => {
                         </div>
                         <div style={{height:24}}>
                             {mensajeContraseña &&<div className="scale-in-center"> <small style={{ color: 'red' }}>Contraseña o Correo Incorrectos</small> </div>}
-                           {nensajeServicio && <div className="scale-in-center"><small style={{ color: 'red' }}>No Hay Respuesta del servicio</small></div>}
+                           {nensajeServicio && <div className="scale-in-center"><small style={{ color: 'red' }}>Ingrese los datos solicitados: usuario y contraseña</small></div>}
                             </div><br />
                         <Button disabled={bloqeo}  className='btn' style={{backgroundColor:"#592a98", color:"#ffffff", width:'100%'}} type='submit' >{bloqeo && <Spinner size="sm">
     Loading...

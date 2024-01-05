@@ -8,7 +8,7 @@ import { PiCoinVerticalDuotone } from "react-icons/pi";
 import QueSeccion from './QueSeccion'
 import QuienSeccion from './QuienSeccion'
 import TODOSSeccion from './TODOSSeccion'
-import { OracionRespuesta, resultadoOracion, resultadoOracionAdverbio, resultadoOracionQue, resultadoOracionQuien, sumadordePunto } from '../../../helpers'
+import { OracionRespuesta, resultadoOracion, resultadoOracionAdverbio, resultadoOracionQue, resultadoOracionQuien } from '../../../helpers'
 import Cronometro from '../../../componentes/JuegoComponent/JuegoGeneral/Cronometro'
 
 export const NuevoOracion = () => {
@@ -73,7 +73,8 @@ export const NuevoOracion = () => {
       <Cronometro  minutosInicio={0} reiniciarCronometro={cro} segundosInicio={59}/>
       </div>
     <div className='puntaje-juego'>
-        <p>Puntos: {`${sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:Oracionprogreso.filter(obj => obj.Resultado === "CORRECTO").length})}`}<PiCoinVerticalDuotone /></p>
+        {/* <p>Puntos: {`${sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:Oracionprogreso.filter(obj => obj.Resultado === "CORRECTO").length})}`}<PiCoinVerticalDuotone /></p> */}
+        <p>Puntos: {Oracionprogreso.filter(obj => obj.Resultado === "CORRECTO").length}<PiCoinVerticalDuotone /></p>
     </div>
       </div>
       

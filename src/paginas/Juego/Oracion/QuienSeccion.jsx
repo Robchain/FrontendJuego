@@ -38,27 +38,7 @@ const VerSeleccionqUE = ({ data,  indice, ...props }) => {
   return (<img src={seleccionverbo.value} alt='opcion1' {...props} />)
 
 }
-const SeleccionQUIENO = ({ data,  indice, QueSelecion, ...props }) => {
-  const [selcci, setSelcci] = useState({value:'', label:''});
-  useEffect(() => {
-    if (QueSelecion === 1) { setSelcci(data[`Juego` + indice].Oraciones[0].Sujeto) }
-    if (QueSelecion === 2) { setSelcci(data[`Juego` + indice].Oraciones[1].Sujeto) }
-    if (QueSelecion === 3) { setSelcci(data[`Juego` + indice].Oraciones[2].Sujeto) }
-  }, [QueSelecion])
-
-  useEffect(() => {
-    if(QueSelecion===null){
-      setSelcci({value:'', label:''});
-    }
-  }, [indice])
-  
-  return (<>{
-   selcci.label.length !==0?  (
-      <img src={selcci.value} alt='opcion1'  {...props}/>
-    ):<div></div>
-  }</>)
-}
-const SeleccionQUIEN = ({ modeloquienMostrar, data,  indice, QueSelecion, ...props }) => {
+const SeleccionQUIEN = ({ modeloquienMostrar, QueSelecion, ...props }) => {
   if (QueSelecion === 1) { return (<img src={modeloquienMostrar[0].value} alt='opcion1'  {...props}/>) }
   if (QueSelecion === 2) { return (<img src={modeloquienMostrar[1].value} alt='opcion2'  {...props}/>) }
   if (QueSelecion === 3) { return (<img src={modeloquienMostrar[2].value} alt='opcion3'  {...props}/>) }
@@ -80,7 +60,6 @@ const VerCantidad = ({ data,  indice, ...props }) => {
   return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{verbo}</span>)
 }
 const isAdverbio = ( indice, data) => {
-
   if(data[`Juego` + indice].Oraciones[0].Respuesta === "CORRECTO" && data[`Juego` + indice].Oraciones[0].Adverbio){
 return true
   }else if(data[`Juego` + indice].Oraciones[1].Respuesta === "CORRECTO" && data[`Juego` + indice].Oraciones[1].Adverbio){
@@ -148,7 +127,7 @@ const Respuestasecction = ({ setcro,siguiente, data, ...props  }) => {
     </div>
   )
 };
-const RespuestaImagen = ({answer, momento, Queselec, data, indice, setMomento, Progreso, ...opc }) => {
+const RespuestaImagen = ({ momento, Queselec, data, indice, setMomento, Progreso, ...opc }) => {
   const [imagense, setImagense] = useState({value:'', label:''})
   let AdjectivoRespuesta = {value:'', label:''};
   useEffect(() => {
@@ -165,11 +144,11 @@ const RespuestaImagen = ({answer, momento, Queselec, data, indice, setMomento, P
       if (AdjectivoRespuesta.label === Queselec.label) {
         setMomento("Respuesta");
         setImagense(buentrajo);
-        Progreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracionQuien({objeto1:data[`Juego` + indice].Oraciones[0], objeto2:data[`Juego` + indice].Oraciones[1], objeto3:data[`Juego` + indice].Oraciones[2]}) , selecionado: `Se seleccionó: ${Queselec}`, Resul: `${answer}`, OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + indice].Oraciones[0], objecto2:data[`Juego` + indice].Oraciones[1], objecto3:data[`Juego` + indice].Oraciones[2]}) })
+        Progreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracionQuien({objeto1:data[`Juego` + indice].Oraciones[0], objeto2:data[`Juego` + indice].Oraciones[1], objeto3:data[`Juego` + indice].Oraciones[2]}) , selecionado: `Se seleccionó: ${Queselec.label}`, Resul: "CORRECTO", OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + indice].Oraciones[0], objecto2:data[`Juego` + indice].Oraciones[1], objecto3:data[`Juego` + indice].Oraciones[2]}) })
       } else if (AdjectivoRespuesta.label !== Queselec.label) {
         setMomento("Respuesta");
         setImagense(malTrabajo);
-        Progreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracionQuien({objeto1:data[`Juego` + indice].Oraciones[0], objeto2:data[`Juego` + indice].Oraciones[1], objeto3:data[`Juego` + indice].Oraciones[2]}) , selecionado: `Se seleccionó: ${Queselec}`, Resul: `${answer}`, OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + indice].Oraciones[0], objecto2:data[`Juego` + indice].Oraciones[1], objecto3:data[`Juego` + indice].Oraciones[2]}) })
+        Progreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracionQuien({objeto1:data[`Juego` + indice].Oraciones[0], objeto2:data[`Juego` + indice].Oraciones[1], objeto3:data[`Juego` + indice].Oraciones[2]}) , selecionado: `Se seleccionó: ${Queselec.label}`, Resul: "INCORRECTO", OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + indice].Oraciones[0], objecto2:data[`Juego` + indice].Oraciones[1], objecto3:data[`Juego` + indice].Oraciones[2]}) })
       }
     } else {
       setImagense("");
@@ -189,7 +168,7 @@ const QuienSeccion = ({ setcro, indice, siguiente, Progreso, data }) => {
   const [modeloquienMostrar, setmodeloquienMostrar] = useState([])
   const [Queselec, setQueselec] = useState({label:'', value:''});
   const [QueSelecion, setQueSelecion] = useState(0);
-  const [answer, setAnswer] = useState("")
+  
   const [videoActual, setVideoActual] = useState(0);
   const [pointerEvent, setPointer] = useState("none");
   const [opacity1, setOpacity1] = useState(0.4);
@@ -218,10 +197,7 @@ useEffect(() => {
 
 
   const onhandleClickQuePrimero = () => {
-    
-    // Progreso({ type: "PROGRESO", PalabraCorrecta:resultadoOracionQuien({objeto1:data[`Juego` + indice].Oraciones[0], objeto2:data[`Juego` + indice].Oraciones[1], objeto3:data[`Juego` + indice].Oraciones[2]}) ,selecionado: `Se seleccionó: ${data[`Juego` + indice].Oraciones[0].Sujeto.label}`, Resul: data[`Juego` + indice].Oraciones[0].Respuesta, OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + indice].Oraciones[0], objecto2:data[`Juego` + indice].Oraciones[1], objecto3:data[`Juego` + indice].Oraciones[2]}) })
     setQueSelecion(1);
-    setAnswer(data[`Juego` + indice].Oraciones[0].Respuesta)
     setQueselec(modeloquienMostrar[0]);
     setPointer("none")
     setOpacity2(0.4);
@@ -229,20 +205,14 @@ useEffect(() => {
   }
 
   const onhandleClickQueSegundo = () => {
-    
-    // Progreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracionQuien({objeto1:data[`Juego` + indice].Oraciones[0], objeto2:data[`Juego` + indice].Oraciones[1], objeto3:data[`Juego` + indice].Oraciones[2]}) , selecionado: `Se seleccionó: ${data[`Juego` + indice].Oraciones[1].Sujeto.label}`, Resul: data[`Juego` + indice].Oraciones[1].Respuesta, OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + indice].Oraciones[0], objecto2:data[`Juego` + indice].Oraciones[1], objecto3:data[`Juego` + indice].Oraciones[2]}) })
     setQueSelecion(2);
-    setAnswer(data[`Juego` + indice].Oraciones[1].Respuesta)
     setQueselec(modeloquienMostrar[1]);
     setPointer("none")
     setOpacity3(0.4);
     setOpacity1(0.4);
   }
   const onhandleClickQueTercero = () => {
-    
-    // Progreso({ type: "PROGRESO",PalabraCorrecta:resultadoOracionQuien({objeto1:data[`Juego` + indice].Oraciones[0], objeto2:data[`Juego` + indice].Oraciones[1], objeto3:data[`Juego` + indice].Oraciones[2]}) , selecionado: `Se seleccionó: ${data[`Juego` + indice].Oraciones[2].Sujeto.label}`, Resul: data[`Juego` + indice].Oraciones[2].Respuesta, OracionCorrecta: OracionRespuesta({objecto1:data[`Juego` + indice].Oraciones[0], objecto2:data[`Juego` + indice].Oraciones[1], objecto3:data[`Juego` + indice].Oraciones[2]}) })
     setQueSelecion(3);
-    setAnswer(data[`Juego` + indice].Oraciones[2].Respuesta)
     setQueselec(modeloquienMostrar[2]);
     setPointer("none")
     setOpacity1(0.4);
@@ -329,7 +299,7 @@ useEffect(() => {
         </div>
       </div>
       <div  className='respuesta-seccion' >
-      <div>  <RespuestaImagen answer={answer} momento={momento} Queselec={Queselec} setMomento={setMomento} data={data} Progreso={Progreso}  indice={indice} className='imagen-respuesta-oracion' /></div>
+      <div>  <RespuestaImagen  momento={momento} Queselec={Queselec} setMomento={setMomento} data={data} Progreso={Progreso}  indice={indice} className='imagen-respuesta-oracion' /></div>
         </div>
    </div>
     </div>

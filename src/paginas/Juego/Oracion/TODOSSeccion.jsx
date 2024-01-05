@@ -193,9 +193,9 @@ const SeleccionCantidad = ({ Adverbios,AdverbNSeleccion, indice, ...props }) => 
   return (<div {...props}></div>)
 }
 const SeleccionQuien = ({ modeloquienMostrar,QuienSeleccion, data, indice, ...props }) => {
-  if (QuienSeleccion === 1) { return (<img src={modeloquienMostrar[0].value} width="150" alt='opcion1' {...props} />) }
-  if (QuienSeleccion === 2) { return (<img src={modeloquienMostrar[1].value} width="150" alt='opcion2' {...props} />) }
-  if (QuienSeleccion === 3) { return (<img src={modeloquienMostrar[2].value} width="150" alt='opcion3' {...props} />) }
+  if (QuienSeleccion === 1) { return (<img src={modeloquienMostrar[0].value} alt='opcion1' {...props} />) }
+  if (QuienSeleccion === 2) { return (<img src={modeloquienMostrar[1].value} alt='opcion2' {...props} />) }
+  if (QuienSeleccion === 3) { return (<img src={modeloquienMostrar[2].value} alt='opcion3' {...props} />) }
   if (QuienSeleccion === 0) { return (<div {...props}></div>) }
   return (<div {...props}></div>)
 }
@@ -239,7 +239,7 @@ const RespuestaImagen = ({ data, indice, dispatchProgreso, palabrasEstdo, setopc
       }
       if (opcionRes === "INCORRECTO") {
         setMomento("Respuesta");
-        return (<><img src={malTrabajo} width="100" alt='mal trabajo' {...opc}/></>);
+        return (<><img src={malTrabajo} alt='mal trabajo' {...opc}/></>);
       }
     }
   }

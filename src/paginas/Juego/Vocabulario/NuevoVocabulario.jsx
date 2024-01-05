@@ -9,7 +9,6 @@ import { PiCoinVerticalDuotone } from "react-icons/pi";
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego';
 import { resultado } from '../../../helpers/contador';
 import Cronometro from '../../../componentes/JuegoComponent/JuegoGeneral/Cronometro';
-import { sumadordePunto } from '../../../helpers';
 const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setOpa2, setOpa3, ...props }) => {
     const [imagenRes, setImagenRes] = useState("")
     useEffect(() => {
@@ -64,7 +63,12 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
       }
     }, [data])
   
-    return (<>{data.length === 3 && <ReactPlayer url={videos[videoActual]} controls={true} playing={true}  onEnded={() => { if (3 === videoActual) { setPointerEvent("auto"); setOpa1(1); setOpa2(1); setOpa3(1);setcro("pregunta") } else { setVideoActual(videoActual + 1); } }} {...props} />
+    return (<>{data.length === 3 && <ReactPlayer 
+      url={videos[videoActual]} 
+      controls={true} 
+      playing={true} 
+       onEnded={() => { if (3 === videoActual) { setPointerEvent("auto"); setOpa1(1); setOpa2(1); setOpa3(1);setcro("pregunta") } else { setVideoActual(videoActual + 1); } }} 
+       {...props} />
     }</>)
   }
   const VideosRespuesta = ({ setcro,data, playref,siguienteObjeto, ...props }) => {
@@ -84,7 +88,15 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
       }
   
     }, [data])
-    return <ReactPlayer url={videos} playing={true} controls={true} onEnded={siguienteObjeto} style={{ borderRadius: "20px" }} ref={playref} className="mb-1" {...props} />
+    return <ReactPlayer
+     url={videos}
+     playing={true} 
+     controls={true}
+      onEnded={siguienteObjeto}
+       style={{ borderRadius: "20px" }}
+        ref={playref}
+         className="mb-1" 
+         {...props} />
   }
 export const NuevoVocabulario = () => {
     const {  avance0, progreso, dataJuegoVocabulario, piezaAvanzadas,piezaJuegoIndi,prevAvance,dataRompecabeza } = useContext(JuecoContext);
@@ -177,7 +189,8 @@ export const NuevoVocabulario = () => {
                       <Cronometro minutosInicio={0} reiniciarCronometro={cro} segundosInicio={59}/>
                       </div>
                       <div className="puntaje-juego">
-                        <p>Puntos: {`${sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length})}`}<PiCoinVerticalDuotone /> </p>
+                        {/* <p>Puntos: {`${sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length})}`}<PiCoinVerticalDuotone /> </p> */}
+                        <p>Puntos: {avance0.filter(obj => obj.Resultado === "CORRECTO").length}<PiCoinVerticalDuotone /> </p>
                       </div>
                       </div>
                       <div className='contenedor-juego'>
@@ -206,7 +219,7 @@ export const NuevoVocabulario = () => {
                             <div className='palabra'>
                               <p>{dataJuegoVocabulario[`Juego` + indice].Palabras[1].Palabra}</p>
                             </div>
-                            <img className='juego-imagen-vocabulario' src={dataJuegoVocabulario[`Juego` + indice].Palabras[1].FileImagen} alt={dataJuegoVocabulario[`Juego` + indice].Palabras[1].Palabra} width='200' />
+                            <img className='juego-imagen-vocabulario' src={dataJuegoVocabulario[`Juego` + indice].Palabras[1].FileImagen} alt={dataJuegoVocabulario[`Juego` + indice].Palabras[1].Palabra} />
                             <div>
                               <ImagenDeCorrecto correcto={correcto2} setMomento={setMomento} setPointerEvent={setPointerEvent} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} className='imagen-respuesta' />
                             </div>
@@ -217,7 +230,7 @@ export const NuevoVocabulario = () => {
                             <div className='palabra'>
                               <p>{dataJuegoVocabulario[`Juego` + indice].Palabras[2].Palabra}</p>
                             </div>
-                            <img className='juego-imagen-vocabulario' src={dataJuegoVocabulario[`Juego` + indice].Palabras[2].FileImagen} alt={dataJuegoVocabulario[`Juego` + indice].Palabras[2].Palabra} width='200' />
+                            <img className='juego-imagen-vocabulario' src={dataJuegoVocabulario[`Juego` + indice].Palabras[2].FileImagen} alt={dataJuegoVocabulario[`Juego` + indice].Palabras[2].Palabra}  />
                             <div>
                               <ImagenDeCorrecto correcto={correcto3} setMomento={setMomento} setPointerEvent={setPointerEvent} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} className='imagen-respuesta' />
                             </div>

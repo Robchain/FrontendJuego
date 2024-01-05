@@ -22,6 +22,7 @@ import { FinalJuego } from '../paginas/Juego/Multijugador/FinalJuego'
 import { Podio } from '../paginas/Juego/Multijugador/Podio'
 import { NuevoVocabulario } from '../paginas/Juego/Vocabulario/NuevoVocabulario'
 import { NuevoOracion } from '../paginas/Juego/Oracion/NuevoOracion'
+import { NuevoPantallaParteDos } from '../paginas/Juego/Multijugador/NuevoPantallaParteDos'
 export const AllRoutes = () => {
   return (<>
     <Routes>
@@ -49,7 +50,7 @@ export const AllRoutes = () => {
       {/*Co-operativo*/}
     <Route path='/SeleccionDeEquipo' element={<PantallaParteUno/>}/>
     <Route path='/Intermedio/Jugador/:id' element={<Intermedio/>}/>
-    <Route  path='/JuegoActivo/Jugador/:id' element={<PantallaParteDos/>} />
+    <Route  path='/JuegoActivo/Jugador/:id' element={<NuevoPantallaParteDos/>} />
     <Route path='/FinalJuegoMulti/Jugador/:id' element={<FinalJuego/>} />
     <Route path='/JuegoActivo/Jugador/:id/podio' element={<Podio/>} />
       {/*Trofeos*/}
