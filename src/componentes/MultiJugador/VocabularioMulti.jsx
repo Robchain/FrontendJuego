@@ -4,6 +4,7 @@ import { Col, Row } from 'reactstrap'
 import buentrabajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
 import { resultadoVocaMulti } from '../../helpers/contador';
+import { useNavigate } from 'react-router-dom';
 const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setOpa2, setOpa3, ...props }) => {
   const [imagenRes, setImagenRes] = useState("")
   useEffect(() => {
@@ -39,22 +40,27 @@ const ImagenDeCorrecto = ({ correcto, setPointerEvent, setMomento, setOpa1, setO
 }
 
 const VideosPreguntas = ({setcro, indice, data, videoActual, setPointerEvent, setOpa1, setOpa2, setOpa3, setVideoActual, playref, ...props }) => {
-  let pregunta = "";
   const [videos, setVideos] = useState("")
+  const navegar = useNavigate();
 
   useEffect(() => {
-    if (data[`Juego${indice}`].Palabras[0].Respuesta === "CORRECTO") {
-      pregunta = data[`Juego${indice}`].Palabras[0].FilePregunta
-    } else if (data[`Juego${indice}`].Palabras[1].Respuesta === "CORRECTO") {
-      pregunta = data[`Juego${indice}`].Palabras[1].FilePregunta
-    } else if (data[`Juego${indice}`].Palabras[2].Respuesta === "CORRECTO") {
-      pregunta = data[`Juego${indice}`].Palabras[2].FilePregunta
+    if (data.length === 3) {
+      let pregunta = "";
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].Respuesta === 'CORRECTO') {
+          pregunta = data[i].FilePregunta;
+          break;
+        }
+      }
+      setVideos([data[0].FileMuestra, data[1].FileMuestra, data[2].FileMuestra, pregunta])
+    } else if (data.length < 3) {
+      navegar(`/MenuJuego`);
     }
-    setVideos([data[`Juego${indice}`].Palabras[0].FileMuestra, data[`Juego${indice}`].Palabras[1].FileMuestra, data[`Juego${indice}`].Palabras[2].FileMuestra, pregunta])
     return () => {
       setVideos([]);
     }
   }, [data])
+
 
   return <ReactPlayer 
   url={videos[videoActual]} 
@@ -66,19 +72,21 @@ const VideosPreguntas = ({setcro, indice, data, videoActual, setPointerEvent, se
 }
 const VideosRespuesta = ({setcro, siguiente,indice, data, playref, ...props }) => {
   const [videos, setvideos] = useState("");
-  useEffect(() => {
-    setcro('respuesta');
-    if (data[`Juego${indice}`].Palabras[0].Respuesta === "CORRECTO") {
-      setvideos(data[`Juego${indice}`].Palabras[0].FileMuestra)
-    } else if (data[`Juego${indice}`].Palabras[1].Respuesta === "CORRECTO") {
-      setvideos(data[`Juego${indice}`].Palabras[1].FileMuestra)
-    } else if (data[`Juego${indice}`].Palabras[2].Respuesta === "CORRECTO") {
-      setvideos(data[`Juego${indice}`].Palabras[2].FileMuestra)
-    }
-    return () => {
-      setvideos("");
-    }
-  }, [data])
+    useEffect(() => {
+      setcro('respuesta');
+      let pregunta = "";
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].Respuesta === 'CORRECTO') {
+          pregunta = data[i].FileMuestra
+          break;
+        }
+      }
+      setvideos(pregunta)
+      return () => {
+        setvideos("");
+      }
+  
+    }, [data])
   return <ReactPlayer 
   url={videos} 
   playing={true} 
@@ -102,15 +110,30 @@ export const VocabularioMulti = ({ setcro, siguiente, indice, dataMultiJu, dispa
   const [pointerEvent, setPointerEvent] = useState("none")
   const [momento, setMomento] = useState("inicial");
 
+
+    useEffect(() => {
+      setVideoActual(0);
+      setOpa3(0.4);
+      setOpa2(0.4);
+      setCorrecto1("INICIAL")
+    setCorrecto2("INICIAL")
+    setCorrecto3("INICIAL")
+      setOpa1(0.4);
+      setPointerEvent("none");
+      
+    }, [indice])
+    
+
+
   return (
     <div className='contenedor-juego'>
     <div className='contenedor-juego'>
       <div className='video-juego-vocabulario'>
         {
-          momento === "inicial" && <VideosPreguntas setcro={setcro} indice={indice} data={dataMultiJu} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual} className='video-pregunta-vocabulario' />
+          momento === "inicial" && <VideosPreguntas setcro={setcro} indice={indice} data={dataMultiJu[`Juego${indice}`].Palabras} playref={playref} setOpa1={setOpa1} setOpa2={setOpa2} setOpa3={setOpa3} setPointerEvent={setPointerEvent} setVideoActual={setVideoActual} videoActual={videoActual} className='video-pregunta-vocabulario' />
         }
         {
-          momento === "respuesta" && <VideosRespuesta setcro={setcro} siguiente={siguiente} indice={indice} data={dataMultiJu} playref={playref}  className='video-respuesta-vocabulario'/>
+          momento === "respuesta" && <VideosRespuesta setcro={setcro} siguiente={siguiente} indice={indice} data={dataMultiJu[`Juego${indice}`].Palabras} playref={playref}  className='video-respuesta-vocabulario'/>
         }
       </div>
       <div className='opciones-juego-vocabulario' >

@@ -45,7 +45,7 @@ export const NuevoPantallaParteDos = () => {
 
 
       const siguiente = () => {
-        
+        setcro("inicial");
         if(indice === rango ){
             navegar(`/FinalJuegoMulti/Jugador/${id}`);
         }
@@ -73,6 +73,7 @@ export const NuevoPantallaParteDos = () => {
             }
           }
         }
+        setcro("inicial");
         if(indice === rango){
           navegar(`/FinalJuegoMulti/Jugador/${id}`);
       }
@@ -86,7 +87,7 @@ export const NuevoPantallaParteDos = () => {
         // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
         }
         return () => clearTimeout(temporizador);
-      }, [indice, rango,cro]);
+      }, [cro]);
 
   return (
     <Container>
@@ -104,8 +105,9 @@ export const NuevoPantallaParteDos = () => {
     {dataMultiJu[`Juego${indice}`].Palabras && <VocabularioMulti setcro={setcro}  siguiente={siguiente} indice={indice} dataMultiJu={dataMultiJu} dispatchMutli={dispatchMutli} />}
 
     {dataMultiJu[`Juego${indice}`].Oraciones && <OracionMulti siguiente={siguiente} indice={indice} dataMultiJu={dataMultiJu} dispatchMutli={dispatchMutli} setcro={setcro} />}
+    {JSON.stringify(dataMultiJu)}
     </>)
-
+      
 }
     </>):( <div className="loading-overlay">
         <img src={cargando} alt='cargando'/>
