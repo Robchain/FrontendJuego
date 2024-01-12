@@ -19,7 +19,7 @@ const MostrarQue = ({ data, indice, ...props }) => {
     } else if (data[`Juego` + indice].Oraciones[2].Respuesta === "CORRECTO") {
       setVerbo(data[`Juego` + indice].Oraciones[2].Que)
     }
-  }, [data])
+  }, [data, indice])
 
 
   return (<img src={verbo.value} alt='opcion que' {...props} />)
@@ -164,7 +164,7 @@ const VerSeleccionQuien = ({ data, indice, ...props }) => {
     } else if (data[`Juego` + indice].Oraciones[2].Respuesta === "CORRECTO") {
       setSelecion(data[`Juego` + indice].Oraciones[2].Sujeto)
     }
-  }, [data])
+  }, [data, indice])
   return (<>{selecion.value.length != 0 && (<img src={selecion.value} alt='opcion1' {...props} />)}</>)
 }
 const Adverbio = ({setcro, indice, siguiente, dispatchProgreso, data }) => {

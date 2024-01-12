@@ -19,7 +19,7 @@ const VerVerboRespuesta = ({ data,  indice, ...props }) => {
     } else if (data[`Juego` + indice].Oraciones[2].Respuesta === "CORRECTO") {
       setSelccionver(data[`Juego` + indice].Oraciones[2].Verbo)
     }
-  }, [data])
+  }, [data, indice])
 
   return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{selccionver}</span>)
 }
@@ -33,7 +33,7 @@ const VerSeleccionqUE = ({ data,  indice, ...props }) => {
     } else if (data[`Juego` + indice].Oraciones[2].Respuesta === "CORRECTO") {
       setSeleccionverbo(data[`Juego` + indice].Oraciones[2].Que)
     }
-  }, [data])
+  }, [data, indice])
 
   return (<img src={seleccionverbo.value} alt='opcion1' {...props} />)
 
@@ -55,7 +55,7 @@ const VerCantidad = ({ data,  indice, ...props }) => {
     } else if (data[`Juego` + indice].Oraciones[2].Respuesta === "CORRECTO") {
       setVerbo(data[`Juego` + indice].Oraciones[2].Adverbio)
     }
-  }, [data])
+  }, [data, indice])
 
   return (<span style={{ fontWeight: 700, color: "#85858C" }} {...props}>{verbo}</span>)
 }

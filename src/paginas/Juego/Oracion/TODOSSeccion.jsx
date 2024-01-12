@@ -349,7 +349,7 @@ useEffect(() => {
   disparadorAdverbio({ type: "resetear"})
   disparadorPalabras({ type: "resetear"})
   DisparadordeImagenes({ type: "resetear"})
-}, [indice])
+}, [indice, data])
 
 
 
