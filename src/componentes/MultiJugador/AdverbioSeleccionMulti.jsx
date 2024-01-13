@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Col, Row } from 'reactstrap'
 import buentrajo from '../../assets/img/AssetsGame/GOOD JOD.png'
 import malTrabajo from '../../assets/img/AssetsGame/Bad Jood.png'
 import Quien from '../../assets/img/AssetsGame/ico_Que.png'
@@ -19,7 +18,7 @@ const MostrarQue = ({ data, indice, ...props }) => {
     } else if (data[`Juego${indice}`].Oraciones[2].Respuesta === "CORRECTO") {
       setVerbo(data[`Juego${indice}`].Oraciones[2].Que)
     }
-  }, [data])
+  }, [data,indice])
 
 
   return (<img src={verbo.value} alt='opcion que' {...props} />)
@@ -164,7 +163,7 @@ const VerSeleccionQuien = ({ data, indice, ...props }) => {
     } else if (data[`Juego${indice}`].Oraciones[2].Respuesta === "CORRECTO") {
       setSelecion(data[`Juego${indice}`].Oraciones[2].Sujeto)
     }
-  }, [data])
+  }, [data, indice])
   return (<>{selecion.value.length != 0 && (<img src={selecion.value} alt='opcion1' {...props} />)}</>)
 }
 export const AdverbioSeleccionMulti = ({setcro, indice, siguiente, data, Progreso }) => {

@@ -103,11 +103,8 @@ export const NuevoPantallaParteDos = () => {
     <Cronometro minutosInicio={0} reiniciarCronometro={cro} segundosInicio={59}/>
     </div>
     {dataMultiJu[`Juego${indice}`].Palabras && <VocabularioMulti setcro={setcro}  siguiente={siguiente} indice={indice} dataMultiJu={dataMultiJu} dispatchMutli={dispatchMutli} />}
-
     {dataMultiJu[`Juego${indice}`].Oraciones && <OracionMulti siguiente={siguiente} indice={indice} dataMultiJu={dataMultiJu} dispatchMutli={dispatchMutli} setcro={setcro} />}
-    {JSON.stringify(dataMultiJu)}
     </>)
-      
 }
     </>):( <div className="loading-overlay">
         <img src={cargando} alt='cargando'/>

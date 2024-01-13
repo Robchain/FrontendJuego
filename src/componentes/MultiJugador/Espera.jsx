@@ -6,27 +6,23 @@ import { nombre } from '../../helpers/contador'
   
 export const Espera = ({InfoEstudiaSituacion}) => {
   return (
-    <Row className='justify-content-center' style={{height:"50vh"}}>
-    <Col lg="6">
-      <img src={gifDeEspera} alt="esperando" width={400}/>
-      </Col>
-      <Row className='justify-content-center'>
-      <Col lg="6" className='mx-auto'>
-        <h1>Espera...</h1>
+    <div className='Sala-espera'>
+    <div className='imagen-espera-div' >
+      <img src={gifDeEspera} alt="esperando" className='imagen-espera'/>
+      </div>
+      <div className='contenido-espera'>
+        <span>Espera...</span>
         {
-          InfoEstudiaSituacion.Equipo===null ? <p>
-        <b>{nombre({objecto:InfoEstudiaSituacion})}</b>, aun no selecciona un equipo
-        </p> :<p>
-        <b>{nombre({objecto:InfoEstudiaSituacion})}</b> le toca jugar
-        </p>
+          InfoEstudiaSituacion.Equipo===null ? 
+          <p><b>{nombre({objecto:InfoEstudiaSituacion})}</b>, aun no selecciona un equipo</p> :
+        <p><b>{nombre({objecto:InfoEstudiaSituacion})}</b> le toca jugar</p>
         }
-</Col>
-</Row>
-<Col lg="6" className='mt-3'>
+</div>
+<div >
 {
  InfoEstudiaSituacion.Equipo !== null && (<CarreraStepBar steps={InfoEstudiaSituacion.Avance!==null ? (InfoEstudiaSituacion.Avance.length/5) : 0} InfoEstudiaSituacion={InfoEstudiaSituacion} />)
 }
-</Col>
-    </Row>
+</div>
+    </div>
   )
 }

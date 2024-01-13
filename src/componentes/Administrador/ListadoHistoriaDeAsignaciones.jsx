@@ -76,6 +76,7 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
     }
   return (
     <>
+
     <ModalEditarColaborativo data={dataseleccionada} modal={modal} toggle={toggledos} />
    <Table striped>
          <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}><tr>
@@ -89,6 +90,7 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
               {<th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>}
             </tr></thead>
             <tbody>
+            
 {data.map( i=>(
     <tr key={i._id}>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{i.Integrantes.map(e=>(<li>{e.label}</li> ))}</td>
@@ -127,6 +129,7 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
 )}
                 </tbody>
     </Table>
+  
     </>
   )
 }
