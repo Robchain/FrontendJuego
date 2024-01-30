@@ -103,7 +103,7 @@ export const ListadoHistoriaDeAsignaciones = ({data}) => {
             {
               i.TipoDeJuego == '3' && <span>Oraciones y Vocabularios</span>
             }</td>
-                  <td style={{borderBottomColor:"#f8f8f8"}}>{nombre({objecto:i})}</td>
+                  <td style={{borderBottomColor:"#f8f8f8"}}>{nombre({array:i.Integrantes})}</td>
                   <td style={{borderBottomColor:"#f8f8f8"}}>{ 
                    i.Equipo === null ? "No hay equipos" :`${i.Equipo.Nombre}`
                   }</td>

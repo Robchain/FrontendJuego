@@ -50,7 +50,10 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
         </div>
         <Row >
         <div >
-<small>Si selecciona aleatorio se respeta el criterio ingresado en número de integrantes</small>&nbsp;&nbsp;<Button style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} onClick={()=>{onClickAleatorio(); dispatch({ type: "actualizarData", field: "Aleatorio", value: !Aleatorio})}}>Aleatorio</Button>
+          {
+            Aleatorio?<><small>se ajustará el número de jugadores a mínimo 2 para completar los grupos solicitados</small>&nbsp;&nbsp;<Button style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} onClick={()=>{onClickAleatorio(); dispatch({ type: "actualizarData", field: "Aleatorio", value: !Aleatorio})}}>Aleatorio</Button></>:<><small>Si selecciona aleatorio se respeta el criterio ingresado en número de integrantes</small>&nbsp;&nbsp;<Button style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }} onClick={()=>{onClickAleatorio(); dispatch({ type: "actualizarData", field: "Aleatorio", value: !Aleatorio})}}>Aleatorio</Button></> 
+          }
+
         </div>
         {
           Aleatorio===true ? <>
@@ -63,7 +66,6 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
               <div key={i.value}>{`- ${i.label}`}</div>
             ))}
           </Col>
-          
         ))
       }</>:<></>
           }
@@ -108,6 +110,7 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
               </Row>)
             }
           </Repeater>
+          
           <div className='d-flex justify-content-between mt-5'>
           <Button onClick={prevButton} disabled={index === 1}  style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           <AiOutlineArrowLeft size={14} className='align-middle me-sm-25 me-0'/>

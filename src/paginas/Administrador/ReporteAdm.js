@@ -33,7 +33,7 @@ const ReporteAdm = () => {
                 value="Curso"
                 onChange={event => setBusquedaPor(event.target.value)  }
               checked={busquedaPor === "Curso"}
-              /> Curso y paralelo&ensp;
+              /> Grado y paralelo&ensp;
             </Label>
             <Label> 
              <Input

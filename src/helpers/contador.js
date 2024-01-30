@@ -168,14 +168,59 @@ function shuffle(array) {
   return array;
 }
 
+// export function ordenarYagrupar(arrayDeObjetos, numeroDeGrupos, numeroDeIntegrantes) {
+//   // Paso 1: Desordenar el array de objetos
+//   const arrayDesordenado = shuffle(arrayDeObjetos);
+
+//   // Paso 2: Calcular la cantidad total de elementos y el número máximo de integrantes por grupo
+//   const cantidadTotal = arrayDesordenado.length;
+//   const maxIntegrantesPorGrupo = Math.ceil(cantidadTotal / numeroDeGrupos);
+//   const integrantesUltimoGrupo = cantidadTotal % numeroDeGrupos;
+
+//   // Paso 3: Crear un nuevo objeto de grupos vacío
+//   const grupos = {};
+
+//   // Paso 4: Recorrer el array desordenado y asignar elementos a los grupos
+//   let grupoActual = [];
+//   let grupoIndex = 0;
+
+//   for (let i = 0; i < cantidadTotal; i++) {
+//     grupoActual.push(arrayDesordenado[i]);
+
+//     // Verificar si se alcanzó el número máximo de integrantes por grupo
+//     if (grupoActual.length === numeroDeIntegrantes || i === cantidadTotal - 1) {
+//       grupos[`Equipo ${grupoIndex +1}`] = grupoActual;
+
+//       // Reiniciar el grupo actual
+//       grupoActual = [];
+//       grupoIndex++;
+//     }
+//   }
+
+//   // Ajustar el último grupo si no alcanza el número de integrantes especificado
+//   const ultimoGrupo = grupos[`Equipo ${numeroDeGrupos - 1}`];
+//   if (ultimoGrupo && ultimoGrupo.length < numeroDeIntegrantes) {
+//     const estudiantesFaltantes = numeroDeIntegrantes - ultimoGrupo.length;
+//     for (let i = 0; i < estudiantesFaltantes; i++) {
+//       const estudiante = arrayDesordenado.pop();
+//       ultimoGrupo.push(estudiante);
+//     }
+//   }
+
+//   return grupos;
+// }
+
 export function ordenarYagrupar(arrayDeObjetos, numeroDeGrupos, numeroDeIntegrantes) {
   // Paso 1: Desordenar el array de objetos
   const arrayDesordenado = shuffle(arrayDeObjetos);
 
   // Paso 2: Calcular la cantidad total de elementos y el número máximo de integrantes por grupo
   const cantidadTotal = arrayDesordenado.length;
+
+  // Validar que el número de integrantes por grupo sea menor o igual a la cantidad total
+  numeroDeIntegrantes = Math.min(numeroDeIntegrantes, cantidadTotal);
+
   const maxIntegrantesPorGrupo = Math.ceil(cantidadTotal / numeroDeGrupos);
-  const integrantesUltimoGrupo = cantidadTotal % numeroDeGrupos;
 
   // Paso 3: Crear un nuevo objeto de grupos vacío
   const grupos = {};
@@ -189,7 +234,7 @@ export function ordenarYagrupar(arrayDeObjetos, numeroDeGrupos, numeroDeIntegran
 
     // Verificar si se alcanzó el número máximo de integrantes por grupo
     if (grupoActual.length === numeroDeIntegrantes || i === cantidadTotal - 1) {
-      grupos[`Equipo ${grupoIndex +1}`] = grupoActual;
+      grupos[`Equipo ${grupoIndex + 1}`] = grupoActual;
 
       // Reiniciar el grupo actual
       grupoActual = [];
@@ -197,13 +242,20 @@ export function ordenarYagrupar(arrayDeObjetos, numeroDeGrupos, numeroDeIntegran
     }
   }
 
-  // Ajustar el último grupo si no alcanza el número de integrantes especificado
-  const ultimoGrupo = grupos[`Equipo ${numeroDeGrupos - 1}`];
-  if (ultimoGrupo && ultimoGrupo.length < numeroDeIntegrantes) {
-    const estudiantesFaltantes = numeroDeIntegrantes - ultimoGrupo.length;
-    for (let i = 0; i < estudiantesFaltantes; i++) {
-      const estudiante = arrayDesordenado.pop();
-      ultimoGrupo.push(estudiante);
+  // Validar que todos los grupos tengan al menos dos integrantes
+  for (let key in grupos) {
+    const grupoActual = grupos[key];
+    if (grupoActual && grupoActual.length === 1 && Object.keys(grupos).length > 1) {
+      // Si un grupo tiene un integrante, moverlo al grupo anterior
+      const grupoAnteriorIndex = parseInt(key.split(' ')[1]) - 1;
+      const grupoAnterior = grupos[`Equipo ${grupoAnteriorIndex}`];
+      if (grupoAnterior) {
+        grupoAnterior.push(grupoActual.pop());
+        // Eliminar el grupo actual si queda vacío
+        if (grupoActual.length === 0) {
+          delete grupos[key];
+        }
+      }
     }
   }
 
@@ -211,18 +263,34 @@ export function ordenarYagrupar(arrayDeObjetos, numeroDeGrupos, numeroDeIntegran
 }
 
 
-export const nombre = ({objecto})=>{
-if(objecto!== undefined){
-  if(objecto.Avance!== null){
-    let num = objecto.Avance.length /5;
-    return objecto.Integrantes[num].label;
-  }else if(objecto.Avance===null){
 
-    return objecto.Integrantes[0].label;
-  }
-}
+
+
+// export const nombre = ({objecto})=>{
+// if(objecto!== undefined){
+//   if(objecto.Avance!== null){
+//     let num = objecto.Avance.length /5;
+//     return objecto.Integrantes[num].label;
+//   }else if(objecto.Avance===null){
+
+//     return objecto.Integrantes[0].label;
+//   }
+// }
+// }
+
+export function nombre({array}) {
+  const primerNoTerminado = array.find(item => !item.Terminado);
+
+  return primerNoTerminado ? primerNoTerminado.label : null;
 }
 
+
+export function nombre2({array}) {
+  const posicionPrimerNoTerminado = array.Integrantes.findIndex(objeto => !objeto.Terminado);
+  
+  return Number.isInteger(posicionPrimerNoTerminado) ? array.Integrantes[posicionPrimerNoTerminado].label : 'error'
+  
+}
 export function buscarValor(array, valor) {
   for (let i = 0; i < array.length; i++) {
     if (array[i].value === valor) {

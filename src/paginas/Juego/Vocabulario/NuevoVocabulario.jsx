@@ -189,7 +189,6 @@ export const NuevoVocabulario = () => {
                       <Cronometro minutosInicio={0} reiniciarCronometro={cro} segundosInicio={59}/>
                       </div>
                       <div className="puntaje-juego">
-                        {/* <p>Puntos: {`${sumadordePunto({puntosDeRompecabeza:piezaAvanzadas, PuntosNuevos:avance0.filter(obj => obj.Resultado === "CORRECTO").length})}`}<PiCoinVerticalDuotone /> </p> */}
                         <p>Puntos: {avance0.filter(obj => obj.Resultado === "CORRECTO").length}<PiCoinVerticalDuotone /> </p>
                       </div>
                       </div>

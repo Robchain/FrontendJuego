@@ -40,9 +40,9 @@ try {
 }
 // actualización del juego al final
 
-export const ActualizarJuegoFinal = async ({idOutput,Avance})=>{
+export const ActualizarJuegoFinal = async ({idOutput,Avance,pos})=>{
     try {
-        const data = await Api.post("/actualizarJuegoTerminadoMulti", {idOutput:idOutput,Avance:Avance});
+        const data = await Api.post("/actualizarJuegoTerminadoMulti", {idOutput:idOutput,Avance:Avance,pos:pos});
         return data
     } catch (error) {
         return null;

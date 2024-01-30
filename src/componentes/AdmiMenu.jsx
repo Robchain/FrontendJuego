@@ -15,7 +15,7 @@ export const AdmiMenu = ({toggle, isOpen}) => {
   <OffcanvasBody style={{padding:0}}>
     <Nav   vertical className="flex-column mb-auto  minav" >
     <NavItem    className="item">
-     <NavLink    to='/VerEstudiante'    className='linkNav'> <AiOutlineUser size={30}/>&nbsp;&nbsp;Usuario</NavLink>
+     <NavLink    to='/VerEstudiante'    className='linkNav'> <AiOutlineUser size={30}/>&nbsp;&nbsp;Usuario y Grado</NavLink>
      </NavItem>
      <NavItem    className="item">
     <NavLink    to='/VerCategoria'  className='linkNav'><BiCategoryAlt size={30}/>&nbsp;&nbsp;Categoría</NavLink>

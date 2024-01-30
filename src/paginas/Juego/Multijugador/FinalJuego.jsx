@@ -11,7 +11,7 @@ export const FinalJuego = () => {
   const navegar = useNavigate();
   const [cargandod, setCargando] = useState(true);
   const Actualizaciones = async () => {
-    await ActualizarJuegoFinal({idOutput:InfoEstudiaSituacion._id,Avance:MultiProgreso});
+    await ActualizarJuegoFinal({idOutput:InfoEstudiaSituacion._id,Avance:MultiProgreso,pos:InfoEstudiaSituacion.Posicion});
     setCargando(false);
     setTimeout(() => {
       navegar(`/MenuJuego`)

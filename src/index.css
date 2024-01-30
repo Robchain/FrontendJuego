@@ -258,7 +258,7 @@ body {
 .minicuadrito .encimados .d {
     display: block;
     background-color: #FBFBFB;
-    width: 8vw;
+    width: 8.33vw;
     height: 100%;
 }
 
@@ -371,22 +371,11 @@ body {
     color:#777;
  }
 
-
-
-
-
-
 /* menu administrador*/
 
 .navegacion-interna-menu-administador button{
     margin-top: 10px; 
 }
-
-
-
-
-
-
 
     /*categorias menu*/
     .Cate-menu-alto {
@@ -451,28 +440,28 @@ body {
     .minicuadrito .encimados .c {
         display: block;
         background-color: #FBFBFB;
-        width: 14vw;
+        width: 17.5vw;
         height: 100%;
     }
 
     .minicuadrito .encimados .d {
         display: block;
         background-color: #FBFBFB;
-        width: 10vw;
+        width: 11.66vw;
         height: 100%;
     }
 
     .minicuadrito .encima .a {
         display: block;
         background-color: #FBFBFB;
-        width: 10vw;
+        width: 12.5vw;
         height: 100%;
     }
 
     .minicuadrito .encima .b {
         display: block;
         background-color: #FBFBFB;
-        width: 7.14vw;
+        width: 8.33vw;
         height: 100%;
     }
 
@@ -931,7 +920,7 @@ width: 45%;
     .minicuadrito .encimados .d {
         display: block;
         background-color: #FBFBFB;
-        width: 10vw;
+        width: 6.66vw;
         height: 100%;
     }
 
@@ -945,7 +934,7 @@ width: 45%;
     .minicuadrito .encima .b {
         display: block;
         background-color: #FBFBFB;
-        width: 7.14vw;
+        width: 4.25vw;
         height: 100%;
     }
 
@@ -1245,6 +1234,102 @@ margin-right: 15px;
 
 
 @media screen and (max-width: 1440px) and (min-width:1281px) {
+     /*oracion*/
+ .contenido-una-oracion{
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+
+.contenido-una-oracion .up-side-oracion{
+    display: flex;
+    justify-content: space-between;
+}
+.contenido-una-oracion .up-side-oracion .seccion-videos-oracion .video-pregunta-oracion-una{
+    width: 32vw !important;
+    height: 32vh !important;
+    margin-bottom: 10px;
+}
+.contenido-una-oracion  .up-side-oracion .seccion-videos-oracion .video-respuesta-oracion-una{
+    width: 32vw !important;
+    height: 32vh !important;
+    margin-bottom: 10px;
+}
+.contenido-una-oracion .up-side-oracion  .seccion-opciones-oracion{
+    align-self: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.contenido-una-oracion .up-side-oracion .seccion-opciones-oracion .imagen-pregunta-una img{
+    width: 10vw;   
+    margin-right: 10px;
+}
+
+.contenido-una-oracion  .up-side-oracion .seccion-opciones-oracion .opcion-imagen-una img{
+    width: 15vw;
+    margin-right: 15px;
+}
+
+.opcion-una-letras{
+    margin-left:80px;
+    font-size: 1.2em;
+font-weight: 700;
+    color:#85858C;
+}
+
+
+.contenido-una-oracion .opcion-multi-oracion{
+margin-bottom: 10px;
+display: flex;
+flex-direction: column;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-quien-multiple{
+display: flex;
+justify-content: space-evenly;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-quien-multiple .imagen-pregunta-quien-multi img{
+width: 10vw;
+margin-right: 10px;
+}
+
+.contenido-una-oracion .opcion-multi-oracion  .seccion-quien-multiple .opcion-imagen-multi img{
+width: 16vw;
+margin-right: 15px;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple .imagen-pregunta-adv-multi img{
+width: 11vw;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple .opcion-multi-letras{
+    width: 18vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 1.2em;
+font-weight: bold;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple .opcion-multi-letras p{
+    color:#85858C;
+}
+
+.contenido-una-oracion .opcion-multi-oracion  .seccion-que-multiple{
+display: flex;
+justify-content: space-evenly;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-que-multiple .imagen-pregunta-que-multi img{
+width: 10vw;
+margin-right: 10px;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-que-multiple .opcion-imagen-multi img{
+width: 16vw;
+margin-right: 15px;
+}
     .Sala-espera{
         display: flex;
         flex-direction: column;
@@ -1285,15 +1370,17 @@ margin-right: 15px;
         flex-direction: row;
         
     }
-    .contenedor-juego .puntaje-cronometro{
+    .contenedor-juego  .puntaje-cronometro{
         display: flex;
+        width: 100%;
+        justify-content: space-between;
     }
 
-    .puntaje-cronometro .puntaje-cronometro .puntaje-juego {
+    .contenedor-juego .puntaje-cronometro .puntaje-juego{
         align-self: flex-end;
         font-weight: 700;
         color: #85858C;
-        font-size: 1.3em;
+        font-size: 1.2em;
     }
     
 
@@ -1480,19 +1567,21 @@ width: 45%;
         width: 25vw;
     }
     /* oracione respuesta secccion */
-
     .zonainteractiva {
         display: flex;
-        align-content: space-around;
+        align-content: space-between;
         justify-content: center;
-        flex-direction: column;
+        flex-direction: row;
     }
-    .respuesta-seccion{
-        margin-top: 20px;
+    .zonainteractiva  .respuesta-seccion{
+        align-self: center;
+        margin-left: 20px;
         display: flex;
         justify-content: center;
     }
-    
+    .zonainteractiva  .respuesta-seccion div .imagen-respuesta-oracion{
+        width: 6vw;
+    }
     .pruebaDise {
         display: flex;
         justify-content: center;
@@ -1567,18 +1656,18 @@ width: 45%;
     }
 
     #imagenFinal {
-        width: 70vw;
+        width: 60vw;
     }
     .minicuadrito .encimados{
         z-index: 30;
-        width: 70vw;
+        width: 60vw;
         height: 100%;
         position: fixed;
     }
     .minicuadrito .encimados .c {
         display: block;
         background-color: #FBFBFB;
-        width: 14vw;
+        width: 15vw;
         height: 100%;
     }
 
@@ -1599,7 +1688,7 @@ width: 45%;
     .minicuadrito .encima .b {
         display: block;
         background-color: #FBFBFB;
-        width: 7.14vw;
+        width: 4.25vw;
         height: 100%;
     }
 
@@ -1610,13 +1699,19 @@ width: 45%;
     align-items:center;
         }
         .contenido-final-vocabulario .rompecabeza-final-vocabulario{
-    display: flex;
-    flex-direction: column;
-    align-items :center;
-        }
-        .contenido-final-vocabulario .rompecabeza-final-vocabulario h1{
-            margin-top: 10px;
-        }
+            display: flex;
+            flex-direction: column;
+            align-items :center;
+                }
+                .contenido-final-vocabulario .rompecabeza-final-vocabulario .puntos-seccion{
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                }
+                .contenido-final-vocabulario .rompecabeza-final-vocabulario h1{
+                    margin-top: 10px;
+                    font-size: 2.5em;
+                }
         .contenido-final-vocabulario .menu-final{
             display: flex;
         }
@@ -1628,6 +1723,102 @@ width: 45%;
         }
 }
 @media screen and (max-width: 2560px) and (min-width:1441px) {
+     /*oracion*/
+ .contenido-una-oracion{
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+
+.contenido-una-oracion .up-side-oracion{
+    display: flex;
+    justify-content: space-between;
+}
+.contenido-una-oracion .up-side-oracion .seccion-videos-oracion .video-pregunta-oracion-una{
+    width: 32vw !important;
+    height: 32vh !important;
+    margin-bottom: 10px;
+}
+.contenido-una-oracion  .up-side-oracion .seccion-videos-oracion .video-respuesta-oracion-una{
+    width: 32vw !important;
+    height: 32vh !important;
+    margin-bottom: 10px;
+}
+.contenido-una-oracion .up-side-oracion  .seccion-opciones-oracion{
+    align-self: center;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.contenido-una-oracion .up-side-oracion .seccion-opciones-oracion .imagen-pregunta-una img{
+    width: 10vw;   
+    margin-right: 10px;
+}
+
+.contenido-una-oracion  .up-side-oracion .seccion-opciones-oracion .opcion-imagen-una img{
+    width: 15vw;
+    margin-right: 15px;
+}
+
+.opcion-una-letras{
+    margin-left:80px;
+    font-size: 1.2em;
+font-weight: 700;
+    color:#85858C;
+}
+
+
+.contenido-una-oracion .opcion-multi-oracion{
+margin-bottom: 10px;
+display: flex;
+flex-direction: column;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-quien-multiple{
+display: flex;
+justify-content: space-evenly;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-quien-multiple .imagen-pregunta-quien-multi img{
+width: 10vw;
+margin-right: 10px;
+}
+
+.contenido-una-oracion .opcion-multi-oracion  .seccion-quien-multiple .opcion-imagen-multi img{
+width: 16vw;
+margin-right: 15px;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple .imagen-pregunta-adv-multi img{
+width: 11vw;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple .opcion-multi-letras{
+    width: 18vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 1.2em;
+font-weight: bold;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-adv-multiple .opcion-multi-letras p{
+    color:#85858C;
+}
+
+.contenido-una-oracion .opcion-multi-oracion  .seccion-que-multiple{
+display: flex;
+justify-content: space-evenly;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-que-multiple .imagen-pregunta-que-multi img{
+width: 10vw;
+margin-right: 10px;
+}
+.contenido-una-oracion .opcion-multi-oracion  .seccion-que-multiple .opcion-imagen-multi img{
+width: 16vw;
+margin-right: 15px;
+}
     .Sala-espera{
         display: flex;
         flex-direction: column;
@@ -1814,17 +2005,20 @@ width: 45%;
     }
 
     /* oracione respuesta secccion */
-
     .zonainteractiva {
         display: flex;
-        align-content: space-around;
+        align-content: space-between;
         justify-content: center;
-        flex-direction: column;
+        flex-direction: row;
     }
-    .respuesta-seccion{
-        margin-top: 20px;
+    .zonainteractiva  .respuesta-seccion{
+        align-self: center;
+        margin-left: 20px;
         display: flex;
         justify-content: center;
+    }
+    .zonainteractiva  .respuesta-seccion div .imagen-respuesta-oracion{
+        width: 6vw;
     }
     
     .pruebaDise {
@@ -1913,14 +2107,14 @@ width: 45%;
     .minicuadrito .encimados .c {
         display: block;
         background-color: #FBFBFB;
-        width: 10vw;
+        width: 17.5vw;
         height: 100%;
     }
 
     .minicuadrito .encimados .d {
         display: block;
         background-color: #FBFBFB;
-        width: 7.14vw;
+        width: 8.33vw;
         height: 100%;
     }
 
@@ -1934,7 +2128,7 @@ width: 45%;
     .minicuadrito .encima .b {
         display: block;
         background-color: #FBFBFB;
-        width: 7.14vw;
+        width: 4.25vw;
         height: 100%;
     }
 
@@ -1945,14 +2139,18 @@ width: 45%;
     align-items:center;
         }
         .contenido-final-vocabulario .rompecabeza-final-vocabulario{
-    display: flex;
-    flex-direction: column;
-    align-items :center;
-        }
-        .contenido-final-vocabulario .rompecabeza-final-vocabulario h1{
-            margin-top: 10px;
-        }
-        .contenido-final-vocabulario .menu-final{
+            display: flex;
+            flex-direction: column;
+            align-items :center;
+                }
+                .contenido-final-vocabulario .rompecabeza-final-vocabulario .puntos-seccion{
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-between;
+                }
+                .contenido-final-vocabulario .rompecabeza-final-vocabulario h1{
+                    margin-top: 10px;
+                }        .contenido-final-vocabulario .menu-final{
             display: flex;
         }
         .contenido-final-vocabulario .menu-final .navegacion-final-vocabuarlio{

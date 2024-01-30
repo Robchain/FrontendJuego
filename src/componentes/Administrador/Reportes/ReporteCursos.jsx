@@ -82,7 +82,7 @@ export const ReporteCursos = () => {
         <Col lg="6" sm="12" md="6" xl="6">
           <Label className="form-label" for="Curso">
             &nbsp;&nbsp;
-            Curso&nbsp;&nbsp;
+            Grado&nbsp;&nbsp;
           </Label>
           <Select
             name="Curso"

@@ -125,7 +125,7 @@ const ActividadColaborativaAdm = () => {
       <Row>
         <Col lg="5" sm="12" md="5" xl="5">
           <Label className="form-label" for="Curso">
-            Curso
+            Grado
           </Label>
           <Select
             name="Curso"

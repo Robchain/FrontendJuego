@@ -40,6 +40,7 @@ useEffect(() => {
       <h3>Selección De Equipo</h3>
     </Col>
     <Row className='align-items-center' style={{height:"50vh"}}>
+      
     {cardEquipo.map(cardSol =>( <Col key={cardSol.id}>
      <Card key={cardSol.id+1} onClick={()=>onclickevent(cardSol)} className='animacionBoton'><CardImg  alt={cardSol.Equipo.Nombre}
       src={cardSol.Equipo.Imagen}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Login_1 from '../../assets/img/Login/LOG-IN-BLIPBLA-01.png';
 import {
     Row,
@@ -14,7 +14,9 @@ import {
 import { useNavigate} from "react-router-dom"; //!!arreglar la navegacion con rutas protegidas!!
 import { useEffect } from "react";
 import { LoginAPI } from "../../service/Adminstrador/Usuarios";
+import { JuecoContext } from "../../context/Juego/JuecoContext";
 const Index = () => {
+    const { setInfoEstudiaSituacion} = useContext(JuecoContext);
     const [mensajeContraseña, setMensajeContraseña] = useState(false);
     const [nensajeServicio, SetMensajeServicio] = useState(false);
     const [bloqeo, setBloqeo] = useState(false);
@@ -25,6 +27,7 @@ const Index = () => {
     });
     useEffect(() => {
         localStorage.clear()
+        setInfoEstudiaSituacion(null)
     }, [])
     
     const handleChange = (event) => {

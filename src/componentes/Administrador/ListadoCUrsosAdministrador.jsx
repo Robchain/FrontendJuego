@@ -93,7 +93,7 @@ export const ListadoCUrsosAdministrador = () => {
   return (
     <Col lg='6'>
       
-    <h5 style={{ color: "#9696D3" }}>Listado de Cursos</h5>
+    <h5 style={{ color: "#9696D3" }}>Listado de Grados</h5>
     <Col lg="12">
                      <Input
                          id="exampleCheck"
@@ -113,7 +113,7 @@ export const ListadoCUrsosAdministrador = () => {
 
  <Table striped>
                 <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}><tr>
-              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Curso</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Grado</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>Estado</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>
             </tr></thead>

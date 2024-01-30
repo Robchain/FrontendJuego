@@ -109,14 +109,11 @@ const onsudmitAgregarParalelo = async()=>{
 
   return (
     <Row>
-    <h3 style={{ color: "#9696D3" }}>Administrador de opciones</h3>
+    <h3 style={{ color: "#9696D3" }}>Grado y paralelo</h3>
       <Col xl='6' lg="6" className='d-xl p-0 mt-2'>
       <Col md='6' sm='12' className='mb-1'>
-      <h4 style={{ color: "#9696D3" }}>Cursos</h4>
-          <Label className='form-label ' for='Nombre'>
-            Curso
-          </Label>
-          <Input type='text' maxLength={20} name='Nombre' id='Nombre' placeholder='Curso' onChange={event => setCurso(event.target.value.toUpperCase())} value={Curso} />
+      <h4 style={{ color: "#9696D3" }}>Grado</h4>
+          <Input type='text' maxLength={20} name='Nombre' id='Nombre' placeholder='Grado' onChange={event => setCurso(event.target.value.toUpperCase())} value={Curso} />
         </Col>     
         <Button disabled={bloqueoAgregarCurso} onClick={() => { onsudmitAgregarCurso() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
       {loadingAgregarCurso && <Spinner size="sm">
@@ -129,9 +126,6 @@ const onsudmitAgregarParalelo = async()=>{
       <Col xl='6' lg="6" className='d-xl p-0 mt-2'>
       <Col md='6' sm='12' className='mb-1'>
       <h4 style={{ color: "#9696D3" }}>Paralelo</h4>
-          <Label className='form-label ' for='Nombre'>
-            Paralelo
-          </Label>
           <Input type='text' maxLength={20} name='Nombre' id='Nombre' placeholder='Paralelo' onChange={event => setParalelo(event.target.value.toUpperCase())} value={Paralelo} />
         </Col>     
         <Button disabled={bloqueoAgregarParalale} onClick={() => { onsudmitAgregarParalelo()}} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>

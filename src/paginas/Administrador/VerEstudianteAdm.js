@@ -115,7 +115,7 @@ const VerEstudianteAdm = () => {
 
   return (
     <Container>
-      <NavBar toggle={toggle} Seccion={"Usuario"} />
+      <NavBar toggle={toggle} Seccion={"Usuario y Grado"} />
       <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <ModalEditarEstudiante modal={modaleditar}  toggle={toggleditar}  dataBase={dataseleccionada}/>
           <ModalAgregarEstudiante modal={modal} toggle={toggledos}/>
@@ -145,7 +145,7 @@ const VerEstudianteAdm = () => {
                 style={{ color: "#62259E" }}
                 onClick={() => { setTabs("3") }}
               >
-                Administrador de opciones
+                Grado y paralelo
               </NavLink>
             </NavItem>
           </Nav>
@@ -179,7 +179,7 @@ const VerEstudianteAdm = () => {
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>NOMBRE</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>APELLIDO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>EMAIL</th>
-              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>CURSO</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>GRADO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>PARALELO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ESTADO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>

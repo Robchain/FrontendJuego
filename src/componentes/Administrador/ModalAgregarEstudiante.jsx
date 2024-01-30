@@ -199,7 +199,7 @@ try {
           </Col>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Curso'>
-              Curso
+              Grado
             </Label>
             <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.label }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
             <Label className='form-label' for='Paralelo'>

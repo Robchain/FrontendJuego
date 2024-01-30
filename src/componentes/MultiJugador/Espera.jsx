@@ -1,8 +1,7 @@
 import React from 'react'
-import { Col, Row } from 'reactstrap'
 import gifDeEspera from "../../assets/img/AssetsGame/101088-kids-studying-from-home (1)a.gif"
 import { CarreraStepBar } from '../Administrador/CarreraStepBar'
-import { nombre } from '../../helpers/contador'
+import { nombre2 } from '../../helpers/contador'
   
 export const Espera = ({InfoEstudiaSituacion}) => {
   return (
@@ -14,13 +13,13 @@ export const Espera = ({InfoEstudiaSituacion}) => {
         <span>Espera...</span>
         {
           InfoEstudiaSituacion.Equipo===null ? 
-          <p><b>{nombre({objecto:InfoEstudiaSituacion})}</b>, aun no selecciona un equipo</p> :
-        <p><b>{nombre({objecto:InfoEstudiaSituacion})}</b> le toca jugar</p>
+          <p><b>{nombre2({array:InfoEstudiaSituacion})}</b>, aun no selecciona un equipo</p> :
+        <p><b>{nombre2({array:InfoEstudiaSituacion})}</b> le toca jugar</p>
         }
 </div>
 <div >
 {
- InfoEstudiaSituacion.Equipo !== null && (<CarreraStepBar steps={InfoEstudiaSituacion.Avance!==null ? (InfoEstudiaSituacion.Avance.length/5) : 0} InfoEstudiaSituacion={InfoEstudiaSituacion} />)
+ InfoEstudiaSituacion.Equipo !== null && (<CarreraStepBar steps={InfoEstudiaSituacion.Avance!==null ? (InfoEstudiaSituacion.Integrantes.filter(elemento => elemento.Terminado).length+1) : 0} InfoEstudiaSituacion={InfoEstudiaSituacion} />)
 }
 </div>
     </div>
