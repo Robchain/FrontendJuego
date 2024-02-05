@@ -1234,6 +1234,13 @@ margin-right: 15px;
 
 
 @media screen and (max-width: 1440px) and (min-width:1281px) {
+    .cuadro-cronometro{
+        display: flex;
+        
+    }
+    .cuadro-cronometro .imagen-alerta{
+        width: 70px;
+    }
      /*oracion*/
  .contenido-una-oracion{
     display: flex;
@@ -2172,6 +2179,13 @@ width: 45%;
             font-weight: 700;
             color: #85858C;
             font-size: 1.2em;
+        }
+        .cuadro-cronometro{
+            display: flex;
+            
+        }
+        .cuadro-cronometro .imagen-alerta{
+            width: 70px;
         }
 
 }

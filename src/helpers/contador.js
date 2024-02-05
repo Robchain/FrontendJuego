@@ -287,8 +287,8 @@ export function nombre({array}) {
 
 export function nombre2({array}) {
   const posicionPrimerNoTerminado = array.Integrantes.findIndex(objeto => !objeto.Terminado);
-  
-  return Number.isInteger(posicionPrimerNoTerminado) ? array.Integrantes[posicionPrimerNoTerminado].label : 'error'
+  console.log(posicionPrimerNoTerminado)
+  return Number.isInteger(posicionPrimerNoTerminado) && posicionPrimerNoTerminado != -1 ? array.Integrantes[posicionPrimerNoTerminado].label : 'error'
   
 }
 export function buscarValor(array, valor) {

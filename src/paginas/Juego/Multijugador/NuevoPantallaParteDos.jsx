@@ -13,7 +13,7 @@ import { OracionRespuesta, resultadoOracion, resultadoOracionAdverbio, resultado
 
 export const NuevoPantallaParteDos = () => {
     const {setQuienlist, InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli,dataMultiJu} = useContext(JuecoContext);
-    const [rango, setRango] = useState(5);
+    const [rango, setRango] = useState(InfoEstudiaSituacion.FaltaPorCompletar);
     const [listos, setListos] = useState("espera");
     const navegar = useNavigate();
     const { id } = useParams();

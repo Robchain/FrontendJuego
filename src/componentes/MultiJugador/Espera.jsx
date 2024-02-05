@@ -19,7 +19,7 @@ export const Espera = ({InfoEstudiaSituacion}) => {
 </div>
 <div >
 {
- InfoEstudiaSituacion.Equipo !== null && (<CarreraStepBar steps={InfoEstudiaSituacion.Avance!==null ? (InfoEstudiaSituacion.Integrantes.filter(elemento => elemento.Terminado).length+1) : 0} InfoEstudiaSituacion={InfoEstudiaSituacion} />)
+ InfoEstudiaSituacion.Equipo !== null && (<CarreraStepBar steps={InfoEstudiaSituacion.Avance!==null ? (InfoEstudiaSituacion.Integrantes.filter(elemento => elemento.Terminado).length+0.5) : 0} InfoEstudiaSituacion={InfoEstudiaSituacion} />)
 }
 </div>
     </div>
