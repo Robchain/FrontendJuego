@@ -7,7 +7,7 @@ import { TODOSSeccionMulti } from './TODOSSeccionMulti'
 
 export const OracionMulti = ({indice, siguiente, dataMultiJu, dispatchMutli, setcro}) => {
   return (
-    <Row>
+    <div className='contenido-oracion-general'>
       {
         (dataMultiJu[`Juego${indice}`].TipoPregunta === 'TODOS') && (<TODOSSeccionMulti data={dataMultiJu} setcro={setcro}  siguiente={siguiente} indice={indice} Progreso={dispatchMutli} />) 
       } 
@@ -20,6 +20,6 @@ export const OracionMulti = ({indice, siguiente, dataMultiJu, dispatchMutli, set
       {
         (dataMultiJu[`Juego${indice}`].TipoPregunta === 'ADVERBIO') && (<AdverbioSeleccionMulti data={dataMultiJu} setcro={setcro}  siguiente={siguiente} indice={indice} Progreso={dispatchMutli} />)
       }
-    </Row>
+    </div>
   )
 }

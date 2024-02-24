@@ -195,7 +195,7 @@ export const QueSeleccionMulti = ({ setcro, indice, siguiente, data, Progreso })
     setPointer("none")
     setOpacity2(0.4);
     setOpacity3(0.4);
-    Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracionQue({ objeto1: data[`Juego${indice}`].Oraciones[0].Oracion1, objeto2: data[`Juego${indice}`].Oraciones[1], objeto3: data[`Juego${indice}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${indice}`].Oraciones[0].Que.label}`, Resultado: data[`Juego${indice}`].Oraciones[0].Respuesta, OracionCorrecta: OracionRespuesta({ objecto1: data[`Juego${indice}`].Oraciones[0], objecto2: data[`Juego${indice}`].Oraciones[1], objecto3: data[`Juego${indice}`].Oraciones[2] }) });
+    Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracionQue({ objeto1: data[`Juego${indice}`].Oraciones[0], objeto2: data[`Juego${indice}`].Oraciones[1], objeto3: data[`Juego${indice}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${indice}`].Oraciones[0].Que.label}`, Resultado: data[`Juego${indice}`].Oraciones[0].Respuesta, OracionCorrecta: OracionRespuesta({ objecto1: data[`Juego${indice}`].Oraciones[0], objecto2: data[`Juego${indice}`].Oraciones[1], objecto3: data[`Juego${indice}`].Oraciones[2] }) });
   }
 
   const onhandleClickQueSegundo = () => {
@@ -213,7 +213,7 @@ export const QueSeleccionMulti = ({ setcro, indice, siguiente, data, Progreso })
     setPointer("none")
     setOpacity1(0.4);
     setOpacity2(0.4);
-    Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracionQue({ objeto1: data[`Juego${indice}`].Oraciones[0].Oracion1, objeto2: data[`Juego${indice}`].Oraciones[1], objeto3: data[`Juego${indice}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${indice}`].Oraciones[2].Que.label}`, Resultado: data[`Juego${indice}`].Oraciones[2].Respuesta, OracionCorrecta: OracionRespuesta({ objecto1: data[`Juego${indice}`].Oraciones[0], objecto2: data[`Juego${indice}`].Oraciones[1], objecto3: data[`Juego${indice}`].Oraciones[2] }) });
+    Progreso({ type: "PROGRESOORACION", PalabraCorrecta: resultadoOracionQue({ objeto1: data[`Juego${indice}`].Oraciones[0], objeto2: data[`Juego${indice}`].Oraciones[1], objeto3: data[`Juego${indice}`].Oraciones[2] }), PalabraSeleccionada: `Se seleccionó: ${data[`Juego${indice}`].Oraciones[2].Que.label}`, Resultado: data[`Juego${indice}`].Oraciones[2].Respuesta, OracionCorrecta: OracionRespuesta({ objecto1: data[`Juego${indice}`].Oraciones[0], objecto2: data[`Juego${indice}`].Oraciones[1], objecto3: data[`Juego${indice}`].Oraciones[2] }) });
 
   }
 

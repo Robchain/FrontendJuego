@@ -294,7 +294,7 @@ export const AdverbioSeleccionMulti = ({setcro, indice, siguiente, data, Progres
         </div>
         <div className='respuesta-seccion'>
         <div>
-          <RespuestaImagen Progreso={Progreso} imagen={imagen} setImagen={setImagen} data={data} Queselec={Queselec} indice={indice} setMomento={setMomento} momento={momento} />
+          <RespuestaImagen Progreso={Progreso} imagen={imagen} setImagen={setImagen} data={data} Queselec={Queselec} indice={indice} setMomento={setMomento} momento={momento} className='imagen-respuesta-oracion' />
           </div>
         </div>
       </div>

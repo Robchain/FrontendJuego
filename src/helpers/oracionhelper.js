@@ -73,15 +73,15 @@ return  palabrasSinRepetir; // Esto mostrará ["manzana", "banana", "uva", "nara
     let nombreExcluir;
     
     if(data[`Juego` + indice].Oraciones[0].Respuesta ==="CORRECTO"){
-      nombreExcluir =data[`Juego` + indice].Oraciones[0].Adverbio
+      nombreExcluir =data[`Juego` + indice].Oraciones[0].Adverbio || "---"
       
     }
     if(data[`Juego` + indice].Oraciones[1].Respuesta==="CORRECTO"){
-      nombreExcluir =data[`Juego` + indice].Oraciones[1].Adverbio
+      nombreExcluir =data[`Juego` + indice].Oraciones[1].Adverbio || "---"
       
     }
     if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
-      nombreExcluir =data[`Juego` + indice].Oraciones[2].Adverbio
+      nombreExcluir = data[`Juego` + indice].Oraciones[2].Adverbio || "---"
       
     }
     const resultadosFiltrados = optionsAdverbio.filter(objeto => {

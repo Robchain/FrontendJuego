@@ -15,6 +15,7 @@ const Preguntasecction = ({setcro,dispatch,disparadorQuien, disparadorQue, dispa
   useEffect(() => {
     setVideoPreguntaSecctionTodo(preguntavideo)
   }, [data, indice])
+  
   const preguntavideo = () => {
     var Pregu = Math.floor(Math.random() * (2 - 1 + 1) + 1)
     let pregunta = "";

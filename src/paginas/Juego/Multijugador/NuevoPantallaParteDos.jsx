@@ -13,14 +13,25 @@ import { OracionRespuesta, resultadoOracion, resultadoOracionAdverbio, resultado
 
 export const NuevoPantallaParteDos = () => {
     const {setQuienlist, InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli,dataMultiJu} = useContext(JuecoContext);
-    const [rango, setRango] = useState(InfoEstudiaSituacion.FaltaPorCompletar);
-    const [listos, setListos] = useState("espera");
     const navegar = useNavigate();
+    const [rango, setRango] = useState(0);
+    const [listos, setListos] = useState("espera");
+    const [barra, setBarra] = useState(0);
+
     const { id } = useParams();
     const [cro, setcro] = useState("inicial");
     const [indice, setIndice] = useState(1);
+
+
     useEffect(() => {
-        LLamadaIncial();
+      if(InfoEstudiaSituacion === null || InfoEstudiaSituacion === undefined ){
+        navegar("/MenuJuego");
+  }else{
+    setRango(InfoEstudiaSituacion.FaltaPorCompletar)  
+  }
+    
+      LLamadaIncial();
+        
         return () =>{
           setInfoEstudiaSituacion(null);
         }
@@ -87,18 +98,19 @@ export const NuevoPantallaParteDos = () => {
         // Limpiar el temporizador al desmontar el componente o cambiar de objeto manualmente
         }
         return () => clearTimeout(temporizador);
-      }, [cro]);
+      }, [cro, indice, rango]);
 
+      
   return (
     <Container>
     <NavBarJuego Seccion={"Colaborativo"} urlBack={"/MenuJuego"}/>
-    { (InfoEstudiaSituacion !== null && dataMultiJu !==null)?(<>
+    { (InfoEstudiaSituacion !== null && dataMultiJu !==null && InfoEstudiaSituacion !== undefined)?(<>
         {
   listos === "espera" && <VerProgresoYaTerminado/>
 }
 {  listos === "Ya" && (
     <>
-    <Progress animated  value={(indice-1)*20} />
+    <Progress animated  value={(indice -1)*(100/rango)} />
     <div className='cronometro-juego'>
     <Cronometro minutosInicio={0} reiniciarCronometro={cro} segundosInicio={59}/>
     </div>

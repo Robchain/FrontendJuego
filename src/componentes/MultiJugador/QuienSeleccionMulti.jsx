@@ -243,17 +243,17 @@ export const QuienSeleccionMulti = ({ indice, setcro,  siguiente, data,Progreso}
                    </div>
                    <div style={{ pointerEvents: pointerEvent, opacity: opacity1 }}  onClick={onhandleClickQuePrimero}>
                     <div className='opcion-imagen-una'>
-                    <img src={data[`Juego${indice}`].Oraciones[0].Sujeto.file} className='opcion-imagen-neta' alt='opcion1' />
+                    <img src={modeloquienMostrar[0].value} className='opcion-imagen-neta' alt='opcion1' />
                     </div>
                    </div>
                    <div style={{ pointerEvents: pointerEvent, opacity: opacity2 }} onClick={onhandleClickQueSegundo}>
                    <div className='opcion-imagen-una'>
-                     <img src={data[`Juego${indice}`].Oraciones[1].Sujeto.file} className='opcion-imagen-neta' alt='opcion2' />
+                     <img src={modeloquienMostrar[1].value} className='opcion-imagen-neta' alt='opcion2' />
                      </div>
                    </div>
                    <div style={{ pointerEvents: pointerEvent, opacity: opacity3 }} onClick={onhandleClickQueTercero}>
                      <div className='opcion-imagen-una'>
-                     <img src={data[`Juego${indice}`].Oraciones[2].Sujeto.file} className='opcion-imagen-neta' alt='opcion3' />
+                     <img src={modeloquienMostrar[2].value} className='opcion-imagen-neta' alt='opcion3' />
                      </div>
                    </div>
                  </div> :<div className='seccion-opciones-oracion'></div>
@@ -282,7 +282,7 @@ export const QuienSeleccionMulti = ({ indice, setcro,  siguiente, data,Progreso}
                 {/* parte de seleccion */}
                 <div  className='seleccion' >
                  <div style={{padding:'0px'}} >
-                 <SeleccionQUIEN QueSelecion={QueSelecion}  data={data} indice={indice} className='opcionesSelec' />
+                 <SeleccionQUIEN modeloquienMostrar={modeloquienMostrar} QueSelecion={QueSelecion}  data={data} indice={indice} className='opcionesSelec' />
                   </div>
                   <div style={{padding:'0px'}} >
                     <VerVerboRespuesta  data={data} indice={indice} className='opcionesSelec' />
