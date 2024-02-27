@@ -751,6 +751,39 @@ font-weight: 600;
     font-size: 1.2em;
     }
     
+.todo-final-multi-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-final-multi-content .arriba-final-multi .div-banderas-imagen-equipo-final .banderas-image-quipo-final{
+    width: 28vw;
+}
+
+.todo-final-multi-content .abajo-final-multi .div-imagen-equipo-final .imagen-equipo-final{
+    width: 60vw;
+}
+.todo-final-multi-content .abajo-final-multi{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.todo-final-multi-content .abajo-final-multi .letras-equipo-final {
+    text-align: center;
+    color: #8B8B8C;
+    font-weight: 700;
+}
+.todo-final-multi-content .abajo-final-multi .letras-equipo-final .titulo-felicidades{
+    font-size: 2em;
+}
+.todo-final-multi-content .abajo-final-multi .letras-equipo-final .sudtitulo-terminado{
+    font-size: 1.3em;
+}
+.todo-final-multi-content .abajo-final-multi div .images-medalla-final{
+    width: 15vw;
+}
+
 }
 
 @media screen and (max-width: 1280px) and (min-width:801px) {
@@ -1228,6 +1261,38 @@ margin-right: 15px;
         }
         .cuadro-cronometro .imagen-alerta{
             width: 65px;
+        }
+    .todo-final-multi-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .todo-final-multi-content .arriba-final-multi .div-banderas-imagen-equipo-final .banderas-image-quipo-final{
+            width: 20vw;
+        }
+        
+        .todo-final-multi-content .abajo-final-multi .div-imagen-equipo-final .imagen-equipo-final{
+            width: 40vw;
+        }
+        .todo-final-multi-content .abajo-final-multi{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .todo-final-multi-content .abajo-final-multi .letras-equipo-final {
+            text-align: center;
+            color: #8B8B8C;
+            font-weight: 700;
+        }
+        .todo-final-multi-content .abajo-final-multi .letras-equipo-final .titulo-felicidades{
+            font-size: 1.9em;
+        }
+        .todo-final-multi-content .abajo-final-multi .letras-equipo-final .sudtitulo-terminado{
+            font-size: 1.1em;
+        }
+        .todo-final-multi-content .abajo-final-multi div .images-medalla-final{
+            width: 6vw;
         }
         
 }
@@ -1728,6 +1793,39 @@ width: 45%;
             height: 100%;
             margin-top: -30px;
         }
+
+    .todo-final-multi-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .todo-final-multi-content .arriba-final-multi .div-banderas-imagen-equipo-final .banderas-image-quipo-final{
+            width: 18vw;
+        }
+        
+        .todo-final-multi-content .abajo-final-multi .div-imagen-equipo-final .imagen-equipo-final{
+            width: 35vw;
+        }
+        .todo-final-multi-content .abajo-final-multi{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .todo-final-multi-content .abajo-final-multi .letras-equipo-final {
+            text-align: center;
+            color: #8B8B8C;
+            font-weight: 700;
+        }
+        .todo-final-multi-content .abajo-final-multi .letras-equipo-final .titulo-felicidades{
+            font-size: 1.9em;
+        }
+        .todo-final-multi-content .abajo-final-multi .letras-equipo-final .sudtitulo-terminado{
+            font-size: 1.1em;
+        }
+        .todo-final-multi-content .abajo-final-multi div .images-medalla-final{
+            width: 6vw;
+        }
 }
 @media screen and (max-width: 2560px) and (min-width:1441px) {
      /*oracion*/
@@ -2188,6 +2286,38 @@ width: 45%;
             width: 70px;
         }
 
+        .todo-final-multi-content{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .todo-final-multi-content .arriba-final-multi .div-banderas-imagen-equipo-final .banderas-image-quipo-final{
+            width: 18vw;
+        }
+        
+        .todo-final-multi-content .abajo-final-multi .div-imagen-equipo-final .imagen-equipo-final{
+            width: 35vw;
+        }
+        .todo-final-multi-content .abajo-final-multi{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .todo-final-multi-content .abajo-final-multi .letras-equipo-final {
+            text-align: center;
+            color: #8B8B8C;
+            font-weight: 700;
+        }
+        .todo-final-multi-content .abajo-final-multi .letras-equipo-final .titulo-felicidades{
+            font-size: 1.9em;
+        }
+        .todo-final-multi-content .abajo-final-multi .letras-equipo-final .sudtitulo-terminado{
+            font-size: 1.1em;
+        }
+        .todo-final-multi-content .abajo-final-multi div .images-medalla-final{
+            width: 6vw;
+        }
 }
 
 .offcanvas,

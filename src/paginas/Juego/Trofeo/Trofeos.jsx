@@ -108,13 +108,6 @@ const Modalaqui = ({ data , modal, setModal }) => {
     document.body.appendChild(enlace);
     enlace.click();
     document.body.removeChild(enlace);
-    // document.querySelector(".print").classList.add("print-image");
-    // document.querySelector(".bot").classList.add("desaparecer");
-    // document.querySelector(".a").classList.add("desaparecer");
-    // window.print();
-    // document.querySelector(".print").classList.remove("print-image");
-    // document.querySelector(".bot").classList.remove("desaparecer");
-    // document.querySelector(".a").classList.remove("desaparecer");
   }
   return (
     <div>

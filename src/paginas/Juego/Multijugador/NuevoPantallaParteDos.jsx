@@ -12,12 +12,10 @@ import { listadoQuienImagen } from '../../../service/Adminstrador/Oracion';
 import { OracionRespuesta, resultadoOracion, resultadoOracionAdverbio, resultadoOracionQue, resultadoOracionQuien, resultadoVocaMulti } from '../../../helpers';
 
 export const NuevoPantallaParteDos = () => {
-    const {setQuienlist, InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli,dataMultiJu} = useContext(JuecoContext);
+    const {setQuienlist, InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli,dataMultiJu,MultiProgreso} = useContext(JuecoContext);
     const navegar = useNavigate();
     const [rango, setRango] = useState(0);
     const [listos, setListos] = useState("espera");
-    const [barra, setBarra] = useState(0);
-
     const { id } = useParams();
     const [cro, setcro] = useState("inicial");
     const [indice, setIndice] = useState(1);
