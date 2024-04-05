@@ -18,6 +18,7 @@ export const JuegoProvider = ({ children }) => {
   const [dataOracionJuego, setDataOracionJuego] = useState(null);
   const [prevAvance, setprevAvance] = useState([])
   const [oraciondata, setOraciondata] = useState(null);
+  const [rangoState, setRangoState] = useState(0)
   const [InfoEstudiaSituacion, setInfoEstudiaSituacion] = useState(null);
 const [idRompecabeza, setIdRompecabeza] = useState(null)
   const LLamadaIncial = async () => {
@@ -90,7 +91,7 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
     }
   };
   const initialStateMulti = [];
-
+    
   const progresoMulti = (state, action) => {
     switch (action.type) {
       case "PROGRESOVOCABULARIO":
@@ -208,7 +209,7 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
         piezaJuegoIndi, setPiezaJuegoIndi,idRompecabeza, setIdRompecabeza,
         dataRompecabeza, setDataRompecabeza,prevAvance, setprevAvance,
         quienlist, setQuienlist,
-        piezaAvanzadas, setpiezaAvanzadas
+        piezaAvanzadas, setpiezaAvanzadas,rangoState, setRangoState
       }}
     >
       {children}

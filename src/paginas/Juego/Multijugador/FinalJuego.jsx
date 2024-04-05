@@ -1,28 +1,31 @@
 import React,{ useContext, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 import { Container } from 'reactstrap'
+import {PiSquaresFourDuotone} from 'react-icons/pi'
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
-import { Espera } from '../../../componentes/MultiJugador/Espera'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
+import buentrabajo from '../../../assets/img/AssetsGame/GOOD JOD.png'
+import maltrabajo from '../../../assets/img/AssetsGame/Bad Jood.png'
 import { ActualizarJuegoFinal } from '../../../service/Multijugador'
-import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 export const FinalJuego = () => {
-  const {MultiProgreso, dispatchMutli,InfoEstudiaSituacion, } = useContext(JuecoContext);
+  const [guardad, setguardad] = useState(0)
+  const {MultiProgreso, dispatchMutli,InfoEstudiaSituacion,rangoState} = useContext(JuecoContext);
   const navegar = useNavigate();
-  const [cargandod, setCargando] = useState(true);
   const Actualizaciones = async () => {
     await ActualizarJuegoFinal({idOutput:InfoEstudiaSituacion._id,Avance:MultiProgreso,pos:InfoEstudiaSituacion.Posicion});
-    setCargando(false);
-    setTimeout(() => {
-      navegar(`/MenuJuego`)
-    }, 10000);
   }
 
   useEffect(() => {
-
+    if(rangoState === 5 ){
+      setguardad(0)
+    }else{
+      setguardad(5 -rangoState)
+    }
   //LLamadaIncial();
     if(InfoEstudiaSituacion !==null){
     Actualizaciones();
+  }else{
+    navegar(`/MenuJuego`)
   }
     return ()=>{
       dispatchMutli({type:"RESETEAR"})
@@ -32,16 +35,25 @@ export const FinalJuego = () => {
   return (
     <>
     {
-      cargandod ? <div className="loading-overlay">
-        <img src={cargando} alt='cargando'/>
-      </div> :
     <Container>
-      <NavBarJuego Seccion={"Oracion Final"} urlBack={"/MenuJuego"} />
-      {InfoEstudiaSituacion !== null ? (    <Espera  InfoEstudiaSituacion={InfoEstudiaSituacion}/>):(<div className="loading-overlay">
-        <img src={cargando} alt='cargando'/>
-      </div>)}
+      <NavBarJuego Seccion={"Colaborativo"} urlBack={"/MenuJuego"} />
+      {InfoEstudiaSituacion === null ? (  <div className='final-coolaborativo'>
+        <div className='final-aciertos'>
+        <div className='numeros-aciertos'><span>{MultiProgreso.filter(item => item.Resultado === 'CORRECTO').length +guardad}</span></div> <div className='imagen-aciertos'><img src={buentrabajo} alt='buentrabajo'/></div>
+        </div>
+        <div className='final-fallos'>
+        <div className='numeros-fallos'><span>{MultiProgreso.filter(item => item.Resultado === 'INCORRECTO').length}</span></div> <div className='imagen-fallos'><img src={maltrabajo} alt='buentrabajo'/></div>
+        </div>
+      <div className='menu-final'>
+      <NavLink to={"/MenuJuego"} className="navegacion-final-vocabuarlio" >
+      <PiSquaresFourDuotone/>
+      </NavLink>
+      </div>
+        </div>  ):(<><>Cargando...</></>)}
     </Container>
   }
     </>
   )
 }
+
+

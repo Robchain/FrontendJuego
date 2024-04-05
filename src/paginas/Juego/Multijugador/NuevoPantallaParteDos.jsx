@@ -12,7 +12,7 @@ import { listadoQuienImagen } from '../../../service/Adminstrador/Oracion';
 import { OracionRespuesta, resultadoOracion, resultadoOracionAdverbio, resultadoOracionQue, resultadoOracionQuien, resultadoVocaMulti } from '../../../helpers';
 
 export const NuevoPantallaParteDos = () => {
-    const {setQuienlist, InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli,dataMultiJu,MultiProgreso} = useContext(JuecoContext);
+    const {setQuienlist, InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion, dispatchMutli,dataMultiJu, setRangoState} = useContext(JuecoContext);
     const navegar = useNavigate();
     const [rango, setRango] = useState(0);
     const [listos, setListos] = useState("espera");
@@ -21,15 +21,19 @@ export const NuevoPantallaParteDos = () => {
     const [indice, setIndice] = useState(1);
 
 
+    
+
     useEffect(() => {
+      
       if(InfoEstudiaSituacion === null || InfoEstudiaSituacion === undefined ){
         navegar("/MenuJuego");
   }else{
     setRango(InfoEstudiaSituacion.FaltaPorCompletar)  
+    setRangoState(InfoEstudiaSituacion.FaltaPorCompletar)
   }
     
       LLamadaIncial();
-        
+      
         return () =>{
           setInfoEstudiaSituacion(null);
         }
@@ -108,7 +112,7 @@ export const NuevoPantallaParteDos = () => {
 }
 {  listos === "Ya" && (
     <>
-    <Progress animated  value={(indice -1)*(100/rango)} />
+    <Progress animated  value={ ((5-rango) + (indice - 1))*(100/5)} />
     <div className='cronometro-juego'>
     <Cronometro minutosInicio={0} reiniciarCronometro={cro} segundosInicio={59}/>
     </div>

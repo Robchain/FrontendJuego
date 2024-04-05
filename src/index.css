@@ -302,6 +302,50 @@ body {
 
 @media screen and (max-width: 800px) and (min-width:300px) {
     /* mi nuevo media screen  tamaño de la tableta de vertical*/
+
+.final-coolaborativo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.final-aciertos{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.final-aciertos .imagen-aciertos img{
+    width: 10vw;
+}
+.final-aciertos .numeros-aciertos{
+    margin-right:8em ;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #777;
+}
+
+.final-fallos{
+    display: flex;
+    align-items: center;
+    
+}
+.final-fallos .imagen-fallos img{
+    width: 10vw;
+}
+.final-fallos .numeros-fallos{
+    margin-right:8em ;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #777;
+}
+.final-coolaborativo .menu-final .navegacion-final-vocabuarlio{
+    font-size: 7em;
+    color: #777;
+    height: 100%;
+    margin-top: -30px;
+}
+
     .cuadro-cronometro{
         display: flex;
         
@@ -788,7 +832,48 @@ font-weight: 600;
 
 @media screen and (max-width: 1280px) and (min-width:801px) {
     /* mi nuevo media screen  tamaño de la tableta de horizontal*/
-
+    .final-coolaborativo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .final-aciertos{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+    }
+    
+    .final-aciertos .imagen-aciertos img{
+        width: 10vw;
+    }
+    .final-aciertos .numeros-aciertos{
+        margin-right:8em ;
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #777;
+    }
+    
+    .final-fallos{
+        display: flex;
+        align-items: center;
+        
+    }
+    .final-fallos .imagen-fallos img{
+        width: 10vw;
+    }
+    .final-fallos .numeros-fallos{
+        margin-right:8em ;
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #777;
+    }
+    .final-coolaborativo .menu-final .navegacion-final-vocabuarlio{
+        font-size: 7em;
+        color: #777;
+        height: 100%;
+        margin-top: -30px;
+    }
 
 .Sala-espera{
     display: flex;
@@ -1299,6 +1384,48 @@ margin-right: 15px;
 
 
 @media screen and (max-width: 1440px) and (min-width:1281px) {
+    .final-coolaborativo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .final-aciertos{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+    }
+    
+    .final-aciertos .imagen-aciertos img{
+        width: 10vw;
+    }
+    .final-aciertos .numeros-aciertos{
+        margin-right:8em ;
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #777;
+    }
+    
+    .final-fallos{
+        display: flex;
+        align-items: center;
+        
+    }
+    .final-fallos .imagen-fallos img{
+        width: 10vw;
+    }
+    .final-fallos .numeros-fallos{
+        margin-right:8em ;
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #777;
+    }
+    .final-coolaborativo .menu-final .navegacion-final-vocabuarlio{
+        font-size: 7em;
+        color: #777;
+        height: 100%;
+        margin-top: -30px;
+    }
     .cuadro-cronometro{
         display: flex;
         
@@ -1828,6 +1955,48 @@ width: 45%;
         }
 }
 @media screen and (max-width: 2560px) and (min-width:1441px) {
+    .final-coolaborativo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+    .final-aciertos{
+        display: flex;
+        align-items: center;
+        margin-bottom: 1em;
+    }
+    
+    .final-aciertos .imagen-aciertos img{
+        width: 10vw;
+    }
+    .final-aciertos .numeros-aciertos{
+        margin-right:8em ;
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #777;
+    }
+    
+    .final-fallos{
+        display: flex;
+        align-items: center;
+        
+    }
+    .final-fallos .imagen-fallos img{
+        width: 10vw;
+    }
+    .final-fallos .numeros-fallos{
+        margin-right:8em ;
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #777;
+    }
+    .final-coolaborativo .menu-final .navegacion-final-vocabuarlio{
+        font-size: 7em;
+        color: #777;
+        height: 100%;
+        margin-top: -30px;
+    }
      /*oracion*/
  .contenido-una-oracion{
     display: flex;
