@@ -92,7 +92,7 @@ export const PasoDosFormulario = ({ prevButton,dispatch,onClickAleatorio,Aleotor
                   Listado Estudiantes
                 </Label>
                 <Controller 
-              name={`Equipo ${i}`}
+              name={`Equipo ${i+1}`}
               control={control}
               render={({ field: { onChange, value } }) => (
                 <Select
