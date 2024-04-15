@@ -8,6 +8,30 @@ import { TrofeoOracion } from '../../../service/Juego/Oracion'
 import  MedallaOro from '../../../assets/img/AssetsGame/medallaOro.png'
 import  MedallaSilver from '../../../assets/img/AssetsGame/medallaSilver.png'
 import  MedallaBronce from '../../../assets/img/AssetsGame/medallaBronce.png'
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 4,
+    slidesToSlide: 1 // optional, default to 1.
+  },
+  tabletuno: {
+    breakpoint: { max: 1024, min: 800 },
+    items: 3,
+    slidesToSlide: 1 // optional, default to 1.
+  },
+  tabletdos: {
+    breakpoint: { max: 799, min: 464 },
+    items: 2,
+    slidesToSlide: 1 // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    slidesToSlide: 1 // optional, default to 1.
+  }
+};
 export const Trofeos = () => {
 
   const { oraciondata,setOraciondata,dataJuegoInicialVocabulario,setDataJuegoInicialVocabulario } = useContext(JuecoContext);
@@ -44,41 +68,57 @@ export const Trofeos = () => {
     <Modalaqui  data={dataseleccionada}  modal={modal} setModal={setModal} />
 <Row>
   <Col className='d-flex align-items-center'>
-    <div><img src={Rompecabezas} alt='Rompecabezas' width={100} /></div>
+    <div><img src={Rompecabezas} alt='Rompecabezas' width={75} /></div>
     <div>
     <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Rompecabezas terminadas</h3>
     </div></Col>
 </Row>
+{ 
+// seccion de Vocabulario
+}
 <Row className="justify-content-evenly  mt-2 mx-2">
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Vocabularios</h3>
 {
   dataJuegoInicialVocabulario !== null ? (
-  dataJuegoInicialVocabulario.filter(i=>i.Terminado===true).map(i=>(
- <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4"  className='my-2'>
-        <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
-          <img src={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
-        </div>
-</Col>
-  ))
+  <Carousel 
+  responsive={responsive}
+  >
+{
+   dataJuegoInicialVocabulario.filter(i=>i.Terminado===true).map(i=>(
+    <div>
+           <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
+             <img src={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} id="imagenRompecabezaTrofeo" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
+           </div>
+   </div>
+     ))
+}
+  </Carousel>
   ):<span>
   No hay rompecabeza ganados
 </span>
 }
 </Row>
+{ 
+// seccion de oraciones 
+}
 <Row className="justify-content-evenly  mt-2 mx-2">
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Oraciones</h3>
 {
-  oraciondata !==null ? (
-  oraciondata.filter(i=>i.Terminado===true).map(i=>(
- <Col lg="4" md="4" sm="10" xs="10" xl="4" xxl="4" className='my-2' >
-        <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
-          <img src={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} id="imagenRompecabeza" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
-        </div>
-</Col>
-  ))
+  oraciondata !== null ? (
+  <Carousel responsive={responsive}>
+{
+   oraciondata.filter(i=>i.Terminado===true).map(i=>(
+    <div>
+           <div onClick={(e) => {setDataseleccionada(i); clickHandle(e, i.Terminado)} }>
+             <img src={i.Rompecabeza.FileColor} alt={i.Rompecabeza.Nombre} id="imagenRompecabezaTrofeo" style={{ borderRadius:10,boxShadow: " 5px 5px #d7d7d7"}}/>
+           </div>
+   </div>
+     ))
+}
+  </Carousel>
   ):<span>
-    No hay rompecabeza ganados
-  </span>
+  No hay rompecabeza ganados
+</span>
 }
 </Row>
 <Row className="justify-content-evenly  mt-2 mx-2">

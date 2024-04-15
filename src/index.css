@@ -226,6 +226,9 @@ body {
         /*273px*/
     ;
 }
+#imagenRompecabezaTrofeo{
+    width: 20vw;
+}
 
 #imagenFinal {
     width: 50vw
@@ -464,6 +467,9 @@ body {
 
     #imagenRompecabeza {
         width: 50vw;
+    }
+    #imagenRompecabezaTrofeo{
+        width: 35vw;
     }
     .minicuadrito .encima {
         z-index: 30;
@@ -1011,6 +1017,9 @@ width: 45%;
 
     #imagenRompecabeza {
         width: 25.5vw;
+    }
+    #imagenRompecabezaTrofeo{
+        width: 20vw;
     }
     .minicuadrito .encima {
         z-index: 30;
@@ -1847,6 +1856,9 @@ width: 45%;
     #imagenRompecabeza {
         width: 25.5vw;
     }
+    #imagenRompecabezaTrofeo{
+        width: 19vw;
+    }
     .minicuadrito .encima {
         z-index: 30;
         width: 25.5vw;
@@ -2361,6 +2373,9 @@ width: 45%;
 
     #imagenRompecabeza {
         width: 25.5vw;
+    }
+    #imagenRompecabezaTrofeo{
+        width: 15vw;
     }
     .minicuadrito .encima {
         z-index: 30;
