@@ -18,3 +18,8 @@ export const Juego1= async ({_id,Avance,end})=>{
     const data = await Api.post('/llamadaPartidaVocabularioRompecabeza', {id:id});
     return data.data;
   }
+
+  export const Medallas = async({label, value})=>{
+    const data = await Api.post('/medallas',{value:value, label:label});
+    return data.data
+  }

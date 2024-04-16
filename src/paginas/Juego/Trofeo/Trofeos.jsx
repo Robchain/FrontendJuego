@@ -3,7 +3,7 @@ import { Button, Col, Container, Modal, ModalBody, ModalFooter, ModalHeader, Row
 import { NavBarJuego } from '../../../componentes/JuegoComponent/JuegoGeneral/NavBarJuego'
 import  Rompecabezas from '../../../assets/img/AssetsGame/puzzles.gif'
 import { JuecoContext } from '../../../context/Juego/JuecoContext'
-import { TrofeoVocabulario } from '../../../service/Juego/Vocabulario'
+import { Medallas, TrofeoVocabulario } from '../../../service/Juego/Vocabulario'
 import { TrofeoOracion } from '../../../service/Juego/Oracion'
 import  MedallaOro from '../../../assets/img/AssetsGame/medallaOro.png'
 import  MedallaSilver from '../../../assets/img/AssetsGame/medallaSilver.png'
@@ -36,6 +36,11 @@ export const Trofeos = () => {
 
   const { oraciondata,setOraciondata,dataJuegoInicialVocabulario,setDataJuegoInicialVocabulario } = useContext(JuecoContext);
   const [dataseleccionada, setDataseleccionada] = useState(null)
+  const [medal, setMedal] = useState({
+    ORO: 0,
+    PLATA: 0,
+    BRONCE: 0
+  })
   const dataOracion = async (id)=>{
     try {
     const data = await TrofeoOracion({id:id});
@@ -44,6 +49,21 @@ export const Trofeos = () => {
       setOraciondata([]);
     }
   }
+
+  const medallas = async ()=>{
+    let nombre = localStorage.getItem("Nombre");
+    let apellido = localStorage.getItem("Apellido");
+    let completo = `${nombre} ${apellido}`;
+    let value = localStorage.getItem("Identificacion");
+
+    const data = await Medallas({label: completo, value:value});
+    setMedal(data)
+  }
+
+  useEffect(() => {
+  
+    medallas()
+  }, [])
   
   const [modal, setModal] = useState(false);
   const datoVocabulario = async (id) => {
@@ -124,13 +144,13 @@ export const Trofeos = () => {
 <Row className="justify-content-evenly  mt-2 mx-2">
 <h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Colaborativo</h3>
 <div style={{display:'flex', justifyContent:'space-evenly', }}><div>
-<img src={MedallaOro} width={'100px'} alt='medalla de oro'/> <span><strong>0</strong></span>
+<img src={MedallaOro} width={'100px'} alt='medalla de oro'/> <span><strong>{medal.ORO}</strong></span>
 </div>
 <div>
-<img src={MedallaSilver} width={'100px'} alt='medalla de plata'/> <span><strong>0</strong></span>
+<img src={MedallaSilver} width={'100px'} alt='medalla de plata'/> <span><strong>{medal.PLATA}</strong></span>
 </div>
 <div>
-<img src={MedallaBronce} width={'100px'} alt='medalla de bronce'/> <span><strong>0</strong></span>
+<img src={MedallaBronce} width={'100px'} alt='medalla de bronce'/> <span><strong>{medal.BRONCE}</strong></span>
 </div></div>
 </Row>
     </Container>
