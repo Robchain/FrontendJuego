@@ -19,3 +19,8 @@ export const ReporteJuegoApi = async({Pregunta, Fecha})=>{
     const data = await Api.post('/Reporte/Juego', {Pregunta:Pregunta, Fecha:Fecha})
     return data.data;
 }
+
+export const ReportePrimero = async({Curso, Paralelo, Juego,FechaInicio, FechaFin,isChecked})=>{
+    const data = await Api.post('/reporte/primero',{Curso:Curso, Paralelo:Paralelo, Juego:Juego,FechaInicio:FechaInicio, FechaFin:FechaFin,isChecked:isChecked});
+    return data.data
+}

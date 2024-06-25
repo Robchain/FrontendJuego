@@ -5,7 +5,6 @@ import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import 'react-datetime-picker/dist/DateTimePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css'
-import { useEffect } from 'react';
 import { useState } from 'react';
 export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, picker,picker2, setPicker2 }) => {
  const [bloqueo, setBloqueo] = useState(true);
