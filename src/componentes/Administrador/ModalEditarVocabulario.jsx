@@ -166,26 +166,42 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
             <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar vocabulario</ModalHeader>
             <ModalBody>
                 <div className='mb-2'>
+                    <div className='mb-3'>
                     <Label className='form-label' for='categoria'>Categoría</Label><br />
                     <Select name="Categoria" defaultValue={{ value: "123", label: dataBase.Categoria }} options={vocabularioOpciones.map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={true} />
+                    </div>
+                    <div className='mb-3'>
                     <Label className='form-label' for='palabra'>Palabra</Label>
                     <Input type='text' maxLength={20} id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} defaultValue={dataBase.Palabra} /> {/* revisar esto*/}
-                    <Label className='form-label' for='categoria'>Silaba</Label>
-                    <Input type='text' maxLength={25} id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} defaultValue={dataBase.Silaba} value={Silaba} />
+                    </div>
+                    <div className='mb-3'>
+                    <Label className='form-label' for='categoria'>Palabra separada en sílabas</Label>
+                    <Input type='text' maxLength={25} id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} defaultValue={dataBase.Silaba} value={Silaba} />    
+                    </div>
+                    <div className='mb-3'>
                     <Input id="EditarImagen" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} />&nbsp;&nbsp; <Label check for="EditarImagen" style={{ color: '#8b8b8c', fontWeight: "700" }} >Editar imágenes </Label>
+                    </div>
+                    
                     {checkbos && <div className='mt-1'>
+                        <div className='mb-3'>
                         <Label className='form-label' for='inputImage'>
                             Imagen
                         </Label>
                         <Input type='file' id='inputImage' name='FileImagen' onChange={e => handleChange({event: e, field:"FileImagen"})} />
+                        </div>
+                        <div className='mb-3'>
                         <Label className='form-label' for='inputVideoM'>
-                            Video respuesta
+                        Video respuesta (con audio)
                         </Label>
                         <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => handleChange({event: e, field:"FileMuestra"})} />
-                        <Label className='form-label' for='inputask'>
-                            Video de pregunta
+                        </div>
+                      <div className='mb-3'>
+                      <Label className='form-label' for='inputask'>
+                        Video de pregunta (sin audio)
                         </Label>
-                        <Input type='file' id='inputask' name='FilePregunta' onChange={e => handleChange({event: e, field:"FilePregunta"})} />
+                        <Input type='file' id='inputask' name='FilePregunta' onChange={e => handleChange({event: e, field:"FilePregunta"})} /> 
+                      </div>
+                       
                     </div>}
                 </div>
             </ModalBody>

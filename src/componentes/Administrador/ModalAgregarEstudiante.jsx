@@ -139,38 +139,38 @@ try {
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Agregar Usuario</ModalHeader>
       <ModalBody>
         <Row>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='nameMulti'>
               Nombre
             </Label>
             <Input type='text' maxLength={25} name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Nombre} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='lastNameMulti'>
               Apellido
             </Label>
             <Input type='text' name='Apellido' maxLength={25} id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Apellido} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='cityMulti'>
             Identificación
             </Label>
             <Input type='text'  name='Identificacion' maxLength={15} id='cityMulti' placeholder='Identificación' onChange={handleChange} value={Identificacion} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='CountryMulti'>
             Correo Electrónico
             </Label>
             <Input type='text' maxLength={30} name='Email' id='CountryMulti' placeholder='Correo Electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Email} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='CompanyMulti'>
               Usuario
             </Label>
             <Input type='text' maxLength={25} name='Usuario' id='CompanyMulti' placeholder='Usuario' 
             onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Usuario} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='EmailMulti'>
               Contraseña
             </Label> 
@@ -180,13 +180,13 @@ try {
             value={contraseñaUno}
             />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='inputFile'>
               Foto de perfil
             </Label>
             <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({event:e, field:'FotoPerfil'}) } />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='EmailMulti2'>
               Repetir Contraseña
             </Label>
@@ -197,7 +197,7 @@ try {
             <br/>
             {contraseñaUno !== contraseñaDos && <small style={{color:'red'}}> la contraseña no coincide</small>}
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='Curso'>
               Grado
             </Label>
@@ -207,7 +207,7 @@ try {
             </Label>
             <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.label }) } options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
           </Col>     
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='EmailMulti'>
               Tipo Usuario
             </Label><br />

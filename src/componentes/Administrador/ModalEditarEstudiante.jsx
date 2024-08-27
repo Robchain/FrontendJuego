@@ -164,38 +164,38 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar Usuario</ModalHeader>
       <ModalBody>
         <Row>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='nameMulti'>
               Nombre
             </Label>
             <Input type='text' maxLength={25} name="Nombre" id='nameMulti' placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} value={Nombre} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='lastNameMulti'>
               Apellido
             </Label>
             <Input type='text' maxLength={25} name='Apellido' id='lastNameMulti' placeholder='Apellido' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Apellido} value={Apellido} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='cityMulti'>
               Identificación
             </Label>
             <Input type='text' name='Identificacion' maxLength={15} id='cityMulti' placeholder='Identificación' onChange={handleChange} defaultValue={dataBase.Identificacion} value={Identificacion} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='CountryMulti'>
               Correo electrónico
             </Label>
             <Input type='text' name='Email' id='CountryMulti' maxLength={30} placeholder='Correo electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} defaultValue={dataBase.Email} value={Email} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='CompanyMulti'>
               Usuario
             </Label>
             <Input type='text' maxLength={25} name='Usuario' id='CompanyMulti' placeholder='Usuario'
               onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Usuario} value={Usuario} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Input id="exampleCheck" name="check" type="checkbox" onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
             <Label check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}> Editar imagen</Label>
             {checkbosDos && <><br />
@@ -204,7 +204,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
               </Label>
               <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({ event: e, field: "FotoPerfil" })} />
             </>}</Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='Curso'>
               Grado
             </Label>
@@ -214,7 +214,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
             </Label>
             <Select name="Paralelo" isSearchable={false} defaultValue={{ value: dataBase.Paralelo, label: dataBase.Paralelo }} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.label })} options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })} />
           </Col>
-          <Col md='6' sm='12' className='mb-1'>
+          <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='EmailMulti'>
               Tipo Usuario
             </Label><br />

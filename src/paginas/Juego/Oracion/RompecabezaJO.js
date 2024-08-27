@@ -35,7 +35,7 @@ setQuienlist(quielist);
   navegar(`/OracionJuego`);
 }else if (condicional ===true) {
       event.preventDefault();
-      setModal(!modal);
+    //  setModal(!modal);
     }
     
   }

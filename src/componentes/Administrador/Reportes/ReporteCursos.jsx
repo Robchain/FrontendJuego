@@ -14,6 +14,8 @@ const BaseInicialFormulario = {
   Curso: undefined,
   Paralelo: undefined,
   Juego: undefined,
+  FechaInicio: undefined,
+   FechaFin: undefined
 };
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -26,63 +28,87 @@ function llenadodeFormulario(state, action) {
   }
 }
 export const ReporteCursos = () => {
-  const [{ Curso, Paralelo, Juego }, disparodeAccion] = useReducer(
+  const [{ Curso, Paralelo, Juego, FechaFin, FechaInicio }, disparodeAccion] = useReducer(
     llenadodeFormulario,
     BaseInicialFormulario
   );
+  const [picker2, setPicker2] = useState(new Date());
   const [cursoData, setcursoData] = useState([]);
   const [paraleloData, setparaleloData] = useState([])
   const [bloqueodos, setBloqueodos] = useState(true);
   const [bloqueo, setBloqueo] = useState(true);
   const [picker, setPicker] = useState(new Date());
   const [MostrarVocabulario, setMostrarVocabulario] = useState([]);
+  //llamada de los curso 
   const dataCurso = async ()=>{
-
     const data = await MostrarCurso();
     setcursoData(data);
   }
+  //llamada de los paralelo
   const dataParalelo = async ()=>{
     const data = await MostrarParalelo();
     setparaleloData(data)
   }
+  //llamadas inciales
   useEffect(() => {
     dataCurso();
     dataParalelo();
   }, [])
+  //habilitar campos
   useEffect(() => {
     if ((Curso, Paralelo)) {
       setBloqueodos(false);
     }
   }, [Curso, Paralelo]);
 
+  //habilitar el boton de busqueda
   useEffect(() => {
     if (Juego) {
       setBloqueo(false);
     }
   }, [Juego]);
 
+  //borrar la data mostrada
   useEffect(() => {
     setMostrarVocabulario([]);
   }, [Juego, Curso, Paralelo])
+  //llenado de las fechas
+  useEffect(() => {
+  
+    disparodeAccion({
+      type: "onchange",
+      field: "FechaInicio",
+      value:picker,
+    });
+    disparodeAccion({
+      type: "onchange",
+      field: "FechaFin",
+      value: picker2,
+    });
+  
+  }, [picker, picker2])
   
 
+  //busqueda
   const Buscar = async () => {
     setMostrarVocabulario([]);
     const data = await ReporteCurso({
       Curso: Curso,
       Pregunta: Juego,
       Paralelo: Paralelo,
-      Fecha:picker
+      FechaInicio: FechaInicio,
+        FechaFin: FechaFin
     });
     setMostrarVocabulario(data);
   };
   return (
     <>
-      <Row className="bot1">
-        <Col lg="6" sm="12" md="6" xl="6">
-          <Label className="form-label" for="Curso">
+      <div className="form-reporte-planificacion">
+        <div className="form-reporte-inicial-arriba">
+            <div className="curso-select-reporte">
+            <Label className="form-label" for="Curso">
             &nbsp;&nbsp;
-            Grado&nbsp;&nbsp;
+            Grado:&nbsp;&nbsp;
           </Label>
           <Select
             name="Curso"
@@ -96,9 +122,11 @@ export const ReporteCursos = () => {
             }
             options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
           />
-          <Label className="form-label" for="Paralelo">
+            </div>
+            <div className="paralelo-select-reporte">
+            <Label className="form-label" for="Paralelo">
             &nbsp;&nbsp;
-            Paralelo&nbsp;&nbsp;
+            Paralelo:&nbsp;&nbsp;
           </Label>
           <Select
             name="Paralelo"
@@ -112,10 +140,11 @@ export const ReporteCursos = () => {
             }
             options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
           />
-        </Col>
-        <Col lg="6" sm="12" md="6" xl="6">
-          <Label className="form-label" for="Juego">
-            Juegos
+            </div>
+            <div className="juego-select-reporte">
+            <Label className="form-label" for="Juego">
+            &nbsp;&nbsp;
+            Juegos:&nbsp;&nbsp;
           </Label>
           <Select
             name="Juego"
@@ -134,9 +163,14 @@ export const ReporteCursos = () => {
             }
             isDisabled={bloqueodos}
           />
-           <Label className='form-label' for='DateGameM'>
-              Rango de fecha
-            </Label>
+            </div>
+        </div>
+            
+        <div className="form-reporte-section-fecha mt-3">  
+              <div className='fecha-inicial-reporte'>
+            <Label className='form-label'>
+              Feha de inicio:&nbsp;&nbsp;
+            </Label><br/>
             <DateTimePicker
             amPmAriaLabel="Select AM/PM"
             calendarAriaLabel="Toggle calendar"
@@ -144,7 +178,7 @@ export const ReporteCursos = () => {
             dayAriaLabel="Day"
             hourAriaLabel="Hour"
             maxDetail="second"
-            minDate={new Date()}
+            maxDate={new Date()}
             minuteAriaLabel="Minute"
             monthAriaLabel="Month"
             nativeInputAriaLabel="Date and time"
@@ -153,11 +187,31 @@ export const ReporteCursos = () => {
             value={picker}
             yearAriaLabel="Year"
           />
-          {
-            // este era un date pick range sin hora
-          }
-          <br />
-          <Button
+          </div>&nbsp;&nbsp;&nbsp;&nbsp;
+          <div className='fecha-cierre-reporte'>
+          <Label className='form-label' >
+              Fecha de cierre:&nbsp;&nbsp;
+            </Label> <br/>
+            <DateTimePicker
+            amPmAriaLabel="Select AM/PM"
+            calendarAriaLabel="Toggle calendar"
+            clearAriaLabel="Clear value"
+            dayAriaLabel="Day"
+            hourAriaLabel="Hour"
+            maxDetail="second"
+            maxDate={new Date()}
+            minDate={new Date(picker)}
+            minuteAriaLabel="Minute"
+            monthAriaLabel="Month"
+            nativeInputAriaLabel="Date and time"
+            onChange={setPicker2}
+            secondAriaLabel="Second"
+            value={picker2}
+            yearAriaLabel="Year"
+          /></div>&nbsp;&nbsp;
+              </div>
+              <div>
+              <Button
             onClick={() => Buscar()}
             style={{
               borderRadius: "10px",
@@ -169,7 +223,7 @@ export const ReporteCursos = () => {
           >
             Buscar
           </Button>&nbsp;&nbsp;
-          <PDFDownloadLink document={<DescargaCursoReporte data={MostrarVocabulario} juego={Juego}  Curso={Curso} Paralelo={Paralelo}/>} fileName="Reporte curso.pdf">
+          {/* <PDFDownloadLink document={<DescargaCursoReporte data={MostrarVocabulario} juego={Juego}  Curso={Curso} Paralelo={Paralelo}/>} fileName="Reporte curso.pdf">
           <Button
             style={{
               borderRadius: "10px",
@@ -181,9 +235,9 @@ export const ReporteCursos = () => {
           >
             Descargar
           </Button>
-          </PDFDownloadLink>
-        </Col>
-      </Row>
+          </PDFDownloadLink> */}
+              </div>
+      </div>
        <ReportePDFCurso data={MostrarVocabulario} juego={Juego}  Curso={Curso} Paralelo={Paralelo}/> 
     </>
   );

@@ -94,7 +94,7 @@ const habilitarPersonaFunc =async(objeto)=>{
             </tr>
             </thead>
              <tbody>
-            {data.filter(e=>e.Juego==="ORACION").map((i)=>(<tr className='m-4'>
+            {data.filter(e=>e.Juego==="ORACION").map((i)=>(<tr >
          <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{i.Curso}</span> </td>
          <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{i.Paralelo} </span></td>
          <td style={{fontWeight:700}}><span style={{ color:"#85858C"}}>{i.Estado} </span></td>

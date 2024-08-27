@@ -308,33 +308,55 @@ body {
 
 @media screen and (max-width: 800px) and (min-width:300px) {
 
+    .form-reporte-section-fecha{        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: space-between;
+    }
+   
+    .Trofeo-modal-footer-opciones{
+        display: flex;
+        justify-content: center;
+        align-content: space-evenly;
+        
+    }
+.rompecabeza-botones-superior{
+    display: flex;
+    align-items: center;
+}
     /* mi nuevo media screen  tamaño de la tableta de vertical*/
     .form-reporte-inicial {
         display: flex;
         flex-direction: column;
+
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba {
+    .form-seleccion-reporte{
+        display: flex;
+
+    }
+    .form-reporte-planificacion {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-reporte-planificacion .form-reporte-inicial-arriba {
         display: flex;
         align-items: center;
         justify-content: space-around;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .juego-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .juego-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .curso-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .curso-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .paralelo-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .paralelo-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-bajo {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
+
     .final-coolaborativo {
         display: flex;
         flex-direction: column;
@@ -919,44 +941,60 @@ body {
 }
 
 @media screen and (max-width: 1280px) and (min-width:801px) {
-    
+    .form-gradoParalelo-todo .form-primero-tres-botones {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .form-reporte-section-fecha{        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: space-between;
+    }
+    .Trofeo-modal-footer-opciones{
+        display: flex;
+        justify-content: center;
+        align-content: space-evenly;
+        
+    }
+    .rompecabeza-botones-superior{
+        display: flex;
+        align-items: center;
+    }
+
     /* mi nuevo media screen  tamaño de la tableta de horizontal*/
     .form-reporte-inicial {
         display: flex;
         flex-direction: column;
+
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba {
+    .form-seleccion-reporte{
+        display: flex;
+
+    }
+    .form-reporte-planificacion {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-reporte-planificacion .form-reporte-inicial-arriba {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .juego-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .juego-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .curso-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .curso-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .paralelo-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .paralelo-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-bajo {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-    }
-    .form-reporte-inicial .form-reporte-inicial-bajo .fecha-inicial-reporte{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-    .form-reporte-inicial .form-reporte-inicial-bajo .fecha-cierre-reporte{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
+
     .final-coolaborativo {
         display: flex;
         flex-direction: column;
@@ -1566,40 +1604,57 @@ body {
 
 
 @media screen and (max-width: 1440px) and (min-width:1281px) {
+    .form-gradoParalelo-todo .form-primero-tres-botones {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .form-reporte-section-fecha{        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: space-between;
+    }
+    .Trofeo-modal-footer-opciones{
+        display: flex;
+        justify-content: center;
+        align-content: space-evenly;
+        
+    }
+    .rompecabeza-botones-superior{
+        display: flex;
+        align-items: center;
+    }
     .form-reporte-inicial {
         display: flex;
         flex-direction: column;
+
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba {
+    .form-seleccion-reporte{
+        display: flex;
+
+    }
+    .form-reporte-planificacion {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-reporte-planificacion .form-reporte-inicial-arriba {
         display: flex;
         justify-content: flex-start;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .juego-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .juego-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .curso-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .curso-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .paralelo-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .paralelo-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-bajo {
-        display: flex;
-        justify-content: flex-start;
-    }
-    .form-reporte-inicial .form-reporte-inicial-bajo .fecha-inicial-reporte{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-    .form-reporte-inicial .form-reporte-inicial-bajo .fecha-cierre-reporte{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
+
     .final-coolaborativo {
         display: flex;
         flex-direction: column;
@@ -2232,42 +2287,61 @@ body {
 }
 
 @media screen and (max-width: 2560px) and (min-width:1441px) {
+    .form-gradoParalelo-todo .form-primero-tres-botones {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .form-reporte-section-fecha{        
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: space-between;
+    }
+    .Trofeo-modal-footer-opciones{
+        display: flex;
+        justify-content: center;
+        align-content: space-evenly;
+        
+    }
+    
+    .rompecabeza-botones-superior{
+        display: flex;
+        align-items: center;
+    }
+
+    
     .form-reporte-inicial {
         display: flex;
         flex-direction: column;
+
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba {
+    .form-seleccion-reporte{
+        display: flex;
+
+    }
+    .form-reporte-planificacion {
+        display: flex;
+        flex-direction: column;
+    }
+    .form-reporte-planificacion .form-reporte-inicial-arriba {
         display: flex;
         align-items: center;
         justify-content: flex-start;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .juego-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .juego-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .curso-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .curso-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-arriba .paralelo-select-reporte {
+    .form-reporte-planificacion .form-reporte-inicial-arriba .paralelo-select-reporte {
         display: flex;
         align-items: center;
     }
-    .form-reporte-inicial .form-reporte-inicial-bajo {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-    }
-    .form-reporte-inicial .form-reporte-inicial-bajo .fecha-inicial-reporte{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-    .form-reporte-inicial .form-reporte-inicial-bajo .fecha-cierre-reporte{
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
+ 
     .final-coolaborativo {
         display: flex;
         flex-direction: column;

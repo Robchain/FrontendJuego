@@ -149,13 +149,13 @@ const VerEstudianteAdm = () => {
               </NavLink>
             </NavItem>
           </Nav>
-          <Button onClick={toggledos} className='px-4' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
-            Agregar
-          </Button>
+
         </div>
         <TabContent activeTab={tabs} className="tabvs">
         <TabPane tabId="1" >
-        
+        <Button onClick={toggledos} className='px-4 mt-3'  style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+            Agregar
+          </Button>
         <Col xl='12' lg="12" className='d-xl p-0 mt-2'>
         <h3 style={{ color: "#9696D3" }}>Estudiantes</h3>
         <Col lg="12">
@@ -249,6 +249,9 @@ const VerEstudianteAdm = () => {
         </Col>
         </TabPane>
         <TabPane tabId="2" >
+        <Button onClick={toggledos} className='px-4 mt-3'  style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+            Agregar
+          </Button>
         <Col xl='12' lg="12" className='d-xl p-0 mt-2'>
         <h3 style={{ color: "#9696D3" }}>Profesores</h3>
         <Col lg="12">

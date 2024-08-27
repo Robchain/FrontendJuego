@@ -96,22 +96,21 @@ const EquipoAdm = () => {
     <Container>
       <NavBar toggle={toggle} Seccion={"Administrador de equipos"} />
       <AdmiMenu toggle={toggle} isOpen={isOpen} />
-      <Col xl='11' lg="11" className='ms-5 d-flex justify-content-end'>
-        <Button onClick={toggledos} className='px-4' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+      <ModalAgregarEquipo modal={modal} toggle={toggledos} />
+      <ModalEditarEquipo baseData={dataSeleccionada} modal={modaleditar} toggle={toogleeditar} />
+      <Row className='match-height mb-2'>
+      <div className='rompecabeza-botones-superior'>
+      <Button onClick={toggledos} className='px-4 mx-3' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
           Agregar
         </Button>
-        <ModalAgregarEquipo modal={modal} toggle={toggledos} />
-        <ModalEditarEquipo baseData={dataSeleccionada} modal={modaleditar} toggle={toogleeditar} />
-      </Col>
-      <Row className='match-height mb-2'>
-        <Col lg="12">
-          <Input
+<div>
+<Input
             id="exampleCheck"
             name="check"
             type="checkbox"
             checked={showAll}
             onChange={handleCheckboxChange}
-          />&nbsp;&nbsp;
+          />&nbsp;
           <Label
             check
             for="exampleCheck"
@@ -119,7 +118,9 @@ const EquipoAdm = () => {
           >
             Mostar Todos
           </Label>
-        </Col>
+</div>
+      </div>
+      
         {showAll ?
           card.map(i => (
             <Col lg='4' md='6' className='my-2'>

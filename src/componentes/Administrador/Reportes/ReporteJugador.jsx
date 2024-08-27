@@ -10,7 +10,7 @@ import { ReportePDFJugador } from "./ReportePDFJugador";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { DescargarJuegadorReporte } from "./DescargarJuegadorReporte";
 import { MostrarCurso, MostrarParalelo } from "../../../service/Adminstrador/Usuarios";
-const BaseInicialFormulario = { Curso: undefined, Paralelo: undefined,Estudiante:undefined, Juego:undefined }
+const BaseInicialFormulario = { Curso: undefined, Paralelo: undefined,Estudiante:undefined, Juego:undefined, FechaInicio: undefined, FechaFin: undefined, datosPer:undefined  }
 function llenadodeFormulario(state, action) {
     switch (action.type) {
         case 'onchange':
@@ -22,14 +22,16 @@ function llenadodeFormulario(state, action) {
     }
 }
 export const ReporteJugador = () => {
-  const [{ Curso, Paralelo,Estudiante,Juego, }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
+  const [{ Curso, Paralelo,Estudiante,Juego, FechaFin, FechaInicio, datosPer}, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   const [Estudiantes, setEstudiantes] = useState([])
   const [picker, setPicker] = useState(new Date())
   const [cursoData, setcursoData] = useState([]);
   const [paraleloData, setparaleloData] = useState([])
   const [bloqueodos, setBloqueodos] = useState(true)
   const [bloqueo, setBloqueo] = useState(true)
-  const [MostrarVocabulario, setMostrarVocabulario] = useState([]);
+  const [picker2, setPicker2] = useState(new Date());
+  const [MostrarVocabulario, setMostrarVocabulario] = useState(undefined);
+  //llama a los estudiates
   const llamddeData = async ()=>{
     try {
     const data = await BuscarPorCursoYParalelo({Curso:Curso, Paralelo:Paralelo});
@@ -39,40 +41,61 @@ export const ReporteJugador = () => {
         setEstudiantes([])
     }
 }
-const dataCurso = async ()=>{
 
+//muestra el curso
+const dataCurso = async ()=>{
   const data = await MostrarCurso();
   setcursoData(data);
 }
+//muestra el paralelo
 const dataParalelo = async ()=>{
   const data = await MostrarParalelo();
   setparaleloData(data)
 }
+//llama la data
 useEffect(() => {
   dataCurso();
   dataParalelo();
 }, [])
+//llama a los estudiates
 useEffect(() => {
 if(Curso && Paralelo){
     llamddeData()
 }  
 }, [Curso,Paralelo])
 
+//habilita campos 
 useEffect(() => {
   if((Estudiante !== undefined && Juego !== undefined) || Array.isArray(picker)){
     setBloqueo(false)
   }
 }, [Estudiante,Juego])
 
+//limpia la data en pantalla
 useEffect(() => {
   setMostrarVocabulario([])
-}, [Juego,Estudiante])
+}, [Juego,Estudiante, FechaInicio,FechaFin ])
 
+useEffect(() => {
+  
+  disparodeAccion({
+    type: "onchange",
+    field: "FechaInicio",
+    value:picker,
+  });
+  disparodeAccion({
+    type: "onchange",
+    field: "FechaFin",
+    value: picker2,
+  });
+
+}, [picker, picker2])
+
+//llamada final al buscar
 const Buscar = async ()=>{
     setMostrarVocabulario([]);
-    const data = await    ReportesJugadorApi({id:Estudiante,Pregunta:Juego,Fecha:picker})
+    const data = await    ReportesJugadorApi({id:Estudiante,Pregunta:Juego,FechaInicio: FechaInicio, FechaFin: FechaFin, datosPer:datosPer })
     setMostrarVocabulario(data);
-
 }
 
 
@@ -120,12 +143,19 @@ const Buscar = async ()=>{
           <Select
             name="Estudiante"
            options={Estudiantes}
-            onChange={(evente) =>
+            onChange={(evente) =>{
               disparodeAccion({
                 type: "onchange",
                 field: "Estudiante",
                 value: evente.value,
               })
+
+              disparodeAccion({
+                type: "onchange",
+                field: "datosPer",
+                value: evente,
+              })
+            }
             }
             isDisabled={bloqueodos}
           />
@@ -148,9 +178,12 @@ const Buscar = async ()=>{
             }
             isDisabled={bloqueodos}
           />
-           <Label className='form-label' for='DateGameM'>
-              Rango de fecha
-            </Label>
+        </Col>
+        <div className="form-reporte-section-fecha mt-3">  
+              <div className='fecha-inicial-reporte'>
+            <Label className='form-label'>
+              Feha de inicio:&nbsp;&nbsp;
+            </Label><br/>
             <DateTimePicker
             amPmAriaLabel="Select AM/PM"
             calendarAriaLabel="Toggle calendar"
@@ -158,7 +191,7 @@ const Buscar = async ()=>{
             dayAriaLabel="Day"
             hourAriaLabel="Hour"
             maxDetail="second"
-            minDate={new Date()}
+            maxDate={new Date()}
             minuteAriaLabel="Minute"
             monthAriaLabel="Month"
             nativeInputAriaLabel="Date and time"
@@ -167,11 +200,31 @@ const Buscar = async ()=>{
             value={picker}
             yearAriaLabel="Year"
           />
-          {
-            // este era un date pick range sin hora
-          }
-          <br />
-          <Button
+          </div>&nbsp;&nbsp;&nbsp;&nbsp;
+          <div className='fecha-cierre-reporte'>
+          <Label className='form-label' >
+              Fecha de cierre:&nbsp;&nbsp;
+            </Label> <br/>
+            <DateTimePicker
+            amPmAriaLabel="Select AM/PM"
+            calendarAriaLabel="Toggle calendar"
+            clearAriaLabel="Clear value"
+            dayAriaLabel="Day"
+            hourAriaLabel="Hour"
+            maxDetail="second"
+            maxDate={new Date()}
+            minDate={new Date(picker)}
+            minuteAriaLabel="Minute"
+            monthAriaLabel="Month"
+            nativeInputAriaLabel="Date and time"
+            onChange={setPicker2}
+            secondAriaLabel="Second"
+            value={picker2}
+            yearAriaLabel="Year"
+          /></div>&nbsp;&nbsp;
+              </div>
+        <div>
+        <Button
             onClick={() => Buscar()}
             style={{
               borderRadius: "10px",
@@ -183,7 +236,7 @@ const Buscar = async ()=>{
           >
             Buscar
           </Button>&nbsp;&nbsp;
-  <PDFDownloadLink document={<DescargarJuegadorReporte data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes}/>} fileName={`Reporte.pdf`}>
+           {/* <PDFDownloadLink document={<DescargarJuegadorReporte data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes}/>} fileName={`Reporte.pdf`}>
             <Button
               style={{
                 borderRadius: "10px",
@@ -195,11 +248,22 @@ const Buscar = async ()=>{
             >
               Descargar
             </Button>
-            </PDFDownloadLink><></>
-        </Col>
+            </PDFDownloadLink> */}
+        </div>
+        
       </Row>
+      {/* {JSON.stringify(MostrarVocabulario)} */}
+      {
+        (MostrarVocabulario != undefined && MostrarVocabulario != null) && (<>
+        
+        {MostrarVocabulario.data != undefined && <>
+          <ReportePDFJugador data={MostrarVocabulario.data} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes} />
+          </>
+          }
+        </>
+        )
+      }
       
-      <ReportePDFJugador data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes} />
     </>
   );
 };

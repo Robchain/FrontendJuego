@@ -135,24 +135,40 @@ export const ModalAgregarVocabulario = ({ modal, toggle }) => {
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Agregar Vocabulario</ModalHeader>
       <ModalBody>
         <div className='mb-2'>
-          <Label className='form-label' for='categoria'>Categoría</Label><br />
-          <Select name="Categoria" options={vocabularioOpciones.map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={true} />
+        <div className='mb-3'>
+        <Label className='form-label' for='categoria'>Categoría</Label><br />
+        <Select name="Categoria" options={vocabularioOpciones.map(i => { return { label: i.NombreCategoria, value: i._id } })} onChange={event => disparodeAccion({ type: "onchange", field: "Categoria", value: event.label })} isSearchable={true} />
+          </div>
+          <div className='mb-3'>
+
           <Label className='form-label' for='palabra'>Palabra</Label>
           <Input type='text' maxLength={20} id='palabra' name="Palabra" placeholder='Palabra' onChange={event => disparodeAccion({ type: "onchange", field: "Palabra", value: event.target.value.toUpperCase() })} value={Palabra} />
-          <Label className='form-label' for='categoria'>Silaba</Label>
+          </div>
+          <div className='mb-3'>
+          <Label className='form-label' for='categoria'>Palabra separada en sílabas</Label>
           <Input type='text'  maxLength={25} id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} value={Silaba} />
+          </div>
+          
+          <div className='mb-3'>
           <Label className='form-label' for='inputImage'>
             Imagen
           </Label>
           <Input type='file' id='inputImage' name='FileImagen' onChange={e => handleChange({event:e, field:'FileImagen'})} />
+          </div>
+          <div className='mb-3'>
           <Label className='form-label' for='inputVideoM'>
-          Video respuesta
+          Video respuesta (con audio)
           </Label>
           <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => handleChangeFileVideo({event:e, field:'FileMuestra'})} />
+          </div>
+        
+          <div className='mb-3'>
           <Label className='form-label' for='inputask'>
-            Video de pregunta
+            Video de pregunta (sin audio)
           </Label>
           <Input type='file' id='inputask' name='FilePregunta' onChange={e => handleChangeFileVideo({event:e, field:'FilePregunta'})} />
+          </div>
+          
         </div>
       </ModalBody>
       <ModalFooter>

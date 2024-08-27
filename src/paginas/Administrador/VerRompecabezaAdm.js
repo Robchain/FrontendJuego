@@ -109,10 +109,14 @@ const VerRompecabezaAdm = () => {
     <Container>
       <NavBar toggle={toggle} Seccion={"Rompecabezas"} />
       <AdmiMenu toggle={toggle} isOpen={isOpen} />
-      <Col xl="11" lg="11" className="ms-5 d-flex justify-content-end">
+      <ModalAgregarRompecabeza modal={modal} toggle={toggledos} />
+      <ModalEditarRompecabeza dataBase={dataSeleccionada} modal={modaledtiar} toggle={toggleEdtiar}/>
+      
+      <Row className="match-height mb-2">
+        <div className="rompecabeza-botones-superior my-2">
         <Button
           onClick={toggledos}
-          className="px-4"
+          className="px-4 mx-3"
           style={{
             borderRadius: "10px",
             backgroundColor: "#62259E",
@@ -122,12 +126,8 @@ const VerRompecabezaAdm = () => {
         >
           Agregar
         </Button>
-        <ModalAgregarRompecabeza modal={modal} toggle={toggledos} />
-        <ModalEditarRompecabeza dataBase={dataSeleccionada} modal={modaledtiar} toggle={toggleEdtiar}/>
-      </Col>
-      <Row className="match-height mb-2">
-      <Col lg="12">
-                    <Input
+        <div>
+        <Input
                         id="exampleCheck"
                         name="check"
                         type="checkbox"
@@ -141,7 +141,9 @@ const VerRompecabezaAdm = () => {
                     >
                         Mostar Todos
                     </Label>
-</Col>
+        </div>
+        </div>
+      
         {showAll ? cards.map((i) => (
           <Col lg="4" md="6" className="my-2">
             <CardGroup>
@@ -186,7 +188,7 @@ const VerRompecabezaAdm = () => {
                     style={{ color: "#592a98" }}
                     outline onClick={() => {i.Estado === "ACTIVO" ? desabilitarTarjeta(i): HabilitarTarjeta(i)}}
                   >
-        {i.Estado === "ACTIVO" ? <span>DESACTIVAR</span> : <span>ACTIVAR</span>}
+        {i.Estado === "ACTIVO" ? <span>Desactivar</span> : <span>Activar</span>}
                   </Button>
                   <span>&nbsp;&nbsp;&nbsp;</span>
                   <Button

@@ -12,9 +12,13 @@ import {BsTrash} from 'react-icons/bs'
 import { desabilitarCategoriaOracion, desabilitarCategoriaVocabulario, habilitarCategoriaOracion, habilitarCategoriaVocabulario, llamadaDeLaApiCategoriaGet, llamadaGetApiCategoriaOracion } from '../../service/Adminstrador/Categoria';
 import { ModalEditarCategoria } from '../../componentes/Administrador/ModalEditarCategoria';
 import { responseformualrio } from '../../helpers';
+import { ModalAgregarCategoriasVocabulario } from '../../componentes/Administrador/ModalAgregarCategoriasVocabulario';
+import { ModalAgregarCategoriasOracion } from '../../componentes/Administrador/ModalAgregarCategoriasOracion';
 const VerCategoriaAdm = () => {
   const MySwal = withReactContent(Swal)
   const [modal, setModal] = useState(false)
+  const [modalVocabulario, setmodalVocabulario] = useState(false)
+  const [modalOracion, setmodalOracion] = useState(false)
   const [modalEditar, setModalEditar] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const [Data, setData] = useState([])
@@ -161,6 +165,8 @@ const VerCategoriaAdm = () => {
     DataOracion();
   }, [])
   const toggledos = () => { setModal(!modal) }
+  const toggleVocabulario = () => { setmodalVocabulario(!modalVocabulario) }
+  const toggleOracion = () => { setmodalOracion(!modalOracion) }
   const toggleEdtiar = () => { setModalEditar(!modalEditar) }
   return (
     <Container>
@@ -168,7 +174,7 @@ const VerCategoriaAdm = () => {
       <AdmiMenu toggle={toggle} isOpen={isOpen} />
       <ModalEditarCategoria data={dataSeleccionada} modal={modalEditar} toggle={toggleEdtiar} juego={JuegoAModificar} />
       <Row className='justify-content-center fuente fuenteDoce' >
-        <Col xl='9' lg="11" className='d-flex justify-content-between '>
+        <Col md='12' xl='12' lg="12" className=''>
           <Nav tabs style={{ fontSize: 14 }} >
             <NavItem>
               <NavLink
@@ -187,14 +193,16 @@ const VerCategoriaAdm = () => {
               </NavLink>
             </NavItem>
           </Nav>
-          <Button onClick={toggledos} className='px-4' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
-            Agregar
-          </Button>
-          <ModalAgregarCategorias modal={modal} toggle={toggledos} />
+          {/* <ModalAgregarCategorias modal={modal} toggle={toggledos} /> */}
+          <ModalAgregarCategoriasVocabulario modal={modalVocabulario} toggle={toggleVocabulario}/>
+          <ModalAgregarCategoriasOracion modal={modalOracion} toggle={toggleOracion} />
         </Col>
-        <TabContent activeTab={tabs} className="tabvs">
+        <TabContent activeTab={tabs} className="tabvs my-3">
           <TabPane tabId="1" >
-            <Col xl='12' lg="11" className='d-xl p-0 mt-2' >
+          <Button onClick={toggleVocabulario} className='px-4 mt-1' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+            Agregar
+          </Button> 
+            <Col xl='12' lg="11" className='d-xl p-0' >
               <h3 style={{ color: "#9696D3" }}>Vocabulario</h3>
               <Col lg="12">
                 <Input
@@ -264,6 +272,9 @@ const VerCategoriaAdm = () => {
             </Col>
           </TabPane>
           <TabPane tabId="2" >
+          <Button onClick={toggleOracion} className='px-4 mt-1' style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+            Agregar
+          </Button> 
             <Col xl='12' lg="11" className='d-xl p-0 mt-2' >
               <h3 style={{ color: "#9696D3" }}>Oración</h3>
               <Col lg="12">

@@ -6,10 +6,10 @@ export const ModalDetalleUsuario = ({modal, toggle,dataBase}) => {
     <ModalHeader style={{backgroundColor:'#e6dff0', color:"#592a98"}}>Detalles</ModalHeader>
     <ModalBody>
     <Row>
-              <Col  md='6' sm='12' className='mb-1'>
+              <Col  md='6' sm='12' className='mb-2'>
               {dataBase.FotoPerfil ? <img  width={250} src={dataBase.FotoPerfil}  alt="foto perfil"></img> : <h4>no foto de perfil</h4> }
               </Col>
-              <Col  md='6' sm='12' className='mb-1'>
+              <Col  md='6' sm='12' className='mb-2'>
               <ul>
                 <li><b  style={{color:'#8cc5b0'}}>Nombre:</b> {dataBase.Nombre}</li>
                 <li><b  style={{color:'#8cc5b0'}}>Apellido: </b>{dataBase.Apellido}</li>

@@ -121,17 +121,24 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Agregar Rompecabeza</ModalHeader>
       <ModalBody>
-        <div className=''>
+        <div>
+          <div className='mb-3'> 
           <Label className='form-label' for='Nombre'>Nombre</Label>
           <Input type='text' maxLength={20} id='Nombre' name="Nombre" placeholder='Nombre' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Nombre} />
+          </div>
+          <div className='mb-3'> 
           <Label className='form-label' for='FileColor'>
             Foto color (jpg, jpeg, png, o gif)
           </Label>
           <Input type='file' id='FileColor' name='FileColor' onChange={event =>handleChange({event:event, field:"FileColor"})} />
+          </div>
+          <div className='mb-3'> 
           <Label className='form-label' for='FileBlanco'>
            Archivo blanco y negro (PDF)
           </Label>
          <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event =>handleChangeFilePDF({event:event, field:"FileBlanco"})} />
+          </div>
+          <div className='mb-3'> 
           <Label>Piezas</Label><br />
           <Label>
             <Input
@@ -152,6 +159,7 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
             defaultChecked={Pieza === 6}
             onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
           />&nbsp;&nbsp;6 </Label><br />
+          </div>
         </div>
       </ModalBody>
       <ModalFooter>

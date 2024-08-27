@@ -167,16 +167,17 @@ try {
 
   return (
         <Container >
-        <NavBar toggle={toggle} Seccion={"Vocabularios"}/>
+        <NavBar toggle={toggle} Seccion={"Vocabulario"}/>
     <AdmiMenu toggle={toggle} isOpen={isOpen}/> 
-    <Col xl='11'  lg="11" className='ms-5 d-flex justify-content-between'>
+    <div className='fuenteDoce'>
+    <div className='navegacion-interna-menu-administador'>
     <Nav tabs style={{ fontSize: 14 }} >
             <NavItem>
               <NavLink
                 style={{ color: "#62259E" }}
                 onClick={() => { setTabs("1") }}
               >
-Vocabularios          
+Vocabulario         
     </NavLink>
             </NavItem>
             <NavItem>
@@ -188,24 +189,27 @@ Vocabularios
               </NavLink>
             </NavItem>
           </Nav>
-       <Button onClick={toggledos}  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
-       Agregar
-          </Button>
+          </div>
+          </div>
           <ModalAgregarVocabulario modal={modal} toggle={toggledos} />
           <ModalEditarVocabulario modal={modalEdicion} toggle={toggleEdtiar} dataBase={dataSelecionada} />
-        </Col>
+        
         <TabContent activeTab={tabs} className="tabvs">
         <TabPane tabId="1" >
         <Row className='match-height mb-2' >
-        <h3 style={{ color: "#9696D3" }}>Tarjetas de vocabularios</h3>
-        <Col lg="12">
-                    <Input
+        <h3 style={{ color: "#9696D3" }} className='my-3' >Tarjetas de vocabulario</h3>
+        <div className='rompecabeza-botones-superior'>
+        <Button onClick={toggledos}  className='px-4 mx-3' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       Agregar
+          </Button>
+          <div>
+          <Input
                         id="exampleCheck"
                         name="check"
                         type="checkbox"
                         checked={showAll}
                        onChange={handleCheckboxChange}
-                    />&nbsp;&nbsp;
+                    />&nbsp;
                     <Label
                         check
                         for="exampleCheck"
@@ -213,7 +217,9 @@ Vocabularios
                     >
                         Mostar Todos
                     </Label>
-</Col>
+          </div>
+                    
+</div>
             {showAll ? Data.map(i =>  (
         <Col lg='4' md='6' xs='12' sm="12" className='my-2'>
         <CardGroup >
@@ -274,24 +280,32 @@ Vocabularios
         <TabPane tabId="2" >
       <Row>
         <Col xl='12' lg="12" className='d-xl p-0 mt-2'>
-        <h3 style={{ color: "#9696D3" }}>Habilitar Juegos</h3>
+        <h3 className='mt-2' style={{ color: "#9696D3" }}>Habilitar Juegos</h3>
         <Col md='6' sm='12' className='mb-1'>
+        <div className='mb-3'>
             <Label className='form-label' for='Curso'>
               Curso
             </Label>
             <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })} />
+            </div>
+            <div className='mb-3'>
             <Label className='form-label' for='Paralelo'>
               Paralelo
             </Label>
             <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}  />
+            </div>
+            
+            
           </Col>     
-          <Button disabled={bloqueo} onClick={() => { onsubmit() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
+          <Button className='my-3' disabled={bloqueo} onClick={() => { onsubmit() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
         {loading && <Spinner size="sm">
             Loading...
           </Spinner>} 
           Agregar
         </Button>
+       
         </Col>
+        
 <ListadoJuegoActivos />
       </Row>
     </TabPane>

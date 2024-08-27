@@ -108,7 +108,7 @@ const onsudmitAgregarParalelo = async()=>{
 }
 
   return (
-    <Row>
+    <Row className='mt-3'>
     <h3 style={{ color: "#9696D3" }}>Grado y paralelo</h3>
       <Col xl='6' lg="6" className='d-xl p-0 mt-2'>
       <Col md='6' sm='12' className='mb-1'>

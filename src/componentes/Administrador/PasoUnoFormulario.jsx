@@ -56,11 +56,11 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
           <small className='text-muted'>Especificar el número de los integrantes</small><br/>
           <small className='text-muted'>Nota: hay {estudiantevalue} estudiantes registrados</small>
         </div>
-        <div className='contenido-paso-uno'>
+        <div className='contenido-paso-uno mt-3'>
           <div className='up-side'>
           <div className='NumeroGrupos'>
             <Label className='form-label' for='grupos'>
-            Número de grupos             
+           A) Número de equipos             
             </Label>
             <Select
             value={NumeroDeGrupos}
@@ -72,7 +72,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
           </div>
           <div className='NumeroIntegrante'>
             <Label className='form-label' for='integrantes'>
-            Número de integrantes
+           B) Número de integrantes
             </Label>
             <Select
             isSearchable={false}
@@ -86,7 +86,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
           <div className='down-side'>
           <div className='NombreEquipos'>
             <Label className='form-label' for='equipos'>
-              Nombres de equipos &nbsp;&nbsp;&nbsp;&nbsp;
+              C) Nombres de equipos (seleccione la cantidad de equipos +1)&nbsp;&nbsp;&nbsp;&nbsp;
             </Label>
             <Select
             value={NombreDeEquipo}
@@ -103,7 +103,7 @@ export const PasoUnoFormulario = ({ prevButton, nextButton, index, dispatch, Num
          
           <div className='TipoJuego'>
             <Label>
-              Tipo de Juego
+              D) Tipo de Juego
             </Label><br />
             <Input
               type='radio'

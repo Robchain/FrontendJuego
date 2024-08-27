@@ -116,16 +116,16 @@ const toggleditar=()=>{
  </Col>
                 <Table striped>
                 <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}><tr>
-              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>QUIEN</th>
+              <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>QUIÉN</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ESTADO</th>
               <th style={{borderBottomColor:"#f8f8f8", fontSize:14}}>ACCIONES</th>
             </tr></thead>
             <tbody>
 { showAll ? data.map((i, index)=>(<>
     <tr key={index}>
-    <td style={{borderBottomColor:"#f8f8f8"}}>{i.Nombre}</td>
-    <td style={{borderBottomColor:"#f8f8f8"}}>{i.Estado}</td>
-    <td style={{borderBottomColor:"#f8f8f8"}}>
+    <td  style={{fontWeight:700}}> <span  style={{ color:"#85858C"}}>{i.Nombre}</span> </td>
+    <td style={{fontWeight:700}}> <span  style={{ color:"#85858C"}}>{i.Estado}</span></td>
+    <td style={{fontWeight:700}}>
                     <UncontrolledDropdown>
                       <DropdownToggle className='icon-btn hide-arrow' color='transparent' size='sm' >
                         <LuMoreVertical size={15} />

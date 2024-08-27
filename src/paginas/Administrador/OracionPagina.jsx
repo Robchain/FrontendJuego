@@ -248,19 +248,23 @@ MySwal.fire({
               </NavLink>
             </NavItem>
           </Nav>
-       <Button onClick={toggledos}  className='px-4' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
-       Agregar
-          </Button>
           </div>
         </div>
         <TabContent activeTab={tabs} className="tabvs">
         <TabPane tabId="1" >
     <Row className='match-height mb-2'>
-    <h3 style={{ color: "#9696D3" }}> Tarjetas Oraciones</h3>
-    <Col lg="12">
-     <Input id="exampleCheck" name="check" type="checkbox" checked={showAll} onChange={handleCheckboxChange}  />&nbsp;&nbsp; 
-      <Label   check  for="exampleCheck" style={{color:'#8b8b8c',fontWeight:"700"}}> Mostar Todos</Label>
-</Col>
+      <div className='my-3'>
+    <h3 style={{ color: "#9696D3" }}> Tarjetas de Oraciones</h3>
+    </div>
+    <div className='rompecabeza-botones-superior'>
+    <Button onClick={toggledos}  className='px-4 mx-3' style={{borderRadius:"10px", backgroundColor:"#62259E", color:"#fff", borderColor:"#62259E"}}>
+       Agregar
+          </Button>
+          <div>
+          <Input id="exampleCheck" name="check" type="checkbox" checked={showAll} onChange={handleCheckboxChange}  />&nbsp;
+          <Label   check  for="exampleCheck" style={{color:'#8b8b8c',fontWeight:"700"}}> Mostar Todos</Label>
+          </div>
+</div>
     { showAll ?
       cards.map(i =>  (
         <Col lg='4' md='6' className='my-2'>
@@ -324,16 +328,20 @@ MySwal.fire({
     <TabPane tabId="2" >
       <Row>
         <Col xl='12' lg="12" className='d-xl p-0 mt-2'>
-        <h3 style={{ color: "#9696D3" }}>Habilitar Juegos</h3>
+        <h3 className='mt-3' style={{ color: "#9696D3" }}>Habilitar Juegos</h3>
         <Col md='6' sm='12' className='mb-1'>
-            <Label className='form-label' for='Curso'>
+        <div className='mb-3'>
+          <Label className='form-label' for='Curso'>
               Curso
             </Label>
             <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.value }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })} />
+        </div>
+        <div className='mb-3'>
             <Label className='form-label' for='Paralelo'>
               Paralelo
             </Label>
             <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.value }) } options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}  />
+        </div>
           </Col>     
           <Button disabled={bloqueo} onClick={() => { onsubmit() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
         {loading && <Spinner size="sm">
@@ -347,18 +355,21 @@ MySwal.fire({
     </TabPane>
     <TabPane tabId="3" >
       <Row>
-      <h3 style={{ color: "#9696D3" }}>Administrador de opciones</h3>
+      <h3 className='mt-3' style={{ color: "#9696D3" }}>Administrador de opciones para el Quién</h3>
         <Col xl='6' lg="6" className='d-xl p-0 mt-2'>
         <Col md='6' sm='12' className='mb-1'>
-        <h4 style={{ color: "#9696D3" }}>Imagen Quien</h4>
-            <Label className='form-label ' for='Nombre'>
-              Quien
+        <div className='mb-3'>
+        <Label className='form-label ' for='Nombre'>
+            Quién
             </Label>
             <Input type='text' maxLength={10} name='Nombre' id='Nombre' placeholder='Nombre' onChange={event => disparodeAccionQuien({ type: "onchange", field: "Nombre", value: event.target.value.toUpperCase() })} value={Nombre} />
-            <Label className='form-label' for='Imagen'>
+        </div>
+          <div className='mb-3'>
+          <Label className='form-label' for='Imagen'>
               Imagen
             </Label>
             <Input type='file' id='Imagen' name='Imagen' onChange={e => disparodeAccionQuien({ type: "onchange", field: "Imagen", value: e.target.files[0] })} />
+          </div>
           </Col>     
           <Button disabled={bloqueoAgregar} onClick={() => { onsubmitAgregarOpcion() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
         {loadingAgregar && <Spinner size="sm">
