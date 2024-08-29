@@ -2,4 +2,4 @@ export {contador, fechaEcuador, resultadoVocaMulti, nombre, Piezacalcular, busca
 export {OracionRespuesta, SinRepeticiones, analizaradentro, analizarAdverbios} from './oracionhelper'
 export {responseformualrio} from './mensajes'
 export {cantidadDePartidas, sumadordePunto, ordenarPorResultado} from './vocabulario'
-
+export {base64ToBlob, downloadBlob} from './archivopdf'

@@ -7,9 +7,8 @@ import 'react-clock/dist/Clock.css'
 import Select from "react-select";
 import { BuscarPorCursoYParalelo, ReportesJugadorApi } from "../../../service/Adminstrador/Reporte";
 import { ReportePDFJugador } from "./ReportePDFJugador";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import { DescargarJuegadorReporte } from "./DescargarJuegadorReporte";
 import { MostrarCurso, MostrarParalelo } from "../../../service/Adminstrador/Usuarios";
+import { base64ToBlob, downloadBlob } from "../../../helpers";
 const BaseInicialFormulario = { Curso: undefined, Paralelo: undefined,Estudiante:undefined, Juego:undefined, FechaInicio: undefined, FechaFin: undefined, datosPer:undefined  }
 function llenadodeFormulario(state, action) {
     switch (action.type) {
@@ -21,11 +20,14 @@ function llenadodeFormulario(state, action) {
             throw new Error();
     }
 }
+
 export const ReporteJugador = () => {
   const [{ Curso, Paralelo,Estudiante,Juego, FechaFin, FechaInicio, datosPer}, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   const [Estudiantes, setEstudiantes] = useState([])
   const [picker, setPicker] = useState(new Date())
   const [cursoData, setcursoData] = useState([]);
+  const [isavailable, setIsavailable] = useState(true);
+  const [base64archivo, setBase64archivo] = useState('');
   const [paraleloData, setparaleloData] = useState([])
   const [bloqueodos, setBloqueodos] = useState(true)
   const [bloqueo, setBloqueo] = useState(true)
@@ -74,6 +76,7 @@ useEffect(() => {
 //limpia la data en pantalla
 useEffect(() => {
   setMostrarVocabulario([])
+  setIsavailable(true);
 }, [Juego,Estudiante, FechaInicio,FechaFin ])
 
 useEffect(() => {
@@ -96,8 +99,34 @@ const Buscar = async ()=>{
     setMostrarVocabulario([]);
     const data = await    ReportesJugadorApi({id:Estudiante,Pregunta:Juego,FechaInicio: FechaInicio, FechaFin: FechaFin, datosPer:datosPer })
     setMostrarVocabulario(data);
+    if(data.pdf!= undefined || data.pdf!= null )
+      {
+      if(data.pdf.length>10)
+        {
+      setBase64archivo(data.pdf)
+      setIsavailable(false);
+    }}
+    
 }
 
+
+const descarga = ()=>{
+try {
+  
+  // const base64PDF = data.base64PDF; // Asumiendo que el base64PDF está en esta propiedad
+
+  // 4) Convertir de base64 a PDF
+  if(base64archivo.length<10)return alert('error al descargar archivo')
+
+  const pdfBlob = base64ToBlob(base64archivo, 'application/pdf');
+
+  // 5) Descargar el archivo en el dispositivo
+  downloadBlob(pdfBlob, 'archivo.pdf');
+
+} catch (error) {
+  alert('error al descargar archivo');
+}
+}
 
   return (
     <>
@@ -249,6 +278,18 @@ const Buscar = async ()=>{
               Descargar
             </Button>
             </PDFDownloadLink> */}
+            <Button 
+            disabled={isavailable}
+            style={{
+              borderRadius: "10px",
+              backgroundColor: "#62259E",
+              color: "#fff",
+              borderColor: "#62259E",
+            }}
+            onClick={()=>{descarga()}}
+            >
+Descargar
+            </Button>
         </div>
         
       </Row>
