@@ -8,6 +8,7 @@ import 'react-clock/dist/Clock.css'
 import { ReportePrimero } from '../../../service/Adminstrador/Reporte';
 import { MostrarCurso, MostrarParalelo } from '../../../service/Adminstrador/Usuarios';
 import { ReportePDFPlanificacion } from './ReportePDFPlanificacion';
+import { base64ToBlob, downloadBlob } from '../../../helpers';
 const BaseInicialFormulario = { Curso: undefined, Paralelo: undefined, FechaInicio: undefined, FechaFin: undefined }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -25,6 +26,8 @@ export const ReportePlanificacion = () => {
     const [cursoData, setcursoData] = useState([]);
     const [paraleloData, setparaleloData] = useState([]);
     const [isdesable, setIsdesable] = useState(true);
+    const [isavailable, setIsavailable] = useState(true);
+  const [base64archivo, setBase64archivo] = useState('');
     const [MostrarVocabulario, setMostrarVocabulario] = useState([]);
     const [picker, setPicker] = useState(new Date());
     const [picker2, setPicker2] = useState(new Date());
@@ -48,6 +51,14 @@ export const ReportePlanificacion = () => {
           dataParalelo()
         
       }, [])
+
+      useEffect(() => {
+        
+          setMostrarVocabulario([]);
+          setIsavailable(true);
+
+      }, [Curso, Paralelo, ])
+      
       
     useEffect(() => {
       disparodeAccion({
@@ -67,7 +78,34 @@ export const ReportePlanificacion = () => {
       setMostrarVocabulario([]);
         const data = await ReportePrimero({Curso, Paralelo,FechaInicio, FechaFin});
         setMostrarVocabulario(data);
+        if(data.pdf!= undefined || data.pdf!= null )
+          {
+          if(data.pdf.length>10)
+            {
+          setBase64archivo(data.pdf)
+          setIsavailable(false);
+        }}
       }
+
+
+const descarga = ()=>{
+  try {
+    
+    // const base64PDF = data.base64PDF; // Asumiendo que el base64PDF está en esta propiedad
+  
+    // 4) Convertir de base64 a PDF
+    if(base64archivo.length<10)return alert('error al descargar archivo')
+  
+    const pdfBlob = base64ToBlob(base64archivo, 'application/pdf');
+  
+    // 5) Descargar el archivo en el dispositivo
+    downloadBlob(pdfBlob, 'archivo.pdf');
+  
+  } catch (error) {
+    alert('error al descargar archivo');
+  }
+  }
+
   return (
     <>
     <div className='form-reporte-planificacion'>
@@ -167,12 +205,18 @@ export const ReportePlanificacion = () => {
             Buscar
           </Button>
           &nbsp;&nbsp;
-          {/* <Button style={{color:'#592a98'}} outline
-            // onClick={llamddeData}
-            // disabled={bloqueo}
+          <Button 
+            disabled={isavailable}
+            style={{
+              borderRadius: "10px",
+              backgroundColor: "#62259E",
+              color: "#fff",
+              borderColor: "#62259E",
+            }}
+            onClick={()=>{descarga()}}
             >
             Descargar
-          </Button> */}
+            </Button>
               </div>
 
     </div>

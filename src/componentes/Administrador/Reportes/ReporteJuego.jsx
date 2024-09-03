@@ -10,6 +10,7 @@ import { ReportePDFJuego } from "./ReportePDFJuego";
 import { DescargarJuegoReporte } from "./DescargarJuegoReporte";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { MostrarCurso, MostrarParalelo } from "../../../service/Adminstrador/Usuarios";
+import { base64ToBlob, downloadBlob } from "../../../helpers";
 const BaseInicialFormulario = {
   Juego: undefined,
   Paralelo:undefined,
@@ -30,6 +31,8 @@ function llenadodeFormulario(state, action) {
 export const ReporteJuego = () => {
   const [picker, setPicker] = useState(new Date());
   const [picker2, setPicker2] = useState(new Date());
+  const [isavailable, setIsavailable] = useState(true);
+  const [base64archivo, setBase64archivo] = useState('');
   const [cursoData, setcursoData] = useState([]);
   
   const [paraleloData, setparaleloData] = useState([]);
@@ -45,7 +48,8 @@ export const ReporteJuego = () => {
   //limpia la data en pantalla
   useEffect(() => {
     setMostrarVocabulario([]);
-  }, [Juego]);
+    setIsavailable(true);
+  }, [Juego,Curso,Paralelo ]);
 
   useEffect(() => {
     if(Juego &&Paralelo&& Curso ){
@@ -87,8 +91,33 @@ export const ReporteJuego = () => {
     setMostrarVocabulario([]);
     const data = await ReporteJuegoApi({ Pregunta: Juego,  FechaInicio: FechaInicio, FechaFin: FechaFin,Curso:Curso, Paralelo:Paralelo });
     setMostrarVocabulario(data);
+    if(data.pdf!= undefined || data.pdf!= null )
+      {
+      if(data.pdf.length>10)
+        {
+      setBase64archivo(data.pdf)
+      setIsavailable(false);
+    }}
   };
 
+
+const descarga = ()=>{
+  try {
+    
+    // const base64PDF = data.base64PDF; // Asumiendo que el base64PDF está en esta propiedad
+  
+    // 4) Convertir de base64 a PDF
+    if(base64archivo.length<10)return alert('error al descargar archivo')
+  
+    const pdfBlob = base64ToBlob(base64archivo, 'application/pdf');
+  
+    // 5) Descargar el archivo en el dispositivo
+    downloadBlob(pdfBlob, 'archivo.pdf');
+  
+  } catch (error) {
+    alert('error al descargar archivo');
+  }
+  }
   return (
     <>
       <div className="form-reporte-planificacion">
@@ -211,23 +240,30 @@ export const ReporteJuego = () => {
           >
             Buscar
           </Button>&nbsp;&nbsp;
-          {/* <PDFDownloadLink document={<DescargarJuegoReporte data={MostrarVocabulario} juego={Juego} />} fileName="Reporte Juego.pdf">
-          <Button
+          <Button 
+            disabled={isavailable}
             style={{
               borderRadius: "10px",
               backgroundColor: "#62259E",
               color: "#fff",
               borderColor: "#62259E",
             }}
-            disabled={bloqueo}
-          >
-            Descargar
-          </Button>
-          </PDFDownloadLink> */}
+            onClick={()=>{descarga()}}
+            >
+Descargar
+            </Button>
               </div>
       </div>
-
-      <ReportePDFJuego data={MostrarVocabulario} juego={Juego}/>
+      {
+        (MostrarVocabulario != undefined && MostrarVocabulario != null) && (<>
+        
+        {MostrarVocabulario.data != undefined && <>
+          <ReportePDFJuego data={MostrarVocabulario.data} juego={Juego} />
+          </>
+          }
+        </>
+        )
+      }
 
       {/* {JSON.stringify(MostrarVocabulario)} */}
       

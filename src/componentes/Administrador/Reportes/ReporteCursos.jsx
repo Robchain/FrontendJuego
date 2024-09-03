@@ -10,6 +10,7 @@ import { ReportePDFCurso } from "./ReportePDFCurso";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import { DescargaCursoReporte } from "./DescargaCursoReporte";
 import { MostrarCurso, MostrarParalelo } from "../../../service/Adminstrador/Usuarios";
+import { base64ToBlob, downloadBlob } from "../../../helpers";
 const BaseInicialFormulario = {
   Curso: undefined,
   Paralelo: undefined,
@@ -36,6 +37,8 @@ export const ReporteCursos = () => {
   const [cursoData, setcursoData] = useState([]);
   const [paraleloData, setparaleloData] = useState([])
   const [bloqueodos, setBloqueodos] = useState(true);
+  const [isavailable, setIsavailable] = useState(true);
+  const [base64archivo, setBase64archivo] = useState('');
   const [bloqueo, setBloqueo] = useState(true);
   const [picker, setPicker] = useState(new Date());
   const [MostrarVocabulario, setMostrarVocabulario] = useState([]);
@@ -71,6 +74,7 @@ export const ReporteCursos = () => {
   //borrar la data mostrada
   useEffect(() => {
     setMostrarVocabulario([]);
+    setIsavailable(true);
   }, [Juego, Curso, Paralelo])
   //llenado de las fechas
   useEffect(() => {
@@ -100,7 +104,33 @@ export const ReporteCursos = () => {
         FechaFin: FechaFin
     });
     setMostrarVocabulario(data);
+    if(data.pdf!= undefined || data.pdf!= null )
+      {
+      if(data.pdf.length>10)
+        {
+      setBase64archivo(data.pdf)
+      setIsavailable(false);
+    }}
   };
+
+const descarga = ()=>{
+  try {
+    
+    // const base64PDF = data.base64PDF; // Asumiendo que el base64PDF está en esta propiedad
+  
+    // 4) Convertir de base64 a PDF
+    if(base64archivo.length<10)return alert('error al descargar archivo')
+  
+    const pdfBlob = base64ToBlob(base64archivo, 'application/pdf');
+  
+    // 5) Descargar el archivo en el dispositivo
+    downloadBlob(pdfBlob, 'archivo.pdf');
+  
+  } catch (error) {
+    alert('error al descargar archivo');
+  }
+  }
+  
   return (
     <>
       <div className="form-reporte-planificacion">
@@ -223,19 +253,18 @@ export const ReporteCursos = () => {
           >
             Buscar
           </Button>&nbsp;&nbsp;
-          {/* <PDFDownloadLink document={<DescargaCursoReporte data={MostrarVocabulario} juego={Juego}  Curso={Curso} Paralelo={Paralelo}/>} fileName="Reporte curso.pdf">
-          <Button
+          <Button 
+            disabled={isavailable}
             style={{
               borderRadius: "10px",
               backgroundColor: "#62259E",
               color: "#fff",
               borderColor: "#62259E",
             }}
-            disabled={bloqueo}
-          >
-            Descargar
-          </Button>
-          </PDFDownloadLink> */}
+            onClick={()=>{descarga()}}
+            >
+Descargar
+            </Button>
               </div>
       </div>
        <ReportePDFCurso data={MostrarVocabulario} juego={Juego}  Curso={Curso} Paralelo={Paralelo}/> 

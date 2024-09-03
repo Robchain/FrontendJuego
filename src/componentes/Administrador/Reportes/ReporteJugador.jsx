@@ -265,19 +265,6 @@ try {
           >
             Buscar
           </Button>&nbsp;&nbsp;
-           {/* <PDFDownloadLink document={<DescargarJuegadorReporte data={MostrarVocabulario} actividad={Juego} Estudiante={Estudiante} Estudiantes={Estudiantes}/>} fileName={`Reporte.pdf`}>
-            <Button
-              style={{
-                borderRadius: "10px",
-                backgroundColor: "#62259E",
-                color: "#fff",
-                borderColor: "#62259E",
-              }}
-              disabled={bloqueo}
-            >
-              Descargar
-            </Button>
-            </PDFDownloadLink> */}
             <Button 
             disabled={isavailable}
             style={{
