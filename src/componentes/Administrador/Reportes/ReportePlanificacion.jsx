@@ -220,7 +220,17 @@ const descarga = ()=>{
               </div>
 
     </div>
-    <ReportePDFPlanificacion  data={MostrarVocabulario}   Curso={Curso} Paralelo={Paralelo}/>
+    {
+        (MostrarVocabulario != undefined && MostrarVocabulario != null) && (<>
+        
+        {MostrarVocabulario.data != undefined && <>
+          <ReportePDFPlanificacion  data={MostrarVocabulario.data}   Curso={Curso} Paralelo={Paralelo}/>
+          </>
+          }
+        </>
+        )
+      }
+   
     </>
   )
 }

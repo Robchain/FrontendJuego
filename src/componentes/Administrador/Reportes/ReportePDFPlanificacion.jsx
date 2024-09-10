@@ -24,8 +24,6 @@ export const ReportePDFPlanificacion = ({ data, Curso, Paralelo }) => {
           {
             data.data!=undefined &&data.data.map(juego=>(<>
                       <p style={{ fontWeight: 700 }}><span style={{ color: '#8cc5b0' }}>{juego._id.TipoDeJuego == 1 && "Vocabulario:"}{juego._id.TipoDeJuego == 2 && "Oracion:"}{juego._id.TipoDeJuego == 3 && "Mixto:"}</span> {juego.documentos.length} Juegos</p>
-           
-
                       <Table striped>
                       <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
                         <tr>
@@ -44,7 +42,6 @@ export const ReportePDFPlanificacion = ({ data, Curso, Paralelo }) => {
                     </Table>  
             </>))
           }
-                
                {
             data.total!=undefined &&<p style={{ fontWeight: 700 }}><span style={{ color: '#8cc5b0' }}>TOTAL: </span> { data.total}  </p>
           }

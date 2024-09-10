@@ -3,14 +3,31 @@ import { getStorage, ref, uploadBytes, getDownloadURL/*, getMetadata*/ } from "f
 //import {v4} from 'uuid'
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCyO8UKeQvFAlFIoTPUbhPQqX4MzxIxfyA",
-  authDomain: "didacticobb.firebaseapp.com",
-  projectId: "didacticobb",
-  storageBucket: "didacticobb.appspot.com",
-  messagingSenderId: "36739103464",
-  appId: "1:36739103464:web:ea9ad88c31b92f9c1ce75d"
+  apiKey: process.env.REACT_APP_APIKEY,
+  authDomain:  process.env.REACT_APP_AUTHDOMAIN,
+  projectId:  process.env.REACT_APP_PROJECTOID,
+  storageBucket:  process.env.REACT_APP_STORAGEBUCKET,
+  messagingSenderId:  process.env.REACT_APP_MESSAGINGSENDERID,
+  appId:  process.env.REACT_APP_APPID
 }
 
+// const firebaseConfig = { PRODUCCION
+//   apiKey: "AIzaSyCyO8UKeQvFAlFIoTPUbhPQqX4MzxIxfyA",
+//   authDomain: "didacticobb.firebaseapp.com",
+//   projectId: "didacticobb",
+//   storageBucket: "didacticobbproduction",
+//   messagingSenderId: "36739103464",
+//   appId: "1:36739103464:web:ea9ad88c31b92f9c1ce75d"
+// }
+
+// const firebaseConfig = {                 de prueba
+//   apiKey: "AIzaSyCyO8UKeQvFAlFIoTPUbhPQqX4MzxIxfyA",
+//   authDomain: "didacticobb.firebaseapp.com",
+//   projectId: "didacticobb",
+//   storageBucket: "didacticobb.appspot.com",
+//   messagingSenderId: "36739103464",
+//   appId: "1:36739103464:web:ea9ad88c31b92f9c1ce75d"
+// }
 const app = initializeApp(firebaseConfig)
 export const storage = getStorage(app)
 

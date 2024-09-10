@@ -26,7 +26,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
 
 
     useEffect(() => {
-        if ((Nombre !== dataBase.Nombre && Pieza !== 0) || (FileBlanco || FileColor)) {
+        if ((Nombre !== dataBase.Nombre) || Pieza !== dataBase.Pieza || (FileBlanco || FileColor)) {
             setBloqueo(false);
         } else {
             setBloqueo(true);
