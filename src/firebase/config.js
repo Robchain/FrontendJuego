@@ -11,23 +11,6 @@ const firebaseConfig = {
   appId:  process.env.REACT_APP_APPID
 }
 
-// const firebaseConfig = { PRODUCCION
-//   apiKey: "AIzaSyCyO8UKeQvFAlFIoTPUbhPQqX4MzxIxfyA",
-//   authDomain: "didacticobb.firebaseapp.com",
-//   projectId: "didacticobb",
-//   storageBucket: "didacticobbproduction",
-//   messagingSenderId: "36739103464",
-//   appId: "1:36739103464:web:ea9ad88c31b92f9c1ce75d"
-// }
-
-// const firebaseConfig = {                 de prueba
-//   apiKey: "AIzaSyCyO8UKeQvFAlFIoTPUbhPQqX4MzxIxfyA",
-//   authDomain: "didacticobb.firebaseapp.com",
-//   projectId: "didacticobb",
-//   storageBucket: "didacticobb.appspot.com",
-//   messagingSenderId: "36739103464",
-//   appId: "1:36739103464:web:ea9ad88c31b92f9c1ce75d"
-// }
 const app = initializeApp(firebaseConfig)
 export const storage = getStorage(app)
 
