@@ -7,7 +7,7 @@ export const crearMultiJugador = async ({NombreDeEquipo, NumeroDeGrupos, NumeroD
 
 export const LlamadaDeLLenadoDeEstudianteMultiJugador = async ({Curso,Paralelo})=>{
     const data = await Api.post("/MultiJugador/BuscarPorCurso",{Curso:Curso,Paralelo:Paralelo});
-    if(data.status === 201){
+    if(data.status === 200){
         return data.data
     }else{
         return data.data;
