@@ -183,11 +183,10 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         <Input type='text' maxLength={15} name='Verbo' id='Verbo' placeholder='Verbo' defaultValue={dataBase.Verbo} value={Verbo} onChange={event => disparodeAccion({ type: "onchange", field: "Verbo", value: event.target.value.toUpperCase() })} />
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
-                        <Input id="AdverbioCheck" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} /> <Label check for="AdverbioCheck" style={{ color: '#8b8b8c', fontWeight: "700" }} className="mb-2" >Adverbio</Label>
-                        {checkbos && <div>
+                        <Label check for="AdverbioCheck" style={{ color: '#8b8b8c', fontWeight: "700" }} className="mb-2" >Adverbio (opcional)</Label>
+                        <div>
                             <Select name="Adverbio" placeholder="Adverbio" isSearchable={false} options={optionsAdverbio} onChange={event => disparodeAccion({ type: "onchange", field: "Adverbio", value: checkbos ? event.value : undefined })} />
                         </div>
-                        }
                     </Col>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Oracion'>
@@ -203,13 +202,13 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         </Col>
                         <Col md='6' sm='12' className='mb-1'>
                             <Label className='form-label' for='Sujeto' >
-                            Imagen del Quién
+                            Imagen del Quién (Sujeto)
                             </Label>
                             <Select name="Sujeto" isSearchable={false} defaultValue={dataBase.Sujeto} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
                         </Col>
                 </Row>
                 <Input id="editarVideoOracion" name="check" type="checkbox" onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
-                <Label check for="editarVideoOracion" style={{ color: '#8b8b8c', fontWeight: "700" }}>   Editar imágenes </Label>
+                <Label check for="editarVideoOracion" style={{ color: '#8b8b8c', fontWeight: "700" }}> Editar videos </Label>
                 <Row>
                     {checkbosDos === true && <>
                         

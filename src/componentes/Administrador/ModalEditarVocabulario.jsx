@@ -179,7 +179,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                     <Input type='text' maxLength={25} id='categoria' name="Silaba" placeholder='Silaba' onChange={event => disparodeAccion({ type: "onchange", field: "Silaba", value: event.target.value.toUpperCase() })} defaultValue={dataBase.Silaba} value={Silaba} />    
                     </div>
                     <div className='mb-3'>
-                    <Input id="EditarImagen" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} />&nbsp;&nbsp; <Label check for="EditarImagen" style={{ color: '#8b8b8c', fontWeight: "700" }} >Editar imágenes </Label>
+                    <Input id="EditarImagen" name="check" type="checkbox" onChange={e => { setCheckbos(e.target.checked) }} />&nbsp;&nbsp; <Label check for="EditarImagen" style={{ color: '#8b8b8c', fontWeight: "700" }} > Editar imagen y videos </Label>
                     </div>
                     
                     {checkbos && <div className='mt-1'>

@@ -182,7 +182,7 @@ try {
           </Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='inputFile'>
-              Foto de perfil
+              Foto de perfil (opcional)
             </Label>
             <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({event:e, field:'FotoPerfil'}) } />
           </Col>
