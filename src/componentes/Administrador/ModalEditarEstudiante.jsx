@@ -30,7 +30,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
   const [bloqueo, setbloqueo] = useState(true)
   const [{ Nombre, Apellido, Identificacion, Email, Usuario, TipoUsuario, FotoPerfil, Curso, Paralelo }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   useEffect(() => {
-    if (Nombre !== dataBase.Nombre || Apellido !== dataBase.Apellido || Identificacion !== dataBase.Identificacion || Email !== dataBase.Email || Usuario !== dataBase.Usuario || Curso !== dataBase.Curso || Paralelo !== dataBase.Paralelo) {
+    if (Nombre !== dataBase.Nombre || Apellido !== dataBase.Apellido || Identificacion !== dataBase.Identificacion || Email !== dataBase.Email || Usuario !== dataBase.Usuario || Curso !== dataBase.Curso || Paralelo !== dataBase.Paralelo || FotoPerfil) {
       setbloqueo(false);
     } else {
       setbloqueo(true);
@@ -61,6 +61,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
     disparodeAccion({ type: "onchange", field: "TipoUsuario", value: dataBase.TipoUsuario })
     disparodeAccion({ type: "onchange", field: "Curso", value: dataBase.Curso })
     disparodeAccion({ type: "onchange", field: "Paralelo", value: dataBase.Paralelo })
+    disparodeAccion({ type: "onchange", field: "FotoPerfil", value: undefined });
 
     setCheckbosDos(false);
   }, [dataBase, modal])
@@ -79,7 +80,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
-          showConfirmButton:data.titulo !== "Excelente",
+          showConfirmButton: data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
@@ -91,7 +92,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
-          showConfirmButton:data.titulo !== "Excelente",
+          showConfirmButton: data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
@@ -147,7 +148,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
 
       // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
       // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
-      disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+      disparodeAccion({ type: "onchange", field: field, value: selectedFile });
     }
   };
   const handleChange = (event) => {
