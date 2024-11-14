@@ -1,4 +1,4 @@
- import React from 'react'
+import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import Select from 'react-select';
@@ -10,7 +10,7 @@ import { subidaIPerfil } from '../../firebase/config';
 import { CrearUsuario, MostrarCurso, MostrarParalelo, signupsinfoto } from '../../service/Adminstrador/Usuarios';
 import { responseformualrio } from '../../helpers';
 
-const BaseInicialFormulario = { Nombre: "", Apellido: "", Identificacion: "",FotoPerfil:undefined, Email: "", Usuario: "", Password: "", TipoUsuario: "", Curso: "", Paralelo: "" }
+const BaseInicialFormulario = { Nombre: "", Apellido: "", Identificacion: "", FotoPerfil: undefined, Email: "", Usuario: "", Password: "", TipoUsuario: "", Curso: "", Paralelo: "" }
 function llenadodeFormulario(state, action) {
   switch (action.type) {
     case 'onchange':
@@ -22,86 +22,86 @@ function llenadodeFormulario(state, action) {
   }
 }
 
-export const ModalAgregarEstudiante = ({ modal, toggle  }) => {
+export const ModalAgregarEstudiante = ({ modal, toggle }) => {
   const [loading, setLoading] = useState(false);
   const MySwal = withReactContent(Swal)
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
   const [cursoData, setcursoData] = useState([]);
   const [paraleloData, setparaleloData] = useState([])
-    const [contraseñaUno, setContraseñaUno] = useState("");
-    const [contraseñaDos, setContraseñaDos] = useState("");
+  const [contraseñaUno, setContraseñaUno] = useState("");
+  const [contraseñaDos, setContraseñaDos] = useState("");
   const [bloqueo, setbloqueo] = useState(true)
-  const [{ Nombre, Apellido, Identificacion, Email, Usuario, Password, TipoUsuario,FotoPerfil, Curso, Paralelo }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
+  const [{ Nombre, Apellido, Identificacion, Email, Usuario, Password, TipoUsuario, FotoPerfil, Curso, Paralelo }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   useEffect(() => {
-    if (Nombre.length > 0 && Apellido.length > 0 && Identificacion.length > 0 && Email.length > 0 && Usuario.length > 0 && (contraseñaUno === contraseñaDos) && contraseñaDos.length>5 && contraseñaUno.length>5) {
+    if (Nombre.length > 0 && Apellido.length > 0 && Identificacion.length > 0 && Email.length > 0 && Usuario.length > 0 && (contraseñaUno === contraseñaDos) && contraseñaDos.length > 5 && contraseñaUno.length > 5 && Paralelo.length > 0 && TipoUsuario.length > 0) {
       setbloqueo(false);
-    }else{
+    } else {
       setbloqueo(true);
     }
-  }, [Nombre, Apellido, Identificacion, Email, Usuario, Password, TipoUsuario, Curso, Paralelo,contraseñaUno,contraseñaUno,FotoPerfil])
+  }, [Nombre, Apellido, Identificacion, Email, Usuario, Password, TipoUsuario, Curso, Paralelo, contraseñaUno, contraseñaUno, FotoPerfil])
 
-const dataCurso = async ()=>{
+  const dataCurso = async () => {
 
-  const data = await MostrarCurso();
-  setcursoData(data);
-}
-const dataParalelo = async ()=>{
-  const data = await MostrarParalelo();
-  setparaleloData(data)
-}
-useEffect(() => {
-  dataCurso();
-  dataParalelo();
-}, [])
-
-  const onsubmit = async ()=>{
-try {
-  setBloqueoSecu(true);
-  setbloqueo(true);
-  setLoading(true);
-  let data ;
-  if(FotoPerfil === undefined){
-  data =  await  signupsinfoto({Nombre:Nombre, Apellido:Apellido, Identificacion:Identificacion, Email:Email, Usuario:Usuario, Password:contraseñaUno, TipoUsuario:TipoUsuario, Curso:Curso, Paralelo:Paralelo});
-  }else {
-    const url = await subidaIPerfil(FotoPerfil);
-    data = await CrearUsuario({Nombre:Nombre, Apellido:Apellido, Identificacion:Identificacion, Email:Email, Usuario:Usuario, Password:contraseñaUno, TipoUsuario:TipoUsuario, Curso:Curso, Paralelo:Paralelo,FotoPerfil:url});
+    const data = await MostrarCurso();
+    setcursoData(data);
   }
-  MySwal.fire({
-    title: `${data.titulo}`,
-    text: `${data.respuesta}`,
-    icon: `${data.type}`,
-    showConfirmButton:data.titulo !== "Excelente",
-    customClass: {
-      confirmButton: 'btn btn-primary'
-    },
-    buttonsStyling: false
-  })
-  setBloqueoSecu(false);
-  setbloqueo(false);
-  setLoading(false);
-  disparodeAccion({ type: "reset" });
-  toggle();
-  if(!bloqueo){
-    setTimeout(() => {
-      window.location.reload();
-    }, 2000);
+  const dataParalelo = async () => {
+    const data = await MostrarParalelo();
+    setparaleloData(data)
+  }
+  useEffect(() => {
+    dataCurso();
+    dataParalelo();
+  }, [])
+
+  const onsubmit = async () => {
+    try {
+      setBloqueoSecu(true);
+      setbloqueo(true);
+      setLoading(true);
+      let data;
+      if (FotoPerfil === undefined) {
+        data = await signupsinfoto({ Nombre: Nombre, Apellido: Apellido, Identificacion: Identificacion, Email: Email, Usuario: Usuario, Password: contraseñaUno, TipoUsuario: TipoUsuario, Curso: Curso, Paralelo: Paralelo });
+      } else {
+        const url = await subidaIPerfil(FotoPerfil);
+        data = await CrearUsuario({ Nombre: Nombre, Apellido: Apellido, Identificacion: Identificacion, Email: Email, Usuario: Usuario, Password: contraseñaUno, TipoUsuario: TipoUsuario, Curso: Curso, Paralelo: Paralelo, FotoPerfil: url });
+      }
+      MySwal.fire({
+        title: `${data.titulo}`,
+        text: `${data.respuesta}`,
+        icon: `${data.type}`,
+        showConfirmButton: data.titulo !== "Excelente",
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
+      })
+      setBloqueoSecu(false);
+      setbloqueo(false);
+      setLoading(false);
+      disparodeAccion({ type: "reset" });
+      toggle();
+      if (!bloqueo) {
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+      }
+    } catch (error) {
+      MySwal.fire({
+        title: 'Error!',
+        text: responseformualrio.Creado.NoCreado,
+        icon: 'error',
+        customClass: {
+          confirmButton: 'btn btn-primary'
+        },
+        buttonsStyling: false
+      })
+      setBloqueoSecu(false);
+      setbloqueo(false);
+      setLoading(false);
+      disparodeAccion({ type: "reset" });
+      toggle();
     }
-} catch (error) {
-  MySwal.fire({
-    title: 'Error!',
-    text: responseformualrio.Creado.NoCreado,
-    icon: 'error',
-    customClass: {
-      confirmButton: 'btn btn-primary'
-    },
-    buttonsStyling: false
-  })
-  setBloqueoSecu(false);
-  setbloqueo(false);
-  setLoading(false);
-  disparodeAccion({ type: "reset" });
-  toggle();
-}
   }
 
   const handleChange = (event) => {
@@ -113,7 +113,7 @@ try {
 
     disparodeAccion({ type: "onchange", field: event.target.name, value: cleanedValue })
   };
-  const handleChangeFile = ({event,field }) => {
+  const handleChangeFile = ({ event, field }) => {
     const selectedFile = event.target.files[0];
 
     if (selectedFile) {
@@ -127,7 +127,7 @@ try {
         alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
         event.target.value = ''; // Limpia el input para eliminar el archivo no válido
         return;
-      } 
+      }
 
       // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
       // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
@@ -153,13 +153,13 @@ try {
           </Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='cityMulti'>
-            Identificación
+              Identificación
             </Label>
-            <Input type='text'  name='Identificacion' maxLength={15} id='cityMulti' placeholder='Identificación' onChange={handleChange} value={Identificacion} />
+            <Input type='text' name='Identificacion' maxLength={15} id='cityMulti' placeholder='Identificación' onChange={handleChange} value={Identificacion} />
           </Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='CountryMulti'>
-            Correo Electrónico
+              Correo Electrónico
             </Label>
             <Input type='text' maxLength={30} name='Email' id='CountryMulti' placeholder='Correo Electrónico' onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })} value={Email} />
           </Col>
@@ -167,46 +167,46 @@ try {
             <Label className='form-label' for='CompanyMulti'>
               Usuario
             </Label>
-            <Input type='text' maxLength={25} name='Usuario' id='CompanyMulti' placeholder='Usuario' 
-            onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Usuario} />
+            <Input type='text' maxLength={25} name='Usuario' id='CompanyMulti' placeholder='Usuario'
+              onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} value={Usuario} />
           </Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='EmailMulti'>
               Contraseña
-            </Label> 
-            <p style={{lineHeight:'2px', fontWeight:'bold'}}><small>Mínimo de 6 caracteres</small></p>
+            </Label>
+            <p style={{ lineHeight: '2px', fontWeight: 'bold' }}><small>Mínimo de 6 caracteres</small></p>
             <Input type='password' name='Password' id='EmailMulti' placeholder='Contraseña'
-            onChange={event =>{setContraseñaUno(event.target.value)}} 
-            value={contraseñaUno}
+              onChange={event => { setContraseñaUno(event.target.value) }}
+              value={contraseñaUno}
             />
           </Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='inputFile'>
-              Foto de perfil
+              Foto de perfil (opcional)
             </Label>
-            <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({event:e, field:'FotoPerfil'}) } />
+            <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({ event: e, field: 'FotoPerfil' })} />
           </Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='EmailMulti2'>
               Repetir Contraseña
             </Label>
             <Input type='password' name='Password' id='EmailMulti2' placeholder=' Repetir Contraseña'
-            onChange={event =>{setContraseñaDos(event.target.value)}} 
-            value={contraseñaDos}
+              onChange={event => { setContraseñaDos(event.target.value) }}
+              value={contraseñaDos}
             />
-            <br/>
-            {contraseñaUno !== contraseñaDos && <small style={{color:'red'}}> la contraseña no coincide</small>}
+            <br />
+            {contraseñaUno !== contraseñaDos && <small style={{ color: 'red' }}> la contraseña no coincide</small>}
           </Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='Curso'>
               Grado
             </Label>
-            <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.label }) } options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
+            <Select name="Curso" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Curso', value: e.label })} options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })} />
             <Label className='form-label' for='Paralelo'>
               Paralelo
             </Label>
-            <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.label }) } options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })}  />
-          </Col>     
+            <Select name="Paralelo" isSearchable={false} onChange={e => disparodeAccion({ type: "onchange", field: 'Paralelo', value: e.label })} options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i._id } })} />
+          </Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='EmailMulti'>
               Tipo Usuario
@@ -216,7 +216,7 @@ try {
               name="TipoUsuario"
               value="ESTUDIANTE"
               onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })}
-            checked={TipoUsuario === "ESTUDIANTE"}
+              checked={TipoUsuario === "ESTUDIANTE"}
             /> Estudiante</Label><br />
             <Label>
               <Input
@@ -224,20 +224,20 @@ try {
                 name="TipoUsuario"
                 value="DOCENTE"
                 onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value })}
-              checked={TipoUsuario === "DOCENTE"}
+                checked={TipoUsuario === "DOCENTE"}
               /> Docente
             </Label>
           </Col>
         </Row>
       </ModalBody>
       <ModalFooter>
-        <Button outline disabled={bloqueoSecu} style={{ color: '#592a98' }} onClick={()=>{toggle();disparodeAccion({ type: "reset" }); setContraseñaDos(""); setContraseñaUno("");}}>
+        <Button outline disabled={bloqueoSecu} style={{ color: '#592a98' }} onClick={() => { toggle(); disparodeAccion({ type: "reset" }); setContraseñaDos(""); setContraseñaUno(""); }}>
           Cancelar
         </Button>&nbsp;&nbsp;
         <Button disabled={bloqueo} onClick={() => { onsubmit() }} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>
-        {loading && <Spinner size="sm">
+          {loading && <Spinner size="sm">
             Loading...
-          </Spinner>} 
+          </Spinner>}
           Agregar
         </Button>
       </ModalFooter>

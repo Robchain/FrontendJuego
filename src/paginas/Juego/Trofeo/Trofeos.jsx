@@ -142,7 +142,7 @@ export const Trofeos = () => {
 }
 </Row>
 <Row className="justify-content-evenly  mt-2 mx-2">
-<h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Colaborativo</h3>
+<h3 style={{ fontWeight: 'bold', color: '#8B8B8C' }} >Juego Colaborativo</h3>
 <div style={{display:'flex', justifyContent:'space-evenly', }}><div>
 <img src={MedallaOro} width={'100px'} alt='medalla de oro'/> <span><strong>{medal.ORO}</strong></span>
 </div>
