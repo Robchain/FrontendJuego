@@ -39,13 +39,14 @@ const Index = () => {
             setBloqeo(true);
            const data = await  LoginAPI({Email:Datos.Email, Password:Datos.Password});
            if (data.respuesta !== 'Contraseña incorrecta' && data.respuesta !== 'falta correo y contraseña' && data.respuesta !== 'Correo o contraseña incorrecta') {
-            if (data.TipoUsuario === 'DOCENTE') {
+            if (data.TipoUsuario === 'DOCENTE') {                
                 localStorage.setItem("Usuario", data.Nombre)
                 localStorage.setItem("Email", data.Email)
                 localStorage.setItem("Identificacion", data.Identificacion)
                 localStorage.setItem("Id", data._id)
                 localStorage.setItem("Nombre", data.Nombre)
                 localStorage.setItem("Apellido", data.Apellido)
+                localStorage.setItem("FotoPerfil", data.FotoPerfil)
                 entrar('/VerEstudiante');
             } else if(data.TipoUsuario === 'ESTUDIANTE') {
                 localStorage.setItem("Usuario", data.Usuario)
@@ -54,6 +55,7 @@ const Index = () => {
                 localStorage.setItem("Id", data._id)
                 localStorage.setItem("Nombre", data.Nombre)
                 localStorage.setItem("Apellido", data.Apellido)
+                localStorage.setItem("FotoPerfil", data.FotoPerfil)
                 entrar('/MenuJuego');
             }
             setBloqeo(false);
