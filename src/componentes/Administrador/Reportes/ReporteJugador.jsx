@@ -196,7 +196,7 @@ try {
             options={[
               { label: "Vocabularios", value: "vocabulario" },
               { label: "Oraciones", value: "oracion" },
-              { label: "Colaborativo", value: "Colaborativo" },{label:"Todos", value:"Todos"}
+              { label: "Juego colaborativo", value: "Colaborativo" },{label:"Todos", value:"Todos"}
             ]}
            onChange={(evente) =>
               disparodeAccion({

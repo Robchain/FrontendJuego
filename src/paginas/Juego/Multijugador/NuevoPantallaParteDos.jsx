@@ -105,7 +105,7 @@ export const NuevoPantallaParteDos = () => {
       
   return (
     <Container>
-    <NavBarJuego Seccion={"Colaborativo"} urlBack={"/MenuJuego"}/>
+    <NavBarJuego Seccion={"Juego Colaborativo"} urlBack={"/MenuJuego"}/>
     { (InfoEstudiaSituacion !== null && dataMultiJu !==null && InfoEstudiaSituacion !== undefined)?(<>
         {
   listos === "espera" && <VerProgresoYaTerminado/>
