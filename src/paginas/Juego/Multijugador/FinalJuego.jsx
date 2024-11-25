@@ -51,6 +51,13 @@ export const FinalJuego = () => {
                   <PiSquaresFourDuotone />
                 </NavLink>
               </div>
+              <div className='final-aciertos return-menu-label'>
+                <div className='numeros-aciertos'>
+                  <span>
+                    Regresar al menu
+                  </span>
+                </div>
+              </div>
             </div>) : (<><>Cargando...</></>)}
         </Container>
       }
