@@ -2959,3 +2959,12 @@ body {
         width: 40px;
     }
 }
+
+
+.return-menu-label {
+    display: flex;
+    justify-content: center;
+    div {
+        margin-right: 0px !important;
+    }
+}
