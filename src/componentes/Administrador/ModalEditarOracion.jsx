@@ -9,6 +9,11 @@ import { llamadaDeDataTodosActivos } from '../../service/Adminstrador/Vocabulari
 import { subidaIOracion } from '../../firebase/config';
 import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Categoria: '', Oracion: '', Verbo: '', Adverbio: undefined, Sujeto: undefined, Que: undefined, FileVideoPreguntaQue: undefined, FileVideoPreguntaQuien: undefined, FileVideoMuestra: undefined }
+const VideoNames = {
+    FileVideoPreguntaQueLabel: '',
+    FileVideoPreguntaQuienLabel: '',
+    FileVideoMuestraLabel: ''
+}
 function llenadodeFormulario(state, action) {
     switch (action.type) {
         case 'onchange':
@@ -19,7 +24,6 @@ function llenadodeFormulario(state, action) {
 }
 const optionsAdverbio = [{ value: "", label: "NINGUNO" }, { value: "UNO", label: "UNO" }, { value: "UNA", label: "UNA" }, { value: "UN", label: "UN" }, { value: "DOS", label: "DOS" }, { value: "MUCHOS", label: "MUCHOS" }, { value: "MUCHAS", label: "MUCHAS" }]
 export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
-    console.log("dataBase", dataBase);
 
     const [{ Categoria, Oracion, Verbo, Adverbio, Sujeto, Que, FileVideoPreguntaQue, FileVideoPreguntaQuien, FileVideoMuestra }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
     const [checkbos, setCheckbos] = useState(false);
@@ -32,7 +36,21 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
     const [listadoOption, setListadoOption] = useState([])
     const [listadoOptionsQue, setListadoOptionsQue] = useState([])
     useEffect(() => {
-        console.log("find Categoria)", listadoOption.find((f) => f.NombreCategoria == dataBase.Categoria));
+
+        if (dataBase && dataBase.FileVideoMuestra) {
+            const fileName = dataBase.FileVideoMuestra.split("/").pop().split("%2F").pop().split("?")[0];
+            VideoNames.FileVideoMuestraLabel = fileName;
+        }
+
+        if (dataBase && dataBase.FileVideoPreguntaQue) {
+            const fileName = dataBase.FileVideoPreguntaQue.split("/").pop().split("%2F").pop().split("?")[0];
+            VideoNames.FileVideoPreguntaQueLabel = fileName;
+        }
+
+        if (dataBase && dataBase.FileVideoPreguntaQuien) {
+            const fileName = dataBase.FileVideoPreguntaQuien.split("/").pop().split("%2F").pop().split("?")[0];
+            VideoNames.FileVideoPreguntaQuienLabel = fileName;
+        }
 
         disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
         disparodeAccion({ type: "onchange", field: "Sujeto", value: dataBase.Sujeto });
@@ -41,13 +59,10 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
         disparodeAccion({ type: "onchange", field: "Verbo", value: dataBase.Verbo });
         setCheckbos(false);
         setCheckbosDos(false);
-        console.log("categoria post set", Categoria);
 
     }, [dataBase, modal])
     const llamdaInicialListado = async () => {
         const data = await llamadaGetApiCategoriaOracion();
-        console.log("data cateogira", data);
-
         setListadoOption(data);
     }
     const llamadainicialQuienImagen = async () => {
@@ -296,8 +311,16 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
 
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='FileVideoMuestra'>
-                            Video respuesta (con audio)
+                            Video respuesta (con audio) 
                         </Label>
+                        <div>
+                        <Label className='form-label' for='FileVideoMuestra' style={{ color: '#5E319B' }}>
+                            {
+                                VideoNames && VideoNames.FileVideoMuestraLabel && 
+                                VideoNames.FileVideoMuestraLabel
+                            }
+                        </Label>
+                        </div>
                         <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra' onChange={e => handleChangeFileVideo({ event: e, field: 'FileVideoMuestra' })} />
                     </Col>
                 </Row>
@@ -314,6 +337,14 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         <Label className='form-label' for='FileVideoPreguntaQue'>
                             Video pregunta Qué (sin audio)
                         </Label>
+                        <div>
+                        <Label className='form-label' for='FileVideoPreguntaQue' style={{ color: '#5E319B' }}>
+                            {
+                                VideoNames && VideoNames.FileVideoPreguntaQueLabel && 
+                                VideoNames.FileVideoPreguntaQueLabel
+                            }
+                        </Label>
+                        </div>
                         <Input type='file' id='FileVideoPreguntaQue' name='FileVideoPreguntaQue' onChange={e => handleChangeFileVideo({ event: e, field: 'FileVideoPreguntaQue' })} />
                     </Col>
                 </Row>
@@ -333,6 +364,14 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         <Label className='form-label' for='FileVideoPreguntaQuien'>
                             Video pregunta Quién (sin audio)
                         </Label>
+                        <div>
+                        <Label className='form-label' for='FileVideoPreguntaQuien' style={{ color: '#5E319B' }}>
+                            {
+                                VideoNames && VideoNames.FileVideoPreguntaQuienLabel && 
+                                VideoNames.FileVideoPreguntaQuienLabel
+                            }
+                        </Label>
+                        </div>
                         <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => handleChangeFileVideo({ event: e, field: 'FileVideoPreguntaQuien' })} />
                     </Col>
                 </Row>
@@ -342,8 +381,8 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         <Label className='form-label' for='Que'>
                             Imágenes del Qué
                         </Label>
-                        { dataBase.Que && dataBase.Que.label &&
-                        <Select name="Que" defaultValue={{ label: dataBase.Que.label, value: '' }} isSearchable={true} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
+                        {dataBase.Que && dataBase.Que.label &&
+                            <Select name="Que" defaultValue={{ label: dataBase.Que.label, value: '' }} isSearchable={true} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
                         }
                     </Col>
                 </Row>

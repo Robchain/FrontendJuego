@@ -8,6 +8,11 @@ import { EditarVocabulario, EditarVocabularioSinArchivos } from '../../service/A
 import { llamadaDeLaApiCategoriaGet } from '../../service/Adminstrador/Categoria';
 import { responseformualrio } from '../../helpers';
 const BaseInicialFormulario = { Categoria: '', Palabra: '', Silaba: '', FileImagen: undefined, FileMuestra: undefined, FilePregunta: undefined };
+const ImagesNames = {
+    FileImagen: '',
+    FileMuestra: '',
+    FilePregunta: ''
+}
 function llenadodeFormulario(state, action) {
     switch (action.type) {
         case 'onchange':
@@ -50,6 +55,22 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
     }, [Categoria, Palabra, Silaba, FileImagen, FileMuestra, FilePregunta, checkbos])
 
     useEffect(() => {
+
+        if (dataBase && dataBase.FileImagen) {
+            const fileName = dataBase.FileImagen.split("/").pop().split("%2F").pop().split("?")[0];
+            ImagesNames.FileImagen = fileName;
+        }
+
+        if (dataBase && dataBase.FileMuestra) {
+            const fileName = dataBase.FileMuestra.split("/").pop().split("%2F").pop().split("?")[0];
+            ImagesNames.FileMuestra = fileName;
+        }
+
+        if (dataBase && dataBase.FilePregunta) {
+            const fileName = dataBase.FilePregunta.split("/").pop().split("%2F").pop().split("?")[0];
+            ImagesNames.FilePregunta = fileName;
+        }
+
         disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
         disparodeAccion({ type: "onchange", field: "Palabra", value: dataBase.Palabra });
         disparodeAccion({ type: "onchange", field: "Silaba", value: dataBase.Silaba });
@@ -140,7 +161,7 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
             toggle();
         }
     }
-    
+
     const handleChange = ({ event, field }) => {
         const selectedFile = event.target.files[0];
 
@@ -213,18 +234,42 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                             <Label className='form-label' for='inputImage'>
                                 Imagen
                             </Label>
+                            <div>
+                                <Label className='form-label' for='inputImage' style={{ color: '#5E319B' }}>
+                                    {
+                                        ImagesNames && ImagesNames.FileImagen &&
+                                        ImagesNames.FileImagen
+                                    }
+                                </Label>
+                            </div>
                             <Input type='file' id='inputImage' name='FileImagen' onChange={e => handleChange({ event: e, field: "FileImagen" })} />
                         </div>
                         <div className='mb-3'>
                             <Label className='form-label' for='inputVideoM'>
                                 Video respuesta (con audio)
                             </Label>
+                            <div>
+                                <Label className='form-label' for='inputVideoM' style={{ color: '#5E319B' }}>
+                                    {
+                                        ImagesNames && ImagesNames.FileMuestra &&
+                                        ImagesNames.FileMuestra
+                                    }
+                                </Label>
+                            </div>
                             <Input type='file' id='inputVideoM' name='FileMuestra' onChange={e => handleChangeFileVideo({ event: e, field: "FileMuestra" })} />
                         </div>
                         <div className='mb-3'>
                             <Label className='form-label' for='inputask'>
                                 Video de pregunta (sin audio)
                             </Label>
+                            <div>
+                                <Label className='form-label' for='inputask' style={{ color: '#5E319B' }}>
+                                    {
+                                        ImagesNames && ImagesNames.FilePregunta &&
+                                        ImagesNames.FilePregunta
+                                    }
+                                </Label>
+                            </div>
                             <Input type='file' id='inputask' name='FilePregunta' onChange={e => handleChangeFileVideo({ event: e, field: "FilePregunta" })} />
                         </div>
 
