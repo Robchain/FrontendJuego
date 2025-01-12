@@ -10,6 +10,10 @@
     align-items: flex-start;
 }
 
+.menu-icono {
+    cursor:  pointer !important;
+}
+
 /* Cronometro.css */
 
 .cronometro {
@@ -2678,7 +2682,6 @@ body {
     .barra-superior .menu-icono-div .menu-div {
         font-size: 2em;
         margin: 5px;
-
     }
 
     .barra-superior .menu-icono-div .logo-blipbla-div .logo-blipbla {
@@ -2993,4 +2996,28 @@ body {
     border-radius: 80px;
     height: 100px;
     color: white;
+}
+
+.new-icon {
+    border-radius: 50px;
+    height: 60px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid gray;
+
+    img {
+        height: 50px;
+        width: 40px;
+    }
+}
+
+
+.return-menu-label {
+    display: flex;
+    justify-content: center;
+    div {
+        margin-right: 0px !important;
+    }
 }

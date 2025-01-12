@@ -54,7 +54,7 @@ export const PantallaParteDos = () => {
   
   return (
     <Container>
-      <NavBarJuego Seccion={"Colaborativo"} urlBack={"/MenuJuego"}/>
+      <NavBarJuego Seccion={"Juego colaborativo"} urlBack={"/MenuJuego"}/>
 { (InfoEstudiaSituacion !== null && dataMultiJu !==null) ? (
 <>
 {
