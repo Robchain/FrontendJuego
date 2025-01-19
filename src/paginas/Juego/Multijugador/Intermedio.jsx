@@ -9,7 +9,7 @@ export const Intermedio = () => {
   const { InfoEstudiaSituacion,LLamadaIncial,setInfoEstudiaSituacion} = useContext(JuecoContext);
   useEffect(() => {
     LLamadaIncial();
-    return () =>{
+    return () =>{      
       setInfoEstudiaSituacion(null);
     }
   }, [])

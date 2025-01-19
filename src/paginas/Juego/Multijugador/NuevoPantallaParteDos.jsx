@@ -20,9 +20,6 @@ export const NuevoPantallaParteDos = () => {
     const [cro, setcro] = useState("inicial");
     const [indice, setIndice] = useState(1);
 
-
-    
-
     useEffect(() => {
       
       if(InfoEstudiaSituacion === null || InfoEstudiaSituacion === undefined ){
