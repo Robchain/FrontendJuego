@@ -20,7 +20,7 @@ export const FinalJuego = () => {
   useEffect(() => {
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUserArray(JSON.parse(localStorage.getItem("ARRAY_USERS")));
-    
+
 
     if (rangoState === 5) {
       setguardad(0)
@@ -46,11 +46,29 @@ export const FinalJuego = () => {
           <div class="titulo-nav" ><h2>Resultados del juego</h2></div>
 
           {
-            userArray && 
+            userArray &&
             userArray[userArray.length - 1].value == Identificacion &&
             !MultiProgreso.find(item => item.Resultado === 'INCORRECTO') &&
             <div>
               <div class="titulo-nav final-text" ><h2>¡ Felicitaciones, tu equipo completó la carrera !</h2></div>
+            </div>
+          }
+
+          {
+            userArray &&
+            userArray[userArray.length - 1].value != Identificacion &&
+            !MultiProgreso.find(item => item.Resultado === 'INCORRECTO') &&
+            <div>
+              <div class="titulo-nav final-text" ><h2>¡Bien hecho, completaste tu parte de la carrera!</h2></div>
+              <div class="titulo-nav final-text" ><h2> Ahora deben jugar
+                {(() => {
+                  const index = userArray.findIndex((f) => f.value === Identificacion);
+                  // Validar si existe un siguiente elemento
+                  if (index !== -1 && index < userArray.length - 1) {
+                    return userArray[index + 1].label;
+                  }
+                })()}
+              </h2></div>
             </div>
           }
 
