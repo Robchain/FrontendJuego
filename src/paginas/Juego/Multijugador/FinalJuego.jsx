@@ -11,11 +11,22 @@ export const FinalJuego = () => {
   const [guardad, setguardad] = useState(0)
   const { MultiProgreso, dispatchMutli, InfoEstudiaSituacion, rangoState } = useContext(JuecoContext);
   const navegar = useNavigate();
+  const [Identificacion, setIdentificacion] = useState("");
+  const [userArray, setUserArray] = useState("");
   const Actualizaciones = async () => {
     await ActualizarJuegoFinal({ idOutput: InfoEstudiaSituacion._id, Avance: MultiProgreso, pos: InfoEstudiaSituacion.Posicion });
   }
 
   useEffect(() => {
+    console.log("InfoEstudiaSituacion", InfoEstudiaSituacion);
+    console.log("usuario id",localStorage.getItem("Identificacion"));
+    console.log("MultiProgreso",MultiProgreso);
+    
+    setIdentificacion(localStorage.getItem("Identificacion"));
+    setUserArray(JSON.parse(localStorage.getItem("ARRAY_USERS")));
+    console.log("userArray",userArray);
+    
+
     if (rangoState === 5) {
       setguardad(0)
     } else {
@@ -38,6 +49,16 @@ export const FinalJuego = () => {
         <Container>
           <NavBarJuego Seccion={"Juego colaborativo"} urlBack={"/MenuJuego"} />
           <div class="titulo-nav" ><h2>Resultados del juego</h2></div>
+
+          {
+            userArray && 
+            userArray[userArray.length - 1].value == Identificacion &&
+            !MultiProgreso.find(item => item.Resultado === 'INCORRECTO') &&
+            <div>
+              <div class="titulo-nav final-text" ><h2>¡ Felicitaciones, tu equipo completó la carrera !</h2></div>
+            </div>
+          }
+
           {InfoEstudiaSituacion === null ? (
             <div className='final-coolaborativo'>
               <div className='final-aciertos'>

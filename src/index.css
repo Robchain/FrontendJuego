@@ -3021,3 +3021,11 @@ body {
         margin-right: 0px !important;
     }
 }
+
+.final-text {
+    font-weight: 500;
+    color: #60269E;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
