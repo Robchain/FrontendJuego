@@ -4,7 +4,6 @@ import { CarreraStepBar } from '../Administrador/CarreraStepBar'
 import { nombre2 } from '../../helpers/contador'
 
 export const Espera = ({ InfoEstudiaSituacion }) => {
-  console.log("InfoEstudiaSituacion",InfoEstudiaSituacion);
   return (
     <div className='Sala-espera'>
       <div className='imagen-espera-div' >

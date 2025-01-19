@@ -18,13 +18,8 @@ export const FinalJuego = () => {
   }
 
   useEffect(() => {
-    console.log("InfoEstudiaSituacion", InfoEstudiaSituacion);
-    console.log("usuario id",localStorage.getItem("Identificacion"));
-    console.log("MultiProgreso",MultiProgreso);
-    
     setIdentificacion(localStorage.getItem("Identificacion"));
     setUserArray(JSON.parse(localStorage.getItem("ARRAY_USERS")));
-    console.log("userArray",userArray);
     
 
     if (rangoState === 5) {
