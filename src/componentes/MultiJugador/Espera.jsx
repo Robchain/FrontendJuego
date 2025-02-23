@@ -24,9 +24,8 @@ export const Espera = ({ InfoEstudiaSituacion }) => {
               <b>
               {nombre2({ array: InfoEstudiaSituacion })}
               </b></p> :
-              <p><b>{nombre2({ array: InfoEstudiaSituacion })}</b> le toca jugar</p>
+              <p>Es el turno de <b>{nombre2({ array: InfoEstudiaSituacion })}</b></p>
             
-            // <p><b>{nombre2({ array: InfoEstudiaSituacion })}</b> le toca jugar</p>
         }
       </div>
 

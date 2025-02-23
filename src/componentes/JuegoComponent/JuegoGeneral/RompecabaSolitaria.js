@@ -55,7 +55,7 @@ export const RompecabaSolitaria = ({ Avance, piezas = 4, url, alt, principal = t
     //   <img src={url} alt={alt} id={principal ? "imagenRompecabeza" : "imagenFinal"} style={{ borderRadius: 10, boxShadow: " 5px 5px #d7d7d7" }} />
     // </div>
 
-    <div className="minicuadrito">
+    <div className="minicuadrito" style={{maxHeight: 'none'}}>
   {
     terminado === false && (
       <div className={principal ? 'encima position-absolute' : 'encimados position-absolute'}>
