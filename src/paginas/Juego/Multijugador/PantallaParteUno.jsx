@@ -7,23 +7,23 @@ import { JuecoContext } from '../../../context/Juego/JuecoContext'
 import cargando from '../../../assets/img/AssetsGame/paperplane.gif'
 import { CreaJuegoMulti } from '../../../service/Multijugador'
 export const PantallaParteUno = () => {
-
   const { InfoEstudiaSituacion,LLamadaIncial,setDataMultiJu} = useContext(JuecoContext);
   const llamadaDeJuego = async ()=>{
     try {
-      const data =await CreaJuegoMulti({num:InfoEstudiaSituacion.TipoDeJuego});
+      const data =await CreaJuegoMulti({num:InfoEstudiaSituacion.TipoDeJuego});      
       setDataMultiJu(data)
     } catch (error) {
       setDataMultiJu(null);
     }
   }
-  
   useEffect(() => {
-    llamadaDeJuego();
+    llamadaDeJuego();    
+    localStorage.setItem('ARRAY_USERS', JSON.stringify(InfoEstudiaSituacion.Integrantes))
   }, [])
   
   useEffect(() => {
     LLamadaIncial();
+    localStorage.setItem('ARRAY_USERS', JSON.stringify(InfoEstudiaSituacion.Integrantes))
   }, [])
   return (
     <Container  >

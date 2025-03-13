@@ -116,7 +116,6 @@ export const ModalEditarQuienData = ({ modal, toggle, baseData }) => {
       const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
       const fileNameParts = selectedFile.name.split('.');
       const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
-
       if (!allowedExtensions.includes(fileExtension)) {
         // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
         alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
