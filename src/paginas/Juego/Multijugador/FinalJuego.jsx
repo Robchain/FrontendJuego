@@ -60,7 +60,7 @@ export const FinalJuego = () => {
             !MultiProgreso.find(item => item.Resultado === 'INCORRECTO') &&
             <div>
               <div class="titulo-nav final-text" ><h2>¡Bien hecho, completaste tu parte de la carrera!</h2></div>
-              <div class="titulo-nav final-text" ><h2> Ahora deben jugar
+              <div class="titulo-nav final-text" ><h2> Ahora debe jugar&nbsp;
                 {(() => {
                   const index = userArray.findIndex((f) => f.value === Identificacion);
                   // Validar si existe un siguiente elemento

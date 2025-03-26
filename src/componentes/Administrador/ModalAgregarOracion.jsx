@@ -159,7 +159,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
         <Row>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Sujeto' >
-              Imagen del Quién (Sujeto)
+              Quién (Sujeto)
             </Label>
             {/* <Input type='file' id='FileSujetoImagen' name='FileSujetoImagen' onChange={e => disparodeAccion({ type: "onchange", field: "FileSujetoImagen", value: e.target.files[0] })} /> */}
             <Select name="Sujeto" isSearchable={true} options={ListadoImagenQuien.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Imagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Sujeto", value: event })} />
@@ -210,7 +210,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
         <Row>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Que'>
-              Imágenes del Qué
+              (Vocabulario)
             </Label>
             <Select name="Que" isSearchable={true} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
           </Col>
