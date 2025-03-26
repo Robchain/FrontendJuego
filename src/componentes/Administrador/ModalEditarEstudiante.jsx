@@ -9,6 +9,9 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Label, Col, In
 import { subidaIPerfil } from '../../firebase/config';
 import { MostrarCurso, MostrarParalelo, editarPersonaconImagen, editarPersonasinImagen } from '../../service/Adminstrador/Usuarios';
 import { responseformualrio } from '../../helpers';
+const fileNames = {
+  userProfilePicLabel: '',
+}
 
 function llenadodeFormulario(state, action) {
   switch (action.type) {
@@ -35,6 +38,15 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
     } else {
       setbloqueo(true);
     }
+
+    console.log("FotoPerfil", FotoPerfil);
+
+
+    if (FotoPerfil) {
+      const fileName = FotoPerfil.name;
+      fileNames.userProfilePicLabel = fileName;
+    }
+
   }, [Nombre, Apellido, Identificacion, Email, Usuario, TipoUsuario, Curso, Paralelo, FotoPerfil])
 
   const dataCurso = async () => {
@@ -203,6 +215,14 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
               <Label className='form-label' for='inputFile'>
                 Foto de perfil
               </Label>
+              <div>
+                <Label className='form-label' for='FileVideoMuestra' style={{ color: '#5E319B' }}>
+                  {
+                    fileNames && fileNames.userProfilePicLabel &&
+                    fileNames.userProfilePicLabel
+                  }
+                </Label>
+              </div>
               <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({ event: e, field: "FotoPerfil" })} />
             </>}</Col>
           <Col md='6' sm='12' className='mb-2'>
