@@ -88,7 +88,7 @@ setBloqueo(true);
             onChange={event => disparodeAccion({ type: "onchange", field: "ContraseñaDos", value: event.target.value })}
             value={ContraseñaDos}
             />
-          <small style={ (ContraseñaUno.length <5 || ContraseñaUno.length < 5)?{color:'red'}:{display:'none'}}> Debe de tener mínimo 5 caracteres</small><br/>
+          <small style={ (ContraseñaUno.length <5 || ContraseñaUno.length < 5)?{color:'red'}:{display:'none'}}> Debe de tener mínimo 6 caracteres</small><br/>
              <small style={ContraseñaDos !== ContraseñaUno ?{color:'red'} :{display:'none'}}> La contraseña no coincide</small>
             
      </Col></Row>
