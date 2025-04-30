@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState, useRef } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Spinner } from 'reactstrap';
 import { CrearRompecabeza } from '../../service/Adminstrador/Rompecabeza';
 import Swal from 'sweetalert2'
@@ -23,6 +23,10 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
   const [loading, setLoading] = useState(false);
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
   const [bloqueo, setBloqueo] = useState(true);
+  const inputRef = useRef(null);
+  const inputRef2 = useRef(null);
+  const [fileName, setFileName] = useState(''); // nombre por defecto
+  const [fileName2, setFileName2] = useState(''); // nombre por defecto
 
   useEffect(() => {
     if (Nombre.length > 0 && FileBlanco !== undefined && FileColor !== undefined && Pieza !== 0) {
@@ -90,6 +94,7 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
         event.target.value = ''; // Limpia el input para eliminar el archivo no válido
         return;
       } 
+      setFileName(event.target.files[0].name);
 
       // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
       // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
@@ -112,10 +117,25 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
         return;
       }
   
+      setFileName2(event.target.files[0].name);
       // Si llegamos aquí, el archivo es un PDF válido, puedes realizar la acción deseada
       disparodeAccion({ type: "onchange", field: field, value: selectedFile });
     }
   };
+
+  const handleButtonClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click(); // <-- Esto dispara manualmente el click
+    }
+  };
+
+
+  const handleButtonClick2 = () => {
+    if (inputRef2.current) {
+      inputRef2.current.click(); // <-- Esto dispara manualmente el click
+    }
+  };
+
 
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered '>
@@ -130,13 +150,47 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
           <Label className='form-label' for='FileColor'>
             Foto color (jpg, jpeg, png, o gif)
           </Label>
-          <Input type='file' id='FileColor' name='FileColor' onChange={event =>handleChange({event:event, field:"FileColor"})} />
+          {/* <Input type='file' id='FileColor' name='FileColor' onChange={event =>handleChange({event:event, field:"FileColor"})} /> */}
+
+          <div className="d-flex align-items-center">
+                            <Input
+                              type="file"
+                              id="inputFile"
+                              name="FotoPerfil"
+                              // onChange={handleFileChange}
+                              onChange={event =>handleChange({event:event, field:"FileColor"})}
+                              innerRef={inputRef}
+                              style={{ display: 'none' }}
+                            />
+                            <Button className='colorBotonPrincipal' onClick={handleButtonClick} >
+                              Seleccionar archivo
+                            </Button>
+                            <span style={{ marginLeft: '10px' }}>{fileName}</span>
+                          </div>
           </div>
           <div className='mb-3'> 
           <Label className='form-label' for='FileBlanco'>
            Archivo blanco y negro (PDF)
           </Label>
-         <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event =>handleChangeFilePDF({event:event, field:"FileBlanco"})} />
+         {/* <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event =>handleChangeFilePDF({event:event, field:"FileBlanco"})} /> */}
+
+         <div className="d-flex align-items-center">
+                            <Input
+                              type="file"
+                              id="inputFile"
+                              name="FotoPerfil"
+                              // onChange={handleFileChange}
+                              onChange={event =>handleChangeFilePDF({event:event, field:"FileBlanco"})}
+                              innerRef={inputRef2}
+                              style={{ display: 'none' }}
+                            />
+                            <Button className='colorBotonPrincipal' onClick={handleButtonClick2} >
+                              Seleccionar archivo
+                            </Button>
+                            <span style={{ marginLeft: '10px' }}>{fileName2}</span>
+                          </div>
+
+
           </div>
           <div className='mb-3'> 
           <Label>Piezas</Label><br />
