@@ -150,7 +150,6 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
     };
     const handleChangeFilePDF = ({ event, field }) => {
         const selectedFile = event.target.files[0];
-
         if (selectedFile) {
             // Verificar la extensión del archivo
             const allowedExtensions = ['pdf'];
