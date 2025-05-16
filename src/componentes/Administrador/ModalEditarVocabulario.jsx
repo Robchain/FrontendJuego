@@ -39,6 +39,16 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
         llenadoDataInicial();
     }, [])
     useEffect(() => {
+        if (!Palabra || (Palabra && Palabra.trim() == '')) {
+            setBloqueo(true);
+            return;
+        }
+
+        if (!Silaba || (Silaba && Silaba.trim() == '')) {
+            setBloqueo(true);
+            return;
+        }
+
         if (Categoria !== dataBase.Categoria || Palabra !== dataBase.Palabra || Silaba !== dataBase.Silaba) {
             if (checkbos === true) {
                 setBloqueo(false);

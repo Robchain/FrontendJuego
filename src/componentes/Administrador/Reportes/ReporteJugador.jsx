@@ -214,7 +214,7 @@ export const ReporteJugador = () => {
         <div className="form-reporte-section-fecha mt-3">
           <div className='fecha-inicial-reporte'>
             <Label className='form-label'>
-              Feha de inicio:&nbsp;&nbsp;
+              Fecha de inicio:&nbsp;&nbsp;
             </Label><br />
             <DateTimePicker
               amPmAriaLabel="Select AM/PM"

@@ -16,7 +16,6 @@ function llenadodeFormulario(state, action) {
 }
 
 export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
-
     const [{ Nombre, FileBlanco, FileColor, Pieza }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
     const MySwal = withReactContent(Swal)
     const [loading, setLoading] = useState(false)
@@ -30,7 +29,14 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
 
 
     useEffect(() => {
-        if ((Nombre !== dataBase.Nombre) || Pieza !== dataBase.Pieza || (FileBlanco || FileColor)) {
+        console.log("Nombre", Nombre);
+        
+        if ((Nombre && Nombre.trim() == '') || !Nombre) {
+            setBloqueo(true);
+            return;
+        }
+
+        if ((Nombre !== dataBase.Nombre) && Pieza !== dataBase.Pieza && (FileBlanco || FileColor)) {
             setBloqueo(false);
         } else {
             setBloqueo(true);
@@ -76,7 +82,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
-                    showConfirmButton:data.titulo !== "Excelente",
+                    showConfirmButton: data.titulo !== "Excelente",
                     icon: `${data.type}`,
                     customClass: {
                         confirmButton: 'btn btn-primary'
@@ -87,7 +93,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
-                if(data.titulo ==="Excelente"){
+                if (data.titulo === "Excelente") {
                     setTimeout(() => {
                         window.location.reload();
                     }, 2000);
@@ -100,7 +106,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 MySwal.fire({
                     title: `${data.titulo}`,
                     text: `${data.respuesta}`,
-                    showConfirmButton:data.titulo !== "Excelente",
+                    showConfirmButton: data.titulo !== "Excelente",
                     icon: `${data.type}`,
                     customClass: {
                         confirmButton: 'btn btn-primary'
@@ -111,7 +117,7 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 setBloqueo(false);
                 setLoading(false);
                 toggle();
-                if(data.titulo ==="Excelente"){
+                if (data.titulo === "Excelente") {
                     setTimeout(() => {
                         window.location.reload();
                     }, 2000);
@@ -159,7 +165,6 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
     };
     const handleChangeFilePDF = ({ event, field }) => {
         const selectedFile = event.target.files[0];
-
         if (selectedFile) {
             // Verificar la extensión del archivo
             const allowedExtensions = ['pdf'];
@@ -200,95 +205,61 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                 <div className=''>
 
                     <div className='mb-3'>
-                    <Label style={{ color: '#8b8b8c', fontWeight: "700" }} className='form-label' for='Nombre'>Nombre</Label>
-                    <Input name="Nombre" placeholder='Nombre' maxLength={20} onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} value={Nombre} />
-                        </div>        
-                        <div className='mb-3'>
+                        <Label style={{ color: '#8b8b8c', fontWeight: "700" }} className='form-label' for='Nombre'>Nombre</Label>
+                        <Input name="Nombre" placeholder='Nombre' maxLength={20} onChange={event => disparodeAccion({ type: "onchange", field: event.target.name, value: event.target.value.toUpperCase() })} defaultValue={dataBase.Nombre} value={Nombre} />
+                    </div>
+                    <div className='mb-3'>
                         <Label style={{ color: '#8b8b8c', fontWeight: "700" }} >Piezas</Label><br />
-                    <Label>
-                        <Input
+                        <Label>
+                            <Input
+                                style={{ color: '#8b8b8c' }}
+                                type='radio'
+                                id={4}
+                                name="Pieza"
+                                value={4}
+                                defaultChecked={dataBase.Pieza === 4}
+                                onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
+                            />&nbsp;&nbsp;4</Label><br />
+                        <Label><Input
                             style={{ color: '#8b8b8c' }}
                             type='radio'
-                            id={4}
+                            id={6}
                             name="Pieza"
-                            value={4}
-                            defaultChecked={dataBase.Pieza === 4}
+                            value={6}
+                            defaultChecked={dataBase.Pieza === 6}
                             onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
-                        />&nbsp;&nbsp;4</Label><br />
-                    <Label><Input
-                        style={{ color: '#8b8b8c' }}
-                        type='radio'
-                        id={6}
-                        name="Pieza"
-                        value={6}
-                        defaultChecked={dataBase.Pieza === 6}
-                        onChange={event => disparodeAccion({ type: "onchange", field: "Pieza", value: event.target.value })}
-                    />&nbsp;&nbsp;6 </Label>
-                    <br />
-                        </div>   
-<div className='mb-3'>
-<Input
-                        id="editarImagen"
-                        name="check"
-                        type="checkbox"
+                        />&nbsp;&nbsp;6 </Label>
+                        <br />
+                    </div>
+                    <div className='mb-3'>
+                        <Input
+                            id="editarImagen"
+                            name="check"
+                            type="checkbox"
 
-                        onChange={e => { setCheckbos(e.target.checked) }}
-                    />&nbsp;&nbsp;
-                    <Label
-                        check
-                        for="editarImagen"
-                        style={{ color: '#8b8b8c', fontWeight: "700" }}
-                    >
-                        Editar imágenes
-                    </Label>
-</div>           
-                    
-                 
-                 
+                            onChange={e => { setCheckbos(e.target.checked) }}
+                        />&nbsp;&nbsp;
+                        <Label
+                            check
+                            for="editarImagen"
+                            style={{ color: '#8b8b8c', fontWeight: "700" }}
+                        >
+                            Editar imágenes
+                        </Label>
+                    </div>
 
                     {checkbos === true && <div className='mt-1'>
                         <div className='mb-3'>
-                        <Label className='form-label' for='FileColor' style={{ color: '#8b8b8c', fontWeight: "700" }}>
-                        Foto color (jpg, jpeg, png, o gif)
-                        </Label><br />
-                        {/* <Input type='file' id='FileColor' name='FileColor' onChange={event => handleChange({ event: event, field: 'FileColor' })} /> */}
-<div className="d-flex align-items-center">
-                            <Input
-                              type="file"
-                              id="inputFile"
-                              name="FotoPerfil"
-                              // onChange={handleFileChange}
-                              onChange={event => handleChange({ event: event, field: 'FileColor' })}
-                              innerRef={inputRef}
-                              style={{ display: 'none' }}
-                            />
-                            <Button className='colorBotonPrincipal' onClick={handleButtonClick} >
-                              Seleccionar archivo
-                            </Button>
-                            <span style={{ marginLeft: '10px' }}>{fileName}</span>
-                          </div>
+                            <Label className='form-label' for='FileColor' style={{ color: '#8b8b8c', fontWeight: "700" }}>
+                                Foto color (jpg, jpeg, png, o gif)
+                            </Label><br />
+                            <Input type='file' id='FileColor' name='FileColor' onChange={event => handleChange({ event: event, field: 'FileColor' })} />
                         </div>
                         <div className='mb-3'>
-                        <Label className='form-label' for='FileBlanco' style={{ color: '#8b8b8c', fontWeight: "700" }}>
-                        Archivo blanco y negro (PDF)
-                        </Label>
-                        {/* <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => handleChangeFilePDF({ event: event, field: 'FileBlanco' })} /> */}
-                         <div className="d-flex align-items-center">
-                                                    <Input
-                                                      type="file"
-                                                      id="inputFile"
-                                                      name="FotoPerfil"
-                                                      // onChange={handleFileChange}
-                                                      onChange={event => handleChangeFilePDF({ event: event, field: 'FileBlanco' })}
-                                                      innerRef={inputRef2}
-                                                      style={{ display: 'none' }}
-                                                    />
-                                                    <Button className='colorBotonPrincipal' onClick={handleButtonClick2} >
-                                                      Seleccionar archivo
-                                                    </Button>
-                                                    <span style={{ marginLeft: '10px' }}>{fileName2}</span>
-                                                  </div>
-
+                            <Label className='form-label' for='FileBlanco' style={{ color: '#8b8b8c', fontWeight: "700" }}>
+                                Archivo blanco y negro (PDF)
+                            </Label>
+                            <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => handleChangeFilePDF({ event: event, field: 'FileBlanco' })} />
                         </div>
                     </div>}
                 </div>

@@ -10,7 +10,7 @@ import { responseformualrio } from '../../helpers';
     const [Paralelo, setParalelo] = useState("");
   useEffect(() => {
 
-    if (Paralelo === data.Nombre) {
+    if (Paralelo === data.Nombre || Paralelo.trim() == '') {
       setBloqueo(true);
     } else {
       setBloqueo(false)

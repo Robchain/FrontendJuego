@@ -19,7 +19,7 @@ export const PasoTresFormulario = ({ prevButton, nextButton, index , setPicker, 
         <div className='contenido-paso-tres'>
           <div className='up-side'>
             <Label className='form-label'>
-              Feha de inicio
+              Fecha de inicio
             </Label><br/>
             <DateTimePicker
             amPmAriaLabel="Select AM/PM"

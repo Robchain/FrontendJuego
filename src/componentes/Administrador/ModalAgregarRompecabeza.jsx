@@ -29,6 +29,11 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
   const [fileName2, setFileName2] = useState(''); // nombre por defecto
 
   useEffect(() => {
+    if (!Nombre || (Nombre && Nombre.trim() == '')) {
+      setBloqueo(true);
+      return;
+    }
+    
     if (Nombre.length > 0 && FileBlanco !== undefined && FileColor !== undefined && Pieza !== 0) {
       setBloqueo(false);
     } else {
