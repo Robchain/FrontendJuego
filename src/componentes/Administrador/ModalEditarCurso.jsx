@@ -18,7 +18,7 @@ const [{Curso}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFormulari
     const MySwal = withReactContent(Swal);
   const [bloqueo, setBloqueo] = useState(true);
   useEffect(() => { 
-    if (Curso === data.Nombre) {
+    if (Curso === data.Nombre || Curso.trim() == '') {
       setBloqueo(true);
     } else {
       setBloqueo(false)  ;

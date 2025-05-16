@@ -79,7 +79,7 @@ const [{TipoDeJuego}, dispatch] = useReducer(llenadodeFormulario, BaseInicialFor
         
         
       <Label className='form-label' >
-            Feha de inicio
+            Fecha de inicio
             </Label><br/>
             <DateTimePicker
             amPmAriaLabel="Select AM/PM"

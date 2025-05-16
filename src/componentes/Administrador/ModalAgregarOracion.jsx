@@ -210,7 +210,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
         <Row>
           <Col md='6' sm='12' className='mb-1'>
             <Label className='form-label' for='Que'>
-              (Vocabulario)
+              Qué (Vocabulario)
             </Label>
             <Select name="Que" isSearchable={true} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />
           </Col>

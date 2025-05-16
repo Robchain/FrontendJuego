@@ -3029,3 +3029,8 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.text-red-color {
+    color: red !important;
+    padding-bottom: 5px;
+}

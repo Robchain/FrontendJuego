@@ -25,6 +25,11 @@ export const ModalAgregarRompecabeza = ({ modal, toggle }) => {
   const [bloqueo, setBloqueo] = useState(true);
 
   useEffect(() => {
+    if (!Nombre || (Nombre && Nombre.trim() == '')) {
+      setBloqueo(true);
+      return;
+    }
+    
     if (Nombre.length > 0 && FileBlanco !== undefined && FileColor !== undefined && Pieza !== 0) {
       setBloqueo(false);
     } else {
