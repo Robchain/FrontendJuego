@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { useRef } from 'react';
 import Swal from 'sweetalert2'
 import Select from 'react-select';
 import withReactContent from 'sweetalert2-react-content';
@@ -30,6 +31,8 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
   const MySwal = withReactContent(Swal)
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
   const [checkbosDos, setCheckbosDos] = useState(false);
+  const inputRef = useRef(null);
+  const [fileName, setFileName] = useState(''); // nombre por defecto
   const [bloqueo, setbloqueo] = useState(true)
   const [{ Nombre, Apellido, Identificacion, Email, Usuario, TipoUsuario, FotoPerfil, Curso, Paralelo }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   useEffect(() => {
@@ -39,15 +42,16 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
       setbloqueo(true);
     }
 
-    console.log("FotoPerfil", FotoPerfil);
+    console.log("FotoPerfil:", dataBase.FotoPerfil);
 
 
-    if (FotoPerfil) {
-      const fileName = FotoPerfil.name;
+    if (dataBase.FotoPerfil) {
+      const fileName = dataBase.FotoPerfil.split("/").pop().split("%2F").pop().split("?")[0];
       fileNames.userProfilePicLabel = fileName;
+      setFileName(fileNames.userProfilePicLabel); //seteo de nombre a mostrar del archivo
     }
 
-  }, [Nombre, Apellido, Identificacion, Email, Usuario, TipoUsuario, Curso, Paralelo, FotoPerfil])
+  }, [Nombre, Apellido, Identificacion, Email, Usuario, TipoUsuario, Curso, Paralelo])
 
   const dataCurso = async () => {
 
@@ -73,7 +77,7 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
     disparodeAccion({ type: "onchange", field: "TipoUsuario", value: dataBase.TipoUsuario })
     disparodeAccion({ type: "onchange", field: "Curso", value: dataBase.Curso })
     disparodeAccion({ type: "onchange", field: "Paralelo", value: dataBase.Paralelo })
-    disparodeAccion({ type: "onchange", field: "FotoPerfil", value: undefined });
+    disparodeAccion({ type: "onchange", field: "FotoPerfil", value:  undefined });
 
     setCheckbosDos(false);
   }, [dataBase, modal])
@@ -142,21 +146,28 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
       }
     }
   }
-  const handleChangeFile = ({ event, field }) => {
+  const handleChangeFile = ({ event, field }) => { //este es el primero que estaba, va el campo a modificar y la referencia del archivo que es el event
     const selectedFile = event.target.files[0];
+
+    
+    
 
     if (selectedFile) {
       // Verificar la extensión del archivo
       const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
       const fileNameParts = selectedFile.name.split('.');
       const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
-
+      
       if (!allowedExtensions.includes(fileExtension)) {
         // El archivo no tiene una extensión de imagen válida, puedes manejar el error aquí
         alert('Por favor, seleccione un archivo de imagen válido (jpg, jpeg, png, o gif).');
         event.target.value = ''; // Limpia el input para eliminar el archivo no válido
         return;
-      }
+      } 
+
+      setFileName(event.target.files[0].name);
+    
+    
 
       // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
       // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
@@ -172,6 +183,26 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
 
     disparodeAccion({ type: "onchange", field: event.target.name, value: cleanedValue })
   };
+
+  // const handleFileChange = (event) => {
+  //   if (event.target.files && event.target.files.length > 0) {
+
+  //     setFileName(event.target.files[0].name);
+
+  //     const selectedFile = event.target.files[0];
+
+  //     // disparodeAccion({ type: "onchange", field: field, value: selectedFile });
+
+      
+  //   }
+  // };
+
+  const handleButtonClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click(); // <-- Esto dispara manualmente el click
+    }
+  };
+
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Editar Usuario</ModalHeader>
@@ -211,8 +242,9 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
           <Col md='6' sm='12' className='mb-2'>
             <Input id="exampleCheck" name="check" type="checkbox" onChange={e => { setCheckbosDos(e.target.checked) }} />&nbsp;&nbsp;
             <Label check for="exampleCheck" style={{ color: '#8b8b8c', fontWeight: "700" }}> Editar imagen</Label>
-            {checkbosDos && <><br />
-              <Label className='form-label' for='inputFile'>
+            {checkbosDos && <>
+            <br />
+              {/* <Label className='form-label' for='inputFile'>
                 Foto de perfil
               </Label>
               <div>
@@ -223,7 +255,23 @@ export const ModalEditarEstudiante = ({ modal, toggle, dataBase }) => {
                   }
                 </Label>
               </div>
-              <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({ event: e, field: "FotoPerfil" })} />
+              <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({ event: e, field: "FotoPerfil" })} /> */}
+             <div className="d-flex align-items-center">
+      <Input
+        type="file"
+        id="inputFile"
+        name="FotoPerfil"
+        // onChange={handleFileChange}
+        onChange={e => handleChangeFile({ event: e, field: "FotoPerfil" })}
+        innerRef={inputRef}
+        style={{ display: 'none' }}
+      />
+      <Button className='colorBotonPrincipal' onClick={handleButtonClick} >
+        Seleccionar archivo
+      </Button>
+      <span style={{ marginLeft: '10px' }}>{fileName}</span>
+    </div>
+           
             </>}</Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='Curso'>

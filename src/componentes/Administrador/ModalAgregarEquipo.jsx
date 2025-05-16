@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState, useRef } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Spinner } from 'reactstrap';
 import { subidaIEquipo } from '../../firebase/config';
 import { PostCrearEquipo } from '../../service/Adminstrador/Equipo';
@@ -21,6 +21,8 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
   const [{Nombre, Imagen}, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
   const [bloqueo, setBloqueo] = useState(true);
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
+  const inputRef = useRef(null);
+    const [fileName, setFileName] = useState(''); 
   const [loading, setLoading] = useState(false);
   useEffect(() => {
       if(Nombre.length > 2 && Imagen !== null){
@@ -90,10 +92,16 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
         event.target.value = ''; // Limpia el input para eliminar el archivo no válido
         return;
       } 
+      setFileName(event.target.files[0].name);
 
       // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
       // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
       disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+    }
+  };
+  const handleButtonClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click(); // <-- Esto dispara manualmente el click
     }
   };
   return (
@@ -109,7 +117,22 @@ export const ModalAgregarEquipo = ({modal, toggle}) => {
               <Label className='form-label' for='Imagen'>
               Foto Del Equipo
             </Label>
-            <Input type='file' id='Imagen' name='Imagen' onChange={event => handleChangeFile({event: event, field:'Imagen'}) } />
+            {/* <Input type='file' id='Imagen' name='Imagen' onChange={event => handleChangeFile({event: event, field:'Imagen'}) } /> */}
+            <div className="d-flex align-items-center">
+                              <Input
+                                type="file"
+                                id="inputFile"
+                                name="FotoPerfil"
+                                // onChange={handleFileChange}
+                                onChange={event => handleChangeFile({event: event, field:'Imagen'}) }
+                                innerRef={inputRef}
+                                style={{ display: 'none' }}
+                              />
+                              <Button className='colorBotonPrincipal' onClick={handleButtonClick} >
+                                Seleccionar archivo
+                              </Button>
+                              <span style={{ marginLeft: '10px' }}>{fileName}</span>
+                            </div>
             </div>
     </ModalBody>
     <ModalFooter>

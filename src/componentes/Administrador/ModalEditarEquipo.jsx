@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import React, { useEffect, useReducer, useState, useRef } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Label, Input, Spinner } from 'reactstrap';
 import { subidaIEquipo } from '../../firebase/config';
 import { EditarconImagen, EditarsinImagen } from '../../service/Adminstrador/Equipo';
@@ -19,6 +19,8 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
   const [{ Nombre, Imagen }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
   const [bloqueo, setBloqueo] = useState(true);
   const [checkbosDos, setCheckbosDos] = useState(false);
+  const inputRef = useRef(null);
+    const [fileName, setFileName] = useState(''); // nombre por defecto
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -36,6 +38,12 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
 
   useEffect(() => {
     disparodeAccion({ type: "onchange", field: "Nombre", value: baseData.Nombre })
+
+   console.log(baseData)
+   if (baseData.Imagen) {
+    const fileName = baseData.Imagen.split("/").pop().split("%2F").pop().split("?")[0];
+    setFileName(fileName); //seteo de nombre a mostrar del archivo
+  }
   }, [baseData, modal]);
 
 
@@ -112,10 +120,15 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
         event.target.value = ''; // Limpia el input para eliminar el archivo no válido
         return;
       }
-
+      setFileName(event.target.files[0].name);
       // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
       // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
       disparodeAccion({ type: "onchange", field: field, value: selectedFile })
+    }
+  };
+  const handleButtonClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click(); // <-- Esto dispara manualmente el click
     }
   };
   return (
@@ -155,11 +168,26 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
               for='Imagen'>
               Foto Del Equipo
             </Label>
-            <Input type='file'
+            {/* <Input type='file'
               id='Imagen'
               name='Imagen'
               onChange={event => handleChange({ event: event, field: 'Imagen' })}
-            />
+            /> */}
+            <div className="d-flex align-items-center">
+                  <Input
+                    type="file"
+                    id="inputFile"
+                    name="FotoPerfil"
+                    // onChange={handleFileChange}
+                    onChange={event => handleChange({ event: event, field: 'Imagen' })}
+                    innerRef={inputRef}
+                    style={{ display: 'none' }}
+                  />
+                  <Button className='colorBotonPrincipal' onClick={handleButtonClick} >
+                    Seleccionar archivo
+                  </Button>
+                  <span style={{ marginLeft: '10px' }}>{fileName}</span>
+                </div>
           </>
           } </div>
       </ModalBody>

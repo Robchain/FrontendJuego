@@ -1,5 +1,5 @@
 import React from 'react'
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import Select from 'react-select';
 import Swal from 'sweetalert2'
@@ -29,6 +29,8 @@ export const ModalAgregarEstudiante = ({ modal, toggle }) => {
   const [cursoData, setcursoData] = useState([]);
   const [paraleloData, setparaleloData] = useState([])
   const [contraseñaUno, setContraseñaUno] = useState("");
+  const inputRef = useRef(null);
+  const [fileName, setFileName] = useState(''); // nombre por defecto
   const [contraseñaDos, setContraseñaDos] = useState("");
   const [bloqueo, setbloqueo] = useState(true)
   const [{ Nombre, Apellido, Identificacion, Email, Usuario, Password, TipoUsuario, FotoPerfil, Curso, Paralelo }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
@@ -128,12 +130,22 @@ export const ModalAgregarEstudiante = ({ modal, toggle }) => {
         event.target.value = ''; // Limpia el input para eliminar el archivo no válido
         return;
       }
+      
+      setFileName(event.target.files[0].name);
 
       // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
       // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
       disparodeAccion({ type: "onchange", field: field, value: selectedFile })
     }
   };
+
+  const handleButtonClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click(); // <-- Esto dispara manualmente el click
+    }
+  };
+
+
   return (
     <Modal isOpen={modal} toggle={toggle} keyboard={false} aria-hidden={true} backdrop={'static'} className='modal-dialog-centered modal-lg'>
       <ModalHeader style={{ backgroundColor: '#e6dff0', color: "#592a98" }}>Agregar Usuario</ModalHeader>
@@ -184,7 +196,23 @@ export const ModalAgregarEstudiante = ({ modal, toggle }) => {
             <Label className='form-label' for='inputFile'>
               Foto de perfil (opcional)
             </Label>
-            <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({ event: e, field: 'FotoPerfil' })} />
+            {/* <Input type='file' id='inputFile' name='FotoPerfil' onChange={e => handleChangeFile({ event: e, field: 'FotoPerfil' })} /> */}
+
+            <div className="d-flex align-items-center">
+                  <Input
+                    type="file"
+                    id="inputFile"
+                    name="FotoPerfil"
+                    // onChange={handleFileChange}
+                    onChange={e => handleChangeFile({ event: e, field: "FotoPerfil" })}
+                    innerRef={inputRef}
+                    style={{ display: 'none' }}
+                  />
+                  <Button className='colorBotonPrincipal' onClick={handleButtonClick} >
+                    Seleccionar archivo
+                  </Button>
+                  <span style={{ marginLeft: '10px' }}>{fileName}</span>
+                </div>
           </Col>
           <Col md='6' sm='12' className='mb-2'>
             <Label className='form-label' for='EmailMulti2'>
