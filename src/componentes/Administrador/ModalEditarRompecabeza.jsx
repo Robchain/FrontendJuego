@@ -16,7 +16,6 @@ function llenadodeFormulario(state, action) {
 }
 
 export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
-
     const [{ Nombre, FileBlanco, FileColor, Pieza }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario);
     const MySwal = withReactContent(Swal)
     const [loading, setLoading] = useState(false)
