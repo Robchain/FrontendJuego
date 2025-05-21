@@ -79,8 +79,11 @@ export const OracionPagina = () => {
     dataParalelo();
   }, [])
   useEffect(() => {
-    if (Nombre !== undefined && Imagen !== undefined) {
+    
+    if (Nombre !== undefined && Imagen !== undefined && Nombre.trim() != '') {
       setBloqueoAgregar(false);
+    } else {
+      setBloqueoAgregar(true);
     }
   }, [Nombre, Imagen])
 
