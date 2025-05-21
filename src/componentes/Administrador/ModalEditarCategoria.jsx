@@ -21,7 +21,7 @@ export const ModalEditarCategoria = ({ modal, toggle, data, juego }) => {
   const [{ NombreCategoria }, disparodeAccion] = useReducer(llenadodeFormulario, BaseInicialFormulario)
   useEffect(() => {
 
-    if (NombreCategoria === data.NombreCategoria) {
+    if (NombreCategoria === data.NombreCategoria || !NombreCategoria || NombreCategoria.trim() == '') {
       setBloqueo(true);
     } else {
       setBloqueo(false)
@@ -43,36 +43,36 @@ export const ModalEditarCategoria = ({ modal, toggle, data, juego }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
-          showConfirmButton:data.titulo !== "Excelente",
+          showConfirmButton: data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false
         })
         toggle();
-        if(data.titulo ==="Excelente"){
+        if (data.titulo === "Excelente") {
           setTimeout(() => {
             window.location.reload();
           }, 2000);
-          }
+        }
       } else if (juego === "ORACION") {
         const data = await EditarApiCategoriaOracion({ _id, NombreCategoria });
         MySwal.fire({
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
-          showConfirmButton:data.titulo !== "Excelente",
+          showConfirmButton: data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
           buttonsStyling: false
         })
         toggle();
-        if(data.titulo ==="Excelente"){
+        if (data.titulo === "Excelente") {
           setTimeout(() => {
             window.location.reload();
           }, 2000);
-          }
+        }
       }
     } catch (error) {
       MySwal.fire({
@@ -99,7 +99,7 @@ export const ModalEditarCategoria = ({ modal, toggle, data, juego }) => {
         </Col></Row>
       </ModalBody>
       <ModalFooter>
-        <Button outline style={{ color: '#592a98' }} onClick={() => {  toggle(); }}>
+        <Button outline style={{ color: '#592a98' }} onClick={() => { toggle(); }}>
           Cancelar
         </Button>&nbsp;&nbsp;
         <Button onClick={() => { EditarData(); }} disabled={bloqueo} style={{ borderRadius: "10px", backgroundColor: "#62259E", color: "#fff", borderColor: "#62259E" }}>

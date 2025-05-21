@@ -25,20 +25,32 @@ export const ModalEditarQuienData = ({ modal, toggle, baseData }) => {
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    if (Nombre !== baseData.Nombre) {
+    console.log("Imagen", Imagen);
+
+    if (checkbosDos === true && (!Imagen || Imagen.length == 0)) {
+      setBloqueo(true)
+      return;
+    }
+
+    if (Nombre !== baseData.Nombre && Nombre.trim() != '' && Nombre) {
       setBloqueo(false);
 
     } else if (Nombre === baseData.Nombre) {
       if (checkbosDos === true) {
+        if (!Imagen || Imagen == undefined) {
+          setBloqueo(true)
+          return;
+        }
         setBloqueo(false);
       } else if (checkbosDos === false) {
         setBloqueo(true)
       }
+    } else {
+      setBloqueo(true)
     }
   }, [Nombre, Imagen])
 
   useEffect(() => {
-    console.log("baseData", baseData);
 
     if (baseData && baseData.Imagen) {
       const fileName = baseData.Imagen.split("/").pop().split("%2F").pop().split("?")[0];
@@ -47,6 +59,7 @@ export const ModalEditarQuienData = ({ modal, toggle, baseData }) => {
 
     disparodeAccion({ type: "onchange", field: "Nombre", value: baseData.Nombre })
     setCheckbosDos(false);
+
   }, [baseData, modal])
 
 

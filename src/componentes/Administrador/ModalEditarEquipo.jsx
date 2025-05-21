@@ -20,30 +20,32 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
   const [bloqueo, setBloqueo] = useState(true);
   const [checkbosDos, setCheckbosDos] = useState(false);
   const inputRef = useRef(null);
-    const [fileName, setFileName] = useState(''); // nombre por defecto
+  const [fileName, setFileName] = useState(''); // nombre por defecto
   const [bloqueoSecu, setBloqueoSecu] = useState(false);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    if (Nombre !== baseData.Nombre) {
+    if (Nombre && Nombre !== baseData.Nombre && Nombre.trim() != '') {
       setBloqueo(false);
 
     } else if (Nombre === baseData.Nombre) {
-      if (checkbosDos === true) {
+      if (checkbosDos === true && Nombre && Nombre.trim() != '') {
         setBloqueo(false);
       } else if (checkbosDos === false) {
         setBloqueo(true)
       }
+    } else {
+      setBloqueo(true)
     }
   }, [Nombre, Imagen])
 
   useEffect(() => {
     disparodeAccion({ type: "onchange", field: "Nombre", value: baseData.Nombre })
 
-   console.log(baseData)
-   if (baseData.Imagen) {
-    const fileName = baseData.Imagen.split("/").pop().split("%2F").pop().split("?")[0];
-    setFileName(fileName); //seteo de nombre a mostrar del archivo
-  }
+    console.log(baseData)
+    if (baseData.Imagen) {
+      const fileName = baseData.Imagen.split("/").pop().split("%2F").pop().split("?")[0];
+      setFileName(fileName); //seteo de nombre a mostrar del archivo
+    }
   }, [baseData, modal]);
 
 
@@ -60,7 +62,7 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
-          showConfirmButton:data.titulo !== "Excelente",
+          showConfirmButton: data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
@@ -72,7 +74,7 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
           title: `${data.titulo}`,
           text: `${data.respuesta}`,
           icon: `${data.type}`,
-          showConfirmButton:data.titulo !== "Excelente",
+          showConfirmButton: data.titulo !== "Excelente",
           customClass: {
             confirmButton: 'btn btn-primary'
           },
@@ -174,20 +176,20 @@ export const ModalEditarEquipo = ({ modal, toggle, baseData }) => {
               onChange={event => handleChange({ event: event, field: 'Imagen' })}
             /> */}
             <div className="d-flex align-items-center">
-                  <Input
-                    type="file"
-                    id="inputFile"
-                    name="FotoPerfil"
-                    // onChange={handleFileChange}
-                    onChange={event => handleChange({ event: event, field: 'Imagen' })}
-                    innerRef={inputRef}
-                    style={{ display: 'none' }}
-                  />
-                  <Button className='colorBotonPrincipal' onClick={handleButtonClick} >
-                    Seleccionar archivo
-                  </Button>
-                  <span style={{ marginLeft: '10px' }}>{fileName}</span>
-                </div>
+              <Input
+                type="file"
+                id="inputFile"
+                name="FotoPerfil"
+                // onChange={handleFileChange}
+                onChange={event => handleChange({ event: event, field: 'Imagen' })}
+                innerRef={inputRef}
+                style={{ display: 'none' }}
+              />
+              <Button className='colorBotonPrincipal' onClick={handleButtonClick} >
+                Seleccionar archivo
+              </Button>
+              <span style={{ marginLeft: '10px' }}>{fileName}</span>
+            </div>
           </>
           } </div>
       </ModalBody>
