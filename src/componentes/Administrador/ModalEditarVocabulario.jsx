@@ -39,6 +39,8 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
         llenadoDataInicial();
     }, [])
     useEffect(() => {
+        console.log("dataBase", dataBase);
+
         if (!Palabra || (Palabra && Palabra.trim() == '')) {
             setBloqueo(true);
             return;
@@ -99,14 +101,21 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                 setBloqueo(true);
                 setLoading(true);
                 if (FileImagen) {
-                    const fileImage = await subidaIVocabulario(FileImagen)
+                    console.log("entreo set img 1");
+
+                    fileImage = await subidaIVocabulario(FileImagen)
                 }
 
                 if (FileMuestra) {
+                    console.log("entreo set img 2");
+
                     fileMuestra = await subidaIVocabulario(FileMuestra)
                 }
 
                 if (FilePregunta) {
+
+                    console.log("entreo set img 3");
+
                     filePregunta = await subidaIVocabulario(FilePregunta)
                 }
                 const data = await EditarVocabulario({ Categoria: Categoria, Palabra: Palabra, Silaba: Silaba, FileMuestra: fileMuestra, FileImagen: fileImage, FilePregunta: filePregunta, _id: _id });
@@ -189,6 +198,8 @@ export const ModalEditarVocabulario = ({ modal, toggle, dataBase }) => {
                 event.target.value = ''; // Limpia el input para eliminar el archivo no válido
                 return;
             }
+
+            console.log("selectedFile", selectedFile);
 
             // Si llegamos aquí, el archivo es una imagen válida, puedes realizar la acción deseada
             // disparodeAccion({ type: "onchange", field: "FileBlanco", value: selectedFile });
