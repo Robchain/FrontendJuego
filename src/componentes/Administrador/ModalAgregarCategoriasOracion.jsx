@@ -53,9 +53,9 @@ const data  = await  CrearPostCategoria({NombreCategoria, Juego:{value:'Oración
   } 
 
   useEffect(() => {
-    if(NombreCategoria.length > 0){
+    if(NombreCategoria && NombreCategoria.length > 0 && NombreCategoria.trim() != ''){
       setBloqueo(false);
-    }else{
+    } else {
       setBloqueo(true);
     }
   }, [ NombreCategoria])
