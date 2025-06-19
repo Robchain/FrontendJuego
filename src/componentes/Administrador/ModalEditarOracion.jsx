@@ -52,6 +52,10 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
             VideoNames.FileVideoPreguntaQuienLabel = fileName;
         }
 
+        if (dataBase && dataBase.Adverbio) {
+            disparodeAccion({ type: "onchange", field: "Adverbio", value: dataBase.Adverbio });
+        }
+
         disparodeAccion({ type: "onchange", field: "Categoria", value: dataBase.Categoria });
         disparodeAccion({ type: "onchange", field: "Sujeto", value: dataBase.Sujeto });
         disparodeAccion({ type: "onchange", field: "Que", value: dataBase.Que });
@@ -311,15 +315,15 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
 
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='FileVideoMuestra'>
-                            Video respuesta (con audio) 
+                            Video respuesta (con audio)
                         </Label>
                         <div>
-                        <Label className='form-label' for='FileVideoMuestra' style={{ color: '#5E319B' }}>
-                            {
-                                VideoNames && VideoNames.FileVideoMuestraLabel && 
-                                VideoNames.FileVideoMuestraLabel
-                            }
-                        </Label>
+                            <Label className='form-label' for='FileVideoMuestra' style={{ color: '#5E319B' }}>
+                                {
+                                    VideoNames && VideoNames.FileVideoMuestraLabel &&
+                                    VideoNames.FileVideoMuestraLabel
+                                }
+                            </Label>
                         </div>
                         <Input type='file' id='FileVideoMuestra' name='FileVideoMuestra' onChange={e => handleChangeFileVideo({ event: e, field: 'FileVideoMuestra' })} />
                     </Col>
@@ -338,12 +342,12 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                             Video pregunta Qué (sin audio)
                         </Label>
                         <div>
-                        <Label className='form-label' for='FileVideoPreguntaQue' style={{ color: '#5E319B' }}>
-                            {
-                                VideoNames && VideoNames.FileVideoPreguntaQueLabel && 
-                                VideoNames.FileVideoPreguntaQueLabel
-                            }
-                        </Label>
+                            <Label className='form-label' for='FileVideoPreguntaQue' style={{ color: '#5E319B' }}>
+                                {
+                                    VideoNames && VideoNames.FileVideoPreguntaQueLabel &&
+                                    VideoNames.FileVideoPreguntaQueLabel
+                                }
+                            </Label>
                         </div>
                         <Input type='file' id='FileVideoPreguntaQue' name='FileVideoPreguntaQue' onChange={e => handleChangeFileVideo({ event: e, field: 'FileVideoPreguntaQue' })} />
                     </Col>
@@ -356,7 +360,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         </Label>
 
                         <div>
-                            <Select name="Adverbio" placeholder="Adverbio" isSearchable={false} options={optionsAdverbio} onChange={event => disparodeAccion({ type: "onchange", field: "Adverbio", value: checkbos ? event.value : undefined })} />
+                            <Select name="Adverbio" placeholder="Adverbio" defaultValue={{ label: dataBase.Adverbio ?  dataBase.Adverbio : 'NINGUNO', value: '' }} isSearchable={false} options={optionsAdverbio} onChange={event => disparodeAccion({ type: "onchange", field: "Adverbio", value: checkbos ? event.value : undefined })} />
                         </div>
                     </Col>
 
@@ -365,12 +369,12 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                             Video pregunta Quién (sin audio)
                         </Label>
                         <div>
-                        <Label className='form-label' for='FileVideoPreguntaQuien' style={{ color: '#5E319B' }}>
-                            {
-                                VideoNames && VideoNames.FileVideoPreguntaQuienLabel && 
-                                VideoNames.FileVideoPreguntaQuienLabel
-                            }
-                        </Label>
+                            <Label className='form-label' for='FileVideoPreguntaQuien' style={{ color: '#5E319B' }}>
+                                {
+                                    VideoNames && VideoNames.FileVideoPreguntaQuienLabel &&
+                                    VideoNames.FileVideoPreguntaQuienLabel
+                                }
+                            </Label>
                         </div>
                         <Input type='file' id='FileVideoPreguntaQuien' name='FileVideoPreguntaQuien' onChange={e => handleChangeFileVideo({ event: e, field: 'FileVideoPreguntaQuien' })} />
                     </Col>
@@ -379,7 +383,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                 <Row>
                     <Col md='6' sm='12' className='mb-1'>
                         <Label className='form-label' for='Que'>
-                           Qué (Vocabulario)
+                            Qué (Vocabulario)
                         </Label>
                         {dataBase.Que && dataBase.Que.label &&
                             <Select name="Que" defaultValue={{ label: dataBase.Que.label, value: '' }} isSearchable={true} options={listadoOptionsQue.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Palabra, value: i.FileImagen } })} onChange={event => disparodeAccion({ type: "onchange", field: "Que", value: event })} />

@@ -23,14 +23,12 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
     const [checkbos, setCheckbos] = useState(false);
     const [bloqueo, setBloqueo] = useState(true);
     const inputRef = useRef(null);
-      const inputRef2 = useRef(null);
-      const [fileName, setFileName] = useState(''); // nombre por defecto
-        const [fileName2, setFileName2] = useState(''); // nombre por defecto
+    const inputRef2 = useRef(null);
+    const [fileName, setFileName] = useState(''); // nombre por defecto
+    const [fileName2, setFileName2] = useState(''); // nombre por defecto
 
 
     useEffect(() => {
-        console.log("Nombre", Nombre);
-        
         if ((Nombre && Nombre.trim() == '') || !Nombre) {
             setBloqueo(true);
             return;
@@ -41,16 +39,15 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
         } else {
             setBloqueo(true);
         }
-        console.log(dataBase)
         if (dataBase.FileBlanco) {
             const fileName = dataBase.FileBlanco.split("/").pop().split("%2F").pop().split("?")[0];
             setFileName2(fileName); //seteo de nombre a mostrar del archivo
-          }
-          if (dataBase.FileColor) {
+        }
+        if (dataBase.FileColor) {
             const fileName = dataBase.FileColor.split("/").pop().split("%2F").pop().split("?")[0];
             setFileName(fileName); //seteo de nombre a mostrar del archivo
-          }
-          
+        }
+
     }, [Nombre, Pieza])
 
 
@@ -186,16 +183,16 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
 
     const handleButtonClick = () => {
         if (inputRef.current) {
-          inputRef.current.click(); // <-- Esto dispara manualmente el click
+            inputRef.current.click(); // <-- Esto dispara manualmente el click
         }
-      };
-    
-    
-      const handleButtonClick2 = () => {
+    };
+
+
+    const handleButtonClick2 = () => {
         if (inputRef2.current) {
-          inputRef2.current.click(); // <-- Esto dispara manualmente el click
+            inputRef2.current.click(); // <-- Esto dispara manualmente el click
         }
-      };
+    };
 
 
     return (
@@ -253,11 +250,23 @@ export const ModalEditarRompecabeza = ({ modal, toggle, dataBase }) => {
                             <Label className='form-label' for='FileColor' style={{ color: '#8b8b8c', fontWeight: "700" }}>
                                 Foto color (jpg, jpeg, png, o gif)
                             </Label><br />
+                            <Label className='form-label' for='FileVideoPreguntaQuien' style={{ color: '#5E319B' }}>
+                                {
+                                    fileName &&
+                                    fileName
+                                }
+                            </Label>
                             <Input type='file' id='FileColor' name='FileColor' onChange={event => handleChange({ event: event, field: 'FileColor' })} />
                         </div>
                         <div className='mb-3'>
                             <Label className='form-label' for='FileBlanco' style={{ color: '#8b8b8c', fontWeight: "700" }}>
                                 Archivo blanco y negro (PDF)
+                            </Label><br />
+                            <Label className='form-label' for='FileVideoPreguntaQuien' style={{ color: '#5E319B' }}>
+                                {
+                                    fileName2 &&
+                                    fileName2
+                                }
                             </Label>
                             <Input type='file' id='FileBlanco' name='FileBlanco' onChange={event => handleChangeFilePDF({ event: event, field: 'FileBlanco' })} />
                         </div>
