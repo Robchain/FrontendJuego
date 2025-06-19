@@ -132,10 +132,9 @@ export const ReporteCursos = () => {
 
   return (
     <>
-      <div className="form-reporte-planificacion">
-        <div className="form-reporte-inicial-arriba">
-          <div className="curso-select-reporte">
-            <Label className="form-label" for="Curso">
+      <Row className="bot1">
+        <Col lg="6" sm="12" md="6" xl="6">
+         <Label className="form-label" for="Curso">
               &nbsp;&nbsp;
               Grado:&nbsp;&nbsp;
             </Label>
@@ -151,9 +150,8 @@ export const ReporteCursos = () => {
               }
               options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
             />
-          </div>
-          <div className="paralelo-select-reporte">
-            <Label className="form-label" for="Paralelo">
+
+             <Label className="form-label" for="Paralelo">
               &nbsp;&nbsp;
               Paralelo:&nbsp;&nbsp;
             </Label>
@@ -169,9 +167,10 @@ export const ReporteCursos = () => {
               }
               options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
             />
-          </div>
-          <div className="juego-select-reporte">
-            <Label className="form-label" for="Juego">
+        </Col>
+        <Col lg="6" sm="12" md="6" xl="6">
+        
+        <Label className="form-label" for="Juego">
               &nbsp;&nbsp;
               Juegos:&nbsp;&nbsp;
             </Label>
@@ -192,14 +191,16 @@ export const ReporteCursos = () => {
               }
               isDisabled={bloqueodos}
             />
-          </div>
-        </div>
+        </Col>
+      </Row>
+      
 
+      <div className="form-reporte-planificacion">
         <div className="form-reporte-section-fecha mt-3">
           <div className='fecha-inicial-reporte'>
             <Label className='form-label'>
               Fecha de inicio:&nbsp;&nbsp;
-            </Label><br />
+            </Label><br/>
             <DateTimePicker
               amPmAriaLabel="Select AM/PM"
               calendarAriaLabel="Toggle calendar"

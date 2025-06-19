@@ -119,11 +119,9 @@ export const ReporteJuego = () => {
   }
   return (
     <>
-      <div className="form-reporte-planificacion">
-        <div className="form-reporte-inicial-arriba">
-          <div className="juego-select-reporte">
-
-            <Label className="form-label" for="Juego">
+    <Row className="bot1">
+    <Col lg="6" sm="12" md="6" xl="6">
+    <Label className="form-label" for="Juego">
               &nbsp;&nbsp;
               Juegos:&nbsp;&nbsp;
             </Label>
@@ -143,8 +141,7 @@ export const ReporteJuego = () => {
                 })
               }
             />
-          </div>
-          <div className="curso-select-reporte">
+
             <Label className="form-label" for="Curso">
               &nbsp;&nbsp;
               Curso:&nbsp;&nbsp;
@@ -161,9 +158,12 @@ export const ReporteJuego = () => {
               }}
               options={cursoData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
             />
-          </div>
-          <div className="paralelo-select-reporte">
-            <Label className="form-label" for="Paralelo">
+
+
+
+    </Col>
+     <Col lg="6" sm="12" md="6" xl="6">
+     <Label className="form-label" for="Paralelo">
               &nbsp;&nbsp;
               Paralelo:&nbsp;&nbsp;
             </Label>
@@ -179,9 +179,12 @@ export const ReporteJuego = () => {
               }}
               options={paraleloData.filter((item) => item.Estado === "ACTIVO").map(i => { return { label: i.Nombre, value: i.Nombre } })}
             />
-          </div>
-        </div>
 
+
+     </Col>
+
+    </Row>
+      <div className="form-reporte-planificacion">
         <div className="form-reporte-section-fecha mt-3">
           <div className='fecha-inicial-reporte'>
             <Label className='form-label'>
