@@ -360,7 +360,7 @@ export const ModalEditarOracion = ({ modal, toggle, dataBase }) => {
                         </Label>
 
                         <div>
-                            <Select name="Adverbio" placeholder="Adverbio" defaultValue={{ label: dataBase.Adverbio ?  dataBase.Adverbio : 'NINGUNO', value: '' }} isSearchable={false} options={optionsAdverbio} onChange={event => disparodeAccion({ type: "onchange", field: "Adverbio", value: checkbos ? event.value : undefined })} />
+                            <Select name="Adverbio" placeholder="Adverbio" defaultValue={{ label: dataBase.Adverbio ?  dataBase.Adverbio : 'NINGUNO', value: '' }} isSearchable={false} options={optionsAdverbio} onChange={event => disparodeAccion({ type: "onchange", field: "Adverbio", value: event.value })} />
                         </div>
                     </Col>
 

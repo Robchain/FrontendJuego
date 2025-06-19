@@ -58,6 +58,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
       setBloqueoSecu(true);
       setBloqueo(true);
       setLoading(true);
+      
       // const fileSujeto = await subidaIOracion(FileSujetoImagen);
       const fileVideoPreguntaQue = await subidaIOracion(FileVideoPreguntaQue);
       const fileVideoMuestra = await subidaIOracion(FileVideoMuestra);
@@ -195,7 +196,7 @@ export const ModalAgregarOracion = ({ modal, toggle }) => {
               Adverbio (Opcional)
             </Label>
             <div>
-              <Select name="Adverbio" placeholder="Adverbio" isSearchable={false} options={optionsAdverbio} onChange={event => disparodeAccion({ type: "onchange", field: "Adverbio", value: checkboss ? event.value : undefined })} />
+              <Select name="Adverbio" placeholder="Adverbio" isSearchable={false} options={optionsAdverbio} onChange={event => disparodeAccion({ type: "onchange", field: "Adverbio", value: event.value })} />
             </div>
           </Col>
 
