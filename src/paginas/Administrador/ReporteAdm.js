@@ -107,7 +107,7 @@ const ReporteAdm = () => {
             </Label><br />
             </div>
             <div className="form-seleccion-reporte">
-            <div>  
+            {/* <div>  
             <Label><Input
               type='radio'
               name="TipoUsuario"
@@ -126,7 +126,7 @@ const ReporteAdm = () => {
               checked={busquedaPor === "Curso"}
               /> Grado y paralelo&ensp;
             </Label>
-            </div>
+            </div> */}
             <div>
             <Label> 
              <Input
@@ -135,7 +135,7 @@ const ReporteAdm = () => {
                 value="Juego"
                 onChange={event => setBusquedaPor(event.target.value)  }
                 checked={busquedaPor === "Juego"}
-              /> Juego&ensp;
+              /> Juego&ensp;&ensp;&ensp;
             </Label>
             </div>
             <div>
