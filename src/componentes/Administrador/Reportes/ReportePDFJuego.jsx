@@ -10,7 +10,7 @@ export const ReportePDFJuego = ({ data, juego='' }) => {
       (data !== undefined && data !== null ) &&<Container className='m-3'>
          {juego !== 'Todos' && <Row>
             <Col>
-              <h3 style={{ color: "#9696D3" }}>Reportesss {`${juego}`}</h3>
+              <h3 style={{ color: "#9696D3" }}>Reporte {`${juego}`}</h3>
             </Col>
           </Row>}
           {juego === 'Todos' && <Row>
@@ -26,7 +26,7 @@ export const ReportePDFJuego = ({ data, juego='' }) => {
                   {
                     data.Cursos.map(Curso=>(<>
                       <div style={{  color: "#62269E" }}>
-                    <p style={{ fontWeight: 700 }}><span style={{ color: '#85858C' }}>Curso:</span> {Curso.Curso}  <span>&nbsp;&nbsp;</span> <span style={{ color: '#85858C' }}>Paralelo:</span> {Curso.Paralelo}&nbsp;&nbsp; <span style={{ color: '#85858C' }}>Docente:</span>{data.Docente}</p>
+                    <p style={{ fontWeight: 700 }}><span style={{ color: '#85858C' }}>Curso:</span> {Curso.Curso}  <span>&nbsp;&nbsp;</span> <span style={{ color: '#85858C' }}>Paralelo:</span> {Curso.Paralelo}&nbsp;&nbsp; <span style={{ color: '#85858C' }}>Docente:</span> {data.Docente}</p>
                   </div>
                   <Table striped>
                       <thead style={{ backgroundColor: "#E6DFF0", color: "#62269E", textAlign: "initial" }}>
@@ -87,7 +87,7 @@ export const ReportePDFJuego = ({ data, juego='' }) => {
                   {
                     data.data.map(individual=>(<>
                       <div style={{  color: "#62269E" }}>
-                    <p style={{ fontWeight: 700 }}><span style={{ color: '#85858C' }}>Curso:</span> {individual.curso}  <span>&nbsp;&nbsp;</span> <span style={{ color: '#85858C' }}>Paralelo:</span> {individual.paralelo}&nbsp;&nbsp; <span style={{ color: '#85858C' }}>Docente:</span><DocentesList2 data={data.docentes}  /></p>
+                    <p style={{ fontWeight: 700 }}><span style={{ color: '#85858C' }}>Curso:</span> {individual.curso}  <span>&nbsp;&nbsp;</span> <span style={{ color: '#85858C' }}>Paralelo:</span> {individual.paralelo}&nbsp;&nbsp; <span style={{ color: '#85858C' }}>Docente: </span><DocentesList2 data={data.docentes}  /></p>
                   </div>
                   <Table striped>
                       <thead style={{ backgroundColor: "#E6DFF0", color: "#171618", textAlign: "initial" }}>
@@ -116,8 +116,11 @@ export const ReportePDFJuego = ({ data, juego='' }) => {
                   </div>
                   {
             data.dataVocabulario.Cursos.length>0 &&      data.dataVocabulario.Cursos.map(Curso=>(<>
-
-              <p style={{ fontWeight: 700 }}><span style={{ color: '#85858C' }}>Docente:</span><DocentesList2 data={data.dataColaborativo.docentes}  /></p>
+             <div style={{  color: "#62269E" }}>
+              <p style={{ fontWeight: 700}}>  <span style={{ color: '#85858C' }}>Curso:</span> {data.Curso}<span>&nbsp;&nbsp;</span> <span style={{ color: '#85858C' }}>Paralelo:</span> {data.Paralelo}&nbsp;&nbsp;<span style={{ color: '#85858C' }}>Docente: </span><DocentesList2 data={data.dataColaborativo.docentes}  /></p>
+             </div>
+                 
+              
                  <p><span style={{ fontWeight: 700, color: '#8cc5b0' }}>Actividad:</span> Vocabulario</p>
                 
                       <div style={{  color: "#62269E" }}>

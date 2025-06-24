@@ -130,7 +130,7 @@ export const ReporteJuego = () => {
               options={[
                 { label: "Vocabularios", value: "vocabulario" },
                 { label: "Oraciones", value: "oracion" },
-                { label: "Juego colaborativo", value: "Colaborativo" },
+                { label: "Juego colaborativo", value: "colaborativo" },
                 { label: "Todos", value: "Todos" },
               ]}
               onChange={(evente) =>
