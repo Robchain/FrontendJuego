@@ -27,8 +27,10 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
       let apellido = localStorage.getItem("Apellido");
       let completo = `${nombre} ${apellido}`;
       let value = localStorage.getItem("Identificacion");
+      
       if (completo.length > 5 && value.length > 3) {
         const data = await llamadoIncialDePosiciondelUsuario(completo, value);
+        console.log(data)
         if (data === null) {
           disparodeAcciones({
             type: "cambio",
