@@ -16,21 +16,51 @@ const MenuJuego = () => {
   const [Email, setEmail] = useState("");
   const [Identificacion, setIdentificacion] = useState(0);
   const [imagenPefil, setPerfilImagen] = useState("");
+  const [isLoading, setIsLoading] = useState(true); 
+
   const navegar = useNavigate();
   useEffect(() => {
-    if (localStorage.getItem("Email") === null && localStorage.getItem("Identificacion") === null && localStorage.getItem("Usuario") === null) {
-      navegar("/");
-    }
-    setEmail(localStorage.getItem("Email"));
-    setIdentificacion(localStorage.getItem("Identificacion"));
-    setUsuario(localStorage.getItem("Usuario"))
-    setIdState(localStorage.getItem("Id"))
-    dispatchMutli({ type: "RESETEAR" })
-    dataOracion(localStorage.getItem("Id"));
-    datoVocabulario(localStorage.getItem("Id"));
-    setPerfilImagen(localStorage.getItem("FotoPerfil"));
-    LLamadaIncial()
-  }, [])
+    const cargarDatos = async () => {
+      if (localStorage.getItem("Email") === null && 
+          localStorage.getItem("Identificacion") === null && 
+          localStorage.getItem("Usuario") === null) {
+        navegar("/");
+        return;
+      }
+
+      setEmail(localStorage.getItem("Email"));
+      setIdentificacion(localStorage.getItem("Identificacion"));
+      setUsuario(localStorage.getItem("Usuario"));
+      setIdState(localStorage.getItem("Id"));
+      setPerfilImagen(localStorage.getItem("FotoPerfil"));
+
+      dispatchMutli({ type: "RESETEAR" });
+
+      // Esperar a que se carguen los datos
+      await Promise.all([
+        dataOracion(localStorage.getItem("Id")),
+        datoVocabulario(localStorage.getItem("Id")),
+        LLamadaIncial()
+      ]);
+
+      setIsLoading(false); // 👈 Datos cargados
+    };
+
+    cargarDatos();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Container className="fondoImagen vh-100 d-flex justify-content-center align-items-center" fluid>
+        <div className="text-center">
+          <div className="spinner-border text-primary" role="status" style={{ width: "3rem", height: "3rem" }}>
+            <span className="visually-hidden">Cargando...</span>
+          </div>
+          <p className="mt-3">Cargando datos...</p>
+        </div>
+      </Container>
+    );
+  }
 
   return (
 

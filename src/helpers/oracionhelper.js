@@ -24,49 +24,60 @@ return  palabrasSinRepetir; // Esto mostrará ["manzana", "banana", "uva", "nara
   }
 
 
-  export const analizaradentro = ({quienlist, data, indice})=>{
+  // export const analizaradentro = ({quienlist, data, indice})=>{
 
-    let salida =[]
-    let nombreExcluir;
-    let imagenExcluir;
-    if(data[`Juego` + indice].Oraciones[0].Respuesta ==="CORRECTO"){
-      nombreExcluir =data[`Juego` + indice].Oraciones[0].Sujeto.label
-      imagenExcluir =data[`Juego` + indice].Oraciones[0].Sujeto.value
-    }else if(data[`Juego` + indice].Oraciones[1].Respuesta==="CORRECTO"){
-      nombreExcluir =data[`Juego` + indice].Oraciones[1].Sujeto.label
-      imagenExcluir =data[`Juego` + indice].Oraciones[1].Sujeto.value
-    }else if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
-      nombreExcluir =data[`Juego` + indice].Oraciones[2].Sujeto.label
-      imagenExcluir =data[`Juego` + indice].Oraciones[2].Sujeto.value
-    }
-    const elementosActivos = quienlist.filter(objeto => objeto.Estado === "ACTIVO");
-    const resultadosFiltrados = elementosActivos.filter(objeto => {
-      return (
-        objeto.Nombre !== nombreExcluir &&
-        objeto.Imagen !== imagenExcluir &&
-        objeto.Estado === "ACTIVO"
-      );
-    }).sort(() => Math.random() - 0.5).slice(0, 2);
-    // Organizar los resultados en un formato de etiquetas y valores
-    const etiquetasYValores = resultadosFiltrados.map(objeto => ({
-      label: objeto.Nombre,
-      value: objeto.Imagen
+  //   let salida =[]
+  //   let nombreExcluir;
+  //   let imagenExcluir;
+  //   if(data[`Juego` + indice].Oraciones[0].Respuesta ==="CORRECTO"){
+  //     nombreExcluir =data[`Juego` + indice].Oraciones[0].Sujeto.label
+  //     imagenExcluir =data[`Juego` + indice].Oraciones[0].Sujeto.value
+  //   }else if(data[`Juego` + indice].Oraciones[1].Respuesta==="CORRECTO"){
+  //     nombreExcluir =data[`Juego` + indice].Oraciones[1].Sujeto.label
+  //     imagenExcluir =data[`Juego` + indice].Oraciones[1].Sujeto.value
+  //   }else if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
+  //     nombreExcluir =data[`Juego` + indice].Oraciones[2].Sujeto.label
+  //     imagenExcluir =data[`Juego` + indice].Oraciones[2].Sujeto.value
+  //   }
+  //   const elementosActivos = quienlist.filter(objeto => objeto.Estado === "ACTIVO");
+  //   const resultadosFiltrados = elementosActivos.filter(objeto => {
+  //     return (
+  //       objeto.Nombre !== nombreExcluir &&
+  //       objeto.Imagen !== imagenExcluir &&
+  //       objeto.Estado === "ACTIVO"
+  //     );
+  //   }).sort(() => Math.random() - 0.5).slice(0, 2);
+  //   // Organizar los resultados en un formato de etiquetas y valores
+  //   const etiquetasYValores = resultadosFiltrados.map(objeto => ({
+  //     label: objeto.Nombre,
+  //     value: objeto.Imagen
+  //   }));
+  //   if(data[`Juego` + indice].Oraciones[0].Respuesta ==="CORRECTO"){
+  //     salida =[{label: data[`Juego` + indice].Oraciones[0].Sujeto.label, value: data[`Juego` + indice].Oraciones[0].Sujeto.value },{ label: etiquetasYValores[0].label, value: etiquetasYValores[0].value },{ label: etiquetasYValores[1].label, value: etiquetasYValores[1].value  }]
+  //   }
+  //   if(data[`Juego` + indice].Oraciones[1].Respuesta==="CORRECTO"){
+  //     salida =[{label: etiquetasYValores[0].label, value: etiquetasYValores[0].value },{label: data[`Juego` + indice].Oraciones[1].Sujeto.label, value: data[`Juego` + indice].Oraciones[1].Sujeto.value },{ label: etiquetasYValores[1].label, value: etiquetasYValores[1].value  }]
+  //   }
+  //   if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
+  //     salida =[{ label: etiquetasYValores[0].label, value: etiquetasYValores[0].value },{ label: etiquetasYValores[1].label, value: etiquetasYValores[1].value  },{label: data[`Juego` + indice].Oraciones[2].Sujeto.label, value: data[`Juego` + indice].Oraciones[2].Sujeto.value }]
+  //   }
+
+
+  //     return salida;
+  // }
+
+
+  export const analizaradentro = ({ data, indice }) => {
+    // Extraer directamente los sujetos de las 3 oraciones que vienen del backend
+    const sujetos = data[`Juego${indice}`].Oraciones.map(oracion => ({
+      label: oracion.Sujeto.label,
+      value: oracion.Sujeto.value
     }));
-    if(data[`Juego` + indice].Oraciones[0].Respuesta ==="CORRECTO"){
-      salida =[{label: data[`Juego` + indice].Oraciones[0].Sujeto.label, value: data[`Juego` + indice].Oraciones[0].Sujeto.value },{ label: etiquetasYValores[0].label, value: etiquetasYValores[0].value },{ label: etiquetasYValores[1].label, value: etiquetasYValores[1].value  }]
-    }
-    if(data[`Juego` + indice].Oraciones[1].Respuesta==="CORRECTO"){
-      salida =[{label: etiquetasYValores[0].label, value: etiquetasYValores[0].value },{label: data[`Juego` + indice].Oraciones[1].Sujeto.label, value: data[`Juego` + indice].Oraciones[1].Sujeto.value },{ label: etiquetasYValores[1].label, value: etiquetasYValores[1].value  }]
-    }
-    if(data[`Juego` + indice].Oraciones[2].Respuesta==="CORRECTO"){
-      salida =[{ label: etiquetasYValores[0].label, value: etiquetasYValores[0].value },{ label: etiquetasYValores[1].label, value: etiquetasYValores[1].value  },{label: data[`Juego` + indice].Oraciones[2].Sujeto.label, value: data[`Juego` + indice].Oraciones[2].Sujeto.value }]
-    }
+  
+    return sujetos;
+  };
 
-
-      return salida;
-  }
-
-
+  
   export const analizarAdverbios =({data, indice})=>{
     const optionsAdverbio = [{ value: "UNO", label: "UNO" }, { value: "UN", label: "UN" }, { value: "DOS", label: "DOS" }, { value: "MUCHOS", label: "MUCHOS" }, { value: "MUCHAS", label: "MUCHAS" }]
     let salida =[]

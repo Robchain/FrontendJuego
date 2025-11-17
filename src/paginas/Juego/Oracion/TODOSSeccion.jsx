@@ -178,9 +178,9 @@ function seleccionDePalabrasSelecion(state, action) {
 }
 const SeleccionQue = ({ QueSelecion, data, indice, ...props }) => {
 
-  if (QueSelecion === 1) { return (<img src={data[`Juego` + indice].Oraciones[0].Que.value} alt='opcion1' {...props} />) }
-  if (QueSelecion === 2) { return (<img src={data[`Juego` + indice].Oraciones[1].Que.value} alt='opcion2' {...props} />) }
-  if (QueSelecion === 3) { return (<img src={data[`Juego` + indice].Oraciones[2].Que.value} alt='opcion3' {...props} />) }
+  if (QueSelecion === 1) { return (<img src={data[`Juego` + indice].Oraciones[0].Que.value} alt={data[`Juego` + indice].Oraciones[0].Que.label} {...props} />) }
+  if (QueSelecion === 2) { return (<img src={data[`Juego` + indice].Oraciones[1].Que.value} alt={data[`Juego` + indice].Oraciones[1].Que.label} {...props} />) }
+  if (QueSelecion === 3) { return (<img src={data[`Juego` + indice].Oraciones[2].Que.value} alt={data[`Juego` + indice].Oraciones[2].Que.label} {...props} />) }
   if (QueSelecion === 0) { return (<div {...props}></div>) }
   return (<div {...props}></div>)
 }
@@ -194,9 +194,9 @@ const SeleccionCantidad = ({ Adverbios,AdverbNSeleccion, indice, ...props }) => 
   return (<div {...props}></div>)
 }
 const SeleccionQuien = ({ modeloquienMostrar,QuienSeleccion, data, indice, ...props }) => {
-  if (QuienSeleccion === 1) { return (<img src={modeloquienMostrar[0].value} alt='opcion1' {...props} />) }
-  if (QuienSeleccion === 2) { return (<img src={modeloquienMostrar[1].value} alt='opcion2' {...props} />) }
-  if (QuienSeleccion === 3) { return (<img src={modeloquienMostrar[2].value} alt='opcion3' {...props} />) }
+  if (QuienSeleccion === 1) { return (<img src={modeloquienMostrar[0].value} alt={modeloquienMostrar[0].label} {...props} />) }
+  if (QuienSeleccion === 2) { return (<img src={modeloquienMostrar[1].value} alt={modeloquienMostrar[1].label} {...props} />) }
+  if (QuienSeleccion === 3) { return (<img src={modeloquienMostrar[2].value} alt={modeloquienMostrar[2].label} {...props} />) }
   if (QuienSeleccion === 0) { return (<div {...props}></div>) }
   return (<div {...props}></div>)
 }
@@ -443,17 +443,17 @@ useEffect(() => {
           </div>
           <div style={{ pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien1 }} onClick={() => { onhandleClickPrimero() }}>
             <div className='opcion-imagen-multi'>
-              <img src={modeloquienMostrar[0].value} alt='opcion1' className='opcion-imagen-multi-neta' />
+              <img src={modeloquienMostrar[0].value} alt={modeloquienMostrar[0].label} className='opcion-imagen-multi-neta' />
             </div>
           </div>
           <div style={{ pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien2 }} onClick={() => { onhandleClickSegundo() }}>
             <div className='opcion-imagen-multi'>
-              <img src={modeloquienMostrar[1].value} alt='opcion2' className='opcion-imagen-multi-neta' />
+              <img src={modeloquienMostrar[1].value} alt={modeloquienMostrar[1].label} className='opcion-imagen-multi-neta' />
             </div>
           </div>
           <div style={{ pointerEvents: estate.pointer, opacity: opacarQuien.opacityquien3 }} onClick={() => { onhandleClickTercero() }}>
             <div className='opcion-imagen-multi'>
-              <img src={modeloquienMostrar[2].value} alt='opcion3' className='opcion-imagen-multi-neta' />
+              <img src={modeloquienMostrar[2].value} alt={modeloquienMostrar[2].label} className='opcion-imagen-multi-neta' />
             </div>
           </div>
         </div>:<div className='seccion-quien-multiple'>
@@ -494,17 +494,17 @@ useEffect(() => {
           </div>
           <div style={{ pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue1 }} onClick={() => { onhandleClickQuePrimero() }}>
             <div className='opcion-imagen-multi'>
-              <img src={data[`Juego` + indice].Oraciones[0].Que.value} alt='opcion1' className='opcion-imagen-multi-neta' />
+              <img src={data[`Juego` + indice].Oraciones[0].Que.value} alt={data[`Juego` + indice].Oraciones[0].Que.label} className='opcion-imagen-multi-neta' />
             </div>
           </div>
           <div style={{ pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue2 }} onClick={() => { onhandleClickQueSegundo() }}>
             <div className='opcion-imagen-multi'>
-              <img src={data[`Juego` + indice].Oraciones[1].Que.value} alt='opcion2' className='opcion-imagen-multi-neta' />
+              <img src={data[`Juego` + indice].Oraciones[1].Que.value} alt={data[`Juego` + indice].Oraciones[1].Que.label} className='opcion-imagen-multi-neta' />
             </div>
           </div>
           <div style={{ pointerEvents: estate.pointer2, opacity: opacarQue.opacityQue3 }} onClick={() => { onhandleClickQueTercero() }}>
             <div className='opcion-imagen-multi'>
-              <img src={data[`Juego` + indice].Oraciones[2].Que.value} alt='opcion3' className='opcion-imagen-multi-neta' />
+              <img src={data[`Juego` + indice].Oraciones[2].Que.value} alt={data[`Juego` + indice].Oraciones[2].Que.label} className='opcion-imagen-multi-neta' />
             </div>
           </div>
         </div>
@@ -512,24 +512,7 @@ useEffect(() => {
       </div>
       <div className='zonainteractiva'>
         <div className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
-          <div className='opciones' >
-            <div style={{ padding: '0px' }}>
-              <img alt='que' src={Quien} className='imagenOpc' />
-            </div>
-            <div style={{ padding: '0px' }} >
-              <img src={Verbo} alt='opcion1' className='imagenOpc' />
-            </div>
-            {isAdverbio(indice, data)
-              &&
-              (
-                <div style={{ padding: '0px' }}>
-                  <img src={Cantidad} alt='opcion1' className='imagenOpc' />
-                </div>)
-            }
-            <div style={{ padding: '0px' }} >
-              <img alt='que' src={Que} className='imagenOpc' />
-            </div>
-          </div>
+          
           {/*parte de seleccion */}
           <div className='seleccion' >
             <div style={{ padding: '0px' }} >
@@ -557,6 +540,7 @@ useEffect(() => {
           }
         </div>
       </div>
+      {JSON.stringify(data)}
     </div>
   )
 }

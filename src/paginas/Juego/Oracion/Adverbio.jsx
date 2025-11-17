@@ -22,7 +22,7 @@ const MostrarQue = ({ data, indice, ...props }) => {
   }, [data, indice])
 
 
-  return (<img src={verbo.value} alt='opcion que' {...props} />)
+  return (<img src={verbo.value} alt={verbo.label} {...props} />)
 }
 const RespuestaImagen = ({ data, dispatchProgreso, setImagen, imagen, indice, Queselec, setMomento, momento, ...opc }) => {
 
@@ -165,7 +165,7 @@ const VerSeleccionQuien = ({ data, indice, ...props }) => {
       setSelecion(data[`Juego` + indice].Oraciones[2].Sujeto)
     }
   }, [data, indice])
-  return (<>{selecion.value.length != 0 && (<img src={selecion.value} alt='opcion1' {...props} />)}</>)
+  return (<>{selecion.value.length != 0 && (<img src={selecion.value} alt={selecion.label} {...props} />)}</>)
 }
 const Adverbio = ({setcro, indice, siguiente, dispatchProgreso, data }) => {
   const [momento, setMomento] = useState("inicial");
@@ -260,22 +260,7 @@ const Adverbio = ({setcro, indice, siguiente, dispatchProgreso, data }) => {
       </div>
       <div className='zonainteractiva'>
         <div className='pruebaDise' style={{ borderRadius: "10px", border: "#F8F7FD solid", boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.13)", backgroundColor: "#F8F7FD" }}>
-          <div className='opciones'>
-            <div style={{ padding: '0px' }} >
-              <img alt='que' src={Quien} className='imagenOpc' />
-            </div>
-            <div style={{ padding: '0px' }} >
-              <img src={Verbo} alt='opcion1' className='imagenOpc' />
-            </div>
-            {isAdverbio(indice, data) && (
-              <div style={{ padding: '0px' }} >
-                <img src={Cantidad} alt='opcion1' className='imagenOpc' />
-              </div>)
-            }
-            <div style={{ padding: '0px' }} >
-              <img alt='que' src={Que} className='imagenOpc' />
-            </div>
-          </div>
+          
           <div lg="5" className='seleccion' >
             <div style={{ padding: '0px' }} >
               <VerSeleccionQuien data={data} indice={indice} className='opcionesSelec' />

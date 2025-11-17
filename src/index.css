@@ -544,8 +544,6 @@ body {
         flex-direction: column;
     }
 
-
-
     #imagenRompecabeza {
         width: 50vw;
     }
@@ -773,6 +771,7 @@ body {
     /* oracione respuesta secccion */
 
     .zonainteractiva {
+        padding: 30px 30px;
         display: flex;
         align-content: space-around;
         justify-content: center;
@@ -810,6 +809,7 @@ body {
 
 
     .pruebaDise .seleccion {
+        padding: 30px 30px;
         display: flex;
         justify-content: space-evenly;
         flex-direction: row;
