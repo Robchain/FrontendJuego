@@ -332,12 +332,16 @@ const TODOSSeccion = ({ setcro, indice, siguiente, dispatchProgreso, data }) => 
       setAdverbios(info);
     }
   }, [indice])
-  useEffect(() => {
-    if(data!=null){
-      const info2 = analizaradentro({quienlist:quienlist, data:data, indice:indice});
-      setmodeloquienMostrar(info2);
-    }
-  }, [indice])
+
+
+useEffect(() => {
+  if(data != null) {
+    // ANTES: const info2 = analizaradentro({quienlist:quienlist, data:data, indice:indice});
+    // AHORA: Ya no necesitas quienlist
+    const info2 = analizaradentro({ data: data, indice: indice });
+    setmodeloquienMostrar(info2);
+  }
+}, [indice, data])
 
 useEffect(() => {
   setcro("inicial")
@@ -540,7 +544,6 @@ useEffect(() => {
           }
         </div>
       </div>
-      {JSON.stringify(data)}
     </div>
   )
 }

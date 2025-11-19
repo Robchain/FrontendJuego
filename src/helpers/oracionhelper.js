@@ -67,16 +67,36 @@ return  palabrasSinRepetir; // Esto mostrará ["manzana", "banana", "uva", "nara
   // }
 
 
+  // export const analizaradentro = ({ data, indice }) => {
+  //   // Extraer directamente los sujetos de las 3 oraciones que vienen del backend
+  //   const sujetos = data[`Juego${indice}`].Oraciones.map(oracion => ({
+  //     label: oracion.Sujeto.label,
+  //     value: oracion.Sujeto.value
+  //   }));
+  
+  //   return sujetos;
+  // };
+
   export const analizaradentro = ({ data, indice }) => {
-    // Extraer directamente los sujetos de las 3 oraciones que vienen del backend
-    const sujetos = data[`Juego${indice}`].Oraciones.map(oracion => ({
+    // Obtener las 3 oraciones
+    const oraciones = data[`Juego${indice}`].Oraciones;
+    console.log(oraciones);
+  
+    // Extraer los sujetos directamente de las oraciones
+    const sujetos = oraciones.map(oracion => ({
       label: oracion.Sujeto.label,
       value: oracion.Sujeto.value
     }));
   
+    // Mezclar aleatoriamente (Fisher-Yates shuffle)
+    for (let i = sujetos.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [sujetos[i], sujetos[j]] = [sujetos[j], sujetos[i]];
+    }
+    console.log(sujetos);
     return sujetos;
-  };
 
+  };
   
   export const analizarAdverbios =({data, indice})=>{
     const optionsAdverbio = [{ value: "UNO", label: "UNO" }, { value: "UN", label: "UN" }, { value: "DOS", label: "DOS" }, { value: "MUCHOS", label: "MUCHOS" }, { value: "MUCHAS", label: "MUCHAS" }]
