@@ -63,8 +63,15 @@ export const RompecabaSolitaria = ({ Avance, piezas = 4, url, alt, principal = t
           (piezas === 4) && (
             <>
               {
-                Avance !== null
-                  ? piezastraida.map((i, index) => (
+                Avance === null || Avance === undefined || Avance.length === 0
+                  ? rompe4.map((_, index) => (
+                    <div
+                      key={index}
+                      className={principal ? 'a' : 'c'}
+                      style={{ visibility: false ? 'hidden' : 'visible' }}
+                    >
+                    </div>
+                  )): piezastraida.map((i, index) => (
                     index < 4 &&
                     <div
                       key={index}
@@ -73,14 +80,7 @@ export const RompecabaSolitaria = ({ Avance, piezas = 4, url, alt, principal = t
                     >
                     </div>
                   ))
-                  : rompe4.map((i, index) => (
-                    <div
-                      key={index}
-                      className={principal ? 'a' : 'c'}
-                      style={{ visibility: false ? 'hidden' : 'visible' }}
-                    >
-                    </div>
-                  ))
+                  
               }
             </>
           )
@@ -89,8 +89,16 @@ export const RompecabaSolitaria = ({ Avance, piezas = 4, url, alt, principal = t
           (piezas === 6) && (
             <>
               {
-                Avance !== null
-                  ? piezastraida.map((i, index) => (
+                Avance === null || Avance === undefined || Avance.length === 0
+                  ?
+                  rompe6.map((_, index) => (
+                    <div
+                      key={index}
+                      className={principal ? 'b' : 'd'}
+                      style={{ visibility: false ? 'hidden' : 'visible' }}
+                    >
+                    </div>
+                  )) : piezastraida.map((i, index) => (
                     index < 6 &&
                     <div
                       key={index}
@@ -99,14 +107,7 @@ export const RompecabaSolitaria = ({ Avance, piezas = 4, url, alt, principal = t
                     >
                     </div>
                   ))
-                  : rompe6.map((i, index) => (
-                    <div
-                      key={index}
-                      className={principal ? 'b' : 'd'}
-                      style={{ visibility: false ? 'hidden' : 'visible' }}
-                    >
-                    </div>
-                  ))
+                  
               }
             </>
           )

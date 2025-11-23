@@ -303,8 +303,15 @@ export function buscarValor(array, valor) {
   return null;
 }
 
+
+
 export const Piezacalcular = ({objecto,piezatotales})=>{
-  if(objecto!==null){
+  console.log('objecto',objecto)
+  console.log(piezatotales)
+  if(objecto===null || objecto===undefined || objecto.length===0){
+    return 0;
+  }
+  if(objecto!==null || objecto!==undefined){
   const count = objecto.reduce((acc, obj) => {
     if (obj.Resultado === "CORRECTO") {
       acc++;
@@ -312,7 +319,7 @@ export const Piezacalcular = ({objecto,piezatotales})=>{
     return acc;
   }, 0);
   const ultimoObjeto = objecto[objecto.length - 1];
-const esCorrecto = ultimoObjeto.Resultado === "CORRECTO";
+  const esCorrecto = ultimoObjeto.Resultado === "CORRECTO";
   if(piezatotales===4){
     if(!esCorrecto){
       if(count===0){
