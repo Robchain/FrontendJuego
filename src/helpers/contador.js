@@ -168,47 +168,6 @@ function shuffle(array) {
   return array;
 }
 
-// export function ordenarYagrupar(arrayDeObjetos, numeroDeGrupos, numeroDeIntegrantes) {
-//   // Paso 1: Desordenar el array de objetos
-//   const arrayDesordenado = shuffle(arrayDeObjetos);
-
-//   // Paso 2: Calcular la cantidad total de elementos y el número máximo de integrantes por grupo
-//   const cantidadTotal = arrayDesordenado.length;
-//   const maxIntegrantesPorGrupo = Math.ceil(cantidadTotal / numeroDeGrupos);
-//   const integrantesUltimoGrupo = cantidadTotal % numeroDeGrupos;
-
-//   // Paso 3: Crear un nuevo objeto de grupos vacío
-//   const grupos = {};
-
-//   // Paso 4: Recorrer el array desordenado y asignar elementos a los grupos
-//   let grupoActual = [];
-//   let grupoIndex = 0;
-
-//   for (let i = 0; i < cantidadTotal; i++) {
-//     grupoActual.push(arrayDesordenado[i]);
-
-//     // Verificar si se alcanzó el número máximo de integrantes por grupo
-//     if (grupoActual.length === numeroDeIntegrantes || i === cantidadTotal - 1) {
-//       grupos[`Equipo ${grupoIndex +1}`] = grupoActual;
-
-//       // Reiniciar el grupo actual
-//       grupoActual = [];
-//       grupoIndex++;
-//     }
-//   }
-
-//   // Ajustar el último grupo si no alcanza el número de integrantes especificado
-//   const ultimoGrupo = grupos[`Equipo ${numeroDeGrupos - 1}`];
-//   if (ultimoGrupo && ultimoGrupo.length < numeroDeIntegrantes) {
-//     const estudiantesFaltantes = numeroDeIntegrantes - ultimoGrupo.length;
-//     for (let i = 0; i < estudiantesFaltantes; i++) {
-//       const estudiante = arrayDesordenado.pop();
-//       ultimoGrupo.push(estudiante);
-//     }
-//   }
-
-//   return grupos;
-// }
 
 export function ordenarYagrupar(arrayDeObjetos, numeroDeGrupos, numeroDeIntegrantes) {
   // Paso 1: Desordenar el array de objetos
@@ -336,6 +295,8 @@ export const Piezacalcular = ({objecto,piezatotales})=>{
         return 4;
       }else if(count===6){
         return 4;
+      }else if(count > 6){
+        return 4;
       }
   }else if(esCorrecto){
     if(count===0){
@@ -351,6 +312,8 @@ export const Piezacalcular = ({objecto,piezatotales})=>{
     }else if(count===5){
       return 4;
     }else if(count===6){
+      return 4;
+    }else if(count > 6){
       return 4;
     }
   }
@@ -375,6 +338,8 @@ export const Piezacalcular = ({objecto,piezatotales})=>{
         return 6;
       }else if(count==8){
         return 6;
+      }else if(count >8){
+        return 6;
       }
   }else if(esCorrecto){
     if(count===0){
@@ -394,6 +359,8 @@ export const Piezacalcular = ({objecto,piezatotales})=>{
     }else if(count===7){
       return 6;
     }else if(count==8){
+      return 6;
+    }else if(count >8){
       return 6;
     }
   }

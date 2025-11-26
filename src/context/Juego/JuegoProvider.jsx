@@ -21,6 +21,7 @@ export const JuegoProvider = ({ children }) => {
   const [rangoState, setRangoState] = useState(0)
   const [InfoEstudiaSituacion, setInfoEstudiaSituacion] = useState(null);
 const [idRompecabeza, setIdRompecabeza] = useState(null)
+
   const LLamadaIncial = async () => {
     try {
       let nombre = localStorage.getItem("Nombre");
@@ -28,23 +29,29 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
       let completo = `${nombre} ${apellido}`;
       let value = localStorage.getItem("Identificacion");
       
-      if (completo.length > 5 && value.length > 3) {
+      if (completo.length !=0 && value.length !=0) {
+
         const data = await llamadoIncialDePosiciondelUsuario(completo, value);
-        console.log(data)
+
         if (data === null) {
+
           disparodeAcciones({
             type: "cambio",
             field: "MultiJugador",
             value: true,
           });
+
         } else if (data !== null) {
+
           setInfoEstudiaSituacion(data);
+
         }
       }
     } catch (error) {
       disparodeAcciones({ type: "cambio", field: "MultiJugador", value: true });
     }
   };
+
   const llamadaDos = async (IdDeLaAsignacion) => {
     const data = await llamadaInicialDelosEquiposSinAsignar(IdDeLaAsignacion);
     setCardEquipo(data);
@@ -155,14 +162,23 @@ const [idRompecabeza, setIdRompecabeza] = useState(null)
 
   const dataOracion = async (id) => {
     try {
+
       const data = await llamadaPartidaOracion({id:id});
+      console.log(data)
+
       if (data !== null) {
+
         setOraciondata(data);
+
       } else if (data === null) {
+
         disparodeAcciones({ type: "cambio", field: "Oraciones", value: true });
+
       }
     } catch (error) {
+
       disparodeAcciones({ type: "cambio", field: "Oraciones", value: true });
+
     }
   };
 
